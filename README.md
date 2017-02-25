@@ -42,4 +42,6 @@ The flaw was corrected by Z.
 
 ## License
 
+All content in this repository is placed in the public domain.
+
 [![Public Domain](http://i.creativecommons.org/p/zero/1.0/88x31.png)](https://github.com/RustSec/advisory-db/blob/master/LICENSE.txt)
