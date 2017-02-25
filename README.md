@@ -13,7 +13,12 @@ Each advisory contains information in [TOML] format:
 ```toml
 [vulnerability]
 package = "mypackage"
-versions = ["1.2.0", "1.2.3", "1.2.4", "1.2.5"]
+
+# Versions which were never vulnerable
+unaffected_versions = ["< 1.1.0"]
+
+# Versions which include fixes for this vulnerability
+patched_versions = [">= 1.2.0"]
 
 # It is strongly recommended to request a CVE, or alternatively a DWF, and
 # reference the assigned number here.
