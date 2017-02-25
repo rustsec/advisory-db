@@ -39,3 +39,7 @@ The flaw was corrected by Z.
 
 [TOML]: https://github.com/toml-lang/toml
 [cargo-audit]: https://github.com/rustsec/cargo-audit
+
+## License
+
+[![Public Domain](http://i.creativecommons.org/p/zero/1.0/88x31.png)](https://github.com/RustSec/advisory-db/blob/master/LICENSE.txt)
