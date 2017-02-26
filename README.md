@@ -35,6 +35,9 @@ url = false
 # Single-line description of a vulnerability
 title = "Flaw in X allows Y"
 
+# Disclosure date of the advisory (RFC 3339)
+date = "2017-02-25"
+
 # Enter a short-form description of the vulnerability here (required)
 description = """
 Affected versions of this crate did not properly X.
