@@ -1,4 +1,7 @@
-# RustSec Advisory Database
+# RustSec Advisory Database [![Build Status][build-image]][build-link]
+
+[build-image]: https://travis-ci.org/RustSec/advisory-db.svg?branch=master
+[build-link]: https://travis-ci.org/RustSec/advisory-db
 
 The RustSec Advisory Database is a repository of security advisories filed
 against Rust crates published via https://crates.io
