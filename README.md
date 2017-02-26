@@ -11,7 +11,7 @@ automated tools to consume.
 Each advisory contains information in [TOML] format:
 
 ```toml
-[vulnerability]
+[advisory]
 package = "mypackage"
 
 # Versions which were never vulnerable
