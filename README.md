@@ -15,7 +15,7 @@ Each advisory contains information in [TOML] format:
 
 ```toml
 [advisory]
-crate_name = "vulnerablecrate"
+package = "mypackage"
 
 # Versions which were never vulnerable
 unaffected_versions = ["< 1.1.0"]
