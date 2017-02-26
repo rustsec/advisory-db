@@ -1,0 +1,14 @@
+[[advisory]]
+package = "sodiumoxide"
+patched_versions = [">= 0.0.14"]
+dwf = []
+url = "https://github.com/dnaq/sodiumoxide/issues/154"
+title = "scalarmult() vulnerable to degenerate public keys"
+description = """
+The `scalarmult()` function included in previous versions of this crate
+accepted all-zero public keys, for which the resulting Diffie-Hellman shared
+secret will always be zero regardless of the private key used.
+
+This issue was fixed by checking for this class of keys and rejecting them
+if they are used.
+"""
