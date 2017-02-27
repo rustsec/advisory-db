@@ -1,0 +1,15 @@
+[advisory]
+package = "hyper"
+patched_versions = [">= 0.10.2", "< 0.10.0, >= 0.9.18"]
+dwf = []
+url = "https://github.com/hyperium/hyper/wiki/Security-001"
+title = "headers containing newline characters can split messages"
+description = """
+Serializing of headers to the socket did not filter the values for newline bytes (\r or \n),
+which allowed for header values to split a request or response. People would not likely include
+newlines in the headers in their own applications, so the way for most people to exploit this
+is if an application constructs headers based on unsanitized user input.
+
+This issue was fixed by replacing all newline characters with a space during serialization of
+a header value.
+"""
