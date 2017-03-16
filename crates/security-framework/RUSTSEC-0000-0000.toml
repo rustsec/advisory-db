@@ -1,0 +1,14 @@
+[advisory]
+package = "security-framework"
+patched_versions = [">= 0.1.12"]
+dwf = []
+url = "https://github.com/sfackler/rust-security-framework/pull/27"
+title = "Hostname verification skipped when custom root certs used"
+description = """
+If custom root certificates were registered with a `ClientBuilder`, the
+hostname of the target server would not be validated against its presented leaf
+certificate.
+
+This issue was fixed by properly configuring the trust evaluation logic to
+perform that check.
+"""
