@@ -32,3 +32,20 @@ is if an application constructs headers based on unsanitized user input.
 This issue was fixed by replacing all newline characters with a space during serialization of
 a header value.
 """
+
+[[advisory]]
+id = "RUSTSEC-2017-0003"
+package = "security-framework"
+patched_versions = [">= 0.1.12"]
+dwf = []
+date = "2017-03-15"
+url = "https://github.com/sfackler/rust-security-framework/pull/27"
+title = "Hostname verification skipped when custom root certs used"
+description = """
+If custom root certificates were registered with a `ClientBuilder`, the
+hostname of the target server would not be validated against its presented leaf
+certificate.
+
+This issue was fixed by properly configuring the trust evaluation logic to
+perform that check.
+"""
