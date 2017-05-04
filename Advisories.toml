@@ -49,3 +49,24 @@ certificate.
 This issue was fixed by properly configuring the trust evaluation logic to
 perform that check.
 """
+
+[[advisory]]
+id = "RUSTSEC-2017-0004"
+package = "base64"
+patched_versions = [">= 0.5.2"]
+dwf = []
+url = "https://github.com/alicemaz/rust-base64/commit/24ead980daf11ba563e4fb2516187a56a71ad319"
+title = "Integer overflow leads to heap-based buffer overflow in encode_config_buf"
+date = "2017-05-03"
+description = """
+Affected versions of this crate suffered from an integer overflow bug when
+calculating the size of a buffer to use when encoding base64 using the
+`encode_config_buf` and `encode_config` functions.  If the input string
+was large, this would cause a buffer to be allocated that was too small.
+Since this function writes to the buffer using unsafe code, it would
+allow an attacker to write beyond the buffer, causing memory corruption
+and possibly the execution of arbitrary code.
+
+This flaw was corrected by using checked arithmetic to calculate
+the size of the buffer.
+"""
