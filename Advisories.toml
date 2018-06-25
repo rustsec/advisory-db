@@ -88,3 +88,26 @@ will panic if the value is greater than 2^64/1000 and less than or equal to
 This flaw was corrected by explicitly checking for the `Max-Age` being in this
 integer range and clamping the value to the maximum duration value.
 """
+
+[[advisory]]
+id = "RUSTSEC-2018-0001"
+package = "untrusted"
+unaffected_versions = []
+patched_versions = [">= 0.6.2"]
+dwf = []
+url = "https://github.com/briansmith/untrusted/pull/20"
+title = "An integer underflow could lead to panic"
+date = "2018-06-21"
+description = """
+A mistake in error handling in untrusted before 0.6.2 could lead to an integer
+underflow and panic if a user of the crate didn't properly check for errors
+returned by untrusted.
+
+Combination of these two programming errors (one in untrusted and another by
+user of this crate) could lead to a panic and maybe a denial of service of
+affected software.
+
+The error in untrusted is fixed in release 0.6.2 released 2018-06-21. It's also
+advisable that users of untrusted check for their sources for cases where errors
+returned by untrusted are not handled correctly.
+"""

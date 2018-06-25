@@ -1,31 +1,11 @@
 [advisory]
 package = "untrusted"
-
-# Versions which were never vulnerable
 unaffected_versions = []
-
-# Versions which include fixes for this vulnerability
 patched_versions = [">= 0.6.2"]
-
-# It is strongly recommended to request a CVE, or alternatively a DWF, and
-# reference the assigned number here.
-# - CVE: https://iwantacve.org/
-# - DWF: https://distributedweaknessfiling.org/
 dwf = []
-# dwf = ["CVE-YYYY-XXXX"]
-# dwf = ["CVE-YYYY-XXXX", "CVE-ZZZZ-WWWW"]
-
-# URL to a long-form description of this issue, e.g. a blogpost announcing
-# the release or a changelog entry (optional)
 url = "https://github.com/briansmith/untrusted/pull/20"
-
-# Single-line description of a vulnerability
 title = "An integer underflow could lead to panic"
-
-# Disclosure date of the advisory (RFC 3339)
 date = "2018-06-21"
-
-# Enter a short-form description of the vulnerability here (required)
 description = """
 A mistake in error handling in untrusted before 0.6.2 could lead to an integer
 underflow and panic if a user of the crate didn't properly check for errors
