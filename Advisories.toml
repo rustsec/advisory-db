@@ -111,3 +111,27 @@ The error in untrusted is fixed in release 0.6.2 released 2018-06-21. It's also
 advisable that users of untrusted check for their sources for cases where errors
 returned by untrusted are not handled correctly.
 """
+
+[[advisory]]
+id = "RUSTSEC-2018-0002"
+package = "smallvec"
+unaffected_versions = ["< 0.3.2"]
+patched_versions = [">= 0.6.3"]
+dwf = []
+url = "https://github.com/servo/rust-smallvec/issues/96"
+title = "Possible double free during unwinding in SmallVec::insert_many"
+date = "2018-07-19"
+description = """
+If an iterator passed to `SmallVec::insert_many` panicked in `Iterator::next`,
+destructors were run during unwinding while the vector was in an inconsistent
+state, possibly causing a double free (a destructor running on two copies of
+the same value).
+
+This is fixed in smallvec 0.6.3 by ensuring that the vector's length is not
+updated to include moved items until they have been removed from their
+original positions.  Items may now be leaked if `Iterator::next` panics, but
+they will not be dropped more than once.
+
+Thank you to @Vurich for reporting this bug.
+"""
+
