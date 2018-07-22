@@ -2,24 +2,19 @@ extern crate rustsec;
 
 #[cfg(test)]
 mod tests {
-    // Name of the advisory database in the current repo
-    const ADVISORY_DB_FILE: &'static str = "Advisories.toml";
-
-    use rustsec::AdvisoryDatabase;
-    use std::fs::File;
-    use std::io::Read;
-    use std::path::Path;
+    use rustsec::{AdvisoryDatabase, Repository};
 
     #[test]
     fn advisories_toml_is_well_formed() {
-        let path = Path::new(ADVISORY_DB_FILE);
-
-        let mut file = File::open(&path).unwrap();
-
-        let mut toml = String::new();
-        file.read_to_string(&mut toml).unwrap();
+        let repo = Repository::open(".").unwrap();
 
         // Ensure Advisories.toml parses
-        AdvisoryDatabase::from_toml(&toml).unwrap();
+        let advisory_count = AdvisoryDatabase::from_repository(&repo)
+            .unwrap()
+            .advisories()
+            .count();
+
+        // Ensure we're parsing some advisories
+        assert!(advisory_count > 5);
     }
 }
