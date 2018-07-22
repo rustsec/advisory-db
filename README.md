@@ -24,13 +24,13 @@ unaffected_versions = ["< 1.1.0"]
 # Versions which include fixes for this vulnerability
 patched_versions = [">= 1.2.0"]
 
-# It is strongly recommended to request a CVE, or alternatively a DWF, and
-# reference the assigned number here.
-# - CVE: https://iwantacve.org/
-# - DWF: https://distributedweaknessfiling.org/
-dwf = []
-# dwf = ["CVE-YYYY-XXXX"]
-# dwf = ["CVE-YYYY-XXXX", "CVE-ZZZZ-WWWW"]
+# Vulnerability aliases (e.g. CVE IDs). Optional but recommended.
+# Request a CVE for your RustSec vulns: https://iwantacve.org/
+aliases = ["CVE-2018-XXXX"]
+
+# References to related vulnerabilities (Optional)
+# e.g. CVE for a C library wrapped by a -sys crate)
+references = ["CVE-2018-YYYY", "CVE-2018-ZZZZ"]
 
 # URL to a long-form description of this issue, e.g. a blogpost announcing
 # the release or a changelog entry (optional)
