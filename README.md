@@ -16,6 +16,17 @@ against Rust crates published via https://crates.io
 Advisory metadata is stored in [TOML] format for [cargo-audit] and other
 automated tools to consume.
 
+## Reporting Vulnerabilities
+
+Vulneraties can be reported by opening pull requests using the template
+below. See [CONTRIBUTING.md] for more information.
+
+<a href="https://github.com/RustSec/advisory-db/blob/master/CONTRIBUTING.md">
+  <img alt="Report Vulnerability" width="250px" height="60px" src="https://rustsec.org/assets/img/report-vuln-button.png">
+</a>
+
+[CONTRIBUTING.md]: https://github.com/RustSec/advisory-db/blob/master/CONTRIBUTING.md
+
 ## Format
 
 Each advisory contains information in [TOML] format:
