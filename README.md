@@ -32,39 +32,44 @@ See [CONTRIBUTING.md] for more information.
 
 [CONTRIBUTING.md]: https://github.com/RustSec/advisory-db/blob/master/CONTRIBUTING.md
 
-## Format
+## Advisory Format
 
 Each advisory contains information in [TOML] format:
 
 ```toml
 [advisory]
-package = "mypackage"
+# Identifier for the advisory (mandatory). Will be assigned a "RUSTSEC-YYYY-NNNN"
+# identifier e.g. RUSTSEC-2018-0001. Please use "RUSTSEC-0000-0000" in PRs.
+id = "RUSTSEC-0000-0000"
 
-# Versions which were never vulnerable
-unaffected_versions = ["< 1.1.0"]
+# Name of the affected crate (mandatory)
+package = "mycrate"
 
-# Versions which include fixes for this vulnerability
+# Disclosure date of the advisory as an RFC 3339 date (mandatory)
+date = "2017-02-25"
+
+# Versions which include fixes for this vulnerability (mandatory)
 patched_versions = [">= 1.2.0"]
 
-# Vulnerability aliases (e.g. CVE IDs). Optional but recommended.
+# Versions which were never vulnerable (optional)
+unaffected_versions = ["< 1.1.0"]
+
+# Vulnerability aliases, e.g. CVE IDs (optional but recommended)
 # Request a CVE for your RustSec vulns: https://iwantacve.org/
 aliases = ["CVE-2018-XXXX"]
 
-# References to related vulnerabilities (Optional)
+# References to related vulnerabilities (optional)
 # e.g. CVE for a C library wrapped by a -sys crate)
 references = ["CVE-2018-YYYY", "CVE-2018-ZZZZ"]
 
-# URL to a long-form description of this issue, e.g. a blogpost announcing
-# the release or a changelog entry (optional)
-url = false
+# URL to a long-form description of this issue, e.g. a GitHub issue/PR,
+# a change log entry, or a blogpost announcing the release (optional)
+url = "https://github.com/mystuff/mycrate/issues/123"
 
-# Single-line description of a vulnerability
+# Single-line description of a vulnerability (mandatory)
 title = "Flaw in X allows Y"
 
-# Disclosure date of the advisory (RFC 3339)
-date = "2017-02-25"
-
-# Enter a short-form description of the vulnerability here (required)
+# Enter a short-form description of the vulnerability here (mandatory)
 description = """
 Affected versions of this crate did not properly X.
 
