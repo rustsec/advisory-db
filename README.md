@@ -64,6 +64,9 @@ The flaw was corrected by Z.
 # a change log entry, or a blogpost announcing the release (optional)
 url = "https://github.com/mystuff/mycrate/issues/123"
 
+# Keywords which describe this vulnerability, similar to Cargo keywords
+keywords = ["ssl", "mitm"]
+
 # Versions which include fixes for this vulnerability (mandatory)
 patched_versions = [">= 1.2.0"]
 
