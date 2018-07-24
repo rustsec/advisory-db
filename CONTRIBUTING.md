@@ -44,7 +44,7 @@ A:  No, anyone can file an advisory against any crate. The legitimacy of
 **Q: Can I file an advisory without creating a pull request?**
 
 A: Yes, instead of creating a full advisory yourself you can also
-   [open an issue on the advisory-db repo]: https://github.com/RustSec/advisory-db/issues
+   [open an issue on the advisory-db repo](https://github.com/RustSec/advisory-db/issues)
    or email information about the vulnerability to
    [rustsec@googlegroups.com](mailto:rustsec@googlegroups.com).
 
