@@ -70,6 +70,10 @@ patched_versions = [">= 1.2.0"]
 # Versions which were never vulnerable (optional)
 unaffected_versions = ["< 1.1.0"]
 
+# Platforms this vulnerability specifically affects (optional)
+# See: https://docs.rs/rustsec/latest/rustsec/advisory/struct.PlatformReq.html
+#affected_platforms = ["*windows*"]
+
 # Vulnerability aliases, e.g. CVE IDs (optional but recommended)
 # Request a CVE for your RustSec vulns: https://iwantacve.org/
 aliases = ["CVE-2018-XXXX"]
