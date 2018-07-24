@@ -1,0 +1,18 @@
+[advisory]
+id = "RUSTSEC-2016-0002"
+package = "hyper"
+patched_versions = [">= 0.9.4"]
+references = ["RUSTSEC-2016-0001"]
+date = "2016-05-09"
+url = "https://github.com/hyperium/hyper/blob/master/CHANGELOG.md#v094-2016-05-09"
+title = "HTTPS MitM vulnerability due to lack of hostname verification"
+description = """
+When used on Windows platforms, all versions of Hyper prior to 0.9.4 did not
+perform hostname verification when making HTTPS requests.
+
+This allows an attacker to perform MitM attacks by preventing any valid
+CA-issued certificate, even if there's a hostname mismatch.
+
+The problem was addressed by leveraging rust-openssl's built-in support for
+hostname verification.
+"""
