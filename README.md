@@ -48,6 +48,22 @@ package = "mycrate"
 # Disclosure date of the advisory as an RFC 3339 date (mandatory)
 date = "2017-02-25"
 
+# Single-line description of a vulnerability (mandatory)
+title = "Flaw in X allows Y"
+
+# Enter a short-form description of the vulnerability here (mandatory)
+description = """
+Affected versions of this crate did not properly X.
+
+This allows an attacker to Y.
+ 
+The flaw was corrected by Z.
+"""
+
+# URL to a long-form description of this issue, e.g. a GitHub issue/PR,
+# a change log entry, or a blogpost announcing the release (optional)
+url = "https://github.com/mystuff/mycrate/issues/123"
+
 # Versions which include fixes for this vulnerability (mandatory)
 patched_versions = [">= 1.2.0"]
 
@@ -61,22 +77,6 @@ aliases = ["CVE-2018-XXXX"]
 # References to related vulnerabilities (optional)
 # e.g. CVE for a C library wrapped by a -sys crate)
 references = ["CVE-2018-YYYY", "CVE-2018-ZZZZ"]
-
-# URL to a long-form description of this issue, e.g. a GitHub issue/PR,
-# a change log entry, or a blogpost announcing the release (optional)
-url = "https://github.com/mystuff/mycrate/issues/123"
-
-# Single-line description of a vulnerability (mandatory)
-title = "Flaw in X allows Y"
-
-# Enter a short-form description of the vulnerability here (mandatory)
-description = """
-Affected versions of this crate did not properly X.
-
-This allows an attacker to Y.
- 
-The flaw was corrected by Z.
-"""
 ```
 
 ## License
