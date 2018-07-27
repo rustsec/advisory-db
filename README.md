@@ -73,9 +73,15 @@ patched_versions = [">= 1.2.0"]
 # Versions which were never vulnerable (optional)
 unaffected_versions = ["< 1.1.0"]
 
-# Platforms this vulnerability specifically affects (optional)
-# See: https://docs.rs/rustsec/latest/rustsec/advisory/struct.PlatformReq.html
-#affected_platforms = ["*windows*"]
+# CPU architectures impacted by this vulnerability (optional)
+# For a list of CPU architecture strings, see the "platforms" crate:
+# <https://docs.rs/platforms/latest/platforms/target/enum.Arch.html>
+#affected_arch = ["x86", "x86_64"]
+
+# Operating systems impacted by this vulnerability (optional)
+# For a list of OS strings, see the "platforms" crate:
+# <https://docs.rs/platforms/latest/platforms/target/enum.OS.html>
+#affected_os = ["windows"]
 
 # Vulnerability aliases, e.g. CVE IDs (optional but recommended)
 # Request a CVE for your RustSec vulns: https://iwantacve.org/
