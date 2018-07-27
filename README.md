@@ -60,30 +60,36 @@ This allows an attacker to Y.
 The flaw was corrected by Z.
 """
 
-# URL to a long-form description of this issue, e.g. a GitHub issue/PR,
-# a change log entry, or a blogpost announcing the release (optional)
-url = "https://github.com/mystuff/mycrate/issues/123"
-
-# Keywords which describe this vulnerability, similar to Cargo keywords
-keywords = ["ssl", "mitm"]
-
 # Versions which include fixes for this vulnerability (mandatory)
 patched_versions = [">= 1.2.0"]
 
 # Versions which were never vulnerable (optional)
-unaffected_versions = ["< 1.1.0"]
+#unaffected_versions = ["< 1.1.0"]
 
-# Platforms this vulnerability specifically affects (optional)
-# See: https://docs.rs/rustsec/latest/rustsec/advisory/struct.PlatformReq.html
-#affected_platforms = ["*windows*"]
+# URL to a long-form description of this issue, e.g. a GitHub issue/PR,
+# a change log entry, or a blogpost announcing the release (optional)
+url = "https://github.com/mystuff/mycrate/issues/123"
+
+# Keywords which describe this vulnerability, similar to Cargo (optional)
+keywords = ["ssl", "mitm"]
 
 # Vulnerability aliases, e.g. CVE IDs (optional but recommended)
 # Request a CVE for your RustSec vulns: https://iwantacve.org/
-aliases = ["CVE-2018-XXXX"]
+#aliases = ["CVE-2018-XXXX"]
 
 # References to related vulnerabilities (optional)
 # e.g. CVE for a C library wrapped by a -sys crate)
-references = ["CVE-2018-YYYY", "CVE-2018-ZZZZ"]
+#references = ["CVE-2018-YYYY", "CVE-2018-ZZZZ"]
+
+# CPU architectures impacted by this vulnerability (optional)
+# For a list of CPU architecture strings, see the "platforms" crate:
+# <https://docs.rs/platforms/latest/platforms/target/enum.Arch.html>
+#affected_arch = ["x86", "x86_64"]
+
+# Operating systems impacted by this vulnerability (optional)
+# For a list of OS strings, see the "platforms" crate:
+# <https://docs.rs/platforms/latest/platforms/target/enum.OS.html>
+#affected_os = ["windows"]
 ```
 
 ## License
