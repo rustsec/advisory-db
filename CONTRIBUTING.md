@@ -14,7 +14,7 @@ this repository containing the new advisory:
    https://iwantacve.org/
 
 [Pull Request]: https://github.com/RustSec/advisory-db/pulls
-[TOML advisory template]: https://github.com/RustSec/advisory-db#format
+[TOML advisory template]: https://github.com/RustSec/advisory-db#advisory-format
 
 ## Criteria
 
