@@ -1,0 +1,18 @@
+[advisory]
+id = "RUSTSEC-0000-0000"
+package = "http-codec"
+date = "2018-09-07"
+title = "Integer overflow in Content-Length panics in debug mode"
+description = """
+All versions of http-codec parse the Content-Length header using unchecked
+arithmetic and will panic on integer overflow when compiled in debug mode or
+with `-C overflow-checks=on`.
+
+Since networking code is generally expected to be panic free this can lead to
+denial of service (but is not otherwise exploitable because the Content-Length
+header is not trusted).
+
+The http-codec crate is now unmaintained.
+"""
+patched_versions = []
+keywords = ["crash"]
