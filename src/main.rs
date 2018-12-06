@@ -1,11 +1,8 @@
+extern crate crates_io_api;
 extern crate gumdrop;
 #[macro_use]
 extern crate gumdrop_derive;
-extern crate reqwest;
 extern crate rustsec;
-extern crate serde;
-#[macro_use]
-extern crate serde_derive;
 
 use gumdrop::Options;
 use rustsec::{AdvisoryDatabase, Repository};
@@ -86,44 +83,22 @@ fn check() {
         );
     }
 
-    let http_client = reqwest::Client::new();
+    let cratesio_client = crates_io_api::SyncClient::new();
     for advisory in advisories {
-        check_advisory(&http_client, advisory);
+        check_advisory(&cratesio_client, advisory);
     }
     println!("*** Check succeeded! All advisories refer to valid crates.");
 }
 
-#[derive(Deserialize)]
-struct CratesResponse {
-    #[serde(rename = "crate")]
-    krate: Crate,
-}
-
-#[derive(Deserialize)]
-struct Crate {
-    name: String,
-}
-
-fn check_advisory(http_client: &reqwest::Client, advisory: &rustsec::Advisory) {
-    let mut response = http_client
-        .get(&format!(
-            "https://crates.io/api/v1/crates/{}",
+fn check_advisory(cratesio_client: &crates_io_api::SyncClient, advisory: &rustsec::Advisory) {
+    let response = cratesio_client
+        .get_crate(advisory.package.as_str())
+        .expect(&format!(
+            "Failed to get package from crates.io: {}",
             advisory.package.as_str()
-        ))
-        .send()
-        .expect("Failed to make HTTP request to crates.io");
-    if !response.status().is_success() {
-        panic!(
-            "crates.io returned an HTTP error ({}) trying to lookup the crate '{}', does it exist?",
-            response.status(),
-            advisory.package.as_str()
-        );
-    }
+        ));
 
-    let parsed_response = response
-        .json::<CratesResponse>()
-        .expect("Failed to parse crates.io response as JSON");
-    if parsed_response.krate.name != advisory.package.as_str() {
+    if response.crate_data.name != advisory.package.as_str() {
         panic!(
             "crates.io package name does not match package name in advisory for {}",
             advisory.package.as_str()
