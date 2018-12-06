@@ -1,3 +1,4 @@
+extern crate crates_io_api;
 extern crate gumdrop;
 #[macro_use]
 extern crate gumdrop_derive;
@@ -65,21 +66,42 @@ fn check() {
     let repo = Repository::open(".").unwrap();
 
     // Ensure Advisories.toml parses
-    let advisory_count = AdvisoryDatabase::from_repository(&repo)
-        .unwrap()
-        .advisories()
-        .count();
+    let db = AdvisoryDatabase::from_repository(&repo).unwrap();
+    let advisories = db.advisories();
 
     // Ensure we're parsing some advisories
-    if advisory_count > MIN_EXPECTED_ADVISORIES {
+    if advisories.len() > MIN_EXPECTED_ADVISORIES {
         println!(
             "*** Check succeeded! Successfully parsed {} advisories.",
-            advisory_count
+            advisories.len()
         );
     } else {
         panic!(
             "Missing advisories! Expected at least {}, but got {}",
-            MIN_EXPECTED_ADVISORIES, advisory_count
+            MIN_EXPECTED_ADVISORIES,
+            advisories.len()
+        );
+    }
+
+    let cratesio_client = crates_io_api::SyncClient::new();
+    for advisory in advisories {
+        check_advisory(&cratesio_client, advisory);
+    }
+    println!("*** Check succeeded! All advisories refer to valid crates.");
+}
+
+fn check_advisory(cratesio_client: &crates_io_api::SyncClient, advisory: &rustsec::Advisory) {
+    let response = cratesio_client
+        .get_crate(advisory.package.as_str())
+        .expect(&format!(
+            "Failed to get package from crates.io: {}",
+            advisory.package.as_str()
+        ));
+
+    if response.crate_data.name != advisory.package.as_str() {
+        panic!(
+            "crates.io package name does not match package name in advisory for {}",
+            advisory.package.as_str()
         );
     }
 }
