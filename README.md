@@ -1,7 +1,7 @@
 # RustSec Advisory Database
 
 [![Build Status][build-image]][build-link]
-![Maintained as of December 2018][maintained-image]
+![Maintained][maintained-image]
 [![Gitter Chat][gitter-image]][gitter-link]
 
 [build-image]: https://travis-ci.org/RustSec/advisory-db.svg?branch=master
