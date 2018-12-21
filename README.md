@@ -90,6 +90,13 @@ keywords = ["ssl", "mitm"]
 # For a list of OS strings, see the "platforms" crate:
 # <https://docs.rs/platforms/latest/platforms/target/enum.OS.html>
 #affected_os = ["windows"]
+
+# List of canonical paths to vulnerable functions (optional) 
+# The path syntax is cratename::path::to::function, without any
+# return type or parameters. More information:
+# <https://github.com/RustSec/advisory-db/issues/68>
+# For example, for RUSTSEC-2018-0003, this would look like:
+#affected_functions = ["smallvec::SmallVec::insert_many"]
 ```
 
 ## License
