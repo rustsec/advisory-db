@@ -1,12 +1,12 @@
 # RustSec Advisory Database
 
 [![Build Status][build-image]][build-link]
-![Maintained][maintained-image]
+![Maintained: Q1 2019][maintained-image]
 [![Gitter Chat][gitter-image]][gitter-link]
 
 [build-image]: https://travis-ci.org/RustSec/advisory-db.svg?branch=master
 [build-link]: https://travis-ci.org/RustSec/advisory-db
-[maintained-image]: https://img.shields.io/maintenance/yes/2018.svg
+[maintained-image]: https://img.shields.io/maintenance/yes/2019.svg
 [gitter-image]: https://badges.gitter.im/badge.svg
 [gitter-link]: https://gitter.im/RustSec/Lobby
 

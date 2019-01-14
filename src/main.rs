@@ -1,8 +1,4 @@
-extern crate crates_io_api;
-extern crate gumdrop;
-#[macro_use]
-extern crate gumdrop_derive;
-extern crate rustsec;
+#![allow(clippy::never_loop)]
 
 use gumdrop::Options;
 use rustsec::{AdvisoryDatabase, Repository};
@@ -93,15 +89,32 @@ fn check() {
 fn check_advisory(cratesio_client: &crates_io_api::SyncClient, advisory: &rustsec::Advisory) {
     let response = cratesio_client
         .get_crate(advisory.package.as_str())
-        .expect(&format!(
-            "Failed to get package from crates.io: {}",
-            advisory.package.as_str()
-        ));
+        .unwrap_or_else(|_| {
+            panic!(
+                "Failed to get package from crates.io: {}",
+                advisory.package.as_str()
+            )
+        });
 
     if response.crate_data.name != advisory.package.as_str() {
         panic!(
             "crates.io package name does not match package name in advisory for {}",
             advisory.package.as_str()
         );
+    }
+
+    // Check that each path in `affected_paths` starts with the crate name
+    if let Some(ref version_req_paths) = advisory.affected_paths {
+        for (_, paths) in version_req_paths.iter() {
+            for path in paths {
+                if path.crate_name() != response.crate_data.name {
+                    panic!(
+                        "{}: affected_path does not begin with crate name: {}",
+                        response.crate_data.name,
+                        path.crate_name()
+                    )
+                }
+            }
+        }
     }
 }
