@@ -102,4 +102,19 @@ fn check_advisory(cratesio_client: &crates_io_api::SyncClient, advisory: &rustse
             advisory.package.as_str()
         );
     }
+
+    // Check that each path in `affected_paths` starts with the crate name
+    if let Some(ref version_req_paths) = advisory.affected_paths {
+        for (_, paths) in version_req_paths.iter() {
+            for path in paths {
+                if path.crate_name() != response.crate_data.name {
+                    panic!(
+                        "{}: affected_path does not begin with crate name: {}",
+                        response.crate_data.name,
+                        path.crate_name()
+                    )
+                }
+            }
+        }
+    }
 }
