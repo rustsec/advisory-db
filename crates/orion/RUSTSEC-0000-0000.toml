@@ -1,0 +1,20 @@
+[advisory]
+id = "RUSTSEC-0000-0000"
+
+package = "orion"
+
+date = "2018-12-20"
+
+title = "Flaw in streaming state reset() functions can create incorrect results."
+
+description = """
+Affected versions of this crate did not properly reset a streaming state.
+
+Resetting a streaming state, without finalising it first, creates incorrect results.
+ 
+The flaw was corrected by not first checking if the state had already been reset, when calling reset().
+"""
+
+patched_versions = [">= 0.11.2"]
+
+url = "https://github.com/brycx/orion/issues/46"
