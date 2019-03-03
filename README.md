@@ -96,7 +96,7 @@ keywords = ["ssl", "mitm"]
 # return type or parameters. More information:
 # <https://github.com/RustSec/advisory-db/issues/68>
 # For example, for RUSTSEC-2018-0003, this would look like:
-#affected_functions = ["smallvec::SmallVec::insert_many"]
+#affected_paths = ["smallvec::SmallVec::insert_many"]
 ```
 
 ## License
