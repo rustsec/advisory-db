@@ -1,0 +1,13 @@
+[advisory]
+id = "RUSTSEC-0000-0000"
+package = "libp2p-core"
+date = "2019-05-15"
+title = "Failure to properly verify ed25519 signatures makes any signature valid"
+description = """
+Affected versions of this crate did not properly verify ed25519 signatures.
+Any signature with a correct length was considered valid.
+
+This allows an attacker to impersonate any node identity.
+"""
+patched_versions = [">= 0.7.1", ">= 0.8.1"]
+unaffected_versions = ["< 0.3"]
