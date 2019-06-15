@@ -1,0 +1,22 @@
+[advisory]
+id = "RUSTSEC-0000-0000"
+
+package = "ncurses"
+date = "2019-06-15"
+
+title = "Buffer overflow and format vulnerabilities in functions exposed without unsafe"
+
+description = """
+`ncurses` exposes functions from the ncurses library which:
+
+- Pass buffers without length to C functions that may write an arbitrary amount of
+  data, leading to a buffer overflow. (`instr`, `mvwinstr`, etc)
+- Passes rust &str to strings expecting C format arguments, allowing a format
+  vulnerability (functions in the `printw` family).
+"""
+
+patched_versions = []
+
+url = "https://github.com/RustSec/advisory-db/issues/106"
+
+affected_functions = ["ncurses::instr", "ncurses::mvwinstr", "ncurses::printw", "ncurses::mvprintw", "ncurses::mvwprintw"]
