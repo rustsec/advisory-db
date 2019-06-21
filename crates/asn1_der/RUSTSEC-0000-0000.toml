@@ -1,18 +1,12 @@
 [advisory]
-# Identifier for the advisory (mandatory). Will be assigned a "RUSTSEC-YYYY-NNNN"
-# identifier e.g. RUSTSEC-2018-0001. Please use "RUSTSEC-0000-0000" in PRs.
 id = "RUSTSEC-0000-0000"
 
-# Name of the affected crate (mandatory)
 package = "asn1_der"
 
-# Disclosure date of the advisory as an RFC 3339 date (mandatory)
 date = "2019-06-13"
 
-# Single-line description of a vulnerability (mandatory)
 title = "Processing of maliciously crafted length fields causes memory allocation SIGABRTs"
 
-# Enter a short-form description of the vulnerability here (mandatory)
 description = """
 Affected versions of this crate tried to preallocate a vector for an arbitrary amount of bytes announced by the ASN.1-DER length field without further checks.
 
@@ -21,40 +15,8 @@ This allows an attacker to trigger a SIGABRT by creating length fields that anno
 The flaw was corrected by not preallocating memory.
 """
 
-# Versions which include fixes for this vulnerability (mandatory)
 patched_versions = [">= 0.6.2"]
 
-# Versions which were never vulnerable (optional)
-#unaffected_versions = ["< 0.6.2"]
-
-# URL to a long-form description of this issue, e.g. a GitHub issue/PR,
-# a change log entry, or a blogpost announcing the release (optional)
 url = "https://github.com/KizzyCode/asn1_der/issues/1"
 
-# Keywords which describe this vulnerability, similar to Cargo (optional)
 keywords = ["dos"]
-
-# Vulnerability aliases, e.g. CVE IDs (optional but recommended)
-# Request a CVE for your RustSec vulns: https://iwantacve.org/
-#aliases = ["CVE-2018-XXXX"]
-
-# References to related vulnerabilities (optional)
-# e.g. CVE for a C library wrapped by a -sys crate)
-#references = ["CVE-2018-YYYY", "CVE-2018-ZZZZ"]
-
-# CPU architectures impacted by this vulnerability (optional)
-# For a list of CPU architecture strings, see the "platforms" crate:
-# <https://docs.rs/platforms/latest/platforms/target/enum.Arch.html>
-#affected_arch = ["x86", "x86_64"]
-
-# Operating systems impacted by this vulnerability (optional)
-# For a list of OS strings, see the "platforms" crate:
-# <https://docs.rs/platforms/latest/platforms/target/enum.OS.html>
-#affected_os = ["windows"]
-
-# List of canonical paths to vulnerable functions (optional) 
-# The path syntax is cratename::path::to::function, without any
-# return type or parameters. More information:
-# <https://github.com/RustSec/advisory-db/issues/68>
-# For example, for RUSTSEC-2018-0003, this would look like:
-#affected_functions = ["smallvec::SmallVec::insert_many"]
