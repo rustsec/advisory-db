@@ -10,8 +10,9 @@ description = """
 
 - Pass buffers without length to C functions that may write an arbitrary amount of
   data, leading to a buffer overflow. (`instr`, `mvwinstr`, etc)
-- Passes rust &str to strings expecting C format arguments, allowing a format
-  vulnerability (functions in the `printw` family).
+- Passes rust &str to strings expecting C format arguments, allowing hostile
+  input to execute a format string attack, which trivially allows writing
+  arbitrary data to stack memory (functions in the `printw` family).
 """
 
 patched_versions = []
