@@ -3,17 +3,15 @@ id = "RUSTSEC-0000-0000"
 
 package = "simd-json"
 
-# Disclosure date of the advisory as an RFC 3339 date (mandatory)
 date = "2019-06-24"
 
 title = "Flaw in string parsing can lead to crashes due to invalid memory access."
 
-# Enter a short-form description of the vulnerability here (mandatory)
 description = """
 The affected version of this crate did not guard against accessing memory
-beyond the range of it's input data. A pointer cast to read the data into
-a 256 bit register could lead to a sengmentation fault when the end plus
-the 32 byte (256 bit) read would overlap into the next page during string
+beyond the range of its input data. A pointer cast to read the data into
+a 256-bit register could lead to a segmentation fault when the end plus
+the 32 bytes (256 bit) read would overlap into the next page during string
 parsing.
 
 ```
@@ -25,7 +23,7 @@ segflt |               [ 32 | byte ]          |
 
 This allows an attacker to eventually crash a service.
  
-The flaw was corrected by using a padding buffer for the last read form the
+The flaw was corrected by using a padding buffer for the last read from the
 input. So that we are we never read over the boundary of the input data.
 """
 
