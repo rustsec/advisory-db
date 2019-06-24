@@ -1,0 +1,40 @@
+[advisory]
+id = "RUSTSEC-0000-0000"
+
+package = "simd-json"
+
+# Disclosure date of the advisory as an RFC 3339 date (mandatory)
+date = "2019-06-24"
+
+title = "Flaw in string parsing can lead to crashes due to invalid memory access."
+
+# Enter a short-form description of the vulnerability here (mandatory)
+description = """
+The affected version of this crate did not guard against accessing memory
+beyond the range of it's input data. A pointer cast to read the data into
+a 256 bit register could lead to a sengmentation fault when the end plus
+the 32 byte (256 bit) read would overlap into the next page during string
+parsing.
+
+```
+page   |  ...  page 1  ...  | ... page 2  ... |
+data   | x[n * 32 byte]xx__ |                 |
+access | ..][ 32 byte ]     |                 |
+segflt |               [ 32 | byte ]          |
+```
+
+This allows an attacker to eventually crash a service.
+ 
+The flaw was corrected by using a padding buffer for the last read form the
+input. So that we are we never read over the boundary of the input data.
+"""
+
+patched_versions = [">= 0.1.15"]
+
+unaffected_versions = ["<= 0.1.13"]
+
+url = "https://github.com/Licenser/simdjson-rs/pull/273"
+
+keywords = ["simd"]
+
+affected_arch = ["x86", "x86_64"]
