@@ -3,6 +3,8 @@
 To add an advisory to the RustSec database, open a [Pull Request] against
 this repository containing the new advisory:
 
+### Required Steps
+
 1. Create a file named `RUSTSEC-0000-0000.toml` in the `crates/<yourcratename>`
    subdirectory of this repository (you may need to create it if it doesn't exist)
 2. Copy and paste the [TOML advisory template] from the README.md file in this repo.
@@ -10,11 +12,13 @@ this repository containing the new advisory:
    details of the advisory.
 3. Open a [Pull Request]. After being reviewed your advisory will be assigned
    a `RUSTSEC-*` advisory identifier and be published to the database.
-4. (Optional, but recommended) Request a CVE for your vulnerability:
-   https://iwantacve.org/
+   
+### Optional Steps   
 
-[Pull Request]: https://github.com/RustSec/advisory-db/pulls
-[TOML advisory template]: https://github.com/RustSec/advisory-db#advisory-format
+Feel free to do either or both of these as you see fit (we recommend you do both):
+
+4. [Yank] the affected versions of the crate.
+5. Request a CVE for your vulnerability: https://iwantacve.org/
 
 ## Criteria
 
@@ -53,3 +57,7 @@ A: Yes, instead of creating a full advisory yourself you can also
 A: We do not presently handle embargoed vulnerabilities. Please ensure embargoes
    have been lifted and details have been disclosed to the public prior to filing
    them against RustSec.
+
+[Pull Request]: https://github.com/RustSec/advisory-db/pulls
+[TOML advisory template]: https://github.com/RustSec/advisory-db#advisory-format
+[Yank]: https://doc.rust-lang.org/cargo/commands/cargo-yank.html
