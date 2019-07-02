@@ -1,16 +1,8 @@
 [advisory]
 id = "RUSTSEC-0000-0000"
-
-# Name of the affected crate (mandatory)
 package = "smallvec"
-
-# Disclosure date of the advisory as an RFC 3339 date (mandatory)
 date = "2019-06-06"
-
-# Single-line description of a vulnerability (mandatory)
 title = "Double-free and use-after-free in SmallVec::grow()"
-
-# Enter a short-form description of the vulnerability here (mandatory)
 description = """
 Attempting to call `grow` on a spilled SmallVec with a value equal to the current capacity causes it to free the existing data. This performs a double free immediately and may lead to use-after-free on subsequent accesses to the SmallVec contents.
 
@@ -18,41 +10,8 @@ An attacker that controls the value passed to `grow` may exploit this flaw to ob
 
 Credits to @ehuss for discovering, reporting and fixing the bug.
 """
-
-# Versions which include fixes for this vulnerability (mandatory)
 patched_versions = [">= 0.6.10"]
-
-# Versions which were never vulnerable (optional)
 unaffected_versions = ["< 0.6.5"]
-
-# URL to a long-form description of this issue, e.g. a GitHub issue/PR,
-# a change log entry, or a blogpost announcing the release (optional)
 url = "https://github.com/servo/rust-smallvec/issues/148"
-
-# Keywords which describe this vulnerability, similar to Cargo (optional)
 keywords = ["double free", "use after free", "arbitrary code execution"]
-
-# Vulnerability aliases, e.g. CVE IDs (optional but recommended)
-# Request a CVE for your RustSec vulns: https://iwantacve.org/
-#aliases = ["CVE-2018-XXXX"]
-
-# References to related vulnerabilities (optional)
-# e.g. CVE for a C library wrapped by a -sys crate)
-#references = ["CVE-2018-YYYY", "CVE-2018-ZZZZ"]
-
-# CPU architectures impacted by this vulnerability (optional)
-# For a list of CPU architecture strings, see the "platforms" crate:
-# <https://docs.rs/platforms/latest/platforms/target/enum.Arch.html>
-#affected_arch = ["x86", "x86_64"]
-
-# Operating systems impacted by this vulnerability (optional)
-# For a list of OS strings, see the "platforms" crate:
-# <https://docs.rs/platforms/latest/platforms/target/enum.OS.html>
-#affected_os = ["windows"]
-
-# List of canonical paths to vulnerable functions (optional) 
-# The path syntax is cratename::path::to::function, without any
-# return type or parameters. More information:
-# <https://github.com/RustSec/advisory-db/issues/68>
-# For example, for RUSTSEC-2018-0003, this would look like:
 affected_functions = ["smallvec::SmallVec::grow"]
