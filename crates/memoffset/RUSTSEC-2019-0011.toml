@@ -5,7 +5,7 @@ date = "2019-07-16"
 title = "Flaw in offset_of and span_of causes SIGILL, drops uninitialized memory of arbitrary type on panic in client code"
 description = """
 Affected versions of this crate caused traps and/or memory unsafety by zero-initializing references.
-They also could leat to uninitialized memory being dropped if the field for which the offset is requested was behind a deref coercion, and that deref coercion caused a panic.
+They also could lead to uninitialized memory being dropped if the field for which the offset is requested was behind a deref coercion, and that deref coercion caused a panic.
 
 The flaw was corrected by using `MaybeUninit`.
 """
