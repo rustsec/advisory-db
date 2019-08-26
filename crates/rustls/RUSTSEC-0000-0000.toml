@@ -1,0 +1,23 @@
+[advisory]
+id = "RUSTSEC-0000-0000"
+package = "rustls"
+date = "2019-08-26"
+title = "Denial of service in example code"
+
+description = """
+Example code provided alongside rustls contained a denial of service condition
+when a socket was uncleanly closed with pending TLS data to send.
+
+This does not affect the core rustls library, but downstream users may have used
+this code as a basis so are advised to ensure they do not have similar bugs
+as a result.
+
+Because crate version numbers cover the library but not the examples, this advisory
+covers no versions.
+"""
+
+patched_versions = [">= 0.16.0"]
+unaffected_versions = ["<= 0.16.0"]
+url = "https://github.com/ctz/rustls/issues/285"
+keywords = ["dos", "denial of service", "sample", "example"]
+aliases = ["CVE-2019-15541"]
