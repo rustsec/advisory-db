@@ -37,6 +37,9 @@ See [CONTRIBUTING.md] for more information.
 Each advisory contains information in [TOML] format:
 
 ```toml
+# Before you submit a PR using this template, please delete the comments
+# explaining each field, as well as any unused fields.
+
 [advisory]
 # Identifier for the advisory (mandatory). Will be assigned a "RUSTSEC-YYYY-NNNN"
 # identifier e.g. RUSTSEC-2018-0001. Please use "RUSTSEC-0000-0000" in PRs.
