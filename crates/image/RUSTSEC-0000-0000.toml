@@ -1,18 +1,8 @@
 [advisory]
-# Identifier for the advisory (mandatory). Will be assigned a "RUSTSEC-YYYY-NNNN"
-# identifier e.g. RUSTSEC-2018-0001. Please use "RUSTSEC-0000-0000" in PRs.
 id = "RUSTSEC-0000-0000"
-
-# Name of the affected crate (mandatory)
 package = "image"
-
-# Disclosure date of the advisory as an RFC 3339 date (mandatory)
 date = "2019-08-21"
-
-# Single-line description of a vulnerability (mandatory)
 title = "Flaw in interface may drop uninitialized instance of arbitrary types"
-
-# Enter a short-form description of the vulnerability here (mandatory)
 description = """
 Affected versions of this crate would call `Vec::set_len` on an uninitialized
 vector with user-provided type parameter, in an interface of the HDR image
@@ -30,41 +20,8 @@ Starting from version `0.22`, a breaking change to the interface requires
 callers to pre-allocate the output buffer and pass a mutable slice instead,
 avoiding all unsafe code.
 """
-
-# Versions which include fixes for this vulnerability (mandatory)
 patched_versions = [">= 0.21.3"]
-
-# Versions which were never vulnerable (optional)
 unaffected_versions = ["< 0.10.2"]
-
-# URL to a long-form description of this issue, e.g. a GitHub issue/PR,
-# a change log entry, or a blogpost announcing the release (optional)
 url = "https://github.com/image-rs/image/pull/985"
-
-# Keywords which describe this vulnerability, similar to Cargo (optional)
 keywords = ["drop", "use-after-free"]
-
-# Vulnerability aliases, e.g. CVE IDs (optional but recommended)
-# Request a CVE for your RustSec vulns: https://iwantacve.org/
-#aliases = ["CVE-2018-XXXX"]
-
-# References to related vulnerabilities (optional)
-# e.g. CVE for a C library wrapped by a -sys crate)
-#references = ["CVE-2018-YYYY", "CVE-2018-ZZZZ"]
-
-# CPU architectures impacted by this vulnerability (optional)
-# For a list of CPU architecture strings, see the "platforms" crate:
-# <https://docs.rs/platforms/latest/platforms/target/enum.Arch.html>
-#affected_arch = ["x86", "x86_64"]
-
-# Operating systems impacted by this vulnerability (optional)
-# For a list of OS strings, see the "platforms" crate:
-# <https://docs.rs/platforms/latest/platforms/target/enum.OS.html>
-#affected_os = ["windows"]
-
-# List of canonical paths to vulnerable functions (optional) 
-# The path syntax is cratename::path::to::function, without any
-# return type or parameters. More information:
-# <https://github.com/RustSec/advisory-db/issues/68>
-# For example, for RUSTSEC-2018-0003, this would look like:
 affected_functions = ["image::hdr::HDRDecoder::read_image_transform"]
