@@ -1,0 +1,27 @@
+[advisory]
+id = "RUSTSEC-0000-0000"
+package = "image"
+date = "2019-08-21"
+title = "Flaw in interface may drop uninitialized instance of arbitrary types"
+description = """
+Affected versions of this crate would call `Vec::set_len` on an uninitialized
+vector with user-provided type parameter, in an interface of the HDR image
+format decoder. They would then also call other code that could panic before
+initializing all instances.
+
+This could run Drop implementations on uninitialized types, equivalent to
+use-after-free, and allow an attacker arbitrary code execution.
+ 
+Two different fixes were applied. It is possible to conserve the interface by
+ensuring proper initialization before calling `Vec::set_len`. Drop is no longer
+called in case of panic, though.
+
+Starting from version `0.22`, a breaking change to the interface requires
+callers to pre-allocate the output buffer and pass a mutable slice instead,
+avoiding all unsafe code.
+"""
+patched_versions = [">= 0.21.3"]
+unaffected_versions = ["< 0.10.2"]
+url = "https://github.com/image-rs/image/pull/985"
+keywords = ["drop", "use-after-free"]
+affected_functions = ["image::hdr::HDRDecoder::read_image_transform"]
