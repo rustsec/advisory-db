@@ -1,0 +1,16 @@
+[advisory]
+id = "RUSTSEC-0000-0000"
+package = "chttp"
+date = "2019-09-01"
+title = "Use-after-free in buffer conversion implementation"
+description = """
+The From<Buffer> implementation for Vec<u8> was not properly implemented,
+returning a vector backed by freed memory. This could lead to memory corruption
+or be exploited to cause undefined behavior.
+ 
+A fix was published in version 0.1.3.
+"""
+patched_versions = [">= 0.1.3"]
+unaffected_versions = ["< 0.1.1"]
+url = "https://github.com/sagebind/isahc/issues/2"
+keywords = ["memory-management", "memory-corruption"]
