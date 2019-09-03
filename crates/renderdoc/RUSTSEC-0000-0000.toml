@@ -1,0 +1,22 @@
+[advisory]
+id = "RUSTSEC-0000-0000"
+package = "renderdoc"
+date = "2019-09-02"
+title = "Internally mutating methods take immutable ref self"
+description = """
+Affected versions of this crate exposed several methods which took `self` by
+immutable reference, despite the requesting the RenderDoc API to set a mutable
+value internally.
+
+This is technically unsound and calling these methods from multiple threads
+without synchronization could lead to unexpected and unpredictable behavior.
+ 
+The flaw was corrected in release 0.5.0.
+"""
+patched_versions = [">= 0.5.0"]
+url = "https://github.com/ebkalderon/renderdoc-rs/pull/32"
+keywords = ["undefined_behavior"]
+affected_functions = [
+    "renderdoc::api::RenderDocV110::trigger_multi_frame_capture",
+    "renderdoc::api::RenderDocV120::set_capture_file_comments",
+]
