@@ -1,0 +1,15 @@
+[advisory]
+id = "RUSTSEC-0000-0000"
+package = "rand_core"
+date = "2019-04-19"
+title = "Unaligned memory access and invalid pointer usage"
+description = """
+Affected versions of this crate violated alignment when casting byte slices to
+integer slices and violated pointer provenance rules, resulting in undefined
+behavior.
+ 
+The flaws were corrected by Ralf Jung and Diggory Hardy.
+"""
+patched_versions = [">= 0.4.2"]
+url = "https://github.com/rust-random/rand/blob/master/rand_core/CHANGELOG.md#050---2019-06-06"
+affected_functions = ["rand_core::BlockRng::next_u64", "rand_core::BlockRng::fill_bytes"]
