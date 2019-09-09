@@ -37,7 +37,7 @@ See [CONTRIBUTING.md] for more information.
 Each advisory contains information in [TOML] format:
 
 ```toml
-# Before you submit a PR using this template, please delete the comments
+# Before you submit a PR using this template, **please delete the comments**
 # explaining each field, as well as any unused fields.
 
 [advisory]
@@ -73,7 +73,12 @@ patched_versions = [">= 1.2.0"]
 # a change log entry, or a blogpost announcing the release (optional)
 url = "https://github.com/mystuff/mycrate/issues/123"
 
-# Keywords which describe this vulnerability, similar to Cargo (optional)
+# Optional: Categories this advisory falls under. Valid categories are:
+# "code-execution", "crypto-failure", "denial-of-service", "file-disclosure"
+# "format-injection", "memory-corruption", "memory-exposure", "privilege-escalation"
+categories = ["crypto-failure"]
+
+# Freeform keywords which describe this vulnerability, similar to Cargo (optional)
 keywords = ["ssl", "mitm"]
 
 # Vulnerability aliases, e.g. CVE IDs (optional but recommended)
@@ -84,22 +89,28 @@ keywords = ["ssl", "mitm"]
 # e.g. CVE for a C library wrapped by a -sys crate)
 #references = ["CVE-2018-YYYY", "CVE-2018-ZZZZ"]
 
-# CPU architectures impacted by this vulnerability (optional)
+# Optional: metadata which narrows the scope of what this advisory affects
+[affected]
+# CPU architectures impacted by this vulnerability (optional).
+# Only use this if the vulnerability is specific to a particular CPU architecture,
+# e.g. the vulnerability is in x86 assembly.
 # For a list of CPU architecture strings, see the "platforms" crate:
 # <https://docs.rs/platforms/latest/platforms/target/enum.Arch.html>
-#affected_arch = ["x86", "x86_64"]
+#arch = ["x86", "x86_64"]
 
 # Operating systems impacted by this vulnerability (optional)
+# Only use this if the vulnerable is specific to a particular OS, e.g. it was
+# located in a binding to a Windows-specific API.
 # For a list of OS strings, see the "platforms" crate:
 # <https://docs.rs/platforms/latest/platforms/target/enum.OS.html>
-#affected_os = ["windows"]
+#os = ["windows"]
 
-# List of canonical paths to vulnerable functions (optional) 
-# The path syntax is cratename::path::to::function, without any
-# return type or parameters. More information:
-# <https://github.com/RustSec/advisory-db/issues/68>
-# For example, for RUSTSEC-2018-0003, this would look like:
-#affected_functions = ["smallvec::SmallVec::insert_many"]
+# Table of canonical paths to vulnerable functions (optional)
+# mapping to which versions impacted by this advisory used that particular
+# name (e.g. if the function was renamed between versions). 
+# The path syntax is `cratename::path::to::function`, without any
+# parameters or additional information, followed by a list of version reqs.
+functions = { "mycrate::MyType::vulnerable_function" = ["< 1.2.0, >= 1.1.0"] }
 ```
 
 ## License
