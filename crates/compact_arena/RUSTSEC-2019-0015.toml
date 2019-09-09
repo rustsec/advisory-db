@@ -7,13 +7,16 @@ description = """
 Affected versions of this crate did not properly implement the generativity,
 because the invariant lifetimes were not necessarily `drop`ped.
 
-This allows an attacker to mix up two arenas, using indices created from one 
-arena with another one. This might lead to an out-of-bounds read or write 
+This allows an attacker to mix up two arenas, using indices created from one
+arena with another one. This might lead to an out-of-bounds read or write
 access into the memory reserved for the arena.
- 
+
 The flaw was corrected by implementing generativity correctly in version 0.4.0.
 """
 patched_versions = [">= 0.4.0"]
 url = "https://github.com/llogiq/compact_arena/issues/22"
-keywords = ["memory-corruption", "uninitialized-memory"]
-affected_functions = ["compact_arena::SmallArena::new"]
+categories = ["memory-corruption"]
+keywords = ["uninitialized-memory"]
+
+[affected.functions]
+"compact_arena::SmallArena::new" = ["< 0.4.0"]

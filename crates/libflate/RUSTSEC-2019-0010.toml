@@ -4,14 +4,16 @@ package = "libflate"
 date = "2019-07-04"
 title = "MultiDecoder::read() drops uninitialized memory of arbitrary type on panic in client code"
 description = """
-Affected versions of libflate have set a field of an internal structure with a generic type to an uninitialized value in `MultiDecoder::read()` and reverted it to the original value after the function completed. However, execution of `MultiDecoder::read()` could be interrupted by a panic in caller-supplied `Read` implementation. This would cause `drop()` to be called on uninitialized memory of a generic type implementing `Read`. 
+Affected versions of libflate have set a field of an internal structure with a generic type to an uninitialized value in `MultiDecoder::read()` and reverted it to the original value after the function completed. However, execution of `MultiDecoder::read()` could be interrupted by a panic in caller-supplied `Read` implementation. This would cause `drop()` to be called on uninitialized memory of a generic type implementing `Read`.
 
 This is equivalent to a use-after-free vulnerability and could allow an attacker to gain arbitrary code execution.
- 
+
 The flaw was corrected by aborting immediately instead of unwinding the stack in case of panic within `MultiDecoder::read()`. The issue was discovered and fixed by Shnatsel.
 """
 patched_versions = [">= 0.1.25"]
 unaffected_versions = ["< 0.1.14"]
 url = "https://github.com/sile/libflate/issues/35"
 keywords = ["drop", "use-after-free"]
-affected_functions = ["libflate::gzip::MultiDecoder::read"]
+
+[affected.functions]
+"libflate::gzip::MultiDecoder::read" = ["< 0.1.25, >= 0.1.14"]
