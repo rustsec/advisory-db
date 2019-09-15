@@ -1,0 +1,25 @@
+[advisory]
+id = "RUSTSEC-0000-0000"
+
+package = "linea"
+
+date = "2019-9-14"
+
+title = "`Matrix::zip_elements` causes double free"
+
+description = """
+Affected versions of this crate did not properly implements the `Matrix::zip_elements` method, which causes an double free when the given trait implementation might panic.
+
+This allows an attacker to corrupt or take control of the memory.
+ 
+The flaw was corrected by Phosphorus15.
+"""
+
+# yet not merged
+patched_versions = ["> 0.9.4"]
+
+url = "https://github.com/strake/linea.rs/issues/2"
+
+categories = ["memory-corruption"]
+
+keywords = ["double free"]
