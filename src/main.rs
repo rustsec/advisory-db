@@ -3,7 +3,6 @@
 #![allow(clippy::never_loop)]
 
 use gumdrop::Options;
-use rustsec::package;
 use std::{env, io::Write, path::PathBuf, process::exit};
 use termcolor::{
     Color::{Green, Red},
@@ -147,7 +146,7 @@ impl CheckCommand {
         cratesio_client: &crates_io_api::SyncClient,
         advisory: &rustsec::Advisory,
     ) -> bool {
-        if advisory.metadata.collection == Some(package::Collection::Crates) {
+        if advisory.metadata.collection == Some(rustsec::Collection::Crates) {
             match cratesio_client.get_crate(advisory.metadata.package.as_str()) {
                 Ok(response) => {
                     if response.crate_data.name != advisory.metadata.package.as_str() {
