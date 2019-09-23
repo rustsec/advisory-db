@@ -1,8 +1,10 @@
 language: rust
 cache: cargo
 
+install: cargo install rustsec-cli --git https://github.com/RustSec/rustsec-crate.git
+
 # check that the advisory-db is well-formed
-script: cargo run check
+script: rustsec check
 
 branches:
   only:
