@@ -1,0 +1,16 @@
+[advisory]
+id = "RUSTSEC-0000-0000"
+package = "rmpv"
+date = "2017-11-21"
+title = "Unchecked vector pre-allocation"
+description = """
+Affected versions of this crate pre-allocate memory on deserializing raw
+buffers without checking whether there is sufficient data available.
+
+This allows an attacker to do denial-of-service attacks by sending small
+msgpack messages that allocate gigabytes of memory.
+"""
+patched_versions = []
+url = "https://github.com/3Hren/msgpack-rust/issues/151"
+categories = ["denial-of-service"]
+keywords = ["memory", "dos", "msgpack", "serialization", "deserialization"]
