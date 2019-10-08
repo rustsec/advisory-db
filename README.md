@@ -1,14 +1,8 @@
 # RustSec Advisory Database
 
 [![Build Status][build-image]][build-link]
-![Maintained: Q3 2019][maintained-image]
+![Maintained: Q4 2019][maintained-image]
 [![Gitter Chat][gitter-image]][gitter-link]
-
-[build-image]: https://travis-ci.org/RustSec/advisory-db.svg?branch=master
-[build-link]: https://travis-ci.org/RustSec/advisory-db
-[maintained-image]: https://img.shields.io/maintenance/yes/2019.svg
-[gitter-image]: https://badges.gitter.im/badge.svg
-[gitter-link]: https://gitter.im/RustSec/Lobby
 
 The RustSec Advisory Database is a repository of security advisories filed
 against Rust crates published via https://crates.io
@@ -18,9 +12,6 @@ consume the data and can be used for auditing and reporing (send PRs to add your
 
 * [cargo-audit]: Audit `Cargo.lock` files for crates with security vulnerabilities
 
-[TOML]: https://github.com/toml-lang/toml
-[cargo-audit]: https://github.com/rustsec/cargo-audit
-
 ## Reporting Vulnerabilities
 
 To report a new vulnerability, open a pull request using the template below.
@@ -29,8 +20,6 @@ See [CONTRIBUTING.md] for more information.
 <a href="https://github.com/RustSec/advisory-db/blob/master/CONTRIBUTING.md">
   <img alt="Report Vulnerability" width="250px" height="60px" src="https://rustsec.org/assets/img/report-vuln-button.svg">
 </a>
-
-[CONTRIBUTING.md]: https://github.com/RustSec/advisory-db/blob/master/CONTRIBUTING.md
 
 ## Advisory Format
 
@@ -49,7 +38,7 @@ id = "RUSTSEC-0000-0000"
 package = "mycrate"
 
 # Disclosure date of the advisory as an RFC 3339 date (mandatory)
-date = "2017-02-25"
+date = "2019-10-01"
 
 # Single-line description of a vulnerability (mandatory)
 title = "Flaw in X allows Y"
@@ -118,3 +107,17 @@ functions = { "mycrate::MyType::vulnerable_function" = ["< 1.2.0, >= 1.1.0"] }
 All content in this repository is placed in the public domain.
 
 [![Public Domain](http://i.creativecommons.org/p/zero/1.0/88x31.png)](https://github.com/RustSec/advisory-db/blob/master/LICENSE.txt)
+
+[//]: # (badges)
+
+[build-image]: https://github.com/rustsec/advisory-db/workflows/Validate/badge.svg
+[build-link]: https://github.com/rustsec/advisory-db/actions
+[maintained-image]: https://img.shields.io/maintenance/yes/2019.svg
+[gitter-image]: https://badges.gitter.im/badge.svg
+[gitter-link]: https://gitter.im/RustSec/Lobby
+
+[//]: # (general links)
+
+[TOML]: https://github.com/toml-lang/toml
+[cargo-audit]: https://github.com/rustsec/cargo-audit
+[CONTRIBUTING.md]: https://github.com/RustSec/advisory-db/blob/master/CONTRIBUTING.md
