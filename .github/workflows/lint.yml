@@ -1,0 +1,16 @@
+name: Lint Advisories
+
+on:
+  pull_request: {}
+  push:
+    branches: master
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install rustsec-admin
+      run: cargo install rustsec-admin
+    - name: Lint
+      run: rustsec-admin lint
