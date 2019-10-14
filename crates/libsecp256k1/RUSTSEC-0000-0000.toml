@@ -1,0 +1,18 @@
+[advisory]
+id = "RUSTSEC-0000-0000"
+package = "libsecp256k1"
+date = "2019-10-14"
+title = "Flaw in Scalar::check_overflow allows side-channel timing attack"
+description = """
+Versions of `libsecp256k1` prior to `0.3.1` did not execute
+Scalar::check_overflow in constant time.
+
+This allows an attacker to potentially leak information via a timing attack.
+
+The flaw was corrected by modifying Scalar::check_overflow to execute in
+constant time.
+"""
+patched_versions = [">= 0.3.1"]
+categories = ["crypto-failure"]
+keywords = ["crypto", "sidechannel"]
+functions = { "libsecp256k1::Scalar::check_overflow" = ["< 0.3.1"] }
