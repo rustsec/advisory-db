@@ -1,0 +1,17 @@
+[advisory]
+id = "RUSTSEC-0000-0000"
+package = "flatbuffers"
+patched_versions = []
+unaffected_versions = ["< 0.4.0"]
+date = "2019-10-20"
+url = "https://github.com/google/flatbuffers/issues/5530"
+title = "Unsound `impl Follow for bool`"
+description = """
+The implementation of `impl Follow for bool` allows to reinterpret arbitrary bytes as a `bool`.
+
+In Rust `bool` has stringent requirements for its in-memory representation. Use of this function
+allows to violate these requirements and invoke undefined behaviour in safe code.
+"""
+
+[affected]
+functions = { "flatbuffers::Follow::follow" = [">= 0.4.0", "<= 0.6.0"] }
