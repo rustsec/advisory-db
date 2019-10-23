@@ -1,0 +1,21 @@
+[advisory]
+id = "RUSTSEC-0000-0000"
+package = "safemem"
+date = "2019-10-23"
+title = "prepend() internals create a reference to uninitialized memory"
+description = """
+Affected versions of this crate had a non-unsafe prepend() function that
+temporarily created a `&mut` reference to uninitialized memory of type <T : Copy>
+to afterwards write to it, which currently is Undefined Behavior.
+
+This does not allow an attacker to do anything yet, since the uninitialized memory
+is not explicitely used by the code, and the current implementations of the
+compiler do not seem to exploit the UB.
+
+The flaw was corrected by @danielhenrymantilla and published as of version 0.3.3.
+"""
+patched_versions = [">= 0.3.3"]
+url = "https://github.com/abonander/safemem/issues/7"
+keywords = ["uninitialized-memory", "UB"]
+[affected]
+functions = { "::safemem::prepend" = ["< 0.3.3"] }
