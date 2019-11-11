@@ -8,7 +8,7 @@ The RustSec Advisory Database is a repository of security advisories filed
 against Rust crates published via https://crates.io
 
 Advisory metadata is stored in [TOML] format (see below). The following tools
-consume the data and can be used for auditing and reporing (send PRs to add yours):
+consume the data and can be used for auditing and reporting (send PRs to add yours):
 
 * [cargo-audit]: Audit `Cargo.lock` files for crates with security vulnerabilities
 
