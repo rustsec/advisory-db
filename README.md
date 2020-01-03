@@ -1,7 +1,7 @@
 # RustSec Advisory Database
 
 [![Build Status][build-image]][build-link]
-![Maintained: Q4 2019][maintained-image]
+![Maintained: Q1 2020][maintained-image]
 [![Gitter Chat][gitter-image]][gitter-link]
 
 The RustSec Advisory Database is a repository of security advisories filed
@@ -112,7 +112,7 @@ All content in this repository is placed in the public domain.
 
 [build-image]: https://github.com/rustsec/advisory-db/workflows/Validate/badge.svg
 [build-link]: https://github.com/rustsec/advisory-db/actions
-[maintained-image]: https://img.shields.io/maintenance/yes/2019.svg
+[maintained-image]: https://img.shields.io/maintenance/yes/2020.svg
 [gitter-image]: https://badges.gitter.im/badge.svg
 [gitter-link]: https://gitter.im/RustSec/Lobby
 
