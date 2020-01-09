@@ -10,11 +10,11 @@ which introduced unsoundness in its public safe API.
 [Failing to drop the Drain struct causes double-free](https://github.com/hyperium/http/issues/354),
 and [it is possible to violate Rust's alias rule and cause data race with Drain's Iterator implementation](https://github.com/hyperium/http/issues/355).
 
-The flaw was corrected in 0.2.0 release of `http` crate.
+The flaw was corrected in 0.1.20 release of `http` crate.
 """
-patched_versions = [">= 0.2.0"]
+patched_versions = [">= 0.1.20"]
 categories = ["memory-corruption"]
 keywords = ["memory-safety", "double-free", "unsound"]
 
 [affected.functions]
-"http::header::HeaderMap::drain" = ["< 0.2.0"]
+"http::header::HeaderMap::drain" = ["< 0.1.20"]

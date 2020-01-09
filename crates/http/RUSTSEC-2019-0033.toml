@@ -13,12 +13,12 @@ the library will invoke `self.grow(0)` and start infinite probing.
 This allows an attacker who controls the argument to `reserve()`
 to cause a potential denial of service (DoS).
 
-The flaw was corrected in 0.2.0 release of `http` crate.
+The flaw was corrected in 0.1.20 release of `http` crate.
 """
-patched_versions = [">= 0.2.0"]
+patched_versions = [">= 0.1.20"]
 url = "https://github.com/hyperium/http/issues/352"
 categories = ["denial-of-service"]
 keywords = ["http", "integer-overflow", "DoS"]
 
 [affected.functions]
-"http::header::HeaderMap::reserve" = ["< 0.2.0"]
+"http::header::HeaderMap::reserve" = ["< 0.1.20"]
