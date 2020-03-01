@@ -3,6 +3,8 @@ id = "RUSTSEC-2018-0005"
 package = "serde_yaml"
 date = "2018-09-17"
 title = "Uncontrolled recursion leads to abort in deserialization"
+url = "https://github.com/dtolnay/serde-yaml/pull/105"
+keywords = ["crash"]
 description = """
 Affected versions of this crate did not properly check for recursion
 while deserializing aliases.
@@ -12,7 +14,7 @@ to itself causing an abort.
 
 The flaw was corrected by checking the recursion depth.
 """
-patched_versions = [">= 0.8.4"]
-unaffected_versions = ["< 0.6.0-rc1"]
-url = "https://github.com/dtolnay/serde-yaml/pull/105"
-keywords = ["crash"]
+
+[versions]
+patched = [">= 0.8.4"]
+unaffected = ["< 0.6.0-rc1"]

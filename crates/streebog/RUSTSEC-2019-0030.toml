@@ -3,11 +3,13 @@ id = "RUSTSEC-2019-0030"
 package = "streebog"
 date = "2019-10-06"
 title = "Incorrect implementation of the Streebog hash functions"
+url = "https://github.com/RustCrypto/hashes/pull/91"
+categories = ["crypto-failure"]
 description = """
 Internal `update-sigma` function was implemented incorrectly and depending on
 `debug-assertions` it could've caused an incorrect result or panic for certain
 inputs.
 """
-patched_versions = [">= 0.8.0"]
-url = "https://github.com/RustCrypto/hashes/pull/91"
-categories = ["crypto-failure"]
+
+[versions]
+patched = [">= 0.8.0"]

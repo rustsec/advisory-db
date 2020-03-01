@@ -3,6 +3,8 @@ id = "RUSTSEC-2019-0001"
 package = "ammonia"
 date = "2019-04-27"
 title = "Uncontrolled recursion leads to abort in HTML serialization"
+url = "https://github.com/rust-ammonia/ammonia/blob/master/CHANGELOG.md#210"
+keywords = ["stack-overflow", "crash"]
 description = """
 Affected versions of this crate did use recursion for serialization of HTML
 DOM trees.
@@ -12,11 +14,11 @@ a pathologically nested input.
 
 The flaw was corrected by serializing the DOM tree iteratively instead.
 """
-patched_versions = [">= 2.1.0"]
-url = "https://github.com/rust-ammonia/ammonia/blob/master/CHANGELOG.md#210"
-keywords = ["stack-overflow", "crash"]
 
 [affected.functions]
 "ammonia::clean" = ["< 2.1.0"]
 "ammonia::Document::to_string" = ["< 2.1.0"]
 "ammonia::Document::write_to" = ["< 2.1.0"]
+
+[versions]
+patched = [">= 2.1.0"]

@@ -43,21 +43,6 @@ date = "2019-10-01"
 # Single-line description of a vulnerability (mandatory)
 title = "Flaw in X allows Y"
 
-# Enter a short-form description of the vulnerability here (mandatory)
-description = """
-Affected versions of this crate did not properly X.
-
-This allows an attacker to Y.
- 
-The flaw was corrected by Z.
-"""
-
-# Versions which include fixes for this vulnerability (mandatory)
-patched_versions = [">= 1.2.0"]
-
-# Versions which were never vulnerable (optional)
-#unaffected_versions = ["< 1.1.0"]
-
 # URL to a long-form description of this issue, e.g. a GitHub issue/PR,
 # a change log entry, or a blogpost announcing the release (optional)
 url = "https://github.com/mystuff/mycrate/issues/123"
@@ -77,6 +62,15 @@ keywords = ["ssl", "mitm"]
 # References to related vulnerabilities (optional)
 # e.g. CVE for a C library wrapped by a -sys crate)
 #references = ["CVE-2018-YYYY", "CVE-2018-ZZZZ"]
+
+# Enter a short-form description of the vulnerability here (mandatory)
+description = """
+Affected versions of this crate did not properly X.
+
+This allows an attacker to Y.
+ 
+The flaw was corrected by Z.
+"""
 
 # Optional: metadata which narrows the scope of what this advisory affects
 [affected]
@@ -100,6 +94,13 @@ keywords = ["ssl", "mitm"]
 # The path syntax is `cratename::path::to::function`, without any
 # parameters or additional information, followed by a list of version reqs.
 functions = { "mycrate::MyType::vulnerable_function" = ["< 1.2.0, >= 1.1.0"] }
+
+# Versions which include fixes for this vulnerability (mandatory)
+[versions]
+patched = [">= 1.2.0"]
+
+# Versions which were never vulnerable (optional)
+#unaffected = ["< 1.1.0"]
 ```
 
 ## License

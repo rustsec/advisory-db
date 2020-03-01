@@ -3,16 +3,18 @@ id = "RUSTSEC-2019-0003"
 package = "protobuf"
 date = "2019-06-08"
 title = "Out of Memory in stream::read_raw_bytes_into()"
+url = "https://github.com/stepancheg/rust-protobuf/issues/411"
+categories = ["denial-of-service"]
+keywords = ["oom", "panic"]
 description = """
 Affected versions of this crate called Vec::reserve() on user-supplied input.
 
 This allows an attacker to cause an Out of Memory condition while calling the
 vulnerable method on untrusted data.
 """
-url = "https://github.com/stepancheg/rust-protobuf/issues/411"
-categories = ["denial-of-service"]
-keywords = ["oom", "panic"]
-patched_versions = ["^1.7.5", ">= 2.6.0"]
 
 [affected.functions]
 "protobuf::stream::read_raw_bytes_into" = ["< 2.6.0"]
+
+[versions]
+patched = ["^1.7.5", ">= 2.6.0"]

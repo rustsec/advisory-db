@@ -3,6 +3,8 @@ id = "RUSTSEC-2019-0034"
 package = "http"
 date = "2019-11-16"
 title = "HeaderMap::Drain API is unsound"
+categories = ["memory-corruption"]
+keywords = ["memory-safety", "double-free", "unsound"]
 description = """
 Affected versions of this crate incorrectly used raw pointer,
 which introduced unsoundness in its public safe API.
@@ -12,9 +14,9 @@ and [it is possible to violate Rust's alias rule and cause data race with Drain'
 
 The flaw was corrected in 0.1.20 release of `http` crate.
 """
-patched_versions = [">= 0.1.20"]
-categories = ["memory-corruption"]
-keywords = ["memory-safety", "double-free", "unsound"]
 
 [affected.functions]
 "http::header::HeaderMap::drain" = ["< 0.1.20"]
+
+[versions]
+patched = [">= 0.1.20"]

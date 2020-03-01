@@ -3,6 +3,7 @@ id = "RUSTSEC-2018-0007"
 package = "trust-dns-proto"
 date = "2018-10-09"
 title = "Stack overflow when parsing malicious DNS packet"
+keywords = [ "stack-overflow", "crash" ]
 description = """
 There's a stack overflow leading to a crash when Trust-DNS's parses a
 malicious DNS packet.
@@ -17,5 +18,6 @@ with Trust-DNS could cause stack overflow and crash the affected software.
 
 The flaw was corrected by trust-dns-proto 0.4.3 and upcoming 0.5.0 release.
 """
-patched_versions = [">= 0.4.3", ">= 0.5.0-alpha.3" ]
-keywords = [ "stack-overflow", "crash" ]
+
+[versions]
+patched = [">= 0.4.3", ">= 0.5.0-alpha.3" ]

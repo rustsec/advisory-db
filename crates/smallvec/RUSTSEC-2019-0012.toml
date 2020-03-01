@@ -3,6 +3,8 @@ id = "RUSTSEC-2019-0012"
 package = "smallvec"
 date = "2019-07-19"
 title = "Memory corruption in SmallVec::grow()"
+url = "https://github.com/servo/rust-smallvec/issues/149"
+categories = ["code-execution", "memory-corruption"]
 description = """
 Attempting to call `grow` on a spilled SmallVec with a value less than the current capacity causes corruption of memory allocator data structures.
 
@@ -10,10 +12,10 @@ An attacker that controls the value passed to `grow` may exploit this flaw to ob
 
 Credits to @ehuss for discovering, reporting and fixing the bug.
 """
-patched_versions = [">= 0.6.10"]
-unaffected_versions = ["< 0.6.3"]
-url = "https://github.com/servo/rust-smallvec/issues/149"
-categories = ["code-execution", "memory-corruption"]
 
 [affected.functions]
 "smallvec::SmallVec::grow" = ["< 0.6.10, >= 0.6.3"]
+
+[versions]
+patched = [">= 0.6.10"]
+unaffected = ["< 0.6.3"]

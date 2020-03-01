@@ -3,14 +3,16 @@ id = "RUSTSEC-2019-0005"
 package = "pancurses"
 date = "2019-06-15"
 title = "Format string vulnerabilities in `pancurses`"
+url = "https://github.com/RustSec/advisory-db/issues/106"
 description = """
 `pancurses::mvprintw` and `pancurses::printw` passes a pointer from a rust `&str` to C,
 allowing hostile input to execute a format string attack, which trivially allows writing
 arbitrary data to stack memory.
 """
-patched_versions = []
-url = "https://github.com/RustSec/advisory-db/issues/106"
 
 [affected.functions]
 "pancurses::mvprintw" = [">= 0"]
 "pancurses::printw" = [">= 0"]
+
+[versions]
+patched = []
