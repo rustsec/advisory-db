@@ -3,6 +3,8 @@ id = "RUSTSEC-2019-0014"
 package = "image"
 date = "2019-08-21"
 title = "Flaw in interface may drop uninitialized instance of arbitrary types"
+url = "https://github.com/image-rs/image/pull/985"
+keywords = ["drop", "use-after-free"]
 description = """
 Affected versions of this crate would call `Vec::set_len` on an uninitialized
 vector with user-provided type parameter, in an interface of the HDR image
@@ -20,10 +22,10 @@ Starting from version `0.22`, a breaking change to the interface requires
 callers to pre-allocate the output buffer and pass a mutable slice instead,
 avoiding all unsafe code.
 """
-patched_versions = [">= 0.21.3"]
-unaffected_versions = ["< 0.10.2"]
-url = "https://github.com/image-rs/image/pull/985"
-keywords = ["drop", "use-after-free"]
 
 [affected.functions]
 "image::hdr::HDRDecoder::read_image_transform" = ["< 0.21.3, >= 0.10.2"]
+
+[versions]
+patched = [">= 0.21.3"]
+unaffected = ["< 0.10.2"]

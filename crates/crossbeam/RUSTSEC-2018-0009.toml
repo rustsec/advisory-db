@@ -3,6 +3,8 @@ id = "RUSTSEC-2018-0009"
 package = "crossbeam"
 date = "2018-12-09"
 title = "MsQueue and SegQueue suffer from double-free"
+url = "https://github.com/crossbeam-rs/crossbeam-epoch/issues/82"
+keywords = ["concurrency", "memory-management", "memory-corruption"]
 description = """
 Even if an element is popped from a queue, crossbeam would run its
 destructor inside the epoch-based garbage collector. This is a source
@@ -13,7 +15,7 @@ The flaw was corrected by wrapping elements inside queues in a
 
 Thanks to @c0gent for reporting the issue.
 """
-patched_versions = [">= 0.4.1"]
-unaffected_versions = ["< 0.4.0"]
-url = "https://github.com/crossbeam-rs/crossbeam-epoch/issues/82"
-keywords = ["concurrency", "memory-management", "memory-corruption"]
+
+[versions]
+patched = [">= 0.4.1"]
+unaffected = ["< 0.4.0"]

@@ -3,6 +3,9 @@ id = "RUSTSEC-2019-0022"
 package = "portaudio-rs"
 date = "2019-09-14"
 title = "Stream callback function is not unwind safe"
+url = "https://github.com/mvdnes/portaudio-rs/issues/20"
+categories = ["code-execution", "memory-corruption"]
+keywords = ["audio", "ffi"]
 description = """
 Affected versions of this crate is not panic safe within callback functions `stream_callback` and `stream_finished_callback`.
 
@@ -12,7 +15,6 @@ This allows an attacker to construct an arbitrary code execution .
  
 The flaw was reported by Phosphorus15.
 """
-patched_versions = ["> 0.3.1"]
-url = "https://github.com/mvdnes/portaudio-rs/issues/20"
-categories = ["code-execution", "memory-corruption"]
-keywords = ["audio", "ffi"]
+
+[versions]
+patched = ["> 0.3.1"]

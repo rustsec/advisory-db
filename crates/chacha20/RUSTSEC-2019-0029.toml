@@ -3,6 +3,8 @@ id = "RUSTSEC-2019-0029"
 package = "chacha20"
 date = "2019-10-22"
 title = "ChaCha20 counter overflow can expose repetitions in the keystream"
+url = "https://github.com/RustCrypto/stream-ciphers/pull/64"
+categories = ["crypto-failure"]
 description = """
 The ChaCha20 stream cipher can produce a maximum of 2^32 blocks (~256GB)
 before the 32-bit counter overflows. Releases of the `chacha20` crate prior
@@ -18,6 +20,6 @@ Users of the `chacha20poly1305` crate are unaffected by this as this crate
 properly asserts the length of the plaintext is less than the maximum allowed
 (`P_MAX` as described in RFC 8439 Section 2.8).
 """
-patched_versions = [">= 0.2.3"]
-url = "https://github.com/RustCrypto/stream-ciphers/pull/64"
-categories = ["crypto-failure"]
+
+[versions]
+patched = [">= 0.2.3"]

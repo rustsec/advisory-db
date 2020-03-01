@@ -2,6 +2,7 @@
 id = "RUSTSEC-2019-0026"
 package = "sodiumoxide"
 date = "2019-10-11"
+keywords = ["cryptography"]
 url = "https://github.com/sodiumoxide/sodiumoxide/pull/381"
 
 title = "generichash::Digest::eq always return true"
@@ -10,9 +11,10 @@ PartialEq implementation for generichash::Digest has compared itself to itself.
 
 Digest::eq always returns true and Digest::ne always returns false. 
 """
-patched_versions = [">= 0.2.5"]
-keywords = ["cryptography"]
 
 [affected.functions]
 "sodiumoxide::crypto::generichash::Digest::eq" = ["< 0.2.5, >= 0.2.0"]
 "sodiumoxide::crypto::generichash::Digest::ne" = ["< 0.2.5, >= 0.2.0"]
+
+[versions]
+patched = [">= 0.2.5"]

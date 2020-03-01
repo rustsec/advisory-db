@@ -3,6 +3,8 @@ id = "RUSTSEC-2019-0023"
 package = "string-interner"
 date = "2019-08-24"
 title = "Cloned interners may read already dropped strings"
+url = "https://github.com/Robbepop/string-interner/issues/9"
+keywords = ["use after free"]
 description = """
 Affected versions of this crate did not clone contained strings when an interner is cloned.
 Interners have raw pointers to the contained strings, and they keep pointing the strings which the old interner owns, after the interner is cloned.
@@ -18,6 +20,6 @@ This patch implements `Clone` manually to the interner type, so that the interna
 PR #10 was also backported to the 0.6 release line in
 <https://github.com/Robbepop/string-interner/pull/14> and was released in 0.6.4.
 """
-patched_versions = ["^0.6.4", ">= 0.7.1"]
-url = "https://github.com/Robbepop/string-interner/issues/9"
-keywords = ["use after free"]
+
+[versions]
+patched = ["^0.6.4", ">= 0.7.1"]

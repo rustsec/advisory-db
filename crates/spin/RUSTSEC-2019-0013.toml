@@ -3,6 +3,8 @@ id = "RUSTSEC-2019-0013"
 package = "spin"
 date = "2019-08-27"
 title = "Wrong memory orderings in RwLock potentially violates mutual exclusion"
+url = "https://github.com/mvdnes/spin-rs/issues/65"
+keywords = ["atomic", "ordering", "spin", "lock", "mutex", "rwlock"]
 description = """
 Wrong memory orderings inside the RwLock implementation allow for two writers to acquire the lock at the same time. The drop implementation used Ordering::Relaxed, which allows the compiler or CPU to reorder a mutable access on the locked data after the lock has been yielded.
 
@@ -12,9 +14,9 @@ On strongly ordered CPU architectures like x86, the only real way that this woul
 
 The flaw was corrected by https://github.com/mvdnes/spin-rs/pull/66.
 """
-patched_versions = [">= 0.5.2"]
-url = "https://github.com/mvdnes/spin-rs/issues/65"
-keywords = ["atomic", "ordering", "spin", "lock", "mutex", "rwlock"]
 
 [affected.functions]
 "spin::RwLock::new" = ["< 0.5.2"]
+
+[versions]
+patched = [">= 0.5.2"]

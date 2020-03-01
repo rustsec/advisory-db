@@ -1,8 +1,6 @@
 [advisory]
 id = "RUSTSEC-2019-0028"
 package = "flatbuffers"
-patched_versions = []
-unaffected_versions = ["< 0.4.0"]
 date = "2019-10-20"
 url = "https://github.com/google/flatbuffers/issues/5530"
 title = "Unsound `impl Follow for bool`"
@@ -13,5 +11,9 @@ In Rust `bool` has stringent requirements for its in-memory representation. Use 
 allows to violate these requirements and invoke undefined behaviour in safe code.
 """
 
-[affected]
-functions = { "flatbuffers::Follow::follow" = [">= 0.4.0", "<= 0.6.0"] }
+[affected.functions]
+"flatbuffers::Follow::follow" = [">= 0.4.0", "<= 0.6.0"]
+
+[versions]
+patched = []
+unaffected = ["< 0.4.0"]

@@ -3,6 +3,9 @@ id = "RUSTSEC-2019-0033"
 package = "http"
 date = "2019-11-16"
 title = "Integer Overflow in HeaderMap::reserve() can cause Denial of Service"
+url = "https://github.com/hyperium/http/issues/352"
+categories = ["denial-of-service"]
+keywords = ["http", "integer-overflow", "DoS"]
 description = """
 `HeaderMap::reserve()` used `usize::next_power_of_two()` to calculate the increased capacity.
 However, `next_power_of_two()` silently overflows to 0 if given a sufficently large number
@@ -15,10 +18,9 @@ to cause a potential denial of service (DoS).
 
 The flaw was corrected in 0.1.20 release of `http` crate.
 """
-patched_versions = [">= 0.1.20"]
-url = "https://github.com/hyperium/http/issues/352"
-categories = ["denial-of-service"]
-keywords = ["http", "integer-overflow", "DoS"]
 
 [affected.functions]
 "http::header::HeaderMap::reserve" = ["< 0.1.20"]
+
+[versions]
+patched = [">= 0.1.20"]

@@ -3,6 +3,9 @@ id = "RUSTSEC-2019-0025"
 package = "serde_cbor"
 date = "2019-10-03"
 title = "Flaw in CBOR deserializer allows stack overflow"
+url = "https://github.com/pyfisch/cbor/releases/tag/v0.10.2"
+categories = ["crypto-failure"]
+keywords = ["stack-overflow", "crash", "denial-of-service"]
 description = """
 Affected versions of this crate did not properly check if semantic tags were nested excessively during deserialization.
 
@@ -10,7 +13,6 @@ This allows an attacker to craft small (< 1 kB) CBOR documents that cause a stac
  
 The flaw was corrected by limiting the allowed number of nested tags.
 """
-patched_versions = [">= 0.10.2"]
-url = "https://github.com/pyfisch/cbor/releases/tag/v0.10.2"
-categories = ["crypto-failure"]
-keywords = ["stack-overflow", "crash", "denial-of-service"]
+
+[versions]
+patched = [">= 0.10.2"]

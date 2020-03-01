@@ -3,6 +3,8 @@ id = "RUSTSEC-2019-0008"
 package = "simd-json"
 date = "2019-06-24"
 title = "Flaw in string parsing can lead to crashes due to invalid memory access."
+url = "https://github.com/Licenser/simdjson-rs/pull/27"
+keywords = ["simd"]
 description = """
 The affected version of this crate did not guard against accessing memory
 beyond the range of its input data. A pointer cast to read the data into
@@ -22,10 +24,10 @@ This allows an attacker to eventually crash a service.
 The flaw was corrected by using a padding buffer for the last read from the
 input. So that we are we never read over the boundary of the input data.
 """
-patched_versions = [">= 0.1.15"]
-unaffected_versions = ["<= 0.1.13"]
-url = "https://github.com/Licenser/simdjson-rs/pull/27"
-keywords = ["simd"]
 
 [affected]
 arch = ["x86", "x86_64"]
+
+[versions]
+patched = [">= 0.1.15"]
+unaffected = ["<= 0.1.13"]

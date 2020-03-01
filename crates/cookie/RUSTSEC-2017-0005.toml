@@ -1,7 +1,6 @@
 [advisory]
 id = "RUSTSEC-2017-0005"
 package = "cookie"
-patched_versions = ["< 0.6.0", "^0.6.2", ">= 0.7.6"]
 keywords = ["crash"]
 url = "https://github.com/alexcrichton/cookie-rs/pull/86"
 title = "Large cookie Max-Age values can cause a denial of service"
@@ -15,3 +14,6 @@ will panic if the value is greater than 2^64/1000 and less than or equal to
 This flaw was corrected by explicitly checking for the `Max-Age` being in this
 integer range and clamping the value to the maximum duration value.
 """
+
+[versions]
+patched = ["< 0.6.0", "^0.6.2", ">= 0.7.6"]
