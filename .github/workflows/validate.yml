@@ -7,6 +7,7 @@ on:
 
 jobs:
   lint:
+    name: Lint advisories
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
@@ -18,7 +19,10 @@ jobs:
         key: rustsec-admin-v0.1.1
 
     - name: Install rustsec-admin
-      run: cargo install rustsec-admin
+      run: |
+        if [ ! -f $HOME/.cargo/bin/rustsec-admin ]; then
+            cargo install rustsec-admin
+        fi
 
     - name: Lint advisories
       run: rustsec-admin lint
