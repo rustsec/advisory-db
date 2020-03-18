@@ -12,6 +12,7 @@ This is equivalent to a use-after-free vulnerability and could allow an attacker
 
 The flaw was corrected by aborting immediately instead of unwinding the stack in case of panic within `MultiDecoder::read()`. The issue was discovered and fixed by Shnatsel.
 """
+aliases = ["CVE-2019-15552"]
 
 [affected.functions]
 "libflate::gzip::MultiDecoder::read" = ["< 0.1.25, >= 0.1.14"]
