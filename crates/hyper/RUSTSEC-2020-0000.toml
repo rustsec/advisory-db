@@ -1,0 +1,36 @@
+# Before you submit a PR using this template, **please delete the comments**
+# explaining each field, as well as any unused fields.
+
+[advisory]
+id = "RUSTSEC-0000-0000"
+package = "hyper"
+date = "2020-03-19"
+title = "Flaw in hyper allows request smuggling by sending a body in GET requests"
+url = "https://github.com/hyperium/hyper/issues/1925"
+categories = ["format-injection"]
+keywords = ["http", "request-smuggling"]
+
+# Vulnerability aliases, e.g. CVE IDs (optional but recommended)
+# Request a CVE for your RustSec vulns: https://iwantacve.org/
+#aliases = ["CVE-2018-XXXX"]
+
+# Enter a short-form description of the vulnerability here (mandatory)
+description = """
+Vulnerable versions of hyper allow GET requests to have bodies, even if there is
+no Transfer-Encoding or Content-Length header.  As per the HTTP 1.1
+specification, such requests do not have bodies, so the body will be interpreted
+as a separate HTTP request.
+
+This allows an attacker who can control the body and method of an HTTP request
+made by hyper to inject a request with headers that would not otherwise be
+allowed, as demonstrated by sending a malformed HTTP request from a Substrate
+runtime.  This allows bypassing CORS restrictions and may allow remote code
+execution in certain scenarios, such as if there is an exploitable web server
+listening on loopback.
+
+The flaw was corrected in hyper version 0.12.35.
+"""
+
+# Versions which include fixes for this vulnerability (mandatory)
+[versions]
+patched = [">= 0.12.35"]
