@@ -52,6 +52,10 @@ url = "https://github.com/mystuff/mycrate/issues/123"
 # "format-injection", "memory-corruption", "memory-exposure", "privilege-escalation"
 categories = ["crypto-failure"]
 
+# Optional: a Common Vulnerability Scoring System score. More information
+# can be found on the CVSS website, https://www.first.org/cvss/.
+#cvss = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+
 # Freeform keywords which describe this vulnerability, similar to Cargo (optional)
 keywords = ["ssl", "mitm"]
 
