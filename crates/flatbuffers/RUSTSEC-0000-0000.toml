@@ -2,11 +2,11 @@
 id = "RUSTSEC-0000-0000"
 package = "flatbuffers"
 date = "2020-04-11"
-title = "`read_scalar` and `read_scalar_at` are unsound`"
+title = "`read_scalar` and `read_scalar_at` allow transmuting values without `unsafe` blocks"
 url = "https://github.com/google/flatbuffers/issues/5825"
 description = """
 The `read_scalar` and `read_scalar_at` functions are unsound
-because the allow transmuting values without `unsafe` blocks.
+because they allow transmuting values without `unsafe` blocks.
 
 The following example shows how to create a dangling reference:
 
@@ -24,8 +24,9 @@ fn main() {
 """
 
 [affected.functions]
-"flatbuffers::read_scalar" = []
-"flatbuffers::read_scalar_at" = []
+"flatbuffers::read_scalar" = [">= 0.4.0"]
+"flatbuffers::read_scalar_at" = [">= 0.4.0"]
 
 [versions]
 patched = []
+unaffected = ["< 0.4.0"]
