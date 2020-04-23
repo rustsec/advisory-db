@@ -1,0 +1,15 @@
+[advisory]
+id = "RUSTSEC-0000-0000"
+package = "plutonium"
+date = "2020-04-23"
+title = "Crate intended to hide unsafe use."
+url = "https://www.reddit.com/r/rust/comments/g5rsuh/show_me_the_most_illegal_rust_code_youve_ever/fo88z2d?utm_source=share&utm_medium=web2x"
+description = """
+This crate allows calling unsafe functions without using the keyword "unsafe". It further
+deliberately makes this undetectable with cargo-geiger.
+
+In the API docs the author also states their intend to disable `#![forbid(unsafe)]`. No
+production code should ever have it in their dependency graph.
+"""
+[versions]
+patched = ["none"]
