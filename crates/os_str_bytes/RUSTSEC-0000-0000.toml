@@ -1,0 +1,21 @@
+[advisory]
+id = "RUSTSEC-0000-0000"
+package = "os_str_bytes"
+date = "2020-04-24"
+title = "Relies on undefined behavior of `char::from_u32_unchecked`"
+url = "https://github.com/dylni/os_str_bytes/pull/1"
+description = """
+The Windows implementation of this crate relied on the behavior of
+`std::char::from_u32_unchecked` when its safety clause is violated.
+Even though this worked with Rust versions up to 1.42 (at least),
+that behavior could change with any new Rust version, possibly leading
+a security issue.
+
+The flaw was corrected in version 2.0.0.
+"""
+
+[affected]
+os = ["windows"]
+
+[versions]
+patched = [">= 2.0.0"]
