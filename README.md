@@ -11,6 +11,7 @@ Advisory metadata is stored in [TOML] format (see below). The following tools
 consume the data and can be used for auditing and reporting (send PRs to add yours):
 
 * [cargo-audit]: Audit `Cargo.lock` files for crates with security vulnerabilities
+* [cargo-deny]: Audit `Cargo.lock` files for crates with security vulnerabilities, limit the usage of particular dependencies, their licenses, sources to download from, detect multiple versions of same packages in the dependency tree and more.
 
 ## Reporting Vulnerabilities
 
@@ -125,4 +126,5 @@ All content in this repository is placed in the public domain.
 
 [TOML]: https://github.com/toml-lang/toml
 [cargo-audit]: https://github.com/rustsec/cargo-audit
+[cargo-deny]: https://github.com/EmbarkStudios/cargo-deny
 [CONTRIBUTING.md]: https://github.com/RustSec/advisory-db/blob/master/CONTRIBUTING.md
