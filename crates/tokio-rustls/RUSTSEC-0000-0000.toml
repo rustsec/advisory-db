@@ -1,0 +1,20 @@
+[advisory]
+id = "RUSTSEC-0000-0000"
+package = "tokio-rustls"
+date = "2020-05-19"
+title = "tokio-rustls reads may cause excessive memory usage"
+url = "https://github.com/tokio-rs/tls/pull/14"
+categories = ["denial-of-service"]
+keywords = ["tls", "ssl", "DoS"]
+description = """
+`tokio-rustls` does not call `process_new_packets` immediately after `read`,
+so the expected termination condition `wants_read` always returns true.
+As long as new incoming data arrives faster than it is processed
+and the reader does not return pending, data will be buffered.
+
+This may cause DoS.
+"""
+
+[versions]
+unaffected = ["< 0.12"]
+patched = [">= 0.12.3, < 0.13.0", ">= 0.13.1"]
