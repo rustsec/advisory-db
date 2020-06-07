@@ -1,16 +1,10 @@
 [advisory]
-id = "RUSTSEC-0000-0000"
-
+id = "RUSTSEC-2020-0017"
 package = "internment"
-
 date = "2020-05-28"
-
 title = "Use after free in ArcIntern::drop"
-
 url = "https://github.com/droundy/internment/issues/11"
-
 categories = ["memory-corruption"]
-
 description = """
 `ArcIntern::drop` has a race condition where it can release memory
 which is about to get another user. The new user will get a reference
@@ -19,6 +13,9 @@ to freed memory.
 Versions prior to 0.3.12 used stronger locking which avoided the problem.
 """
 
-functions = { "internment::ArcIntern::drop" = [">= 0.3.12"] }
+[affected.functions]
+"internment::ArcIntern::drop" = [">= 0.3.12"]
 
+[versions]
+patched = []
 unaffected = ["< 0.3.12"]
