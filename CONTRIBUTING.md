@@ -13,7 +13,7 @@ this repository containing the new advisory:
 3. Open a [Pull Request]. After being reviewed your advisory will be assigned
    a `RUSTSEC-*` advisory identifier and be published to the database.
    
-### Optional Steps   
+### Optional Steps
 
 Feel free to do either or both of these as you see fit (we recommend you do both):
 
@@ -34,6 +34,12 @@ examples of qualifying vulnerabilities:
 * Cryptography Failure (e.g. confidentiality breakage, integrity breakage, key leakage)
 * Covert Channels (e.g. Spectre, Meltdown)
 * Panics in code advertised as "panic-free" (particularly if useful for network DoS attacks)
+
+Moreover, RustSec also tracks [soundness] issues as informational advisories, independent of whether they are vulnerabilities or not.
+A soundness issue arises when using a crate from safe code can cause [Undefined Behavior].
+
+[soundness]: https://rust-lang.github.io/unsafe-code-guidelines/glossary.html#soundness-of-code--of-a-library
+[Undefined Behavior]: https://doc.rust-lang.org/reference/behavior-considered-undefined.html
 
 When in doubt, please open a PR.
 
