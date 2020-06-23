@@ -1,0 +1,18 @@
+[advisory]
+id = "RUSTSEC-0000-0000"
+package = "linked-hash-map"
+date = "2020-06-23"
+informational = "unsound"
+
+title = "linked-hash-map creates uninitialized NonNull pointer"
+url = "https://github.com/contain-rs/linked-hash-map/pull/100"
+
+description = """
+Affected versions of this crate called `mem::uninitialized()` to create a `NonNull<T>`,
+which is undefined behavior.
+ 
+The flaw was corrected by avoiding the use of `mem::uninitialized()`.
+"""
+
+[versions]
+patched = [">= 0.5.3"]
