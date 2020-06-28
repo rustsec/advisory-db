@@ -1,0 +1,20 @@
+[advisory]
+id = "RUSTSEC-0000-0000"
+package = "rocket"
+date = "2020-05-27"
+title = "`LocalRequest::clone` creates multiple mutable references to the same object"
+url = "https://github.com/SergioBenitez/Rocket/issues/1312"
+description = """
+The affected version of `rocket` contains a `Clone` trait implementation of
+`LocalRequest` that reuses the pointer to inner `Request` object.
+This causes data race in rare combinations of APIs if the original and the
+cloned objects are modified at the same time.
+"""
+
+[affected]
+# TODO: confirm that this path is correct
+functions = { "rocket::local::LocalRequest::Clone::clone" = ["< 0.4.5, >= 0.4.0"] }
+
+[versions]
+patched = [">= 0.4.5"]
+unaffected = ["< 0.4.0"]
