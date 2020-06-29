@@ -1,0 +1,34 @@
+name: Assign IDs
+
+on:
+  push:
+    branches: master
+
+jobs:
+  assign-ids:
+    name: Assign IDs
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Cache cargo bin
+      uses: actions/cache@v1
+      with:
+        path: ~/.cargo/bin
+        key: rustsec-admin-v0.2.0
+
+    - name: Install rustsec-admin
+      run: |
+        if [ ! -f $HOME/.cargo/bin/rustsec-admin ]; then
+            cargo install rustsec-admin
+        fi
+    - name: Assign IDs
+      run: rustsec-admin assign-id
+    - name: Create pull request
+      uses: peter-evans/create-pull-request@v2
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        commit-message: Assign RUSTSEC IDs
+        title: Assign RUSTSEC IDs
+        branch: assign-ids
+
