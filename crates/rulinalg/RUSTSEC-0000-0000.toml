@@ -8,7 +8,8 @@ description = """
 The affected version of `rulinalg` has incorrect lifetime boundary definitions
 for `RowMut::raw_slice` and `RowMut::raw_slice_mut`. They do not conform with
 Rust's borrowing rule and allows the user to create multiple mutable references
-to the same location.
+to the same location. This may result in unexpected calculation result and data
+race if both references are used at the same time.
 """
 
 [affected]
