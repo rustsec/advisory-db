@@ -2,6 +2,7 @@
 id = "RUSTSEC-0000-0000"
 package = "rocket"
 date = "2020-05-27"
+informational = "unsound"
 title = "`LocalRequest::clone` creates multiple mutable references to the same object"
 url = "https://github.com/SergioBenitez/Rocket/issues/1312"
 description = """
@@ -12,8 +13,7 @@ cloned objects are modified at the same time.
 """
 
 [affected]
-# TODO: confirm that this path is correct
-functions = { "rocket::local::LocalRequest::Clone::clone" = ["< 0.4.5, >= 0.4.0"] }
+functions = { "rocket::local::LocalRequest::clone" = ["< 0.4.5, >= 0.4.0"] }
 
 [versions]
 patched = [">= 0.4.5"]
