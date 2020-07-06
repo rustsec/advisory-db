@@ -13,6 +13,15 @@ This allows an attacker to make a YAML file with deeply nested structures
 that causes an abort while deserializing it.
 
 The flaw was corrected by checking the recursion depth.
+
+Note: `clap 2.33` is not affected by this because it uses `yaml-rust`
+in a way that doesn't trigger the vulnerability. More specifically:
+
+1. The input to the YAML parser is always trusted - is included at compile
+time via `include_str!`.
+
+2. The nesting level is never deep enough to trigger the overflow in practice
+(at most 5).
 """
 aliases = ["CVE-2018-20993"]
 
