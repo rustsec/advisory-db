@@ -15,7 +15,7 @@ jobs:
       uses: actions/cache@v1
       with:
         path: ~/.cargo/bin
-        key: rustsec-admin-v0.2.0
+        key: rustsec-admin-v0.3.0
 
     - name: Install rustsec-admin
       run: |
@@ -23,14 +23,16 @@ jobs:
             cargo install rustsec-admin
         fi
     - name: Assign IDs
-      run: rustsec-admin assign-id
+      id: assign
+      run: |
+        message=$(rustsec-admin assign-id --github-actions-output)
+        echo "::set-output name=commit_message::${message}"
     - name: Lint advisories
       run: rustsec-admin lint
     - name: Create pull request
       uses: peter-evans/create-pull-request@v2
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        commit-message: Assign RUSTSEC IDs
-        title: Assign RUSTSEC IDs
+        commit-message: ${{ steps.assign.outputs.commit_message }}
+        title: ${{ steps.assign.outputs.commit_message }}
         branch: assign-ids
-
