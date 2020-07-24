@@ -1,0 +1,18 @@
+[advisory]
+id = "RUSTSEC-0000-0000"
+package = "smallvec"
+date = "2018-09-25"
+informational = "unsound"
+
+title = "smallvec creates uninitialized value of any type"
+url = "https://github.com/servo/rust-smallvec/issues/126"
+
+description = """
+Affected versions of this crate called `mem::uninitialized()` to create values of a user-supplied type `T`.
+This is unsound e.g. if `T` is a reference type (which must be non-null and thus may not remain uninitialized).
+ 
+The flaw was corrected by avoiding the use of `mem::uninitialized()`, using `MaybeUninit` instead.
+"""
+
+[versions]
+patched = [">= 0.6.13"]
