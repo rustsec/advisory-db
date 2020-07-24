@@ -1,0 +1,23 @@
+[advisory]
+id = "RUSTSEC-0000-0000"
+package = "traitobject"
+date = "2020-06-01"
+title = "traitobject assumes assumes the layout of fat pointers"
+url = "https://github.com/reem/rust-traitobject/issues/7"
+informational = "unsound"
+categories = ["memory-corruption"]
+description = """
+This crate gets the data pointer from fat pointers assuming that the first
+element in a fat pointer is the data pointer. This is currently true, but
+it may change in a future Rust version, leading to memory corruption.
+
+This has been fixed in the master branch of the crate, but is has not
+been released into crates.io.
+"""
+
+[affected.functions]
+"traitobject::data" = []
+"traitobject::data_mut" = []
+
+[versions]
+patched = []
