@@ -21,7 +21,7 @@ Feel free to do either or both of these as you see fit (we recommend you do both
 5. Request a CVE for your vulnerability: https://iwantacve.org/
    Alternatively, you can create a GitHub Security Advisory (GHSA) and let them request
    a CVE for you. In this case, you can add the GHSA ID to the RustSec advisory via the
-   `alias` field.
+   `aliases` field.
 
 ## Criteria
 
