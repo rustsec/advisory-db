@@ -1,0 +1,21 @@
+[advisory]
+id = "RUSTSEC-0000-0000"
+package = "rgb"
+date = "2020-10-14"
+title = "Allows viewing and modifying arbitrary structs as bytes"
+url = "https://github.com/kornelski/rust-rgb/issues/35"
+informational = "unsound"
+keywords = ["type confusion"]
+description = """
+Affected versions of rgb crate allow viewing and modifying data any type `T` wrapped in `RGB<T>` as bytes,
+and do not correctly constrain `RGB<T>` and other wrapper structures to the types for which it is safe to do so.
+
+If a type containing madding is wrapped in `RGB<T>` and similar wrapper structures,
+viewing it as bytes may lead to exposure of contents of uninitialized memory.
+
+If a type containing a pointer is wrapped in `RGB<T>` and similar wrapper structures,
+modifying it as bytes may lead to derefericing of arbitrary pointers.
+"""
+[versions]
+patched = [">= 0.8.20"]
+unaffected = ["< 0.5.4"]
