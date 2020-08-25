@@ -1,0 +1,14 @@
+[advisory]
+id = "RUSTSEC-0000-0000"
+package = "alpm-rs"
+date = "2020-08-20"
+informational = "unsound"
+title = "StrcCtx deallocates a memory region that it doesn't own"
+issue_url = "https://github.com/pigeonhands/rust-arch/issues/2"
+description = """
+`StrcCtx` deallocate a memory region that it doesn't own when `StrcCtx` is created without using `StrcCtx::new`.
+This can introduce memory safety issues such as double-free and use-after-free to client programs.
+"""
+
+[versions]
+patched = []
