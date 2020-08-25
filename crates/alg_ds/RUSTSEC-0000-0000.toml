@@ -1,0 +1,13 @@
+[advisory]
+id = "RUSTSEC-0000-0000"
+package = "alg_ds"
+date = "2020-08-25"
+title = "Matrix::new() drops uninitialized memory"
+url = "https://gitlab.com/dvshapkin/alg-ds/-/issues/1"
+description = """
+`Matrix::new()` internally calls `Matrix::fill_with()` which uses `*ptr = value` pattern to initialize the buffer.
+This pattern assumes that there is an initialized struct at the address and drops it, which results in dropping of uninitialized struct.
+"""
+
+[versions]
+patched = []
