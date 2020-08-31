@@ -1,0 +1,13 @@
+[advisory]
+id = "RUSTSEC-0000-0000"
+package = "crayon"
+date = "2020-08-31"
+informational = "unsound"
+title = "Misbehaving `HandleLike` implementation can lead to memory safety violation"
+url = "https://github.com/shawnscode/crayon/issues/87"
+description = """
+Unsafe code in `ObjectPool` has time-of-check to time-of-use (TOCTOU) bug that can eventually lead to a memory safety violation. `ObjectPool` and `HandlePool` implicitly assumes that `HandleLike` trait methods are pure, i.e., they always return the same value. However, this assumption is unsound since `HandleLike` is a safe, public trait that allows a custom implementation.
+"""
+
+[versions]
+patched = []
