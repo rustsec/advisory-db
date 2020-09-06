@@ -1,0 +1,20 @@
+[advisory]
+id = "RUSTSEC-0000-0000"
+package = "sized-chunks"
+date = "2020-09-06"
+title = "Multiple soundness issues in Chunk and InlineArray"
+url = "https://github.com/bodil/sized-chunks/issues/11"
+description = """
+Chunk:
+
+* Array size is not checked when constructed with `unit()` and `pair()`.
+* Array size is not checked when constructed with `From<InlineArray<A, T>>`.
+* `Clone` and `insert_from` are not panic-safe; A panicking iterator causes memory safety issues with them.
+
+InlineArray:
+
+* Generates unaligned references for types with a large alignment requirement.
+"""
+
+[versions]
+patched = []
