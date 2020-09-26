@@ -1,0 +1,18 @@
+[advisory]
+id = "RUSTSEC-0000-0000"
+package = "actix-codec"
+date = "2020-01-30"
+title = "Use-after-free in Framed due to lack of pinning"
+url = "https://github.com/actix/actix-net/issues/91"
+categories = ["memory-corruption"]
+
+description = """
+Affected versions of this crate did not require the buffer wrapped in `Framed` to be pinned,
+but treated it as if it had a fixed location in memory. This may result in a use-after-free.
+ 
+The flaw was corrected by making the affected functions accept `Pin<&mut Self>` instead of `&mut self`.
+"""
+
+# Versions which include fixes for this vulnerability (mandatory)
+[versions]
+patched = [">= 0.3.0-beta.1"]
