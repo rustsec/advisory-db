@@ -1,0 +1,22 @@
+[advisory]
+id = "RUSTSEC-0000-0000"
+package = "actix-utils"
+date = "2020-01-08"
+
+title = "bespoke Cell implementation allows obtaining several mutable references to the same data"
+url = "https://github.com/actix/actix-net/pull/158"
+categories = ["memory-corruption"]
+informational = "unsound"
+
+description = """
+The custom implementation of a Cell primitive in the affected versions of this crate
+does not keep track of mutable references to the underlying data.
+
+This allows obtaining several mutable references to the same object
+which may result in arbitrary memory corruption, most likely use-after-free.
+
+The flaw was corrected by switching from a bespoke `Cell<T>` implementation to `Rc<RefCell<T>>`.
+"""
+
+[versions]
+patched = [">= 2.0.0"]
