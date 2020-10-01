@@ -1,7 +1,7 @@
 # RustSec Advisory Database
 
 [![Build Status][build-image]][build-link]
-![Maintained: Q3 2020][maintained-image]
+![Maintained: Q4 2020][maintained-image]
 [![Gitter Chat][gitter-image]][gitter-link]
 
 The RustSec Advisory Database is a repository of security advisories filed
