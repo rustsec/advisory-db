@@ -1,0 +1,41 @@
+```toml
+[advisory]
+id = "RUSTSEC-0000-0000"
+package = "crate-name"
+date = "2020-01-31"
+url = "https://example.com"
+categories = ["code-execution", "privilege-escalation"]
+keywords = ["example", "freeform", "keywords"]
+#aliases = ["CVE-YYYY-NNNN"]
+#cvss = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H"
+
+[versions]
+patched = [">= 1.2.3"]
+unaffected = ["0.1.2"]
+
+[affected]
+#arch = ["x86"]
+#os = ["windows"]
+functions = { "crate_name::MyStruct::vulnerable_fn" = ["< 1.2.3"] }
+```
+
+# RustSec Advisory Template - Advisory Title Goes Here
+
+This is an example template for a RustSec advisory. Please copy this to
+`crates/<crate-name>` and rename it to `RUSTSEC-0000-0000.md`.
+
+In this section of the advisory you can write an extended description
+of the vulnerability, will be converted into HTML and rendered at
+<https://rustsec.org>.
+
+- Markdown formatted
+- TOML "front matter". See `README.md` for schema.
+- Please include as much detail as you'd like.
+
+A well structured advisory will include information like:
+
+Affected versions of this crate did not properly X.
+
+This allows an attacker to Y.
+ 
+The flaw was corrected by Z.

@@ -24,7 +24,10 @@ See [CONTRIBUTING.md] for more information.
 
 ## Advisory Format
 
-Each advisory contains information in [TOML] format:
+See [EXAMPLE_ADVISORY.md] for a template.
+
+Advisories are formatted in [Markdown] with [TOML] "front matter".
+Below is the scehma of the "front matter" section of an advisory:
 
 ```toml
 # Before you submit a PR using this template, **please delete the comments**
@@ -40,9 +43,6 @@ package = "mycrate"
 
 # Disclosure date of the advisory as an RFC 3339 date (mandatory)
 date = "2019-10-01"
-
-# Single-line description of a vulnerability (mandatory)
-title = "Flaw in X allows Y"
 
 # URL to a long-form description of this issue, e.g. a GitHub issue/PR,
 # a change log entry, or a blogpost announcing the release (optional)
@@ -67,15 +67,6 @@ keywords = ["ssl", "mitm"]
 # References to related vulnerabilities (optional)
 # e.g. CVE for a C library wrapped by a -sys crate)
 #references = ["CVE-2018-YYYY", "CVE-2018-ZZZZ"]
-
-# Enter a short-form description of the vulnerability here (mandatory)
-description = """
-Affected versions of this crate did not properly X.
-
-This allows an attacker to Y.
- 
-The flaw was corrected by Z.
-"""
 
 # Optional: metadata which narrows the scope of what this advisory affects
 [affected]
@@ -124,6 +115,8 @@ All content in this repository is placed in the public domain.
 
 [//]: # (general links)
 
+[EXAMPLE_ADVISORY.md]: https://github.com/RustSec/advisory-db/blob/master/EXAMPLE_ADVISORY.md
+[Markdown]: https://www.markdownguide.org/
 [TOML]: https://github.com/toml-lang/toml
 [cargo-audit]: https://github.com/rustsec/cargo-audit
 [cargo-deny]: https://github.com/EmbarkStudios/cargo-deny
