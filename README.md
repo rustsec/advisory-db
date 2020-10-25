@@ -2,7 +2,7 @@
 
 [![Build Status][build-image]][build-link]
 ![Maintained: Q4 2020][maintained-image]
-[![Gitter Chat][gitter-image]][gitter-link]
+[![Project Chat][chat-image]][chat-link]
 
 The RustSec Advisory Database is a repository of security advisories filed
 against Rust crates published via https://crates.io
@@ -110,8 +110,8 @@ All content in this repository is placed in the public domain.
 [build-image]: https://github.com/rustsec/advisory-db/workflows/Validate/badge.svg
 [build-link]: https://github.com/rustsec/advisory-db/actions
 [maintained-image]: https://img.shields.io/maintenance/yes/2020.svg
-[gitter-image]: https://badges.gitter.im/badge.svg
-[gitter-link]: https://gitter.im/RustSec/Lobby
+[chat-image]: https://img.shields.io/badge/zulip-join_chat-blue.svg
+[chat-link]: https://rust-lang.zulipchat.com/#narrow/stream/146229-wg-secure-code/
 
 [//]: # (general links)
 
