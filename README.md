@@ -7,11 +7,13 @@
 The RustSec Advisory Database is a repository of security advisories filed
 against Rust crates published via https://crates.io
 
-Advisory metadata is stored in [TOML] format (see below). The following tools
-consume the data and can be used for auditing and reporting (send PRs to add yours):
+The following tools consume this advisory database and can be used for auditing
+and reporting (send PRs to add yours):
 
 * [cargo-audit]: Audit `Cargo.lock` files for crates with security vulnerabilities
-* [cargo-deny]: Audit `Cargo.lock` files for crates with security vulnerabilities, limit the usage of particular dependencies, their licenses, sources to download from, detect multiple versions of same packages in the dependency tree and more.
+* [cargo-deny]: Audit `Cargo.lock` files for crates with security vulnerabilities,
+  limit the usage of particular dependencies, their licenses, sources to download
+  from, detect multiple versions of same packages in the dependency tree and more.
 
 ## Reporting Vulnerabilities
 
