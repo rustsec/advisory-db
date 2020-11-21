@@ -18,7 +18,8 @@ this repository containing the new advisory:
 Feel free to do either or both of these as you see fit (we recommend you do both):
 
 4. [Yank] the affected versions of the crate.
-5. Request a CVE for your vulnerability: https://iwantacve.org/
+5. Request a CVE for your vulnerability. See for details:
+   https://cve.mitre.org/cve/request_id.html and https://cveform.mitre.org .
    Alternatively, you can create a GitHub Security Advisory (GHSA) and let them request
    a CVE for you. In this case, you can add the GHSA ID to the RustSec advisory via the
    `aliases` field.
