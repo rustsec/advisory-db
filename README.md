@@ -66,9 +66,9 @@ keywords = ["ssl", "mitm"]
 # Request a CVE for your RustSec vulns: https://iwantacve.org/
 #aliases = ["CVE-2018-XXXX"]
 
-# References to related vulnerabilities (optional)
+# Related vulnerabilities (optional)
 # e.g. CVE for a C library wrapped by a -sys crate)
-#references = ["CVE-2018-YYYY", "CVE-2018-ZZZZ"]
+#related = ["CVE-2018-YYYY", "CVE-2018-ZZZZ"]
 
 # Optional: metadata which narrows the scope of what this advisory affects
 [affected]
