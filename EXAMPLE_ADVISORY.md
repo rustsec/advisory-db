@@ -34,8 +34,8 @@ of the vulnerability, will be converted into HTML and rendered at
 
 A well structured advisory will include information like:
 
-Affected versions of this crate did not properly X.
+Affected versions of this crate did not properly check for integer overflow when allocating a buffer in `MyBuffer::with_capacity()` (bug description/location/root cause).
 
-This allows an attacker to Y.
- 
-The flaw was corrected by Z.
+This can result in a memory corruption (consequence of the bug) when large integer is given to the parameter (trigger condition).
+
+The flaw was corrected in commit abc123 by using `saturating_mul()` when calculating the buffer size (fix description).
