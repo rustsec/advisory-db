@@ -1,0 +1,26 @@
+name: Publish Web
+
+on:
+  push:
+    branches: master
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: gh-pages
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cargo/bin
+          key: rustsec-admin-v0.3.3
+      - run: cargo install rustsec-admin --vers 0.3.3
+      - run: rustsec-admin web
+      - uses: peter-evans/create-pull-request@v3
+        with:
+          base: gh-pages
+          branch: update-gh-pages
+          commit-message: Update gh-pages
+          title: Update gh-pages
+          token: ${{ secrets.GITHUB_TOKEN }}
