@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="{{ site.encoding }}">
+<meta name="author" content="{% if page.author %}{{ page.author }}{% else %}{{ site.author }}{% endif %}">
+<meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+<title>{% if page.title %} {{ page.title }} › {% endif %}{{ site.title }}</title>
+<link rel="canonical" href="{{ page.url | prepend: site.baseurl | prepend: site.url}}">
+<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
+<link href="{{ '/basic.css' | prepend: site.baseurl }}" rel="stylesheet">
+<link href="{{ '/highlight.css' | prepend: site.baseurl }}" rel="stylesheet">
+<link href="{{ '/index.css' | prepend: site.baseurl }}" rel="stylesheet">
+{% feed_meta %}
+{% if site.comments.disqus and page.comments %}<script src="//{{ site.comments.disqus }}.disqus.com/embed.js" async></script>{% endif %}
+{% if site.comments.isso and page.comments %}<script data-isso="http://{{ site.comments.isso }}" src="//{{ site.comments.isso }}/js/embed.min.js"></script>{% endif %}
+<header>
+  <h1><a href="/"><img class="logo-image" src="/assets/img/rustsec-logo.svg"/></a></h1>
+  <nav>
+    <div>
+        {% for path in site.navigation %}{% assign node = site.pages | where: "path", path | first %}<a href="{{ node.url | prepend: site.baseurl }}">{{ node.title }}</a>{% endfor %}
+        <a href="https://rust-lang.zulipchat.com/#narrow/stream/146229-wg-secure-code/" alt="Zulip Chat"><img src="https://img.shields.io/badge/zulip-join_chat-blue.svg"></a>
+    </div>
+    <div>{% for link in site.links %}<a href="{{ link.url }}" title="{{ link.title }}" aria-label="{{ link.title }}">{% include {{ link.icon }} %}</a>{% endfor %}</div>
+  </nav>
+</header>
+{{ content }}
+{% if page.previous.url or page.next.url %}
+<footer>
+    <ul>
+        {% if page.next.url %}<li><b>Next:</b> <a href="{{ page.next.url | prepend: site.baseurl }}">{{ page.next.title }}</a></li>{% endif %}
+        {% if page.previous.url %}<li><b>Previous:</b> <a href="{{ page.previous.url | prepend: site.baseurl }}">{{ page.previous.title }}</a></li>{% endif %}
+    </ul>
+</footer>
+{% endif %}

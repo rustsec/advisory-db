@@ -1,0 +1,25 @@
+aside
+  width: 25%
+  background: reduce(7)
+  overflow: auto
+
+nav li
+  cursor: pointer
+
+nav.blue li
+  &:hover
+    background: reduce(12)
+  &.selected
+    background: $blue
+    color: white
+
+nav.fancy li
+  &:hover, &.selected
+    background: reduce(6)
+    box-shadow: 4px 0 $blue inset, 0 1px reduce(6)
+  &.border, &:only-of-type
+    box-shadow: 0 1px reduce(12)
+    &:hover, &.selected
+      box-shadow: 4px 0 $blue inset, 0 1px reduce(12), 0 1px reduce(6)
+  &.red:hover
+    box-shadow: 4px 0 $red inset, 0 1px reduce(6)

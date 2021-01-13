@@ -1,0 +1,23 @@
+---
+title: "Advisories"
+layout: blank
+---
+<main class="advisories">
+  <article>
+    {%- for post in site.posts -%}
+      {%- if post.next -%}
+        {%- assign year = post.date | date: '%Y' -%}
+        {%- assign prev_year = post.next.date | date: '%Y' -%}
+        {%- if year != prev_year -%}
+          <header><h1>{{ post.date | date: '%Y' }}</h1></header>
+        {%- endif -%}
+      {%- else -%}
+        <header><h1>{{ post.date | date: '%Y' }}</h1></header>
+      {%- endif -%}
+      <li>
+        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %-d, %Y" }}</time>
+        <h3><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h3>
+      </li>
+    {%- endfor -%}
+  </article>
+</main>

@@ -1,0 +1,41 @@
+title: "RustSec Advisory Database"
+author: "Rust Project Developers"
+description: "Security advisory database for Rust crates published through https://crates.io"
+more: "read more »"
+url: "https://rustsec.org"
+baseurl: ""
+paginate: 3
+permalink: pretty
+excerpt_separator: "\n\n\n" # two blank lines
+
+style:
+  minimalist: false
+  dark: true
+
+navigation:
+  - advisories.html
+  - index.md
+
+#comments:
+#  disqus: "disqus-contrast"
+#  isso: "comments.mysite.org"
+
+links:
+  - { icon: fontawesome/twitter.svg, url: "https://twitter.com/RustSec/", title: "Twitter" }
+  - { icon: fontawesome/github.svg, url: "https://github.com/RustSec/", title: "GitHub" }
+  # - { icon: fontawesome/envelope.svg, url: "https://groups.google.com/forum/#!forum/rustsec", title: "Mailing List" }
+  - { icon: fontawesome/rss.svg, url: "/feed.xml", title: "RSS Feed" }
+
+defaults:
+- scope:  { path: "" }
+  values: { layout: "default" }
+- scope:  { path: "" }
+  type:   "posts"
+  values: { comments: true }
+- scope:  { path: "assets/img" }
+  values: { image: true }
+
+exclude: ["rustsec-website-gen/","vendor"]
+
+sass:    { style: expanded }
+plugins: [ jekyll-feed, jekyll-paginate ]
