@@ -29,6 +29,12 @@ jobs:
         message=$(rustsec-admin assign-id --github-actions-output)
         echo "::set-output name=commit_message::${message}"
 
+    - name: Create duplicate ID assignment guard
+      run: |
+        echo "This file causes merge conflicts if two ID assignment jobs run concurrently." > .duplicate-id-guard
+        echo "This prevents duplicate ID assignment due to a race between those jobs." >> .duplicate-id-guard
+        ls -R . | sha256sum >> .duplicate-id-guard
+
     - name: Lint advisories
       run: rustsec-admin lint
 
