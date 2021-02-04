@@ -19,5 +19,9 @@ jobs:
           if [ ! -f $HOME/.cargo/bin/rustsec-admin ]; then
            cargo install rustsec-admin --vers 0.3.4
           fi
-      - run: rustsec-admin web
-      - run: git commit -m "Update gh-pages" && git push || true
+          rustsec-admin web
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "Update gh-pages" || true
+          git push || true
