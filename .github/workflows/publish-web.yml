@@ -20,10 +20,4 @@ jobs:
            cargo install rustsec-admin --vers 0.3.4
           fi
       - run: rustsec-admin web
-      - uses: peter-evans/create-pull-request@v3
-        with:
-          base: gh-pages
-          branch: update-gh-pages
-          commit-message: Update gh-pages
-          title: Update gh-pages
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - run: git commit -m "Update gh-pages" && git push || true
