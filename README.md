@@ -5,7 +5,8 @@
 [![Project Chat][chat-image]][chat-link]
 
 The RustSec Advisory Database is a repository of security advisories filed
-against Rust crates published via https://crates.io
+against Rust crates published via https://crates.io. A human-readable version
+of the advisory database can be found at https://rustsec.org/advisories/.
 
 The following tools consume this advisory database and can be used for auditing
 and reporting (send PRs to add yours):
