@@ -1,0 +1,2919 @@
+<!DOCTYPE html>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+
+<meta name="author" content="Rust Project Developers">
+<meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
+<title>Advisories › RustSec Advisory Database</title>
+
+<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
+<link href="/css/basic.css" rel="stylesheet">
+<link href="/css/highlight.css" rel="stylesheet">
+<link href="/css/index.css" rel="stylesheet">
+
+<header>
+  <h1><a href="/"><img class="logo-image" src="/img/rustsec-logo.svg" /></a></h1>
+  <nav>
+    <div>
+      <a href="/advisories/">Advisories</a>
+      <a href="/">About RustSec</a>
+      <a href="https://rust-lang.zulipchat.com/#narrow/stream/146229-wg-secure-code/" alt="Zulip Chat"><img src="https://img.shields.io/badge/zulip-join_chat-blue.svg"></a>
+    </div>
+
+    <div>
+      <a href="https://twitter.com/RustSec/" title="Twitter" aria-label="Twitter"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="height:1em;fill:currentColor"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg></a>
+      <a href="https://github.com/RustSec/" title="GitHub" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" style="height:1em;fill:currentColor"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></a>
+    </div>
+  </nav>
+</header>
+
+<main class="advisories">
+  <article>
+    
+    <header><h1>2021</h1></header>
+
+    
+      <li>
+        <time datetime="2021-03-05">
+          March  5, 2021
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2021-0037.html">
+            RUSTSEC-2021-0037: diesel: Fix a use-after-free bug in diesels Sqlite backend
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2021-03-04">
+          March  4, 2021
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2021-0035.html">
+            RUSTSEC-2021-0035: quinn: `quinn` invalidly assumes the memory layout of std::net::SocketAddr
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2021-03-03">
+          March  3, 2021
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2021-0036.html">
+            RUSTSEC-2021-0036: internment: Intern&lt;T&gt;: Data race allowed on T
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2021-03-01">
+          March  1, 2021
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2021-0032.html">
+            RUSTSEC-2021-0032: byte_struct: Deserializing an array can drop uninitialized memory on panic
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2021-02-22">
+          February 22, 2021
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2021-0033.html">
+            RUSTSEC-2021-0033: stack_dst: push_cloned can drop uninitialized memory or double free on panic
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2021-02-21">
+          February 21, 2021
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2021-0026.html">
+            RUSTSEC-2021-0026: comrak: XSS in `comrak`
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2021-02-19">
+          February 19, 2021
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2021-0028.html">
+            RUSTSEC-2021-0028: toodee: Multiple memory safety issues in insert_row
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2021-02-18">
+          February 18, 2021
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2021-0030.html">
+            RUSTSEC-2021-0030: scratchpad: move_elements can double-free objects on panic
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2021-02-17">
+          February 17, 2021
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2021-0029.html">
+            RUSTSEC-2021-0029: truetype: Tape::take_bytes exposes uninitialized memory to a user-provided Read
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2021-02-15">
+          February 15, 2021
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2021-0024.html">
+            RUSTSEC-2021-0024: safe-api: crate has been renamed to `sn_api`
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2021-02-15">
+          February 15, 2021
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2021-0025.html">
+            RUSTSEC-2021-0025: jsonrpc-quic: crate has been renamed to `qjsonrpc`
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2021-02-14">
+          February 14, 2021
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2021-0021.html">
+            RUSTSEC-2021-0021: nb-connect: `nb-connect` invalidly assumes the memory layout of std::net::SocketAddr
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2021-02-12">
+          February 12, 2021
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2021-0023.html">
+            RUSTSEC-2021-0023: rand_core: Incorrect check on buffer length when seeding RNGs
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2021-02-09">
+          February  9, 2021
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2021-0022.html">
+            RUSTSEC-2021-0022: yottadb: Use-after-free in `subscript_next` and `subscript_prev` wrappers
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2021-02-05">
+          February  5, 2021
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2021-0020.html">
+            RUSTSEC-2021-0020: hyper: Multiple Transfer-Encoding headers misinterprets request payload
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2021-02-04">
+          February  4, 2021
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2021-0019.html">
+            RUSTSEC-2021-0019: xcb: Multiple soundness issues
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2021-02-04">
+          February  4, 2021
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2021-0034.html">
+            RUSTSEC-2021-0034: office: office is unmaintained, use calamine instead
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2021-02-03">
+          February  3, 2021
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2021-0018.html">
+            RUSTSEC-2021-0018: qwutils: insert_slice_clone can double drop if Clone panics.
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2021-01-31">
+          January 31, 2021
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2021-0031.html">
+            RUSTSEC-2021-0031: nano_arena: split_at allows obtaining multiple mutable references to the same data
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2021-01-30">
+          January 30, 2021
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2021-0017.html">
+            RUSTSEC-2021-0017: postscript: `Read` on uninitialized buffer may cause UB (`impl Walue for Vec&lt;u8&gt;`)
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2021-01-26">
+          January 26, 2021
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2021-0014.html">
+            RUSTSEC-2021-0014: marc: Record::read : Custom `Read` on uninitialized buffer may cause UB
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2021-01-26">
+          January 26, 2021
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2021-0016.html">
+            RUSTSEC-2021-0016: ms3d: `IoReader::read()`: user-provided `Read` on uninitialized buffer may cause UB
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2021-01-20">
+          January 20, 2021
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2021-0013.html">
+            RUSTSEC-2021-0013: raw-cpuid: Soundness issues in `raw-cpuid`
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2021-01-17">
+          January 17, 2021
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2021-0004.html">
+            RUSTSEC-2021-0004: lazy-init: Missing Send bound for Lazy
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2021-01-12">
+          January 12, 2021
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2021-0010.html">
+            RUSTSEC-2021-0010: containers: panic safety: double drop may happen within `util::{mutate, mutate2}`
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2021-01-10">
+          January 10, 2021
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2021-0005.html">
+            RUSTSEC-2021-0005: glsl-layout: Double drop upon panic in &#x27;fn map_array()&#x27;
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2021-01-10">
+          January 10, 2021
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2021-0009.html">
+            RUSTSEC-2021-0009: basic_dsp_matrix: panic safety issue in `impl TransformContent&lt;S, D&gt; for [S; (2|3|4)]`
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2021-01-08">
+          January  8, 2021
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2021-0003.html">
+            RUSTSEC-2021-0003: smallvec: Buffer overflow in SmallVec::insert_many
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2021-01-07">
+          January  7, 2021
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2021-0007.html">
+            RUSTSEC-2021-0007: av-data: `Frame::copy_from_raw_parts` can lead to segfault without `unsafe`
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2021-01-07">
+          January  7, 2021
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2021-0027.html">
+            RUSTSEC-2021-0027: bam: Loading a bgzip block can write out of bounds if size overflows.
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2021-01-06">
+          January  6, 2021
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2021-0015.html">
+            RUSTSEC-2021-0015: calamine: `Sectors::get` accesses unclaimed&#x2f;uninitialized memory
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2021-01-04">
+          January  4, 2021
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2021-0002.html">
+            RUSTSEC-2021-0002: interfaces2: interfaces2 is unmaintained, use interfaces instead
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2021-01-04">
+          January  4, 2021
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2021-0001.html">
+            RUSTSEC-2021-0001: mdbook: XSS in mdBook&#x27;s search page
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2021-01-04">
+          January  4, 2021
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2021-0011.html">
+            RUSTSEC-2021-0011: fil-ocl: EventList&#x27;s From&lt;EventList&gt; conversions can double drop on panic.
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2021-01-02">
+          January  2, 2021
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2021-0008.html">
+            RUSTSEC-2021-0008: bra: reading on uninitialized buffer can cause UB (`impl&lt;R&gt; BufRead for GreedyAccessReader&lt;R&gt;`)
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2021-01-02">
+          January  2, 2021
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2021-0012.html">
+            RUSTSEC-2021-0012: cdr: Reading uninitialized memory can cause UB (`Deserializer::read_vec`)
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2021-01-01">
+          January  1, 2021
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2021-0006.html">
+            RUSTSEC-2021-0006: cache: Exposes internally used raw pointer
+          </a>
+        </h3>
+      </li>
+    
+    
+    <header><h1>2020</h1></header>
+
+    
+      <li>
+        <time datetime="2020-12-31">
+          December 31, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0132.html">
+            RUSTSEC-2020-0132: array-tools: `FixedCapacityDequeLike::clone()` can cause dropping uninitialized memory
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-12-31">
+          December 31, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0103.html">
+            RUSTSEC-2020-0103: autorand: `impl Random` on arrays can lead to dropping uninitialized memory
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-12-25">
+          December 25, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0143.html">
+            RUSTSEC-2020-0143: multiqueue: Queues allow non-Send types to be sent to other threads, allowing data races
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-12-22">
+          December 22, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0109.html">
+            RUSTSEC-2020-0109: stderr: stderr is unmaintained; use eprintln instead
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-12-22">
+          December 22, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0114.html">
+            RUSTSEC-2020-0114: va-ts: `Demuxer` can carry non-Send types across thread boundaries
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-12-22">
+          December 22, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0101.html">
+            RUSTSEC-2020-0101: conquer-once: conquer-once&#x27;s OnceCell lacks Send bound for its Sync trait.
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-12-21">
+          December 21, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0105.html">
+            RUSTSEC-2020-0105: abi_stable: Update unsound DrainFilter and RString::retain
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-12-20">
+          December 20, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0108.html">
+            RUSTSEC-2020-0108: eventio: Soundness issue: Input&lt;R&gt; can be misused to create data race to an object
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-12-20">
+          December 20, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0095.html">
+            RUSTSEC-2020-0095: difference: difference is unmaintained
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-12-19">
+          December 19, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0106.html">
+            RUSTSEC-2020-0106: multiqueue2: Queues allow non-Send types to be sent to other threads, allowing data races
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-12-18">
+          December 18, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0127.html">
+            RUSTSEC-2020-0127: v9: SyncRef&#x27;s clone() and debug() allow data races
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-12-18">
+          December 18, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0129.html">
+            RUSTSEC-2020-0129: kekbit: ShmWriter allows sending non-Send type across threads
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-12-18">
+          December 18, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0098.html">
+            RUSTSEC-2020-0098: rusb: UsbContext trait did not require implementers to be Send and Sync.
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-12-18">
+          December 18, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0112.html">
+            RUSTSEC-2020-0112: buttplug: ButtplugFutureStateShared allows data race to (!Send|!Sync) objects
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-12-17">
+          December 17, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0093.html">
+            RUSTSEC-2020-0093: async-h1: Async-h1 request smuggling possible with long unread bodies
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-12-10">
+          December 10, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0097.html">
+            RUSTSEC-2020-0097: xcb: Soundness issue with base::Error
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-12-10">
+          December 10, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0099.html">
+            RUSTSEC-2020-0099: aovec: Aovec&lt;T&gt; lacks bound on its Send and Sync traits allowing data races
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-12-10">
+          December 10, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0091.html">
+            RUSTSEC-2020-0091: arc-swap: Dangling reference in `access::Map` with Constant
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-12-10">
+          December 10, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0141.html">
+            RUSTSEC-2020-0141: noise_search: MvccRwLock allows data races &amp; aliasing violations
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-12-09">
+          December  9, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0089.html">
+            RUSTSEC-2020-0089: nanorand: nanorand 0.5.0 - RNGs failed to generate properly for non-64-bit numbers
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-12-09">
+          December  9, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0139.html">
+            RUSTSEC-2020-0139: dces: dces&#x27; World type can cause data races
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-12-08">
+          December  8, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0118.html">
+            RUSTSEC-2020-0118: tiny_future: Future&lt;T&gt; lacks bounds on Send and Sync.
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-12-08">
+          December  8, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0124.html">
+            RUSTSEC-2020-0124: async-coap: ArcGuard&#x27;s Send and Sync should have bounds on RC
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-12-08">
+          December  8, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0090.html">
+            RUSTSEC-2020-0090: thex: Thex&lt;T&gt; allows data races of non-Send types across threads
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-12-08">
+          December  8, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0104.html">
+            RUSTSEC-2020-0104: gfwx: ImageChunkMut needs bounds on its Send and Sync traits
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-12-07">
+          December  7, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0086.html">
+            RUSTSEC-2020-0086: safe_core: crate has been renamed to `sn_client`
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-12-07">
+          December  7, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0085.html">
+            RUSTSEC-2020-0085: safe_vault: crate has been renamed to `sn_node`
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-12-07">
+          December  7, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0084.html">
+            RUSTSEC-2020-0084: safe_authenticator: crate has been superseded by `sn_client`
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-12-07">
+          December  7, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0083.html">
+            RUSTSEC-2020-0083: safe_app: crate has been superseded by `sn_client`
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-12-06">
+          December  6, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0082.html">
+            RUSTSEC-2020-0082: ordered-float: ordered_float:NotNan may contain NaN after panic in assignment operators
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-12-02">
+          December  2, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0077.html">
+            RUSTSEC-2020-0077: memmap: memmap is unmaintained
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-12-01">
+          December  1, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0094.html">
+            RUSTSEC-2020-0094: reffers: Unsound: can make `ARefss` contain a !Send, !Sync object.
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-29">
+          November 29, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0142.html">
+            RUSTSEC-2020-0142: syncpool: Send bound needed on T (for Send impl of `Bucket2`)
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-29">
+          November 29, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0088.html">
+            RUSTSEC-2020-0088: magnetic: MPMCConsumer&#x2f;Producer allows sending non-Send type across threads
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-29">
+          November 29, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0075.html">
+            RUSTSEC-2020-0075: branca: Unexpected panic when decoding tokens
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-28">
+          November 28, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0074.html">
+            RUSTSEC-2020-0074: pyo3: Reference counting error in `From&lt;Py&lt;T&gt;&gt;`
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-24">
+          November 24, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0117.html">
+            RUSTSEC-2020-0117: conqueue: QueueSender&lt;T&gt;&#x2f;QueueReceiver&lt;T&gt;: Send&#x2f;Sync impls need `T: Send`
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-24">
+          November 24, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0128.html">
+            RUSTSEC-2020-0128: cache: Cache&lt;K&gt;: Send&#x2f;Sync impls needs trait bounds on `K`
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-24">
+          November 24, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0125.html">
+            RUSTSEC-2020-0125: convec: convec::ConVec&lt;T&gt; unconditionally implements Send&#x2f;Sync
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-18">
+          November 18, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0071.html">
+            RUSTSEC-2020-0071: time: Potential segfault in the time crate
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-17">
+          November 17, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0119.html">
+            RUSTSEC-2020-0119: ticketed_lock: ReadTicket and WriteTicket should only be sendable when T is Send
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-17">
+          November 17, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0135.html">
+            RUSTSEC-2020-0135: slock: Slock&lt;T&gt; allows sending non-Send types across thread boundaries
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-17">
+          November 17, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0087.html">
+            RUSTSEC-2020-0087: try-mutex: TryMutex&lt;T&gt; allows sending non-Send type across threads
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-16">
+          November 16, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0115.html">
+            RUSTSEC-2020-0115: ruspiro-singleton: Singleton lacks bounds on Send and Sync.
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-15">
+          November 15, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0136.html">
+            RUSTSEC-2020-0136: toolshed: CopyCell lacks bounds on its Send trait allowing for data races
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-15">
+          November 15, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0133.html">
+            RUSTSEC-2020-0133: scottqueue: Queue&lt;T&gt; should have a Send bound on its Send&#x2f;Sync traits
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-15">
+          November 15, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0126.html">
+            RUSTSEC-2020-0126: signal-simple: SyncChannel&lt;T&gt; can move &#x27;T: !Send&#x27; to other threads
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-15">
+          November 15, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0116.html">
+            RUSTSEC-2020-0116: unicycle: PinSlab&lt;T&gt; and Unordered&lt;T, S&gt; need bounds on their Send&#x2f;Sync traits
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-14">
+          November 14, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0134.html">
+            RUSTSEC-2020-0134: parc: `LockWeak&lt;T&gt;` allows to create data race to `T`.
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-14">
+          November 14, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0131.html">
+            RUSTSEC-2020-0131: rcu_cell: Send&#x2f;Sync bound needed on T  for Send&#x2f;Sync impl of RcuCell&lt;T&gt;
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-13">
+          November 13, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0080.html">
+            RUSTSEC-2020-0080: miow: `miow` invalidly assumes the memory layout of std::net::SocketAddr
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-13">
+          November 13, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0092.html">
+            RUSTSEC-2020-0092: concread: Send&#x2f;Sync bound needed on V in `impl Send&#x2f;Sync for ARCache&lt;K, V&gt;`
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-12">
+          November 12, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0073.html">
+            RUSTSEC-2020-0073: image: Mutable reference with immutable provenance
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-12">
+          November 12, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0130.html">
+            RUSTSEC-2020-0130: bunch: Bunch&lt;T&gt; unconditionally implements Send&#x2f;Sync
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-11">
+          November 11, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0069.html">
+            RUSTSEC-2020-0069: lettre: Argument injection in sendmail transport
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-10">
+          November 10, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0121.html">
+            RUSTSEC-2020-0121: abox: AtomicBox&lt;T&gt; implements Send&#x2f;Sync for any `T: Sized`
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-10">
+          November 10, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0138.html">
+            RUSTSEC-2020-0138: lexer: ReaderResult should be bounded by Sync
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-10">
+          November 10, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0137.html">
+            RUSTSEC-2020-0137: lever: AtomicBox&lt;T&gt; lacks bound on its Send and Sync traits allowing data races
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-10">
+          November 10, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0120.html">
+            RUSTSEC-2020-0120: libsbc: `Decoder&lt;R&gt;` can carry `R: !Send` to other threads
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-10">
+          November 10, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0107.html">
+            RUSTSEC-2020-0107: hashconsing: hashconsing&#x27;s HConsed lacks Send&#x2f;Sync bound for its Send&#x2f;Sync trait.
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-10">
+          November 10, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0140.html">
+            RUSTSEC-2020-0140: model: `Shared` can cause a data race
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-10">
+          November 10, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0111.html">
+            RUSTSEC-2020-0111: may_queue: may_queue&#x27;s Queue lacks Send&#x2f;Sync bound for its Send&#x2f;Sync trait.
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-10">
+          November 10, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0102.html">
+            RUSTSEC-2020-0102: late-static: LateStatic has incorrect Sync bound
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-09">
+          November  9, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0096.html">
+            RUSTSEC-2020-0096: im: TreeFocus lacks bounds on its Send and Sync traits
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-08">
+          November  8, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0070.html">
+            RUSTSEC-2020-0070: lock_api: Some lock_api lock guard objects can cause data races
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-08">
+          November  8, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0068.html">
+            RUSTSEC-2020-0068: multihash: Unexpected panic in multihash `from_slice` parsing code
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-07">
+          November  7, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0078.html">
+            RUSTSEC-2020-0078: net2: `net2` invalidly assumes the memory layout of std::net::SocketAddr
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-06">
+          November  6, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0079.html">
+            RUSTSEC-2020-0079: socket2: `socket2` invalidly assumes the memory layout of std::net::SocketAddr
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-02">
+          November  2, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0064.html">
+            RUSTSEC-2020-0064: ffi_utils: crate has been renamed to `sn_ffi_utils`
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-02">
+          November  2, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0067.html">
+            RUSTSEC-2020-0067: quic-p2p: crate has been renamed to `qp2p`
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-02">
+          November  2, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0065.html">
+            RUSTSEC-2020-0065: fake_clock: crate has been renamed to `sn_fake_clock`
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-02">
+          November  2, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0066.html">
+            RUSTSEC-2020-0066: safe_bindgen: crate has been renamed to `sn_bindgen`
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-02">
+          November  2, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0076.html">
+            RUSTSEC-2020-0076: routing: crate has been renamed to `sn_routing`
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-02">
+          November  2, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0145.html">
+            RUSTSEC-2020-0145: heapless: Use-after-free when cloning a partially consumed `Vec` iterator
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-02">
+          November  2, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0063.html">
+            RUSTSEC-2020-0063: safe-nd: crate has been renamed to `safe-nd`
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-11-02">
+          November  2, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0081.html">
+            RUSTSEC-2020-0081: mio: `mio` invalidly assumes the memory layout of std::net::SocketAddr
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-10-31">
+          October 31, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0113.html">
+            RUSTSEC-2020-0113: atomic-option: AtomicOption should have Send + Sync bound on its type argument.
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-10-31">
+          October 31, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0072.html">
+            RUSTSEC-2020-0072: futures-intrusive: GenericMutexGuard allows data races of non-Sync types across threads
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-10-28">
+          October 28, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0122.html">
+            RUSTSEC-2020-0122: beef: beef::Cow lacks a Sync bound on its Send trait allowing for data races
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-10-22">
+          October 22, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0059.html">
+            RUSTSEC-2020-0059: futures-util: MutexGuard::map can cause a data race in safe code
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-10-21">
+          October 21, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0055.html">
+            RUSTSEC-2020-0055: libpulse-binding: Please see RUSTSEC-2018-0020
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-10-16">
+          October 16, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0054.html">
+            RUSTSEC-2020-0054: directories: directories is unmaintained, use directories-next instead
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-10-16">
+          October 16, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0053.html">
+            RUSTSEC-2020-0053: dirs: dirs is unmaintained, use dirs-next instead
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-10-15">
+          October 15, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0057.html">
+            RUSTSEC-2020-0057: block-cipher: crate has been renamed to `cipher`
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-10-15">
+          October 15, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0058.html">
+            RUSTSEC-2020-0058: stream-cipher: crate has been renamed to `cipher`
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-10-01">
+          October  1, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0051.html">
+            RUSTSEC-2020-0051: rustsec: Obsolete versions of the `rustsec` crate do not support the new V3 advisory format
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-09-27">
+          September 27, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0050.html">
+            RUSTSEC-2020-0050: dync: VecCopy allows misaligned access to elements
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-09-26">
+          September 26, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0047.html">
+            RUSTSEC-2020-0047: array-queue: array_queue pop_back() may cause a use-after-free
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-09-25">
+          September 25, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0043.html">
+            RUSTSEC-2020-0043: ws: Insufficient size checks in outgoing buffer in ws allows remote attacker to run the process out of memory
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-09-24">
+          September 24, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0042.html">
+            RUSTSEC-2020-0042: stack: Missing check in ArrayVec leads to out-of-bounds write.
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-09-21">
+          September 21, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0044.html">
+            RUSTSEC-2020-0044: atom: Unsafe Send implementation in Atom allows data races
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-09-06">
+          September  6, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0041.html">
+            RUSTSEC-2020-0041: sized-chunks: Multiple soundness issues in Chunk and InlineArray
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-09-04">
+          September  4, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0060.html">
+            RUSTSEC-2020-0060: futures-task: futures_task::waker may cause a use-after-free if used on a type that isn&#x27;t &#x27;static
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-09-03">
+          September  3, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0040.html">
+            RUSTSEC-2020-0040: obstack: Obstack generates unaligned references
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-09-03">
+          September  3, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0038.html">
+            RUSTSEC-2020-0038: ordnung: Memory safety issues in `compact::Vec`
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-09-03">
+          September  3, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0039.html">
+            RUSTSEC-2020-0039: simple-slab: `index()` allows out-of-bound read and `remove()` has off-by-one error
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-08-31">
+          August 31, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0037.html">
+            RUSTSEC-2020-0037: crayon: Misbehaving `HandleLike` implementation can lead to memory safety violation
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-08-25">
+          August 25, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0035.html">
+            RUSTSEC-2020-0035: chunky: Chunk API does not respect align requirement
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-08-25">
+          August 25, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0034.html">
+            RUSTSEC-2020-0034: arr: Multiple security issues including data race, buffer overflow, and uninitialized memory drop
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-08-25">
+          August 25, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0033.html">
+            RUSTSEC-2020-0033: alg_ds: Matrix::new() drops uninitialized memory
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-08-20">
+          August 20, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0032.html">
+            RUSTSEC-2020-0032: alpm-rs: StrcCtx deallocates a memory region that it doesn&#x27;t own
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-08-18">
+          August 18, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0030.html">
+            RUSTSEC-2020-0030: mozwire: Missing sanitazion in mozwire allows local file overwrite of files ending in .conf
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-07-09">
+          July  9, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0024.html">
+            RUSTSEC-2020-0024: tough: Improper uniqueness verification of signature threshold
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-07-04">
+          July  4, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0022.html">
+            RUSTSEC-2020-0022: ozone: Ozone contains several memory safety issues
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-06-26">
+          June 26, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0052.html">
+            RUSTSEC-2020-0052: crossbeam-channel: Undefined Behavior in bounded channel
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-06-23">
+          June 23, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0026.html">
+            RUSTSEC-2020-0026: linked-hash-map: linked-hash-map creates uninitialized NonNull pointer
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-06-16">
+          June 16, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0031.html">
+            RUSTSEC-2020-0031: tiny_http: HTTP Request smuggling through malformed Transfer Encoding headers
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-06-14">
+          June 14, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0029.html">
+            RUSTSEC-2020-0029: rgb: Allows viewing and modifying arbitrary structs as bytes
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-06-01">
+          June  1, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0027.html">
+            RUSTSEC-2020-0027: traitobject: traitobject assumes assumes the layout of fat pointers
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-05-31">
+          May 31, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0100.html">
+            RUSTSEC-2020-0100: sys-info: Double free when calling `sys_info::disk_info` from multiple threads
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-05-28">
+          May 28, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0017.html">
+            RUSTSEC-2020-0017: internment: Use after free in ArcIntern::drop
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-05-27">
+          May 27, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0028.html">
+            RUSTSEC-2020-0028: rocket: `LocalRequest::clone` creates multiple mutable references to the same object
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-05-26">
+          May 26, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0018.html">
+            RUSTSEC-2020-0018: block-cipher-trait: crate has been renamed to `block-cipher`
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-05-19">
+          May 19, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0019.html">
+            RUSTSEC-2020-0019: tokio-rustls: tokio-rustls reads may cause excessive memory usage
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-05-11">
+          May 11, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0021.html">
+            RUSTSEC-2020-0021: rio: rio allows a use-after-free buffer access when a future is leaked
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-05-07">
+          May  7, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0025.html">
+            RUSTSEC-2020-0025: bigint: bigint is unmaintained, use uint instead
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-05-04">
+          May  4, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0056.html">
+            RUSTSEC-2020-0056: stdweb: stdweb is unmaintained
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-05-03">
+          May  3, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0061.html">
+            RUSTSEC-2020-0061: futures-task: futures_task::noop_waker_ref can segfault due to dereferencing a NULL pointer
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-05-02">
+          May  2, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0036.html">
+            RUSTSEC-2020-0036: failure: failure is officially deprecated&#x2f;unmaintained
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-05-01">
+          May  1, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0016.html">
+            RUSTSEC-2020-0016: net2: `net2` crate has been deprecated; use `socket2` instead
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-04-25">
+          April 25, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0015.html">
+            RUSTSEC-2020-0015: openssl-src: Crash causing Denial of Service attack
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-04-24">
+          April 24, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0013.html">
+            RUSTSEC-2020-0013: fake-static: fake-static allows converting any reference into a `&#x27;static` reference
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-04-24">
+          April 24, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0012.html">
+            RUSTSEC-2020-0012: os_str_bytes: Relies on undefined behavior of `char::from_u32_unchecked`
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-04-23">
+          April 23, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0014.html">
+            RUSTSEC-2020-0014: rusqlite: Various memory safety issues
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-04-23">
+          April 23, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0011.html">
+            RUSTSEC-2020-0011: plutonium: Library exclusively intended to obfuscate code.
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-04-18">
+          April 18, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0020.html">
+            RUSTSEC-2020-0020: stb_truetype: `stb_truetype` crate has been deprecated; use `ttf-parser` instead
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-04-11">
+          April 11, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0009.html">
+            RUSTSEC-2020-0009: flatbuffers: `read_scalar` and `read_scalar_at` allow transmuting values without `unsafe` blocks
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-04-09">
+          April  9, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0146.html">
+            RUSTSEC-2020-0146: generic-array: arr! macro erases lifetimes
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-03-27">
+          March 27, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0007.html">
+            RUSTSEC-2020-0007: bitvec: use-after or double free of allocated memory
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-03-24">
+          March 24, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0006.html">
+            RUSTSEC-2020-0006: bumpalo: Flaw in `realloc` allows reading unknown memory
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-03-19">
+          March 19, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0005.html">
+            RUSTSEC-2020-0005: cbox: CBox API allows to de-reference raw pointers without `unsafe` code
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-03-19">
+          March 19, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0008.html">
+            RUSTSEC-2020-0008: hyper: Flaw in hyper allows request smuggling by sending a body in GET requests
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-02-28">
+          February 28, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0010.html">
+            RUSTSEC-2020-0010: tiberius: tiberius is unmaintained
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-02-11">
+          February 11, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0147.html">
+            RUSTSEC-2020-0147: rulinalg: rulinalg is unmaintained, use nalgebra instead
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-02-11">
+          February 11, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0023.html">
+            RUSTSEC-2020-0023: rulinalg: Lifetime boundary for `raw_slice` and `raw_slice_mut` are incorrect
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-02-10">
+          February 10, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0144.html">
+            RUSTSEC-2020-0144: lzw: lzw is unmaintained
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-01-30">
+          January 30, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0049.html">
+            RUSTSEC-2020-0049: actix-codec: Use-after-free in Framed due to lack of pinning
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-01-24">
+          January 24, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0048.html">
+            RUSTSEC-2020-0048: actix-http: Use-after-free in BodyStream due to lack of pinning
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-01-24">
+          January 24, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0123.html">
+            RUSTSEC-2020-0123: libp2p-deflate: Contents of uninitialized memory exposed in DeflateOutput&#x27;s AsyncRead implementation
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-01-24">
+          January 24, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0004.html">
+            RUSTSEC-2020-0004: lucet-runtime-internals: sigstack allocation bug can cause memory corruption or leak
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-01-24">
+          January 24, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0062.html">
+            RUSTSEC-2020-0062: futures-util: Improper `Sync` implementation on `FuturesUnordered` in futures-utils can cause data corruption
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-01-20">
+          January 20, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0003.html">
+            RUSTSEC-2020-0003: rust_sodium: rust_sodium is unmaintained; switch to a modern alternative
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-01-16">
+          January 16, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0002.html">
+            RUSTSEC-2020-0002: prost: Parsing a specially crafted message can result in a stack overflow
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-01-08">
+          January  8, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0045.html">
+            RUSTSEC-2020-0045: actix-utils: bespoke Cell implementation allows obtaining several mutable references to the same data
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-01-08">
+          January  8, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0046.html">
+            RUSTSEC-2020-0046: actix-service: bespoke Cell implementation allows obtaining several mutable references to the same data
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2020-01-06">
+          January  6, 2020
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2020-0001.html">
+            RUSTSEC-2020-0001: trust-dns-server: Stack overflow when resolving addional records from MX or SRV null targets
+          </a>
+        </h3>
+      </li>
+    
+    
+    <header><h1>2019</h1></header>
+
+    
+      <li>
+        <time datetime="2019-11-21">
+          November 21, 2019
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2019-0031.html">
+            RUSTSEC-2019-0031: spin: spin is no longer actively maintained
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2019-11-21">
+          November 21, 2019
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2019-0032.html">
+            RUSTSEC-2019-0032: crust: crust repo has been archived; use libp2p instead
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2019-11-16">
+          November 16, 2019
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2019-0034.html">
+            RUSTSEC-2019-0034: http: HeaderMap::Drain API is unsound
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2019-11-16">
+          November 16, 2019
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2019-0033.html">
+            RUSTSEC-2019-0033: http: Integer Overflow in HeaderMap::reserve() can cause Denial of Service
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2019-11-13">
+          November 13, 2019
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2019-0036.html">
+            RUSTSEC-2019-0036: failure: Type confusion if __private_get_type_id__ is overriden
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2019-10-22">
+          October 22, 2019
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2019-0029.html">
+            RUSTSEC-2019-0029: chacha20: ChaCha20 counter overflow can expose repetitions in the keystream
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2019-10-20">
+          October 20, 2019
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2019-0028.html">
+            RUSTSEC-2019-0028: flatbuffers: Unsound `impl Follow for bool`
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2019-10-14">
+          October 14, 2019
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2019-0027.html">
+            RUSTSEC-2019-0027: libsecp256k1: Flaw in Scalar::check_overflow allows side-channel timing attack
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2019-10-11">
+          October 11, 2019
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2019-0026.html">
+            RUSTSEC-2019-0026: sodiumoxide: generichash::Digest::eq always return true
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2019-10-08">
+          October  8, 2019
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2019-0024.html">
+            RUSTSEC-2019-0024: rustsec-example-crate: Test advisory with associated example crate
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2019-10-06">
+          October  6, 2019
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2019-0030.html">
+            RUSTSEC-2019-0030: streebog: Incorrect implementation of the Streebog hash functions
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2019-10-03">
+          October  3, 2019
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2019-0025.html">
+            RUSTSEC-2019-0025: serde_cbor: Flaw in CBOR deserializer allows stack overflow
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2019-09-30">
+          September 30, 2019
+        </time>
+        <h3>
+          <a href="/advisories/CVE-2019-16760.html">
+            CVE-2019-16760: cargo: Cargo prior to Rust 1.26.0 may download the wrong dependency
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2019-09-14">
+          September 14, 2019
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2019-0022.html">
+            RUSTSEC-2019-0022: portaudio-rs: Stream callback function is not unwind safe
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2019-09-14">
+          September 14, 2019
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2019-0021.html">
+            RUSTSEC-2019-0021: linea: `Matrix::zip_elements` causes double free
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2019-09-06">
+          September  6, 2019
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2019-0020.html">
+            RUSTSEC-2019-0020: generator: fix unsound APIs that could lead to UB
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2019-09-02">
+          September  2, 2019
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2019-0018.html">
+            RUSTSEC-2019-0018: renderdoc: Internally mutating methods take immutable ref self
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2019-09-01">
+          September  1, 2019
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2019-0016.html">
+            RUSTSEC-2019-0016: chttp: Use-after-free in buffer conversion implementation
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2019-09-01">
+          September  1, 2019
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2019-0017.html">
+            RUSTSEC-2019-0017: once_cell: Panic during initialization of Lazy&lt;T&gt; might trigger undefined behavior
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2019-08-27">
+          August 27, 2019
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2019-0013.html">
+            RUSTSEC-2019-0013: spin: Wrong memory orderings in RwLock potentially violates mutual exclusion
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2019-08-25">
+          August 25, 2019
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2019-0019.html">
+            RUSTSEC-2019-0019: blake2: HMAC-BLAKE2 algorithms compute incorrect results
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2019-08-24">
+          August 24, 2019
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2019-0023.html">
+            RUSTSEC-2019-0023: string-interner: Cloned interners may read already dropped strings
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2019-08-21">
+          August 21, 2019
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2019-0014.html">
+            RUSTSEC-2019-0014: image: Flaw in interface may drop uninitialized instance of arbitrary types
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2019-07-19">
+          July 19, 2019
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2019-0012.html">
+            RUSTSEC-2019-0012: smallvec: Memory corruption in SmallVec::grow()
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2019-07-16">
+          July 16, 2019
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2019-0011.html">
+            RUSTSEC-2019-0011: memoffset: Flaw in offset_of and span_of causes SIGILL, drops uninitialized memory of arbitrary type on panic in client code
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2019-07-04">
+          July  4, 2019
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2019-0010.html">
+            RUSTSEC-2019-0010: libflate: MultiDecoder::read() drops uninitialized memory of arbitrary type on panic in client code
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2019-06-24">
+          June 24, 2019
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2019-0008.html">
+            RUSTSEC-2019-0008: simd-json: Flaw in string parsing can lead to crashes due to invalid memory access.
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2019-06-15">
+          June 15, 2019
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2019-0006.html">
+            RUSTSEC-2019-0006: ncurses: Buffer overflow and format vulnerabilities in functions exposed without unsafe
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2019-06-15">
+          June 15, 2019
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2019-0005.html">
+            RUSTSEC-2019-0005: pancurses: Format string vulnerabilities in `pancurses`
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2019-06-13">
+          June 13, 2019
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2019-0007.html">
+            RUSTSEC-2019-0007: asn1_der: Processing of maliciously crafted length fields causes memory allocation SIGABRTs
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2019-06-11">
+          June 11, 2019
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2019-0037.html">
+            RUSTSEC-2019-0037: pnet: Compiler optimisation for next_with_timeout in pnet::transport::IcmpTransportChannelIterator flaws to SEGFAULT
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2019-06-08">
+          June  8, 2019
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2019-0003.html">
+            RUSTSEC-2019-0003: protobuf: Out of Memory in stream::read_raw_bytes_into()
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2019-06-06">
+          June  6, 2019
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2019-0009.html">
+            RUSTSEC-2019-0009: smallvec: Double-free and use-after-free in SmallVec::grow()
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2019-05-21">
+          May 21, 2019
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2019-0015.html">
+            RUSTSEC-2019-0015: compact_arena: Flaw in generativity allows out-of-bounds access
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2019-05-15">
+          May 15, 2019
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2019-0004.html">
+            RUSTSEC-2019-0004: libp2p-core: Failure to properly verify ed25519 signatures makes any signature valid
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2019-05-13">
+          May 13, 2019
+        </time>
+        <h3>
+          <a href="/advisories/CVE-2019-12083.html">
+            CVE-2019-12083: std: Memory safety vulnerabilities arising from `Error::type_id`
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2019-05-07">
+          May  7, 2019
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2019-0002.html">
+            RUSTSEC-2019-0002: slice-deque: Bug in SliceDeque::move_head_unchecked corrupts its memory
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2019-04-27">
+          April 27, 2019
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2019-0001.html">
+            RUSTSEC-2019-0001: ammonia: Uncontrolled recursion leads to abort in HTML serialization
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2019-04-19">
+          April 19, 2019
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2019-0035.html">
+            RUSTSEC-2019-0035: rand_core: Unaligned memory access
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2019-03-10">
+          March 10, 2019
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2019-0038.html">
+            RUSTSEC-2019-0038: libpulse-binding: Fix for UB in failure to catch panics crossing FFI boundaries
+          </a>
+        </h3>
+      </li>
+    
+    
+    <header><h1>2018</h1></header>
+
+    
+      <li>
+        <time datetime="2018-12-22">
+          December 22, 2018
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2018-0020.html">
+            RUSTSEC-2018-0020: libpulse-binding: Possible use-after-free with `proplist::Iterator`
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2018-12-20">
+          December 20, 2018
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2018-0012.html">
+            RUSTSEC-2018-0012: orion: Flaw in streaming state reset() functions can create incorrect results.
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2018-12-18">
+          December 18, 2018
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2018-0011.html">
+            RUSTSEC-2018-0011: arrayfire: Enum repr causing potential memory corruption
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2018-12-09">
+          December  9, 2018
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2018-0009.html">
+            RUSTSEC-2018-0009: crossbeam: MsQueue and SegQueue suffer from double-free
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2018-12-05">
+          December  5, 2018
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2018-0008.html">
+            RUSTSEC-2018-0008: slice-deque: Bug in SliceDeque::move_head_unchecked allows read of corrupted memory
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2018-11-27">
+          November 27, 2018
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2018-0013.html">
+            RUSTSEC-2018-0013: safe-transmute: Vec-to-vec transmutations could lead to heap overflow&#x2f;corruption
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2018-11-19">
+          November 19, 2018
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2018-0015.html">
+            RUSTSEC-2018-0015: term: term is looking for a new maintainer
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2018-10-09">
+          October  9, 2018
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2018-0007.html">
+            RUSTSEC-2018-0007: trust-dns-proto: Stack overflow when parsing malicious DNS packet
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2018-09-25">
+          September 25, 2018
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2018-0018.html">
+            RUSTSEC-2018-0018: smallvec: smallvec creates uninitialized value of any type
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2018-09-21">
+          September 21, 2018
+        </time>
+        <h3>
+          <a href="/advisories/CVE-2018-1000810.html">
+            CVE-2018-1000810: std: Buffer overflow vulnerability in str::repeat()
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2018-09-17">
+          September 17, 2018
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2018-0006.html">
+            RUSTSEC-2018-0006: yaml-rust: Uncontrolled recursion leads to abort in deserialization
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2018-09-17">
+          September 17, 2018
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2018-0005.html">
+            RUSTSEC-2018-0005: serde_yaml: Uncontrolled recursion leads to abort in deserialization
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2018-08-25">
+          August 25, 2018
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2018-0004.html">
+            RUSTSEC-2018-0004: claxon: Malicious input could cause uninitialized memory to be exposed
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2018-08-20">
+          August 20, 2018
+        </time>
+        <h3>
+          <a href="/advisories/CVE-2018-1000657.html">
+            CVE-2018-1000657: std: Buffer overflow vulnerability in VecDeque::reserve()
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2018-07-31">
+          July 31, 2018
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2018-0014.html">
+            RUSTSEC-2018-0014: chan: chan is end-of-life; use crossbeam-channel instead
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2018-07-19">
+          July 19, 2018
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2018-0003.html">
+            RUSTSEC-2018-0003: smallvec: Possible double free during unwinding in SmallVec::insert_many
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2018-07-05">
+          July  5, 2018
+        </time>
+        <h3>
+          <a href="/advisories/CVE-2018-1000622.html">
+            CVE-2018-1000622: rustdoc: Uncontrolled search path element vulnerability in rustdoc plugins
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2018-06-30">
+          June 30, 2018
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2018-0016.html">
+            RUSTSEC-2018-0016: quickersort: quickersort is deprecated and unmaintained
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2018-06-29">
+          June 29, 2018
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2018-0002.html">
+            RUSTSEC-2018-0002: tar: Links in archives can overwrite any existing file
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2018-06-21">
+          June 21, 2018
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2018-0001.html">
+            RUSTSEC-2018-0001: untrusted: An integer underflow could lead to panic
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2018-06-15">
+          June 15, 2018
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2018-0021.html">
+            RUSTSEC-2018-0021: libpulse-binding: Use-after-free with objects returned by `Stream`&#x27;s `get_format_info` and `get_context` methods
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2018-06-08">
+          June  8, 2018
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2018-0019.html">
+            RUSTSEC-2018-0019: actix-web: Multiple memory safety issues
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2018-06-01">
+          June  1, 2018
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2018-0010.html">
+            RUSTSEC-2018-0010: openssl: Use after free in CMS Signing
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2018-02-13">
+          February 13, 2018
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2018-0017.html">
+            RUSTSEC-2018-0017: tempdir: `tempdir` crate has been deprecated; use `tempfile` instead
+          </a>
+        </h3>
+      </li>
+    
+    
+    <header><h1>2017</h1></header>
+
+    
+      <li>
+        <time datetime="2017-11-21">
+          November 21, 2017
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2017-0006.html">
+            RUSTSEC-2017-0006: rmpv: Unchecked vector pre-allocation
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2017-05-06">
+          May  6, 2017
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2017-0005.html">
+            RUSTSEC-2017-0005: cookie: Large cookie Max-Age values can cause a denial of service
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2017-05-03">
+          May  3, 2017
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2017-0004.html">
+            RUSTSEC-2017-0004: base64: Integer overflow leads to heap-based buffer overflow in encode_config_buf
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2017-04-17">
+          April 17, 2017
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2017-0007.html">
+            RUSTSEC-2017-0007: lz4-compress: lz4-compress is unmaintained
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2017-03-15">
+          March 15, 2017
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2017-0003.html">
+            RUSTSEC-2017-0003: security-framework: Hostname verification skipped when custom root certs used
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2017-01-26">
+          January 26, 2017
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2017-0001.html">
+            RUSTSEC-2017-0001: sodiumoxide: scalarmult() vulnerable to degenerate public keys
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2017-01-23">
+          January 23, 2017
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2017-0002.html">
+            RUSTSEC-2017-0002: hyper: headers containing newline characters can split messages
+          </a>
+        </h3>
+      </li>
+    
+    
+    <header><h1>2016</h1></header>
+
+    
+      <li>
+        <time datetime="2016-12-15">
+          December 15, 2016
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2016-0006.html">
+            RUSTSEC-2016-0006: cassandra: `cassandra` crate is unmaintained; use `cassandra-cpp` instead
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2016-11-05">
+          November  5, 2016
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2016-0001.html">
+            RUSTSEC-2016-0001: openssl: SSL&#x2f;TLS MitM vulnerability due to insecure defaults
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2016-09-10">
+          September 10, 2016
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2016-0004.html">
+            RUSTSEC-2016-0004: libusb: libusb is unmaintained; use rusb instead
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2016-09-06">
+          September  6, 2016
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2016-0005.html">
+            RUSTSEC-2016-0005: rust-crypto: rust-crypto is unmaintained; switch to a modern alternative
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2016-08-01">
+          August  1, 2016
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2016-0003.html">
+            RUSTSEC-2016-0003: portaudio: HTTP download and execution allows MitM RCE
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <time datetime="2016-05-09">
+          May  9, 2016
+        </time>
+        <h3>
+          <a href="/advisories/RUSTSEC-2016-0002.html">
+            RUSTSEC-2016-0002: hyper: HTTPS MitM vulnerability due to lack of hostname verification
+          </a>
+        </h3>
+      </li>
+    
+    
+  </article>
+</main>

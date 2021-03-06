@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+
+<meta name="author" content="Rust Project Developers">
+<meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
+<title>About RustSec › RustSec Advisory Database</title>
+
+<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
+<link href="/css/basic.css" rel="stylesheet">
+<link href="/css/highlight.css" rel="stylesheet">
+<link href="/css/index.css" rel="stylesheet">
+
+<header>
+  <h1><a href="/"><img class="logo-image" src="/img/rustsec-logo.svg" /></a></h1>
+  <nav>
+    <div>
+      <a href="/advisories/">Advisories</a>
+      <a href="/">About RustSec</a>
+      <a href="https://rust-lang.zulipchat.com/#narrow/stream/146229-wg-secure-code/" alt="Zulip Chat"><img src="https://img.shields.io/badge/zulip-join_chat-blue.svg"></a>
+    </div>
+
+    <div>
+      <a href="https://twitter.com/RustSec/" title="Twitter" aria-label="Twitter"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="height:1em;fill:currentColor"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg></a>
+      <a href="https://github.com/RustSec/" title="GitHub" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" style="height:1em;fill:currentColor"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <article>
+    <header>
+      <h1>
+        <a href=".">
+          RUSTSEC-2016-0005: rust-crypto: rust-crypto is unmaintained; switch to a modern alternative
+        </a>
+      </h1>
+      <time datetime="2016-09-06">
+        September  6, 2016
+      </time>
+    </header>
+
+    <h3 id="description">Description</h3>
+    <p>The <code>rust-crypto</code> crate has not seen a release or GitHub commit since 2016,
+and its author is unresponsive.</p>
+<p><em>NOTE: The (old) <code>rust-crypto</code> crate (with hyphen) should not be confused with
+similarly named (new) <a href="https://github.com/RustCrypto">RustCrypto GitHub Org</a> (without hyphen). The GitHub Org
+is actively maintained.</em></p>
+<p>We recommend you switch to one of the following crates instead, depending on
+which algorithms you need:</p>
+<ul>
+<li><a href="https://github.com/dalek-cryptography">dalek-cryptography GitHub Org</a>:
+<ul>
+<li>Key agreement: <a href="https://crates.io/crates/x25519-dalek"><code>x25519-dalek</code></a></li>
+<li>Signature algorithms: <a href="https://crates.io/crates/ed25519-dalek"><code>ed25519-dalek</code></a></li>
+</ul>
+</li>
+<li><a href="https://crates.io/crates/ring"><code>ring</code></a>:
+<ul>
+<li>AEAD algorithms: AES-GCM, ChaCha20Poly1305</li>
+<li>Digest algorithms: SHA-256, SHA-384, SHA-512, SHA-512/256 (legacy: SHA-1)</li>
+<li>HMAC</li>
+<li>Key agreement: ECDH (P-256, P-384), X25519</li>
+<li>Key derivation: HKDF</li>
+<li>Password hashing: PBKDF2</li>
+<li>Signature algorithms: ECDSA (P-256, P-384), Ed25519, RSA (PKCS#1v1.5, PSS)</li>
+</ul>
+</li>
+<li><a href="https://github.com/RustCrypto">RustCrypto GitHub Org</a>:
+<ul>
+<li>AEAD algorithms: <a href="https://crates.io/crates/aes-gcm"><code>aes-gcm</code></a>, <a href="https://crates.io/crates/aes-gcm-siv"><code>aes-gcm-siv</code></a>, <a href="https://crates.io/crates/aes-siv"><code>aes-siv</code></a>, <a href="https://crates.io/crates/chacha20poly1305"><code>chacha20poly1305</code></a>, <a href="https://crates.io/crates/xsalsa20poly1305"><code>xsalsa20poly1305</code></a></li>
+<li>Block ciphers: <a href="https://crates.io/crates/aes"><code>aes</code></a>, <a href="https://crates.io/crates/cast5"><code>cast5</code></a>, <a href="https://crates.io/crates/des"><code>des</code></a></li>
+<li>Digest algorithms: <a href="https://crates.io/crates/sha2"><code>sha2</code></a>, <a href="https://crates.io/crates/sha3"><code>sha3</code></a>, <a href="https://crates.io/crates/blake2"><code>blake2</code></a>, <a href="https://crates.io/crates/ripemd160"><code>ripemd160</code></a>
+(legacy: <a href="https://crates.io/crates/sha-1"><code>sha-1</code></a>, [<code>md-5</code>])</li>
+<li>Key derivation: <a href="https://crates.io/crates/hkdf"><code>hkdf</code></a></li>
+<li>MACs: <a href="https://crates.io/crates/cmac"><code>cmac</code></a>, <a href="https://crates.io/crates/hmac"><code>hmac</code></a>, <a href="https://crates.io/crates/pmac"><code>pmac</code></a>, <a href="https://crates.io/crates/poly1305"><code>poly1305</code></a></li>
+<li>Password hashing: <a href="https://crates.io/crates/pbkdf2"><code>pbkdf2</code></a></li>
+<li>Stream ciphers: <a href="https://crates.io/crates/aes-ctr"><code>aes-ctr</code></a>, <a href="https://crates.io/crates/chacha20"><code>chacha20</code></a>, <a href="https://crates.io/crates/hc-256"><code>hc-256</code></a>, <a href="https://crates.io/crates/salsa20"><code>salsa20</code></a></li>
+</ul>
+</li>
+<li><a href="https://crates.io/crates/secp256k1"><code>secp256k1</code></a>:
+<ul>
+<li>Key agreement: ECDH (secp256k1 only)</li>
+<li>Signature algorithms: ECDSA (secp256k1 only)</li>
+</ul>
+</li>
+<li><a href="https://crates.io/crates/sodiumoxide"><code>sodiumoxide</code></a>:
+<ul>
+<li>AEAD algorithms: ChaCha20Poly1305 (IETF version)</li>
+<li>Digest algorithms: SHA-256, SHA-512</li>
+<li>HMAC</li>
+<li>Key agreement: X25519 + BLAKE2b</li>
+<li>Password hashing: Argon2(i/d), scrypt</li>
+<li>Public key encryption: NaCl &quot;Box&quot; (X25519 + XSalsa20Poly1305)</li>
+<li>Signature algorithms: Ed25519</li>
+<li>Short-input PRF: SipHash24</li>
+</ul>
+</li>
+<li><a href="https://crates.io/crates/orion"><code>orion</code></a>:
+<ul>
+<li>AEAD algorithms: ChaCha20Poly1305 (IETF version), XChaCha20Poly1305</li>
+<li>Digest algorithms: SHA-512, BLAKE2b</li>
+<li>Key derivation: HKDF</li>
+<li>MACs: HMAC, Poly1305</li>
+<li>Password hashing: PBKDF2</li>
+<li>Stream ciphers: ChaCha20 (IETF version), XChaCha20</li>
+</ul>
+</li>
+</ul>
+
+
+    
+    <h3 id="more-info">More Info</h3>
+    <p>
+      <a href="https:&#x2f;&#x2f;github.com&#x2f;DaGenix&#x2f;rust-crypto&#x2f;issues&#x2f;440">
+        https:&#x2f;&#x2f;github.com&#x2f;DaGenix&#x2f;rust-crypto&#x2f;issues&#x2f;440
+      </a>
+    </p>
+    
+
+    <h3 id="patched-versions">Patched Versions</h3>
+    <ul>
+    
+      <li>None!</li>
+    
+    
+    </ul>
+
+  </article>
+</main>
