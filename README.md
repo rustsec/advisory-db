@@ -21,7 +21,7 @@ and reporting (send PRs to add yours):
 To report a new vulnerability, open a pull request using the template below.
 See [CONTRIBUTING.md] for more information.
 
-<a href="https://github.com/RustSec/advisory-db/blob/master/CONTRIBUTING.md">
+<a href="https://github.com/RustSec/advisory-db/blob/main/CONTRIBUTING.md">
   <img alt="Report Vulnerability" width="250px" height="60px" src="https://rustsec.org/img/report-vuln-button.svg">
 </a>
 
@@ -106,7 +106,7 @@ patched = [">= 1.2.0"]
 
 All content in this repository is placed in the public domain.
 
-[![Public Domain](http://i.creativecommons.org/p/zero/1.0/88x31.png)](https://github.com/RustSec/advisory-db/blob/master/LICENSE.txt)
+[![Public Domain](http://i.creativecommons.org/p/zero/1.0/88x31.png)](https://github.com/RustSec/advisory-db/blob/main/LICENSE.txt)
 
 [//]: # (badges)
 
@@ -118,9 +118,9 @@ All content in this repository is placed in the public domain.
 
 [//]: # (general links)
 
-[EXAMPLE_ADVISORY.md]: https://github.com/RustSec/advisory-db/blob/master/EXAMPLE_ADVISORY.md
+[EXAMPLE_ADVISORY.md]: https://github.com/RustSec/advisory-db/blob/main/EXAMPLE_ADVISORY.md
 [Markdown]: https://www.markdownguide.org/
 [TOML]: https://github.com/toml-lang/toml
 [cargo-audit]: https://github.com/rustsec/cargo-audit
 [cargo-deny]: https://github.com/EmbarkStudios/cargo-deny
-[CONTRIBUTING.md]: https://github.com/RustSec/advisory-db/blob/master/CONTRIBUTING.md
+[CONTRIBUTING.md]: https://github.com/RustSec/advisory-db/blob/main/CONTRIBUTING.md
