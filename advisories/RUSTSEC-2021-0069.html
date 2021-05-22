@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package lettre › RustSec Advisory Database</title>
+<title>RUSTSEC-2021-0069: lettre: SMTP command injection in body › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -38,49 +38,195 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
-
     <header>
-      <h1>Advisories for lettre</h1>
+      <h1>
+        
+        
+        RUSTSEC-2021-0069
+        
+      </h1>
+      <span class="subtitle"><p>SMTP command injection in body</p>
+</span>
     </header>
 
-    <ul>
-      
-      <li>
+    
+    
+
+    <dl>
+      <dt id="issued">Issued</dt>
+      <dd>
         <time datetime="2021-05-22">
           May 22, 2021
         </time>
+      </dd>
 
+      <dt id="package">Package</dt>
+      <dd>
         
         
-        <h3>
-          <a href="/advisories/RUSTSEC-2021-0069.html">
-            RUSTSEC-2021-0069: Vulnerability in lettre
-          </a>
-        </h3>
-        <span><p>SMTP command injection in body</p>
-</span>
         
-      </li>
-      
-      <li>
-        <time datetime="2020-11-11">
-          November 11, 2020
-        </time>
+        <a href="/packages/lettre.html">lettre</a>
+          (<a href="https://crates.io/crates/lettre">crates.io</a>)
+        
+        
+      </dd>
 
+      <dt id="type">Type</dt>
+      <dd>
         
         
-        <h3>
-          <a href="/advisories/RUSTSEC-2020-0069.html">
-            RUSTSEC-2020-0069: Vulnerability in lettre
-          </a>
-        </h3>
-        <span><p>Argument injection in sendmail transport</p>
-</span>
+        Vulnerability
         
-      </li>
+      </dd>
+
       
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li>format-injection</li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="aliases">Aliases</dt>
+      <dd>
+        <ul>
+          
+          <li>
+            
+            
+            GHSA-qc36-q22q-cjw3
+            
+          </li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="details">Details</dt>
+      <dd>
+        <a href="https:&#x2f;&#x2f;github.com&#x2f;lettre&#x2f;lettre&#x2f;pull&#x2f;627&#x2f;commits&#x2f;93458d01fed0ec81c0e7b4e98e6f35961356fae2">
+          https:&#x2f;&#x2f;github.com&#x2f;lettre&#x2f;lettre&#x2f;pull&#x2f;627&#x2f;commits&#x2f;93458d01fed0ec81c0e7b4e98e6f35961356fae2
+        </a>
+      </dd>
+      
+
+      
+      
+
+      
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        
+        <ul>
+          
+          <li><code>&gt;=0.10.0-rc.3</code></li>
+          
+          <li><code>&lt;0.10.0-alpha.1, &gt;=0.9.6</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+      <dt id="unaffected">Unaffected</dt>
+      <dd>
+        <ul>
+          
+          <li><code>&lt;0.7.0</code></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        <ul>
+          
+          <li>email</li>
+          
+          <li>smtp</li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      
+      
+      
+
+      
+      
+      
+    </dl>
+
+    
+    
+    
+    <dl>
+      <dt>Affected Functions</dt>
+      <dd>Version</dd>
+      
+      <dt><code>lettre::smtp::SmtpTransport::send</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&lt;0.10.0-alpha.1</code></li>
+          
+        </ul>
+      </dd>
+      
+      <dt><code>lettre::transport::smtp::SmtpTransport::send</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&gt;=0.10.0-alpha.1, &lt;0.10.0-rc.3</code></li>
+          
+        </ul>
+      </dd>
+      
+      <dt><code>lettre::transport::smtp::SmtpTransport::send_raw</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&gt;=0.10.0-alpha.1, &lt;0.10.0-rc.3</code></li>
+          
+        </ul>
+      </dd>
+      
+    </dl>
+    
+    
+
+    <h3 id="description">Description</h3>
+    <p>Affected versions of lettre allowed SMTP command injection through an attacker's controlled message body. The module for escaping lines starting with a period wouldn't catch a period that was placed after a double CRLF sequence, allowing the attacker to end the current message and write arbitrary SMTP commands after it.</p>
+<p>The flaw is fixed by correctly handling consecutive CRLF sequences.</p>
+
+
+    
+    
+    <h3 id="more">More</h3>
+
+    <ul>
+      <li><a
+          href="https://github.com/RustSec/advisory-db/commits/main/crates/lettre/RUSTSEC-2021-0069.md">Advisory
+          History</a></li>
+      <li><a
+          href="https://github.com/RustSec/advisory-db/edit/main/crates/lettre/RUSTSEC-2021-0069.md">Edit
+          Advisory</a></li>
     </ul>
+    
   </article>
 </main>
