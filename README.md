@@ -1,7 +1,7 @@
 # RustSec Advisory Database
 
 [![Build Status][build-image]][build-link]
-![Maintained: Q1 2021][maintained-image]
+![Maintained: Q2 2021][maintained-image]
 [![Project Chat][chat-image]][chat-link]
 
 The RustSec Advisory Database is a repository of security advisories filed
@@ -45,7 +45,7 @@ id = "RUSTSEC-0000-0000"
 package = "mycrate"
 
 # Disclosure date of the advisory as an RFC 3339 date (mandatory)
-date = "2019-10-01"
+date = "2021-01-31"
 
 # URL to a long-form description of this issue, e.g. a GitHub issue/PR,
 # a change log entry, or a blogpost announcing the release (optional)
