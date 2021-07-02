@@ -21,6 +21,8 @@ jobs:
           fi
           mkdir -p crates
           rustsec-admin osv crates
+          # FIXME: hack to avoid committing advisories without an ID
+          rm crates/RUSTSEC-0000-0000.json
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
