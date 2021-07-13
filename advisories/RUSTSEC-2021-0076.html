@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package libsecp256k1 › RustSec Advisory Database</title>
+<title>RUSTSEC-2021-0076: libsecp256k1: libsecp256k1 allows overflowing signatures › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -38,49 +38,126 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
-
     <header>
-      <h1>Advisories for libsecp256k1</h1>
+      <h1>
+        
+        
+        RUSTSEC-2021-0076
+        
+      </h1>
+      <span class="subtitle"><p>libsecp256k1 allows overflowing signatures</p>
+</span>
     </header>
 
-    <ul>
-      
-      <li>
+    
+    
+
+    <dl>
+      <dt id="issued">Issued</dt>
+      <dd>
         <time datetime="2021-07-13">
           July 13, 2021
         </time>
+      </dd>
 
+      <dt id="package">Package</dt>
+      <dd>
         
         
-        <h3>
-          <a href="/advisories/RUSTSEC-2021-0076.html">
-            RUSTSEC-2021-0076: Vulnerability in libsecp256k1
-          </a>
-        </h3>
-        <span><p>libsecp256k1 allows overflowing signatures</p>
-</span>
         
-      </li>
-      
-      <li>
-        <time datetime="2019-10-14">
-          October 14, 2019
-        </time>
+        <a href="/packages/libsecp256k1.html">libsecp256k1</a>
+          (<a href="https://crates.io/crates/libsecp256k1">crates.io</a>)
+        
+        
+      </dd>
 
+      <dt id="type">Type</dt>
+      <dd>
         
         
-        <h3>
-          <a href="/advisories/RUSTSEC-2019-0027.html">
-            RUSTSEC-2019-0027: Vulnerability in libsecp256k1
-          </a>
-        </h3>
-        <span><p>Flaw in Scalar::check_overflow allows side-channel timing attack</p>
-</span>
+        Vulnerability
         
-      </li>
+      </dd>
+
       
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li>crypto-failure</li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      
+
+      
+      <dt id="details">Details</dt>
+      <dd>
+        <a href="https:&#x2f;&#x2f;github.com&#x2f;paritytech&#x2f;libsecp256k1&#x2f;pull&#x2f;67">
+          https:&#x2f;&#x2f;github.com&#x2f;paritytech&#x2f;libsecp256k1&#x2f;pull&#x2f;67
+        </a>
+      </dd>
+      
+
+      
+      
+
+      
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        
+        <ul>
+          
+          <li><code>&gt;=0.5.0</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+      
+
+      
+      
+
+      
+      
+      
+    </dl>
+
+    
+
+    
+    
+
+    <h3 id="description">Description</h3>
+    <p>libsecp256k1 accepts signatures whose R or S parameter is larger than the
+secp256k1 curve order, which differs from other implementations. This could
+lead to invalid signatures being verified.</p>
+<p>The error is resolved in 0.5.0 by adding a <code>check_overflow</code> flag.</p>
+
+
+    
+    
+    <h3 id="more">More</h3>
+
+    <ul>
+      <li><a
+          href="https://github.com/RustSec/advisory-db/commits/main/crates/libsecp256k1/RUSTSEC-2021-0076.md">Advisory
+          History</a></li>
+      <li><a
+          href="https://github.com/RustSec/advisory-db/edit/main/crates/libsecp256k1/RUSTSEC-2021-0076.md">Edit
+          Advisory</a></li>
     </ul>
+    
   </article>
 </main>
