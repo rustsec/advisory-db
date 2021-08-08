@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package hyper › RustSec Advisory Database</title>
+<title>RUSTSEC-2021-0079: hyper: Integer overflow in `hyper`&#x27;s parsing of the `Transfer-Encoding` header leads to data loss › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -38,117 +38,151 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
-
     <header>
-      <h1>Advisories for hyper</h1>
+      <h1>
+        
+        
+        RUSTSEC-2021-0079
+        
+      </h1>
+      <span class="subtitle"><p>Integer overflow in <code>hyper</code>'s parsing of the <code>Transfer-Encoding</code> header leads to data loss</p>
+</span>
     </header>
 
+    
+    
+
+    <dl>
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2021-07-07">
+          July  7, 2021
+        </time>
+      </dd>
+
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        
+        <a href="/packages/hyper.html">hyper</a>
+          (<a href="https://crates.io/crates/hyper">crates.io</a>)
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        
+        Vulnerability
+        
+      </dd>
+
+      
+      
+
+      
+      <dt id="aliases">Aliases</dt>
+      <dd>
+        <ul>
+          
+          <li>
+            
+            
+            <a href="https:&#x2f;&#x2f;cve.mitre.org&#x2f;cgi-bin&#x2f;cvename.cgi?name=CVE-2021-32714">CVE-2021-32714</a>
+            
+          </li>
+          
+          <li>
+            
+            
+            GHSA-5h46-h7hh-c6x9
+            
+          </li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="details">Details</dt>
+      <dd>
+        <a href="https:&#x2f;&#x2f;github.com&#x2f;hyperium&#x2f;hyper&#x2f;security&#x2f;advisories&#x2f;GHSA-5h46-h7hh-c6x9">
+          https:&#x2f;&#x2f;github.com&#x2f;hyperium&#x2f;hyper&#x2f;security&#x2f;advisories&#x2f;GHSA-5h46-h7hh-c6x9
+        </a>
+      </dd>
+      
+
+      
+      
+
+      
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        
+        <ul>
+          
+          <li><code>&gt;=0.14.10</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        <ul>
+          
+          <li>http</li>
+          
+          <li>parsing</li>
+          
+          <li>data loss</li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      
+      
+    </dl>
+
+    
+
+    
+    
+
+    <h3 id="description">Description</h3>
+    <p>When decoding chunk sizes that are too large, <code>hyper</code>'s code would encounter an integer overflow. Depending on the situation,
+this could lead to data loss from an incorrect total size, or in rarer cases, a request smuggling attack.</p>
+<p>To be vulnerable, you must be using <code>hyper</code> for any HTTP/1 purpose, including as a client or server, and consumers must send
+requests or responses that specify a chunk size greater than 18 exabytes. For a possible request smuggling attack to be possible,
+any upstream proxies must accept a chunk size greater than 64 bits.</p>
+
+
+    
+    
+    <h3 id="more">More</h3>
+
     <ul>
-      
-      <li>
-        <time datetime="2021-07-07">
-          July  7, 2021
-        </time>
-
-        
-        
-        <h3>
-          <a href="/advisories/RUSTSEC-2021-0079.html">
-            RUSTSEC-2021-0079: Vulnerability in hyper
-          </a>
-        </h3>
-        <span><p>Integer overflow in <code>hyper</code>'s parsing of the <code>Transfer-Encoding</code> header leads to data loss</p>
-</span>
-        
-      </li>
-      
-      <li>
-        <time datetime="2021-07-07">
-          July  7, 2021
-        </time>
-
-        
-        
-        <h3>
-          <a href="/advisories/RUSTSEC-2021-0078.html">
-            RUSTSEC-2021-0078: Vulnerability in hyper
-          </a>
-        </h3>
-        <span><p>Lenient <code>hyper</code> header parsing of <code>Content-Length</code> could allow request smuggling</p>
-</span>
-        
-      </li>
-      
-      <li>
-        <time datetime="2021-02-05">
-          February  5, 2021
-        </time>
-
-        
-        
-        <h3>
-          <a href="/advisories/RUSTSEC-2021-0020.html">
-            RUSTSEC-2021-0020: Vulnerability in hyper
-          </a>
-        </h3>
-        <span><p>Multiple Transfer-Encoding headers misinterprets request payload</p>
-</span>
-        
-      </li>
-      
-      <li>
-        <time datetime="2020-03-19">
-          March 19, 2020
-        </time>
-
-        
-        
-        <h3>
-          <a href="/advisories/RUSTSEC-2020-0008.html">
-            RUSTSEC-2020-0008: Vulnerability in hyper
-          </a>
-        </h3>
-        <span><p>Flaw in hyper allows request smuggling by sending a body in GET requests</p>
-</span>
-        
-      </li>
-      
-      <li>
-        <time datetime="2017-01-23">
-          January 23, 2017
-        </time>
-
-        
-        
-        <h3>
-          <a href="/advisories/RUSTSEC-2017-0002.html">
-            RUSTSEC-2017-0002: Vulnerability in hyper
-          </a>
-        </h3>
-        <span><p>headers containing newline characters can split messages</p>
-</span>
-        
-      </li>
-      
-      <li>
-        <time datetime="2016-05-09">
-          May  9, 2016
-        </time>
-
-        
-        
-        <h3>
-          <a href="/advisories/RUSTSEC-2016-0002.html">
-            RUSTSEC-2016-0002: Vulnerability in hyper
-          </a>
-        </h3>
-        <span><p>HTTPS MitM vulnerability due to lack of hostname verification</p>
-</span>
-        
-      </li>
-      
+      <li><a
+          href="https://github.com/RustSec/advisory-db/commits/main/crates/hyper/RUSTSEC-2021-0079.md">Advisory
+          History</a></li>
+      <li><a
+          href="https://github.com/RustSec/advisory-db/edit/main/crates/hyper/RUSTSEC-2021-0079.md">Edit
+          Advisory</a></li>
     </ul>
+    
   </article>
 </main>
