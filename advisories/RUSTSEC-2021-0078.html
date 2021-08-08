@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package hyper › RustSec Advisory Database</title>
+<title>RUSTSEC-2021-0078: hyper: Lenient `hyper` header parsing of `Content-Length` could allow request smuggling › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -38,100 +38,148 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
-
     <header>
-      <h1>Advisories for hyper</h1>
+      <h1>
+        
+        
+        RUSTSEC-2021-0078
+        
+      </h1>
+      <span class="subtitle"><p>Lenient <code>hyper</code> header parsing of <code>Content-Length</code> could allow request smuggling</p>
+</span>
     </header>
 
-    <ul>
-      
-      <li>
+    
+    
+
+    <dl>
+      <dt id="issued">Issued</dt>
+      <dd>
         <time datetime="2021-07-07">
           July  7, 2021
         </time>
+      </dd>
 
+      <dt id="package">Package</dt>
+      <dd>
         
         
-        <h3>
-          <a href="/advisories/RUSTSEC-2021-0078.html">
-            RUSTSEC-2021-0078: Vulnerability in hyper
-          </a>
-        </h3>
-        <span><p>Lenient <code>hyper</code> header parsing of <code>Content-Length</code> could allow request smuggling</p>
-</span>
         
-      </li>
-      
-      <li>
-        <time datetime="2021-02-05">
-          February  5, 2021
-        </time>
+        <a href="/packages/hyper.html">hyper</a>
+          (<a href="https://crates.io/crates/hyper">crates.io</a>)
+        
+        
+      </dd>
 
+      <dt id="type">Type</dt>
+      <dd>
         
         
-        <h3>
-          <a href="/advisories/RUSTSEC-2021-0020.html">
-            RUSTSEC-2021-0020: Vulnerability in hyper
-          </a>
-        </h3>
-        <span><p>Multiple Transfer-Encoding headers misinterprets request payload</p>
-</span>
+        Vulnerability
         
-      </li>
-      
-      <li>
-        <time datetime="2020-03-19">
-          March 19, 2020
-        </time>
+      </dd>
 
-        
-        
-        <h3>
-          <a href="/advisories/RUSTSEC-2020-0008.html">
-            RUSTSEC-2020-0008: Vulnerability in hyper
-          </a>
-        </h3>
-        <span><p>Flaw in hyper allows request smuggling by sending a body in GET requests</p>
-</span>
-        
-      </li>
       
-      <li>
-        <time datetime="2017-01-23">
-          January 23, 2017
-        </time>
+      
 
-        
-        
-        <h3>
-          <a href="/advisories/RUSTSEC-2017-0002.html">
-            RUSTSEC-2017-0002: Vulnerability in hyper
-          </a>
-        </h3>
-        <span><p>headers containing newline characters can split messages</p>
-</span>
-        
-      </li>
       
-      <li>
-        <time datetime="2016-05-09">
-          May  9, 2016
-        </time>
+      <dt id="aliases">Aliases</dt>
+      <dd>
+        <ul>
+          
+          <li>
+            
+            
+            <a href="https:&#x2f;&#x2f;cve.mitre.org&#x2f;cgi-bin&#x2f;cvename.cgi?name=CVE-2021-32715">CVE-2021-32715</a>
+            
+          </li>
+          
+          <li>
+            
+            
+            GHSA-f3pg-qwvg-p99c
+            
+          </li>
+          
+        </ul>
+      </dd>
+      
 
-        
-        
-        <h3>
-          <a href="/advisories/RUSTSEC-2016-0002.html">
-            RUSTSEC-2016-0002: Vulnerability in hyper
-          </a>
-        </h3>
-        <span><p>HTTPS MitM vulnerability due to lack of hostname verification</p>
-</span>
-        
-      </li>
       
+      <dt id="details">Details</dt>
+      <dd>
+        <a href="https:&#x2f;&#x2f;github.com&#x2f;hyperium&#x2f;hyper&#x2f;security&#x2f;advisories&#x2f;GHSA-f3pg-qwvg-p99c">
+          https:&#x2f;&#x2f;github.com&#x2f;hyperium&#x2f;hyper&#x2f;security&#x2f;advisories&#x2f;GHSA-f3pg-qwvg-p99c
+        </a>
+      </dd>
+      
+
+      
+      
+
+      
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        
+        <ul>
+          
+          <li><code>&gt;=0.14.10</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        <ul>
+          
+          <li>parsing</li>
+          
+          <li>http</li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      
+      
+    </dl>
+
+    
+
+    
+    
+
+    <h3 id="description">Description</h3>
+    <p><code>hyper</code>'s HTTP header parser accepted, according to RFC 7230, illegal contents inside <code>Content-Length</code> headers.
+Due to this, upstream HTTP proxies that ignore the the header may still forward them along if it chooses to ignore the error.</p>
+<p>To be vulnerable, <code>hyper</code> must be used as an HTTP/1 server and using an HTTP proxy upstream that ignores the header's contents
+but still forwards it. Due to all the factors that must line up, an attack exploiting this vulnerablity is unlikely.</p>
+
+
+    
+    
+    <h3 id="more">More</h3>
+
+    <ul>
+      <li><a
+          href="https://github.com/RustSec/advisory-db/commits/main/crates/hyper/RUSTSEC-2021-0078.md">Advisory
+          History</a></li>
+      <li><a
+          href="https://github.com/RustSec/advisory-db/edit/main/crates/hyper/RUSTSEC-2021-0078.md">Edit
+          Advisory</a></li>
     </ul>
+    
   </article>
 </main>
