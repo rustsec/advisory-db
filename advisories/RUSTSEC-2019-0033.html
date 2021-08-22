@@ -193,7 +193,7 @@
 
     <h3 id="description">Description</h3>
     <p><code>HeaderMap::reserve()</code> used <code>usize::next_power_of_two()</code> to calculate the increased capacity.
-However, <code>next_power_of_two()</code> silently overflows to 0 if given a sufficently large number
+However, <code>next_power_of_two()</code> silently overflows to 0 if given a sufficiently large number
 in release mode.</p>
 <p>If the map was not empty when the overflow happens,
 the library will invoke <code>self.grow(0)</code> and start infinite probing.

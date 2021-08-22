@@ -186,7 +186,7 @@ in these scenarios.</p>
 <p>I've written a quickcheck test to exercise <code>realloc</code>. Without the bug fix
 in this patch, this quickcheck immediately triggers invalid reads when run
 under <code>valgrind</code>. We didn't previously have quickchecks that exercised
-<code>realloc</code> beacuse <code>realloc</code> isn't publicly exposed directly, and instead
+<code>realloc</code> because <code>realloc</code> isn't publicly exposed directly, and instead
 can only be indirectly called. This new quickcheck test exercises <code>realloc</code>
 via <code>bumpalo::collections::Vec::resize</code> and
 <code>bumpalo::collections::Vec::shrink_to_fit</code> calls.</p>

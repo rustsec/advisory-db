@@ -161,7 +161,7 @@ of the decode buffer to not be overwritten. If the decode buffer was newly
 allocated and uninitialized, this uninitialized memory could be exposed.</p>
 <p>This allows an attacker to observe parts of the uninitialized memory in the
 decoded audio stream.</p>
-<p>The flaw was corrected by checking that the value read from the bistream divides
+<p>The flaw was corrected by checking that the value read from the bitstream divides
 the decode buffer size, and returning a format error if it does not. If an error
 is returned, the decode buffer is not exposed. Regression tests and an
 additional fuzzer have been added to prevent similar flaws in the future.</p>

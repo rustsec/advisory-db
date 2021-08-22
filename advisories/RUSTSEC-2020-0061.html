@@ -186,7 +186,7 @@
     <p>Affected versions of the crate used a <code>UnsafeCell</code> in thread-local storage to return a noop waker reference,
 assuming that the reference would never be returned from another thread.</p>
 <p>This resulted in a segmentation fault crash if <code>Waker::wake_by_ref()</code> was called on a waker returned from another thread due to
-it attempting to dereference a pointer that wasn't accesible from the main thread.</p>
+it attempting to dereference a pointer that wasn't accessible from the main thread.</p>
 <p>Reproduction Example (from issue):</p>
 <pre><code class="language-rust">use futures_task::noop_waker_ref;
 fn main() {
