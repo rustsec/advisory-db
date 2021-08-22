@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package raw-cpuid › RustSec Advisory Database</title>
+<title>RUSTSEC-2021-0089: raw-cpuid: Optional `Deserialize` implementations lacking validation › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -38,49 +38,138 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
-
     <header>
-      <h1>Advisories for raw-cpuid</h1>
+      <h1>
+        
+        
+        RUSTSEC-2021-0089
+        
+      </h1>
+      <span class="subtitle"><p>Optional <code>Deserialize</code> implementations lacking validation</p>
+</span>
     </header>
 
+    
+    
+
+    <dl>
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2021-01-20">
+          January 20, 2021
+        </time>
+      </dd>
+
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        
+        <a href="/packages/raw-cpuid.html">raw-cpuid</a>
+          (<a href="https://crates.io/crates/raw-cpuid">crates.io</a>)
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        
+        Vulnerability
+        
+      </dd>
+
+      
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li>memory-corruption</li>
+          
+          <li>denial-of-service</li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      
+
+      
+      <dt id="details">Details</dt>
+      <dd>
+        <a href="https:&#x2f;&#x2f;github.com&#x2f;gz&#x2f;rust-cpuid&#x2f;issues&#x2f;43">
+          https:&#x2f;&#x2f;github.com&#x2f;gz&#x2f;rust-cpuid&#x2f;issues&#x2f;43
+        </a>
+      </dd>
+      
+
+      
+      
+
+      
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        no patched versions
+        
+      </dd>
+
+      
+      <dt id="unaffected">Unaffected</dt>
+      <dd>
+        <ul>
+          
+          <li><code>&lt;=3.1.0</code></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      
+
+      
+      
+      
+    </dl>
+
+    
+
+    
+    
+
+    <h3 id="description">Description</h3>
+    <p>When activating the non-default feature <code>serialize</code>, most structs implement
+<code>serde::Deserialize</code> without sufficient validation. This allows breaking
+invariants in safe code, leading to:</p>
+<ul>
+<li>Undefined behavior in <code>as_string()</code> methods (which use
+<code>std::str::from_utf8_unchecked()</code> internally).</li>
+<li>Panics due to failed assertions.</li>
+</ul>
+<p>See https://github.com/gz/rust-cpuid/issues/43.</p>
+<p>A fix is not yet available, but most use cases do not require enabling
+the <code>serialize</code> feature.</p>
+
+
+    
+    
+    <h3 id="more">More</h3>
+
     <ul>
-      
-      <li>
-        <time datetime="2021-01-20">
-          January 20, 2021
-        </time>
-
-        
-        
-        <h3>
-          <a href="/advisories/RUSTSEC-2021-0013.html">
-            RUSTSEC-2021-0013: Vulnerability in raw-cpuid
-          </a>
-        </h3>
-        <span><p>Soundness issues in <code>raw-cpuid</code></p>
-</span>
-        
-      </li>
-      
-      <li>
-        <time datetime="2021-01-20">
-          January 20, 2021
-        </time>
-
-        
-        
-        <h3>
-          <a href="/advisories/RUSTSEC-2021-0089.html">
-            RUSTSEC-2021-0089: Vulnerability in raw-cpuid
-          </a>
-        </h3>
-        <span><p>Optional <code>Deserialize</code> implementations lacking validation</p>
-</span>
-        
-      </li>
-      
+      <li><a
+          href="https://github.com/RustSec/advisory-db/commits/main/crates/raw-cpuid/RUSTSEC-2021-0089.md">Advisory
+          History</a></li>
+      <li><a
+          href="https://github.com/RustSec/advisory-db/edit/main/crates/raw-cpuid/RUSTSEC-2021-0089.md">Edit
+          Advisory</a></li>
     </ul>
+    
   </article>
 </main>
