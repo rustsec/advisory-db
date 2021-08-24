@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package openssl-src › RustSec Advisory Database</title>
+<title>RUSTSEC-2021-0098: openssl-src: Read buffer overruns processing ASN.1 strings › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -38,134 +38,165 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
-
     <header>
-      <h1>Advisories for openssl-src</h1>
+      <h1>
+        
+        
+        RUSTSEC-2021-0098
+        
+      </h1>
+      <span class="subtitle"><p>Read buffer overruns processing ASN.1 strings</p>
+</span>
     </header>
 
+    
+    
+
+    <dl>
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2021-08-24">
+          August 24, 2021
+        </time>
+      </dd>
+
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        
+        <a href="/packages/openssl-src.html">openssl-src</a>
+          (<a href="https://crates.io/crates/openssl-src">crates.io</a>)
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        
+        Vulnerability
+        
+      </dd>
+
+      
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li>denial-of-service</li>
+          
+          <li>crypto-failure</li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="aliases">Aliases</dt>
+      <dd>
+        <ul>
+          
+          <li>
+            
+            
+            <a href="https:&#x2f;&#x2f;cve.mitre.org&#x2f;cgi-bin&#x2f;cvename.cgi?name=CVE-2021-3712">CVE-2021-3712</a>
+            
+          </li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="details">Details</dt>
+      <dd>
+        <a href="https:&#x2f;&#x2f;www.openssl.org&#x2f;news&#x2f;secadv&#x2f;20210824.txt">
+          https:&#x2f;&#x2f;www.openssl.org&#x2f;news&#x2f;secadv&#x2f;20210824.txt
+        </a>
+      </dd>
+      
+
+      
+      
+
+      
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        
+        <ul>
+          
+          <li><code>&gt;=111.16</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+      
+
+      
+      
+
+      
+      
+      
+    </dl>
+
+    
+
+    
+    
+
+    <h3 id="description">Description</h3>
+    <p>ASN.1 strings are represented internally within OpenSSL as an ASN1_STRING
+structure which contains a buffer holding the string data and a field holding
+the buffer length. This contrasts with normal C strings which are represented as
+a buffer for the string data which is terminated with a NUL (0) byte.</p>
+<p>Although not a strict requirement, ASN.1 strings that are parsed using OpenSSL's
+own &quot;d2i&quot; functions (and other similar parsing functions) as well as any string
+whose value has been set with the ASN1_STRING_set() function will additionally
+NUL terminate the byte array in the ASN1_STRING structure.</p>
+<p>However, it is possible for applications to directly construct valid ASN1_STRING
+structures which do not NUL terminate the byte array by directly setting the
+&quot;data&quot; and &quot;length&quot; fields in the ASN1_STRING array. This can also happen by
+using the <code>ASN1_STRING_set0()</code> function.</p>
+<p>Numerous OpenSSL functions that print ASN.1 data have been found to assume that
+the ASN1_STRING byte array will be NUL terminated, even though this is not
+guaranteed for strings that have been directly constructed. Where an application
+requests an ASN.1 structure to be printed, and where that ASN.1 structure
+contains ASN1_STRINGs that have been directly constructed by the application
+without NUL terminating the &quot;data&quot; field, then a read buffer overrun can occur.</p>
+<p>The same thing can also occur during name constraints processing of certificates
+(for example if a certificate has been directly constructed by the application
+instead of loading it via the OpenSSL parsing functions, and the certificate
+contains non NUL terminated ASN1_STRING structures). It can also occur in the
+<code>X509_get1_email()</code>, <code>X509_REQ_get1_email()</code> and <code>X509_get1_ocsp()</code> functions.</p>
+<p>If a malicious actor can cause an application to directly construct an
+ASN1_STRING and then process it through one of the affected OpenSSL functions
+then this issue could be hit. This might result in a crash (causing a Denial of
+Service attack). It could also result in the disclosure of private memory
+contents (such as private keys, or sensitive plaintext).</p>
+
+
+    
+    
+    <h3 id="more">More</h3>
+
     <ul>
-      
-      <li>
-        <time datetime="2021-08-24">
-          August 24, 2021
-        </time>
-
-        
-        
-        <h3>
-          <a href="/advisories/RUSTSEC-2021-0098.html">
-            RUSTSEC-2021-0098: Vulnerability in openssl-src
-          </a>
-        </h3>
-        <span><p>Read buffer overruns processing ASN.1 strings</p>
-</span>
-        
-      </li>
-      
-      <li>
-        <time datetime="2021-08-24">
-          August 24, 2021
-        </time>
-
-        
-        
-        <h3>
-          <a href="/advisories/RUSTSEC-2021-0097.html">
-            RUSTSEC-2021-0097: Vulnerability in openssl-src
-          </a>
-        </h3>
-        <span><p>SM2 Decryption Buffer Overflow</p>
-</span>
-        
-      </li>
-      
-      <li>
-        <time datetime="2021-05-01">
-          May  1, 2021
-        </time>
-
-        
-        
-        <h3>
-          <a href="/advisories/RUSTSEC-2021-0058.html">
-            RUSTSEC-2021-0058: Vulnerability in openssl-src
-          </a>
-        </h3>
-        <span><p>Null pointer deref in <code>X509_issuer_and_serial_hash()</code></p>
-</span>
-        
-      </li>
-      
-      <li>
-        <time datetime="2021-05-01">
-          May  1, 2021
-        </time>
-
-        
-        
-        <h3>
-          <a href="/advisories/RUSTSEC-2021-0055.html">
-            RUSTSEC-2021-0055: Vulnerability in openssl-src
-          </a>
-        </h3>
-        <span><p>NULL pointer deref in signature_algorithms processing</p>
-</span>
-        
-      </li>
-      
-      <li>
-        <time datetime="2021-05-01">
-          May  1, 2021
-        </time>
-
-        
-        
-        <h3>
-          <a href="/advisories/RUSTSEC-2021-0057.html">
-            RUSTSEC-2021-0057: Vulnerability in openssl-src
-          </a>
-        </h3>
-        <span><p>Integer overflow in CipherUpdate</p>
-</span>
-        
-      </li>
-      
-      <li>
-        <time datetime="2021-05-01">
-          May  1, 2021
-        </time>
-
-        
-        
-        <h3>
-          <a href="/advisories/RUSTSEC-2021-0056.html">
-            RUSTSEC-2021-0056: Vulnerability in openssl-src
-          </a>
-        </h3>
-        <span><p>CA certificate check bypass with X509_V_FLAG_X509_STRICT</p>
-</span>
-        
-      </li>
-      
-      <li>
-        <time datetime="2020-04-25">
-          April 25, 2020
-        </time>
-
-        
-        
-        <h3>
-          <a href="/advisories/RUSTSEC-2020-0015.html">
-            RUSTSEC-2020-0015: Vulnerability in openssl-src
-          </a>
-        </h3>
-        <span><p>Crash causing Denial of Service attack</p>
-</span>
-        
-      </li>
-      
+      <li><a
+          href="https://github.com/RustSec/advisory-db/commits/main/crates/openssl-src/RUSTSEC-2021-0098.md">Advisory
+          History</a></li>
+      <li><a
+          href="https://github.com/RustSec/advisory-db/edit/main/crates/openssl-src/RUSTSEC-2021-0098.md">Edit
+          Advisory</a></li>
     </ul>
+    
   </article>
 </main>
