@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package openssl-src › RustSec Advisory Database</title>
+<title>RUSTSEC-2021-0097: openssl-src: SM2 Decryption Buffer Overflow › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -38,117 +38,153 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
-
     <header>
-      <h1>Advisories for openssl-src</h1>
+      <h1>
+        
+        
+        RUSTSEC-2021-0097
+        
+      </h1>
+      <span class="subtitle"><p>SM2 Decryption Buffer Overflow</p>
+</span>
     </header>
 
-    <ul>
-      
-      <li>
+    
+    
+
+    <dl>
+      <dt id="issued">Issued</dt>
+      <dd>
         <time datetime="2021-08-24">
           August 24, 2021
         </time>
+      </dd>
 
+      <dt id="package">Package</dt>
+      <dd>
         
         
-        <h3>
-          <a href="/advisories/RUSTSEC-2021-0097.html">
-            RUSTSEC-2021-0097: Vulnerability in openssl-src
-          </a>
-        </h3>
-        <span><p>SM2 Decryption Buffer Overflow</p>
-</span>
         
-      </li>
-      
-      <li>
-        <time datetime="2021-05-01">
-          May  1, 2021
-        </time>
+        <a href="/packages/openssl-src.html">openssl-src</a>
+          (<a href="https://crates.io/crates/openssl-src">crates.io</a>)
+        
+        
+      </dd>
 
+      <dt id="type">Type</dt>
+      <dd>
         
         
-        <h3>
-          <a href="/advisories/RUSTSEC-2021-0058.html">
-            RUSTSEC-2021-0058: Vulnerability in openssl-src
-          </a>
-        </h3>
-        <span><p>Null pointer deref in <code>X509_issuer_and_serial_hash()</code></p>
-</span>
+        Vulnerability
         
-      </li>
-      
-      <li>
-        <time datetime="2021-05-01">
-          May  1, 2021
-        </time>
+      </dd>
 
-        
-        
-        <h3>
-          <a href="/advisories/RUSTSEC-2021-0055.html">
-            RUSTSEC-2021-0055: Vulnerability in openssl-src
-          </a>
-        </h3>
-        <span><p>NULL pointer deref in signature_algorithms processing</p>
-</span>
-        
-      </li>
       
-      <li>
-        <time datetime="2021-05-01">
-          May  1, 2021
-        </time>
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li>crypto-failure</li>
+          
+        </ul>
+      </dd>
+      
 
-        
-        
-        <h3>
-          <a href="/advisories/RUSTSEC-2021-0057.html">
-            RUSTSEC-2021-0057: Vulnerability in openssl-src
-          </a>
-        </h3>
-        <span><p>Integer overflow in CipherUpdate</p>
-</span>
-        
-      </li>
       
-      <li>
-        <time datetime="2021-05-01">
-          May  1, 2021
-        </time>
+      <dt id="aliases">Aliases</dt>
+      <dd>
+        <ul>
+          
+          <li>
+            
+            
+            <a href="https:&#x2f;&#x2f;cve.mitre.org&#x2f;cgi-bin&#x2f;cvename.cgi?name=CVE-2021-3711">CVE-2021-3711</a>
+            
+          </li>
+          
+        </ul>
+      </dd>
+      
 
-        
-        
-        <h3>
-          <a href="/advisories/RUSTSEC-2021-0056.html">
-            RUSTSEC-2021-0056: Vulnerability in openssl-src
-          </a>
-        </h3>
-        <span><p>CA certificate check bypass with X509_V_FLAG_X509_STRICT</p>
-</span>
-        
-      </li>
       
-      <li>
-        <time datetime="2020-04-25">
-          April 25, 2020
-        </time>
+      <dt id="details">Details</dt>
+      <dd>
+        <a href="https:&#x2f;&#x2f;www.openssl.org&#x2f;news&#x2f;secadv&#x2f;20210824.txt">
+          https:&#x2f;&#x2f;www.openssl.org&#x2f;news&#x2f;secadv&#x2f;20210824.txt
+        </a>
+      </dd>
+      
 
-        
-        
-        <h3>
-          <a href="/advisories/RUSTSEC-2020-0015.html">
-            RUSTSEC-2020-0015: Vulnerability in openssl-src
-          </a>
-        </h3>
-        <span><p>Crash causing Denial of Service attack</p>
-</span>
-        
-      </li>
       
+      
+
+      
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        
+        <ul>
+          
+          <li><code>&gt;=111.16</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+      
+
+      
+      
+
+      
+      
+      
+    </dl>
+
+    
+
+    
+    
+
+    <h3 id="description">Description</h3>
+    <p>In order to decrypt SM2 encrypted data an application is expected to call the
+API function <code>EVP_PKEY_decrypt()</code>. Typically an application will call this
+function twice. The first time, on entry, the &quot;out&quot; parameter can be NULL and,
+on exit, the &quot;outlen&quot; parameter is populated with the buffer size required to
+hold the decrypted plaintext. The application can then allocate a sufficiently
+sized buffer and call <code>EVP_PKEY_decrypt()</code> again, but this time passing a non-NULL
+value for the &quot;out&quot; parameter.</p>
+<p>A bug in the implementation of the SM2 decryption code means that the
+calculation of the buffer size required to hold the plaintext returned by the
+first call to <code>EVP_PKEY_decrypt()</code> can be smaller than the actual size required by
+the second call. This can lead to a buffer overflow when <code>EVP_PKEY_decrypt()</code> is
+called by the application a second time with a buffer that is too small.</p>
+<p>A malicious attacker who is able present SM2 content for decryption to an
+application could cause attacker chosen data to overflow the buffer by up to a
+maximum of 62 bytes altering the contents of other data held after the
+buffer, possibly changing application behaviour or causing the application to
+crash. The location of the buffer is application dependent but is typically
+heap allocated.</p>
+
+
+    
+    
+    <h3 id="more">More</h3>
+
+    <ul>
+      <li><a
+          href="https://github.com/RustSec/advisory-db/commits/main/crates/openssl-src/RUSTSEC-2021-0097.md">Advisory
+          History</a></li>
+      <li><a
+          href="https://github.com/RustSec/advisory-db/edit/main/crates/openssl-src/RUSTSEC-2021-0097.md">Edit
+          Advisory</a></li>
     </ul>
+    
   </article>
 </main>
