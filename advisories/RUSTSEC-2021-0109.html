@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>RUSTSEC-2021-0101: pleaser: Permissions bypass in pleaser › RustSec Advisory Database</title>
+<title>RUSTSEC-2021-0109: ckb: Process crashes when the cell used as DepGroup is not alive › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -44,10 +44,10 @@
       <h1>
         
         
-        RUSTSEC-2021-0101
+        RUSTSEC-2021-0109
         
       </h1>
-      <span class="subtitle"><p>Permissions bypass in pleaser</p>
+      <span class="subtitle"><p>Process crashes when the cell used as DepGroup is not alive</p>
 </span>
     </header>
 
@@ -57,8 +57,8 @@
     <dl>
       <dt id="issued">Issued</dt>
       <dd>
-        <time datetime="2021-05-27">
-          May 27, 2021
+        <time datetime="2021-07-25">
+          July 25, 2021
         </time>
       </dd>
 
@@ -67,8 +67,8 @@
         
         
         
-        <a href="/packages/pleaser.html">pleaser</a>
-          (<a href="https://crates.io/crates/pleaser">crates.io</a>)
+        <a href="/packages/ckb.html">ckb</a>
+          (<a href="https://crates.io/crates/ckb">crates.io</a>)
         
         
       </dd>
@@ -82,14 +82,6 @@
       </dd>
 
       
-      <dt id="categories">Categories</dt>
-      <dd>
-        <ul>
-          
-          <li>privilege-escalation</li>
-          
-        </ul>
-      </dd>
       
 
       
@@ -100,14 +92,7 @@
           <li>
             
             
-            <a href="https:&#x2f;&#x2f;cve.mitre.org&#x2f;cgi-bin&#x2f;cvename.cgi?name=CVE-2021-31155">CVE-2021-31155</a>
-            
-          </li>
-          
-          <li>
-            
-            
-            GHSA-vc5p-j8vw-mc6x
+            GHSA-45p7-c959-rgcm
             
           </li>
           
@@ -118,8 +103,8 @@
       
       <dt id="details">Details</dt>
       <dd>
-        <a href="https:&#x2f;&#x2f;nvd.nist.gov&#x2f;vuln&#x2f;detail&#x2f;CVE-2021-31155">
-          https:&#x2f;&#x2f;nvd.nist.gov&#x2f;vuln&#x2f;detail&#x2f;CVE-2021-31155
+        <a href="https:&#x2f;&#x2f;github.com&#x2f;nervosnetwork&#x2f;ckb&#x2f;security&#x2f;advisories&#x2f;GHSA-45p7-c959-rgcm">
+          https:&#x2f;&#x2f;github.com&#x2f;nervosnetwork&#x2f;ckb&#x2f;security&#x2f;advisories&#x2f;GHSA-45p7-c959-rgcm
         </a>
       </dd>
       
@@ -129,8 +114,6 @@
 
       
       
-      <dt id="cvss">CVSS</dt>
-      <dd>CVSS:3.1&#x2f;AV:L&#x2f;AC:L&#x2f;PR:L&#x2f;UI:N&#x2f;S:U&#x2f;C:H&#x2f;I:H&#x2f;A:H</dd>
       
 
       <dt id="patched">Patched</dt>
@@ -139,7 +122,7 @@
         
         <ul>
           
-          <li><code>&gt;=0.4</code></li>
+          <li><code>&gt;=0.40.0</code></li>
           
         </ul>
         
@@ -162,7 +145,7 @@
     
 
     <h3 id="description">Description</h3>
-    <p>Failure to normalize the umask in pleaser before 0.4 allows a local attacker to gain full root privileges if they are allowed to execute at least one command.</p>
+    <p>It's easy to create a malign transaction which uses the dead cell as the DepGroup in the DepCells. The transaction can crash all the receiving nodes.</p>
 
 
     
@@ -171,10 +154,10 @@
 
     <ul>
       <li><a
-          href="https://github.com/RustSec/advisory-db/commits/main/crates/pleaser/RUSTSEC-2021-0101.md">Advisory
+          href="https://github.com/RustSec/advisory-db/commits/main/crates/ckb/RUSTSEC-2021-0109.md">Advisory
           History</a></li>
       <li><a
-          href="https://github.com/RustSec/advisory-db/edit/main/crates/pleaser/RUSTSEC-2021-0101.md">Edit
+          href="https://github.com/RustSec/advisory-db/edit/main/crates/ckb/RUSTSEC-2021-0109.md">Edit
           Advisory</a></li>
     </ul>
     
