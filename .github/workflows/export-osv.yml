@@ -1,4 +1,4 @@
-name: Export OSV
+name: Export to OSV format
 
 on:
   push:
@@ -10,14 +10,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: osv-experimental-v0.7
+          ref: osv
       - uses: actions/cache@v1
         with:
           path: ~/.cargo/bin
-          key: rustsec-admin-v0.5.1
+          key: rustsec-admin-v0.5.2
       - run: |
           if [ ! -f $HOME/.cargo/bin/rustsec-admin ]; then
-           cargo install rustsec-admin --vers 0.5.1
+           cargo install rustsec-admin --vers 0.5.2
           fi
           mkdir -p crates
           rustsec-admin osv crates
