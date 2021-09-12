@@ -1,0 +1,56 @@
+{
+  "id": "RUSTSEC-2020-0037",
+  "modified": "2021-01-04T17:02:59+00:00",
+  "published": "2020-08-31T12:00:00+00:00",
+  "aliases": [
+    "CVE-2020-35889"
+  ],
+  "related": [],
+  "summary": "Misbehaving `HandleLike` implementation can lead to memory safety violation",
+  "details": "Unsafe code in `ObjectPool` has time-of-check to time-of-use (TOCTOU) bug that\ncan eventually lead to a memory safety violation. `ObjectPool` and `HandlePool`\nimplicitly assumes that `HandleLike` trait methods are pure, i.e., they always\nreturn the same value. However, this assumption is unsound since `HandleLike`\nis a safe, public trait that allows a custom implementation.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "crayon",
+        "purl": "pkg:cargo/crayon"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        }
+      },
+      "database_specific": {
+        "categories": [],
+        "cvss": null,
+        "informational": "unsound"
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/crayon"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2020-0037.html"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/shawnscode/crayon/issues/87"
+    }
+  ]
+}

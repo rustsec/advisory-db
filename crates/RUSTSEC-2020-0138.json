@@ -1,0 +1,57 @@
+{
+  "id": "RUSTSEC-2020-0138",
+  "modified": "2021-01-31T04:02:50+00:00",
+  "published": "2020-11-10T12:00:00+00:00",
+  "aliases": [],
+  "related": [],
+  "summary": "ReaderResult should be bounded by Sync",
+  "details": "Affected versions of this crate implements `Sync` for `ReaderResult<T, E>` with the trait bound `T: Send, E: Send`.\n\nSince matching on the public enum `ReaderResult<T, E>` provides access to `&T` & `&E`,\nallowing data race to a non-Sync type `T` or `E`.\nThis can result in a memory corruption when multiple threads concurrently access `&T` or `&E`.\n\nSuggested fix for the bug is change the trait bounds imposed on `T` & `E` to be `T: Sync, E: Sync`.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "lexer",
+        "purl": "pkg:cargo/lexer"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        }
+      },
+      "database_specific": {
+        "categories": [
+          "memory-corruption",
+          "thread-safety"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/lexer"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2020-0138.html"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://gitlab.com/nathanfaucett/rs-lexer/-/issues/2"
+    }
+  ]
+}

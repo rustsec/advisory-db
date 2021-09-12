@@ -1,0 +1,60 @@
+{
+  "id": "RUSTSEC-2021-0089",
+  "modified": "2021-08-22T09:43:52+00:00",
+  "published": "2021-01-20T12:00:00+00:00",
+  "aliases": [],
+  "related": [],
+  "summary": "Optional `Deserialize` implementations lacking validation",
+  "details": "When activating the non-default feature `serialize`, most structs implement\n`serde::Deserialize` without sufficient validation. This allows breaking\ninvariants in safe code, leading to:\n\n* Undefined behavior in `as_string()` methods (which use\n  `std::str::from_utf8_unchecked()` internally).\n* Panics due to failed assertions.\n\nSee https://github.com/gz/rust-cpuid/issues/43.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "raw-cpuid",
+        "purl": "pkg:cargo/raw-cpuid"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        }
+      },
+      "database_specific": {
+        "categories": [
+          "memory-corruption",
+          "denial-of-service"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "3.1.1-0"
+            },
+            {
+              "fixed": "9.1.1"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/raw-cpuid"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2021-0089.html"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/gz/rust-cpuid/issues/43"
+    }
+  ]
+}

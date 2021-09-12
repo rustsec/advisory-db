@@ -1,0 +1,56 @@
+{
+  "id": "RUSTSEC-2021-0094",
+  "modified": "2021-08-22T01:46:40+00:00",
+  "published": "2021-02-03T12:00:00+00:00",
+  "aliases": [],
+  "related": [],
+  "summary": "Window can read out of bounds if Read instance returns more bytes than buffer size",
+  "details": "`rdiff` performs a diff of two provided strings or files. As part of its reading\ncode it uses the return value of a `Read` instance to set the length of\nits internal character vector.\n\nIf the `Read` implementation claims that it has read more bytes than the length\nof the provided buffer, the length of the vector will be set to longer than its\ncapacity. This causes `rdiff` APIs to return uninitialized memory in its API\nmethods.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "rdiff",
+        "purl": "pkg:cargo/rdiff"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        }
+      },
+      "database_specific": {
+        "categories": [
+          "memory-exposure"
+        ],
+        "cvss": null,
+        "informational": "unsound"
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/rdiff"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2021-0094.html"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/dyule/rdiff/issues/3"
+    }
+  ]
+}

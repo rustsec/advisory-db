@@ -1,0 +1,58 @@
+{
+  "id": "RUSTSEC-2021-0046",
+  "modified": "2021-04-13T21:10:09+00:00",
+  "published": "2021-02-17T12:00:00+00:00",
+  "aliases": [
+    "CVE-2021-29937"
+  ],
+  "related": [],
+  "summary": "misc::vec_with_size() can drop uninitialized memory if clone panics",
+  "details": "`misc::vec_with_size` creates a vector of the provided `size` and immediately\ncalls `vec.set_len(size)` on it, initially filling it with uninitialized memory.\nIt then inserts elements using `vec[i] = value.clone()`.\n\nIf the `value.clone()` call panics, uninitialized items in the vector will be\ndropped leading to undefined behavior.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "telemetry",
+        "purl": "pkg:cargo/telemetry"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        }
+      },
+      "database_specific": {
+        "categories": [
+          "memory-corruption"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/telemetry"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2021-0046.html"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/Yoric/telemetry.rs/issues/45"
+    }
+  ]
+}

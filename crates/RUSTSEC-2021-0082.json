@@ -1,0 +1,56 @@
+{
+  "id": "RUSTSEC-2021-0082",
+  "modified": "2021-08-22T01:08:23+00:00",
+  "published": "2021-08-14T12:00:00+00:00",
+  "aliases": [],
+  "related": [],
+  "summary": "vec-const attempts to construct a Vec from a pointer to a const slice",
+  "details": "This crate claims to construct a const `Vec` with nonzero length and capacity, but that cannot be done because such a `Vec` requires a pointer from an allocator.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "vec-const",
+        "purl": "pkg:cargo/vec-const"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        }
+      },
+      "database_specific": {
+        "categories": [
+          "memory-corruption"
+        ],
+        "cvss": null,
+        "informational": "unsound"
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/vec-const"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2021-0082.html"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/Eolu/vec-const/issues/1#issuecomment-898908241"
+    }
+  ]
+}

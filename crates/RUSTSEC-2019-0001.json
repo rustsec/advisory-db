@@ -1,0 +1,63 @@
+{
+  "id": "RUSTSEC-2019-0001",
+  "modified": "2020-10-02T01:29:11+00:00",
+  "published": "2019-04-27T12:00:00+00:00",
+  "aliases": [
+    "CVE-2019-15542"
+  ],
+  "related": [],
+  "summary": "Uncontrolled recursion leads to abort in HTML serialization",
+  "details": "Affected versions of this crate did use recursion for serialization of HTML\nDOM trees.\n\nThis allows an attacker to cause abort due to stack overflow by providing\na pathologically nested input.\n\nThe flaw was corrected by serializing the DOM tree iteratively instead.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "ammonia",
+        "purl": "pkg:cargo/ammonia"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": [
+            "ammonia::Document::to_string",
+            "ammonia::Document::write_to",
+            "ammonia::clean"
+          ]
+        }
+      },
+      "database_specific": {
+        "categories": [],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "2.1.0"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/ammonia"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2019-0001.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/rust-ammonia/ammonia/blob/master/CHANGELOG.md#210"
+    }
+  ]
+}

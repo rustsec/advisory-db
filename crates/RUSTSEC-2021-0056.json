@@ -1,0 +1,61 @@
+{
+  "id": "RUSTSEC-2021-0056",
+  "modified": "2021-05-01T08:50:50+00:00",
+  "published": "2021-05-01T12:00:00+00:00",
+  "aliases": [
+    "CVE-2021-3450"
+  ],
+  "related": [],
+  "summary": "CA certificate check bypass with X509_V_FLAG_X509_STRICT",
+  "details": "The X509_V_FLAG_X509_STRICT flag enables additional security checks of the\ncertificates present in a certificate chain. It is not set by default.\n\nStarting from OpenSSL version 1.1.1h a check to disallow certificates in\nthe chain that have explicitly encoded elliptic curve parameters was added\nas an additional strict check.\n\nAn error in the implementation of this check meant that the result of a\nprevious check to confirm that certificates in the chain are valid CA\ncertificates was overwritten. This effectively bypasses the check\nthat non-CA certificates must not be able to issue other certificates.\n\nIf a \"purpose\" has been configured then there is a subsequent opportunity\nfor checks that the certificate is a valid CA.  All of the named \"purpose\"\nvalues implemented in libcrypto perform this check.  Therefore, where\na purpose is set the certificate chain will still be rejected even when the\nstrict flag has been used. A purpose is set by default in libssl client and\nserver certificate verification routines, but it can be overridden or\nremoved by an application.\n\nIn order to be affected, an application must explicitly set the\nX509_V_FLAG_X509_STRICT verification flag and either not set a purpose\nfor the certificate verification or, in the case of TLS client or server\napplications, override the default purpose.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "openssl-src",
+        "purl": "pkg:cargo/openssl-src"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        }
+      },
+      "database_specific": {
+        "categories": [
+          "crypto-failure"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "111.11.0"
+            },
+            {
+              "fixed": "111.15.0"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/openssl-src"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2021-0056.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://www.openssl.org/news/secadv/20210325.txt"
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "id": "RUSTSEC-2020-0017",
+  "modified": "2021-01-12T19:05:27+00:00",
+  "published": "2020-05-28T12:00:00+00:00",
+  "aliases": [
+    "CVE-2020-35874"
+  ],
+  "related": [],
+  "summary": "Use after free in ArcIntern::drop",
+  "details": "`ArcIntern::drop` has a race condition where it can release memory\nwhich is about to get another user. The new user will get a reference\nto freed memory.\n\nThis was fixed by serializing access to an interned object while it\nis being deallocated.\n\nVersions prior to 0.3.12 used stronger locking which avoided the problem.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "internment",
+        "purl": "pkg:cargo/internment"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": [
+            "internment::ArcIntern::drop"
+          ]
+        }
+      },
+      "database_specific": {
+        "categories": [
+          "memory-corruption"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.3.12"
+            },
+            {
+              "fixed": "0.4.0"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/internment"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2020-0017.html"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/droundy/internment/issues/11"
+    }
+  ]
+}

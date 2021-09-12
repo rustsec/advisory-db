@@ -1,0 +1,58 @@
+{
+  "id": "RUSTSEC-2021-0049",
+  "modified": "2021-06-16T21:05:39+00:00",
+  "published": "2021-02-18T12:00:00+00:00",
+  "aliases": [
+    "CVE-2021-29940"
+  ],
+  "related": [],
+  "summary": "`through` and `through_and` causes a double free if the map function panics",
+  "details": "`through` and `through_and` take a mutable reference as well as a mapping\nfunction to change the provided reference. They do this by calling `ptr::read`\non the reference which duplicates ownership and then calling the mapping\nfunction.\n\nIf the mapping function panics, both the original object and the one\nduplicated by `ptr::read` get dropped, causing a double free.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "through",
+        "purl": "pkg:cargo/through"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        }
+      },
+      "database_specific": {
+        "categories": [
+          "memory-corruption"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/through"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2021-0049.html"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/gretchenfrage/through/issues/1"
+    }
+  ]
+}

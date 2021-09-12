@@ -1,0 +1,58 @@
+{
+  "id": "RUSTSEC-2021-0045",
+  "modified": "2021-04-13T21:10:09+00:00",
+  "published": "2021-01-11T12:00:00+00:00",
+  "aliases": [
+    "CVE-2021-29936"
+  ],
+  "related": [],
+  "summary": "FromIterator implementation for Vector/Matrix can drop uninitialized memory",
+  "details": "The `FromIterator<T>` methods for `Vector` and `Matrix` rely on the type\nparameter `N` to allocate space in the iterable.\n\nIf the passed in `N` type parameter is larger than the number of items returned\nby the iterator, it can lead to uninitialized memory being left in the\n`Vector` or `Matrix` type which gets dropped.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "adtensor",
+        "purl": "pkg:cargo/adtensor"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        }
+      },
+      "database_specific": {
+        "categories": [
+          "memory-corruption"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/adtensor"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2021-0045.html"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/charles-r-earp/adtensor/issues/4"
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "id": "RUSTSEC-2020-0071",
+  "modified": "2020-11-19T02:21:00+00:00",
+  "published": "2020-11-18T12:00:00+00:00",
+  "aliases": [
+    "CVE-2020-26235"
+  ],
+  "related": [],
+  "summary": "Potential segfault in the time crate",
+  "details": "## Impact\n\nUnix-like operating systems may segfault due to dereferencing a dangling pointer in specific circumstances. This requires the user to set any environment variable in a different thread than the affected functions.\n\nThe affected functions are:\n\n- `time::UtcOffset::local_offset_at`\n- `time::UtcOffset::try_local_offset_at`\n- `time::UtcOffset::current_local_offset`\n- `time::UtcOffset::try_current_local_offset`\n- `time::OffsetDateTime::now_local`\n- `time::OffsetDateTime::try_now_local`\n\nNon-Unix targets are unaffected. This includes Windows and wasm.\n\n## Patches\n\nPending a proper fix, the internal method that determines the local offset has been modified to always return `None` on the affected operating systems. This has the effect of returning an `Err` on the `try_*` methods and `UTC` on the non-`try_*` methods.\n\nUsers and library authors with time in their dependency tree should perform `cargo update`, which will pull in a the updated, unaffected code.\n\n## Workarounds\n\nNo workarounds are known.\n\n## References\n\n#293",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "time",
+        "purl": "pkg:cargo/time"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [
+            "linux",
+            "unknown",
+            "unknown",
+            "android",
+            "ios",
+            "macos",
+            "netbsd",
+            "openbsd",
+            "bitrig",
+            "freebsd"
+          ],
+          "functions": [
+            "time::OffsetDateTime::now_local",
+            "time::OffsetDateTime::try_now_local",
+            "time::UtcOffset::current_local_offset",
+            "time::UtcOffset::local_offset_at",
+            "time::UtcOffset::try_current_local_offset",
+            "time::UtcOffset::try_local_offset_at"
+          ]
+        }
+      },
+      "database_specific": {
+        "categories": [
+          "code-execution",
+          "memory-corruption"
+        ],
+        "cvss": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.2.7"
+            },
+            {
+              "fixed": "0.2.23"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/time"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2020-0071.html"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/time-rs/time/issues/293"
+    }
+  ]
+}

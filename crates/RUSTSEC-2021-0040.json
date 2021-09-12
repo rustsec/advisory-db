@@ -1,0 +1,59 @@
+{
+  "id": "RUSTSEC-2021-0040",
+  "modified": "2021-04-13T21:10:09+00:00",
+  "published": "2021-01-12T12:00:00+00:00",
+  "aliases": [
+    "CVE-2021-29930",
+    "CVE-2021-29931"
+  ],
+  "related": [],
+  "summary": "panic safety: double drop or uninitialized drop of T upon panic",
+  "details": "Affected versions of this crate did not guard against potential panics that may happen from user-provided functions `T::default()` and `T::drop()`.\n\nPanic within `T::default()` leads to dropping uninitialized `T`, when it is invoked from `common::Slice::<T, H>::new()`.\nPanic within `T::drop()` leads to double drop of `T`, when it is invoked either from `common::SliceVec::<T, H>::resize_with()` or `common::SliceVec::<T, H>::resize()`\n\nEither case causes memory corruption in the heap memory.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "arenavec",
+        "purl": "pkg:cargo/arenavec"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        }
+      },
+      "database_specific": {
+        "categories": [
+          "memory-corruption"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/arenavec"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2021-0040.html"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/ibabushkin/arenavec/issues/1"
+    }
+  ]
+}

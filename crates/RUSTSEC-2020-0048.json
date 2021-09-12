@@ -1,0 +1,61 @@
+{
+  "id": "RUSTSEC-2020-0048",
+  "modified": "2021-01-04T17:02:59+00:00",
+  "published": "2020-01-24T12:00:00+00:00",
+  "aliases": [
+    "CVE-2020-35901"
+  ],
+  "related": [],
+  "summary": "Use-after-free in BodyStream due to lack of pinning",
+  "details": "Affected versions of this crate did not require the buffer wrapped in `BodyStream` to be pinned,\nbut treated it as if it had a fixed location in memory. This may result in a use-after-free.\n \nThe flaw was corrected by making the trait `MessageBody` require `Unpin`\nand making `poll_next()` function accept `Pin<&mut Self>` instead of `&mut self`.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "actix-http",
+        "purl": "pkg:cargo/actix-http"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        }
+      },
+      "database_specific": {
+        "categories": [
+          "memory-corruption"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "2.0.0-alpha.1"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/actix-http"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2020-0048.html"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/actix/actix-web/issues/1321"
+    }
+  ]
+}

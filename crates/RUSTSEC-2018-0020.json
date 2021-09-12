@@ -1,0 +1,61 @@
+{
+  "id": "RUSTSEC-2018-0020",
+  "modified": "2021-06-09T01:07:22+00:00",
+  "published": "2018-12-22T12:00:00+00:00",
+  "aliases": [
+    "GHSA-f56g-chqp-22m9"
+  ],
+  "related": [],
+  "summary": "Possible use-after-free with `proplist::Iterator`",
+  "details": "Affected versions contained a possible use-after-free issue with property list iteration\ndue to a lack of a lifetime constraint tying the lifetime of a `proplist::Iterator` to the\n`Proplist` object for which it was created. This made it possible for users, without\nexperiencing a compiler error/warning, to destroy the `Proplist` object before the iterator,\nthus destroying the underlying C object the iterator works upon, before the iterator may be\nfinished with it.\n\nThis impacts all versions of the crate before `2.5.0` back to `1.0.5`. Before version\n`1.0.5` the function that produces the iterator was broken to the point of being useless.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "libpulse-binding",
+        "purl": "pkg:cargo/libpulse-binding"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        }
+      },
+      "database_specific": {
+        "categories": [
+          "memory-corruption"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "1.0.5"
+            },
+            {
+              "fixed": "2.5.0"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/libpulse-binding"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2018-0020.html"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://github.com/jnqnfe/pulse-binding-rust/security/advisories/GHSA-f56g-chqp-22m9"
+    }
+  ]
+}

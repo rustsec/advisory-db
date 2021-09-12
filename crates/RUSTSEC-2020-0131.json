@@ -1,0 +1,57 @@
+{
+  "id": "RUSTSEC-2020-0131",
+  "modified": "2021-01-31T04:02:50+00:00",
+  "published": "2020-11-14T12:00:00+00:00",
+  "aliases": [],
+  "related": [],
+  "summary": "Send/Sync bound needed on T  for Send/Sync impl of RcuCell<T>",
+  "details": "Affected versions of this crate unconditionally implement Send/Sync for `RcuCell<T>`.\nThis allows users to send `T: !Send` to other threads (while `T` enclosed within `RcuCell<T>`), and allows users to concurrently access `T: !Sync` by using the APIs of `RcuCell<T>` that provide access to `&T`.\n\nThis can result in memory corruption caused by data races.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "rcu_cell",
+        "purl": "pkg:cargo/rcu_cell"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        }
+      },
+      "database_specific": {
+        "categories": [
+          "memory-corruption",
+          "thread-safety"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/rcu_cell"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2020-0131.html"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/Xudong-Huang/rcu_cell/issues/3"
+    }
+  ]
+}

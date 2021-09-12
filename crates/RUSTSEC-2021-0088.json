@@ -1,0 +1,56 @@
+{
+  "id": "RUSTSEC-2021-0088",
+  "modified": "2021-08-22T01:34:42+00:00",
+  "published": "2021-01-05T12:00:00+00:00",
+  "aliases": [],
+  "related": [],
+  "summary": "`Read` on uninitialized memory may cause UB (fn preamble_skipcount())",
+  "details": "Affected versions of this crate passes an uninitialized buffer to a user-provided `Read` implementation (within `fn preamble_skipcount()`).\n\nArbitrary `Read` implementations can read from the uninitialized buffer (memory exposure) and also can return incorrect number of bytes written to the buffer.\nReading from uninitialized memory produces undefined values that can quickly invoke undefined behavior.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "csv-sniffer",
+        "purl": "pkg:cargo/csv-sniffer"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        }
+      },
+      "database_specific": {
+        "categories": [
+          "memory-exposure"
+        ],
+        "cvss": null,
+        "informational": "unsound"
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/csv-sniffer"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2021-0088.html"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/jblondin/csv-sniffer/issues/1"
+    }
+  ]
+}

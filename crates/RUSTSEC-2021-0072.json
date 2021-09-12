@@ -1,0 +1,79 @@
+{
+  "id": "RUSTSEC-2021-0072",
+  "modified": "2021-07-07T23:26:08+00:00",
+  "published": "2021-07-07T12:00:00+00:00",
+  "aliases": [],
+  "related": [],
+  "summary": "Task dropped in wrong thread when aborting `LocalSet` task",
+  "details": "When aborting a task with `JoinHandle::abort`, the future is dropped in the\nthread calling abort if the task is not currently being executed. This is\nincorrect for tasks spawned on a `LocalSet`.\n\nThis can easily result in race conditions as many projects use `Rc` or `RefCell`\nin their Tokio tasks for better performance.\n\nSee [tokio#3929][issue] for more details.\n\n[issue]: https://github.com/tokio-rs/tokio/issues/3929",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "tokio",
+        "purl": "pkg:cargo/tokio"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": [
+            "tokio::task::JoinHandle::abort"
+          ]
+        }
+      },
+      "database_specific": {
+        "categories": [
+          "memory-corruption"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.3.0"
+            },
+            {
+              "fixed": "1.5.1"
+            },
+            {
+              "introduced": "1.6.0"
+            },
+            {
+              "fixed": "1.6.3"
+            },
+            {
+              "introduced": "1.7.0"
+            },
+            {
+              "fixed": "1.7.2"
+            },
+            {
+              "introduced": "1.8.0"
+            },
+            {
+              "fixed": "1.8.1"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/tokio"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2021-0072.html"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/tokio-rs/tokio/issues/3929"
+    }
+  ]
+}

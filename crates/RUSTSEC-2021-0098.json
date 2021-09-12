@@ -1,0 +1,62 @@
+{
+  "id": "RUSTSEC-2021-0098",
+  "modified": "2021-08-24T15:53:35+00:00",
+  "published": "2021-08-24T12:00:00+00:00",
+  "aliases": [
+    "CVE-2021-3712"
+  ],
+  "related": [],
+  "summary": "Read buffer overruns processing ASN.1 strings",
+  "details": "ASN.1 strings are represented internally within OpenSSL as an ASN1_STRING\nstructure which contains a buffer holding the string data and a field holding\nthe buffer length. This contrasts with normal C strings which are represented as\na buffer for the string data which is terminated with a NUL (0) byte.\n\nAlthough not a strict requirement, ASN.1 strings that are parsed using OpenSSL's\nown \"d2i\" functions (and other similar parsing functions) as well as any string\nwhose value has been set with the ASN1_STRING_set() function will additionally\nNUL terminate the byte array in the ASN1_STRING structure.\n\nHowever, it is possible for applications to directly construct valid ASN1_STRING\nstructures which do not NUL terminate the byte array by directly setting the\n\"data\" and \"length\" fields in the ASN1_STRING array. This can also happen by\nusing the `ASN1_STRING_set0()` function.\n\nNumerous OpenSSL functions that print ASN.1 data have been found to assume that\nthe ASN1_STRING byte array will be NUL terminated, even though this is not\nguaranteed for strings that have been directly constructed. Where an application\nrequests an ASN.1 structure to be printed, and where that ASN.1 structure\ncontains ASN1_STRINGs that have been directly constructed by the application\nwithout NUL terminating the \"data\" field, then a read buffer overrun can occur.\n\nThe same thing can also occur during name constraints processing of certificates\n(for example if a certificate has been directly constructed by the application\ninstead of loading it via the OpenSSL parsing functions, and the certificate\ncontains non NUL terminated ASN1_STRING structures). It can also occur in the\n`X509_get1_email()`, `X509_REQ_get1_email()` and `X509_get1_ocsp()` functions.\n\nIf a malicious actor can cause an application to directly construct an\nASN1_STRING and then process it through one of the affected OpenSSL functions\nthen this issue could be hit. This might result in a crash (causing a Denial of\nService attack). It could also result in the disclosure of private memory\ncontents (such as private keys, or sensitive plaintext).",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "openssl-src",
+        "purl": "pkg:cargo/openssl-src"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        }
+      },
+      "database_specific": {
+        "categories": [
+          "denial-of-service",
+          "crypto-failure"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "111.16.0"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/openssl-src"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2021-0098.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://www.openssl.org/news/secadv/20210824.txt"
+    }
+  ]
+}

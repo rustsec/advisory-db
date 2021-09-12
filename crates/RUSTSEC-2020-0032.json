@@ -1,0 +1,56 @@
+{
+  "id": "RUSTSEC-2020-0032",
+  "modified": "2021-01-04T17:02:59+00:00",
+  "published": "2020-08-20T12:00:00+00:00",
+  "aliases": [
+    "CVE-2020-35885"
+  ],
+  "related": [],
+  "summary": "StrcCtx deallocates a memory region that it doesn't own",
+  "details": "`StrcCtx` deallocate a memory region that it doesn't own when `StrcCtx` is created without using `StrcCtx::new`.\nThis can introduce memory safety issues such as double-free and use-after-free to client programs.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "alpm-rs",
+        "purl": "pkg:cargo/alpm-rs"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        }
+      },
+      "database_specific": {
+        "categories": [],
+        "cvss": null,
+        "informational": "unsound"
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/alpm-rs"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2020-0032.html"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/pigeonhands/rust-arch/issues/2"
+    }
+  ]
+}

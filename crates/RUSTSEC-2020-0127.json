@@ -1,0 +1,57 @@
+{
+  "id": "RUSTSEC-2020-0127",
+  "modified": "2021-01-30T18:07:13+00:00",
+  "published": "2020-12-18T12:00:00+00:00",
+  "aliases": [],
+  "related": [],
+  "summary": "SyncRef's clone() and debug() allow data races",
+  "details": "Affected versions of this crate unconditionally implement `Sync` for `SyncRef<T>`.\nThis definition allows data races if `&T` is accessible through `&SyncRef`.\n\n`SyncRef<T>` derives `Clone` and `Debug`, and the default implementations of those traits access `&T` by invoking `T::clone()` & `T::fmt()`. It is possible to create data races & undefined behavior by concurrently invoking `SyncRef<T>::clone()` or `SyncRef<T>::fmt()` from multiple threads with `T: !Sync`.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "v9",
+        "purl": "pkg:cargo/v9"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        }
+      },
+      "database_specific": {
+        "categories": [
+          "memory-corruption",
+          "thread-safety"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/v9"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2020-0127.html"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/purpleposeidon/v9/issues/1"
+    }
+  ]
+}

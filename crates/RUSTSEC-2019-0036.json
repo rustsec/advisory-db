@@ -1,0 +1,59 @@
+{
+  "id": "RUSTSEC-2019-0036",
+  "modified": "2021-08-22T01:18:11+00:00",
+  "published": "2019-11-13T12:00:00+00:00",
+  "aliases": [
+    "CVE-2020-25575",
+    "CVE-2019-25010"
+  ],
+  "related": [],
+  "summary": "Type confusion if __private_get_type_id__ is overridden",
+  "details": "Safe Rust code can implement malfunctioning `__private_get_type_id__` and cause\ntype confusion when downcasting, which is an undefined behavior.\n\nUsers who derive `Fail` trait are not affected.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "failure",
+        "purl": "pkg:cargo/failure"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": [
+            "failure::Fail::__private_get_type_id__"
+          ]
+        }
+      },
+      "database_specific": {
+        "categories": [],
+        "cvss": null,
+        "informational": "unsound"
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/failure"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2019-0036.html"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/rust-lang-nursery/failure/issues/336"
+    }
+  ]
+}

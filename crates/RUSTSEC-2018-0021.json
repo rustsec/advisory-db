@@ -1,0 +1,64 @@
+{
+  "id": "RUSTSEC-2018-0021",
+  "modified": "2021-06-09T01:07:22+00:00",
+  "published": "2018-06-15T12:00:00+00:00",
+  "aliases": [
+    "GHSA-ghpq-vjxw-ch5w"
+  ],
+  "related": [],
+  "summary": "Use-after-free with objects returned by `Stream`'s `get_format_info` and `get_context` methods",
+  "details": "Affected versions contained a pair of use-after-free issues with the objects returned by the `get_format_info` and `get_context` methods of `Stream` objects. These objects were mistakenly being constructed without setting an important flag to prevent destruction of the underlying C objects they reference upon their own destruction.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "libpulse-binding",
+        "purl": "pkg:cargo/libpulse-binding"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": [
+            "libpulse_binding::stream::Stream::get_context",
+            "libpulse_binding::stream::Stream::get_format_info"
+          ]
+        }
+      },
+      "database_specific": {
+        "categories": [
+          "memory-corruption"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "1.2.1"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/libpulse-binding"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2018-0021.html"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://github.com/jnqnfe/pulse-binding-rust/security/advisories/GHSA-ghpq-vjxw-ch5w"
+    }
+  ]
+}

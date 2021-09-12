@@ -1,0 +1,59 @@
+{
+  "id": "RUSTSEC-2020-0097",
+  "modified": "2021-02-26T01:00:25+00:00",
+  "published": "2020-12-10T12:00:00+00:00",
+  "aliases": [
+    "CVE-2020-36205"
+  ],
+  "related": [],
+  "summary": "Soundness issue with base::Error",
+  "details": "`base::Error` type contains public field named `ptr`.\nWith this definition, it is possible to create a `base::Error` with an invalid pointer and trigger memory safety errors\nsuch as use-after-free or double-free with safe Rust.\n\nThe users of `xcb` crate are advised not to manipulate the field.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "xcb",
+        "purl": "pkg:cargo/xcb"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        }
+      },
+      "database_specific": {
+        "categories": [
+          "memory-corruption",
+          "thread-safety"
+        ],
+        "cvss": null,
+        "informational": "unsound"
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/xcb"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2020-0097.html"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/rtbo/rust-xcb/issues/93"
+    }
+  ]
+}

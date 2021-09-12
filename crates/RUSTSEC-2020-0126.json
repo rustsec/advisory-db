@@ -1,0 +1,57 @@
+{
+  "id": "RUSTSEC-2020-0126",
+  "modified": "2021-01-31T04:02:50+00:00",
+  "published": "2020-11-15T12:00:00+00:00",
+  "aliases": [],
+  "related": [],
+  "summary": "SyncChannel<T> can move 'T: !Send' to other threads",
+  "details": "Affected versions of this crate unconditionally implement Send/Sync for `SyncChannel<T>`.\n`SyncChannel<T>` doesn't provide access to `&T` but merely serves as a channel that consumes and returns owned `T`.\n\nUsers can create UB in safe Rust by sending `T: !Send` to other threads with `SyncChannel::send/recv` APIs. Using `T = Arc<Cell<_>` allows to create data races (which can lead to memory corruption), and using `T = MutexGuard<T>` allows to unlock a mutex from a thread that didn't lock the mutex.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "signal-simple",
+        "purl": "pkg:cargo/signal-simple"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        }
+      },
+      "database_specific": {
+        "categories": [
+          "memory-corruption",
+          "thread-safety"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/signal-simple"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2020-0126.html"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/kitsuneninetails/signal-rust/issues/2"
+    }
+  ]
+}

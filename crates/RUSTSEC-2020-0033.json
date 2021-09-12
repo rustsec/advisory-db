@@ -1,0 +1,54 @@
+{
+  "id": "RUSTSEC-2020-0033",
+  "modified": "2020-10-02T01:29:11+00:00",
+  "published": "2020-08-25T12:00:00+00:00",
+  "aliases": [],
+  "related": [],
+  "summary": "Matrix::new() drops uninitialized memory",
+  "details": "`Matrix::new()` internally calls `Matrix::fill_with()` which uses `*ptr = value` pattern to initialize the buffer.\nThis pattern assumes that there is an initialized struct at the address and drops it, which results in dropping of uninitialized struct.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "alg_ds",
+        "purl": "pkg:cargo/alg_ds"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        }
+      },
+      "database_specific": {
+        "categories": [],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/alg_ds"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2020-0033.html"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://gitlab.com/dvshapkin/alg-ds/-/issues/1"
+    }
+  ]
+}

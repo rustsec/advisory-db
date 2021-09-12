@@ -1,0 +1,58 @@
+{
+  "id": "RUSTSEC-2021-0077",
+  "modified": "2021-07-26T20:46:07+00:00",
+  "published": "2021-07-22T12:00:00+00:00",
+  "aliases": [],
+  "related": [],
+  "summary": "`better-macro` has deliberate RCE to prove a point",
+  "details": "[better-macro](https://crates.io/crates/better-macro) is a fake crate which is\n\"Proving A Point\" that proc-macros can run arbitrary code. This a particularly\nnovel or interesting observation.\n\nIt currently opens `https://github.com/raycar5/better-macro/blob/master/doc/hi.md`\nwhich doesn't appear to have any malicious content, but there's no guarantee that\nwill remain the case.\n\nThis crate has no useful functionality, and should not be used.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "better-macro",
+        "purl": "pkg:cargo/better-macro"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": [
+            "better_macro::println"
+          ]
+        }
+      },
+      "database_specific": {
+        "categories": [
+          "code-execution"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/better-macro"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2021-0077.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/raycar5/better-macro/blob/24ff1702397b9c19bbfa4c660e2316cd77d3b900/src/lib.rs#L36-L38"
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "id": "RUSTSEC-2021-0011",
+  "modified": "2021-02-26T01:00:25+00:00",
+  "published": "2021-01-04T12:00:00+00:00",
+  "aliases": [
+    "CVE-2021-25908"
+  ],
+  "related": [],
+  "summary": "EventList's From<EventList> conversions can double drop on panic.",
+  "details": "Affected versions of this crate read from a container using `ptr::read` in\n`From<EventList>`, and then call a user specified `Into<Event>` function.\n\nThis issue can result in a double-free if the user provided function panics.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "fil-ocl",
+        "purl": "pkg:cargo/fil-ocl"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        }
+      },
+      "database_specific": {
+        "categories": [
+          "memory-corruption"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.12.0"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/fil-ocl"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2021-0011.html"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/cogciprocate/ocl/issues/194"
+    }
+  ]
+}

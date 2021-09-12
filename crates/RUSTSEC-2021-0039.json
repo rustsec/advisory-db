@@ -1,0 +1,58 @@
+{
+  "id": "RUSTSEC-2021-0039",
+  "modified": "2021-04-13T21:10:09+00:00",
+  "published": "2021-01-04T12:00:00+00:00",
+  "aliases": [
+    "CVE-2021-29929"
+  ],
+  "related": [],
+  "summary": "panic in user-provided `Endian` impl triggers double drop of T",
+  "details": "Affected versions of the crate does not guard against panic from user-provided impl of `Endian` trait, which is a safe trait that users can implement.\nIf a user-provided implementation of the `Endian` trait panics, double-drop is triggered due to the duplicated ownership of `T` created by `ptr::read()`.\n\nDouble-drop (or double free) can cause memory corruption in the heap.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "endian_trait",
+        "purl": "pkg:cargo/endian_trait"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        }
+      },
+      "database_specific": {
+        "categories": [
+          "memory-corruption"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/endian_trait"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2021-0039.html"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://gitlab.com/myrrlyn/endian_trait/-/issues/1"
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "id": "RUSTSEC-2021-0037",
+  "modified": "2021-03-19T21:21:58+00:00",
+  "published": "2021-03-05T12:00:00+00:00",
+  "aliases": [
+    "CVE-2021-28305"
+  ],
+  "related": [],
+  "summary": "Fix a use-after-free bug in diesels Sqlite backend",
+  "details": "We've misused `sqlite3_column_name`. The\n[SQLite](https://www.sqlite.org/c3ref/column_name.html) documentation\nstates that the following:\n\n> The returned string pointer is valid until either the prepared statement\n> is destroyed by sqlite3_finalize() or until the statement is automatically\n> reprepared by the first call to sqlite3_step() for a particular\n> run or until the next call to sqlite3_column_name()\n> or sqlite3_column_name16() on the same column.\n\nAs part of our `query_by_name` infrastructure we've first received all\nfield names for the prepared statement and stored them as string slices\nfor later use. After that we called `sqlite3_step()` for the first time,\nwhich invalids the pointer and therefore the stored string slice.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "diesel",
+        "purl": "pkg:cargo/diesel"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": [
+            "diesel::SqliteConnection::query_by_name"
+          ]
+        }
+      },
+      "database_specific": {
+        "categories": [
+          "memory-corruption"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "1.4.6"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/diesel"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2021-0037.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/diesel-rs/diesel/pull/2663"
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "id": "RUSTSEC-2021-0003",
+  "modified": "2021-02-26T01:00:25+00:00",
+  "published": "2021-01-08T12:00:00+00:00",
+  "aliases": [
+    "CVE-2021-25900"
+  ],
+  "related": [],
+  "summary": "Buffer overflow in SmallVec::insert_many",
+  "details": "A bug in the `SmallVec::insert_many` method caused it to allocate a buffer that was smaller than needed.  It then wrote past the end of the buffer, causing a buffer overflow and memory corruption on the heap.\n\nThis bug was only triggered if the iterator passed to `insert_many` yielded more items than the lower bound returned from its `size_hint` method.\n \nThe flaw was corrected in smallvec 0.6.14 and 1.6.1, by ensuring that additional space is always reserved for each item inserted.  The fix also simplified the implementation of `insert_many` to use less unsafe code, so it is easier to verify its correctness.\n\nThank you to Yechan Bae (@Qwaz) and the Rust group at Georgia Tech’s SSLab for finding and reporting this bug.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "smallvec",
+        "purl": "pkg:cargo/smallvec"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": [
+            "smallvec::SmallVec::insert_many"
+          ]
+        }
+      },
+      "database_specific": {
+        "categories": [
+          "memory-corruption"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.6.3"
+            },
+            {
+              "fixed": "0.6.14"
+            },
+            {
+              "introduced": "1.0.0"
+            },
+            {
+              "fixed": "1.6.1"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/smallvec"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2021-0003.html"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/servo/rust-smallvec/issues/252"
+    }
+  ]
+}

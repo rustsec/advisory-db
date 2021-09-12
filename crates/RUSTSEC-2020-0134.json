@@ -1,0 +1,57 @@
+{
+  "id": "RUSTSEC-2020-0134",
+  "modified": "2021-01-31T04:02:50+00:00",
+  "published": "2020-11-14T12:00:00+00:00",
+  "aliases": [],
+  "related": [],
+  "summary": "`LockWeak<T>` allows to create data race to `T`.",
+  "details": "In the affected versions of this crate, `LockWeak<T>` unconditionally implemented `Send` with no trait bounds on `T`. `LockWeak<T>` doesn't own `T` and only provides `&T`.\n\nThis allows concurrent access to a non-Sync `T`, which can cause undefined behavior like data races.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "parc",
+        "purl": "pkg:cargo/parc"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        }
+      },
+      "database_specific": {
+        "categories": [
+          "memory-corruption",
+          "thread-safety"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/parc"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2020-0134.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/hyyking/rustracts/pull/6"
+    }
+  ]
+}
