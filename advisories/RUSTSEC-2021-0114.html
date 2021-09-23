@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package nanorand › RustSec Advisory Database</title>
+<title>RUSTSEC-2021-0114: nanorand: Aliased mutable references from `tls_rand` &amp; `TlsWyRand` › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -38,49 +38,156 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
-
     <header>
-      <h1>Advisories for nanorand</h1>
+      <h1>
+        
+        
+        RUSTSEC-2021-0114
+        
+      </h1>
+      <span class="subtitle"><p>Aliased mutable references from <code>tls_rand</code> &amp; <code>TlsWyRand</code></p>
+</span>
     </header>
 
-    <ul>
-      
-      <li>
+    
+    
+
+    <dl>
+      <dt id="issued">Issued</dt>
+      <dd>
         <time datetime="2021-09-23">
           September 23, 2021
         </time>
+      </dd>
 
+      <dt id="package">Package</dt>
+      <dd>
         
         
-        <h3>
-          <a href="/advisories/RUSTSEC-2021-0114.html">
-            RUSTSEC-2021-0114: Vulnerability in nanorand
-          </a>
-        </h3>
-        <span><p>Aliased mutable references from <code>tls_rand</code> &amp; <code>TlsWyRand</code></p>
-</span>
         
-      </li>
-      
-      <li>
-        <time datetime="2020-12-09">
-          December  9, 2020
-        </time>
+        <a href="/packages/nanorand.html">nanorand</a>
+          (<a href="https://crates.io/crates/nanorand">crates.io</a>)
+        
+        
+      </dd>
 
+      <dt id="type">Type</dt>
+      <dd>
         
         
-        <h3>
-          <a href="/advisories/RUSTSEC-2020-0089.html">
-            RUSTSEC-2020-0089: Vulnerability in nanorand
-          </a>
-        </h3>
-        <span><p>nanorand 0.5.0 - RNGs failed to generate properly for non-64-bit numbers</p>
-</span>
+        Vulnerability
         
-      </li>
+      </dd>
+
       
+      
+
+      
+      
+
+      
+      <dt id="details">Details</dt>
+      <dd>
+        <a href="https:&#x2f;&#x2f;github.com&#x2f;Absolucy&#x2f;nanorand-rs&#x2f;issues&#x2f;28">
+          https:&#x2f;&#x2f;github.com&#x2f;Absolucy&#x2f;nanorand-rs&#x2f;issues&#x2f;28
+        </a>
+      </dd>
+      
+
+      
+      
+
+      
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        
+        <ul>
+          
+          <li><code>&gt;=0.6.1</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+      <dt id="unaffected">Unaffected</dt>
+      <dd>
+        <ul>
+          
+          <li><code>&lt;0.5.0</code></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        <ul>
+          
+          <li>memory-safety</li>
+          
+          <li>aliasing</li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      
+      
+      
+
+      
+      
+      
+    </dl>
+
+    
+    
+    
+    <dl>
+      <dt>Affected Functions</dt>
+      <dd>Version</dd>
+      
+      <dt><code>nanorand::tls::tls_rand</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&gt;=0.5.0</code></li>
+          
+          <li><code>&lt;=0.6.0</code></li>
+          
+        </ul>
+      </dd>
+      
+    </dl>
+    
+    
+
+    <h3 id="description">Description</h3>
+    <p><code>TlsWyRand</code>'s implementation of <code>Deref</code> unconditionally dereferences a raw pointer, and returns
+multiple mutable references to the same object, which is undefined behavior.</p>
+
+
+    
+    
+    <h3 id="more">More</h3>
+
+    <ul>
+      <li><a
+          href="https://github.com/RustSec/advisory-db/commits/main/crates/nanorand/RUSTSEC-2021-0114.md">Advisory
+          History</a></li>
+      <li><a
+          href="https://github.com/RustSec/advisory-db/edit/main/crates/nanorand/RUSTSEC-2021-0114.md">Edit
+          Advisory</a></li>
     </ul>
+    
   </article>
 </main>
