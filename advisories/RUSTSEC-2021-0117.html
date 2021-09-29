@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package arrow › RustSec Advisory Database</title>
+<title>RUSTSEC-2021-0117: arrow: `DecimalArray` does not perform bound checks on accessing values and offsets › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -38,49 +38,128 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
-
     <header>
-      <h1>Advisories for arrow</h1>
+      <h1>
+        
+        
+        RUSTSEC-2021-0117
+        
+      </h1>
+      <span class="subtitle"><p><code>DecimalArray</code> does not perform bound checks on accessing values and offsets</p>
+</span>
     </header>
 
+    
+    
+
+    <dl>
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2021-09-14">
+          September 14, 2021
+        </time>
+      </dd>
+
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        
+        <a href="/packages/arrow.html">arrow</a>
+          (<a href="https://crates.io/crates/arrow">crates.io</a>)
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        
+        Vulnerability
+        
+      </dd>
+
+      
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li>memory-exposure</li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      
+
+      
+      <dt id="details">Details</dt>
+      <dd>
+        <a href="https:&#x2f;&#x2f;github.com&#x2f;apache&#x2f;arrow-rs&#x2f;issues&#x2f;775">
+          https:&#x2f;&#x2f;github.com&#x2f;apache&#x2f;arrow-rs&#x2f;issues&#x2f;775
+        </a>
+      </dd>
+      
+
+      
+      
+
+      
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        no patched versions
+        
+      </dd>
+
+      
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        <ul>
+          
+          <li>buffer-overflow</li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      
+      
+    </dl>
+
+    
+
+    
+    
+
+    <h3 id="description">Description</h3>
+    <p><code>DecimalArray</code> performs insufficient bounds checks,
+which allows out-of-bounds reads in safe code
+if the lenght of the backing buffer is not a multiple of 16.</p>
+
+
+    
+    
+    <h3 id="more">More</h3>
+
     <ul>
-      
-      <li>
-        <time datetime="2021-09-14">
-          September 14, 2021
-        </time>
-
-        
-        
-        <h3>
-          <a href="/advisories/RUSTSEC-2021-0117.html">
-            RUSTSEC-2021-0117: Vulnerability in arrow
-          </a>
-        </h3>
-        <span><p><code>DecimalArray</code> does not perform bound checks on accessing values and offsets</p>
-</span>
-        
-      </li>
-      
-      <li>
-        <time datetime="2021-09-14">
-          September 14, 2021
-        </time>
-
-        
-        
-        <h3>
-          <a href="/advisories/RUSTSEC-2021-0116.html">
-            RUSTSEC-2021-0116: Vulnerability in arrow
-          </a>
-        </h3>
-        <span><p><code>BinaryArray</code> does not perform bound checks on reading values and offsets</p>
-</span>
-        
-      </li>
-      
+      <li><a
+          href="https://github.com/RustSec/advisory-db/commits/main/crates/arrow/RUSTSEC-2021-0117.md">Advisory
+          History</a></li>
+      <li><a
+          href="https://github.com/RustSec/advisory-db/edit/main/crates/arrow/RUSTSEC-2021-0117.md">Edit
+          Advisory</a></li>
     </ul>
+    
   </article>
 </main>
