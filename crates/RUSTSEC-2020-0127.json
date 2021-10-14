@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2020-0127",
-  "modified": "2021-01-30T18:07:13+00:00",
+  "modified": "2021-10-14T19:53:11+00:00",
   "published": "2020-12-18T12:00:00+00:00",
-  "aliases": [],
+  "aliases": [
+    "CVE-2020-36447"
+  ],
   "related": [],
   "summary": "SyncRef's clone() and debug() allow data races",
   "details": "Affected versions of this crate unconditionally implement `Sync` for `SyncRef<T>`.\nThis definition allows data races if `&T` is accessible through `&SyncRef`.\n\n`SyncRef<T>` derives `Clone` and `Debug`, and the default implementations of those traits access `&T` by invoking `T::clone()` & `T::fmt()`. It is possible to create data races & undefined behavior by concurrently invoking `SyncRef<T>::clone()` or `SyncRef<T>::fmt()` from multiple threads with `T: !Sync`.",

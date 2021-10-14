@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2020-0137",
-  "modified": "2021-02-01T11:57:26+00:00",
+  "modified": "2021-10-14T19:53:11+00:00",
   "published": "2020-11-10T12:00:00+00:00",
-  "aliases": [],
+  "aliases": [
+    "CVE-2020-36457"
+  ],
   "related": [],
   "summary": "AtomicBox<T> lacks bound on its Send and Sync traits allowing data races",
   "details": "`AtomicBox<T>` is a `Box` type designed to be used across threads, however, it\nimplements the `Send` and `Sync` traits for all types `T`.\n\nThis allows non-Send types such as `Rc` and non-Sync types such as `Cell` to\nbe used across thread boundaries which can trigger undefined behavior and\nmemory corruption.",

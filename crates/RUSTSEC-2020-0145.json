@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2020-0145",
-  "modified": "2021-03-02T15:12:22+00:00",
+  "modified": "2021-10-14T19:53:11+00:00",
   "published": "2020-11-02T12:00:00+00:00",
-  "aliases": [],
+  "aliases": [
+    "CVE-2020-36464"
+  ],
   "related": [],
   "summary": "Use-after-free when cloning a partially consumed `Vec` iterator",
   "details": "The `IntoIter` `Clone` implementation clones the whole underlying `Vec`.\nIf the iterator is partially consumed the consumed items will be copied, thus creating a use-after-free access.\n\nA proof of concept is available in the original bug report.",

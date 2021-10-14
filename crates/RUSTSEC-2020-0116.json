@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2020-0116",
-  "modified": "2021-01-31T04:02:50+00:00",
+  "modified": "2021-10-14T19:53:11+00:00",
   "published": "2020-11-15T12:00:00+00:00",
-  "aliases": [],
+  "aliases": [
+    "CVE-2020-36436"
+  ],
   "related": [],
   "summary": "PinSlab<T> and Unordered<T, S> need bounds on their Send/Sync traits",
   "details": "Affected versions of this crate unconditionally implemented `Send` & `Sync` for types `PinSlab<T>` & `Unordered<T, S>`. This allows sending non-Send types to other threads and concurrently accessing non-Sync types from multiple threads.\n\nThis can result in a data race & memory corruption when types that provide internal mutability without synchronization are contained within `PinSlab<T>` or `Unordered<T, S>` and accessed concurrently from multiple threads.\n\nThe flaw was corrected in commits 92f40b4 & 6a6c367 by adding trait bound `T: Send` to `Send` impls for `PinSlab<T>` & `Unordered<T, S>` and adding `T: Sync` to `Sync` impls for `PinSlab<T>` & `Unordered<T, S>`.",

@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2020-0143",
-  "modified": "2021-02-04T13:37:11+00:00",
+  "modified": "2021-10-14T19:53:11+00:00",
   "published": "2020-12-25T12:00:00+00:00",
-  "aliases": [],
+  "aliases": [
+    "CVE-2020-36463"
+  ],
   "related": [],
   "summary": "Queues allow non-Send types to be sent to other threads, allowing data races",
   "details": "Affected versions of this crate unconditionally implemented `Send` for types used in queue implementations (`InnerSend<RW, T>`, `InnerRecv<RW, T>`, `FutInnerSend<RW, T>`, `FutInnerRecv<RW, T>`).\n\nThis allows users to send non-Send types to other threads, which can lead to data race bugs or other undefined behavior.",

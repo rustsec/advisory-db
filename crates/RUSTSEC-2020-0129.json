@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2020-0129",
-  "modified": "2021-05-10T08:49:18+00:00",
+  "modified": "2021-10-14T19:53:11+00:00",
   "published": "2020-12-18T12:00:00+00:00",
-  "aliases": [],
+  "aliases": [
+    "CVE-2020-36449"
+  ],
   "related": [],
   "summary": "ShmWriter allows sending non-Send type across threads",
   "details": "Affected versions of this crate implement `Send` for `ShmWriter<H>` without requiring `H: Send`. This allows users to send `H: !Send` to other threads, which can potentially lead to data races and undefined behavior.",

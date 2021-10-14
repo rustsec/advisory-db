@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2020-0119",
-  "modified": "2021-01-31T04:02:50+00:00",
+  "modified": "2021-10-14T19:53:11+00:00",
   "published": "2020-11-17T12:00:00+00:00",
-  "aliases": [],
+  "aliases": [
+    "CVE-2020-36439"
+  ],
   "related": [],
   "summary": "ReadTicket and WriteTicket should only be sendable when T is Send",
   "details": "Affected versions of this crate unconditionally implemented `Send` for `ReadTicket<T>` & `WriteTicket<T>`.\nThis allows to send non-Send `T` to other threads.\n\nThis can allows creating data races by cloning types with internal mutability and sending them to other threads (as `T` of `ReadTicket<T>`/`WriteTicket<T>`). Such data races can cause memory corruption or other undefined behavior.\n\nThe flaw was corrected in commit a986a93 by adding `T: Send` bounds to `Send` impls of `ReadTicket<T>`/`WriteTicket<T>`.",

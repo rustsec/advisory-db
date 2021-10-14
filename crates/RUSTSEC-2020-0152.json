@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2020-0152",
-  "modified": "2021-03-30T21:58:17+00:00",
+  "modified": "2021-10-14T19:53:11+00:00",
   "published": "2020-12-18T12:00:00+00:00",
-  "aliases": [],
+  "aliases": [
+    "CVE-2020-36472"
+  ],
   "related": [],
   "summary": "ImmediateIO and TransactionalIO can cause data races",
   "details": "The `ImmediateIO` and `TransactionalIO` types implement `Sync` for all contained\n`Expander<EI>` types regardless of if the `Expander` itself is safe to use\nacross threads.\n\nAs the `IO` types allow retrieving the `Expander`, this can lead to non-thread\nsafe types being sent across threads as part of the `Expander` leading to data\nraces.",

@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2020-0123",
-  "modified": "2021-01-27T16:03:41+00:00",
+  "modified": "2021-10-14T19:53:11+00:00",
   "published": "2020-01-24T12:00:00+00:00",
-  "aliases": [],
+  "aliases": [
+    "CVE-2020-36443"
+  ],
   "related": [],
   "summary": "Contents of uninitialized memory exposed in DeflateOutput's AsyncRead implementation",
   "details": "Affected versions of this crate passes an uninitialized buffer to a user-provided trait function `AsyncRead::poll_read()`.\n\nArbitrary `AsyncRead::poll_read()` implementations can read from the uninitialized buffer (memory exposure) and also can return incorrect number of bytes written to the buffer.\nReading from uninitialized memory produces undefined values that can quickly invoke undefined behavior.\n\nThe flaw was fixed in commit 5ba266a by ensuring the newly allocated part of the buffer is zero-initialized before passing it to a user-provided `AsyncRead::poll_read()`.",

@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2020-0033",
-  "modified": "2020-10-02T01:29:11+00:00",
+  "modified": "2021-10-14T19:53:11+00:00",
   "published": "2020-08-25T12:00:00+00:00",
-  "aliases": [],
+  "aliases": [
+    "CVE-2020-36432"
+  ],
   "related": [],
   "summary": "Matrix::new() drops uninitialized memory",
   "details": "`Matrix::new()` internally calls `Matrix::fill_with()` which uses `*ptr = value` pattern to initialize the buffer.\nThis pattern assumes that there is an initialized struct at the address and drops it, which results in dropping of uninitialized struct.",

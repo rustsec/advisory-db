@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2020-0132",
-  "modified": "2021-02-22T13:21:17+00:00",
+  "modified": "2021-10-14T19:53:11+00:00",
   "published": "2020-12-31T12:00:00+00:00",
-  "aliases": [],
+  "aliases": [
+    "CVE-2020-36452"
+  ],
   "related": [],
   "summary": "`FixedCapacityDequeLike::clone()` can cause dropping uninitialized memory",
   "details": "Affected versions of this crate don't guard against panics, so that partially uninitialized buffer is dropped when user-provided `T::clone()` panics in `FixedCapacityDequeLike<T, A>::clone()`. This causes memory corruption.",

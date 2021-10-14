@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2020-0131",
-  "modified": "2021-01-31T04:02:50+00:00",
+  "modified": "2021-10-14T19:53:11+00:00",
   "published": "2020-11-14T12:00:00+00:00",
-  "aliases": [],
+  "aliases": [
+    "CVE-2020-36451"
+  ],
   "related": [],
   "summary": "Send/Sync bound needed on T  for Send/Sync impl of RcuCell<T>",
   "details": "Affected versions of this crate unconditionally implement Send/Sync for `RcuCell<T>`.\nThis allows users to send `T: !Send` to other threads (while `T` enclosed within `RcuCell<T>`), and allows users to concurrently access `T: !Sync` by using the APIs of `RcuCell<T>` that provide access to `&T`.\n\nThis can result in memory corruption caused by data races.",

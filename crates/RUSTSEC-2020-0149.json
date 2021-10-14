@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2020-0149",
-  "modified": "2021-03-30T02:24:36+00:00",
+  "modified": "2021-10-14T19:53:11+00:00",
   "published": "2020-11-15T12:00:00+00:00",
-  "aliases": [],
+  "aliases": [
+    "CVE-2020-36469"
+  ],
   "related": [],
   "summary": "Data race and memory safety issue in `Index`",
   "details": "The `appendix` crate implements a key-value mapping data structure called\n`Index<K, V>` that is stored on disk. The crate allows for any type to inhabit\nthe generic `K` and `V` type parameters and implements Send and Sync for them\nunconditionally.\n\nUsing a type that is not marked as `Send` or `Sync` with `Index` can allow it\nto be used across multiple threads leading to data races. Additionally using\nreference types for the keys or values will lead to the segmentation faults\nin the crate's code.",

@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2020-0130",
-  "modified": "2021-01-31T04:02:50+00:00",
+  "modified": "2021-10-14T19:53:11+00:00",
   "published": "2020-11-12T12:00:00+00:00",
-  "aliases": [],
+  "aliases": [
+    "CVE-2020-36450"
+  ],
   "related": [],
   "summary": "Bunch<T> unconditionally implements Send/Sync",
   "details": "Affected versions of this crate unconditionally implements `Send`/`Sync` for `Bunch<T>`.\nThis allows users to insert `T: !Sync` to `Bunch<T>`. It is possible to create a data race to a `T: !Sync` by invoking the `Bunch::get()` API (which returns `&T`) from multiple threads. It is also possible to send `T: !Send` to other threads by inserting `T` inside `Bunch<T>` and sending `Bunch<T>` to another thread, allowing to create a data race by inserting types like `T = Rc<_>`.\n\nSuch data races can lead to memory corruption.",

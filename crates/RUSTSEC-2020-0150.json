@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2020-0150",
-  "modified": "2021-03-30T02:47:43+00:00",
+  "modified": "2021-10-14T19:53:11+00:00",
   "published": "2020-12-17T12:00:00+00:00",
-  "aliases": [],
+  "aliases": [
+    "CVE-2020-36470"
+  ],
   "related": [],
   "summary": "RingBuffer can create multiple mutable references and cause data races",
   "details": "The `RingBuffer` type retrieves mutable references from the `DataProvider` in a\nnon-atomic manner, potentially allowing the creation of multiple mutable\nreferences. `RingBuffer` also implements the `Send` and `Sync` traits for all\ntypes `T`.\n\nThis allows undefined behavior from the aliased mutable references as well\nas data races.",
