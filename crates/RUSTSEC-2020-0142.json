@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2020-0142",
-  "modified": "2021-02-02T17:07:44+00:00",
+  "modified": "2021-10-14T15:38:20+00:00",
   "published": "2020-11-29T12:00:00+00:00",
-  "aliases": [],
+  "aliases": [
+    "CVE-2020-36462"
+  ],
   "related": [],
   "summary": "Send bound needed on T (for Send impl of `Bucket2`)",
   "details": "Affected versions of this crate unconditionally implements `Send` for `Bucket2`. This allows sending non-Send types to other threads.\n\nThis can lead to data races when non Send types like `Cell<T>` or `Rc<T>` are contained inside `Bucket2` and sent across thread boundaries. The data races can potentially lead to memory corruption (as demonstrated in the PoC from the original report issue).\n\nThe flaw was corrected in commit 15b2828 by adding a `T: Send` bound to the `Send` impl of `Bucket2<T>`.",
