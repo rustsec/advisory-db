@@ -114,7 +114,12 @@
       <dt id="patched">Patched</dt>
       <dd>
         
-        no patched versions
+        
+        <ul>
+          
+          <li><code>&gt;=2.0.0</code></li>
+          
+        </ul>
         
       </dd>
 
@@ -143,7 +148,8 @@
     
 
     <h3 id="description">Description</h3>
-    <p>This crate claims to construct a const <code>Vec</code> with nonzero length and capacity, but that cannot be done because such a <code>Vec</code> requires a pointer from an allocator.</p>
+    <p>Affected versions of this crate claimed to construct a const <code>Vec</code> with nonzero length and capacity, but that cannot be done because such a <code>Vec</code> requires a pointer from an allocator.</p>
+<p>The implementation was later changed to just construct a <code>std::borrow::Cow</code>.</p>
 
 
     
