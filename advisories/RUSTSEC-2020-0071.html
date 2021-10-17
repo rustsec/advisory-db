@@ -145,7 +145,19 @@
       <dd>
         <ul>
           
-          <li><code>&lt;0.2.7</code></li>
+          <li><code>=0.2.0</code></li>
+          
+          <li><code>=0.2.1</code></li>
+          
+          <li><code>=0.2.2</code></li>
+          
+          <li><code>=0.2.3</code></li>
+          
+          <li><code>=0.2.4</code></li>
+          
+          <li><code>=0.2.5</code></li>
+          
+          <li><code>=0.2.6</code></li>
           
         </ul>
       </dd>
@@ -259,14 +271,32 @@
         </ul>
       </dd>
       
+      <dt><code>time::at</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>^0.1</code></li>
+          
+        </ul>
+      </dd>
+      
+      <dt><code>time::at_utc</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>^0.1</code></li>
+          
+        </ul>
+      </dd>
+      
     </dl>
     
     
 
     <h3 id="description">Description</h3>
-    <h2>Impact</h2>
-<p>Unix-like operating systems may segfault due to dereferencing a dangling pointer in specific circumstances. This requires the user to set any environment variable in a different thread than the affected functions.</p>
-<p>The affected functions are:</p>
+    <h3>Impact</h3>
+<p>Unix-like operating systems may segfault due to dereferencing a dangling pointer in specific circumstances. This requires an environment variable to be set in a different thread than the affected functions. This may occur without the user's knowledge, notably in a third-party library.</p>
+<p>The affected functions from time 0.2.7 through 0.2.22 are:</p>
 <ul>
 <li><code>time::UtcOffset::local_offset_at</code></li>
 <li><code>time::UtcOffset::try_local_offset_at</code></li>
@@ -275,14 +305,20 @@
 <li><code>time::OffsetDateTime::now_local</code></li>
 <li><code>time::OffsetDateTime::try_now_local</code></li>
 </ul>
-<p>Non-Unix targets are unaffected. This includes Windows and wasm.</p>
-<h2>Patches</h2>
+<p>The affected functions in time 0.1 (all versions) are:</p>
+<ul>
+<li><code>at</code></li>
+<li><code>at_utc</code></li>
+</ul>
+<p>Non-Unix targets (including Windows and wasm) are unaffected.</p>
+<h3>Patches</h3>
 <p>Pending a proper fix, the internal method that determines the local offset has been modified to always return <code>None</code> on the affected operating systems. This has the effect of returning an <code>Err</code> on the <code>try_*</code> methods and <code>UTC</code> on the non-<code>try_*</code> methods.</p>
-<p>Users and library authors with time in their dependency tree should perform <code>cargo update</code>, which will pull in a the updated, unaffected code.</p>
-<h2>Workarounds</h2>
+<p>Users and library authors with time in their dependency tree should perform <code>cargo update</code>, which will pull in the updated, unaffected code.</p>
+<p>Users of time 0.1 do not have a patch and should upgrade to an unaffected version: time 0.2.23 or greater or the 0.3. series.</p>
+<h3>Workarounds</h3>
 <p>No workarounds are known.</p>
-<h2>References</h2>
-<p>#293</p>
+<h3>References</h3>
+<p>time-rs/time#293</p>
 
 
     
