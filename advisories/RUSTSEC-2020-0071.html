@@ -289,6 +289,15 @@
         </ul>
       </dd>
       
+      <dt><code>time::now</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>^0.1</code></li>
+          
+        </ul>
+      </dd>
+      
     </dl>
     
     
@@ -309,12 +318,13 @@
 <ul>
 <li><code>at</code></li>
 <li><code>at_utc</code></li>
+<li><code>now</code></li>
 </ul>
 <p>Non-Unix targets (including Windows and wasm) are unaffected.</p>
 <h3>Patches</h3>
 <p>Pending a proper fix, the internal method that determines the local offset has been modified to always return <code>None</code> on the affected operating systems. This has the effect of returning an <code>Err</code> on the <code>try_*</code> methods and <code>UTC</code> on the non-<code>try_*</code> methods.</p>
 <p>Users and library authors with time in their dependency tree should perform <code>cargo update</code>, which will pull in the updated, unaffected code.</p>
-<p>Users of time 0.1 do not have a patch and should upgrade to an unaffected version: time 0.2.23 or greater or the 0.3. series.</p>
+<p>Users of time 0.1 do not have a patch and should upgrade to an unaffected version: time 0.2.23 or greater or the 0.3 series.</p>
 <h3>Workarounds</h3>
 <p>No workarounds are known.</p>
 <h3>References</h3>
