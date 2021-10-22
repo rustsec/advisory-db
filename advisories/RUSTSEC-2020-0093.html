@@ -40,6 +40,14 @@
 
 <main class="advisory">
   <article>
+    
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/async-h1/RUSTSEC-2020-0093.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/async-h1/RUSTSEC-2020-0093.md">Edit</a>
+        </span>
+    
+
     <header>
       <h1>
         
@@ -85,6 +93,21 @@
       
 
       
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/smuggling.html">#smuggling</a>
+        
+          <a href="/keywords/http.html">#http</a>
+        
+          <a href="/keywords/reverse-proxy.html">#reverse-proxy</a>
+        
+          <a href="/keywords/request-smuggling.html">#request-smuggling</a>
+        
+      </dd>
+      
+
+      
       <dt id="aliases">Aliases</dt>
       <dd>
         <ul>
@@ -127,6 +150,7 @@
       
 
       
+
       
       
 
@@ -148,17 +172,15 @@
       
       <dt id="keywords">Keywords</dt>
       <dd>
-        <ul>
-          
-          <li>smuggling</li>
-          
-          <li>http</li>
-          
-          <li>reverse proxy</li>
-          
-          <li>request smuggling</li>
-          
-        </ul>
+        
+          <a href="/keywords/smuggling.html">#smuggling</a>
+        
+          <a href="/keywords/http.html">#http</a>
+        
+          <a href="/keywords/reverse-proxy.html">#reverse-proxy</a>
+        
+          <a href="/keywords/request-smuggling.html">#request-smuggling</a>
+        
       </dd>
       
 
@@ -208,19 +230,5 @@
 <p>Another potential concern with this vulnerability is that if a reverse proxy is sending multiple http clients' requests along the same keep-alive connection, it would be possible for the smuggled request to specify a long content and capture another user's request in its body. This content could be captured in a post request to an endpoint that allows the content to be subsequently retrieved by the adversary.</p>
 <p>The flaw was corrected in commit <a href="https://github.com/http-rs/async-h1/commit/7df79f1d5d99fc0f492b315eebc7f0d301a85212">7df79f</a> by ensuring that the request body is always consumed from the tcp stream before attempting to read subsequent keep-alive request headers from it.</p>
 
-
-    
-    
-    <h3 id="more">More</h3>
-
-    <ul>
-      <li><a
-          href="https://github.com/RustSec/advisory-db/commits/main/crates/async-h1/RUSTSEC-2020-0093.md">Advisory
-          History</a></li>
-      <li><a
-          href="https://github.com/RustSec/advisory-db/edit/main/crates/async-h1/RUSTSEC-2020-0093.md">Edit
-          Advisory</a></li>
-    </ul>
-    
   </article>
 </main>

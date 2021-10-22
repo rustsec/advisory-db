@@ -40,6 +40,14 @@
 
 <main class="advisory">
   <article>
+    
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/reffers/RUSTSEC-2020-0094.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/reffers/RUSTSEC-2020-0094.md">Edit</a>
+        </span>
+    
+
     <header>
       <h1>
         
@@ -77,6 +85,7 @@
       <dd>
         
         
+        <span class="tag info">INFO</span>
         Unsound
         
       </dd>
@@ -86,11 +95,20 @@
       <dd>
         <ul>
           
-          <li>memory-corruption</li>
+          <li><a href="/categories/memory-corruption.html">memory-corruption</a></li>
           
-          <li>thread-safety</li>
+          <li><a href="/categories/thread-safety.html">thread-safety</a></li>
           
         </ul>
+      </dd>
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/concurrency.html">#concurrency</a>
+        
       </dd>
       
 
@@ -124,8 +142,58 @@
 
       
       
-      <dt id="cvss">CVSS</dt>
-      <dd>CVSS:3.1&#x2f;AV:L&#x2f;AC:H&#x2f;PR:L&#x2f;UI:N&#x2f;S:U&#x2f;C:N&#x2f;I:N&#x2f;A:H</dd>
+      <dt id="cvss_score">CVSS Score</dt>
+      <dd>4.7 <span class="tag medium">
+        MEDIUM
+      </span></dd>
+
+      <dt id="cvss_details">CVSS Details</dt>
+      <dd>
+        <dl>
+          
+          
+          <dt>Attack vector</dt><dd>Local</dd>
+          
+
+          
+          
+          <dt>Attack complexity</dt><dd>High</d>
+          
+
+          
+          
+          <dt>Privileges required</dt><dd>Low</dd>
+          
+
+          
+          
+          <dt>User interaction</dt><dd>None</dd>
+          
+
+          
+          
+          <dt>Scope</dt><dd>Unchanged</dd>
+          
+
+          
+          
+          <dt>Confidentiality</dt><dd>None</dd>
+          
+
+          
+          
+          <dt>Integrity</dt><dd>None</dd>
+          
+
+          
+          
+          <dt>Availability</dt><dd>High</dd>
+          
+        </dl>
+      </dd>
+
+      <dt id="cvss">CVSS Vector</dt>
+      <dd><a href="https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=CVSS:3.1&#x2f;AV:L&#x2f;AC:H&#x2f;PR:L&#x2f;UI:N&#x2f;S:U&#x2f;C:N&#x2f;I:N&#x2f;A:H">CVSS:3.1&#x2f;AV:L&#x2f;AC:H&#x2f;PR:L&#x2f;UI:N&#x2f;S:U&#x2f;C:N&#x2f;I:N&#x2f;A:H</a></dd>
       
 
       <dt id="patched">Patched</dt>
@@ -146,11 +214,9 @@
       
       <dt id="keywords">Keywords</dt>
       <dd>
-        <ul>
-          
-          <li>concurrency</li>
-          
-        </ul>
+        
+          <a href="/keywords/concurrency.html">#concurrency</a>
+        
       </dd>
       
 
@@ -171,19 +237,5 @@
 <p>By using the <code>ARefss::map()</code> API, we can insert a <code>!Send</code> or <code>!Sync</code> object into <code>ARefss&lt;'a, V&gt;</code>. After that, it is possible to create a data race to the inner object of <code>ARefss&lt;'a, V&gt;</code>, which can lead to undefined behavior &amp; memory corruption.</p>
 <p>The flaw was corrected in commit 6dd7ca0 (https://github.com/diwic/reffers-rs/commit/6dd7ca0d50f2464df708975cdafcfaeeb6d41c66) by adding trait bound <code>V: Send + Sync</code> to <code>ARefss::map()</code> API.</p>
 
-
-    
-    
-    <h3 id="more">More</h3>
-
-    <ul>
-      <li><a
-          href="https://github.com/RustSec/advisory-db/commits/main/crates/reffers/RUSTSEC-2020-0094.md">Advisory
-          History</a></li>
-      <li><a
-          href="https://github.com/RustSec/advisory-db/edit/main/crates/reffers/RUSTSEC-2020-0094.md">Edit
-          Advisory</a></li>
-    </ul>
-    
   </article>
 </main>

@@ -40,6 +40,14 @@
 
 <main class="advisory">
   <article>
+    
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/actix-http/RUSTSEC-2021-0081.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/actix-http/RUSTSEC-2021-0081.md">Edit</a>
+        </span>
+    
+
     <header>
       <h1>
         
@@ -85,6 +93,21 @@
       
 
       
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/smuggling.html">#smuggling</a>
+        
+          <a href="/keywords/http.html">#http</a>
+        
+          <a href="/keywords/reverse-proxy.html">#reverse-proxy</a>
+        
+          <a href="/keywords/request-smuggling.html">#request-smuggling</a>
+        
+      </dd>
+      
+
+      
       <dt id="aliases">Aliases</dt>
       <dd>
         <ul>
@@ -108,8 +131,58 @@
 
       
       
-      <dt id="cvss">CVSS</dt>
-      <dd>CVSS:3.1&#x2f;AV:N&#x2f;AC:L&#x2f;PR:N&#x2f;UI:N&#x2f;S:U&#x2f;C:H&#x2f;I:N&#x2f;A:N</dd>
+      <dt id="cvss_score">CVSS Score</dt>
+      <dd>7.5 <span class="tag high">
+        HIGH
+      </span></dd>
+
+      <dt id="cvss_details">CVSS Details</dt>
+      <dd>
+        <dl>
+          
+          
+          <dt>Attack vector</dt><dd>Network</dd>
+          
+
+          
+          
+          <dt>Attack complexity</dt><dd>Low</d>
+          
+
+          
+          
+          <dt>Privileges required</dt><dd>None</dd>
+          
+
+          
+          
+          <dt>User interaction</dt><dd>None</dd>
+          
+
+          
+          
+          <dt>Scope</dt><dd>Unchanged</dd>
+          
+
+          
+          
+          <dt>Confidentiality</dt><dd>High</dd>
+          
+
+          
+          
+          <dt>Integrity</dt><dd>None</dd>
+          
+
+          
+          
+          <dt>Availability</dt><dd>None</dd>
+          
+        </dl>
+      </dd>
+
+      <dt id="cvss">CVSS Vector</dt>
+      <dd><a href="https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=CVSS:3.1&#x2f;AV:N&#x2f;AC:L&#x2f;PR:N&#x2f;UI:N&#x2f;S:U&#x2f;C:H&#x2f;I:N&#x2f;A:N">CVSS:3.1&#x2f;AV:N&#x2f;AC:L&#x2f;PR:N&#x2f;UI:N&#x2f;S:U&#x2f;C:H&#x2f;I:N&#x2f;A:N</a></dd>
       
 
       <dt id="patched">Patched</dt>
@@ -132,17 +205,15 @@
       
       <dt id="keywords">Keywords</dt>
       <dd>
-        <ul>
-          
-          <li>smuggling</li>
-          
-          <li>http</li>
-          
-          <li>reverse proxy</li>
-          
-          <li>request smuggling</li>
-          
-        </ul>
+        
+          <a href="/keywords/smuggling.html">#smuggling</a>
+        
+          <a href="/keywords/http.html">#http</a>
+        
+          <a href="/keywords/reverse-proxy.html">#reverse-proxy</a>
+        
+          <a href="/keywords/request-smuggling.html">#request-smuggling</a>
+        
       </dd>
       
 
@@ -160,19 +231,5 @@
     <p>Affected versions of this crate did not properly detect invalid requests that could allow HTTP/1 request smuggling (HRS) attacks when running alongside a vulnerable front-end proxy server. This can result in leaked internal and/or user data, including credentials, when the front-end proxy is also vulnerable.</p>
 <p>Popular front-end proxies and load balancers already mitigate HRS attacks so it is recommended that they are also kept up to date; check your specific set up. You should upgrade even if the front-end proxy receives exclusively HTTP/2 traffic and connects to the back-end using HTTP/1; several downgrade attacks are known that can also expose HRS vulnerabilities.</p>
 
-
-    
-    
-    <h3 id="more">More</h3>
-
-    <ul>
-      <li><a
-          href="https://github.com/RustSec/advisory-db/commits/main/crates/actix-http/RUSTSEC-2021-0081.md">Advisory
-          History</a></li>
-      <li><a
-          href="https://github.com/RustSec/advisory-db/edit/main/crates/actix-http/RUSTSEC-2021-0081.md">Edit
-          Advisory</a></li>
-    </ul>
-    
   </article>
 </main>

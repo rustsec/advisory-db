@@ -40,6 +40,14 @@
 
 <main class="advisory">
   <article>
+    
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/spin/RUSTSEC-2019-0013.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/spin/RUSTSEC-2019-0013.md">Edit</a>
+        </span>
+    
+
     <header>
       <h1>
         
@@ -85,6 +93,25 @@
       
 
       
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/atomic.html">#atomic</a>
+        
+          <a href="/keywords/ordering.html">#ordering</a>
+        
+          <a href="/keywords/spin.html">#spin</a>
+        
+          <a href="/keywords/lock.html">#lock</a>
+        
+          <a href="/keywords/mutex.html">#mutex</a>
+        
+          <a href="/keywords/rwlock.html">#rwlock</a>
+        
+      </dd>
+      
+
+      
       <dt id="aliases">Aliases</dt>
       <dd>
         <ul>
@@ -114,8 +141,58 @@
 
       
       
-      <dt id="cvss">CVSS</dt>
-      <dd>CVSS:3.1&#x2f;AV:N&#x2f;AC:L&#x2f;PR:N&#x2f;UI:N&#x2f;S:U&#x2f;C:N&#x2f;I:N&#x2f;A:H</dd>
+      <dt id="cvss_score">CVSS Score</dt>
+      <dd>7.5 <span class="tag high">
+        HIGH
+      </span></dd>
+
+      <dt id="cvss_details">CVSS Details</dt>
+      <dd>
+        <dl>
+          
+          
+          <dt>Attack vector</dt><dd>Network</dd>
+          
+
+          
+          
+          <dt>Attack complexity</dt><dd>Low</d>
+          
+
+          
+          
+          <dt>Privileges required</dt><dd>None</dd>
+          
+
+          
+          
+          <dt>User interaction</dt><dd>None</dd>
+          
+
+          
+          
+          <dt>Scope</dt><dd>Unchanged</dd>
+          
+
+          
+          
+          <dt>Confidentiality</dt><dd>None</dd>
+          
+
+          
+          
+          <dt>Integrity</dt><dd>None</dd>
+          
+
+          
+          
+          <dt>Availability</dt><dd>High</dd>
+          
+        </dl>
+      </dd>
+
+      <dt id="cvss">CVSS Vector</dt>
+      <dd><a href="https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=CVSS:3.1&#x2f;AV:N&#x2f;AC:L&#x2f;PR:N&#x2f;UI:N&#x2f;S:U&#x2f;C:N&#x2f;I:N&#x2f;A:H">CVSS:3.1&#x2f;AV:N&#x2f;AC:L&#x2f;PR:N&#x2f;UI:N&#x2f;S:U&#x2f;C:N&#x2f;I:N&#x2f;A:H</a></dd>
       
 
       <dt id="patched">Patched</dt>
@@ -136,21 +213,19 @@
       
       <dt id="keywords">Keywords</dt>
       <dd>
-        <ul>
-          
-          <li>atomic</li>
-          
-          <li>ordering</li>
-          
-          <li>spin</li>
-          
-          <li>lock</li>
-          
-          <li>mutex</li>
-          
-          <li>rwlock</li>
-          
-        </ul>
+        
+          <a href="/keywords/atomic.html">#atomic</a>
+        
+          <a href="/keywords/ordering.html">#ordering</a>
+        
+          <a href="/keywords/spin.html">#spin</a>
+        
+          <a href="/keywords/lock.html">#lock</a>
+        
+          <a href="/keywords/mutex.html">#mutex</a>
+        
+          <a href="/keywords/rwlock.html">#rwlock</a>
+        
       </dd>
       
 
@@ -190,19 +265,5 @@
 <p>On strongly ordered CPU architectures like x86, the only real way that this would lead to a memory corruption is if the compiler reorders an access after the lock is yielded, which is possible but in practice unlikely. It is a more serious issue on weakly ordered architectures such as ARM which, except in the presence of certain instructions, allow the hardware to decide which accesses are seen at what times. Therefore on an ARM system it is likely that using the wrong memory ordering would result in a memory corruption, even if the compiler itself doesn't reorder the memory accesses in a buggy way.</p>
 <p>The flaw was corrected by https://github.com/mvdnes/spin-rs/pull/66.</p>
 
-
-    
-    
-    <h3 id="more">More</h3>
-
-    <ul>
-      <li><a
-          href="https://github.com/RustSec/advisory-db/commits/main/crates/spin/RUSTSEC-2019-0013.md">Advisory
-          History</a></li>
-      <li><a
-          href="https://github.com/RustSec/advisory-db/edit/main/crates/spin/RUSTSEC-2019-0013.md">Edit
-          Advisory</a></li>
-    </ul>
-    
   </article>
 </main>

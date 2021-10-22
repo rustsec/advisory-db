@@ -40,6 +40,14 @@
 
 <main class="advisory">
   <article>
+    
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/crossbeam-channel/RUSTSEC-2020-0052.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/crossbeam-channel/RUSTSEC-2020-0052.md">Edit</a>
+        </span>
+    
+
     <header>
       <h1>
         
@@ -86,10 +94,13 @@
       <dd>
         <ul>
           
-          <li>memory-corruption</li>
+          <li><a href="/categories/memory-corruption.html">memory-corruption</a></li>
           
         </ul>
       </dd>
+      
+
+      
       
 
       
@@ -135,6 +146,7 @@
       
 
       
+
       
       
 
@@ -177,19 +189,5 @@
     <h3 id="description">Description</h3>
     <p>The affected version of this crate's the <code>bounded</code> channel incorrectly assumes that <code>Vec::from_iter</code> has allocated capacity that same as the number of iterator elements. <code>Vec::from_iter</code> does not actually guarantee that and may allocate extra memory. The destructor of the <code>bounded</code> channel reconstructs <code>Vec</code> from the raw pointer based on the incorrect assumes described above. This is unsound and causing deallocation with the incorrect capacity when <code>Vec::from_iter</code> has allocated different sizes with the number of iterator elements.</p>
 
-
-    
-    
-    <h3 id="more">More</h3>
-
-    <ul>
-      <li><a
-          href="https://github.com/RustSec/advisory-db/commits/main/crates/crossbeam-channel/RUSTSEC-2020-0052.md">Advisory
-          History</a></li>
-      <li><a
-          href="https://github.com/RustSec/advisory-db/edit/main/crates/crossbeam-channel/RUSTSEC-2020-0052.md">Edit
-          Advisory</a></li>
-    </ul>
-    
   </article>
 </main>

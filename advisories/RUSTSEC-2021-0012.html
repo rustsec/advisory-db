@@ -40,6 +40,14 @@
 
 <main class="advisory">
   <article>
+    
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/cdr/RUSTSEC-2021-0012.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/cdr/RUSTSEC-2021-0012.md">Edit</a>
+        </span>
+    
+
     <header>
       <h1>
         
@@ -86,10 +94,13 @@
       <dd>
         <ul>
           
-          <li>memory-exposure</li>
+          <li><a href="/categories/memory-exposure.html">memory-exposure</a></li>
           
         </ul>
       </dd>
+      
+
+      
       
 
       
@@ -122,8 +133,58 @@
 
       
       
-      <dt id="cvss">CVSS</dt>
-      <dd>CVSS:3.1&#x2f;AV:N&#x2f;AC:L&#x2f;PR:N&#x2f;UI:N&#x2f;S:U&#x2f;C:H&#x2f;I:H&#x2f;A:H</dd>
+      <dt id="cvss_score">CVSS Score</dt>
+      <dd>9.8 <span class="tag critical">
+        CRITICAL
+      </span></dd>
+
+      <dt id="cvss_details">CVSS Details</dt>
+      <dd>
+        <dl>
+          
+          
+          <dt>Attack vector</dt><dd>Network</dd>
+          
+
+          
+          
+          <dt>Attack complexity</dt><dd>Low</d>
+          
+
+          
+          
+          <dt>Privileges required</dt><dd>None</dd>
+          
+
+          
+          
+          <dt>User interaction</dt><dd>None</dd>
+          
+
+          
+          
+          <dt>Scope</dt><dd>Unchanged</dd>
+          
+
+          
+          
+          <dt>Confidentiality</dt><dd>High</dd>
+          
+
+          
+          
+          <dt>Integrity</dt><dd>High</dd>
+          
+
+          
+          
+          <dt>Availability</dt><dd>High</dd>
+          
+        </dl>
+      </dd>
+
+      <dt id="cvss">CVSS Vector</dt>
+      <dd><a href="https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=CVSS:3.1&#x2f;AV:N&#x2f;AC:L&#x2f;PR:N&#x2f;UI:N&#x2f;S:U&#x2f;C:H&#x2f;I:H&#x2f;A:H">CVSS:3.1&#x2f;AV:N&#x2f;AC:L&#x2f;PR:N&#x2f;UI:N&#x2f;S:U&#x2f;C:H&#x2f;I:H&#x2f;A:H</a></dd>
       
 
       <dt id="patched">Patched</dt>
@@ -159,19 +220,5 @@
 <p>Passing an uninitialized buffer to an arbitrary <code>Read</code> implementation is currently defined as undefined behavior in Rust. Official documentation for the <code>Read</code> trait explains the following: &quot;It is your responsibility to make sure that buf is initialized before calling read. Calling read with an uninitialized buf (of the kind one obtains via MaybeUninit<!-- raw HTML omitted -->) is not safe, and can lead to undefined behavior.&quot;</p>
 <p>The flaw was corrected in commit ce310f7 by zero-initializing the newly allocated buffer before handing it to <code>Deserializer.reader.read_exact()</code>.</p>
 
-
-    
-    
-    <h3 id="more">More</h3>
-
-    <ul>
-      <li><a
-          href="https://github.com/RustSec/advisory-db/commits/main/crates/cdr/RUSTSEC-2021-0012.md">Advisory
-          History</a></li>
-      <li><a
-          href="https://github.com/RustSec/advisory-db/edit/main/crates/cdr/RUSTSEC-2021-0012.md">Edit
-          Advisory</a></li>
-    </ul>
-    
   </article>
 </main>
