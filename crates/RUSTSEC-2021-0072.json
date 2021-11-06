@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2021-0072",
-  "modified": "2021-07-07T23:26:08+00:00",
+  "modified": "2021-11-06T20:37:35+00:00",
   "published": "2021-07-07T12:00:00+00:00",
-  "aliases": [],
+  "aliases": [
+    "CVE-2021-38191"
+  ],
   "related": [],
   "summary": "Task dropped in wrong thread when aborting `LocalSet` task",
   "details": "When aborting a task with `JoinHandle::abort`, the future is dropped in the\nthread calling abort if the task is not currently being executed. This is\nincorrect for tasks spawned on a `LocalSet`.\n\nThis can easily result in race conditions as many projects use `Rc` or `RefCell`\nin their Tokio tasks for better performance.\n\nSee [tokio#3929][issue] for more details.\n\n[issue]: https://github.com/tokio-rs/tokio/issues/3929",

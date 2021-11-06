@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2021-0053",
-  "modified": "2021-04-15T17:46:46+00:00",
+  "modified": "2021-11-06T20:37:35+00:00",
   "published": "2021-03-07T12:00:00+00:00",
-  "aliases": [],
+  "aliases": [
+    "CVE-2021-31996"
+  ],
   "related": [],
   "summary": "'merge_sort::merge()' crashes with double-free for `T: Drop`",
   "details": "In the affected versions of this crate, `merge_sort::merge()` wildly duplicates and drops ownership of `T` without guarding against double-free. Due to such implementation,\nsimply invoking `merge_sort::merge()` on `Vec<T: Drop>` can cause **double free** bugs.",
