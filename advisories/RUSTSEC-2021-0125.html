@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories with keyword &#x27;panic&#x27; › RustSec Advisory Database</title>
+<title>RUSTSEC-2021-0125: simple_asn1: Panic on incorrect date input to `simple_asn1` › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -38,105 +38,160 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/simple_asn1/RUSTSEC-2021-0125.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/simple_asn1/RUSTSEC-2021-0125.md">Edit</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        
+        RUSTSEC-2021-0125
+        
+      </h1>
+      <span class="subtitle"><p>Panic on incorrect date input to <code>simple_asn1</code></p>
 </span>
-      <h1>Advisories with keyword &#x27;panic&#x27;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2021-11-14">
-    November 14, 2021
-  </time>
-
-  
-  
-  <h3>
     
-      
+    
+
+    <dl>
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2021-11-14">
+          November 14, 2021
+        </time>
+      </dd>
+
+      <dt id="package">Package</dt>
+      <dd>
         
         
-    
-    <a href="/advisories/RUSTSEC-2021-0125.html">
-      RUSTSEC-2021-0125: Vulnerability in simple_asn1
-    </a>
-  </h3>
-  <span><p>Panic on incorrect date input to <code>simple_asn1</code></p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2020-11-29">
-    November 29, 2020
-  </time>
+        
+        <a href="/packages/simple_asn1.html">simple_asn1</a>
+          (<a href="https://crates.io/crates/simple_asn1">crates.io</a>)
+        
+        
+      </dd>
 
-  
-  
-  <h3>
-    
-      
-      <span class="tag medium">MEDIUM</span>
-    
-    <a href="/advisories/RUSTSEC-2020-0075.html">
-      RUSTSEC-2020-0075: Vulnerability in branca
-    </a>
-  </h3>
-  <span><p>Unexpected panic when decoding tokens</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2020-11-08">
-    November  8, 2020
-  </time>
+      <dt id="type">Type</dt>
+      <dd>
+        
+        
+        Vulnerability
+        
+      </dd>
 
-  
-  
-  <h3>
-    
       
-      <span class="tag high">HIGH</span>
-    
-    <a href="/advisories/RUSTSEC-2020-0068.html">
-      RUSTSEC-2020-0068: Vulnerability in multihash
-    </a>
-  </h3>
-  <span><p>Unexpected panic in multihash <code>from_slice</code> parsing code</p>
-</span>
-  
-</li>
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/denial-of-service.html">denial-of-service</a></li>
+          
+        </ul>
+      </dd>
       
-      <li>
-  <time datetime="2019-06-08">
-    June  8, 2019
-  </time>
 
-  
-  
-  <h3>
-    
       
-      <span class="tag high">HIGH</span>
-    
-    <a href="/advisories/RUSTSEC-2019-0003.html">
-      RUSTSEC-2019-0003: Vulnerability in protobuf
-    </a>
-  </h3>
-  <span><p>Out of Memory in stream::read_raw_bytes_into()</p>
-</span>
-  
-</li>
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/panic.html">#panic</a>
+        
+          <a href="/keywords/string_slice.html">#string_slice</a>
+        
+      </dd>
       
-    </ul>
+
+      
+      
+
+      
+      <dt id="details">Details</dt>
+      <dd>
+        <a href="https:&#x2f;&#x2f;github.com&#x2f;acw&#x2f;simple_asn1&#x2f;issues&#x2f;27">
+          https:&#x2f;&#x2f;github.com&#x2f;acw&#x2f;simple_asn1&#x2f;issues&#x2f;27
+        </a>
+      </dd>
+      
+
+      
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        
+        <ul>
+          
+          <li><code>&gt;=0.6.1</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+      <dt id="unaffected">Unaffected</dt>
+      <dd>
+        <ul>
+          
+          <li><code>&lt;0.6.0</code></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/panic.html">#panic</a>
+        
+          <a href="/keywords/string_slice.html">#string_slice</a>
+        
+      </dd>
+      
+
+      
+      
+      
+    </dl>
+
+    
+
+    
+    
+
+    <h3 id="description">Description</h3>
+    <p>Version 0.6.0 of the <code>simple_asn1</code> crate panics on certain malformed
+inputs to its parsing functions, including <code>from_der</code> and <code>der_decode</code>.
+Because this crate is frequently used with inputs from the network, this
+should be considered a security vulnerability.</p>
+<p>The issue occurs when parsing the old ASN.1 &quot;UTCTime&quot; time format.  If an
+attacker provides a UTCTime where the first character is ASCII but the
+second character is above 0x7f, a string slice operation in the
+<code>from_der_</code> function will try to slice into the middle of a UTF-8
+character, and cause a panic.</p>
+<p>This error was introduced in commit
+<a href="https://github.com/acw/simple_asn1/commit/d7d39d709577710e9dc8833ee57d200eef366db8"><code>d7d39d709577710e9dc8</code></a>,
+which updated <code>simple_asn1</code> to use <code>time</code> instead of <code>chrono</code> because of
+<a href="https://rustsec.org/advisories/RUSTSEC-2020-0159"><code>RUSTSEC-2020-159</code></a>.
+Versions of <code>simple_asn1</code> before 0.6.0 are not affected by this issue.</p>
+<p>The <a href="https://github.com/acw/simple_asn1/pull/28">patch</a> was applied in
+<code>simple_asn1</code> version 0.6.1.</p>
+
   </article>
 </main>

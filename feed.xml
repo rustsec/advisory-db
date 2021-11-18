@@ -352,6 +352,160 @@ println!(&amp;quot;{}&amp;quot;, string);
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;That example only prints the string &amp;quot;null&amp;quot;.&lt;/p&gt;
 
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2021-0125: Vulnerability in simple_asn1</title><id>https://rustsec.org/advisories/RUSTSEC-2021-0125.html</id><updated>2021-11-14T00:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2021-0125.html" rel="alternate" type="text/html" title="RUSTSEC-2021-0125: Vulnerability in simple_asn1"/><published>2021-11-14T00:00:00+00:00</published><summary xml:lang="en">Panic on incorrect date input to `simple_asn1`</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/simple_asn1/RUSTSEC-2021-0125.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/simple_asn1/RUSTSEC-2021-0125.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        
+        RUSTSEC-2021-0125
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Panic on incorrect date input to &lt;code&gt;simple_asn1&lt;/code&gt;&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2021-11-14&quot;&gt;
+          November 14, 2021
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        
+        &lt;a href=&quot;/packages/simple_asn1.html&quot;&gt;simple_asn1&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/simple_asn1&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/panic.html&quot;&gt;#panic&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/string_slice.html&quot;&gt;#string_slice&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https:&amp;#x2f;&amp;#x2f;github.com&amp;#x2f;acw&amp;#x2f;simple_asn1&amp;#x2f;issues&amp;#x2f;27&quot;&gt;
+          https:&amp;#x2f;&amp;#x2f;github.com&amp;#x2f;acw&amp;#x2f;simple_asn1&amp;#x2f;issues&amp;#x2f;27
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.6.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;lt;0.6.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/panic.html&quot;&gt;#panic&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/string_slice.html&quot;&gt;#string_slice&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      
+      
+    &lt;/dl&gt;
+
+    
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Version 0.6.0 of the &lt;code&gt;simple_asn1&lt;/code&gt; crate panics on certain malformed
+inputs to its parsing functions, including &lt;code&gt;from_der&lt;/code&gt; and &lt;code&gt;der_decode&lt;/code&gt;.
+Because this crate is frequently used with inputs from the network, this
+should be considered a security vulnerability.&lt;/p&gt;
+&lt;p&gt;The issue occurs when parsing the old ASN.1 &amp;quot;UTCTime&amp;quot; time format.  If an
+attacker provides a UTCTime where the first character is ASCII but the
+second character is above 0x7f, a string slice operation in the
+&lt;code&gt;from_der_&lt;/code&gt; function will try to slice into the middle of a UTF-8
+character, and cause a panic.&lt;/p&gt;
+&lt;p&gt;This error was introduced in commit
+&lt;a href=&quot;https://github.com/acw/simple_asn1/commit/d7d39d709577710e9dc8833ee57d200eef366db8&quot;&gt;&lt;code&gt;d7d39d709577710e9dc8&lt;/code&gt;&lt;/a&gt;,
+which updated &lt;code&gt;simple_asn1&lt;/code&gt; to use &lt;code&gt;time&lt;/code&gt; instead of &lt;code&gt;chrono&lt;/code&gt; because of
+&lt;a href=&quot;https://rustsec.org/advisories/RUSTSEC-2020-0159&quot;&gt;&lt;code&gt;RUSTSEC-2020-159&lt;/code&gt;&lt;/a&gt;.
+Versions of &lt;code&gt;simple_asn1&lt;/code&gt; before 0.6.0 are not affected by this issue.&lt;/p&gt;
+&lt;p&gt;The &lt;a href=&quot;https://github.com/acw/simple_asn1/pull/28&quot;&gt;patch&lt;/a&gt; was applied in
+&lt;code&gt;simple_asn1&lt;/code&gt; version 0.6.1.&lt;/p&gt;
+
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2021-0122: Vulnerability in flatbuffers</title><id>https://rustsec.org/advisories/RUSTSEC-2021-0122.html</id><updated>2021-10-31T00:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2021-0122.html" rel="alternate" type="text/html" title="RUSTSEC-2021-0122: Vulnerability in flatbuffers"/><published>2021-10-31T00:00:00+00:00</published><summary xml:lang="en">Generated code can read and write out of bounds in safe code</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
     
@@ -1508,161 +1662,5 @@ Wasmtime&lt;/a&gt;&lt;/p&gt;
 &lt;code&gt;Engine&lt;/code&gt;s&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2021-0111: Vulnerability in tremor-script</title><id>https://rustsec.org/advisories/RUSTSEC-2021-0111.html</id><updated>2021-09-16T00:00:00+00:00</updated><category term="memory-corruption"/><category term="memory-exposure"/><link href="https://rustsec.org/advisories/RUSTSEC-2021-0111.html" rel="alternate" type="text/html" title="RUSTSEC-2021-0111: Vulnerability in tremor-script"/><published>2021-09-16T00:00:00+00:00</published><summary xml:lang="en">Memory Safety Issue when using `patch` or `merge` on `state` and assign the result back to `state`</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/tremor-script/RUSTSEC-2021-0111.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/tremor-script/RUSTSEC-2021-0111.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        
-        RUSTSEC-2021-0111
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Memory Safety Issue when using &lt;code&gt;patch&lt;/code&gt; or &lt;code&gt;merge&lt;/code&gt; on &lt;code&gt;state&lt;/code&gt; and assign the result back to &lt;code&gt;state&lt;/code&gt;&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2021-09-16&quot;&gt;
-          September 16, 2021
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        
-        &lt;a href=&quot;/packages/tremor-script.html&quot;&gt;tremor-script&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/tremor-script&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/memory-exposure.html&quot;&gt;memory-exposure&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-
-      
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;a href=&quot;https:&amp;#x2f;&amp;#x2f;github.com&amp;#x2f;tremor-rs&amp;#x2f;tremor-runtime&amp;#x2f;pull&amp;#x2f;1217&quot;&gt;
-          https:&amp;#x2f;&amp;#x2f;github.com&amp;#x2f;tremor-rs&amp;#x2f;tremor-runtime&amp;#x2f;pull&amp;#x2f;1217
-        &lt;/a&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.11.6&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;lt;=0.7.2&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-
-      
-      
-      
-    &lt;/dl&gt;
-
-    
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;Affected versions of this crate maintains references to memory that might have been freed already.
-If affects the following two &lt;code&gt;tremor-script&lt;/code&gt; language constructs:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;A &lt;a href=&quot;https://www.tremor.rs/docs/tremor-script/index#merge&quot;&gt;Merge&lt;/a&gt; where we assign the result back to the target expression
-and the expression to be merged needs to reference the &lt;code&gt;event&lt;/code&gt;:&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;let state = merge state of event end;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;A &lt;a href=&quot;https://www.tremor.rs/docs/tremor-script/index#patch&quot;&gt;Patch&lt;/a&gt; where we assign the result back to the target expression
-and the patch operations used need to reference the &lt;code&gt;event&lt;/code&gt;:&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;let state = patch state of insert event.key =&amp;gt; event.value end;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;For constructs like this (it doesnt matter what is references in the expression to be merged or the patch operations) an optimization
-was applied to manipulate the target value in-place, instead of cloning it.&lt;/p&gt;
-&lt;p&gt;Our &lt;code&gt;Value&lt;/code&gt; struct which underpins all event data in &lt;code&gt;tremor-script&lt;/code&gt;, is representing as borrowed strings &lt;code&gt;beef::Cow&amp;lt;&apos;lifetime, str&amp;gt;&lt;/code&gt;
-that reference the actual &lt;code&gt;Vec&amp;lt;u8&amp;gt;&lt;/code&gt; the event is based upon. We keep the raw byte-array next to the event structure inside our &lt;code&gt;Event&lt;/code&gt; struct as a self-referential struct,
-so we make sure that the structured &lt;code&gt;Value&lt;/code&gt; and its references are valid across its whole lifetime.&lt;/p&gt;
-&lt;p&gt;The optimization was considered safe as long as it was only possible to merge or patche &lt;code&gt;event&lt;/code&gt; data or static data.
-When &lt;code&gt;state&lt;/code&gt; was introduced to &lt;code&gt;tremor-script&lt;/code&gt; a new possibility existed, to keep &lt;code&gt;Value&lt;/code&gt; data around for longer than the lifetime of an event.
-If &lt;code&gt;event&lt;/code&gt; data is merged or patched into &lt;code&gt;state&lt;/code&gt; without cloning &lt;code&gt;state&lt;/code&gt; first, it can still reference keys or values from
-the previous event, which will now be invalid. This allows access to those already freed regions of memory and to get their content out over the wire.&lt;/p&gt;
-&lt;h2&gt;Workaround&lt;/h2&gt;
-&lt;p&gt;If an upgrade is not possible, a possible workaround is to avoid the optimization
-by introducing a temporary variable and not immediately reassigning to &lt;code&gt;state&lt;/code&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;let tmp = merge state of event end;
-let state = tmp
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2&gt;Fix&lt;/h2&gt;
-&lt;p&gt;The flaw was corrected in &lt;code&gt;tremor-script&lt;/code&gt; version 0.11.6 via commit &lt;a href=&quot;https://github.com/tremor-rs/tremor-runtime/commit/1a2efcdbe68e5e7fd0a05836ac32d2cde78a0b2e&quot;&gt;1a2efcd&lt;/a&gt; by removing the optimization
-and always clone the target expression of a &lt;a href=&quot;https://www.tremor.rs/docs/tremor-script/index#merge&quot;&gt;Merge&lt;/a&gt; or [Patch](https://www.tremor.rs/docs/tremor-script/index#patch.&lt;/p&gt;
 
   &lt;/article&gt;</content></entry></feed>
