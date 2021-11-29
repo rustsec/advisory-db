@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories in category &#x27;file-disclosure&#x27; › RustSec Advisory Database</title>
+<title>RUSTSEC-2021-0126: rust-embed: RustEmbed generated `get` method allows for directory traversal when reading files from disk › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -38,105 +38,138 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/rust-embed/RUSTSEC-2021-0126.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/rust-embed/RUSTSEC-2021-0126.md">Edit</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        
+        RUSTSEC-2021-0126
+        
+      </h1>
+      <span class="subtitle"><p>RustEmbed generated <code>get</code> method allows for directory traversal when reading files from disk</p>
 </span>
-      <h1>Advisories in category &#x27;file-disclosure&#x27;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2021-11-29">
-    November 29, 2021
-  </time>
-
-  
-  
-  <h3>
     
-      
+    
+
+    <dl>
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2021-11-29">
+          November 29, 2021
+        </time>
+      </dd>
+
+      <dt id="package">Package</dt>
+      <dd>
         
         
-    
-    <a href="/advisories/RUSTSEC-2021-0126.html">
-      RUSTSEC-2021-0126: Vulnerability in rust-embed
-    </a>
-  </h3>
-  <span><p>RustEmbed generated <code>get</code> method allows for directory traversal when reading files from disk</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2021-07-12">
-    July 12, 2021
-  </time>
+        
+        <a href="/packages/rust-embed.html">rust-embed</a>
+          (<a href="https://crates.io/crates/rust-embed">crates.io</a>)
+        
+        
+      </dd>
 
-  
-  
-  <h3>
-    
-      
-      <span class="tag high">HIGH</span>
-    
-    <a href="/advisories/RUSTSEC-2021-0105.html">
-      RUSTSEC-2021-0105: Vulnerability in git-delta
-    </a>
-  </h3>
-  <span><p>Relative Path Traversal in git-delta</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2021-05-27">
-    May 27, 2021
-  </time>
+      <dt id="type">Type</dt>
+      <dd>
+        
+        
+        Vulnerability
+        
+      </dd>
 
-  
-  
-  <h3>
-    
       
-      <span class="tag low">LOW</span>
-    
-    <a href="/advisories/RUSTSEC-2021-0104.html">
-      RUSTSEC-2021-0104: Vulnerability in pleaser
-    </a>
-  </h3>
-  <span><p>File exposure in pleaser</p>
-</span>
-  
-</li>
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/file-disclosure.html">file-disclosure</a></li>
+          
+        </ul>
+      </dd>
       
-      <li>
-  <time datetime="2020-11-11">
-    November 11, 2020
-  </time>
 
-  
-  
-  <h3>
-    
       
-      <span class="tag medium">MEDIUM</span>
-    
-    <a href="/advisories/RUSTSEC-2020-0069.html">
-      RUSTSEC-2020-0069: Vulnerability in lettre
-    </a>
-  </h3>
-  <span><p>Argument injection in sendmail transport</p>
-</span>
-  
-</li>
       
-    </ul>
+
+      
+      
+
+      
+      <dt id="details">Details</dt>
+      <dd>
+        <a href="https:&#x2f;&#x2f;github.com&#x2f;pyros2097&#x2f;rust-embed&#x2f;issues&#x2f;159">
+          https:&#x2f;&#x2f;github.com&#x2f;pyros2097&#x2f;rust-embed&#x2f;issues&#x2f;159
+        </a>
+      </dd>
+      
+
+      
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        
+        <ul>
+          
+          <li><code>&gt;=6.3.0</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+      
+
+      
+      
+
+      
+      
+      
+    </dl>
+
+    
+
+    
+    
+
+    <h3 id="description">Description</h3>
+    <p>When running in debug mode and the <code>debug-embed</code> (off by default) feature is
+not enabled, the generated <code>get</code> method does not check that the input path is
+a child of the folder given.</p>
+<p>This allows attackers to read arbitrary files in the file system if they have
+control over the filename given. The following code will print the contents of
+your <code>/etc/passwd</code> if adjusted with a correct number of <code>../</code>s depending on
+where it is run from.</p>
+<pre><code class="language-rust">#[derive(rust_embed::RustEmbed)]
+#[folder = &quot;src/&quot;]
+pub struct Asset;
+
+fn main() {
+    let d = Asset::get(&quot;../../../etc/passwd&quot;).unwrap().data;
+    println!(&quot;{}&quot;, String::from_utf8_lossy(&amp;d));
+}
+</code></pre>
+<p>The flaw was corrected by canonicalizing the input filename and ensuring that
+it starts with the canonicalized folder path.</p>
+
   </article>
 </main>

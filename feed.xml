@@ -1,5 +1,137 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2021-11-16T00:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2021-0124: Vulnerability in tokio</title><id>https://rustsec.org/advisories/RUSTSEC-2021-0124.html</id><updated>2021-11-16T00:00:00+00:00</updated><category term="memory-corruption"/><category term="thread-safety"/><link href="https://rustsec.org/advisories/RUSTSEC-2021-0124.html" rel="alternate" type="text/html" title="RUSTSEC-2021-0124: Vulnerability in tokio"/><published>2021-11-16T00:00:00+00:00</published><summary xml:lang="en">Data race when sending and receiving after closing a `oneshot` channel</summary><content xml:lang="en" type="html">  &lt;article&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2021-11-29T00:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2021-0126: Vulnerability in rust-embed</title><id>https://rustsec.org/advisories/RUSTSEC-2021-0126.html</id><updated>2021-11-29T00:00:00+00:00</updated><category term="file-disclosure"/><link href="https://rustsec.org/advisories/RUSTSEC-2021-0126.html" rel="alternate" type="text/html" title="RUSTSEC-2021-0126: Vulnerability in rust-embed"/><published>2021-11-29T00:00:00+00:00</published><summary xml:lang="en">RustEmbed generated `get` method allows for directory traversal when reading files from disk</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/rust-embed/RUSTSEC-2021-0126.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/rust-embed/RUSTSEC-2021-0126.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        
+        RUSTSEC-2021-0126
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;RustEmbed generated &lt;code&gt;get&lt;/code&gt; method allows for directory traversal when reading files from disk&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2021-11-29&quot;&gt;
+          November 29, 2021
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        
+        &lt;a href=&quot;/packages/rust-embed.html&quot;&gt;rust-embed&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/rust-embed&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/file-disclosure.html&quot;&gt;file-disclosure&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https:&amp;#x2f;&amp;#x2f;github.com&amp;#x2f;pyros2097&amp;#x2f;rust-embed&amp;#x2f;issues&amp;#x2f;159&quot;&gt;
+          https:&amp;#x2f;&amp;#x2f;github.com&amp;#x2f;pyros2097&amp;#x2f;rust-embed&amp;#x2f;issues&amp;#x2f;159
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=6.3.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      
+
+      
+      
+
+      
+      
+      
+    &lt;/dl&gt;
+
+    
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;When running in debug mode and the &lt;code&gt;debug-embed&lt;/code&gt; (off by default) feature is
+not enabled, the generated &lt;code&gt;get&lt;/code&gt; method does not check that the input path is
+a child of the folder given.&lt;/p&gt;
+&lt;p&gt;This allows attackers to read arbitrary files in the file system if they have
+control over the filename given. The following code will print the contents of
+your &lt;code&gt;/etc/passwd&lt;/code&gt; if adjusted with a correct number of &lt;code&gt;../&lt;/code&gt;s depending on
+where it is run from.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-rust&quot;&gt;#[derive(rust_embed::RustEmbed)]
+#[folder = &amp;quot;src/&amp;quot;]
+pub struct Asset;
+
+fn main() {
+    let d = Asset::get(&amp;quot;../../../etc/passwd&amp;quot;).unwrap().data;
+    println!(&amp;quot;{}&amp;quot;, String::from_utf8_lossy(&amp;amp;d));
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The flaw was corrected by canonicalizing the input filename and ensuring that
+it starts with the canonicalized folder path.&lt;/p&gt;
+
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2021-0124: Vulnerability in tokio</title><id>https://rustsec.org/advisories/RUSTSEC-2021-0124.html</id><updated>2021-11-16T00:00:00+00:00</updated><category term="memory-corruption"/><category term="thread-safety"/><link href="https://rustsec.org/advisories/RUSTSEC-2021-0124.html" rel="alternate" type="text/html" title="RUSTSEC-2021-0124: Vulnerability in tokio"/><published>2021-11-16T00:00:00+00:00</published><summary xml:lang="en">Data race when sending and receiving after closing a `oneshot` channel</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -1393,274 +1525,5 @@ only editable by the root user.&lt;/p&gt;
     &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
     &lt;p&gt;&lt;code&gt;TlsWyRand&lt;/code&gt;&apos;s implementation of &lt;code&gt;Deref&lt;/code&gt; unconditionally dereferences a raw pointer, and returns
 multiple mutable references to the same object, which is undefined behavior.&lt;/p&gt;
-
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2021-0110: Vulnerability in wasmtime</title><id>https://rustsec.org/advisories/RUSTSEC-2021-0110.html</id><updated>2021-09-17T00:00:00+00:00</updated><category term="memory-corruption"/><category term="memory-exposure"/><link href="https://rustsec.org/advisories/RUSTSEC-2021-0110.html" rel="alternate" type="text/html" title="RUSTSEC-2021-0110: Vulnerability in wasmtime"/><published>2021-09-17T00:00:00+00:00</published><summary xml:lang="en">Multiple Vulnerabilities in Wasmtime</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/wasmtime/RUSTSEC-2021-0110.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/wasmtime/RUSTSEC-2021-0110.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        
-        RUSTSEC-2021-0110
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Multiple Vulnerabilities in Wasmtime&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2021-09-17&quot;&gt;
-          September 17, 2021
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        
-        &lt;a href=&quot;/packages/wasmtime.html&quot;&gt;wasmtime&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/wasmtime&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/memory-exposure.html&quot;&gt;memory-exposure&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/use-after-free.html&quot;&gt;#use-after-free&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/out-of-bounds-read.html&quot;&gt;#out-of-bounds-read&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/out-of-bounds-write.html&quot;&gt;#out-of-bounds-write&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/Wasm.html&quot;&gt;#Wasm&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/garbage-collection.html&quot;&gt;#garbage-collection&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            
-            &lt;a href=&quot;https:&amp;#x2f;&amp;#x2f;cve.mitre.org&amp;#x2f;cgi-bin&amp;#x2f;cvename.cgi?name=CVE-2021-39216&quot;&gt;CVE-2021-39216&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-          &lt;li&gt;
-            
-            
-            &lt;a href=&quot;https:&amp;#x2f;&amp;#x2f;cve.mitre.org&amp;#x2f;cgi-bin&amp;#x2f;cvename.cgi?name=CVE-2021-39219&quot;&gt;CVE-2021-39219&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-          &lt;li&gt;
-            
-            
-            &lt;a href=&quot;https:&amp;#x2f;&amp;#x2f;cve.mitre.org&amp;#x2f;cgi-bin&amp;#x2f;cvename.cgi?name=CVE-2021-39218&quot;&gt;CVE-2021-39218&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-
-      
-      
-
-      
-      
-      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
-      &lt;dd&gt;6.3 &lt;span class=&quot;tag medium&quot;&gt;
-        MEDIUM
-      &lt;/span&gt;&lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;dl&gt;
-          
-          
-          &lt;dt&gt;Attack vector&lt;/dt&gt;&lt;dd&gt;Local&lt;/dd&gt;
-          
-
-          
-          
-          &lt;dt&gt;Attack complexity&lt;/dt&gt;&lt;dd&gt;High&lt;/d&gt;
-          
-
-          
-          
-          &lt;dt&gt;Privileges required&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
-          
-
-          
-          
-          &lt;dt&gt;User interaction&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
-          
-
-          
-          
-          &lt;dt&gt;Scope&lt;/dt&gt;&lt;dd&gt;Unchanged&lt;/dd&gt;
-          
-
-          
-          
-          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
-          
-
-          
-          
-          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
-          
-
-          
-          
-          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
-          
-        &lt;/dl&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
-      &lt;dd&gt;&lt;a href=&quot;https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=CVSS:3.1&amp;#x2f;AV:L&amp;#x2f;AC:H&amp;#x2f;PR:L&amp;#x2f;UI:N&amp;#x2f;S:U&amp;#x2f;C:N&amp;#x2f;I:H&amp;#x2f;A:H&quot;&gt;CVSS:3.1&amp;#x2f;AV:L&amp;#x2f;AC:H&amp;#x2f;PR:L&amp;#x2f;UI:N&amp;#x2f;S:U&amp;#x2f;C:N&amp;#x2f;I:H&amp;#x2f;A:H&lt;/a&gt;&lt;/dd&gt;
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.30.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/use-after-free.html&quot;&gt;#use-after-free&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/out-of-bounds-read.html&quot;&gt;#out-of-bounds-read&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/out-of-bounds-write.html&quot;&gt;#out-of-bounds-write&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/Wasm.html&quot;&gt;#Wasm&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/garbage-collection.html&quot;&gt;#garbage-collection&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-      
-      
-      
-
-      
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-    
-    &lt;dl&gt;
-      &lt;dt&gt;Affected Functions&lt;/dt&gt;
-      &lt;dd&gt;Version&lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;wasmtime::Linker::func_new&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;lt;0.30.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;wasmtime::Linker::func_wrap&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;lt;0.30.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;wasmtime::Store::gc&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;lt;0.30.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-    &lt;/dl&gt;
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-v4cp-h94r-m7xf&quot;&gt;Use after free passing &lt;code&gt;externref&lt;/code&gt;s to Wasm in
-Wasmtime&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-4873-36h9-wv49&quot;&gt;Out-of-bounds read/write and invalid free with &lt;code&gt;externref&lt;/code&gt;s and GC safepoints
-in
-Wasmtime&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-q879-9g95-56mx&quot;&gt;Wrong type for &lt;code&gt;Linker&lt;/code&gt;-define functions when used across two
-&lt;code&gt;Engine&lt;/code&gt;s&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
 
   &lt;/article&gt;</content></entry></feed>
