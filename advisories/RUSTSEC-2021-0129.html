@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package &#x27;openssl-src&#x27; › RustSec Advisory Database</title>
+<title>RUSTSEC-2021-0129: openssl-src: Invalid handling of `X509_verify_cert()` internal errors in libssl › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -38,189 +38,159 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/openssl-src/RUSTSEC-2021-0129.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/openssl-src/RUSTSEC-2021-0129.md">Edit</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        
+        RUSTSEC-2021-0129
+        
+      </h1>
+      <span class="subtitle"><p>Invalid handling of <code>X509_verify_cert()</code> internal errors in libssl</p>
 </span>
-      <h1>Advisories for package &#x27;openssl-src&#x27;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2021-12-14">
-    December 14, 2021
-  </time>
-
-  
-  
-  <h3>
     
-      
+    
+
+    <dl>
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2021-12-14">
+          December 14, 2021
+        </time>
+      </dd>
+
+      <dt id="package">Package</dt>
+      <dd>
         
         
-    
-    <a href="/advisories/RUSTSEC-2021-0129.html">
-      RUSTSEC-2021-0129: Vulnerability in openssl-src
-    </a>
-  </h3>
-  <span><p>Invalid handling of <code>X509_verify_cert()</code> internal errors in libssl</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2021-08-24">
-    August 24, 2021
-  </time>
+        
+        <a href="/packages/openssl-src.html">openssl-src</a>
+          (<a href="https://crates.io/crates/openssl-src">crates.io</a>)
+        
+        
+      </dd>
 
-  
-  
-  <h3>
-    
-      
-      <span class="tag high">HIGH</span>
-    
-    <a href="/advisories/RUSTSEC-2021-0098.html">
-      RUSTSEC-2021-0098: Vulnerability in openssl-src
-    </a>
-  </h3>
-  <span><p>Read buffer overruns processing ASN.1 strings</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2021-08-24">
-    August 24, 2021
-  </time>
+      <dt id="type">Type</dt>
+      <dd>
+        
+        
+        Vulnerability
+        
+      </dd>
 
-  
-  
-  <h3>
-    
       
-      <span class="tag critical">CRITICAL</span>
-    
-    <a href="/advisories/RUSTSEC-2021-0097.html">
-      RUSTSEC-2021-0097: Vulnerability in openssl-src
-    </a>
-  </h3>
-  <span><p>SM2 Decryption Buffer Overflow</p>
-</span>
-  
-</li>
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/denial-of-service.html">denial-of-service</a></li>
+          
+        </ul>
+      </dd>
       
-      <li>
-  <time datetime="2021-05-01">
-    May  1, 2021
-  </time>
 
-  
-  
-  <h3>
-    
       
-      <span class="tag medium">MEDIUM</span>
-    
-    <a href="/advisories/RUSTSEC-2021-0055.html">
-      RUSTSEC-2021-0055: Vulnerability in openssl-src
-    </a>
-  </h3>
-  <span><p>NULL pointer deref in signature_algorithms processing</p>
-</span>
-  
-</li>
       
-      <li>
-  <time datetime="2021-05-01">
-    May  1, 2021
-  </time>
 
-  
-  
-  <h3>
-    
       
-      <span class="tag medium">MEDIUM</span>
-    
-    <a href="/advisories/RUSTSEC-2021-0058.html">
-      RUSTSEC-2021-0058: Vulnerability in openssl-src
-    </a>
-  </h3>
-  <span><p>Null pointer deref in <code>X509_issuer_and_serial_hash()</code></p>
-</span>
-  
-</li>
+      <dt id="aliases">Aliases</dt>
+      <dd>
+        <ul>
+          
+          <li>
+            
+            
+            <a href="https:&#x2f;&#x2f;cve.mitre.org&#x2f;cgi-bin&#x2f;cvename.cgi?name=CVE-2021-4044">CVE-2021-4044</a>
+            
+          </li>
+          
+        </ul>
+      </dd>
       
-      <li>
-  <time datetime="2021-05-01">
-    May  1, 2021
-  </time>
 
-  
-  
-  <h3>
-    
       
-      <span class="tag high">HIGH</span>
-    
-    <a href="/advisories/RUSTSEC-2021-0056.html">
-      RUSTSEC-2021-0056: Vulnerability in openssl-src
-    </a>
-  </h3>
-  <span><p>CA certificate check bypass with X509_V_FLAG_X509_STRICT</p>
-</span>
-  
-</li>
+      <dt id="details">Details</dt>
+      <dd>
+        <a href="https:&#x2f;&#x2f;www.openssl.org&#x2f;news&#x2f;secadv&#x2f;20211214.txt">
+          https:&#x2f;&#x2f;www.openssl.org&#x2f;news&#x2f;secadv&#x2f;20211214.txt
+        </a>
+      </dd>
       
-      <li>
-  <time datetime="2021-05-01">
-    May  1, 2021
-  </time>
 
-  
-  
-  <h3>
-    
       
-      <span class="tag high">HIGH</span>
-    
-    <a href="/advisories/RUSTSEC-2021-0057.html">
-      RUSTSEC-2021-0057: Vulnerability in openssl-src
-    </a>
-  </h3>
-  <span><p>Integer overflow in CipherUpdate</p>
-</span>
-  
-</li>
       
-      <li>
-  <time datetime="2020-04-25">
-    April 25, 2020
-  </time>
 
-  
-  
-  <h3>
-    
       
-      <span class="tag high">HIGH</span>
-    
-    <a href="/advisories/RUSTSEC-2020-0015.html">
-      RUSTSEC-2020-0015: Vulnerability in openssl-src
-    </a>
-  </h3>
-  <span><p>Crash causing Denial of Service attack</p>
-</span>
-  
-</li>
+
       
-    </ul>
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        
+        <ul>
+          
+          <li><code>&gt;=300.0.4</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+      <dt id="unaffected">Unaffected</dt>
+      <dd>
+        <ul>
+          
+          <li><code>&lt;300.0.0</code></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      
+
+      
+      
+      
+    </dl>
+
+    
+
+    
+    
+
+    <h3 id="description">Description</h3>
+    <p>Internally libssl in OpenSSL calls <code>X509_verify_cert()</code> on the client side to
+verify a certificate supplied by a server. That function may return a negative
+return value to indicate an internal error (for example out of memory). Such a
+negative return value is mishandled by OpenSSL and will cause an IO function
+(such as <code>SSL_connect()</code> or <code>SSL_do_handshake()</code>) to not indicate success and a
+subsequent call to <code>SSL_get_error()</code> to return the value
+<code>SSL_ERROR_WANT_RETRY_VERIFY</code>. This return value is only supposed to be returned
+by OpenSSL if the application has previously called
+<code>SSL_CTX_set_cert_verify_callback()</code>. Since most applications do not do this the
+<code>SSL_ERROR_WANT_RETRY_VERIFY</code> return value from <code>SSL_get_error()</code> will be totally
+unexpected and applications may not behave correctly as a result. The exact
+behaviour will depend on the application but it could result in crashes,
+infinite loops or other similar incorrect responses.</p>
+<p>This issue is made more serious in combination with a separate bug in OpenSSL
+3.0 that will cause <code>X509_verify_cert()</code> to indicate an internal error when
+processing a certificate chain. This will occur where a certificate does not
+include the Subject Alternative Name extension but where a Certificate Authority
+has enforced name constraints. This issue can occur even with valid chains.</p>
+
   </article>
 </main>
