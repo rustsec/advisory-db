@@ -1,0 +1,61 @@
+{
+  "id": "RUSTSEC-2021-0129",
+  "modified": "2021-12-15T00:18:24Z",
+  "published": "2021-12-14T12:00:00Z",
+  "aliases": [
+    "CVE-2021-4044"
+  ],
+  "related": [],
+  "summary": "Invalid handling of `X509_verify_cert()` internal errors in libssl",
+  "details": "Internally libssl in OpenSSL calls `X509_verify_cert()` on the client side to\nverify a certificate supplied by a server. That function may return a negative\nreturn value to indicate an internal error (for example out of memory). Such a\nnegative return value is mishandled by OpenSSL and will cause an IO function\n(such as `SSL_connect()` or `SSL_do_handshake()`) to not indicate success and a\nsubsequent call to `SSL_get_error()` to return the value\n`SSL_ERROR_WANT_RETRY_VERIFY`. This return value is only supposed to be returned\nby OpenSSL if the application has previously called\n`SSL_CTX_set_cert_verify_callback()`. Since most applications do not do this the\n`SSL_ERROR_WANT_RETRY_VERIFY` return value from `SSL_get_error()` will be totally\nunexpected and applications may not behave correctly as a result. The exact\nbehaviour will depend on the application but it could result in crashes,\ninfinite loops or other similar incorrect responses.\n\nThis issue is made more serious in combination with a separate bug in OpenSSL\n3.0 that will cause `X509_verify_cert()` to indicate an internal error when\nprocessing a certificate chain. This will occur where a certificate does not\ninclude the Subject Alternative Name extension but where a Certificate Authority\nhas enforced name constraints. This issue can occur even with valid chains.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "openssl-src",
+        "purl": "pkg:cargo/openssl-src"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        }
+      },
+      "database_specific": {
+        "categories": [
+          "denial-of-service"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "300.0.0"
+            },
+            {
+              "fixed": "300.0.4"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/openssl-src"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2021-0129.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://www.openssl.org/news/secadv/20211214.txt"
+    }
+  ]
+}
