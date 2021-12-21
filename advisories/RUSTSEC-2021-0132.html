@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories with keyword &#x27;integer-overflow&#x27; › RustSec Advisory Database</title>
+<title>RUSTSEC-2021-0132: compu-brotli-sys: Integer overflow in the bundled Brotli C library › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -38,85 +38,153 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/compu-brotli-sys/RUSTSEC-2021-0132.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/compu-brotli-sys/RUSTSEC-2021-0132.md">Edit</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        
+        RUSTSEC-2021-0132
+        
+      </h1>
+      <span class="subtitle"><p>Integer overflow in the bundled Brotli C library</p>
 </span>
-      <h1>Advisories with keyword &#x27;integer-overflow&#x27;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2021-12-20">
-    December 20, 2021
-  </time>
+    
+    
 
-  
-  
-  <h3>
-    
-      
-        
-        
-    
-    <a href="/advisories/RUSTSEC-2021-0131.html">
-      RUSTSEC-2021-0131: Vulnerability in brotli-sys
-    </a>
-  </h3>
-  <span><p>Integer overflow in the bundled Brotli C library</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2021-12-20">
-    December 20, 2021
-  </time>
+    <dl>
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2021-12-20">
+          December 20, 2021
+        </time>
+      </dd>
 
-  
-  
-  <h3>
-    
-      
+      <dt id="package">Package</dt>
+      <dd>
         
         
-    
-    <a href="/advisories/RUSTSEC-2021-0132.html">
-      RUSTSEC-2021-0132: Vulnerability in compu-brotli-sys
-    </a>
-  </h3>
-  <span><p>Integer overflow in the bundled Brotli C library</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2019-11-16">
-    November 16, 2019
-  </time>
+        
+        <a href="/packages/compu-brotli-sys.html">compu-brotli-sys</a>
+          (<a href="https://crates.io/crates/compu-brotli-sys">crates.io</a>)
+        
+        
+      </dd>
 
-  
-  
-  <h3>
-    
+      <dt id="type">Type</dt>
+      <dd>
+        
+        
+        Vulnerability
+        
+      </dd>
+
       
-      <span class="tag high">HIGH</span>
-    
-    <a href="/advisories/RUSTSEC-2019-0033.html">
-      RUSTSEC-2019-0033: Vulnerability in http
-    </a>
-  </h3>
-  <span><p>Integer Overflow in HeaderMap::reserve() can cause Denial of Service</p>
-</span>
-  
-</li>
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/memory-corruption.html">memory-corruption</a></li>
+          
+        </ul>
+      </dd>
       
-    </ul>
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/integer-overflow.html">#integer-overflow</a>
+        
+      </dd>
+      
+
+      
+      <dt id="aliases">Aliases</dt>
+      <dd>
+        <ul>
+          
+          <li>
+            
+            
+            <a href="https:&#x2f;&#x2f;cve.mitre.org&#x2f;cgi-bin&#x2f;cvename.cgi?name=CVE-2020-8927">CVE-2020-8927</a>
+            
+          </li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="details">Details</dt>
+      <dd>
+        <a href="https:&#x2f;&#x2f;github.com&#x2f;google&#x2f;brotli&#x2f;releases&#x2f;tag&#x2f;v1.0.9">
+          https:&#x2f;&#x2f;github.com&#x2f;google&#x2f;brotli&#x2f;releases&#x2f;tag&#x2f;v1.0.9
+        </a>
+      </dd>
+      
+
+      
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        
+        <ul>
+          
+          <li><code>&gt;=1.0.9</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/integer-overflow.html">#integer-overflow</a>
+        
+      </dd>
+      
+
+      
+      
+      
+      
+
+      
+      
+      
+    </dl>
+
+    
+    
+    
+    
+    
+
+    <h3 id="description">Description</h3>
+    <p>A buffer overflow exists in the Brotli library versions prior to 1.0.8 where an attacker controlling the input length of a &quot;one-shot&quot; decompression request to a script can trigger a crash, which happens when copying over chunks of data larger than 2 GiB.</p>
+<p>If one cannot update the C library, its authors recommend to use the &quot;streaming&quot; API as opposed to the &quot;one-shot&quot; API, and impose chunk size limits.</p>
+
   </article>
 </main>

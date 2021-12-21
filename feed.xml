@@ -302,6 +302,153 @@ which is already dropped causing use after free.&lt;/p&gt;
 &lt;p&gt;An updated version of &lt;code&gt;brotli-sys&lt;/code&gt; has not been released. If one cannot update the C library, its authors recommend to use the &amp;quot;streaming&amp;quot; API as opposed to the &amp;quot;one-shot&amp;quot; API, and impose chunk size limits.&lt;/p&gt;
 &lt;p&gt;In Rust the issue can be mitigated by migrating to the &lt;code&gt;brotli&lt;/code&gt; crate, which provides a Rust implementation of Brotli compression and decompression that is not affected by this issue.&lt;/p&gt;
 
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2021-0132: Vulnerability in compu-brotli-sys</title><id>https://rustsec.org/advisories/RUSTSEC-2021-0132.html</id><updated>2021-12-20T00:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2021-0132.html" rel="alternate" type="text/html" title="RUSTSEC-2021-0132: Vulnerability in compu-brotli-sys"/><published>2021-12-20T00:00:00+00:00</published><summary xml:lang="en">Integer overflow in the bundled Brotli C library</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/compu-brotli-sys/RUSTSEC-2021-0132.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/compu-brotli-sys/RUSTSEC-2021-0132.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        
+        RUSTSEC-2021-0132
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Integer overflow in the bundled Brotli C library&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2021-12-20&quot;&gt;
+          December 20, 2021
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        
+        &lt;a href=&quot;/packages/compu-brotli-sys.html&quot;&gt;compu-brotli-sys&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/compu-brotli-sys&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/integer-overflow.html&quot;&gt;#integer-overflow&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            
+            &lt;a href=&quot;https:&amp;#x2f;&amp;#x2f;cve.mitre.org&amp;#x2f;cgi-bin&amp;#x2f;cvename.cgi?name=CVE-2020-8927&quot;&gt;CVE-2020-8927&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https:&amp;#x2f;&amp;#x2f;github.com&amp;#x2f;google&amp;#x2f;brotli&amp;#x2f;releases&amp;#x2f;tag&amp;#x2f;v1.0.9&quot;&gt;
+          https:&amp;#x2f;&amp;#x2f;github.com&amp;#x2f;google&amp;#x2f;brotli&amp;#x2f;releases&amp;#x2f;tag&amp;#x2f;v1.0.9
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=1.0.9&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/integer-overflow.html&quot;&gt;#integer-overflow&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      
+      
+      
+
+      
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;A buffer overflow exists in the Brotli library versions prior to 1.0.8 where an attacker controlling the input length of a &amp;quot;one-shot&amp;quot; decompression request to a script can trigger a crash, which happens when copying over chunks of data larger than 2 GiB.&lt;/p&gt;
+&lt;p&gt;If one cannot update the C library, its authors recommend to use the &amp;quot;streaming&amp;quot; API as opposed to the &amp;quot;one-shot&amp;quot; API, and impose chunk size limits.&lt;/p&gt;
+
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2021-0129: Vulnerability in openssl-src</title><id>https://rustsec.org/advisories/RUSTSEC-2021-0129.html</id><updated>2021-12-14T00:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2021-0129.html" rel="alternate" type="text/html" title="RUSTSEC-2021-0129: Vulnerability in openssl-src"/><published>2021-12-14T00:00:00+00:00</published><summary xml:lang="en">Invalid handling of `X509_verify_cert()` internal errors in libssl</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
     
@@ -1492,110 +1639,5 @@ See https://github.com/google/flatbuffers/issues/6627 for details.&lt;/p&gt;
 &lt;li&gt;Carefuly go through the crates&apos; documentation to understand which &amp;quot;safe&amp;quot; APIs are not
 intended to be used.&lt;/li&gt;
 &lt;/ol&gt;
-
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2021-0120: Unsoundness in abomonation</title><id>https://rustsec.org/advisories/RUSTSEC-2021-0120.html</id><updated>2021-10-17T00:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2021-0120.html" rel="alternate" type="text/html" title="RUSTSEC-2021-0120: Unsoundness in abomonation"/><published>2021-10-17T00:00:00+00:00</published><summary xml:lang="en">abomonation transmutes &amp;amp;T to and from &amp;amp;[u8] without sufficient constraints</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/abomonation/RUSTSEC-2021-0120.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/abomonation/RUSTSEC-2021-0120.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        
-        RUSTSEC-2021-0120
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;abomonation transmutes &amp;amp;T to and from &amp;amp;[u8] without sufficient constraints&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2021-10-17&quot;&gt;
-          October 17, 2021
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        
-        &lt;a href=&quot;/packages/abomonation.html&quot;&gt;abomonation&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/abomonation&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unsound
-        
-      &lt;/dd&gt;
-
-      
-      
-
-      
-      
-
-      
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;a href=&quot;https:&amp;#x2f;&amp;#x2f;github.com&amp;#x2f;TimelyDataflow&amp;#x2f;abomonation&amp;#x2f;issues&amp;#x2f;23&quot;&gt;
-          https:&amp;#x2f;&amp;#x2f;github.com&amp;#x2f;TimelyDataflow&amp;#x2f;abomonation&amp;#x2f;issues&amp;#x2f;23
-        &lt;/a&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-      
-
-      
-      
-
-      
-      
-      
-    &lt;/dl&gt;
-
-    
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;This transmute is at the core of the abomonation crates. It&apos;s so easy to use it to violate alignment requirements that no test in the crate&apos;s test suite passes under miri.
-The use of this transmute in serialization/deserialization also incorrectly assumes that the layout of a repr(Rust) type is stable.
-This transmute can also disclose both the contents of padding bytes which may be an information leak and the contents of pointers, which may be used to defeat ASLR.&lt;/p&gt;
 
   &lt;/article&gt;</content></entry></feed>
