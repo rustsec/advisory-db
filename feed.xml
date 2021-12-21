@@ -159,6 +159,149 @@ references to key and value. Calling specific functions, like pop(), will remove
 and free the value, and but it&apos;s still possible to access the reference of value
 which is already dropped causing use after free.&lt;/p&gt;
 
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2021-0131: Vulnerability in brotli-sys</title><id>https://rustsec.org/advisories/RUSTSEC-2021-0131.html</id><updated>2021-12-20T00:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2021-0131.html" rel="alternate" type="text/html" title="RUSTSEC-2021-0131: Vulnerability in brotli-sys"/><published>2021-12-20T00:00:00+00:00</published><summary xml:lang="en">Integer overflow in the bundled Brotli C library</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/brotli-sys/RUSTSEC-2021-0131.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/brotli-sys/RUSTSEC-2021-0131.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        
+        RUSTSEC-2021-0131
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Integer overflow in the bundled Brotli C library&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2021-12-20&quot;&gt;
+          December 20, 2021
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        
+        &lt;a href=&quot;/packages/brotli-sys.html&quot;&gt;brotli-sys&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/brotli-sys&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/integer-overflow.html&quot;&gt;#integer-overflow&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            
+            &lt;a href=&quot;https:&amp;#x2f;&amp;#x2f;cve.mitre.org&amp;#x2f;cgi-bin&amp;#x2f;cvename.cgi?name=CVE-2020-8927&quot;&gt;CVE-2020-8927&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https:&amp;#x2f;&amp;#x2f;github.com&amp;#x2f;bitemyapp&amp;#x2f;brotli2-rs&amp;#x2f;issues&amp;#x2f;45&quot;&gt;
+          https:&amp;#x2f;&amp;#x2f;github.com&amp;#x2f;bitemyapp&amp;#x2f;brotli2-rs&amp;#x2f;issues&amp;#x2f;45
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/integer-overflow.html&quot;&gt;#integer-overflow&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      
+      
+      
+
+      
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;A buffer overflow exists in the Brotli library versions prior to 1.0.8 where an attacker controlling the input length of a &amp;quot;one-shot&amp;quot; decompression request to a script can trigger a crash, which happens when copying over chunks of data larger than 2 GiB.&lt;/p&gt;
+&lt;p&gt;An updated version of &lt;code&gt;brotli-sys&lt;/code&gt; has not been released. If one cannot update the C library, its authors recommend to use the &amp;quot;streaming&amp;quot; API as opposed to the &amp;quot;one-shot&amp;quot; API, and impose chunk size limits.&lt;/p&gt;
+&lt;p&gt;In Rust the issue can be mitigated by migrating to the &lt;code&gt;brotli&lt;/code&gt; crate, which provides a Rust implementation of Brotli compression and decompression that is not affected by this issue.&lt;/p&gt;
+
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2021-0129: Vulnerability in openssl-src</title><id>https://rustsec.org/advisories/RUSTSEC-2021-0129.html</id><updated>2021-12-14T00:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2021-0129.html" rel="alternate" type="text/html" title="RUSTSEC-2021-0129: Vulnerability in openssl-src"/><published>2021-12-14T00:00:00+00:00</published><summary xml:lang="en">Invalid handling of `X509_verify_cert()` internal errors in libssl</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
     
@@ -1454,167 +1597,5 @@ intended to be used.&lt;/li&gt;
     &lt;p&gt;This transmute is at the core of the abomonation crates. It&apos;s so easy to use it to violate alignment requirements that no test in the crate&apos;s test suite passes under miri.
 The use of this transmute in serialization/deserialization also incorrectly assumes that the layout of a repr(Rust) type is stable.
 This transmute can also disclose both the contents of padding bytes which may be an information leak and the contents of pointers, which may be used to defeat ASLR.&lt;/p&gt;
-
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2021-0121: Unsoundness in crypto2</title><id>https://rustsec.org/advisories/RUSTSEC-2021-0121.html</id><updated>2021-10-08T00:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2021-0121.html" rel="alternate" type="text/html" title="RUSTSEC-2021-0121: Unsoundness in crypto2"/><published>2021-10-08T00:00:00+00:00</published><summary xml:lang="en">Non-aligned u32 read in Chacha20 encryption and decryption</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/crypto2/RUSTSEC-2021-0121.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/crypto2/RUSTSEC-2021-0121.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        
-        RUSTSEC-2021-0121
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Non-aligned u32 read in Chacha20 encryption and decryption&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2021-10-08&quot;&gt;
-          October  8, 2021
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        
-        &lt;a href=&quot;/packages/crypto2.html&quot;&gt;crypto2&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/crypto2&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unsound
-        
-      &lt;/dd&gt;
-
-      
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/crypto.html&quot;&gt;#crypto&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/alignment.html&quot;&gt;#alignment&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/unsound.html&quot;&gt;#unsound&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;a href=&quot;https:&amp;#x2f;&amp;#x2f;github.com&amp;#x2f;shadowsocks&amp;#x2f;crypto2&amp;#x2f;issues&amp;#x2f;27&quot;&gt;
-          https:&amp;#x2f;&amp;#x2f;github.com&amp;#x2f;shadowsocks&amp;#x2f;crypto2&amp;#x2f;issues&amp;#x2f;27
-        &lt;/a&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/crypto.html&quot;&gt;#crypto&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/alignment.html&quot;&gt;#alignment&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/unsound.html&quot;&gt;#unsound&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-      
-      
-      
-
-      
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-    
-    &lt;dl&gt;
-      &lt;dt&gt;Affected Functions&lt;/dt&gt;
-      &lt;dd&gt;Version&lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;crypto2::streamcipher::Chacha20::decrypt_slice&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;crypto2::streamcipher::Chacha20::encrypt_slice&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;crypto2::streamcipher::xor_si512_inplace&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-    &lt;/dl&gt;
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;The implementation does not enforce alignment requirements on input slices while incorrectly assuming 4-byte alignment through an unsafe call to &lt;code&gt;std::slice::from_raw_parts_mut&lt;/code&gt;, which breaks the contract and introduces undefined behavior.&lt;/p&gt;
-&lt;p&gt;This affects Chacha20 encryption and decryption in crypto2.&lt;/p&gt;
 
   &lt;/article&gt;</content></entry></feed>
