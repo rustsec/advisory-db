@@ -108,11 +108,11 @@
         
         
     
-    <a href="/advisories/RUSTSEC-2021-0118.html">
-      RUSTSEC-2021-0118: Vulnerability in arrow
+    <a href="/advisories/RUSTSEC-2021-0116.html">
+      RUSTSEC-2021-0116: Vulnerability in arrow
     </a>
   </h3>
-  <span><p><code>FixedSizeBinaryArray</code> does not perform bound checks on accessing values and offsets</p>
+  <span><p><code>BinaryArray</code> does not perform bound checks on reading values and offsets</p>
 </span>
   
 </li>
@@ -130,11 +130,11 @@
         
         
     
-    <a href="/advisories/RUSTSEC-2021-0116.html">
-      RUSTSEC-2021-0116: Vulnerability in arrow
+    <a href="/advisories/RUSTSEC-2021-0118.html">
+      RUSTSEC-2021-0118: Vulnerability in arrow
     </a>
   </h3>
-  <span><p><code>BinaryArray</code> does not perform bound checks on reading values and offsets</p>
+  <span><p><code>FixedSizeBinaryArray</code> does not perform bound checks on accessing values and offsets</p>
 </span>
   
 </li>
@@ -410,6 +410,28 @@
   <h3>
     
       
+        
+        
+    
+    <a href="/advisories/RUSTSEC-2021-0092.html">
+      RUSTSEC-2021-0092: Vulnerability in messagepack-rs
+    </a>
+  </h3>
+  <span><p>Deserialization functions pass uninitialized memory to user-provided Read</p>
+</span>
+  
+</li>
+      
+      <li>
+  <time datetime="2021-01-26">
+    January 26, 2021
+  </time>
+
+  
+  
+  <h3>
+    
+      
       <span class="tag high">HIGH</span>
     
     <a href="/advisories/RUSTSEC-2021-0014.html">
@@ -438,28 +460,6 @@
     </a>
   </h3>
   <span><p><code>IoReader::read()</code>: user-provided <code>Read</code> on uninitialized buffer may cause UB</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2021-01-26">
-    January 26, 2021
-  </time>
-
-  
-  
-  <h3>
-    
-      
-        
-        
-    
-    <a href="/advisories/RUSTSEC-2021-0092.html">
-      RUSTSEC-2021-0092: Vulnerability in messagepack-rs
-    </a>
-  </h3>
-  <span><p>Deserialization functions pass uninitialized memory to user-provided Read</p>
 </span>
   
 </li>
@@ -522,11 +522,11 @@
           <span class="tag info">INFO</span>
         
     
-    <a href="/advisories/RUSTSEC-2021-0086.html">
-      RUSTSEC-2021-0086: Unsoundness in flumedb
+    <a href="/advisories/RUSTSEC-2021-0087.html">
+      RUSTSEC-2021-0087: Unsoundness in columnar
     </a>
   </h3>
-  <span><p><code>Read</code> on uninitialized buffer may cause UB ( <code>read_entry()</code> )</p>
+  <span><p>columnar: <code>Read</code> on uninitialized buffer may cause UB (ColumnarReadExt::read_typed_vec())</p>
 </span>
   
 </li>
@@ -545,11 +545,11 @@
           <span class="tag info">INFO</span>
         
     
-    <a href="/advisories/RUSTSEC-2021-0087.html">
-      RUSTSEC-2021-0087: Unsoundness in columnar
+    <a href="/advisories/RUSTSEC-2021-0086.html">
+      RUSTSEC-2021-0086: Unsoundness in flumedb
     </a>
   </h3>
-  <span><p>columnar: <code>Read</code> on uninitialized buffer may cause UB (ColumnarReadExt::read_typed_vec())</p>
+  <span><p><code>Read</code> on uninitialized buffer may cause UB ( <code>read_entry()</code> )</p>
 </span>
   
 </li>
@@ -635,11 +635,11 @@
           <span class="tag info">INFO</span>
         
     
-    <a href="/advisories/RUSTSEC-2021-0085.html">
-      RUSTSEC-2021-0085: Unsoundness in binjs_io
+    <a href="/advisories/RUSTSEC-2021-0084.html">
+      RUSTSEC-2021-0084: Unsoundness in bronzedb-protocol
     </a>
   </h3>
-  <span><p>'Read' on uninitialized memory may cause UB</p>
+  <span><p><code>Read</code> on uninitialized buffer can cause UB (impl of <code>ReadKVExt</code>)</p>
 </span>
   
 </li>
@@ -658,32 +658,11 @@
           <span class="tag info">INFO</span>
         
     
-    <a href="/advisories/RUSTSEC-2021-0084.html">
-      RUSTSEC-2021-0084: Unsoundness in bronzedb-protocol
+    <a href="/advisories/RUSTSEC-2021-0085.html">
+      RUSTSEC-2021-0085: Unsoundness in binjs_io
     </a>
   </h3>
-  <span><p><code>Read</code> on uninitialized buffer can cause UB (impl of <code>ReadKVExt</code>)</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2021-01-02">
-    January  2, 2021
-  </time>
-
-  
-  
-  <h3>
-    
-      
-      <span class="tag critical">CRITICAL</span>
-    
-    <a href="/advisories/RUSTSEC-2021-0012.html">
-      RUSTSEC-2021-0012: Vulnerability in cdr
-    </a>
-  </h3>
-  <span><p>Reading uninitialized memory can cause UB (<code>Deserializer::read_vec</code>)</p>
+  <span><p>'Read' on uninitialized memory may cause UB</p>
 </span>
   
 </li>
@@ -710,8 +689,8 @@
 </li>
       
       <li>
-  <time datetime="2020-12-31">
-    December 31, 2020
+  <time datetime="2021-01-02">
+    January  2, 2021
   </time>
 
   
@@ -719,15 +698,13 @@
   <h3>
     
       
-        
-          <span class="tag info">INFO</span>
-        
+      <span class="tag critical">CRITICAL</span>
     
-    <a href="/advisories/RUSTSEC-2020-0153.html">
-      RUSTSEC-2020-0153: Unsoundness in bite
+    <a href="/advisories/RUSTSEC-2021-0012.html">
+      RUSTSEC-2021-0012: Vulnerability in cdr
     </a>
   </h3>
-  <span><p><code>read</code> on uninitialized buffer may cause UB (bite::read::BiteReadExpandedExt::read_framed_max)</p>
+  <span><p>Reading uninitialized memory can cause UB (<code>Deserializer::read_vec</code>)</p>
 </span>
   
 </li>
@@ -751,6 +728,29 @@
     </a>
   </h3>
   <span><p>InputStream::read_exact : <code>Read</code> on uninitialized buffer causes UB</p>
+</span>
+  
+</li>
+      
+      <li>
+  <time datetime="2020-12-31">
+    December 31, 2020
+  </time>
+
+  
+  
+  <h3>
+    
+      
+        
+          <span class="tag info">INFO</span>
+        
+    
+    <a href="/advisories/RUSTSEC-2020-0153.html">
+      RUSTSEC-2020-0153: Unsoundness in bite
+    </a>
+  </h3>
+  <span><p><code>read</code> on uninitialized buffer may cause UB (bite::read::BiteReadExpandedExt::read_framed_max)</p>
 </span>
   
 </li>
@@ -875,11 +875,11 @@
       
       <span class="tag critical">CRITICAL</span>
     
-    <a href="/advisories/RUSTSEC-2020-0004.html">
-      RUSTSEC-2020-0004: Vulnerability in lucet-runtime-internals
+    <a href="/advisories/RUSTSEC-2020-0123.html">
+      RUSTSEC-2020-0123: Vulnerability in libp2p-deflate
     </a>
   </h3>
-  <span><p>sigstack allocation bug can cause memory corruption or leak</p>
+  <span><p>Contents of uninitialized memory exposed in DeflateOutput's AsyncRead implementation</p>
 </span>
   
 </li>
@@ -896,11 +896,11 @@
       
       <span class="tag critical">CRITICAL</span>
     
-    <a href="/advisories/RUSTSEC-2020-0123.html">
-      RUSTSEC-2020-0123: Vulnerability in libp2p-deflate
+    <a href="/advisories/RUSTSEC-2020-0004.html">
+      RUSTSEC-2020-0004: Vulnerability in lucet-runtime-internals
     </a>
   </h3>
-  <span><p>Contents of uninitialized memory exposed in DeflateOutput's AsyncRead implementation</p>
+  <span><p>sigstack allocation bug can cause memory corruption or leak</p>
 </span>
   
 </li>
