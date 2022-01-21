@@ -162,6 +162,192 @@ Because HTML treats the Form Feed as whitespace, code like this has an injection
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Applications are not affected if they quote their attributes, or if they don&apos;t use &lt;code&gt;clean_text&lt;/code&gt; at all.&lt;/p&gt;
 
+  &lt;/article&gt;</content></entry><entry><title>CVE-2022-21658: Vulnerability in std</title><id>https://rustsec.org/advisories/CVE-2022-21658.html</id><updated>2022-01-16T00:00:00+00:00</updated><category term="file-disclosure"/><link href="https://rustsec.org/advisories/CVE-2022-21658.html" rel="alternate" type="text/html" title="CVE-2022-21658: Vulnerability in std"/><published>2022-01-16T00:00:00+00:00</published><summary xml:lang="en">Time-of-check time-of-use race condition can allow attacker to delete files they do not have access to delete</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/rust/std/CVE-2022-21658.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/rust/std/CVE-2022-21658.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        
+        CVE-2022-21658
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Time-of-check time-of-use race condition can allow attacker to delete files they do not have access to delete&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2022-01-16&quot;&gt;
+          January 16, 2022
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        
+        
+        &lt;code&gt;&lt;a href=&quot;/packages/std.html&quot;&gt;std&lt;/a&gt;&lt;/code&gt;
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/file-disclosure.html&quot;&gt;file-disclosure&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https:&amp;#x2f;&amp;#x2f;blog.rust-lang.org&amp;#x2f;2022&amp;#x2f;01&amp;#x2f;20&amp;#x2f;cve-2022-21658.html&quot;&gt;
+          https:&amp;#x2f;&amp;#x2f;blog.rust-lang.org&amp;#x2f;2022&amp;#x2f;01&amp;#x2f;20&amp;#x2f;cve-2022-21658.html
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;7.3 &lt;span class=&quot;tag high&quot;&gt;
+        HIGH
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+          
+          &lt;dt&gt;Attack vector&lt;/dt&gt;&lt;dd&gt;Local&lt;/dd&gt;
+          
+
+          
+          
+          &lt;dt&gt;Attack complexity&lt;/dt&gt;&lt;dd&gt;Low&lt;/d&gt;
+          
+
+          
+          
+          &lt;dt&gt;Privileges required&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
+          
+
+          
+          
+          &lt;dt&gt;User interaction&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          
+          &lt;dt&gt;Scope&lt;/dt&gt;&lt;dd&gt;Changed&lt;/dd&gt;
+          
+
+          
+          
+          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          
+          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
+          
+
+          
+          
+          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+      &lt;dd&gt;&lt;a href=&quot;https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=CVSS:3.1&amp;#x2f;AV:L&amp;#x2f;AC:L&amp;#x2f;PR:L&amp;#x2f;UI:N&amp;#x2f;S:C&amp;#x2f;C:N&amp;#x2f;I:L&amp;#x2f;A:H&quot;&gt;CVSS:3.1&amp;#x2f;AV:L&amp;#x2f;AC:L&amp;#x2f;PR:L&amp;#x2f;UI:N&amp;#x2f;S:C&amp;#x2f;C:N&amp;#x2f;I:L&amp;#x2f;A:H&lt;/a&gt;&lt;/dd&gt;
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=1.58.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      
+
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;std::fs::remove_dir_all&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;lt;=1.58.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;In the standard library in Rust before 1.58.1, an attacker with unprivileged access to a system could trick a privileged program using &lt;code&gt;std::fs::remove_dir_all&lt;/code&gt; into deleting files they don&apos;t have access to delete by creating a symlink in a directory that would be removed by a &lt;code&gt;std::fs::remove_dir_all&lt;/code&gt; call due to a Time-of-check time-of-use race condition around this function&apos;s check for symbolic links. The function should remove the symbolic links rather than recursively deleting the linked file or directory.&lt;/p&gt;
+
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0002: Vulnerability in dashmap</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0002.html</id><updated>2022-01-10T00:00:00+00:00</updated><category term="memory-exposure"/><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2022-0002.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0002: Vulnerability in dashmap"/><published>2022-01-10T00:00:00+00:00</published><summary xml:lang="en">Unsoundness in `dashmap` references</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
     
@@ -1352,242 +1538,5 @@ infinite loops or other similar incorrect responses.&lt;/p&gt;
 processing a certificate chain. This will occur where a certificate does not
 include the Subject Alternative Name extension but where a Certificate Authority
 has enforced name constraints. This issue can occur even with valid chains.&lt;/p&gt;
-
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2021-0128: Vulnerability in rusqlite</title><id>https://rustsec.org/advisories/RUSTSEC-2021-0128.html</id><updated>2021-12-07T00:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2021-0128.html" rel="alternate" type="text/html" title="RUSTSEC-2021-0128: Vulnerability in rusqlite"/><published>2021-12-07T00:00:00+00:00</published><summary xml:lang="en">Incorrect Lifetime Bounds on Closures in `rusqlite`</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/rusqlite/RUSTSEC-2021-0128.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/rusqlite/RUSTSEC-2021-0128.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        
-        RUSTSEC-2021-0128
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Incorrect Lifetime Bounds on Closures in &lt;code&gt;rusqlite&lt;/code&gt;&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2021-12-07&quot;&gt;
-          December  7, 2021
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        
-        &lt;a href=&quot;/packages/rusqlite.html&quot;&gt;rusqlite&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/rusqlite&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/use-after-free.html&quot;&gt;#use-after-free&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/incorrect-lifetime.html&quot;&gt;#incorrect-lifetime&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;a href=&quot;https:&amp;#x2f;&amp;#x2f;github.com&amp;#x2f;rusqlite&amp;#x2f;rusqlite&amp;#x2f;issues&amp;#x2f;1048&quot;&gt;
-          https:&amp;#x2f;&amp;#x2f;github.com&amp;#x2f;rusqlite&amp;#x2f;rusqlite&amp;#x2f;issues&amp;#x2f;1048
-        &lt;/a&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.26.2&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;^0.25.4&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;lt;0.25.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/use-after-free.html&quot;&gt;#use-after-free&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/incorrect-lifetime.html&quot;&gt;#incorrect-lifetime&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-      
-      
-      
-
-      
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-    
-    &lt;dl&gt;
-      &lt;dt&gt;Affected Functions&lt;/dt&gt;
-      &lt;dd&gt;Version&lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;rusqlite::Connection::commit_hook&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.25.0, &amp;lt;0.25.4&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.26.0, &amp;lt;0.26.2&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;rusqlite::Connection::create_aggregate_function&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.25.0, &amp;lt;0.25.4&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.26.0, &amp;lt;0.26.2&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;rusqlite::Connection::create_collation&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.25.0, &amp;lt;0.25.4&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.26.0, &amp;lt;0.26.2&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;rusqlite::Connection::create_scalar_function&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.25.0, &amp;lt;0.25.4&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.26.0, &amp;lt;0.26.2&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;rusqlite::Connection::create_window_function&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.25.0, &amp;lt;0.25.4&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.26.0, &amp;lt;0.26.2&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;rusqlite::Connection::rollback_hook&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.25.0, &amp;lt;0.25.4&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.26.0, &amp;lt;0.26.2&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;rusqlite::Connection::update_hook&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.25.0, &amp;lt;0.25.4&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.26.0, &amp;lt;0.26.2&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-    &lt;/dl&gt;
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;The lifetime bound on several closure-accepting &lt;code&gt;rusqlite&lt;/code&gt; functions (specifically, functions which register a callback to be later invoked by SQLite) was too relaxed. If a closure referencing borrowed values on the stack is was passed to one of these functions, it could allow Rust code to access objects on the stack after they have been dropped.&lt;/p&gt;
-&lt;p&gt;The impacted functions are:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Under &lt;code&gt;cfg(feature = &amp;quot;functions&amp;quot;)&lt;/code&gt;: &lt;code&gt;Connection::create_scalar_function&lt;/code&gt;, &lt;code&gt;Connection::create_aggregate_function&lt;/code&gt; and &lt;code&gt;Connection::create_window_function&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Under &lt;code&gt;cfg(feature = &amp;quot;hooks&amp;quot;)&lt;/code&gt;: &lt;code&gt;Connection::commit_hook&lt;/code&gt;, &lt;code&gt;Connection::rollback_hook&lt;/code&gt; and &lt;code&gt;Connection::update_hook&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Under &lt;code&gt;cfg(feature = &amp;quot;collation&amp;quot;)&lt;/code&gt;: &lt;code&gt;Connection::create_collation&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The issue exists in all &lt;code&gt;0.25.*&lt;/code&gt; versions prior to &lt;code&gt;0.25.4&lt;/code&gt;, and all &lt;code&gt;0.26.*&lt;/code&gt; versions prior to 0.26.2 (specifically: &lt;code&gt;0.25.0&lt;/code&gt;, &lt;code&gt;0.25.1&lt;/code&gt;, &lt;code&gt;0.25.2&lt;/code&gt;, &lt;code&gt;0.25.3&lt;/code&gt;, &lt;code&gt;0.26.0&lt;/code&gt;, and &lt;code&gt;0.26.1&lt;/code&gt;).&lt;/p&gt;
-&lt;p&gt;The fix is available in versions &lt;code&gt;0.26.2&lt;/code&gt; and newer, and also has been back-ported to &lt;code&gt;0.25.4&lt;/code&gt;. As it does not exist in &lt;code&gt;0.24.*&lt;/code&gt;, all affected versions should have an upgrade path to a semver-compatible release.&lt;/p&gt;
 
   &lt;/article&gt;</content></entry></feed>
