@@ -1077,6 +1077,147 @@ This causes undefined behavior and may result in a segfault.&lt;/p&gt;
     &lt;p&gt;The lmdb crate hasn&apos;t had any updates since August 2018.&lt;/p&gt;
 &lt;p&gt;Mozilla&apos;s &lt;a href=&quot;https://github.com/mozilla/lmdb-rs&quot;&gt;lmdb-rkv&lt;/a&gt; fork of the crate has received additional maintenance work beyond that and is the best available replacement.&lt;/p&gt;
 
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0008: Unsoundness in windows</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0008.html</id><updated>2022-01-02T00:00:00+00:00</updated><category term="memory-corruption"/><category term="thread-safety"/><link href="https://rustsec.org/advisories/RUSTSEC-2022-0008.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0008: Unsoundness in windows"/><published>2022-01-02T00:00:00+00:00</published><summary xml:lang="en">Delegate functions are missing `Send` bound</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/windows/RUSTSEC-2022-0008.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/windows/RUSTSEC-2022-0008.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        
+        RUSTSEC-2022-0008
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Delegate functions are missing &lt;code&gt;Send&lt;/code&gt; bound&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2022-01-02&quot;&gt;
+          January  2, 2022
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        
+        &lt;a href=&quot;/packages/windows.html&quot;&gt;windows&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/windows&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/thread-safety.html&quot;&gt;thread-safety&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https://github.com/microsoft/windows-rs/issues/1409&quot;&gt;
+          https://github.com/microsoft/windows-rs/issues/1409
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.32.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;lt;0.1.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      
+      
+      
+      
+
+      
+      &lt;dt&gt;Affected OSes&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;windows&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Affected versions of this crate did not require event handlers to have &lt;code&gt;Send&lt;/code&gt; bound despite there being no guarantee of them being called on any particular thread, which can potentially lead to data races and undefined behavior.&lt;/p&gt;
+&lt;p&gt;The flaw was corrected in commit &lt;a href=&quot;https://github.com/microsoft/windows-rs/commit/afe32525c22209aa8f632a0f4ad607863b51796a&quot;&gt;afe3252&lt;/a&gt; by adding &lt;code&gt;Send&lt;/code&gt; bounds.&lt;/p&gt;
+
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0004: Vulnerability in rustc-serialize</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0004.html</id><updated>2022-01-01T00:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2022-0004.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0004: Vulnerability in rustc-serialize"/><published>2022-01-01T00:00:00+00:00</published><summary xml:lang="en">Stack overflow in rustc_serialize when parsing deeply nested JSON</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
     
@@ -1321,111 +1462,5 @@ This causes undefined behavior and may result in a segfault.&lt;/p&gt;
 
     &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
     &lt;p&gt;The author encourages users to explore other solutions, or maintain a fork.&lt;/p&gt;
-
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2021-0133: cargo-download is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2021-0133.html</id><updated>2021-12-25T00:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2021-0133.html" rel="alternate" type="text/html" title="RUSTSEC-2021-0133: cargo-download is unmaintained"/><published>2021-12-25T00:00:00+00:00</published><summary xml:lang="en">cargo-download is unmaintained</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/cargo-download/RUSTSEC-2021-0133.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/cargo-download/RUSTSEC-2021-0133.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        
-        RUSTSEC-2021-0133
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;cargo-download is unmaintained&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2021-12-25&quot;&gt;
-          December 25, 2021
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        
-        &lt;a href=&quot;/packages/cargo-download.html&quot;&gt;cargo-download&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/cargo-download&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unmaintained
-        
-      &lt;/dd&gt;
-
-      
-      
-
-      
-      
-
-      
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;a href=&quot;https://github.com/Xion/cargo-download&quot;&gt;
-          https://github.com/Xion/cargo-download
-        &lt;/a&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-      
-
-      
-      
-
-      
-      
-      
-    &lt;/dl&gt;
-
-    
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;The cargo download subcommand (via cargo-download crate) is broken and maintainer has disappeared from GitHub and hasn&apos;t had any commits for a year.&lt;/p&gt;
-&lt;p&gt;Using this downloader will result to corrupted crates.&lt;/p&gt;
-&lt;p&gt;Maintainer has not responded to maintenance takeover.&lt;/p&gt;
-&lt;p&gt;Just use wget / curl directly.&lt;/p&gt;
 
   &lt;/article&gt;</content></entry></feed>
