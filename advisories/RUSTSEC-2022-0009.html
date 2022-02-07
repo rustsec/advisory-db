@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package &#x27;libp2p-core&#x27; › RustSec Advisory Database</title>
+<title>RUSTSEC-2022-0009: libp2p-core: Failure to verify the public key of a `SignedEnvelope` against the `PeerId` in a `PeerRecord` › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -38,63 +38,145 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/libp2p-core/RUSTSEC-2022-0009.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/libp2p-core/RUSTSEC-2022-0009.md">Edit</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        
+        RUSTSEC-2022-0009
+        
+      </h1>
+      <span class="subtitle"><p>Failure to verify the public key of a <code>SignedEnvelope</code> against the <code>PeerId</code> in a <code>PeerRecord</code></p>
 </span>
-      <h1>Advisories for package &#x27;libp2p-core&#x27;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2022-02-07">
-    February  7, 2022
-  </time>
-
-  
-  
-  <h3>
     
-      
+    
+
+    <dl>
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2022-02-07">
+          February  7, 2022
+        </time>
+      </dd>
+
+      <dt id="package">Package</dt>
+      <dd>
         
         
-    
-    <a href="/advisories/RUSTSEC-2022-0009.html">
-      RUSTSEC-2022-0009: Vulnerability in libp2p-core
-    </a>
-  </h3>
-  <span><p>Failure to verify the public key of a <code>SignedEnvelope</code> against the <code>PeerId</code> in a <code>PeerRecord</code></p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2019-05-15">
-    May 15, 2019
-  </time>
+        
+        <a href="/packages/libp2p-core.html">libp2p-core</a>
+          (<a href="https://crates.io/crates/libp2p-core">crates.io</a>)
+        
+        
+      </dd>
 
-  
-  
-  <h3>
-    
+      <dt id="type">Type</dt>
+      <dd>
+        
+        
+        Vulnerability
+        
+      </dd>
+
       
-      <span class="tag high">HIGH</span>
-    
-    <a href="/advisories/RUSTSEC-2019-0004.html">
-      RUSTSEC-2019-0004: Vulnerability in libp2p-core
-    </a>
-  </h3>
-  <span><p>Failure to properly verify ed25519 signatures makes any signature valid</p>
-</span>
-  
-</li>
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/crypto-failure.html">crypto-failure</a></li>
+          
+        </ul>
+      </dd>
       
-    </ul>
+
+      
+      
+
+      
+      
+
+      
+      
+
+      
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        
+        <ul>
+          
+          <li><code>&gt;=0.31.1</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+      <dt id="unaffected">Unaffected</dt>
+      <dd>
+        <ul>
+          
+          <li><code>&lt;0.30.0-rc.1</code></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      
+    </dl>
+
+    
+    
+    
+    <dl>
+      <dt>Affected Functions</dt>
+      <dd>Version</dd>
+      
+      <dt><code>libp2p_core::PeerRecord::from_signed_envelope</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&gt;=0.30.0-rc.1</code></li>
+          
+        </ul>
+      </dd>
+      
+    </dl>
+    
+    
+
+    <h3 id="description">Description</h3>
+    <p>Affected versions of this crate did not check that the public key the signature was created with matches the peer ID of the peer record.
+Any combination was considered valid.</p>
+<p>This allows an attacker to republish an existing <code>PeerRecord</code> with a different <code>PeerId</code>.</p>
+
   </article>
 </main>
