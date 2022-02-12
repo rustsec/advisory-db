@@ -30,7 +30,7 @@ project's source code repository. If an author/maintainer of a particular crate
 thinks filing an unmaintained crate advisory is a good idea, then great! Go ahead.
 
 If the author is responsive and declares that the project *is* maintained, then
-the from the perspective of RustSec is maintained. Again, when in doubt, defer
+the from the perspective of RustSec the crate is maintained. Again, when in doubt, defer
 to the author's discretion. So long as the author is responsive and avows that
 a crate is maintained, we take them at their word. Repository metrics like
 recent commits, open issues, latest release, etc are not reasons to go against
