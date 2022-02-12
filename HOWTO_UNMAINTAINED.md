@@ -27,7 +27,7 @@ we are able to make contact.
 
 First and foremost: *ASK THE AUTHOR(S)*, preferably in a public issue on the
 project's source code repository. If an author/maintainer of a particular crate
-thinks filing an unmaintained crate advisory is a good idea, then great! Go ahead
+thinks filing an unmaintained crate advisory is a good idea, then great! Go ahead.
 
 If the author is responsive and declares that the project *is* maintained, then
 the from the perspective of RustSec is maintained. Again, when in doubt, defer
