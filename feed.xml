@@ -1,5 +1,226 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2022-02-17T00:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2022-0010: Unsoundness in enum-map</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0010.html</id><updated>2022-02-17T00:00:00+00:00</updated><category term="code-execution"/><category term="memory-corruption"/><category term="memory-exposure"/><link href="https://rustsec.org/advisories/RUSTSEC-2022-0010.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0010: Unsoundness in enum-map"/><published>2022-02-17T00:00:00+00:00</published><summary xml:lang="en">enum_map macro can cause UB when `Enum` trait is incorrectly implemented</summary><content xml:lang="en" type="html">  &lt;article&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2022-02-28T00:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2022-0011: Vulnerability in rust-crypto</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0011.html</id><updated>2022-02-28T00:00:00+00:00</updated><category term="crypto-failure"/><link href="https://rustsec.org/advisories/RUSTSEC-2022-0011.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0011: Vulnerability in rust-crypto"/><published>2022-02-28T00:00:00+00:00</published><summary xml:lang="en">Miscomputation when performing AES encryption in rust-crypto</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/rust-crypto/RUSTSEC-2022-0011.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/rust-crypto/RUSTSEC-2022-0011.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        
+        RUSTSEC-2022-0011
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Miscomputation when performing AES encryption in rust-crypto&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2022-02-28&quot;&gt;
+          February 28, 2022
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        
+        &lt;a href=&quot;/packages/rust-crypto.html&quot;&gt;rust-crypto&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/rust-crypto&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/crypto-failure.html&quot;&gt;crypto-failure&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/aesni.html&quot;&gt;#aesni&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      
+      
+
+      
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/aesni.html&quot;&gt;#aesni&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      
+      
+    &lt;/dl&gt;
+
+    
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;The following Rust program demonstrates some strangeness in AES encryption - if you have an immutable key slice and then operate on that slice, you get different encryption output than if you operate on a copy of that key.&lt;/p&gt;
+&lt;p&gt;For these functions, we expect that extending a 16 byte key to a 32 byte key by repeating it gives the same encrypted data, because the underlying rust-crypto functions repeat key data up to the necessary key size for the cipher.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-rust&quot;&gt;use crypto::{
+    aes, blockmodes, buffer,
+    buffer::{BufferResult, ReadBuffer, WriteBuffer},
+    symmetriccipher,
+};
+
+fn encrypt(
+    key: &amp;amp;[u8],
+    iv: &amp;amp;[u8],
+    data: &amp;amp;str,
+) -&amp;gt; Result&amp;lt;String, symmetriccipher::SymmetricCipherError&amp;gt; {
+    let mut encryptor =
+        aes::cbc_encryptor(aes::KeySize::KeySize256, key, iv, blockmodes::PkcsPadding);
+
+    let mut encrypted_data = Vec::&amp;lt;u8&amp;gt;::new();
+    let mut read_buffer = buffer::RefReadBuffer::new(data.as_bytes());
+    let mut buffer = [0; 4096];
+    let mut write_buffer = buffer::RefWriteBuffer::new(&amp;amp;mut buffer);
+
+    loop {
+        let result = encryptor.encrypt(&amp;amp;mut read_buffer, &amp;amp;mut write_buffer, true)?;
+
+        encrypted_data.extend(
+            write_buffer
+                .take_read_buffer()
+                .take_remaining()
+                .iter()
+                .copied(),
+        );
+
+        match result {
+            BufferResult::BufferUnderflow =&amp;gt; break,
+            BufferResult::BufferOverflow =&amp;gt; {}
+        }
+    }
+
+    Ok(hex::encode(encrypted_data))
+}
+
+fn working() {
+    let data = &amp;quot;data&amp;quot;;
+    let iv = [
+        0xF0, 0xF1, 0xF2, 0xF3, 0xF4, 0xF5, 0xF6, 0xF7, 0xF8, 0xF9, 0xFA, 0xFB, 0xFC, 0xFD, 0xFE,
+        0xFF,
+    ];
+    let key = [
+        0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E,
+        0x0F,
+    ];
+    // The copy here makes the code work.
+    let key_copy = key;
+    let key2: Vec&amp;lt;u8&amp;gt; = key_copy.iter().cycle().take(32).copied().collect();
+    println!(&amp;quot;key1:{} key2: {}&amp;quot;, hex::encode(&amp;amp;key), hex::encode(&amp;amp;key2));
+
+    let x1 = encrypt(&amp;amp;key, &amp;amp;iv, data).unwrap();
+    println!(&amp;quot;X1: {}&amp;quot;, x1);
+
+    let x2 = encrypt(&amp;amp;key2, &amp;amp;iv, data).unwrap();
+    println!(&amp;quot;X2: {}&amp;quot;, x2);
+
+    assert_eq!(x1, x2);
+}
+
+fn broken() {
+    let data = &amp;quot;data&amp;quot;;
+    let iv = [
+        0xF0, 0xF1, 0xF2, 0xF3, 0xF4, 0xF5, 0xF6, 0xF7, 0xF8, 0xF9, 0xFA, 0xFB, 0xFC, 0xFD, 0xFE,
+        0xFF,
+    ];
+    let key = [
+        0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E,
+        0x0F,
+    ];
+    // This operation shouldn&apos;t affect the contents of key at all.
+    let key2: Vec&amp;lt;u8&amp;gt; = key.iter().cycle().take(32).copied().collect();
+    println!(&amp;quot;key1:{} key2: {}&amp;quot;, hex::encode(&amp;amp;key), hex::encode(&amp;amp;key2));
+
+    let x1 = encrypt(&amp;amp;key, &amp;amp;iv, data).unwrap();
+    println!(&amp;quot;X1: {}&amp;quot;, x1);
+
+    let x2 = encrypt(&amp;amp;key2, &amp;amp;iv, data).unwrap();
+    println!(&amp;quot;X2: {}&amp;quot;, x2);
+
+    assert_eq!(x1, x2);
+}
+
+fn main() {
+    working();
+    broken();
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The output from this program:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;     Running `target/host/debug/rust-crypto-test`
+key1:000102030405060708090a0b0c0d0e0f key2: 000102030405060708090a0b0c0d0e0f000102030405060708090a0b0c0d0e0f
+X1: 90462bbe32965c8e7ea0addbbed4cddb
+X2: 90462bbe32965c8e7ea0addbbed4cddb
+key1:000102030405060708090a0b0c0d0e0f key2: 000102030405060708090a0b0c0d0e0f000102030405060708090a0b0c0d0e0f
+X1: 26e847e5e7df1947bf82a650548a7d5b
+X2: 90462bbe32965c8e7ea0addbbed4cddb
+thread &apos;main&apos; panicked at &apos;assertion failed: `(left == right)`
+  left: `&amp;quot;26e847e5e7df1947bf82a650548a7d5b&amp;quot;`,
+ right: `&amp;quot;90462bbe32965c8e7ea0addbbed4cddb&amp;quot;`&apos;, src/main.rs:83:5
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Notably, the X1 key in the &lt;code&gt;broken()&lt;/code&gt; test changes every time after rerunning the program.&lt;/p&gt;
+
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0010: Unsoundness in enum-map</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0010.html</id><updated>2022-02-17T00:00:00+00:00</updated><category term="code-execution"/><category term="memory-corruption"/><category term="memory-exposure"/><link href="https://rustsec.org/advisories/RUSTSEC-2022-0010.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0010: Unsoundness in enum-map"/><published>2022-02-17T00:00:00+00:00</published><summary xml:lang="en">enum_map macro can cause UB when `Enum` trait is incorrectly implemented</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -1383,146 +1604,5 @@ This causes undefined behavior and may result in a segfault.&lt;/p&gt;
     &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
     &lt;p&gt;The lmdb crate hasn&apos;t had any updates since August 2018.&lt;/p&gt;
 &lt;p&gt;Mozilla&apos;s &lt;a href=&quot;https://github.com/mozilla/lmdb-rs&quot;&gt;lmdb-rkv&lt;/a&gt; fork of the crate has received additional maintenance work beyond that and is the best available replacement.&lt;/p&gt;
-
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0008: Unsoundness in windows</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0008.html</id><updated>2022-01-02T00:00:00+00:00</updated><category term="memory-corruption"/><category term="thread-safety"/><link href="https://rustsec.org/advisories/RUSTSEC-2022-0008.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0008: Unsoundness in windows"/><published>2022-01-02T00:00:00+00:00</published><summary xml:lang="en">Delegate functions are missing `Send` bound</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/windows/RUSTSEC-2022-0008.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/windows/RUSTSEC-2022-0008.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        
-        RUSTSEC-2022-0008
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Delegate functions are missing &lt;code&gt;Send&lt;/code&gt; bound&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2022-01-02&quot;&gt;
-          January  2, 2022
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        
-        &lt;a href=&quot;/packages/windows.html&quot;&gt;windows&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/windows&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unsound
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/thread-safety.html&quot;&gt;thread-safety&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-
-      
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;a href=&quot;https://github.com/microsoft/windows-rs/issues/1409&quot;&gt;
-          https://github.com/microsoft/windows-rs/issues/1409
-        &lt;/a&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.32.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;lt;0.1.2&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-
-      
-      
-      
-      
-
-      
-      &lt;dt&gt;Affected OSes&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;windows&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-    
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;Affected versions of this crate did not require event handlers to have &lt;code&gt;Send&lt;/code&gt; bound despite there being no guarantee of them being called on any particular thread, which can potentially lead to data races and undefined behavior.&lt;/p&gt;
-&lt;p&gt;The flaw was corrected in commit &lt;a href=&quot;https://github.com/microsoft/windows-rs/commit/afe32525c22209aa8f632a0f4ad607863b51796a&quot;&gt;afe3252&lt;/a&gt; by adding &lt;code&gt;Send&lt;/code&gt; bounds.&lt;/p&gt;
 
   &lt;/article&gt;</content></entry></feed>
