@@ -1,5 +1,132 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2022-02-28T00:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2022-0011: Vulnerability in rust-crypto</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0011.html</id><updated>2022-02-28T00:00:00+00:00</updated><category term="crypto-failure"/><link href="https://rustsec.org/advisories/RUSTSEC-2022-0011.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0011: Vulnerability in rust-crypto"/><published>2022-02-28T00:00:00+00:00</published><summary xml:lang="en">Miscomputation when performing AES encryption in rust-crypto</summary><content xml:lang="en" type="html">  &lt;article&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2022-03-04T00:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2022-0012: Vulnerability in arrow2</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0012.html</id><updated>2022-03-04T00:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2022-0012.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0012: Vulnerability in arrow2"/><published>2022-03-04T00:00:00+00:00</published><summary xml:lang="en">Arrow2 allows double free in `safe` code</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/arrow2/RUSTSEC-2022-0012.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/arrow2/RUSTSEC-2022-0012.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        
+        RUSTSEC-2022-0012
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Arrow2 allows double free in &lt;code&gt;safe&lt;/code&gt; code&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2022-03-04&quot;&gt;
+          March  4, 2022
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        
+        &lt;a href=&quot;/packages/arrow2.html&quot;&gt;arrow2&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/arrow2&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https://github.com/jorgecarleitao/arrow2/issues/880&quot;&gt;
+          https://github.com/jorgecarleitao/arrow2/issues/880
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.7.1, &amp;lt;0.8&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.8.2, &amp;lt;0.9&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.9.2, &amp;lt;0.10&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      
+
+      
+      
+
+      
+      
+      
+    &lt;/dl&gt;
+
+    
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;The struct &lt;code&gt;Ffi_ArrowArray&lt;/code&gt; implements &lt;code&gt;#derive(Clone)&lt;/code&gt; that is inconsistent with
+its custom implementation of &lt;code&gt;Drop&lt;/code&gt;, resulting in a double free when cloned.&lt;/p&gt;
+&lt;p&gt;Cloning this struct in &lt;code&gt;safe&lt;/code&gt; results in a segmentation fault, which is unsound.&lt;/p&gt;
+&lt;p&gt;This derive was removed from this struct. All users are advised to either:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;bump the patch version of this crate (for versions &lt;code&gt;v0.7,v0.8,v0.9&lt;/code&gt;), or&lt;/li&gt;
+&lt;li&gt;migrate to a more recent version of  the crate (when using &lt;code&gt;&amp;lt;0.7&lt;/code&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Doing so elimitates this vulnerability (code no longer compiles).&lt;/p&gt;
+
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0011: Vulnerability in rust-crypto</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0011.html</id><updated>2022-02-28T00:00:00+00:00</updated><category term="crypto-failure"/><link href="https://rustsec.org/advisories/RUSTSEC-2022-0011.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0011: Vulnerability in rust-crypto"/><published>2022-02-28T00:00:00+00:00</published><summary xml:lang="en">Miscomputation when performing AES encryption in rust-crypto</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -1500,109 +1627,5 @@ Because HTML treats the Form Feed as whitespace, code like this has an injection
     &lt;p&gt;Reference returned by some methods of &lt;code&gt;Ref&lt;/code&gt; (and similar types) may outlive the &lt;code&gt;Ref&lt;/code&gt; and escape the lock.
 This causes undefined behavior and may result in a segfault.&lt;/p&gt;
 &lt;p&gt;More information in &lt;a href=&quot;https://github.com/xacrimon/dashmap/issues/167&quot;&gt;&lt;code&gt;dashmap#167&lt;/code&gt;&lt;/a&gt; issue.&lt;/p&gt;
-
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0001: lmdb is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0001.html</id><updated>2022-01-05T00:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2022-0001.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0001: lmdb is unmaintained"/><published>2022-01-05T00:00:00+00:00</published><summary xml:lang="en">lmdb is unmaintained, use lmdb-rkv instead</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/lmdb/RUSTSEC-2022-0001.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/lmdb/RUSTSEC-2022-0001.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        
-        RUSTSEC-2022-0001
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;lmdb is unmaintained, use lmdb-rkv instead&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2022-01-05&quot;&gt;
-          January  5, 2022
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        
-        &lt;a href=&quot;/packages/lmdb.html&quot;&gt;lmdb&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/lmdb&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unmaintained
-        
-      &lt;/dd&gt;
-
-      
-      
-
-      
-      
-
-      
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;a href=&quot;https://github.com/danburkert/lmdb-rs&quot;&gt;
-          https://github.com/danburkert/lmdb-rs
-        &lt;/a&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-      
-
-      
-      
-
-      
-      
-      
-    &lt;/dl&gt;
-
-    
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;The lmdb crate hasn&apos;t had any updates since August 2018.&lt;/p&gt;
-&lt;p&gt;Mozilla&apos;s &lt;a href=&quot;https://github.com/mozilla/lmdb-rs&quot;&gt;lmdb-rkv&lt;/a&gt; fork of the crate has received additional maintenance work beyond that and is the best available replacement.&lt;/p&gt;
 
   &lt;/article&gt;</content></entry></feed>
