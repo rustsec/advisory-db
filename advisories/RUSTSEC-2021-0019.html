@@ -162,7 +162,12 @@
       <dt id="patched">Patched</dt>
       <dd>
         
-        no patched versions
+        
+        <ul>
+          
+          <li><code>&gt;=1.0</code></li>
+          
+        </ul>
         
       </dd>
 
@@ -189,14 +194,14 @@
 X11 server without any validity checks. The X11 server only prevents interior
 null bytes, but otherwise allows any X11 client to create an atom for arbitrary
 bytes.</p>
-<p>This issue is tracked here: https://github.com/rtbo/rust-xcb/issues/96</p>
+<p>This issue is tracked here: https://github.com/rust-x-bindings/rust-xcb/issues/96</p>
 <h2><code>xcb::xproto::GetPropertyReply::value()</code> allows arbitrary return types</h2>
 <p>The function <code>xcb::xproto::GetPropertyReply::value()</code> returns a slice of type
 <code>T</code> where <code>T</code> is an unconstrained type parameter. The raw bytes received from
 the X11 server are interpreted as the requested type.</p>
 <p>The users of the <code>xcb</code> crate are advised to only call this function with the
 intended types. These are <code>u8</code>, <code>u16</code>, and <code>u32</code>.</p>
-<p>This issue is tracked here: https://github.com/rtbo/rust-xcb/issues/95</p>
+<p>This issue is tracked here: https://github.com/rust-x-bindings/rust-xcb/issues/95</p>
 <h2>Out of bounds read in <code>xcb::xproto::change_property()</code></h2>
 <p><code>xcb::xproto::change_property</code> has (among others) the arguments <code>format: u8</code> and
 <code>data: &amp;[T]</code>. The intended use is one of the following cases:</p>
@@ -210,7 +215,7 @@ end of the <code>data</code> slice is performed and the bytes are sent to the X1
 </ul>
 <p>The users of the <code>xcb</code> crate are advised to only call this function with one of
 the intended argument combinations.</p>
-<p>This issue is tracked here: https://github.com/rtbo/rust-xcb/issues/94</p>
+<p>This issue is tracked here: https://github.com/rust-x-bindings/rust-xcb/issues/94</p>
 <h2>'Safe' wrapper around <code>std::mem::transmute()</code></h2>
 <p>The function <code>xcb::base::cast_event()</code> takes a reference to a
 <code>xcb::base::GenericEvent</code> and returns a reference to an arbitrary type, as
@@ -221,7 +226,7 @@ is larger than the X11 event that was passed in.</p>
 <p>X11 events are mostly always 32 bytes large and this function works as intended.</p>
 <p>Users are advised to only cast to the event structs provided by the <code>xcb</code> crate
 (and hope for the best).</p>
-<p>This issue is tracked here: https://github.com/rtbo/rust-xcb/issues/78</p>
+<p>This issue is tracked here: https://github.com/rust-x-bindings/rust-xcb/issues/78</p>
 
   </article>
 </main>
