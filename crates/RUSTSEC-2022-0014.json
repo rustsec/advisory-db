@@ -1,0 +1,67 @@
+{
+  "id": "RUSTSEC-2022-0014",
+  "modified": "2022-03-16T14:05:15Z",
+  "published": "2022-03-15T12:00:00Z",
+  "aliases": [
+    "CVE-2022-0778"
+  ],
+  "related": [],
+  "summary": "Infinite loop in `BN_mod_sqrt()` reachable when parsing certificates",
+  "details": "The `BN_mod_sqrt()` function, which computes a modular square root, contains\na bug that can cause it to loop forever for non-prime moduli.\n\nInternally this function is used when parsing certificates that contain\nelliptic curve public keys in compressed form or explicit elliptic curve\nparameters with a base point encoded in compressed form.\n\nIt is possible to trigger the infinite loop by crafting a certificate that\nhas invalid explicit curve parameters.\n\nSince certificate parsing happens prior to verification of the certificate\nsignature, any process that parses an externally supplied certificate may thus\nbe subject to a denial of service attack. The infinite loop can also be\nreached when parsing crafted private keys as they can contain explicit\nelliptic curve parameters.\n\nThus vulnerable situations include:\n\n - TLS clients consuming server certificates\n - TLS servers consuming client certificates\n - Hosting providers taking certificates or private keys from customers\n - Certificate authorities parsing certification requests from subscribers\n - Anything else which parses ASN.1 elliptic curve parameters\n\nAlso any other applications that use the `BN_mod_sqrt()` where the attacker\ncan control the parameter values are vulnerable to this DoS issue.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "openssl-src",
+        "purl": "pkg:cargo/openssl-src"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        }
+      },
+      "database_specific": {
+        "categories": [
+          "denial-of-service"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "111.18.0"
+            },
+            {
+              "introduced": "300.0.0"
+            },
+            {
+              "fixed": "300.0.5"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/openssl-src"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2022-0014.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://www.openssl.org/news/secadv/20220315.txt"
+    }
+  ]
+}
