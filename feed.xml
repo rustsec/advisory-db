@@ -1,5 +1,335 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2022-05-09T00:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2022-0018: Vulnerability in totp-rs</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0018.html</id><updated>2022-05-09T00:00:00+00:00</updated><category term="crypto-failure"/><link href="https://rustsec.org/advisories/RUSTSEC-2022-0018.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0018: Vulnerability in totp-rs"/><published>2022-05-09T00:00:00+00:00</published><summary xml:lang="en">Timing attack</summary><content xml:lang="en" type="html">  &lt;article&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2022-05-10T00:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2022-0019: Unsoundness in crossbeam-channel</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0019.html</id><updated>2022-05-10T00:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2022-0019.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0019: Unsoundness in crossbeam-channel"/><published>2022-05-10T00:00:00+00:00</published><summary xml:lang="en">Channel creates zero value of any type</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/crossbeam-channel/RUSTSEC-2022-0019.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/crossbeam-channel/RUSTSEC-2022-0019.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        
+        RUSTSEC-2022-0019
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Channel creates zero value of any type&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2022-05-10&quot;&gt;
+          May 10, 2022
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        
+        &lt;a href=&quot;/packages/crossbeam-channel.html&quot;&gt;crossbeam-channel&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/crossbeam-channel&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      
+
+      
+      
+
+      
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https://github.com/crossbeam-rs/crossbeam/pull/458&quot;&gt;
+          https://github.com/crossbeam-rs/crossbeam/pull/458
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.4.3&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      
+
+      
+      
+
+      
+      
+      
+    &lt;/dl&gt;
+
+    
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Affected versions of this crate called &lt;code&gt;mem::zeroed()&lt;/code&gt; to create values of a user-supplied type &lt;code&gt;T&lt;/code&gt;.
+This is unsound e.g. if &lt;code&gt;T&lt;/code&gt; is a reference type (which must be non-null).&lt;/p&gt;
+&lt;p&gt;The flaw was corrected by avoiding the use of &lt;code&gt;mem::zeroed()&lt;/code&gt;, using &lt;code&gt;MaybeUninit&lt;/code&gt; instead.&lt;/p&gt;
+
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0020: Unsoundness in crossbeam</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0020.html</id><updated>2022-05-10T00:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2022-0020.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0020: Unsoundness in crossbeam"/><published>2022-05-10T00:00:00+00:00</published><summary xml:lang="en">`SegQueue` creates zero value of any type</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/crossbeam/RUSTSEC-2022-0020.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/crossbeam/RUSTSEC-2022-0020.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        
+        RUSTSEC-2022-0020
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;SegQueue&lt;/code&gt; creates zero value of any type&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2022-05-10&quot;&gt;
+          May 10, 2022
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        
+        &lt;a href=&quot;/packages/crossbeam.html&quot;&gt;crossbeam&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/crossbeam&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      
+
+      
+      
+
+      
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https://github.com/crossbeam-rs/crossbeam/pull/458&quot;&gt;
+          https://github.com/crossbeam-rs/crossbeam/pull/458
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.7.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      
+
+      
+      
+
+      
+      
+      
+    &lt;/dl&gt;
+
+    
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Affected versions of this crate called &lt;code&gt;mem::zeroed()&lt;/code&gt; to create values of a user-supplied type &lt;code&gt;T&lt;/code&gt;.
+This is unsound e.g. if &lt;code&gt;T&lt;/code&gt; is a reference type (which must be non-null).&lt;/p&gt;
+&lt;p&gt;The flaw was corrected by avoiding the use of &lt;code&gt;mem::zeroed()&lt;/code&gt;, using &lt;code&gt;MaybeUninit&lt;/code&gt; instead.&lt;/p&gt;
+
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0021: Unsoundness in crossbeam-queue</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0021.html</id><updated>2022-05-10T00:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2022-0021.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0021: Unsoundness in crossbeam-queue"/><published>2022-05-10T00:00:00+00:00</published><summary xml:lang="en">`SegQueue` creates zero value of any type</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/crossbeam-queue/RUSTSEC-2022-0021.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/crossbeam-queue/RUSTSEC-2022-0021.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        
+        RUSTSEC-2022-0021
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;SegQueue&lt;/code&gt; creates zero value of any type&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2022-05-10&quot;&gt;
+          May 10, 2022
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        
+        &lt;a href=&quot;/packages/crossbeam-queue.html&quot;&gt;crossbeam-queue&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/crossbeam-queue&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      
+
+      
+      
+
+      
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https://github.com/crossbeam-rs/crossbeam/pull/458&quot;&gt;
+          https://github.com/crossbeam-rs/crossbeam/pull/458
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.2.3&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      
+
+      
+      
+
+      
+      
+      
+    &lt;/dl&gt;
+
+    
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Affected versions of this crate called &lt;code&gt;mem::zeroed()&lt;/code&gt; to create values of a user-supplied type &lt;code&gt;T&lt;/code&gt;.
+This is unsound e.g. if &lt;code&gt;T&lt;/code&gt; is a reference type (which must be non-null).&lt;/p&gt;
+&lt;p&gt;The flaw was corrected by avoiding the use of &lt;code&gt;mem::zeroed()&lt;/code&gt;, using &lt;code&gt;MaybeUninit&lt;/code&gt; instead.&lt;/p&gt;
+
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0018: Vulnerability in totp-rs</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0018.html</id><updated>2022-05-09T00:00:00+00:00</updated><category term="crypto-failure"/><link href="https://rustsec.org/advisories/RUSTSEC-2022-0018.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0018: Vulnerability in totp-rs"/><published>2022-05-09T00:00:00+00:00</published><summary xml:lang="en">Timing attack</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -1131,528 +1461,5 @@ its custom implementation of &lt;code&gt;Drop&lt;/code&gt;, resulting in a doubl
 &lt;li&gt;migrate to a more recent version of  the crate (when using &lt;code&gt;&amp;lt;0.7&lt;/code&gt;).&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Doing so elimitates this vulnerability (code no longer compiles).&lt;/p&gt;
-
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0011: Vulnerability in rust-crypto</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0011.html</id><updated>2022-02-28T00:00:00+00:00</updated><category term="crypto-failure"/><link href="https://rustsec.org/advisories/RUSTSEC-2022-0011.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0011: Vulnerability in rust-crypto"/><published>2022-02-28T00:00:00+00:00</published><summary xml:lang="en">Miscomputation when performing AES encryption in rust-crypto</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/rust-crypto/RUSTSEC-2022-0011.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/rust-crypto/RUSTSEC-2022-0011.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        
-        RUSTSEC-2022-0011
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Miscomputation when performing AES encryption in rust-crypto&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2022-02-28&quot;&gt;
-          February 28, 2022
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        
-        &lt;a href=&quot;/packages/rust-crypto.html&quot;&gt;rust-crypto&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/rust-crypto&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/crypto-failure.html&quot;&gt;crypto-failure&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/aesni.html&quot;&gt;#aesni&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-      
-
-      
-      
-
-      
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/aesni.html&quot;&gt;#aesni&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-      
-      
-    &lt;/dl&gt;
-
-    
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;The following Rust program demonstrates some strangeness in AES encryption - if you have an immutable key slice and then operate on that slice, you get different encryption output than if you operate on a copy of that key.&lt;/p&gt;
-&lt;p&gt;For these functions, we expect that extending a 16 byte key to a 32 byte key by repeating it gives the same encrypted data, because the underlying rust-crypto functions repeat key data up to the necessary key size for the cipher.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-rust&quot;&gt;use crypto::{
-    aes, blockmodes, buffer,
-    buffer::{BufferResult, ReadBuffer, WriteBuffer},
-    symmetriccipher,
-};
-
-fn encrypt(
-    key: &amp;amp;[u8],
-    iv: &amp;amp;[u8],
-    data: &amp;amp;str,
-) -&amp;gt; Result&amp;lt;String, symmetriccipher::SymmetricCipherError&amp;gt; {
-    let mut encryptor =
-        aes::cbc_encryptor(aes::KeySize::KeySize256, key, iv, blockmodes::PkcsPadding);
-
-    let mut encrypted_data = Vec::&amp;lt;u8&amp;gt;::new();
-    let mut read_buffer = buffer::RefReadBuffer::new(data.as_bytes());
-    let mut buffer = [0; 4096];
-    let mut write_buffer = buffer::RefWriteBuffer::new(&amp;amp;mut buffer);
-
-    loop {
-        let result = encryptor.encrypt(&amp;amp;mut read_buffer, &amp;amp;mut write_buffer, true)?;
-
-        encrypted_data.extend(
-            write_buffer
-                .take_read_buffer()
-                .take_remaining()
-                .iter()
-                .copied(),
-        );
-
-        match result {
-            BufferResult::BufferUnderflow =&amp;gt; break,
-            BufferResult::BufferOverflow =&amp;gt; {}
-        }
-    }
-
-    Ok(hex::encode(encrypted_data))
-}
-
-fn working() {
-    let data = &amp;quot;data&amp;quot;;
-    let iv = [
-        0xF0, 0xF1, 0xF2, 0xF3, 0xF4, 0xF5, 0xF6, 0xF7, 0xF8, 0xF9, 0xFA, 0xFB, 0xFC, 0xFD, 0xFE,
-        0xFF,
-    ];
-    let key = [
-        0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E,
-        0x0F,
-    ];
-    // The copy here makes the code work.
-    let key_copy = key;
-    let key2: Vec&amp;lt;u8&amp;gt; = key_copy.iter().cycle().take(32).copied().collect();
-    println!(&amp;quot;key1:{} key2: {}&amp;quot;, hex::encode(&amp;amp;key), hex::encode(&amp;amp;key2));
-
-    let x1 = encrypt(&amp;amp;key, &amp;amp;iv, data).unwrap();
-    println!(&amp;quot;X1: {}&amp;quot;, x1);
-
-    let x2 = encrypt(&amp;amp;key2, &amp;amp;iv, data).unwrap();
-    println!(&amp;quot;X2: {}&amp;quot;, x2);
-
-    assert_eq!(x1, x2);
-}
-
-fn broken() {
-    let data = &amp;quot;data&amp;quot;;
-    let iv = [
-        0xF0, 0xF1, 0xF2, 0xF3, 0xF4, 0xF5, 0xF6, 0xF7, 0xF8, 0xF9, 0xFA, 0xFB, 0xFC, 0xFD, 0xFE,
-        0xFF,
-    ];
-    let key = [
-        0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E,
-        0x0F,
-    ];
-    // This operation shouldn&apos;t affect the contents of key at all.
-    let key2: Vec&amp;lt;u8&amp;gt; = key.iter().cycle().take(32).copied().collect();
-    println!(&amp;quot;key1:{} key2: {}&amp;quot;, hex::encode(&amp;amp;key), hex::encode(&amp;amp;key2));
-
-    let x1 = encrypt(&amp;amp;key, &amp;amp;iv, data).unwrap();
-    println!(&amp;quot;X1: {}&amp;quot;, x1);
-
-    let x2 = encrypt(&amp;amp;key2, &amp;amp;iv, data).unwrap();
-    println!(&amp;quot;X2: {}&amp;quot;, x2);
-
-    assert_eq!(x1, x2);
-}
-
-fn main() {
-    working();
-    broken();
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The output from this program:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;     Running `target/host/debug/rust-crypto-test`
-key1:000102030405060708090a0b0c0d0e0f key2: 000102030405060708090a0b0c0d0e0f000102030405060708090a0b0c0d0e0f
-X1: 90462bbe32965c8e7ea0addbbed4cddb
-X2: 90462bbe32965c8e7ea0addbbed4cddb
-key1:000102030405060708090a0b0c0d0e0f key2: 000102030405060708090a0b0c0d0e0f000102030405060708090a0b0c0d0e0f
-X1: 26e847e5e7df1947bf82a650548a7d5b
-X2: 90462bbe32965c8e7ea0addbbed4cddb
-thread &apos;main&apos; panicked at &apos;assertion failed: `(left == right)`
-  left: `&amp;quot;26e847e5e7df1947bf82a650548a7d5b&amp;quot;`,
- right: `&amp;quot;90462bbe32965c8e7ea0addbbed4cddb&amp;quot;`&apos;, src/main.rs:83:5
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Notably, the X1 key in the &lt;code&gt;broken()&lt;/code&gt; test changes every time after rerunning the program.&lt;/p&gt;
-
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0010: Unsoundness in enum-map</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0010.html</id><updated>2022-02-17T00:00:00+00:00</updated><category term="code-execution"/><category term="memory-corruption"/><category term="memory-exposure"/><link href="https://rustsec.org/advisories/RUSTSEC-2022-0010.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0010: Unsoundness in enum-map"/><published>2022-02-17T00:00:00+00:00</published><summary xml:lang="en">enum_map macro can cause UB when `Enum` trait is incorrectly implemented</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/enum-map/RUSTSEC-2022-0010.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/enum-map/RUSTSEC-2022-0010.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        
-        RUSTSEC-2022-0010
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;enum_map macro can cause UB when &lt;code&gt;Enum&lt;/code&gt; trait is incorrectly implemented&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2022-02-17&quot;&gt;
-          February 17, 2022
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        
-        &lt;a href=&quot;/packages/enum-map.html&quot;&gt;enum-map&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/enum-map&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unsound
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/code-execution.html&quot;&gt;code-execution&lt;/a&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/memory-exposure.html&quot;&gt;memory-exposure&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-
-      
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;a href=&quot;https://gitlab.com/KonradBorowski/enum-map/-/blob/master/CHANGELOG.md#version-202&quot;&gt;
-          https://gitlab.com/KonradBorowski/enum-map/-/blob/master/CHANGELOG.md#version-202
-        &lt;/a&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=2.0.2&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;lt;2.0.0-2&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-
-      
-      
-      
-    &lt;/dl&gt;
-
-    
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;Affected versions of this crate did not properly check the length of an enum when using &lt;code&gt;enum_map!&lt;/code&gt; macro, trusting user-provided length.&lt;/p&gt;
-&lt;p&gt;When the &lt;code&gt;LENGTH&lt;/code&gt; in the &lt;code&gt;Enum&lt;/code&gt; trait does not match the array length in the &lt;code&gt;EnumArray&lt;/code&gt; trait, this can result in the initialization of the enum map with uninitialized types, which in turn can allow an attacker to execute arbitrary code.&lt;/p&gt;
-&lt;p&gt;This problem can only occur with a manual implementation of the Enum trait, it will never occur for enums that use &lt;code&gt;#[derive(Enum)]&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Example code that triggers this vulnerability looks like this:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-rust&quot;&gt;enum E {
-    A,
-    B,
-    C,
-}
-
-impl Enum for E {
-    const LENGTH: usize = 2;
-
-    fn from_usize(value: usize) -&amp;gt; E {
-        match value {
-            0 =&amp;gt; E::A,
-            1 =&amp;gt; E::B,
-            2 =&amp;gt; E::C,
-            _ =&amp;gt; unimplemented!(),
-        }
-    }
-
-    fn into_usize(self) -&amp;gt; usize {
-        self as usize
-    }
-}
-
-impl&amp;lt;V&amp;gt; EnumArray&amp;lt;V&amp;gt; for E {
-    type Array = [V; 3];
-}
-
-let _map: EnumMap&amp;lt;E, String&amp;gt; = enum_map! { _ =&amp;gt; &amp;quot;Hello, world!&amp;quot;.into() };
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The flaw was corrected in commit &lt;a href=&quot;https://gitlab.com/KonradBorowski/enum-map/-/commit/b824e232f2fb47837740070096ac253df8e80dfc&quot;&gt;b824e23&lt;/a&gt; by putting &lt;code&gt;LENGTH&lt;/code&gt; property on sealed trait for macro to read.&lt;/p&gt;
-
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0009: Vulnerability in libp2p-core</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0009.html</id><updated>2022-02-07T00:00:00+00:00</updated><category term="crypto-failure"/><link href="https://rustsec.org/advisories/RUSTSEC-2022-0009.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0009: Vulnerability in libp2p-core"/><published>2022-02-07T00:00:00+00:00</published><summary xml:lang="en">Failure to verify the public key of a `SignedEnvelope` against the `PeerId` in a `PeerRecord`</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/libp2p-core/RUSTSEC-2022-0009.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/libp2p-core/RUSTSEC-2022-0009.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        
-        RUSTSEC-2022-0009
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Failure to verify the public key of a &lt;code&gt;SignedEnvelope&lt;/code&gt; against the &lt;code&gt;PeerId&lt;/code&gt; in a &lt;code&gt;PeerRecord&lt;/code&gt;&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2022-02-07&quot;&gt;
-          February  7, 2022
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        
-        &lt;a href=&quot;/packages/libp2p-core.html&quot;&gt;libp2p-core&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/libp2p-core&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/crypto-failure.html&quot;&gt;crypto-failure&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-
-      
-      
-
-      
-      
-
-      
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;^0.30.2&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.31.1&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;lt;0.30.0-rc.1&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-
-      
-      
-      
-      
-
-      
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-    
-    &lt;dl&gt;
-      &lt;dt&gt;Affected Functions&lt;/dt&gt;
-      &lt;dd&gt;Version&lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;libp2p_core::PeerRecord::from_signed_envelope&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.30.0-rc.1&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-    &lt;/dl&gt;
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;Affected versions of this crate did not check that the public key the signature was created with matches the peer ID of the peer record.
-Any combination was considered valid.&lt;/p&gt;
-&lt;p&gt;This allows an attacker to republish an existing &lt;code&gt;PeerRecord&lt;/code&gt; with a different &lt;code&gt;PeerId&lt;/code&gt;.&lt;/p&gt;
 
   &lt;/article&gt;</content></entry></feed>

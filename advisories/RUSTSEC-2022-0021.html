@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package &#x27;crossbeam-channel&#x27; › RustSec Advisory Database</title>
+<title>RUSTSEC-2022-0021: crossbeam-queue: `SegQueue` creates zero value of any type › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -38,65 +38,116 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/crossbeam-queue/RUSTSEC-2022-0021.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/crossbeam-queue/RUSTSEC-2022-0021.md">Edit</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        
+        RUSTSEC-2022-0021
+        
+      </h1>
+      <span class="subtitle"><p><code>SegQueue</code> creates zero value of any type</p>
 </span>
-      <h1>Advisories for package &#x27;crossbeam-channel&#x27;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2022-05-10">
-    May 10, 2022
-  </time>
+    
+    
 
-  
-  
-  <h3>
-    
-      
-        
-          <span class="tag info">INFO</span>
-        
-    
-    <a href="/advisories/RUSTSEC-2022-0019.html">
-      RUSTSEC-2022-0019: Unsoundness in crossbeam-channel
-    </a>
-  </h3>
-  <span><p>Channel creates zero value of any type</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2020-06-26">
-    June 26, 2020
-  </time>
+    <dl>
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2022-05-10">
+          May 10, 2022
+        </time>
+      </dd>
 
-  
-  
-  <h3>
-    
-      
+      <dt id="package">Package</dt>
+      <dd>
         
         
-    
-    <a href="/advisories/RUSTSEC-2020-0052.html">
-      RUSTSEC-2020-0052: Vulnerability in crossbeam-channel
-    </a>
-  </h3>
-  <span><p>Undefined Behavior in bounded channel</p>
-</span>
-  
-</li>
+        
+        <a href="/packages/crossbeam-queue.html">crossbeam-queue</a>
+          (<a href="https://crates.io/crates/crossbeam-queue">crates.io</a>)
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        
+        <span class="tag info">INFO</span>
+        Unsound
+        
+      </dd>
+
       
-    </ul>
+      
+
+      
+      
+
+      
+      
+
+      
+      <dt id="details">Details</dt>
+      <dd>
+        <a href="https://github.com/crossbeam-rs/crossbeam/pull/458">
+          https://github.com/crossbeam-rs/crossbeam/pull/458
+        </a>
+      </dd>
+      
+
+      
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        
+        <ul>
+          
+          <li><code>&gt;=0.2.3</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+      
+
+      
+      
+
+      
+      
+      
+    </dl>
+
+    
+
+    
+    
+
+    <h3 id="description">Description</h3>
+    <p>Affected versions of this crate called <code>mem::zeroed()</code> to create values of a user-supplied type <code>T</code>.
+This is unsound e.g. if <code>T</code> is a reference type (which must be non-null).</p>
+<p>The flaw was corrected by avoiding the use of <code>mem::zeroed()</code>, using <code>MaybeUninit</code> instead.</p>
+
   </article>
 </main>
