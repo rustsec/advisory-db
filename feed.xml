@@ -109,6 +109,116 @@
 This is unsound e.g. if &lt;code&gt;T&lt;/code&gt; is a reference type (which must be non-null).&lt;/p&gt;
 &lt;p&gt;The flaw was corrected by avoiding the use of &lt;code&gt;mem::zeroed()&lt;/code&gt;, using &lt;code&gt;MaybeUninit&lt;/code&gt; instead.&lt;/p&gt;
 
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0022: Unsoundness in hyper</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0022.html</id><updated>2022-05-10T00:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2022-0022.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0022: Unsoundness in hyper"/><published>2022-05-10T00:00:00+00:00</published><summary xml:lang="en">Parser creates invalid uninitialized value</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/hyper/RUSTSEC-2022-0022.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/hyper/RUSTSEC-2022-0022.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        
+        RUSTSEC-2022-0022
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Parser creates invalid uninitialized value&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2022-05-10&quot;&gt;
+          May 10, 2022
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        
+        &lt;a href=&quot;/packages/hyper.html&quot;&gt;hyper&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/hyper&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      
+
+      
+      
+
+      
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https://github.com/hyperium/hyper/pull/2545&quot;&gt;
+          https://github.com/hyperium/hyper/pull/2545
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.4.12&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      
+
+      
+      
+
+      
+      
+      
+    &lt;/dl&gt;
+
+    
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Affected versions of this crate called &lt;code&gt;mem::uninitialized()&lt;/code&gt; in the HTTP1 parser to create values of type &lt;code&gt;httparse::Header&lt;/code&gt; (from the &lt;code&gt;httparse&lt;/code&gt; crate).
+This is unsound, since &lt;code&gt;Header&lt;/code&gt; contains references and thus must be non-null.&lt;/p&gt;
+&lt;p&gt;The flaw was corrected by avoiding the use of &lt;code&gt;mem::uninitialized()&lt;/code&gt;, using &lt;code&gt;MaybeUninit&lt;/code&gt; instead.&lt;/p&gt;
+
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0020: Unsoundness in crossbeam</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0020.html</id><updated>2022-05-10T00:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2022-0020.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0020: Unsoundness in crossbeam"/><published>2022-05-10T00:00:00+00:00</published><summary xml:lang="en">`SegQueue` creates zero value of any type</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
     
@@ -1332,134 +1442,5 @@ regexes.&lt;/p&gt;
 to the &lt;a href=&quot;https://www.rust-lang.org/policies/security&quot;&gt;Rust security policy&lt;/a&gt;, and for helping review the fix.&lt;/p&gt;
 &lt;p&gt;We also want to thank Andrew Gallant for developing the fix, and Pietro Albini
 for coordinating the disclosure and writing this advisory.&lt;/p&gt;
-
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0012: Vulnerability in arrow2</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0012.html</id><updated>2022-03-04T00:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2022-0012.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0012: Vulnerability in arrow2"/><published>2022-03-04T00:00:00+00:00</published><summary xml:lang="en">Arrow2 allows double free in `safe` code</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/arrow2/RUSTSEC-2022-0012.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/arrow2/RUSTSEC-2022-0012.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        
-        RUSTSEC-2022-0012
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Arrow2 allows double free in &lt;code&gt;safe&lt;/code&gt; code&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2022-03-04&quot;&gt;
-          March  4, 2022
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        
-        &lt;a href=&quot;/packages/arrow2.html&quot;&gt;arrow2&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/arrow2&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-
-      
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;a href=&quot;https://github.com/jorgecarleitao/arrow2/issues/880&quot;&gt;
-          https://github.com/jorgecarleitao/arrow2/issues/880
-        &lt;/a&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.7.1, &amp;lt;0.8&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.8.2, &amp;lt;0.9&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.9.2, &amp;lt;0.10&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.10.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-      
-
-      
-      
-
-      
-      
-      
-    &lt;/dl&gt;
-
-    
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;The struct &lt;code&gt;Ffi_ArrowArray&lt;/code&gt; implements &lt;code&gt;#derive(Clone)&lt;/code&gt; that is inconsistent with
-its custom implementation of &lt;code&gt;Drop&lt;/code&gt;, resulting in a double free when cloned.&lt;/p&gt;
-&lt;p&gt;Cloning this struct in &lt;code&gt;safe&lt;/code&gt; results in a segmentation fault, which is unsound.&lt;/p&gt;
-&lt;p&gt;This derive was removed from this struct. All users are advised to either:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;bump the patch version of this crate (for versions &lt;code&gt;v0.7,v0.8,v0.9&lt;/code&gt;), or&lt;/li&gt;
-&lt;li&gt;migrate to a more recent version of  the crate (when using &lt;code&gt;&amp;lt;0.7&lt;/code&gt;).&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Doing so elimitates this vulnerability (code no longer compiles).&lt;/p&gt;
 
   &lt;/article&gt;</content></entry></feed>
