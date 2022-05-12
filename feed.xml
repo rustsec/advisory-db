@@ -209,226 +209,6 @@
 &lt;a href=&quot;https://crates.io/crates/once_cell&quot;&gt;&lt;code&gt;once_cell&lt;/code&gt;&lt;/a&gt;, which offers a superset
 of the functionality.&lt;/p&gt;
 
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0019: Unsoundness in crossbeam-channel</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0019.html</id><updated>2022-05-10T00:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2022-0019.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0019: Unsoundness in crossbeam-channel"/><published>2022-05-10T00:00:00+00:00</published><summary xml:lang="en">Channel creates zero value of any type</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/crossbeam-channel/RUSTSEC-2022-0019.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/crossbeam-channel/RUSTSEC-2022-0019.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        
-        RUSTSEC-2022-0019
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Channel creates zero value of any type&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2022-05-10&quot;&gt;
-          May 10, 2022
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        
-        &lt;a href=&quot;/packages/crossbeam-channel.html&quot;&gt;crossbeam-channel&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/crossbeam-channel&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unsound
-        
-      &lt;/dd&gt;
-
-      
-      
-
-      
-      
-
-      
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;a href=&quot;https://github.com/crossbeam-rs/crossbeam/pull/458&quot;&gt;
-          https://github.com/crossbeam-rs/crossbeam/pull/458
-        &lt;/a&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.4.3&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-      
-
-      
-      
-
-      
-      
-      
-    &lt;/dl&gt;
-
-    
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;Affected versions of this crate called &lt;code&gt;mem::zeroed()&lt;/code&gt; to create values of a user-supplied type &lt;code&gt;T&lt;/code&gt;.
-This is unsound e.g. if &lt;code&gt;T&lt;/code&gt; is a reference type (which must be non-null).&lt;/p&gt;
-&lt;p&gt;The flaw was corrected by avoiding the use of &lt;code&gt;mem::zeroed()&lt;/code&gt;, using &lt;code&gt;MaybeUninit&lt;/code&gt; instead.&lt;/p&gt;
-
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0022: Unsoundness in hyper</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0022.html</id><updated>2022-05-10T00:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2022-0022.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0022: Unsoundness in hyper"/><published>2022-05-10T00:00:00+00:00</published><summary xml:lang="en">Parser creates invalid uninitialized value</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/hyper/RUSTSEC-2022-0022.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/hyper/RUSTSEC-2022-0022.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        
-        RUSTSEC-2022-0022
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Parser creates invalid uninitialized value&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2022-05-10&quot;&gt;
-          May 10, 2022
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        
-        &lt;a href=&quot;/packages/hyper.html&quot;&gt;hyper&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/hyper&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unsound
-        
-      &lt;/dd&gt;
-
-      
-      
-
-      
-      
-
-      
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;a href=&quot;https://github.com/hyperium/hyper/pull/2545&quot;&gt;
-          https://github.com/hyperium/hyper/pull/2545
-        &lt;/a&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.4.12&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-      
-
-      
-      
-
-      
-      
-      
-    &lt;/dl&gt;
-
-    
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;Affected versions of this crate called &lt;code&gt;mem::uninitialized()&lt;/code&gt; in the HTTP1 parser to create values of type &lt;code&gt;httparse::Header&lt;/code&gt; (from the &lt;code&gt;httparse&lt;/code&gt; crate).
-This is unsound, since &lt;code&gt;Header&lt;/code&gt; contains references and thus must be non-null.&lt;/p&gt;
-&lt;p&gt;The flaw was corrected by avoiding the use of &lt;code&gt;mem::uninitialized()&lt;/code&gt;, using &lt;code&gt;MaybeUninit&lt;/code&gt; instead.&lt;/p&gt;
-
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0020: Unsoundness in crossbeam</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0020.html</id><updated>2022-05-10T00:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2022-0020.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0020: Unsoundness in crossbeam"/><published>2022-05-10T00:00:00+00:00</published><summary xml:lang="en">`SegQueue` creates zero value of any type</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
     
@@ -648,6 +428,226 @@ This is unsound e.g. if &lt;code&gt;T&lt;/code&gt; is a reference type (which mu
     &lt;p&gt;Affected versions of this crate called &lt;code&gt;mem::zeroed()&lt;/code&gt; to create values of a user-supplied type &lt;code&gt;T&lt;/code&gt;.
 This is unsound e.g. if &lt;code&gt;T&lt;/code&gt; is a reference type (which must be non-null).&lt;/p&gt;
 &lt;p&gt;The flaw was corrected by avoiding the use of &lt;code&gt;mem::zeroed()&lt;/code&gt;, using &lt;code&gt;MaybeUninit&lt;/code&gt; instead.&lt;/p&gt;
+
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0019: Unsoundness in crossbeam-channel</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0019.html</id><updated>2022-05-10T00:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2022-0019.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0019: Unsoundness in crossbeam-channel"/><published>2022-05-10T00:00:00+00:00</published><summary xml:lang="en">Channel creates zero value of any type</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/crossbeam-channel/RUSTSEC-2022-0019.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/crossbeam-channel/RUSTSEC-2022-0019.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        
+        RUSTSEC-2022-0019
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Channel creates zero value of any type&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2022-05-10&quot;&gt;
+          May 10, 2022
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        
+        &lt;a href=&quot;/packages/crossbeam-channel.html&quot;&gt;crossbeam-channel&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/crossbeam-channel&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      
+
+      
+      
+
+      
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https://github.com/crossbeam-rs/crossbeam/pull/458&quot;&gt;
+          https://github.com/crossbeam-rs/crossbeam/pull/458
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.4.3&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      
+
+      
+      
+
+      
+      
+      
+    &lt;/dl&gt;
+
+    
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Affected versions of this crate called &lt;code&gt;mem::zeroed()&lt;/code&gt; to create values of a user-supplied type &lt;code&gt;T&lt;/code&gt;.
+This is unsound e.g. if &lt;code&gt;T&lt;/code&gt; is a reference type (which must be non-null).&lt;/p&gt;
+&lt;p&gt;The flaw was corrected by avoiding the use of &lt;code&gt;mem::zeroed()&lt;/code&gt;, using &lt;code&gt;MaybeUninit&lt;/code&gt; instead.&lt;/p&gt;
+
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0022: Unsoundness in hyper</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0022.html</id><updated>2022-05-10T00:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2022-0022.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0022: Unsoundness in hyper"/><published>2022-05-10T00:00:00+00:00</published><summary xml:lang="en">Parser creates invalid uninitialized value</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/hyper/RUSTSEC-2022-0022.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/hyper/RUSTSEC-2022-0022.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        
+        RUSTSEC-2022-0022
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Parser creates invalid uninitialized value&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2022-05-10&quot;&gt;
+          May 10, 2022
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        
+        &lt;a href=&quot;/packages/hyper.html&quot;&gt;hyper&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/hyper&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      
+
+      
+      
+
+      
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https://github.com/hyperium/hyper/pull/2545&quot;&gt;
+          https://github.com/hyperium/hyper/pull/2545
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.4.12&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      
+
+      
+      
+
+      
+      
+      
+    &lt;/dl&gt;
+
+    
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Affected versions of this crate called &lt;code&gt;mem::uninitialized()&lt;/code&gt; in the HTTP1 parser to create values of type &lt;code&gt;httparse::Header&lt;/code&gt; (from the &lt;code&gt;httparse&lt;/code&gt; crate).
+This is unsound, since &lt;code&gt;Header&lt;/code&gt; contains references and thus must be non-null.&lt;/p&gt;
+&lt;p&gt;The flaw was corrected by avoiding the use of &lt;code&gt;mem::uninitialized()&lt;/code&gt;, using &lt;code&gt;MaybeUninit&lt;/code&gt; instead.&lt;/p&gt;
 
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0018: Vulnerability in totp-rs</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0018.html</id><updated>2022-05-09T00:00:00+00:00</updated><category term="crypto-failure"/><link href="https://rustsec.org/advisories/RUSTSEC-2022-0018.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0018: Vulnerability in totp-rs"/><published>2022-05-09T00:00:00+00:00</published><summary xml:lang="en">Timing attack</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
