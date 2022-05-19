@@ -1,0 +1,61 @@
+{
+  "id": "RUSTSEC-2022-0027",
+  "modified": "2022-05-19T17:41:25Z",
+  "published": "2022-05-03T12:00:00Z",
+  "aliases": [
+    "CVE-2022-1343"
+  ],
+  "related": [],
+  "summary": "`OCSP_basic_verify` may incorrectly verify the response signing certificate",
+  "details": "The function `OCSP_basic_verify` verifies the signer certificate on an OCSP\nresponse. In the case where the (non-default) flag OCSP_NOCHECKS is used then\nthe response will be positive (meaning a successful verification) even in the\ncase where the response signing certificate fails to verify.\n\nIt is anticipated that most users of `OCSP_basic_verify` will not use the\nOCSP_NOCHECKS flag. In this case the `OCSP_basic_verify` function will return\na negative value (indicating a fatal error) in the case of a certificate\nverification failure. The normal expected return value in this case would be 0.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "openssl-src",
+        "purl": "pkg:cargo/openssl-src"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        }
+      },
+      "database_specific": {
+        "categories": [
+          "crypto-failure"
+        ],
+        "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "300.0.0"
+            },
+            {
+              "fixed": "300.0.6"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/openssl-src"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2022-0027.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://www.openssl.org/news/secadv/20220503.txt"
+    }
+  ]
+}
