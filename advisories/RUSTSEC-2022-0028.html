@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories with keyword &#x27;incorrect-lifetime&#x27; › RustSec Advisory Database</title>
+<title>RUSTSEC-2022-0028: neon: Use after free in Neon external buffers › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -38,58 +38,166 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/neon/RUSTSEC-2022-0028.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/neon/RUSTSEC-2022-0028.md">Edit</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2022-0028
+        
+      </h1>
+      <span class="subtitle"><p>Use after free in Neon external buffers</p>
 </span>
-      <h1>Advisories with keyword &#x27;incorrect-lifetime&#x27;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2022-05-22">
-    May 22, 2022
-  </time>
+    
 
-  
-  <h3>
-    
-        
-    
-    <a href="/advisories/RUSTSEC-2022-0028.html">
-      RUSTSEC-2022-0028: Vulnerability in neon
-    </a>
-  </h3>
-  <span><p>Use after free in Neon external buffers</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2021-12-07">
-    December  7, 2021
-  </time>
+    <dl>
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2022-05-22">
+          May 22, 2022
+        </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="package">Package</dt>
+      <dd>
         
-    
-    <a href="/advisories/RUSTSEC-2021-0128.html">
-      RUSTSEC-2021-0128: Vulnerability in rusqlite
-    </a>
-  </h3>
-  <span><p>Incorrect Lifetime Bounds on Closures in <code>rusqlite</code></p>
-</span>
-  
-</li>
+        
+        <a href="/packages/neon.html">neon</a>
+          (<a href="https://crates.io/crates/neon">crates.io</a>)
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        Vulnerability
+        
+      </dd>
+
       
-    </ul>
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/memory-corruption.html">memory-corruption</a></li>
+          
+          <li><a href="/categories/memory-exposure.html">memory-exposure</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/use-after-free.html">#use-after-free</a>
+        
+          <a href="/keywords/incorrect-lifetime.html">#incorrect-lifetime</a>
+        
+      </dd>
+      
+
+      
+
+      
+      <dt id="details">Details</dt>
+      <dd>
+        <a href="https://github.com/neon-bindings/neon/issues/896">
+          https://github.com/neon-bindings/neon/issues/896
+        </a>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&gt;=0.10.1</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+      <dt id="unaffected">Unaffected</dt>
+      <dd>
+        <ul>
+          
+          <li><code>&lt;0.8.0</code></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      
+
+      
+      
+    </dl>
+
+    
+    
+    <dl>
+      <dt>Affected Functions</dt>
+      <dd>Version</dd>
+      
+      <dt><code>neon::types::JsArrayBuffer::external</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&lt;0.10.1, &gt;=0.8.0</code></li>
+          
+        </ul>
+      </dd>
+      
+      <dt><code>neon::types::JsBuffer::external</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&lt;0.10.1, &gt;=0.8.0</code></li>
+          
+        </ul>
+      </dd>
+      
+    </dl>
+    
+
+    
+
+    <h3 id="description">Description</h3>
+    <p>Neon provides functionality for creating JavaScript <code>ArrayBuffer</code> (and the <code>Buffer</code> subtype) instances backed by bytes allocated outside of V8/Node. The <a href="https://docs.rs/neon/0.10.0/neon/types/struct.JsArrayBuffer.html#method.external"><code>JsArrayBuffer::external</code></a> and <a href="https://docs.rs/neon/0.10.0/neon/types/struct.JsBuffer.html#method.external"><code>JsBuffer::external</code></a> did not require <code>T: 'static</code> prior to Neon <code>0.10.1</code>. This allowed creating an externally backed buffer from types that may be freed while they are still referenced by a JavaScript <code>ArrayBuffer</code>.</p>
+<p>The following example demonstrates use after free. It compiles on versions <code>&lt;0.10.1</code> and fails to compile afterward.</p>
+<pre><code class="language-rust">pub fn soundness_hole(mut cx: FunctionContext) -&gt; JsResult&lt;JsArrayBuffer&gt; {
+    let mut data = vec![0u8, 1, 2, 3];
+    
+    // Creating an external from `&amp;mut [u8]` instead of `Vec&lt;u8&gt;` since there is a blanket impl
+    // of `AsMut&lt;T&gt; for &amp;mut T`
+    let buf = JsArrayBuffer::external(&amp;mut cx, data.as_mut_slice());
+
+    // `buf` is still holding a reference to `data`!
+    drop(data);
+
+    Ok(buf)
+}
+</code></pre>
+
   </article>
 </main>
