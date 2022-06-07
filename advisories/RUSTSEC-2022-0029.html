@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package &#x27;crossbeam&#x27; › RustSec Advisory Database</title>
+<title>RUSTSEC-2022-0029: crossbeam: `MsQueue` `push`/`pop` use the wrong orderings › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -38,79 +38,106 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/crossbeam/RUSTSEC-2022-0029.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/crossbeam/RUSTSEC-2022-0029.md">Edit</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2022-0029
+        
+      </h1>
+      <span class="subtitle"><p><code>MsQueue</code> <code>push</code>/<code>pop</code> use the wrong orderings</p>
 </span>
-      <h1>Advisories for package &#x27;crossbeam&#x27;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2022-06-07">
-    June  7, 2022
-  </time>
+    
 
-  
-  <h3>
-    
-        
-    
-    <a href="/advisories/RUSTSEC-2022-0029.html">
-      RUSTSEC-2022-0029: Vulnerability in crossbeam
-    </a>
-  </h3>
-  <span><p><code>MsQueue</code> <code>push</code>/<code>pop</code> use the wrong orderings</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2022-05-10">
-    May 10, 2022
-  </time>
+    <dl>
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2022-06-07">
+          June  7, 2022
+        </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="package">Package</dt>
+      <dd>
         
-          <span class="tag info">INFO</span>
         
-    
-    <a href="/advisories/RUSTSEC-2022-0020.html">
-      RUSTSEC-2022-0020: Unsoundness in crossbeam
-    </a>
-  </h3>
-  <span><p><code>SegQueue</code> creates zero value of any type</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2018-12-09">
-    December  9, 2018
-  </time>
+        <a href="/packages/crossbeam.html">crossbeam</a>
+          (<a href="https://crates.io/crates/crossbeam">crates.io</a>)
+        
+        
+      </dd>
 
-  
-  <h3>
+      <dt id="type">Type</dt>
+      <dd>
+        
+        Vulnerability
+        
+      </dd>
+
+      
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/thread-safety.html">thread-safety</a></li>
+          
+          <li><a href="/categories/memory-corruption.html">memory-corruption</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+
+      
+
+      
+      <dt id="details">Details</dt>
+      <dd>
+        <a href="https://github.com/crossbeam-rs/crossbeam/pull/98">
+          https://github.com/crossbeam-rs/crossbeam/pull/98
+        </a>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&gt;=0.3.0</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+
+      
+      
+    </dl>
+
     
-      <span class="tag critical">CRITICAL</span>
-      
-    <a href="/advisories/RUSTSEC-2018-0009.html">
-      RUSTSEC-2018-0009: Vulnerability in crossbeam
-    </a>
-  </h3>
-  <span><p>MsQueue and SegQueue suffer from double-free</p>
-</span>
-  
-</li>
-      
-    </ul>
+    
+
+    <h3 id="description">Description</h3>
+    <p>Affected versions of this crate use orderings which are too weak to support this data structure.
+It is likely this has caused memory corruption in the wild: <a href="https://github.com/crossbeam-rs/crossbeam/issues/97#issuecomment-412785919">https://github.com/crossbeam-rs/crossbeam/issues/97#issuecomment-412785919</a>.</p>
+
   </article>
 </main>
