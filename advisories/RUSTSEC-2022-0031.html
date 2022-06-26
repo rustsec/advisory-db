@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package &#x27;rulex&#x27; › RustSec Advisory Database</title>
+<title>RUSTSEC-2022-0031: rulex: Panic due to improper UTF-8 indexing › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -38,58 +38,128 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/rulex/RUSTSEC-2022-0031.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/rulex/RUSTSEC-2022-0031.md">Edit</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2022-0031
+        
+      </h1>
+      <span class="subtitle"><p>Panic due to improper UTF-8 indexing</p>
 </span>
-      <h1>Advisories for package &#x27;rulex&#x27;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2022-05-21">
-    May 21, 2022
-  </time>
+    
 
-  
-  <h3>
-    
-        
-    
-    <a href="/advisories/RUSTSEC-2022-0031.html">
-      RUSTSEC-2022-0031: Vulnerability in rulex
-    </a>
-  </h3>
-  <span><p>Panic due to improper UTF-8 indexing</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2022-05-21">
-    May 21, 2022
-  </time>
+    <dl>
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2022-05-21">
+          May 21, 2022
+        </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="package">Package</dt>
+      <dd>
         
-    
-    <a href="/advisories/RUSTSEC-2022-0030.html">
-      RUSTSEC-2022-0030: Vulnerability in rulex
-    </a>
-  </h3>
-  <span><p>Stack overflow during recursive expression parsing</p>
-</span>
-  
-</li>
+        
+        <a href="/packages/rulex.html">rulex</a>
+          (<a href="https://crates.io/crates/rulex">crates.io</a>)
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        Vulnerability
+        
+      </dd>
+
       
-    </ul>
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/denial-of-service.html">denial-of-service</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      <dt id="aliases">Aliases</dt>
+      <dd>
+        <ul>
+          
+          <li>
+            
+            <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-31100">CVE-2022-31100</a>
+            
+          </li>
+          
+          <li>
+            
+            <a href="https://github.com/advisories/GHSA-8v9w-p43c-r885">GHSA-8v9w-p43c-r885</a>
+            
+          </li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="details">Details</dt>
+      <dd>
+        <a href="https://github.com/rulex-rs/rulex/security/advisories/GHSA-8v9w-p43c-r885">
+          https://github.com/rulex-rs/rulex/security/advisories/GHSA-8v9w-p43c-r885
+        </a>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&gt;=0.4.3</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+
+      
+      
+    </dl>
+
+    
+    
+
+    <h3 id="description">Description</h3>
+    <p>When parsing untrusted rulex expressions, rulex may panic, possibly enabling
+a Denial of Service attack. This happens when the expression contains a multi-
+byte UTF-8 code point in a string literal or after a backslash, because rulex
+tries to slice into the code point and panics as a result.</p>
+<p>The flaw was corrected in commits <code>fac6d58b25</code> and <code>330b3534e7</code> by using
+<code>len_utf8()</code> to derive character width in bytes instead of assuming ASCII
+encoding of 1 byte per char.</p>
+
   </article>
 </main>
