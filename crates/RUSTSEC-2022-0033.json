@@ -1,0 +1,61 @@
+{
+  "id": "RUSTSEC-2022-0033",
+  "modified": "2022-07-05T12:48:56Z",
+  "published": "2022-07-05T12:00:00Z",
+  "aliases": [
+    "CVE-2022-2274"
+  ],
+  "related": [],
+  "summary": "Heap memory corruption with RSA private key operation",
+  "details": "The OpenSSL 3.0.4 release introduced a serious bug in the RSA\nimplementation for X86_64 CPUs supporting the AVX512IFMA instructions.\nThis issue makes the RSA implementation with 2048 bit private keys\nincorrect on such machines and memory corruption will happen during\nthe computation. As a consequence of the memory corruption an attacker\nmay be able to trigger a remote code execution on the machine performing\nthe computation.\n\nSSL/TLS servers or other servers using 2048 bit RSA private keys running\non machines supporting AVX512IFMA instructions of the X86_64 architecture\nare affected by this issue.\n\nNote that on a vulnerable machine, proper testing of OpenSSL would fail and\nshould be noticed before deployment.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "openssl-src",
+        "purl": "pkg:cargo/openssl-src"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        }
+      },
+      "database_specific": {
+        "categories": [
+          "crypto-failure"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "300.0.8"
+            },
+            {
+              "fixed": "300.0.9"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/openssl-src"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2022-0033.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://www.openssl.org/news/secadv/20220705.txt"
+    }
+  ]
+}
