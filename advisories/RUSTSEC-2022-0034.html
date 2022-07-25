@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories with keyword &#x27;segfault&#x27; › RustSec Advisory Database</title>
+<title>RUSTSEC-2022-0034: pkcs11: Safety issues in `pkcs11` › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -38,111 +38,125 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/pkcs11/RUSTSEC-2022-0034.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/pkcs11/RUSTSEC-2022-0034.md">Edit</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2022-0034
+        
+      </h1>
+      <span class="subtitle"><p>Safety issues in <code>pkcs11</code></p>
 </span>
-      <h1>Advisories with keyword &#x27;segfault&#x27;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2022-07-22">
-    July 22, 2022
-  </time>
-
-  
-  <h3>
     
+
+    <dl>
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2022-07-22">
+          July 22, 2022
+        </time>
+      </dd>
+
+      <dt id="package">Package</dt>
+      <dd>
         
-          <span class="tag info">INFO</span>
         
-    
-    <a href="/advisories/RUSTSEC-2022-0034.html">
-      RUSTSEC-2022-0034: Unsoundness in pkcs11
-    </a>
-  </h3>
-  <span><p>Safety issues in <code>pkcs11</code></p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2022-01-10">
-    January 10, 2022
-  </time>
-
-  
-  <h3>
-    
+        <a href="/packages/pkcs11.html">pkcs11</a>
+          (<a href="https://crates.io/crates/pkcs11">crates.io</a>)
         
-    
-    <a href="/advisories/RUSTSEC-2022-0002.html">
-      RUSTSEC-2022-0002: Vulnerability in dashmap
-    </a>
-  </h3>
-  <span><p>Unsoundness in <code>dashmap</code> references</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2020-11-18">
-    November 18, 2020
-  </time>
+        
+      </dd>
 
-  
-  <h3>
-    
-      <span class="tag medium">MEDIUM</span>
-      
-    <a href="/advisories/RUSTSEC-2020-0071.html">
-      RUSTSEC-2020-0071: Vulnerability in time
-    </a>
-  </h3>
-  <span><p>Potential segfault in the time crate</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2020-11-10">
-    November 10, 2020
-  </time>
+      <dt id="type">Type</dt>
+      <dd>
+        
+        <span class="tag info">INFO</span>
+        Unsound
+        
+      </dd>
 
-  
-  <h3><a class="withdrawn" href="/advisories/RUSTSEC-2020-0159.html">
-      RUSTSEC-2020-0159
-  </a></h3>
-  (withdrawn advisory)
-  
-</li>
       
-      <li>
-  <time datetime="2019-06-11">
-    June 11, 2019
-  </time>
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/code-execution.html">code-execution</a></li>
+          
+          <li><a href="/categories/memory-corruption.html">memory-corruption</a></li>
+          
+          <li><a href="/categories/crypto-failure.html">crypto-failure</a></li>
+          
+        </ul>
+      </dd>
+      
 
-  
-  <h3>
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/segfault.html">#segfault</a>
+        
+          <a href="/keywords/undefined-behaviour.html">#undefined-behaviour</a>
+        
+      </dd>
+      
+
+      
+
+      
+      <dt id="details">Details</dt>
+      <dd>
+        <a href="https://github.com/mheese/rust-pkcs11/issues/57">
+          https://github.com/mheese/rust-pkcs11/issues/57
+        </a>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        no patched versions
+        
+      </dd>
+
+      
+
+      
+      
+    </dl>
+
     
-      <span class="tag medium">MEDIUM</span>
-      
-    <a href="/advisories/RUSTSEC-2019-0037.html">
-      RUSTSEC-2019-0037: Vulnerability in pnet
-    </a>
-  </h3>
-  <span><p>Compiler optimisation for next_with_timeout in pnet::transport::IcmpTransportChannelIterator flaws to SEGFAULT</p>
-</span>
-  
-</li>
-      
-    </ul>
+    
+
+    <h3 id="description">Description</h3>
+    <h3>Impact</h3>
+<p>The interface of <code>pkcs11</code> is subject to a number of safety issues, mainly related to handling of raw pointers. Despite presenting a safe interface, many of the functions and methods that rely on inputs which contain pointers (attributes and mechanisms in particular) can lead to segmentation faults and undefined behaviour when those pointers get dereferenced. For more details see the issues referenced below.</p>
+<p>Other problems that have been identified by the community include use-after-free (<a href="https://github.com/mheese/rust-pkcs11/pull/53">mheese/rust-pkcs11#53</a>) and unsound uses of <code>transmute_copy</code> (<a href="https://github.com/mheese/rust-pkcs11/issues/55">mheese/rust-pkcs11#55</a>).</p>
+<h3>Workarounds</h3>
+<p>Users of the crate need to be <em>extremely</em> careful in all the calls made to avoid segmentation faults and undefined behaviour due to use of stale pointers. Whenever a pointer is derived from a value and passed to the library, that value's lifetime must be guaranteed to outlast all calls that rely on the pointer. For example, users should <strong>avoid</strong> creating or converting values within a separate scope (say, in a dedicated function), deriving a pointer, then extracting the pointer from that scope leaving the value to get dropped before passing the pointer to <code>pkcs11</code>.</p>
+<h3>References</h3>
+<ul>
+<li><a href="https://github.com/mheese/rust-pkcs11/issues/38">mheese/rust-pkcs11#38</a></li>
+<li><a href="https://github.com/mheese/rust-pkcs11/pull/53">mheese/rust-pkcs11#53</a></li>
+<li><a href="https://github.com/mheese/rust-pkcs11/issues/55">mheese/rust-pkcs11#55</a></li>
+<li><a href="https://github.com/mheese/rust-pkcs11/issues/54">mheese/rust-pkcs11#54</a></li>
+<li><a href="https://github.com/mheese/rust-pkcs11/issues/50">mheese/rust-pkcs11#50</a></li>
+</ul>
+
   </article>
 </main>
