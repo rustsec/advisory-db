@@ -22,7 +22,7 @@ If the upstream is unresponsive or is not interested in fixing the issue, we can
 ## Make sure the advisory text is clear and actionable
 If you don't understand what's going on, most users won't either. Ask the submitter specific questions to clarify the advisory text, if needed.
 
-Avoid editing the text directly without clearing it with the submitter first; use the "Suggest changes" feature instead, or just plain comments on the pull request.
+Avoid editing the text directly without clearing it with the submitter first; use the "Suggest changes" feature instead, or just plain comments on the pull request. The experience of other databases shows that the database maintainers may be missing some context, and unilateral changes may lead to incorrect advisories, so make sure the submitter confirms that the changes are correct.
 
 ## Check that the metadata is correct
 The date should be set to the original disclosure of the issue, not the date of the pull request.
