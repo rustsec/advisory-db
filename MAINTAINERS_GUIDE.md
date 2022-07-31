@@ -6,7 +6,7 @@ Reviewing a pull request, step by step:
 
 This is something first-time submitters may struggle with.
  
-Usually you can usually make changes directly to the sumbitter's branch. It's a great way to make CI pass and help out first-timers, but avoid making substantial changes to content this way without consuling the submitter.
+You can usually make changes directly to the sumbitter's branch. It's a great way to make CI pass and help out first-timers, but avoid making substantial changes to content this way without consuling the submitter.
 
 ## Make sure the developers of the crate in question are aware of the issue
 
@@ -33,7 +33,7 @@ The date should be set to the original disclosure of the issue, not the date of 
 
 ## Check if the advisory came from GHSA
 
-GHSA advisory info is licensed under [CC-BY-4.0](https://docs.github.com/en/site-policy/github-terms/github-terms-for-additional-products-and-features#12-advisory-database), while most other databases (including RustSec) are in the public domain. 
+GHSA advisory info is licensed under [CC-BY-4.0](https://docs.github.com/en/site-policy/github-terms/github-terms-for-additional-products-and-features#12-advisory-database), while most other databases (including RustSec) are in the public domain.
 
 If the advisory came from GHSA, we have two options:
 
