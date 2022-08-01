@@ -9,8 +9,9 @@ this repository containing the new advisory:
    subdirectory of this repository (you may need to create it if it doesn't exist)
 2. Copy and paste the [TOML advisory template] from the README.md file in this repo.
    Delete the comments and additional whitespace, and fill it out with the
-   details of the advisory.
-3. Open a [Pull Request]. After being reviewed your advisory will be assigned
+   details of the advisory. Surround the TOML data with <code>\```toml</code> and <code>\```</code> markers.
+3. Write a human-readable Markdown description in the same file, after the <code>\```</code> marker and a newline. Use [this example advisory][example] as a reference.
+4. Open a [Pull Request]. After being reviewed your advisory will be assigned
    a `RUSTSEC-*` advisory identifier and be published to the database.
    
 ### Optional Steps
@@ -71,3 +72,4 @@ A: We do not presently handle embargoed vulnerabilities. Please ensure embargoes
 [Pull Request]: https://github.com/RustSec/advisory-db/pulls
 [TOML advisory template]: https://github.com/RustSec/advisory-db#advisory-format
 [Yank]: https://doc.rust-lang.org/cargo/commands/cargo-yank.html
+[example]: https://raw.githubusercontent.com/rustsec/advisory-db/main/EXAMPLE_ADVISORY.md
