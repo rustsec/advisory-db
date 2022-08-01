@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories with keyword &#x27;websocket&#x27; › RustSec Advisory Database</title>
+<title>RUSTSEC-2022-0035: websocket: Unbounded memory allocation based on untrusted length › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -38,58 +38,145 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/websocket/RUSTSEC-2022-0035.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/websocket/RUSTSEC-2022-0035.md">Edit</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2022-0035
+        
+      </h1>
+      <span class="subtitle"><p>Unbounded memory allocation based on untrusted length</p>
 </span>
-      <h1>Advisories with keyword &#x27;websocket&#x27;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2022-07-01">
-    July  1, 2022
-  </time>
-
-  
-  <h3>
     
+
+    <dl>
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2022-07-01">
+          July  1, 2022
+        </time>
+      </dd>
+
+      <dt id="package">Package</dt>
+      <dd>
         
-    
-    <a href="/advisories/RUSTSEC-2022-0035.html">
-      RUSTSEC-2022-0035: Vulnerability in websocket
-    </a>
-  </h3>
-  <span><p>Unbounded memory allocation based on untrusted length</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2020-09-25">
-    September 25, 2020
-  </time>
+        
+        <a href="/packages/websocket.html">websocket</a>
+          (<a href="https://crates.io/crates/websocket">crates.io</a>)
+        
+        
+      </dd>
 
-  
-  <h3>
+      <dt id="type">Type</dt>
+      <dd>
+        
+        Vulnerability
+        
+      </dd>
+
+      
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/denial-of-service.html">denial-of-service</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/websocket.html">#websocket</a>
+        
+      </dd>
+      
+
+      
+      <dt id="aliases">Aliases</dt>
+      <dd>
+        <ul>
+          
+          <li>
+            
+            <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-35922">CVE-2022-35922</a>
+            
+          </li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="details">Details</dt>
+      <dd>
+        <a href="https://github.com/websockets-rs/rust-websocket/security/advisories/GHSA-qrjv-rf5q-qpxc">
+          https://github.com/websockets-rs/rust-websocket/security/advisories/GHSA-qrjv-rf5q-qpxc
+        </a>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&gt;=0.26.5</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+
+      
+      
+    </dl>
+
     
-      <span class="tag high">HIGH</span>
-      
-    <a href="/advisories/RUSTSEC-2020-0043.html">
-      RUSTSEC-2020-0043: Vulnerability in ws
-    </a>
-  </h3>
-  <span><p>Insufficient size checks in outgoing buffer in ws allows remote attacker to run the process out of memory</p>
-</span>
-  
-</li>
-      
-    </ul>
+    
+
+    <h3 id="description">Description</h3>
+    <h2>Impact</h2>
+<p>Untrusted websocket connections can cause an out-of-memory (OOM) process abort in a client or a server.
+The root cause of the issue is during dataframe parsing.
+Affected versions would allocate a buffer based on the declared dataframe size, which may come from an untrusted source.
+When <code>Vec::with_capacity</code> fails to allocate, the default Rust allocator will abort the current process, killing all threads. This affects only sync (non-Tokio) implementation. Async version also does not limit memory, but does not use <code>with_capacity</code>, so DoS can happen only when bytes for oversized dataframe or message actually got delivered by the attacker.</p>
+<p>This is a security concern for you, if</p>
+<ul>
+<li>your server application handles untrusted websocket connections</li>
+<li>OR your client application connects to untrusted websocket servers</li>
+</ul>
+<h2>Patches</h2>
+<p>The crashes are fixed in version <strong>0.26.5</strong> by imposing default dataframe size limits.
+Affected users are advised to update to this version.</p>
+<p>Note that default memory limits are rather large (100MB dataframes and 200 MB messages), so they can still cause DoS in some environments (i.e. 32-bit). New API has been added to fine tune those limits for specific applications.</p>
+<h3>Workarounds</h3>
+<ul>
+<li>Migrate your project to another, maintained Websocket library like Tungstenite.</li>
+<li>Accept only trusted WebSocket traffic.</li>
+<li>Filter the WebSocket traffic though some kind of proxy that ensures sanity limits on messages.</li>
+<li>Handle process aborts gracefully and limit process memory using OS tools.</li>
+</ul>
+<h2>Credits</h2>
+<p>This issue was reported by <a href="https://github.com/evanrichter">Evan Richter</a> at ForAllSecure and found with <a href="https://forallsecure.com/mayhem-for-code">Mayhem</a> and <a href="https://github.com/rust-fuzz/cargo-fuzz">Cargo Fuzz</a>.</p>
+
   </article>
 </main>
