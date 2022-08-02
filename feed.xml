@@ -138,6 +138,180 @@ Affected users are advised to update to this version.&lt;/p&gt;
 &lt;h2&gt;Credits&lt;/h2&gt;
 &lt;p&gt;This issue was reported by &lt;a href=&quot;https://github.com/evanrichter&quot;&gt;Evan Richter&lt;/a&gt; at ForAllSecure and found with &lt;a href=&quot;https://forallsecure.com/mayhem-for-code&quot;&gt;Mayhem&lt;/a&gt; and &lt;a href=&quot;https://github.com/rust-fuzz/cargo-fuzz&quot;&gt;Cargo Fuzz&lt;/a&gt;.&lt;/p&gt;
 
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0038: Vulnerability in juniper</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0038.html</id><updated>2022-07-28T00:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2022-0038.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0038: Vulnerability in juniper"/><published>2022-07-28T00:00:00+00:00</published><summary xml:lang="en">Denial of service on deeply nested fragment requests</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/juniper/RUSTSEC-2022-0038.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/juniper/RUSTSEC-2022-0038.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2022-0038
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Denial of service on deeply nested fragment requests&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2022-07-28&quot;&gt;
+          July 28, 2022
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/juniper.html&quot;&gt;juniper&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/juniper&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-4rx6-g5vg-5f3j&quot;&gt;GHSA-4rx6-g5vg-5f3j&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-31173&quot;&gt;CVE-2022-31173&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https://github.com/graphql-rust/juniper/security/advisories/GHSA-4rx6-g5vg-5f3j&quot;&gt;
+          https://github.com/graphql-rust/juniper/security/advisories/GHSA-4rx6-g5vg-5f3j
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;related&quot;&gt;Related&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-xq3c-8gqm-v648&quot;&gt;GHSA-xq3c-8gqm-v648&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;7.5 &lt;span class=&quot;tag high&quot;&gt;
+        HIGH
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+          &lt;dt&gt;Attack vector&lt;/dt&gt;&lt;dd&gt;Network&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Attack complexity&lt;/dt&gt;&lt;dd&gt;Low&lt;/d&gt;
+          
+
+          
+          &lt;dt&gt;Privileges required&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;User interaction&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Scope&lt;/dt&gt;&lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+      &lt;dd&gt;&lt;a href=&quot;https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&lt;/a&gt;&lt;/dd&gt;
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.15.10&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Deeply nested fragments in a GraphQL request may cause a stack overflow in the server.&lt;/p&gt;
+
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0034: Unsoundness in pkcs11</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0034.html</id><updated>2022-07-22T00:00:00+00:00</updated><category term="code-execution"/><category term="memory-corruption"/><category term="crypto-failure"/><link href="https://rustsec.org/advisories/RUSTSEC-2022-0034.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0034: Unsoundness in pkcs11"/><published>2022-07-22T00:00:00+00:00</published><summary xml:lang="en">Safety issues in `pkcs11`</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -256,6 +430,174 @@ Affected users are advised to update to this version.&lt;/p&gt;
 &lt;li&gt;&lt;a href=&quot;https://github.com/mheese/rust-pkcs11/issues/54&quot;&gt;mheese/rust-pkcs11#54&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://github.com/mheese/rust-pkcs11/issues/50&quot;&gt;mheese/rust-pkcs11#50&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0037: Vulnerability in async-graphql</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0037.html</id><updated>2022-07-21T00:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2022-0037.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0037: Vulnerability in async-graphql"/><published>2022-07-21T00:00:00+00:00</published><summary xml:lang="en">Denial of service on deeply nested fragment requests</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/async-graphql/RUSTSEC-2022-0037.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/async-graphql/RUSTSEC-2022-0037.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2022-0037
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Denial of service on deeply nested fragment requests&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2022-07-21&quot;&gt;
+          July 21, 2022
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/async-graphql.html&quot;&gt;async-graphql&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/async-graphql&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-xq3c-8gqm-v648&quot;&gt;GHSA-xq3c-8gqm-v648&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https://github.com/async-graphql/async-graphql/commit/521769b80039fc8043d1c9883e3d6e5b57359072&quot;&gt;
+          https://github.com/async-graphql/async-graphql/commit/521769b80039fc8043d1c9883e3d6e5b57359072
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;related&quot;&gt;Related&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-4rx6-g5vg-5f3j&quot;&gt;GHSA-4rx6-g5vg-5f3j&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;7.5 &lt;span class=&quot;tag high&quot;&gt;
+        HIGH
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+          &lt;dt&gt;Attack vector&lt;/dt&gt;&lt;dd&gt;Network&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Attack complexity&lt;/dt&gt;&lt;dd&gt;Low&lt;/d&gt;
+          
+
+          
+          &lt;dt&gt;Privileges required&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;User interaction&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Scope&lt;/dt&gt;&lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+      &lt;dd&gt;&lt;a href=&quot;https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&lt;/a&gt;&lt;/dd&gt;
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.15.10&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Deeply nested fragments in a GraphQL request may cause a stack overflow in the server.&lt;/p&gt;
 
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0033: Vulnerability in openssl-src</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0033.html</id><updated>2022-07-05T00:00:00+00:00</updated><category term="crypto-failure"/><link href="https://rustsec.org/advisories/RUSTSEC-2022-0033.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0033: Vulnerability in openssl-src"/><published>2022-07-05T00:00:00+00:00</published><summary xml:lang="en">Heap memory corruption with RSA private key operation</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
@@ -1007,179 +1349,5 @@ tries to slice into the code point and panics as a result.&lt;/p&gt;
 &lt;p&gt;The flaw was corrected in commits &lt;code&gt;fac6d58b25&lt;/code&gt; and &lt;code&gt;330b3534e7&lt;/code&gt; by using
 &lt;code&gt;len_utf8()&lt;/code&gt; to derive character width in bytes instead of assuming ASCII
 encoding of 1 byte per char.&lt;/p&gt;
-
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0023: static_type_map is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0023.html</id><updated>2022-05-11T00:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2022-0023.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0023: static_type_map is unmaintained"/><published>2022-05-11T00:00:00+00:00</published><summary xml:lang="en">`static_type_map` has been renamed to `erased_set`</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/static_type_map/RUSTSEC-2022-0023.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/static_type_map/RUSTSEC-2022-0023.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2022-0023
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;static_type_map&lt;/code&gt; has been renamed to &lt;code&gt;erased_set&lt;/code&gt;&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2022-05-11&quot;&gt;
-          May 11, 2022
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/static_type_map.html&quot;&gt;static_type_map&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/static_type_map&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unmaintained
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;a href=&quot;https://github.com/malobre/erased_set/issues/6&quot;&gt;
-          https://github.com/malobre/erased_set/issues/6
-        &lt;/a&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;Please use the &lt;code&gt;erased_set&lt;/code&gt; crate going forward:&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/malobre/erased_set&quot;&gt;https://github.com/malobre/erased_set&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;There will be no further releases of &lt;code&gt;static_type_map&lt;/code&gt;.&lt;/p&gt;
-
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0024: double-checked-cell is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0024.html</id><updated>2022-05-11T00:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2022-0024.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0024: double-checked-cell is unmaintained"/><published>2022-05-11T00:00:00+00:00</published><summary xml:lang="en">double-checked-cell is unmaintained</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/double-checked-cell/RUSTSEC-2022-0024.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/double-checked-cell/RUSTSEC-2022-0024.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2022-0024
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;double-checked-cell is unmaintained&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2022-05-11&quot;&gt;
-          May 11, 2022
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/double-checked-cell.html&quot;&gt;double-checked-cell&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/double-checked-cell&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unmaintained
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;a href=&quot;https://github.com/niklasf/double-checked-cell/commit/9cf94d75316ef441033ce4c80def7c1a8c7643fe&quot;&gt;
-          https://github.com/niklasf/double-checked-cell/commit/9cf94d75316ef441033ce4c80def7c1a8c7643fe
-        &lt;/a&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;The author recommends switching to
-&lt;a href=&quot;https://crates.io/crates/once_cell&quot;&gt;&lt;code&gt;once_cell&lt;/code&gt;&lt;/a&gt;, which offers a superset
-of the functionality.&lt;/p&gt;
 
   &lt;/article&gt;</content></entry></feed>
