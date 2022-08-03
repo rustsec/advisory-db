@@ -27,7 +27,7 @@ Avoid editing the text directly without clearing it with the submitter first; us
 ## Check that the metadata is correct
 The date should be set to the original disclosure of the issue, not the date of the pull request.
 
-`informational = "unsound"` is used for issues that can only be triggered by a programmer (as opposed to e.g. a malicious input), and/or require very contrived code to trigger.
+`informational = "unsound"` is used for [soundness issues](https://rust-lang.github.io/unsafe-code-guidelines/glossary.html#soundness-of-code--of-a-library) that can only be triggered by a programmer (as opposed to e.g. a malicious input), and/or require very contrived code to trigger.
 
 `informational = "unmaintained"` has a [policy](https://github.com/rustsec/advisory-db/blob/main/HOWTO_UNMAINTAINED.md) associated with it; make sure it is followed. If any items are missing, advise the submitter how to proceed.
 
