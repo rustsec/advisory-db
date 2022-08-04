@@ -16,13 +16,13 @@ jobs:
       uses: actions/cache@v1
       with:
         path: ~/.cargo/bin
-        key: rustsec-admin-v0.6.0
+        key: rustsec-admin-v0.8.0
 
     - name: Install rustsec-admin
       run: |
         if [ ! -f $HOME/.cargo/bin/rustsec-admin ]; then
-            cargo install rustsec-admin --vers 0.6.0
+            cargo install rustsec-admin --vers 0.8.0
         fi
 
     - name: Lint advisories
-      run: rustsec-admin lint
+      run: rustsec-admin lint --skip-namecheck rustdecimal
