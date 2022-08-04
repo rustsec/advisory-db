@@ -35,9 +35,6 @@ jobs:
         echo "This prevents duplicate ID assignment due to a race between those jobs." >> .duplicate-id-guard
         ls -R . | sha256sum >> .duplicate-id-guard
 
-    - name: Lint advisories
-      run: rustsec-admin lint
-
     - name: Create pull request
       uses: peter-evans/create-pull-request@v3
       with:
