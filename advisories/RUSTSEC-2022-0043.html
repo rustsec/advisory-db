@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories with keyword &#x27;directory-traversal&#x27; › RustSec Advisory Database</title>
+<title>RUSTSEC-2022-0043: tower-http: Improper validation of Windows paths could lead to directory traversal attack › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -38,52 +38,133 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/tower-http/RUSTSEC-2022-0043.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/tower-http/RUSTSEC-2022-0043.md">Edit</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2022-0043
+        
+      </h1>
+      <span class="subtitle"><p>Improper validation of Windows paths could lead to directory traversal attack</p>
 </span>
-      <h1>Advisories with keyword &#x27;directory-traversal&#x27;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2022-01-21">
-    January 21, 2022
-  </time>
-
-  
-  <h3>
     
+
+    <dl>
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2022-01-21">
+          January 21, 2022
+        </time>
+      </dd>
+
+      <dt id="package">Package</dt>
+      <dd>
         
-    
-    <a href="/advisories/RUSTSEC-2022-0043.html">
-      RUSTSEC-2022-0043: Vulnerability in tower-http
-    </a>
-  </h3>
-  <span><p>Improper validation of Windows paths could lead to directory traversal attack</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2021-01-21">
-    January 21, 2021
-  </time>
+        
+        <a href="/packages/tower-http.html">tower-http</a>
+          (<a href="https://crates.io/crates/tower-http">crates.io</a>)
+        
+        
+      </dd>
 
-  
-  <h3><a class="withdrawn" href="/advisories/RUSTSEC-2021-0135.html">
-      RUSTSEC-2021-0135
-  </a></h3>
-  (withdrawn advisory)
-  
-</li>
+      <dt id="type">Type</dt>
+      <dd>
+        
+        Vulnerability
+        
+      </dd>
+
       
-    </ul>
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/file-disclosure.html">file-disclosure</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/directory-traversal.html">#directory-traversal</a>
+        
+          <a href="/keywords/http.html">#http</a>
+        
+      </dd>
+      
+
+      
+
+      
+      <dt id="details">Details</dt>
+      <dd>
+        <a href="https://github.com/tower-rs/tower-http/pull/204">
+          https://github.com/tower-rs/tower-http/pull/204
+        </a>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&gt;=0.2.1</code></li>
+          
+          <li><code>&gt;=0.1.3, &lt;0.2.0</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+
+      
+      
+
+      
+      <dt>Affected OSes</dt>
+      <dd>
+        <ul>
+          
+          <li><code>windows</code></li>
+          
+        </ul>
+      </dd>
+      
+      
+    </dl>
+
+    
+    
+
+    
+
+    <h3 id="description">Description</h3>
+    <p><code>tower_http::services::fs::ServeDir</code> didn't correctly validate Windows paths
+meaning paths like <code>/foo/bar/c:/windows/web/screen/img101.png</code> would be allowed
+and respond with the contents of <code>c:/windows/web/screen/img101.png</code>. Thus users
+could potentially read files anywhere on the filesystem.</p>
+<p>This only impacts Windows. Linux and other unix likes are not impacted by this.</p>
+<p>See <a href="https://github.com/tower-rs/tower-http/pull/204">tower-http#204</a> for more details.</p>
+
   </article>
 </main>
