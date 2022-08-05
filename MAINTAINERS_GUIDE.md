@@ -14,12 +14,14 @@ It is important to ensure we know what is going on with each PR so we can effici
 - `Waiting-Maintainer` - We are waiting for the Maintainer to provide any response if any.
 - `Waiting-Author` - We are waiting for the Author of PR
 
-It is also useful to radiate the intent when dealing with PRs - Especially controversial ones to allow feedback.
+It is also useful to [radiate the intent] when dealing with PRs - Especially controversial ones to allow feedback.
 
 - `Propose-Close` - PR may be Closed soon if nobody objects.
 - `Propose-Merge` - PR may be Merged soon if nobody objects.
 
 Time period of Objection to either Merge or Close depends on the controversial aspect and / or urgency of the PR.
+
+[radiate the intent]: https://github.com/rustsec/advisory-db/discussions/1325
 
 ## See if CI passes
 
