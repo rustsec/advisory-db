@@ -15,7 +15,7 @@ If no upstream issue has been filed, ask the reporter to file one first.
 ## Check if there are any fixed versions
 We don't want to carry a non-actionable advisory if a fix is forthcoming. It's alright to delay by a day or two and then publish it once the fix ships. If a fix has been applied in git but not released to crates.io, ask the upstream for a new point release.
 
-If the upstream is unresponsive or is not interested in fixing the issue, we can carry the advisory anyway, but this can be a delicate matter. See [here](https://github.com/rustsec/advisory-db/issues/1092) for guidance, and feel free to consult the [Rust Moderation team](https://www.rust-lang.org/governance/teams/moderation) in case of doubt. If the upstream project disputes the existence of the issue, and it doesn't have a high severity, `informational = "unsound"` is appropriate; then `cargo audit` will report it a warning rather than a hard error.
+If the upstream is unresponsive or is not interested in fixing the issue, we can carry the advisory anyway, but this can be a delicate matter. See [here](https://github.com/rustsec/advisory-db/issues/1092) for guidance, and feel free to consult the [Rust Moderation team](https://www.rust-lang.org/governance/teams/moderation) in case of doubt. If the upstream project disputes the existence of the issue, and it doesn't have a high severity, `informational = "unsound"` should be used; then `cargo audit` will report it as a warning rather than a hard error.
 
 ## Make sure the advisory text is clear and actionable
 If you don't understand what's going on, most users won't either. Ask the submitter specific questions to clarify the advisory text, if needed.
