@@ -13,11 +13,9 @@ You can usually make changes directly to the sumbitter's branch. It's a great wa
 If no upstream issue has been filed, ask the reporter to file one first.
 
 ## Check if there are any fixed versions
-We don't want to carry a non-actionable advisory if a fix is forthcoming. It's alright to delay by a day or two and then publish it once the fix ships.
+We don't want to carry a non-actionable advisory if a fix is forthcoming. It's alright to delay by a day or two and then publish it once the fix ships. If a fix has been applied in git but not released to crates.io, ask the upstream for a new point release.
 
-If a fix has been applied in git but not released to crates.io, ask the upstream for a new point release.
-
-If the upstream is unresponsive or is not interested in fixing the issue, we can carry the advisory anyway, but this can be a delicate matter. See [here](https://github.com/rustsec/advisory-db/issues/1092) for guidance, and feel free to consult the [Rust Moderation team](https://www.rust-lang.org/governance/teams/moderation) in case of doubt.
+If the upstream is unresponsive or is not interested in fixing the issue, we can carry the advisory anyway, but this can be a delicate matter. See [here](https://github.com/rustsec/advisory-db/issues/1092) for guidance, and feel free to consult the [Rust Moderation team](https://www.rust-lang.org/governance/teams/moderation) in case of doubt. If the upstream project disputes the existence of the issue, and it doesn't have a high severity, `informational = "unsound"` is appropriate; then `cargo audit` will report it a warning rather than a hard error.
 
 ## Make sure the advisory text is clear and actionable
 If you don't understand what's going on, most users won't either. Ask the submitter specific questions to clarify the advisory text, if needed.
@@ -27,7 +25,7 @@ Avoid editing the text directly without clearing it with the submitter first; us
 ## Check that the metadata is correct
 The date should be set to the original disclosure of the issue, not the date of the pull request.
 
-`informational = "unsound"` is used for [soundness issues](https://rust-lang.github.io/unsafe-code-guidelines/glossary.html#soundness-of-code--of-a-library) that can only be triggered by a programmer (as opposed to e.g. a malicious input), and/or require very contrived code to trigger.
+`informational = "unsound"` is used for [soundness issues](https://rust-lang.github.io/unsafe-code-guidelines/glossary.html#soundness-of-code--of-a-library) that can only be triggered by a programmer (as opposed to e.g. a malicious input), and/or require very contrived code to trigger. They will be surfaced as warnings instead of hard errors by `cargo audit`.
 
 `informational = "unmaintained"` has a [policy](https://github.com/rustsec/advisory-db/blob/main/HOWTO_UNMAINTAINED.md) associated with it; make sure it is followed. If any items are missing, advise the submitter how to proceed.
 
