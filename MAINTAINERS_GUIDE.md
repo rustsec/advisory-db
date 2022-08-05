@@ -2,6 +2,25 @@
 
 Reviewing a pull request, step by step:
 
+## Check Triage Labels
+
+Categorise by what the PR Author intent is - see: Propose-Close/Merge for proposed.
+
+- `Unsound` - The PR author suggests the advisory is informational/unsound
+- `Unmaintained` - The PR author suggests the advisory is informational/unmaintained
+
+It is important to ensure we know what is going on with each PR so we can efficiently check and follow-up.
+
+- `Waiting-Maintainer` - We are waiting for the Maintainer to provide any response if any.
+- `Waiting-Author` - We are waiting for the Author of PR
+
+It is also useful to radiate the intent when dealing with PRs - Especially controversial ones to allow feedback.
+
+- `Propose-Close` - PR may be Closed soon if nobody objects.
+- `Propose-Merge` - PR may be Merged soon if nobody objects.
+
+Objection to either Merge or Close can be short period of time, typically two days.
+
 ## See if CI passes
 
 This is something first-time submitters may struggle with.
