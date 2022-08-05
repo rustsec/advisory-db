@@ -19,7 +19,7 @@ It is also useful to radiate the intent when dealing with PRs - Especially contr
 - `Propose-Close` - PR may be Closed soon if nobody objects.
 - `Propose-Merge` - PR may be Merged soon if nobody objects.
 
-Objection to either Merge or Close can be short period of time, typically two days.
+Objection to either Merge or Close can be short or longer period of time much depending on the controversial aspect or urgency of the PR.
 
 ## See if CI passes
 
