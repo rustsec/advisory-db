@@ -2,27 +2,6 @@
 
 Reviewing a pull request, step by step:
 
-## (Optional) Check Triage Labels
-
-It is helpful to Categorise by what the PR Author intent is - see: Propose-Close/Merge for proposed.
-
-- `Unsound` - The PR author suggests the advisory is informational/unsound
-- `Unmaintained` - The PR author suggests the advisory is informational/unmaintained
-
-It is sometimes important to ensure we know what is going on with each PR so we can efficiently check and follow-up.
-
-- `Waiting-Maintainer` - We are waiting for the Maintainer to provide any response if any.
-- `Waiting-Author` - We are waiting for the Author of PR
-
-It could be also useful to [radiate the intent] when dealing with PRs - Especially controversial ones to allow feedback.
-
-- `Propose-Close` - PR may be Closed soon if nobody objects.
-- `Propose-Merge` - PR may be Merged soon if nobody objects.
-
-Time period of Objection to either Merge or Close depends on the controversial aspect and / or urgency of the PR.
-
-[radiate the intent]: https://github.com/rustsec/advisory-db/discussions/1325
-
 ## See if CI passes
 
 This is something first-time submitters may struggle with.
@@ -61,7 +40,27 @@ If the advisory came from GHSA, we have two options:
 - Either use only data published in the associated CVE, since the CVE database is in the public domain
 - Or ask the submitter of the GHSA advisory (not the RustSec pull request author) to release the advisory contents into the public domain
 
-
 ## Thank the submitter and any other participants
 
 Let them know they did a nice and useful thing. That's how you get repeat submitters ;)
+
+## (Optional) Check Triage Labels
+
+It is helpful to Categorise by what the PR Author intent is - see: Propose-Close/Merge for proposed.
+
+- `Unsound` - The PR author suggests the advisory is informational/unsound
+- `Unmaintained` - The PR author suggests the advisory is informational/unmaintained
+
+It is sometimes important to ensure we know what is going on with each PR so we can efficiently check and follow-up.
+
+- `Waiting-Maintainer` - We are waiting for the Maintainer to provide any response if any.
+- `Waiting-Author` - We are waiting for the Author of PR
+
+It could be also useful to [radiate the intent] when dealing with PRs - Especially controversial ones to allow feedback.
+
+- `Propose-Close` - PR may be Closed soon if nobody objects.
+- `Propose-Merge` - PR may be Merged soon if nobody objects.
+
+Time period of Objection to either Merge or Close depends on the controversial aspect and / or urgency of the PR.
+
+[radiate the intent]: https://github.com/rustsec/advisory-db/discussions/1325
