@@ -33,7 +33,7 @@ jobs:
       run: |
         echo "This file causes merge conflicts if two ID assignment jobs run concurrently." > .duplicate-id-guard
         echo "This prevents duplicate ID assignment due to a race between those jobs." >> .duplicate-id-guard
-        ls -R . | sha256sum >> .duplicate-id-guard
+        ls -R ./crates/ ./rust/ | sha256sum >> .duplicate-id-guard
 
     - name: Create pull request
       uses: peter-evans/create-pull-request@v3
