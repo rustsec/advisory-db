@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories with keyword &#x27;uninitialized-memory&#x27; › RustSec Advisory Database</title>
+<title>RUSTSEC-2018-0022: temporary: Use of uninitialized memory in temporary › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -38,96 +38,128 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/temporary/RUSTSEC-2018-0022.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/temporary/RUSTSEC-2018-0022.md">Edit</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2018-0022
+        
+      </h1>
+      <span class="subtitle"><p>Use of uninitialized memory in temporary</p>
 </span>
-      <h1>Advisories with keyword &#x27;uninitialized-memory&#x27;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2020-09-26">
-    September 26, 2020
-  </time>
-
-  
-  <h3>
     
-      <span class="tag medium">MEDIUM</span>
-      
-    <a href="/advisories/RUSTSEC-2020-0047.html">
-      RUSTSEC-2020-0047: Vulnerability in array-queue
-    </a>
-  </h3>
-  <span><p>array_queue pop_back() may cause a use-after-free</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2019-05-21">
-    May 21, 2019
-  </time>
 
-  
-  <h3>
-    
-      <span class="tag critical">CRITICAL</span>
-      
-    <a href="/advisories/RUSTSEC-2019-0015.html">
-      RUSTSEC-2019-0015: Vulnerability in compact_arena
-    </a>
-  </h3>
-  <span><p>Flaw in generativity allows out-of-bounds access</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2018-08-25">
-    August 25, 2018
-  </time>
+    <dl>
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2018-08-22">
+          August 22, 2018
+        </time>
+      </dd>
 
-  
-  <h3>
-    
-      <span class="tag medium">MEDIUM</span>
-      
-    <a href="/advisories/RUSTSEC-2018-0004.html">
-      RUSTSEC-2018-0004: Vulnerability in claxon
-    </a>
-  </h3>
-  <span><p>Malicious input could cause uninitialized memory to be exposed</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2018-08-22">
-    August 22, 2018
-  </time>
-
-  
-  <h3>
-    
+      <dt id="package">Package</dt>
+      <dd>
         
-    
-    <a href="/advisories/RUSTSEC-2018-0022.html">
-      RUSTSEC-2018-0022: Vulnerability in temporary
-    </a>
-  </h3>
-  <span><p>Use of uninitialized memory in temporary</p>
-</span>
-  
-</li>
+        
+        <a href="/packages/temporary.html">temporary</a>
+          (<a href="https://crates.io/crates/temporary">crates.io</a>)
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        Vulnerability
+        
+      </dd>
+
       
-    </ul>
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/memory-exposure.html">memory-exposure</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/uninitialized-memory.html">#uninitialized-memory</a>
+        
+      </dd>
+      
+
+      
+
+      
+      <dt id="details">Details</dt>
+      <dd>
+        <a href="https://github.com/stainless-steel/temporary/issues/2">
+          https://github.com/stainless-steel/temporary/issues/2
+        </a>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&gt;=0.6.4</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+      <dt id="unaffected">Unaffected</dt>
+      <dd>
+        <ul>
+          
+          <li><code>&lt;0.3.0</code></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      
+    </dl>
+
+    
+    
+
+    <h3 id="description">Description</h3>
+    <p>Uninit memory is used as a RNG seed in temporary</p>
+<p>The following function is used as a way to get entropy from the system, which does operations on and exposes uninit memory, which is UB.</p>
+<pre><code class="language-rust">fn random_seed(_: &amp;Path, _: &amp;str) -&gt; [u64; 2] {
+    use std::mem::uninitialized as rand;
+    unsafe { [rand::&lt;u64&gt;() ^ 0x12345678, rand::&lt;u64&gt;() ^ 0x87654321] }
+}
+</code></pre>
+<p>This has been resolved in the 0.6.4 release.</p>
+<p>The crate is not intended to be used outside of a testing environment.</p>
+<p>For a general purpose crate to create temporary directories, <a href="https://crates.io/crates/tempfile"><code>tempfile</code></a> is an alternative for this crate.</p>
+
   </article>
 </main>
