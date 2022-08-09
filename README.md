@@ -4,7 +4,7 @@
 ![Maintained: Q2 2022][maintained-image]
 [![Project Chat][chat-image]][chat-link]
 
-The RustSec Advisory Database is a repository of security advisories filed
+The RustSec Advisory Database is a repository of security advisories[^1] filed
 against Rust crates published via https://crates.io. A human-readable version
 of the advisory database can be found at https://rustsec.org/advisories/.
 
@@ -55,6 +55,12 @@ date = "2021-01-31"
 # URL to a long-form description of this issue, e.g. a GitHub issue/PR,
 # a change log entry, or a blogpost announcing the release (optional)
 url = "https://github.com/mystuff/mycrate/issues/123"
+
+# Optional: Indicates the type of informational advisory
+#  - "unsound" for soundness issues
+#  - "unmaintained" for crates that are no longer maintained
+#  - "notice" for security-related notices that don't have a associated concrete vulnerability
+#informational = "unmaintained"
 
 # Optional: Categories this advisory falls under. Valid categories are:
 # "code-execution", "crypto-failure", "denial-of-service", "file-disclosure"
@@ -129,3 +135,5 @@ All content in this repository is placed in the public domain.
 [cargo-audit]: https://github.com/rustsec/cargo-audit
 [cargo-deny]: https://github.com/EmbarkStudios/cargo-deny
 [CONTRIBUTING.md]: https://github.com/RustSec/advisory-db/blob/main/CONTRIBUTING.md
+
+[^1]: The database also contains non-security advisories (known as informational advisories), such as advisories about unmaintained crates, which are optionally surfaced as warnings in `cargo audit`.
