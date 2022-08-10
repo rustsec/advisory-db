@@ -21,7 +21,7 @@ and reporting (send PRs to add yours):
 * [cargo-deny]: Audit `Cargo.lock` files for crates with security vulnerabilities,
   limit the usage of particular dependencies, their licenses, sources to download
   from, detect multiple versions of same packages in the dependency tree and more.
-* [trivy]: A simple and comprehensive vulnerability/misconfiguration/secret scanner for containers and other artifacts. Trivy detects vulnerabilities of OS packages and language-specific packages. Works via [OSV](osv.dev).
+* [trivy]: A simple and comprehensive vulnerability/misconfiguration/secret scanner for containers and other artifacts. Trivy detects vulnerabilities of OS packages and language-specific packages. Works via [OSV](https://osv.dev).
 * [dependabot]: Dependabot can fix vulnerable dependencies for you by raising pull requests with security updates. Works via [GHSA](https://github.com/advisories).
 
 ## Reporting Vulnerabilities
