@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories with keyword &#x27;out-of-bounds-read&#x27; › RustSec Advisory Database</title>
+<title>RUSTSEC-2022-0046: rocksdb: Out-of-bounds read when opening multiple column families with TTL › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -38,58 +38,136 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/rocksdb/RUSTSEC-2022-0046.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/rocksdb/RUSTSEC-2022-0046.md">Edit</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2022-0046
+        
+      </h1>
+      <span class="subtitle"><p>Out-of-bounds read when opening multiple column families with TTL</p>
 </span>
-      <h1>Advisories with keyword &#x27;out-of-bounds-read&#x27;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2022-05-11">
-    May 11, 2022
-  </time>
-
-  
-  <h3>
     
+
+    <dl>
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2022-05-11">
+          May 11, 2022
+        </time>
+      </dd>
+
+      <dt id="package">Package</dt>
+      <dd>
         
-    
-    <a href="/advisories/RUSTSEC-2022-0046.html">
-      RUSTSEC-2022-0046: Vulnerability in rocksdb
-    </a>
-  </h3>
-  <span><p>Out-of-bounds read when opening multiple column families with TTL</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2021-09-17">
-    September 17, 2021
-  </time>
+        
+        <a href="/packages/rocksdb.html">rocksdb</a>
+          (<a href="https://crates.io/crates/rocksdb">crates.io</a>)
+        
+        
+      </dd>
 
-  
-  <h3>
+      <dt id="type">Type</dt>
+      <dd>
+        
+        Vulnerability
+        
+      </dd>
+
+      
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/memory-corruption.html">memory-corruption</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/out-of-bounds-read.html">#out-of-bounds-read</a>
+        
+      </dd>
+      
+
+      
+
+      
+      <dt id="details">Details</dt>
+      <dd>
+        <a href="https://github.com/rust-rocksdb/rust-rocksdb/pull/616">
+          https://github.com/rust-rocksdb/rust-rocksdb/pull/616
+        </a>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&gt;=0.19.0</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+
+      
+      
+
+      
+      
+    </dl>
+
     
-      <span class="tag medium">MEDIUM</span>
+    
+    <dl>
+      <dt>Affected Functions</dt>
+      <dd>Version</dd>
       
-    <a href="/advisories/RUSTSEC-2021-0110.html">
-      RUSTSEC-2021-0110: Vulnerability in wasmtime
-    </a>
-  </h3>
-  <span><p>Multiple Vulnerabilities in Wasmtime</p>
-</span>
-  
-</li>
+      <dt><code>rocksdb::DBWithThreadMode::open_cf_descriptors_with_ttl</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&lt;0.19.0</code></li>
+          
+        </ul>
+      </dd>
       
-    </ul>
+    </dl>
+    
+
+    
+
+    <h3 id="description">Description</h3>
+    <p>Affected versions of this crate called the RocksDB C API
+<code>rocksdb_open_column_families_with_ttl()</code> with a pointer to a single integer
+TTL value, but one TTL value for each column family is expected.</p>
+<p>This is only relevant when using
+<code>rocksdb::DBWithThreadMode::open_cf_descriptors_with_ttl()</code> with multiple
+column families.</p>
+<p>This bug has been fixed in v0.19.0.</p>
+
   </article>
 </main>
