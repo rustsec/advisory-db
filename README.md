@@ -8,10 +8,11 @@ The RustSec Advisory Database is a repository of security advisories[^1] filed
 against Rust crates published via https://crates.io. A human-readable version
 of the advisory database can be found at https://rustsec.org/advisories/.
 
-We also export advisory data to the [OSV](https://github.com/ossf/osv-schema) format,
-see the [`osv`](https://github.com/rustsec/advisory-db/tree/osv) branch.
+We also [export](https://github.com/rustsec/advisory-db/tree/osv) data to the [OSV](https://github.com/ossf/osv-schema) format.
 All our data is available on [osv.dev](https://osv.dev/list?ecosystem=crates.io&q=)
 and through their [API](https://osv.dev/#use-the-api).
+
+[Github Advisory Database](https://github.com/advisories/) imports our advisories.
 
 The following tools consume this advisory database and can be used for auditing
 and reporting (send PRs to add yours):
@@ -20,6 +21,8 @@ and reporting (send PRs to add yours):
 * [cargo-deny]: Audit `Cargo.lock` files for crates with security vulnerabilities,
   limit the usage of particular dependencies, their licenses, sources to download
   from, detect multiple versions of same packages in the dependency tree and more.
+* [trivy]: A simple and comprehensive vulnerability/misconfiguration/secret scanner for containers and other artifacts. Trivy detects vulnerabilities of OS packages and language-specific packages. Works via [OSV](https://osv.dev).
+* [dependabot]: Dependabot can fix vulnerable dependencies for you by raising pull requests with security updates. Works via [GHSA](https://github.com/advisories).
 
 ## Reporting Vulnerabilities
 
@@ -134,6 +137,8 @@ All content in this repository is placed in the public domain.
 [TOML]: https://github.com/toml-lang/toml
 [cargo-audit]: https://github.com/rustsec/cargo-audit
 [cargo-deny]: https://github.com/EmbarkStudios/cargo-deny
+[trivy]: https://aquasecurity.github.io/trivy/
+[dependabot]: https://docs.github.com/en/code-security/dependabot/dependabot-security-updates/about-dependabot-security-updates
 [CONTRIBUTING.md]: https://github.com/RustSec/advisory-db/blob/main/CONTRIBUTING.md
 
 [^1]: The database also contains non-security advisories (known as informational advisories), such as advisories about unmaintained crates, which are optionally surfaced as warnings in `cargo audit`.
