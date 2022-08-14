@@ -38,7 +38,8 @@ See [CONTRIBUTING.md] for more information.
 See [EXAMPLE_ADVISORY.md] for a template.
 
 Advisories are formatted in [Markdown] with [TOML] "front matter".
-Below is the schema of the "front matter" section of an advisory:
+
+Below is the schema of the [TOML] "front matter" section of an advisory:
 
 ```toml
 # Before you submit a PR using this template, **please delete the comments**
@@ -115,6 +116,8 @@ patched = [">= 1.2.0"]
 # Versions which were never vulnerable (optional)
 #unaffected = ["< 1.1.0"]
 ```
+
+The above [TOML] "front matter" is followed by the long description in [Markdown] format.
 
 ## License
 
