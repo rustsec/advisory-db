@@ -38,6 +38,7 @@ See [CONTRIBUTING.md] for more information.
 See [EXAMPLE_ADVISORY.md] for a template.
 
 Advisories are formatted in [Markdown] with [TOML] "front matter".
+
 Below is the schema of the [TOML] "front matter" section of an advisory:
 
 ```toml
