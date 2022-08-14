@@ -38,7 +38,8 @@ See [CONTRIBUTING.md] for more information.
 See [EXAMPLE_ADVISORY.md] for a template.
 
 Advisories are formatted in [Markdown] with [TOML] "front matter".
-Below is the schema of the "front matter" section of an advisory:
+
+Below is the schema of the [TOML] "front matter" section of an advisory:
 
 ```toml
 # Before you submit a PR using this template, **please delete the comments**
@@ -58,6 +59,9 @@ date = "2021-01-31"
 # URL to a long-form description of this issue, e.g. a GitHub issue/PR,
 # a change log entry, or a blogpost announcing the release (optional)
 url = "https://github.com/mystuff/mycrate/issues/123"
+
+# URL to additional helpful references regarding the advisory (optional)
+#references = ["https://github.com/mystuff/mycrate/discussions/1"]
 
 # Optional: Indicates the type of informational advisory
 #  - "unsound" for soundness issues
@@ -115,6 +119,8 @@ patched = [">= 1.2.0"]
 # Versions which were never vulnerable (optional)
 #unaffected = ["< 1.1.0"]
 ```
+
+The above [TOML] "front matter" is followed by the long description in [Markdown] format.
 
 ## License
 
