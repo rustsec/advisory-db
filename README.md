@@ -60,7 +60,7 @@ date = "2021-01-31"
 url = "https://github.com/mystuff/mycrate/issues/123"
 
 # URL to additional helpful references regarding the advisory (optional)
-references = ["https://github.com/mystuff/mycrate/discussions/1"]
+#references = ["https://github.com/mystuff/mycrate/discussions/1"]
 
 # Optional: Indicates the type of informational advisory
 #  - "unsound" for soundness issues
