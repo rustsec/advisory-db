@@ -56,6 +56,9 @@ package = "mycrate"
 # Disclosure date of the advisory as an RFC 3339 date (mandatory)
 date = "2021-01-31"
 
+# Whether the advisory is withdrawn (optional)
+#withdrawn = "YYYY-MM-DD"
+
 # URL to a long-form description of this issue, e.g. a GitHub issue/PR,
 # a change log entry, or a blogpost announcing the release (optional)
 url = "https://github.com/mystuff/mycrate/issues/123"
