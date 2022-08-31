@@ -1,12 +1,12 @@
 # Reporting Vulnerabilities
 
 To add an advisory to the RustSec database, open a [Pull Request] against
-this repository containing the new advisory:
+[this](https://github.com/RustSec/advisory-db) repository containing the new advisory:
 
 ### Required Steps
 
 1. Create a file named `RUSTSEC-0000-0000.md` in the `crates/<yourcratename>`
-   subdirectory of this repository (you may need to create it if it doesn't exist)
+   subdirectory of the repository (you may need to create it if it doesn't exist)
 2. Copy and paste the [TOML advisory template] from the README.md file in this repo.
    Delete the comments and additional whitespace, and fill it out with the
    details of the advisory. Surround the TOML data with <code>\```toml</code> and <code>\```</code> markers.
