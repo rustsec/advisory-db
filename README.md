@@ -4,7 +4,7 @@
 ![Maintained: Q2 2022][maintained-image]
 [![Project Chat][chat-image]][chat-link]
 
-The RustSec Advisory Database is a repository of security advisories[^1] filed
+The RustSec Advisory Database is a repository of security advisories filed
 against Rust crates published via https://crates.io. A human-readable version
 of the advisory database can be found at https://rustsec.org/advisories/.
 
@@ -66,10 +66,10 @@ url = "https://github.com/mystuff/mycrate/issues/123"
 # URL to additional helpful references regarding the advisory (optional)
 #references = ["https://github.com/mystuff/mycrate/discussions/1"]
 
-# Optional: Indicates the type of informational advisory
+# Optional: Indicates the type of informational security  advisory
 #  - "unsound" for soundness issues
 #  - "unmaintained" for crates that are no longer maintained
-#  - "notice" for security-related notices that don't have a associated concrete vulnerability
+#  - "notice" for other informational notices
 #informational = "unmaintained"
 
 # Optional: Categories this advisory falls under. Valid categories are:
@@ -150,5 +150,3 @@ All content in this repository is placed in the public domain.
 [trivy]: https://aquasecurity.github.io/trivy/
 [dependabot]: https://docs.github.com/en/code-security/dependabot/dependabot-security-updates/about-dependabot-security-updates
 [CONTRIBUTING.md]: https://github.com/RustSec/advisory-db/blob/main/CONTRIBUTING.md
-
-[^1]: The database also contains non-security advisories (known as informational advisories), such as advisories about unmaintained crates, which are optionally surfaced as warnings in `cargo audit`.
