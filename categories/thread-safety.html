@@ -187,13 +187,13 @@
   
   <h3>
     
-      <span class="tag medium">MEDIUM</span>
+      <span class="tag high">HIGH</span>
       
-    <a href="/advisories/RUSTSEC-2020-0114.html">
-      RUSTSEC-2020-0114: Vulnerability in va-ts
+    <a href="/advisories/RUSTSEC-2020-0101.html">
+      RUSTSEC-2020-0101: Vulnerability in conquer-once
     </a>
   </h3>
-  <span><p><code>Demuxer</code> can carry non-Send types across thread boundaries</p>
+  <span><p>conquer-once's OnceCell lacks Send bound for its Sync trait.</p>
 </span>
   
 </li>
@@ -206,13 +206,13 @@
   
   <h3>
     
-      <span class="tag high">HIGH</span>
+      <span class="tag medium">MEDIUM</span>
       
-    <a href="/advisories/RUSTSEC-2020-0101.html">
-      RUSTSEC-2020-0101: Vulnerability in conquer-once
+    <a href="/advisories/RUSTSEC-2020-0114.html">
+      RUSTSEC-2020-0114: Vulnerability in va-ts
     </a>
   </h3>
-  <span><p>conquer-once's OnceCell lacks Send bound for its Sync trait.</p>
+  <span><p><code>Demuxer</code> can carry non-Send types across thread boundaries</p>
 </span>
   
 </li>
@@ -263,13 +263,13 @@
   
   <h3>
     
-      <span class="tag high">HIGH</span>
+      <span class="tag medium">MEDIUM</span>
       
-    <a href="/advisories/RUSTSEC-2020-0098.html">
-      RUSTSEC-2020-0098: Unsoundness in rusb
+    <a href="/advisories/RUSTSEC-2020-0112.html">
+      RUSTSEC-2020-0112: Vulnerability in buttplug
     </a>
   </h3>
-  <span><p>UsbContext trait did not require implementers to be Send and Sync.</p>
+  <span><p>ButtplugFutureStateShared allows data race to (!Send|!Sync) objects</p>
 </span>
   
 </li>
@@ -301,13 +301,13 @@
   
   <h3>
     
-      <span class="tag medium">MEDIUM</span>
+      <span class="tag high">HIGH</span>
       
-    <a href="/advisories/RUSTSEC-2020-0112.html">
-      RUSTSEC-2020-0112: Vulnerability in buttplug
+    <a href="/advisories/RUSTSEC-2020-0129.html">
+      RUSTSEC-2020-0129: Vulnerability in kekbit
     </a>
   </h3>
-  <span><p>ButtplugFutureStateShared allows data race to (!Send|!Sync) objects</p>
+  <span><p>ShmWriter allows sending non-Send type across threads</p>
 </span>
   
 </li>
@@ -322,11 +322,11 @@
     
       <span class="tag high">HIGH</span>
       
-    <a href="/advisories/RUSTSEC-2020-0129.html">
-      RUSTSEC-2020-0129: Vulnerability in kekbit
+    <a href="/advisories/RUSTSEC-2020-0098.html">
+      RUSTSEC-2020-0098: Unsoundness in rusb
     </a>
   </h3>
-  <span><p>ShmWriter allows sending non-Send type across threads</p>
+  <span><p>UsbContext trait did not require implementers to be Send and Sync.</p>
 </span>
   
 </li>
@@ -360,11 +360,11 @@
     
       <span class="tag high">HIGH</span>
       
-    <a href="/advisories/RUSTSEC-2020-0099.html">
-      RUSTSEC-2020-0099: Vulnerability in aovec
+    <a href="/advisories/RUSTSEC-2020-0141.html">
+      RUSTSEC-2020-0141: Vulnerability in noise_search
     </a>
   </h3>
-  <span><p>Aovec<!-- raw HTML omitted --> lacks bound on its Send and Sync traits allowing data races</p>
+  <span><p>MvccRwLock allows data races &amp; aliasing violations</p>
 </span>
   
 </li>
@@ -379,11 +379,11 @@
     
       <span class="tag high">HIGH</span>
       
-    <a href="/advisories/RUSTSEC-2020-0141.html">
-      RUSTSEC-2020-0141: Vulnerability in noise_search
+    <a href="/advisories/RUSTSEC-2020-0099.html">
+      RUSTSEC-2020-0099: Vulnerability in aovec
     </a>
   </h3>
-  <span><p>MvccRwLock allows data races &amp; aliasing violations</p>
+  <span><p>Aovec<!-- raw HTML omitted --> lacks bound on its Send and Sync traits allowing data races</p>
 </span>
   
 </li>
@@ -434,25 +434,6 @@
   
   <h3>
     
-      <span class="tag high">HIGH</span>
-      
-    <a href="/advisories/RUSTSEC-2020-0104.html">
-      RUSTSEC-2020-0104: Vulnerability in gfwx
-    </a>
-  </h3>
-  <span><p>ImageChunkMut needs bounds on its Send and Sync traits</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2020-12-08">
-    December  8, 2020
-  </time>
-
-  
-  <h3>
-    
       <span class="tag medium">MEDIUM</span>
       
     <a href="/advisories/RUSTSEC-2020-0090.html">
@@ -479,6 +460,25 @@
     </a>
   </h3>
   <span><p>ArcGuard's Send and Sync should have bounds on RC</p>
+</span>
+  
+</li>
+      
+      <li>
+  <time datetime="2020-12-08">
+    December  8, 2020
+  </time>
+
+  
+  <h3>
+    
+      <span class="tag high">HIGH</span>
+      
+    <a href="/advisories/RUSTSEC-2020-0104.html">
+      RUSTSEC-2020-0104: Vulnerability in gfwx
+    </a>
+  </h3>
+  <span><p>ImageChunkMut needs bounds on its Send and Sync traits</p>
 </span>
   
 </li>
@@ -550,6 +550,25 @@
     
       <span class="tag high">HIGH</span>
       
+    <a href="/advisories/RUSTSEC-2020-0125.html">
+      RUSTSEC-2020-0125: Vulnerability in convec
+    </a>
+  </h3>
+  <span><p>convec::ConVec<!-- raw HTML omitted --> unconditionally implements Send/Sync</p>
+</span>
+  
+</li>
+      
+      <li>
+  <time datetime="2020-11-24">
+    November 24, 2020
+  </time>
+
+  
+  <h3>
+    
+      <span class="tag high">HIGH</span>
+      
     <a href="/advisories/RUSTSEC-2020-0128.html">
       RUSTSEC-2020-0128: Vulnerability in cache
     </a>
@@ -574,25 +593,6 @@
     </a>
   </h3>
   <span><p>QueueSender<!-- raw HTML omitted -->/QueueReceiver<!-- raw HTML omitted -->: Send/Sync impls need <code>T: Send</code></p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2020-11-24">
-    November 24, 2020
-  </time>
-
-  
-  <h3>
-    
-      <span class="tag high">HIGH</span>
-      
-    <a href="/advisories/RUSTSEC-2020-0125.html">
-      RUSTSEC-2020-0125: Vulnerability in convec
-    </a>
-  </h3>
-  <span><p>convec::ConVec<!-- raw HTML omitted --> unconditionally implements Send/Sync</p>
 </span>
   
 </li>
@@ -624,13 +624,13 @@
   
   <h3>
     
-      <span class="tag high">HIGH</span>
+      <span class="tag medium">MEDIUM</span>
       
-    <a href="/advisories/RUSTSEC-2020-0119.html">
-      RUSTSEC-2020-0119: Vulnerability in ticketed_lock
+    <a href="/advisories/RUSTSEC-2020-0087.html">
+      RUSTSEC-2020-0087: Vulnerability in try-mutex
     </a>
   </h3>
-  <span><p>ReadTicket and WriteTicket should only be sendable when T is Send</p>
+  <span><p>TryMutex<!-- raw HTML omitted --> allows sending non-Send type across threads</p>
 </span>
   
 </li>
@@ -643,13 +643,13 @@
   
   <h3>
     
-      <span class="tag medium">MEDIUM</span>
+      <span class="tag high">HIGH</span>
       
-    <a href="/advisories/RUSTSEC-2020-0087.html">
-      RUSTSEC-2020-0087: Vulnerability in try-mutex
+    <a href="/advisories/RUSTSEC-2020-0119.html">
+      RUSTSEC-2020-0119: Vulnerability in ticketed_lock
     </a>
   </h3>
-  <span><p>TryMutex<!-- raw HTML omitted --> allows sending non-Send type across threads</p>
+  <span><p>ReadTicket and WriteTicket should only be sendable when T is Send</p>
 </span>
   
 </li>
@@ -669,25 +669,6 @@
     </a>
   </h3>
   <span><p>Singleton lacks bounds on Send and Sync.</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2020-11-15">
-    November 15, 2020
-  </time>
-
-  
-  <h3>
-    
-      <span class="tag medium">MEDIUM</span>
-      
-    <a href="/advisories/RUSTSEC-2020-0149.html">
-      RUSTSEC-2020-0149: Vulnerability in appendix
-    </a>
-  </h3>
-  <span><p>Data race and memory safety issue in <code>Index</code></p>
 </span>
   
 </li>
@@ -721,11 +702,11 @@
     
       <span class="tag high">HIGH</span>
       
-    <a href="/advisories/RUSTSEC-2020-0133.html">
-      RUSTSEC-2020-0133: Vulnerability in scottqueue
+    <a href="/advisories/RUSTSEC-2020-0116.html">
+      RUSTSEC-2020-0116: Vulnerability in unicycle
     </a>
   </h3>
-  <span><p>Queue<!-- raw HTML omitted --> should have a Send bound on its Send/Sync traits</p>
+  <span><p>PinSlab<!-- raw HTML omitted --> and Unordered&lt;T, S&gt; need bounds on their Send/Sync traits</p>
 </span>
   
 </li>
@@ -738,13 +719,13 @@
   
   <h3>
     
-      <span class="tag high">HIGH</span>
+      <span class="tag medium">MEDIUM</span>
       
-    <a href="/advisories/RUSTSEC-2020-0116.html">
-      RUSTSEC-2020-0116: Vulnerability in unicycle
+    <a href="/advisories/RUSTSEC-2020-0149.html">
+      RUSTSEC-2020-0149: Vulnerability in appendix
     </a>
   </h3>
-  <span><p>PinSlab<!-- raw HTML omitted --> and Unordered&lt;T, S&gt; need bounds on their Send/Sync traits</p>
+  <span><p>Data race and memory safety issue in <code>Index</code></p>
 </span>
   
 </li>
@@ -764,6 +745,25 @@
     </a>
   </h3>
   <span><p>CopyCell lacks bounds on its Send trait allowing for data races</p>
+</span>
+  
+</li>
+      
+      <li>
+  <time datetime="2020-11-15">
+    November 15, 2020
+  </time>
+
+  
+  <h3>
+    
+      <span class="tag high">HIGH</span>
+      
+    <a href="/advisories/RUSTSEC-2020-0133.html">
+      RUSTSEC-2020-0133: Vulnerability in scottqueue
+    </a>
+  </h3>
+  <span><p>Queue<!-- raw HTML omitted --> should have a Send bound on its Send/Sync traits</p>
 </span>
   
 </li>
@@ -854,11 +854,30 @@
     
       <span class="tag high">HIGH</span>
       
-    <a href="/advisories/RUSTSEC-2020-0138.html">
-      RUSTSEC-2020-0138: Vulnerability in lexer
+    <a href="/advisories/RUSTSEC-2020-0121.html">
+      RUSTSEC-2020-0121: Vulnerability in abox
     </a>
   </h3>
-  <span><p>ReaderResult should be bounded by Sync</p>
+  <span><p>AtomicBox<!-- raw HTML omitted --> implements Send/Sync for any <code>T: Sized</code></p>
+</span>
+  
+</li>
+      
+      <li>
+  <time datetime="2020-11-10">
+    November 10, 2020
+  </time>
+
+  
+  <h3>
+    
+      <span class="tag high">HIGH</span>
+      
+    <a href="/advisories/RUSTSEC-2020-0140.html">
+      RUSTSEC-2020-0140: Unsoundness in model
+    </a>
+  </h3>
+  <span><p><code>Shared</code> can cause a data race</p>
 </span>
   
 </li>
@@ -878,82 +897,6 @@
     </a>
   </h3>
   <span><p>hashconsing's HConsed lacks Send/Sync bound for its Send/Sync trait.</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2020-11-10">
-    November 10, 2020
-  </time>
-
-  
-  <h3>
-    
-      <span class="tag high">HIGH</span>
-      
-    <a href="/advisories/RUSTSEC-2020-0102.html">
-      RUSTSEC-2020-0102: Vulnerability in late-static
-    </a>
-  </h3>
-  <span><p>LateStatic has incorrect Sync bound</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2020-11-10">
-    November 10, 2020
-  </time>
-
-  
-  <h3>
-    
-      <span class="tag high">HIGH</span>
-      
-    <a href="/advisories/RUSTSEC-2020-0120.html">
-      RUSTSEC-2020-0120: Unsoundness in libsbc
-    </a>
-  </h3>
-  <span><p><code>Decoder&lt;R&gt;</code> can carry <code>R: !Send</code> to other threads</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2020-11-10">
-    November 10, 2020
-  </time>
-
-  
-  <h3>
-    
-      <span class="tag high">HIGH</span>
-      
-    <a href="/advisories/RUSTSEC-2020-0137.html">
-      RUSTSEC-2020-0137: Vulnerability in lever
-    </a>
-  </h3>
-  <span><p>AtomicBox<!-- raw HTML omitted --> lacks bound on its Send and Sync traits allowing data races</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2020-11-10">
-    November 10, 2020
-  </time>
-
-  
-  <h3>
-    
-      <span class="tag high">HIGH</span>
-      
-    <a href="/advisories/RUSTSEC-2020-0121.html">
-      RUSTSEC-2020-0121: Vulnerability in abox
-    </a>
-  </h3>
-  <span><p>AtomicBox<!-- raw HTML omitted --> implements Send/Sync for any <code>T: Sized</code></p>
 </span>
   
 </li>
@@ -987,11 +930,68 @@
     
       <span class="tag high">HIGH</span>
       
-    <a href="/advisories/RUSTSEC-2020-0140.html">
-      RUSTSEC-2020-0140: Unsoundness in model
+    <a href="/advisories/RUSTSEC-2020-0137.html">
+      RUSTSEC-2020-0137: Vulnerability in lever
     </a>
   </h3>
-  <span><p><code>Shared</code> can cause a data race</p>
+  <span><p>AtomicBox<!-- raw HTML omitted --> lacks bound on its Send and Sync traits allowing data races</p>
+</span>
+  
+</li>
+      
+      <li>
+  <time datetime="2020-11-10">
+    November 10, 2020
+  </time>
+
+  
+  <h3>
+    
+      <span class="tag high">HIGH</span>
+      
+    <a href="/advisories/RUSTSEC-2020-0138.html">
+      RUSTSEC-2020-0138: Vulnerability in lexer
+    </a>
+  </h3>
+  <span><p>ReaderResult should be bounded by Sync</p>
+</span>
+  
+</li>
+      
+      <li>
+  <time datetime="2020-11-10">
+    November 10, 2020
+  </time>
+
+  
+  <h3>
+    
+      <span class="tag high">HIGH</span>
+      
+    <a href="/advisories/RUSTSEC-2020-0120.html">
+      RUSTSEC-2020-0120: Unsoundness in libsbc
+    </a>
+  </h3>
+  <span><p><code>Decoder&lt;R&gt;</code> can carry <code>R: !Send</code> to other threads</p>
+</span>
+  
+</li>
+      
+      <li>
+  <time datetime="2020-11-10">
+    November 10, 2020
+  </time>
+
+  
+  <h3>
+    
+      <span class="tag high">HIGH</span>
+      
+    <a href="/advisories/RUSTSEC-2020-0102.html">
+      RUSTSEC-2020-0102: Vulnerability in late-static
+    </a>
+  </h3>
+  <span><p>LateStatic has incorrect Sync bound</p>
 </span>
   
 </li>
