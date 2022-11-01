@@ -1,0 +1,62 @@
+{
+  "id": "RUSTSEC-2022-0064",
+  "modified": "2022-11-01T17:10:23Z",
+  "published": "2022-11-01T12:00:00Z",
+  "aliases": [
+    "CVE-2022-3602"
+  ],
+  "related": [],
+  "summary": "X.509 Email Address 4-byte Buffer Overflow",
+  "details": "A buffer overrun can be triggered in X.509 certificate verification,\nspecifically in name constraint checking. Note that this occurs\nafter certificate chain signature verification and requires either a\nCA to have signed the malicious certificate or for the application to\ncontinue certificate verification despite failure to construct a path\nto a trusted issuer. An attacker can craft a malicious email address\nto overflow four attacker-controlled bytes on the stack. This buffer\noverflow could result in a crash (causing a denial of service) or\npotentially remote code execution.\n\nMany platforms implement stack overflow protections which would mitigate\nagainst the risk of remote code execution. The risk may be further\nmitigated based on stack layout for any given platform/compiler.\n\nPre-announcements of CVE-2022-3602 described this issue as CRITICAL.\nFurther analysis based on some of the mitigating factors described above\nhave led this to be downgraded to HIGH. Users are still encouraged to\nupgrade to a new version as soon as possible.\n\nIn a TLS client, this can be triggered by connecting to a malicious\nserver. In a TLS server, this can be triggered if the server requests\nclient authentication and a malicious client connects.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "openssl-src",
+        "purl": "pkg:cargo/openssl-src"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        }
+      },
+      "database_specific": {
+        "categories": [
+          "denial-of-service",
+          "code-execution"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "300.0.0"
+            },
+            {
+              "fixed": "300.0.11"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/openssl-src"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2022-0064.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://www.openssl.org/news/secadv/20221101.txt"
+    }
+  ]
+}
