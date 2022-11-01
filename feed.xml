@@ -138,6 +138,136 @@ upgrade to a new version as soon as possible.&lt;/p&gt;
 server. In a TLS server, this can be triggered if the server requests
 client authentication and a malicious client connects.&lt;/p&gt;
 
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0065: Vulnerability in openssl-src</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0065.html</id><updated>2022-11-01T00:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2022-0065.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0065: Vulnerability in openssl-src"/><published>2022-11-01T00:00:00+00:00</published><summary xml:lang="en">X.509 Email Address Variable Length Buffer Overflow</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/openssl-src/RUSTSEC-2022-0065.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/openssl-src/RUSTSEC-2022-0065.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2022-0065
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;X.509 Email Address Variable Length Buffer Overflow&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2022-11-01&quot;&gt;
+          November  1, 2022
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/openssl-src.html&quot;&gt;openssl-src&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/openssl-src&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-3786&quot;&gt;CVE-2022-3786&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https://www.openssl.org/news/secadv/20221101.txt&quot;&gt;
+          https://www.openssl.org/news/secadv/20221101.txt
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=300.0.11&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;lt;300.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;A buffer overrun can be triggered in X.509 certificate verification,
+specifically in name constraint checking. Note that this occurs after
+certificate chain signature verification and requires either a CA to
+have signed a malicious certificate or for an application to continue
+certificate verification despite failure to construct a path to a trusted
+issuer. An attacker can craft a malicious email address in a certificate
+to overflow an arbitrary number of bytes containing the &lt;code&gt;.&lt;/code&gt; character
+(decimal 46) on the stack. This buffer overflow could result in a crash
+(causing a denial of service).&lt;/p&gt;
+&lt;p&gt;In a TLS client, this can be triggered by connecting to a malicious
+server. In a TLS server, this can be triggered if the server requests
+client authentication and a malicious client connects.&lt;/p&gt;
+
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0062: Vulnerability in matrix-sdk</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0062.html</id><updated>2022-10-24T00:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2022-0062.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0062: Vulnerability in matrix-sdk"/><published>2022-10-24T00:00:00+00:00</published><summary xml:lang="en">matrix-sdk 0.6.0 logs access tokens</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -1026,120 +1156,5 @@ anymore.&lt;/p&gt;
 &lt;li&gt;&lt;a href=&quot;https://crates.io/crates/badgers&quot;&gt;badgers&lt;/a&gt; (API compatible fork of the &lt;code&gt;badge&lt;/code&gt; crate using &lt;code&gt;ab_glyph&lt;/code&gt; as a replacement for &lt;code&gt;rusttype&lt;/code&gt;)&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://crates.io/crates/rsbadges&quot;&gt;rsbadges&lt;/a&gt; (used deprecated &lt;code&gt;rusttype&lt;/code&gt;)&lt;/li&gt;
 &lt;/ul&gt;
-
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0052: Unsoundness in os_socketaddr</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0052.html</id><updated>2022-08-26T00:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2022-0052.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0052: Unsoundness in os_socketaddr"/><published>2022-08-26T00:00:00+00:00</published><summary xml:lang="en">`os_socketaddr` invalidly assumes the memory layout of std::net::SocketAddr</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/os_socketaddr/RUSTSEC-2022-0052.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/os_socketaddr/RUSTSEC-2022-0052.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2022-0052
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;os_socketaddr&lt;/code&gt; invalidly assumes the memory layout of std::net::SocketAddr&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2022-08-26&quot;&gt;
-          August 26, 2022
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/os_socketaddr.html&quot;&gt;os_socketaddr&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/os_socketaddr&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unsound
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/memory.html&quot;&gt;#memory&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/layout.html&quot;&gt;#layout&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/cast.html&quot;&gt;#cast&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;a href=&quot;https://github.com/a-ba/os_socketaddr/issues/3&quot;&gt;
-          https://github.com/a-ba/os_socketaddr/issues/3
-        &lt;/a&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.2.2&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;The &lt;a href=&quot;https://crates.io/crates/os_socketaddr&quot;&gt;&lt;code&gt;os_socketaddr&lt;/code&gt;&lt;/a&gt; crate has assumed
-&lt;code&gt;std::net::SocketAddrV4&lt;/code&gt; and &lt;code&gt;std::net::SocketAddrV6&lt;/code&gt; have the same memory layout as the system C
-representation &lt;code&gt;sockaddr&lt;/code&gt;. It has simply casted the pointers to convert the socket addresses to the
-system representation.&lt;/p&gt;
-&lt;p&gt;These layout were &lt;a href=&quot;https://github.com/rust-lang/rust/pull/78802&quot;&gt;changed into idiomatic rust types&lt;/a&gt;
-in nightly &lt;code&gt;std&lt;/code&gt;. Starting from rustc 1.64 the affected versions of this crate will have undefined
-behaviour.&lt;/p&gt;
 
   &lt;/article&gt;</content></entry></feed>
