@@ -268,6 +268,181 @@ to overflow an arbitrary number of bytes containing the &lt;code&gt;.&lt;/code&g
 server. In a TLS server, this can be triggered if the server requests
 client authentication and a malicious client connects.&lt;/p&gt;
 
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0066: Vulnerability in conduit-hyper</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0066.html</id><updated>2022-10-30T00:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2022-0066.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0066: Vulnerability in conduit-hyper"/><published>2022-10-30T00:00:00+00:00</published><summary xml:lang="en">Denial of Service from unchecked request length</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/conduit-hyper/RUSTSEC-2022-0066.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/conduit-hyper/RUSTSEC-2022-0066.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2022-0066
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Denial of Service from unchecked request length&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2022-10-30&quot;&gt;
+          October 30, 2022
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/conduit-hyper.html&quot;&gt;conduit-hyper&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/conduit-hyper&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-9398-5ghf-7pr6&quot;&gt;GHSA-9398-5ghf-7pr6&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-39294&quot;&gt;CVE-2022-39294&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https://github.com/conduit-rust/conduit-hyper/security/advisories/GHSA-9398-5ghf-7pr6&quot;&gt;
+          https://github.com/conduit-rust/conduit-hyper/security/advisories/GHSA-9398-5ghf-7pr6
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;7.5 &lt;span class=&quot;tag high&quot;&gt;
+        HIGH
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+          &lt;dt&gt;Attack vector&lt;/dt&gt;&lt;dd&gt;Network&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Attack complexity&lt;/dt&gt;&lt;dd&gt;Low&lt;/d&gt;
+          
+
+          
+          &lt;dt&gt;Privileges required&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;User interaction&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Scope&lt;/dt&gt;&lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+      &lt;dd&gt;&lt;a href=&quot;https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&lt;/a&gt;&lt;/dd&gt;
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.4.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;lt;0.2.0-alpha.3&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Prior to version 0.4.2, &lt;code&gt;conduit-hyper&lt;/code&gt; did not check any limit on a request&apos;s
+length before calling &lt;code&gt;hyper::body::to_bytes&lt;/code&gt;. An attacker could send a
+malicious request with an abnormally large &lt;code&gt;Content-Length&lt;/code&gt;, which could lead
+to a panic if memory allocation failed for that request.&lt;/p&gt;
+&lt;p&gt;In version 0.4.2, &lt;code&gt;conduit-hyper&lt;/code&gt; sets an internal limit of 128 MiB per
+request, otherwise returning status 400 (&amp;quot;Bad Request&amp;quot;).&lt;/p&gt;
+
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0062: Vulnerability in matrix-sdk</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0062.html</id><updated>2022-10-24T00:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2022-0062.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0062: Vulnerability in matrix-sdk"/><published>2022-10-24T00:00:00+00:00</published><summary xml:lang="en">matrix-sdk 0.6.0 logs access tokens</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -1060,101 +1235,5 @@ internally:&lt;/p&gt;
 versions of &lt;code&gt;axum&lt;/code&gt; are &lt;code&gt;&amp;lt;= 0.5.15&lt;/code&gt; and &lt;code&gt;0.6.0.rc.1&lt;/code&gt;. &lt;code&gt;axum&lt;/code&gt; &lt;code&gt;&amp;gt;= 0.5.16&lt;/code&gt; and
 &lt;code&gt;&amp;gt;= 0.6.0.rc.2&lt;/code&gt; does have the fix and are not vulnerable.&lt;/p&gt;
 &lt;p&gt;The patched versions will set a 2 MB limit by default.&lt;/p&gt;
-
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0057: badge is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0057.html</id><updated>2022-08-31T00:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2022-0057.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0057: badge is unmaintained"/><published>2022-08-31T00:00:00+00:00</published><summary xml:lang="en">badge is Unmaintained</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/badge/RUSTSEC-2022-0057.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/badge/RUSTSEC-2022-0057.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2022-0057
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;badge is Unmaintained&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2022-08-31&quot;&gt;
-          August 31, 2022
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/badge.html&quot;&gt;badge&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/badge&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unmaintained
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;a href=&quot;https://github.com/rust-lang/docs.rs/issues/1813#issuecomment-1232875809&quot;&gt;
-          https://github.com/rust-lang/docs.rs/issues/1813#issuecomment-1232875809
-        &lt;/a&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;The maintainer has adviced this crate is deprecated and will not receive any maintenance.&lt;/p&gt;
-&lt;p&gt;The crate depends on the deprecated &lt;code&gt;rusttype&lt;/code&gt; crate and won&apos;t receive updates
-anymore.&lt;/p&gt;
-&lt;h2&gt;Possible Alternative(s)&lt;/h2&gt;
-&lt;p&gt;The below list has not been vetted in any way and may or may not contain alternatives;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://crates.io/crates/badge-maker&quot;&gt;badge-maker&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://crates.io/crates/badgeland&quot;&gt;badgeland&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://crates.io/crates/badgen&quot;&gt;badgen&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://crates.io/crates/badgers&quot;&gt;badgers&lt;/a&gt; (API compatible fork of the &lt;code&gt;badge&lt;/code&gt; crate using &lt;code&gt;ab_glyph&lt;/code&gt; as a replacement for &lt;code&gt;rusttype&lt;/code&gt;)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://crates.io/crates/rsbadges&quot;&gt;rsbadges&lt;/a&gt; (used deprecated &lt;code&gt;rusttype&lt;/code&gt;)&lt;/li&gt;
-&lt;/ul&gt;
 
   &lt;/article&gt;</content></entry></feed>
