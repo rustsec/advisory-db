@@ -18,18 +18,13 @@
 <header>
   <div class="header-top">
     <h1><a href="/"><img class="logo-image" src="/img/rustsec-logo.svg" /></a></h1>
-    <div id="search">
-      <form onsubmit="return searchform();">
-        <input type="search" id="search-term"
-               placeholder="Look up package or ID..." required
-               size="20">
-      </form>
-    </div>
+    
   </div>
   <nav>
     <div>
+      <a href="/">About</a>
       <a href="/advisories/">Advisories</a>
-      <a href="/">About RustSec</a>
+      <a href="/contributing.html">Report Vulnerabilities</a>
     </div>
     <div>
       <a href="https://rust-lang.zulipchat.com/login/#narrow/stream/146229-wg-secure-code/" title="Zulip" aria-label="Zulip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="height:1em;fill:currentColor"><path d="M473.09 122.97c0 22.69-10.19 42.85-25.72 55.08L296.61 312.69c-2.8 2.4-6.44-1.47-4.42-4.7l55.3-110.72c1.55-3.1-.46-6.91-3.64-6.91H129.36c-33.22 0-60.4-30.32-60.4-67.37 0-37.06 27.18-67.37 60.4-67.37h283.33c33.22-.02 60.4 30.3 60.4 67.35zM129.36 506.05h283.33c33.22 0 60.4-30.32 60.4-67.37 0-37.06-27.18-67.37-60.4-67.37H198.2c-3.18 0-5.19-3.81-3.64-6.91l55.3-110.72c2.02-3.23-1.62-7.1-4.42-4.7L94.68 383.6c-15.53 12.22-25.72 32.39-25.72 55.08 0 37.05 27.18 67.37 60.4 67.37zm522.5-124.15l124.78-179.6v-1.56H663.52v-48.98h190.09v34.21L731.55 363.24v1.56h124.01v48.98h-203.7V381.9zm338.98-230.14V302.6c0 45.09 17.1 68.03 47.43 68.03 31.1 0 48.2-21.77 48.2-68.03V151.76h59.09V298.7c0 80.86-40.82 119.34-109.24 119.34-66.09 0-104.96-36.54-104.96-120.12V151.76h59.48zm244.91 0h59.48v212.25h104.18v49.76h-163.66V151.76zm297 0v262.01h-59.48V151.76h59.48zm90.18 3.5c18.27-3.11 43.93-5.44 80.08-5.44 36.54 0 62.59 7 80.08 20.99 16.72 13.22 27.99 34.99 27.99 60.64 0 25.66-8.55 47.43-24.1 62.2-20.21 19.05-50.15 27.6-85.13 27.6-7.77 0-14.77-.39-20.21-1.17v93.69h-58.7V155.26zm58.7 118.96c5.05 1.17 11.27 1.55 19.83 1.55 31.49 0 50.92-15.94 50.92-42.76 0-24.1-16.72-38.49-46.26-38.49-12.05 0-20.21 1.17-24.49 2.33v77.37z"/></svg></a>
@@ -50,49 +45,126 @@
 </header>
 
 <main>
-  <article>
-    <header>
-      <h1><a href="/">About RustSec</a></h1>
-    </header>
+    <article class="homepage">
+        <header>
+            <h1>A vulnerability database for the Rust ecosystem</h1>
+        </header>
 
-    <p>The <a href="https://github.com/RustSec/advisory-db">RustSec Advisory Database</a>
-      is a repository of security advisories filed against Rust crates published
-      via <a href="https://crates.io">https://crates.io</a> maintained by
-      the <a href="https://www.rust-lang.org/governance/wgs/wg-secure-code">Rust Secure Code Working Group</a>.</p>
-    </p>
+        <div class="search-index">
+            <form onsubmit="return searchformindex();">
+                <input type="search" id="search-term-index"
+                       placeholder="Look up package or advisory ID..." required
+                       size="20">
+            </form>
+        </div>
 
+        <p class="search-footer">or <a href="/advisories/">browse advisories</a></p>
 
-    <h2>RustSec Tools</h2>
-    <ul>
-      <li>
-        <a href="https://github.com/RustSec/cargo-audit">cargo-audit</a> - audit
-        <code class="language-plaintext highlighter-rouge">Cargo.lock</code>
-        files for crates with security vulnerabilities.
-      </li>
-      <li>
-        <a href="https://github.com/EmbarkStudios/cargo-deny">cargo-deny</a> - audit
-        <code class="language-plaintext highlighter-rouge">Cargo.lock</code> files for crates with security vulnerabilities, limit the usage of particular dependencies, their licenses, sources to download from, detect multiple versions of same packages in the dependency tree and more.
-      </li>
-    </ul>
+        <h2>Tooling</h2>
 
-    <h2>Data Interchange</h2>
-    <p>
-      We export all our data to <a href="https://osv.dev/">Open Source Vulnerabilities</a> in real time.
-      This enables many other tools, such as <a href="https://aquasecurity.github.io/trivy/">Trivy</a>, to access RustSec advisories.
-    </p>
-    <p>
-      The <a href="https://github.com/advisories">Github Advisory Database</a> also imports our advisories.
-    </p>
+        <div class="row">
+            <div class="column">
+                <h3><code>cargo-audit</code></h3>
+                <p>Audit
+                    <code class="language-plaintext highlighter-rouge">Cargo.lock</code>
+                    files for crates with security vulnerabilities.</p>
 
-    <h2>Reporting Vulnerabilities</h2>
-    <p>To report a new vulnerability for a Rust crate, open a pull request
-      against the <a href="https://github.com/RustSec/advisory-db">RustSec Advisory Database</a>.
-    </p>
+                <p class="get-started-button"><a class="button" href="https://github.com/rustsec/rustsec/blob/main/cargo-audit/README.md">Get started</a></p>
 
-    <p><a href="https://github.com/RustSec/advisory-db/blob/master/CONTRIBUTING.md">
-      <img alt="Report Vulnerability" width="250px" height="60px"
-        src="/img/report-vuln-button.svg" />
-    </a></p>
+                <pre>
+> cargo audit
+    Scanning Cargo.lock for vulnerabilities (4 crate dependencies)
+Crate:     lz4-sys
+Version:   1.9.3
+Title:     Memory corruption in liblz4
+Date:      2022-08-25
+ID:        RUSTSEC-2022-0051
+URL:       https://rustsec.org/advisories/RUSTSEC-2022-0051
+Solution:  Upgrade to >=1.9.4
+Dependency tree:
+lz4-sys 1.9.3
+└── crate 0.1.0
 
-  </article>
+error: 1 vulnerability found!
+    </pre>
+            </div>
+            <div class="column">
+                <h3><code>cargo-deny</code></h3>
+                <p>
+                    Audit
+                    <code class="language-plaintext highlighter-rouge">Cargo.lock</code> files for crates with security
+                    vulnerabilities, limit the usage of particular dependencies, their licenses, sources to download
+                    from, detect multiple versions of same packages in the dependency tree and more.
+                </p>
+                <p class="get-started-button"><a class="button" href="https://embarkstudios.github.io/cargo-deny/">Get started</a></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="column">
+                <h3><a href="https://github.com/rust-secure-code/cargo-auditable">cargo-auditable</a></h3>
+                <p>Embed the dependency tree into compiled executables, to make production Rust binaries auditable by cargo-audit.</p>
+            </div>
+            <div class="column">
+                <h3><code>cargo-audit</code> Github action</h3>
+                <p>
+                    Audit changes, schedule dependencies audits and open issues for found vulnerabilities using cargo-audit with the
+                    <code>rust-audit-check</code> Github action.
+                </p>
+                <p class="get-started-button"><a class="button" href="https://github.com/rustsec/audit-check">Get started</a></p>
+
+            </div>
+            <div class="column">
+                <h3><code>cargo-deny</code> Github action</h3>
+                <p>
+                    Audit changes and schedule dependencies audits
+                    using cargo-deny with the <code>cargo-deny-action</code> Github action.
+                </p>
+                <p class="get-started-button"><a class="button" href="https://github.com/marketplace/actions/cargo-deny">Get started</a></p>
+            </div>
+        </div>
+
+        <h2>Data Interchange</h2>
+
+        <div class="row">
+            <div class="column details">
+                <a href="https://osv.dev/"><img src="/img/osv.png"/></a>
+                <p>
+                    We export all our data to <a href="https://osv.dev/">Open Source Vulnerabilities</a> in real time.
+                    This enables many other tools, such as <a href="https://aquasecurity.github.io/trivy/">Trivy</a>, to
+                    access RustSec advisories.
+                </p>
+                <p>You can access RustSec advisories in the OSV format either directly
+                    as a <a href="https://codeload.github.com/rustsec/advisory-db/zip/refs/heads/osv">zip archive</a>
+                    or using the <a href="https://osv.dev/docs/">OSV API</a>.
+                </p>
+            </div>
+            <div class="column">
+                <a href="https://github.com/advisories"><img src="/img/github.png"/></a>
+                <p>
+                    The <a href="https://github.com/advisories">Github Advisory Database</a> imports our advisories and makes then available in its
+                    <a href="https://docs.github.com/en/graphql/reference/objects#securityadvisory">public API</a>.
+                </p>
+                <p>This allows <a href="https://docs.github.com/en/code-security/dependabot/dependabot-security-updates/about-dependabot-security-updates">dependabot</a>
+                    to fix vulnerable dependencies for you by raising pull requests with security updates.
+                </p>
+            </div>
+        </div>
+
+        <h2>About</h2>
+
+        <div class="header-row">
+            <div class="header-column-image">
+                <img src="/img/rustsec-logo-square.svg" />
+            </div>
+            <div class="header-column-text">
+                <p>The <a href="https://github.com/RustSec/advisory-db">RustSec Advisory Database</a>
+                    is a repository of security advisories filed against Rust crates published
+                    via <a href="https://crates.io">crates.io</a> maintained by
+                    the <a href="https://www.rust-lang.org/governance/wgs/wg-secure-code">Rust Secure Code Working Group</a>.
+                </p>
+            </div>
+        </div>
+
+    </article>
 </main>
