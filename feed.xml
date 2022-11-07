@@ -543,6 +543,137 @@ writes logs using &lt;code&gt;tracing-subscriber&lt;/code&gt; (in a way that inc
 &lt;code&gt;tracing_subscriber&lt;/code&gt;s default text output from the &lt;code&gt;fmt&lt;/code&gt; module), these logs will contain the
 user&apos;s access token.&lt;/p&gt;
 
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0067: Unsoundness in lzf</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0067.html</id><updated>2022-10-22T00:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2022-0067.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0067: Unsoundness in lzf"/><published>2022-10-22T00:00:00+00:00</published><summary xml:lang="en"> Invalid use of `mem::uninitialized` causes `use-of-uninitialized-value`</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/lzf/RUSTSEC-2022-0067.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/lzf/RUSTSEC-2022-0067.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2022-0067
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Invalid use of &lt;code&gt;mem::uninitialized&lt;/code&gt; causes &lt;code&gt;use-of-uninitialized-value&lt;/code&gt;&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2022-10-22&quot;&gt;
+          October 22, 2022
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/lzf.html&quot;&gt;lzf&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/lzf&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/uninitialized-memory.html&quot;&gt;#uninitialized-memory&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https://github.com/badboy/lzf-rs/issues/9&quot;&gt;
+          https://github.com/badboy/lzf-rs/issues/9
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.3.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;lzf::compress&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;lt;0.3.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;lzf::decompress&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;lt;0.3.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;The compression and decompression function used &lt;code&gt;mem:uninitialized&lt;/code&gt;
+to create an array of uninitialized values, to later write values into it.
+This later leads to reads from uninitialized memory.&lt;/p&gt;
+&lt;p&gt;The flaw was corrected in commit b633bf265e41c60dfce3be7eac4e4dd5e18d06cf
+by using a heap-allocated &lt;code&gt;Vec&lt;/code&gt; and removing out use of &lt;code&gt;mem::uninitialized&lt;/code&gt;.
+The fix was released in v0.3.2 and v1.0.0&lt;/p&gt;
+&lt;p&gt;Subsequently the crate was deprecated and its use is discouraged.&lt;/p&gt;
+
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0060: orbtk is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0060.html</id><updated>2022-10-13T00:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2022-0060.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0060: orbtk is unmaintained"/><published>2022-10-13T00:00:00+00:00</published><summary xml:lang="en">orbtk is Unmaintained</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -1112,128 +1243,5 @@ The value this adds is questionable, and hides &lt;code&gt;unsafe&lt;/code&gt; c
 &lt;/li&gt;
 &lt;li&gt;Calling &lt;code&gt;Heap::extend&lt;/code&gt; on a heap whose size is not a multiple of the size of two &lt;code&gt;usize&lt;/code&gt;s resulted in unaligned writes. It also left the heap in an unexpected state, which might lead to subsequent issues. We did not find a way to exploit this undefined behavior yet (apart from DoS on platforms that fault on unaligned writes).&lt;/li&gt;
 &lt;/ul&gt;
-
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0055: Vulnerability in axum-core</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0055.html</id><updated>2022-08-31T00:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2022-0055.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0055: Vulnerability in axum-core"/><published>2022-08-31T00:00:00+00:00</published><summary xml:lang="en">No default limit put on request bodies</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/axum-core/RUSTSEC-2022-0055.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/axum-core/RUSTSEC-2022-0055.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2022-0055
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;No default limit put on request bodies&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2022-08-31&quot;&gt;
-          August 31, 2022
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/axum-core.html&quot;&gt;axum-core&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/axum-core&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/ddos.html&quot;&gt;#ddos&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/oom.html&quot;&gt;#oom&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;a href=&quot;https://github.com/tokio-rs/axum/pull/1346&quot;&gt;
-          https://github.com/tokio-rs/axum/pull/1346
-        &lt;/a&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.2.8, &amp;lt;0.3.0-rc.1&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.3.0-rc.2&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;&lt;code&gt;&amp;lt;bytes::Bytes as axum_core::extract::FromRequest&amp;gt;::from_request&lt;/code&gt; would not, by
-default, set a limit for the size of the request body. That meant if a malicious
-peer would send a very large (or infinite) body your server might run out of
-memory and crash.&lt;/p&gt;
-&lt;p&gt;This also applies to these extractors which used &lt;code&gt;Bytes::from_request&lt;/code&gt;
-internally:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;axum::extract::Form&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;axum::extract::Json&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;String&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The fix is also in &lt;code&gt;axum-core&lt;/code&gt; &lt;code&gt;0.3.0.rc.2&lt;/code&gt; but &lt;code&gt;0.3.0.rc.1&lt;/code&gt; &lt;em&gt;is&lt;/em&gt; vulnerable.&lt;/p&gt;
-&lt;p&gt;Because &lt;code&gt;axum&lt;/code&gt; depends on &lt;code&gt;axum-core&lt;/code&gt; it is vulnerable as well. The vulnerable
-versions of &lt;code&gt;axum&lt;/code&gt; are &lt;code&gt;&amp;lt;= 0.5.15&lt;/code&gt; and &lt;code&gt;0.6.0.rc.1&lt;/code&gt;. &lt;code&gt;axum&lt;/code&gt; &lt;code&gt;&amp;gt;= 0.5.16&lt;/code&gt; and
-&lt;code&gt;&amp;gt;= 0.6.0.rc.2&lt;/code&gt; does have the fix and are not vulnerable.&lt;/p&gt;
-&lt;p&gt;The patched versions will set a 2 MB limit by default.&lt;/p&gt;
 
   &lt;/article&gt;</content></entry></feed>
