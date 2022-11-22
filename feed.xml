@@ -1,5 +1,130 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2022-11-07T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2022-0067: Unsoundness in lzf</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0067.html</id><updated>2022-11-07T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2022-0067.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0067: Unsoundness in lzf"/><published>2022-11-07T12:00:00+00:00</published><summary xml:lang="en"> Invalid use of `mem::uninitialized` causes `use-of-uninitialized-value`</summary><content xml:lang="en" type="html">  &lt;article&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2022-11-22T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2021-0145: Unsoundness in atty</title><id>https://rustsec.org/advisories/RUSTSEC-2021-0145.html</id><updated>2022-11-22T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2021-0145.html" rel="alternate" type="text/html" title="RUSTSEC-2021-0145: Unsoundness in atty"/><published>2022-11-22T12:00:00+00:00</published><summary xml:lang="en">Potential unaligned read</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/atty/RUSTSEC-2021-0145.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/atty/RUSTSEC-2021-0145.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2021-0145
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Potential unaligned read&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2021-07-04&quot;&gt;
+          July  4, 2021
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2022-11-22&quot;&gt;
+          November 22, 2022
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/atty.html&quot;&gt;atty&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/atty&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/unaligned-read.html&quot;&gt;#unaligned-read&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https://github.com/softprops/atty/issues/50&quot;&gt;
+          https://github.com/softprops/atty/issues/50
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      &lt;dt&gt;Affected OSes&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;windows&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;On windows, &lt;code&gt;atty&lt;/code&gt; dereferences a potentially unaligned pointer.&lt;/p&gt;
+&lt;p&gt;In practice however, the pointer won&apos;t be unaligned unless a custom global allocator is used.&lt;/p&gt;
+&lt;p&gt;In particular, the &lt;code&gt;System&lt;/code&gt; allocator on windows uses &lt;code&gt;HeapAlloc&lt;/code&gt;, which guarantees a large enough alignment.&lt;/p&gt;
+&lt;h1&gt;atty is Unmaintained&lt;/h1&gt;
+&lt;p&gt;A Pull Request with a fix has been provided over a year ago but the maintainer seems to be unreachable.&lt;/p&gt;
+&lt;p&gt;Last release of &lt;code&gt;atty&lt;/code&gt; was almost 3 years ago.&lt;/p&gt;
+&lt;h2&gt;Possible Alternative(s)&lt;/h2&gt;
+&lt;p&gt;The below list has not been vetted in any way and may or may not contain alternatives;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://crates.io/crates/is-terminal&quot;&gt;is-terminal&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;std::io::IsTerminal &lt;em&gt;nightly-only experimental&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0067: Unsoundness in lzf</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0067.html</id><updated>2022-11-07T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2022-0067.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0067: Unsoundness in lzf"/><published>2022-11-07T12:00:00+00:00</published><summary xml:lang="en"> Invalid use of `mem::uninitialized` causes `use-of-uninitialized-value`</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
           &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/lzf/RUSTSEC-2022-0067.md&quot;&gt;History&lt;/a&gt; ⋅ 
@@ -1225,103 +1350,5 @@ plaintext is emitted as the ciphertext.&lt;/p&gt;
 using &lt;code&gt;NID_undef&lt;/code&gt; and subsequently use it in a call to an encryption/decryption
 initialisation function. Applications that only use SSL/TLS are not impacted by
 this issue.&lt;/p&gt;
-
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0058: Security notice about inconceivable</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0058.html</id><updated>2022-10-11T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2022-0058.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0058: Security notice about inconceivable"/><published>2022-10-11T12:00:00+00:00</published><summary xml:lang="en">Library exclusively intended to inject UB into safe Rust.</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/inconceivable/RUSTSEC-2022-0058.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/inconceivable/RUSTSEC-2022-0058.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2022-0058
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Library exclusively intended to inject UB into safe Rust.&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2022-09-28&quot;&gt;
-          September 28, 2022
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2022-10-11&quot;&gt;
-          October 11, 2022
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/inconceivable.html&quot;&gt;inconceivable&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/inconceivable&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Notice
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;a href=&quot;https://crates.io/crates/inconceivable&quot;&gt;
-          https://crates.io/crates/inconceivable
-        &lt;/a&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;Quoting from the crate description:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;This crate is created purely to inject undefined behavior into stable, safe rust.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Specifically, the &lt;code&gt;inconceivable!&lt;/code&gt; macro is insta-UB if the &lt;code&gt;ub_inconceivable&lt;/code&gt; feature is enabled by &lt;em&gt;any&lt;/em&gt; reverse dependency.
-The value this adds is questionable, and hides &lt;code&gt;unsafe&lt;/code&gt; code from naive analysis.&lt;/p&gt;
 
   &lt;/article&gt;</content></entry></feed>
