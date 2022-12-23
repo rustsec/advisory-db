@@ -27,7 +27,7 @@ jobs:
       id: assign
       run: |
         message=$(rustsec-admin assign-id --github-actions-output)
-        echo "::set-output name=commit_message::${message}"
+        echo "commit_message=${message}" >> $GITHUB_OUTPUT
 
     - name: Create duplicate ID assignment guard
       run: |
