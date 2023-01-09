@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package &#x27;tokio&#x27; › RustSec Advisory Database</title>
+<title>RUSTSEC-2023-0001: tokio: reject_remote_clients Configuration corruption › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,77 +52,163 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/tokio/RUSTSEC-2023-0001.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/tokio/RUSTSEC-2023-0001.md">Edit</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2023-0001
+        
+      </h1>
+      <span class="subtitle"><p>reject_remote_clients Configuration corruption</p>
 </span>
-      <h1>Advisories for package &#x27;tokio&#x27;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2023-01-09">
-    January  9, 2023
-  </time>
+    
 
-  
-  <h3>
-    
-        
-    
-    <a href="/advisories/RUSTSEC-2023-0001.html">
-      RUSTSEC-2023-0001: Vulnerability in tokio
-    </a>
-  </h3>
-  <span><p>reject_remote_clients Configuration corruption</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2021-11-16">
-    November 16, 2021
-  </time>
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2023-01-04">
+          January  4, 2023
+        </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2023-01-09">
+          January  9, 2023
+        </time>
         
-    
-    <a href="/advisories/RUSTSEC-2021-0124.html">
-      RUSTSEC-2021-0124: Vulnerability in tokio
-    </a>
-  </h3>
-  <span><p>Data race when sending and receiving after closing a <code>oneshot</code> channel</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2021-07-07">
-    July  7, 2021
-  </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="package">Package</dt>
+      <dd>
         
-    
-    <a href="/advisories/RUSTSEC-2021-0072.html">
-      RUSTSEC-2021-0072: Vulnerability in tokio
-    </a>
-  </h3>
-  <span><p>Task dropped in wrong thread when aborting <code>LocalSet</code> task</p>
-</span>
-  
-</li>
+        
+        <a href="/packages/tokio.html">tokio</a>
+          (<a href="https://crates.io/crates/tokio">crates.io</a>)
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        Vulnerability
+        
+      </dd>
+
       
-    </ul>
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/configuration-failure.html">#configuration-failure</a>
+        
+      </dd>
+      
+
+      
+      <dt id="aliases">Aliases</dt>
+      <dd>
+        <ul>
+          
+          <li>
+            
+            <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-22466">CVE-2023-22466</a>
+            
+          </li>
+          
+          <li>
+            
+            <a href="https://github.com/advisories/GHSA-7rrj-xr53-82p7">GHSA-7rrj-xr53-82p7</a>
+            
+          </li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="details">Details</dt>
+      <dd>
+        <a href="https://github.com/tokio-rs/tokio/security/advisories/GHSA-7rrj-xr53-82p7">
+          https://github.com/tokio-rs/tokio/security/advisories/GHSA-7rrj-xr53-82p7
+        </a>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&gt;=1.18.4, &lt;1.19.0</code></li>
+          
+          <li><code>&gt;=1.20.3, &lt;1.21.0</code></li>
+          
+          <li><code>&gt;=1.23.1</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+      <dt id="unaffected">Unaffected</dt>
+      <dd>
+        <ul>
+          
+          <li><code>&lt;1.7.0</code></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      
+
+      
+      <dt>Affected OSes</dt>
+      <dd>
+        <ul>
+          
+          <li><code>windows</code></li>
+          
+        </ul>
+      </dd>
+      
+      
+    </dl>
+
+    
+    
+
+    
+
+    <h3 id="description">Description</h3>
+    <p>On Windows, configuring a named pipe server with <a href="https://docs.rs/tokio/latest/tokio/net/windows/named_pipe/struct.ServerOptions.html#method.pipe_mode">pipe_mode</a> will force <a href="https://docs.rs/tokio/latest/tokio/net/windows/named_pipe/struct.ServerOptions.html">ServerOptions</a>::<a href="https://docs.rs/tokio/latest/tokio/net/windows/named_pipe/struct.ServerOptions.html#method.reject_remote_clients">reject_remote_clients</a> as <code>false</code>.</p>
+<p>This drops any intended explicit configuration for the <a href="https://docs.rs/tokio/latest/tokio/net/windows/named_pipe/struct.ServerOptions.html#method.reject_remote_clients">reject_remote_clients</a> that may have been set as <code>true</code> previously.</p>
+<p>The default setting of <a href="https://docs.rs/tokio/latest/tokio/net/windows/named_pipe/struct.ServerOptions.html#method.reject_remote_clients">reject_remote_clients</a> is normally <code>true</code> meaning the default is also overriden as <code>false</code>.</p>
+<h2>Workarounds</h2>
+<p>Ensure that <a href="https://docs.rs/tokio/latest/tokio/net/windows/named_pipe/struct.ServerOptions.html#method.pipe_mode">pipe_mode</a> is set first after initializing a <a href="https://docs.rs/tokio/latest/tokio/net/windows/named_pipe/struct.ServerOptions.html">ServerOptions</a>. For example:</p>
+<pre><code class="language-rust">let mut opts = ServerOptions::new();
+opts.pipe_mode(PipeMode::Message);
+opts.reject_remote_clients(true);
+</code></pre>
+
   </article>
 </main>
