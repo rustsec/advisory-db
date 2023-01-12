@@ -1,0 +1,69 @@
+{
+  "id": "RUSTSEC-2022-0076",
+  "modified": "2023-01-12T13:14:43Z",
+  "published": "2022-11-10T12:00:00Z",
+  "aliases": [
+    "CVE-2022-39392",
+    "GHSA-44mr-8vmm-wjhg"
+  ],
+  "related": [],
+  "summary": "Bug in Wasmtime implementation of pooling instance allocator",
+  "details": "Bug in Wasmtime's implementation of its pooling instance allocator when the allocator is configured to give WebAssembly instances a maximum of zero pages of memory.\n\nIn this configuration, the virtual memory mapping for WebAssembly memories did not meet the compiler-required configuration requirements for safely executing WebAssembly modules. Wasmtime's default settings require virtual memory page faults to indicate that wasm reads/writes are out-of-bounds, but the pooling allocator's configuration would not create an appropriate virtual memory mapping for this meaning out of bounds reads/writes can successfully read/write memory unrelated to the wasm sandbox within range of the base address of the memory mapping created by the pooling allocator.\n\nThis bug is not applicable with the default settings of the `wasmtime` crate.\n\nThis bug can only be triggered by setting `InstanceLimits::memory_pages` to zero.\n\nThis is expected to be a very rare configuration since this means that wasm modules cannot allocate any pages of linear memory.\n\nAll wasm modules produced by all current toolchains are highly likely to use linear memory, so it's expected to be unlikely that this configuration is set to zero by any production embedding of Wasmtime.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "wasmtime",
+        "purl": "pkg:cargo/wasmtime"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": [
+            "wasmtime::PoolingAllocationConfig::instance_memory_pages"
+          ]
+        }
+      },
+      "database_specific": {
+        "categories": [
+          "memory-corruption",
+          "memory-exposure"
+        ],
+        "cvss": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N",
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "2.0.2"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/wasmtime"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2022-0076.html"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-44mr-8vmm-wjhg"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/bytecodealliance/wasmtime/commit/e60c3742904ccbb3e26da201c9221c38a4981d72"
+    }
+  ]
+}
