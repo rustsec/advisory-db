@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories with keyword &#x27;mitm&#x27; › RustSec Advisory Database</title>
+<title>RUSTSEC-2023-0002: git2: git2 Rust package suppresses ssh host key checking › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,115 +52,186 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/git2/RUSTSEC-2023-0002.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/git2/RUSTSEC-2023-0002.md">Edit</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2023-0002
+        
+      </h1>
+      <span class="subtitle"><p>git2 Rust package suppresses ssh host key checking</p>
 </span>
-      <h1>Advisories with keyword &#x27;mitm&#x27;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2023-01-12">
-    January 12, 2023
-  </time>
-
-  
-  <h3>
     
+
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2023-01-12">
+          January 12, 2023
+        </time>
+      </dd>
+
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2023-01-12">
+          January 12, 2023
+        </time>
         
-    
-    <a href="/advisories/RUSTSEC-2023-0002.html">
-      RUSTSEC-2023-0002: Vulnerability in git2
-    </a>
-  </h3>
-  <span><p>git2 Rust package suppresses ssh host key checking</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2020-10-02">
-    October  2, 2020
-  </time>
+      </dd>
 
-  
-  <h3>
-    
-      <span class="tag medium">MEDIUM</span>
-      
-    <a href="/advisories/RUSTSEC-2017-0003.html">
-      RUSTSEC-2017-0003: Vulnerability in security-framework
-    </a>
-  </h3>
-  <span><p>Hostname verification skipped when custom root certs used</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2020-10-02">
-    October  2, 2020
-  </time>
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        <a href="/packages/git2.html">git2</a>
+          (<a href="https://crates.io/crates/git2">crates.io</a>)
+        
+        
+      </dd>
 
-  
-  <h3>
-    
-      <span class="tag medium">MEDIUM</span>
-      
-    <a href="/advisories/RUSTSEC-2016-0002.html">
-      RUSTSEC-2016-0002: Vulnerability in hyper
-    </a>
-  </h3>
-  <span><p>HTTPS MitM vulnerability due to lack of hostname verification</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2020-10-02">
-    October  2, 2020
-  </time>
+      <dt id="type">Type</dt>
+      <dd>
+        
+        Vulnerability
+        
+      </dd>
 
-  
-  <h3>
-    
-      <span class="tag high">HIGH</span>
       
-    <a href="/advisories/RUSTSEC-2016-0001.html">
-      RUSTSEC-2016-0001: Vulnerability in openssl
-    </a>
-  </h3>
-  <span><p>SSL/TLS MitM vulnerability due to insecure defaults</p>
-</span>
-  
-</li>
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/crypto-failure.html">crypto-failure</a></li>
+          
+        </ul>
+      </dd>
       
-      <li>
-  <time datetime="2020-10-02">
-    October  2, 2020
-  </time>
 
-  
-  <h3>
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/cargo.html">#cargo</a>
+        
+          <a href="/keywords/ssh.html">#ssh</a>
+        
+          <a href="/keywords/mitm.html">#mitm</a>
+        
+      </dd>
+      
+
+      
+
+      
+      <dt id="details">Details</dt>
+      <dd>
+        <a href="https://github.com/rust-lang/git2-rs/pull/909">
+          https://github.com/rust-lang/git2-rs/pull/909
+        </a>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&gt;=0.16.0</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+
+      
+      
+    </dl>
+
     
-      <span class="tag medium">MEDIUM</span>
-      
-    <a href="/advisories/RUSTSEC-2016-0003.html">
-      RUSTSEC-2016-0003: Vulnerability in portaudio
-    </a>
-  </h3>
-  <span><p>HTTP download and execution allows MitM RCE</p>
-</span>
-  
+    
+
+    <h3 id="description">Description</h3>
+    <p>By default, when accessing an ssh repository
+(ie via an <code>ssh:</code> git repository url)
+the git2 Rust package does not do any host key checking.</p>
+<p>Additionally,
+the provided API is not sufficient for a an application
+to do meaningful checking itself.</p>
+<h2>Impact</h2>
+<p>When connecting to an ssh repository,
+and when an attacker can redirect the connection
+(performing a malice-in-the-middle attack)
+an affected application might:</p>
+<ul>
+<li>
+<p>Receive git objects and branches controlled by the attacker,
+exposing the local system (and whatever happens next)
+to malicious data.
+In many circumstances,
+this could readily lead to privilege escalation.</p>
 </li>
-      
-    </ul>
+<li>
+<p>Erroneously send git objects to the attacker,
+rather than to the intended recipient.
+If the information is not supposed to be public,
+this would constitute an information leak.
+Also, since the data doesn't arrive where intended,
+it consitutes a denial of service.</p>
+</li>
+</ul>
+<h2>Technical details</h2>
+<p>The <code>git2</code> Rust package (henceforth, git2-rs)
+unconditionally calls the underlying C <code>libgit2</code> functions to set
+an ssh certificate check callback.
+The Rust package uses this to offer
+the ability for the application to set a callback to a Rust function.</p>
+<p>The C-level callback function provided by git2-rs 0.15.0 and earlier:</p>
+<ul>
+<li>
+<p>Always ignores the <code>is_valid</code> argument provided by <code>libgit2</code>,
+which indicates whether <code>libgit2</code> considers the host key valid</p>
+</li>
+<li>
+<p>By default, performs no checks, and then
+returns code <code>0</code>,
+indicating to <code>libgit2</code> to override <code>libgit2</code>'s determination
+and treat the host key as valid.</p>
+</li>
+<li>
+<p>Provides only limited APIs to the application
+for examining the supplied host key,
+and doesn't tell the application
+whether <code>libgit2</code>'s checks succeeded,
+so it is difficult for the application cannot work around the problem.</p>
+</li>
+</ul>
+<h2>Resolution</h2>
+<p>Upgrade to git2-rs 0.16.x.</p>
+<p>The default behaviour in 0.16.x is to
+honour <code>libgit2</code>'s validity determination.</p>
+<p>Note that adding this previously skipped check
+may cause existing setups to stop working.</p>
+<h2>Relationship to CVE-2022-46176</h2>
+<p>This bug manifested in cargo where it was assigned CVE-2022-46176.</p>
+<p>The same bug exists in other applications which use
+affected versions of git2-rs
+unless they never try to access git repositories with <code>ssh:</code> urls.</p>
+
   </article>
 </main>
