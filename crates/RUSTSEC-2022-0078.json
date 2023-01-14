@@ -1,0 +1,62 @@
+{
+  "id": "RUSTSEC-2022-0078",
+  "modified": "2023-01-14T20:39:48Z",
+  "published": "2022-01-14T12:00:00Z",
+  "aliases": [],
+  "related": [],
+  "summary": "Use-after-free due to a lifetime error in `Vec::into_iter()`",
+  "details": "In affected versions of this crate, the lifetime of the iterator produced by\n`Vec::into_iter()` is not constrained to the lifetime of the `Bump` that\nallocated the vector's memory. Using the iterator after the `Bump` is dropped\ncauses use-after-free accesses.\n\nThe following example demonstrates memory corruption arising from a misuse of\nthis unsoundness.\n\n```rust\nuse bumpalo::{collections::Vec, Bump};\n\nfn main() {\n    let bump = Bump::new();\n    let mut vec = Vec::new_in(&bump);\n    vec.extend([0x01u8; 32]);\n    let into_iter = vec.into_iter();\n    drop(bump);\n\n    for _ in 0..100 {\n        let reuse_bump = Bump::new();\n        let _reuse_alloc = reuse_bump.alloc([0x41u8; 10]);\n    }\n\n    for x in into_iter {\n        print!(\"0x{:02x} \", x);\n    }\n    println!();\n}\n```\n\nThe issue was corrected in version 3.11.1 by adding a lifetime to the `IntoIter`\ntype, and updating the signature of `Vec::into_iter()` to constrain this\nlifetime.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "bumpalo",
+        "purl": "pkg:cargo/bumpalo"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": [
+            "bumpalo::collections::vec::Vec::into_iter"
+          ]
+        }
+      },
+      "database_specific": {
+        "categories": [
+          "memory-corruption",
+          "memory-exposure"
+        ],
+        "cvss": null,
+        "informational": "unsound"
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "1.1.0"
+            },
+            {
+              "fixed": "3.11.1"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/bumpalo"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2022-0078.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/fitzgen/bumpalo/blob/main/CHANGELOG.md#3111"
+    }
+  ]
+}
