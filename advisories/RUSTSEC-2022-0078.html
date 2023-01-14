@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package &#x27;bumpalo&#x27; › RustSec Advisory Database</title>
+<title>RUSTSEC-2022-0078: bumpalo: Use-after-free due to a lifetime error in `Vec::into_iter()` › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,60 +52,178 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/bumpalo/RUSTSEC-2022-0078.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/bumpalo/RUSTSEC-2022-0078.md">Edit</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2022-0078
+        
+      </h1>
+      <span class="subtitle"><p>Use-after-free due to a lifetime error in <code>Vec::into_iter()</code></p>
 </span>
-      <h1>Advisories for package &#x27;bumpalo&#x27;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2023-01-14">
-    January 14, 2023
-  </time>
+    
 
-  
-  <h3>
-    
-        
-          <span class="tag info">INFO</span>
-        
-    
-    <a href="/advisories/RUSTSEC-2022-0078.html">
-      RUSTSEC-2022-0078: Unsoundness in bumpalo
-    </a>
-  </h3>
-  <span><p>Use-after-free due to a lifetime error in <code>Vec::into_iter()</code></p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2020-10-02">
-    October  2, 2020
-  </time>
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2022-01-14">
+          January 14, 2022
+        </time>
+      </dd>
 
-  
-  <h3>
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2023-01-14">
+          January 14, 2023
+        </time>
+        
+      </dd>
+
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        <a href="/packages/bumpalo.html">bumpalo</a>
+          (<a href="https://crates.io/crates/bumpalo">crates.io</a>)
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        <span class="tag info">INFO</span>
+        Unsound
+        
+      </dd>
+
+      
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/memory-corruption.html">memory-corruption</a></li>
+          
+          <li><a href="/categories/memory-exposure.html">memory-exposure</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/use-after-free.html">#use-after-free</a>
+        
+      </dd>
+      
+
+      
+
+      
+      <dt id="details">Details</dt>
+      <dd>
+        <a href="https://github.com/fitzgen/bumpalo/blob/main/CHANGELOG.md#3111">
+          https://github.com/fitzgen/bumpalo/blob/main/CHANGELOG.md#3111
+        </a>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&gt;=3.11.1</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+      <dt id="unaffected">Unaffected</dt>
+      <dd>
+        <ul>
+          
+          <li><code>&lt;1.1.0</code></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      
+
+      
+      
+    </dl>
+
     
-      <span class="tag high">HIGH</span>
+    
+    <dl>
+      <dt>Affected Functions</dt>
+      <dd>Version</dd>
       
-    <a href="/advisories/RUSTSEC-2020-0006.html">
-      RUSTSEC-2020-0006: Vulnerability in bumpalo
-    </a>
-  </h3>
-  <span><p>Flaw in <code>realloc</code> allows reading unknown memory</p>
-</span>
-  
-</li>
+      <dt><code>bumpalo::collections::vec::Vec::into_iter</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&lt;3.11.1</code></li>
+          
+        </ul>
+      </dd>
       
-    </ul>
+    </dl>
+    
+
+    
+
+    <h3 id="description">Description</h3>
+    <p>In affected versions of this crate, the lifetime of the iterator produced by
+<code>Vec::into_iter()</code> is not constrained to the lifetime of the <code>Bump</code> that
+allocated the vector's memory. Using the iterator after the <code>Bump</code> is dropped
+causes use-after-free accesses.</p>
+<p>The following example demonstrates memory corruption arising from a misuse of
+this unsoundness.</p>
+<pre><code class="language-rust">use bumpalo::{collections::Vec, Bump};
+
+fn main() {
+    let bump = Bump::new();
+    let mut vec = Vec::new_in(&amp;bump);
+    vec.extend([0x01u8; 32]);
+    let into_iter = vec.into_iter();
+    drop(bump);
+
+    for _ in 0..100 {
+        let reuse_bump = Bump::new();
+        let _reuse_alloc = reuse_bump.alloc([0x41u8; 10]);
+    }
+
+    for x in into_iter {
+        print!(&quot;0x{:02x} &quot;, x);
+    }
+    println!();
+}
+</code></pre>
+<p>The issue was corrected in version 3.11.1 by adding a lifetime to the <code>IntoIter</code>
+type, and updating the signature of <code>Vec::into_iter()</code> to constrain this
+lifetime.</p>
+
   </article>
 </main>
