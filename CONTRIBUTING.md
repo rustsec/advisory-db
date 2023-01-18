@@ -14,6 +14,11 @@ be responsibly publicly disclosed via RustSec by submitting an advisory
 to RustSec with the included actionable information e.g. a patched version
 of the said crate.
 
+## Crates without Security Policies
+
+If the crate or the repository does not have any associated security policy
+please see the authors field and try e-mailing them first.
+
 ## Unresponsive Maintainers
 
 If the maintainer(s) is / are unresponsive then this can be also reported given
