@@ -4,8 +4,10 @@
 ![Maintained: Q2 2022][maintained-image]
 [![Project Chat][chat-image]][chat-link]
 
-**NOTE**: Security Issues related to rustc, cargo and related to Rust-lang
-repositories are handled elsewhere - please see the [Rust-lang Security Policy](https://www.rust-lang.org/policies/security).
+**NOTE**: Security Issues related to Rust-lang project itself including
+malicious crates/users in crates.io, docs.rs, rustc, cargo or otherwise related
+to Rust-lang repositories and it's infrastructure are handled elsewhere, please
+see the [Rust-lang Security Policy](https://www.rust-lang.org/policies/security) for this.
 
 The RustSec Advisory Database is a repository of security advisories filed
 against Rust crates published via https://crates.io. A human-readable version
