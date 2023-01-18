@@ -3,6 +3,8 @@
 Public disclosure via RustSec happens after the maintainer(s) have been made
 responsibly aware of any potential vulnerabilities on their published crate.
 
+If any help is required with this, please e-mail maintainers@rustsec.org
+
 ## Crate Security Policies
 
 Please see any security policies of given crate / repository first for more
