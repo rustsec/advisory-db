@@ -1,4 +1,26 @@
-# Reporting Vulnerabilities
+# Contributing to RustSec
+
+Public disclosure via RustSec happens after the maintainer(s) have been made
+responsibly aware of any potential vulnerabilities on their published crate.
+
+## Crate Security Policies
+
+Please see any security policies of given crate / repository first for more
+information on how to responsibly report any potential security vulnerabilities
+first to the maintainers of any given crate / repository.
+
+If and when the maintainer has either acknowledged, then this can
+be responsibly publicly disclosed via RustSec by submitting an advisory
+to RustSec with the included actionable information e.g. a patched version
+of the said crate.
+
+## Unresponsive Maintainers
+
+If the maintainer(s) is / are unresponsive then this can be also reported given
+if the vulnerability has been first appropriately reported to the maintainer(s)
+and where the maintainer(s) have been given a chance to respond first.
+
+## Reporting Vulnerabilities
 
 To add an advisory to the RustSec database, open a [Pull Request] against
 [this](https://github.com/RustSec/advisory-db) repository containing the new advisory:

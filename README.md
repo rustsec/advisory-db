@@ -4,11 +4,6 @@
 ![Maintained: Q2 2022][maintained-image]
 [![Project Chat][chat-image]][chat-link]
 
-**NOTE**: Security Issues related to Rust-lang project itself including
-malicious crates/users in crates.io, docs.rs, rustc, cargo or otherwise related
-to Rust-lang repositories and it's infrastructure are handled elsewhere, please
-see the [Rust-lang Security Policy](https://www.rust-lang.org/policies/security) for this.
-
 The RustSec Advisory Database is a repository of security advisories filed
 against Rust crates published via https://crates.io. A human-readable version
 of the advisory database can be found at https://rustsec.org/advisories/.
@@ -31,8 +26,17 @@ and reporting (send PRs to add yours):
 
 ## Reporting Vulnerabilities
 
-To report a new vulnerability, open a pull request using the template below.
-See [CONTRIBUTING.md] for more information.
+Before reporting a vulnerability, please consult the security policy of any
+given crate / repository before disclosing publicly via RustSec to allow
+responsible disclosure to the responsible maintainers first.
+
+As an example security issues related to Rust-lang project itself including
+malicious crates/users in crates.io, docs.rs, rustc, cargo or otherwise related
+to Rust-lang repositories and it's infrastructure are handled elsewhere, please
+see the [Rust-lang Security Policy](https://www.rust-lang.org/policies/security) for this.
+
+To report a new vulnerability to RustSec, open a pull request using the template
+below. See [CONTRIBUTING.md] for more information.
 
 <a href="https://github.com/RustSec/advisory-db/blob/main/CONTRIBUTING.md">
   <img alt="Report Vulnerability" width="250px" height="60px" src="https://rustsec.org/img/report-vuln-button.svg">
