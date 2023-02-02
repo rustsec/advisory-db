@@ -594,6 +594,136 @@ given specific payloads entered that trigger it.&lt;/p&gt;
 maintainer responsibly responding to release a fix quickly.&lt;/p&gt;
 &lt;p&gt;Users who use the crate with untrusted data should update the &lt;code&gt;bzip2&lt;/code&gt; to 0.4.4.&lt;/p&gt;
 
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0005: Unsoundness in tokio</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0005.html</id><updated>2023-02-02T12:00:00+00:00</updated><category term="memory-exposure"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0005.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0005: Unsoundness in tokio"/><published>2023-02-02T12:00:00+00:00</published><summary xml:lang="en">`tokio::io::ReadHalf&amp;lt;T&amp;gt;::unsplit` is Unsound</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/tokio/RUSTSEC-2023-0005.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/tokio/RUSTSEC-2023-0005.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2023-0005
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;tokio::io::ReadHalf&amp;lt;T&amp;gt;::unsplit&lt;/code&gt; is Unsound&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-01-11&quot;&gt;
+          January 11, 2023
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-02-02&quot;&gt;
+          February  2, 2023
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/tokio.html&quot;&gt;tokio&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/tokio&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-exposure.html&quot;&gt;memory-exposure&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https://github.com/tokio-rs/tokio/issues/5372&quot;&gt;
+          https://github.com/tokio-rs/tokio/issues/5372
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=1.18.5, &amp;lt;1.19.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=1.20.4, &amp;lt;1.21.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=1.24.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;lt;0.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;&lt;code&gt;tokio::io::ReadHalf&amp;lt;T&amp;gt;::unsplit&lt;/code&gt; can violate the &lt;code&gt;Pin&lt;/code&gt; contract&lt;/p&gt;
+&lt;p&gt;The soundness issue is described in the &lt;a href=&quot;https://github.com/tokio-rs/tokio/issues/5372&quot;&gt;tokio/issues#5372&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Specific set of conditions needed to trigger an issue (a !Unpin type in ReadHalf)
+is unusual, combined with the difficulty of making any arbitrary use-after-free
+exploitable in Rust without doing a lot of careful alignment of data types in
+the surrounding code.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;tokio&lt;/code&gt; feature &lt;code&gt;io-util&lt;/code&gt; is also required to be enabled to trigger this
+soundness issue.&lt;/p&gt;
+&lt;p&gt;Thanks to zachs18 reporting the issue to Tokio team responsibly and taiki-e
+and carllerche appropriately responding and fixing the soundness bug.&lt;/p&gt;
+&lt;p&gt;Tokio before 0.2.0 used &lt;code&gt;futures&lt;/code&gt; 0.1 that did not have &lt;code&gt;Pin&lt;/code&gt;, so it is not
+affected by this issue.&lt;/p&gt;
+
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0085: Vulnerability in matrix-sdk-crypto</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0085.html</id><updated>2023-02-02T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2022-0085.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0085: Vulnerability in matrix-sdk-crypto"/><published>2023-02-02T12:00:00+00:00</published><summary xml:lang="en">matrix-sdk Impersonation of room keys</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -1265,163 +1395,5 @@ meaning paths like &lt;code&gt;/foo/bar/c:/windows/web/screen/img101.png&lt;/cod
 and respond with the contents of &lt;code&gt;c:/windows/web/screen/img101.png&lt;/code&gt;. Thus users
 could potentially read files anywhere on the filesystem.&lt;/p&gt;
 &lt;p&gt;This only impacts Windows. Linux and other unix likes are not impacted by this.&lt;/p&gt;
-
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0003: Vulnerability in libgit2-sys</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0003.html</id><updated>2023-01-20T12:00:00+00:00</updated><category term="crypto-failure"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0003.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0003: Vulnerability in libgit2-sys"/><published>2023-01-20T12:00:00+00:00</published><summary xml:lang="en">git2 does not verify SSH keys by default</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/libgit2-sys/RUSTSEC-2023-0003.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/libgit2-sys/RUSTSEC-2023-0003.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2023-0003
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;git2 does not verify SSH keys by default&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-01-20&quot;&gt;
-          January 20, 2023
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-01-20&quot;&gt;
-          January 20, 2023
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/libgit2-sys.html&quot;&gt;libgit2-sys&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/libgit2-sys&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/crypto-failure.html&quot;&gt;crypto-failure&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/ssh.html&quot;&gt;#ssh&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/mitm.html&quot;&gt;#mitm&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/git.html&quot;&gt;#git&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-22742&quot;&gt;CVE-2023-22742&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-m4ch-rfv5-x5g3&quot;&gt;GHSA-m4ch-rfv5-x5g3&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-8643-3wh5-rmjq&quot;&gt;GHSA-8643-3wh5-rmjq&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;a href=&quot;https://github.com/rust-lang/git2-rs/security/advisories/GHSA-m4ch-rfv5-x5g3&quot;&gt;
-          https://github.com/rust-lang/git2-rs/security/advisories/GHSA-m4ch-rfv5-x5g3
-        &lt;/a&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.13.5, &amp;lt;0.14.0&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.14.2&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;The git2 and libgit2-sys crates are Rust wrappers around the
-&lt;a href=&quot;&quot;&gt;libgit2&lt;/a&gt; C library. It was discovered that libgit2 1.5.0
-and below did not verify SSH host keys when establishing an SSH connection,
-exposing users of the library to Man-In-the-Middle attacks.&lt;/p&gt;
-&lt;p&gt;The libgit2 team assigned &lt;a href=&quot;https://github.com/libgit2/libgit2/security/advisories/GHSA-8643-3wh5-rmjq&quot;&gt;CVE-2023-22742&lt;/a&gt; to this
-vulnerability. The following versions of the libgit2-sys Rust crate have been
-released:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;libgit2-sys 0.14.2, updating the underlying libgit2 C library to version 1.5.1.&lt;/li&gt;
-&lt;li&gt;libgit2-sys 0.13.5, updating the underlying libgit2 C library to version 1.4.5.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;A new git2 crate version has also been released, 0.16.1. This version only
-bumps its libgit2-sys dependency to ensure no vulnerable libgit2-sys versions
-are used, but contains no code changes: if you update the libgit2-sys version
-there is no need to also update the git2 crate version.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/libgit2/libgit2/security/advisories/GHSA-8643-3wh5-rmjq&quot;&gt;You can learn more about this vulnerability in libgit2&apos;s advisory&lt;/a&gt;&lt;/p&gt;
 
   &lt;/article&gt;</content></entry></feed>
