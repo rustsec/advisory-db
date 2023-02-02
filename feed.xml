@@ -626,6 +626,167 @@ only impacts custom precompiles that actually uses &lt;code&gt;is_static&lt;/cod
 checking who the room key came from. This allows homeservers to try to insert
 room keys of questionable validity, potentially mounting an impersonation attack.&lt;/p&gt;
 
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0086: Vulnerability in slack-morphism</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0086.html</id><updated>2023-02-02T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2022-0086.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0086: Vulnerability in slack-morphism"/><published>2023-02-02T12:00:00+00:00</published><summary xml:lang="en">Slack OAuth Secrets leak in debug logs</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/slack-morphism/RUSTSEC-2022-0086.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/slack-morphism/RUSTSEC-2022-0086.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2022-0086
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Slack OAuth Secrets leak in debug logs&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2022-07-22&quot;&gt;
+          July 22, 2022
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-02-02&quot;&gt;
+          February  2, 2023
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/slack-morphism.html&quot;&gt;slack-morphism&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/slack-morphism&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-31162&quot;&gt;CVE-2022-31162&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-99j7-mhfh-w84p&quot;&gt;GHSA-99j7-mhfh-w84p&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https://github.com/abdolence/slack-morphism-rust/pull/133&quot;&gt;
+          https://github.com/abdolence/slack-morphism-rust/pull/133
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;7.5 &lt;span class=&quot;tag high&quot;&gt;
+        HIGH
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+          &lt;dt&gt;Attack vector&lt;/dt&gt;&lt;dd&gt;Network&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Attack complexity&lt;/dt&gt;&lt;dd&gt;Low&lt;/d&gt;
+          
+
+          
+          &lt;dt&gt;Privileges required&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;User interaction&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Scope&lt;/dt&gt;&lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+      &lt;dd&gt;&lt;a href=&quot;https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N&lt;/a&gt;&lt;/dd&gt;
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.41.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Debug log formatting made it possible to leak OAuth secrets into debug logs.&lt;/p&gt;
+&lt;p&gt;The patched version has introduced more strict checks to avoid this.&lt;/p&gt;
+
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2021-0147: daemonize is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2021-0147.html</id><updated>2023-02-01T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2021-0147.html" rel="alternate" type="text/html" title="RUSTSEC-2021-0147: daemonize is unmaintained"/><published>2023-02-01T12:00:00+00:00</published><summary xml:lang="en">`daemonize` is Unmaintained</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -1212,98 +1373,5 @@ there is no need to also update the git2 crate version.&lt;/p&gt;
     &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
     &lt;p&gt;The crate has been deprecated and will receive no updates with no repository source.&lt;/p&gt;
 &lt;p&gt;The crate has &lt;a href=&quot;https://crates.io/crates/parity-util-mem&quot;&gt;a warning&lt;/a&gt; surrounding it&apos;s use related to global allocator use that may lead to UB.&lt;/p&gt;
-
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2021-0146: twoway is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2021-0146.html</id><updated>2023-01-15T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2021-0146.html" rel="alternate" type="text/html" title="RUSTSEC-2021-0146: twoway is unmaintained"/><published>2023-01-15T12:00:00+00:00</published><summary xml:lang="en">Crate `twoway` deprecated by the author</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/twoway/RUSTSEC-2021-0146.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/twoway/RUSTSEC-2021-0146.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2021-0146
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Crate &lt;code&gt;twoway&lt;/code&gt; deprecated by the author&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2021-05-20&quot;&gt;
-          May 20, 2021
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-01-15&quot;&gt;
-          January 15, 2023
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/twoway.html&quot;&gt;twoway&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/twoway&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unmaintained
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;a href=&quot;https://github.com/bluss/twoway&quot;&gt;
-          https://github.com/bluss/twoway
-        &lt;/a&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;The commit &lt;a href=&quot;https://github.com/bluss/twoway/commit/e99b3c718df1117ad7f54c33f6540c8f46cc17dd&quot;&gt;&lt;code&gt;e99b3c7&lt;/code&gt;&lt;/a&gt; releasing version 0.2.2 explicitely deprecates &lt;code&gt;twoway&lt;/code&gt; in favour of &lt;a href=&quot;https://crates.io/crates/memchr&quot;&gt;&lt;code&gt;memchr&lt;/code&gt;&lt;/a&gt; crate.&lt;/p&gt;
 
   &lt;/article&gt;</content></entry></feed>
