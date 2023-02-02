@@ -464,6 +464,168 @@ was only set to &lt;code&gt;true&lt;/code&gt; if the call came from a direct &lt
 only impacts custom precompiles that actually uses &lt;code&gt;is_static&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;For those affected, the issue can lead to possible incorrect state transitions.&lt;/p&gt;
 
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0085: Vulnerability in matrix-sdk-crypto</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0085.html</id><updated>2023-02-02T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2022-0085.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0085: Vulnerability in matrix-sdk-crypto"/><published>2023-02-02T12:00:00+00:00</published><summary xml:lang="en">matrix-sdk Impersonation of room keys</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/matrix-sdk-crypto/RUSTSEC-2022-0085.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/matrix-sdk-crypto/RUSTSEC-2022-0085.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2022-0085
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;matrix-sdk Impersonation of room keys&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2022-09-29&quot;&gt;
+          September 29, 2022
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-02-02&quot;&gt;
+          February  2, 2023
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/matrix-sdk-crypto.html&quot;&gt;matrix-sdk-crypto&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/matrix-sdk-crypto&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-39252&quot;&gt;CVE-2022-39252&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-vp68-2wrm-69qm&quot;&gt;GHSA-vp68-2wrm-69qm&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https://github.com/matrix-org/matrix-rust-sdk/commit/093fb5d0aa21c0b5eaea6ec96b477f1075271cbb&quot;&gt;
+          https://github.com/matrix-org/matrix-rust-sdk/commit/093fb5d0aa21c0b5eaea6ec96b477f1075271cbb
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;7.5 &lt;span class=&quot;tag high&quot;&gt;
+        HIGH
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+          &lt;dt&gt;Attack vector&lt;/dt&gt;&lt;dd&gt;Network&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Attack complexity&lt;/dt&gt;&lt;dd&gt;Low&lt;/d&gt;
+          
+
+          
+          &lt;dt&gt;Privileges required&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;User interaction&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Scope&lt;/dt&gt;&lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+      &lt;dd&gt;&lt;a href=&quot;https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N&lt;/a&gt;&lt;/dd&gt;
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.6.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;When the user receives a forwarded room key, the software accepts it without
+checking who the room key came from. This allows homeservers to try to insert
+room keys of questionable validity, potentially mounting an impersonation attack.&lt;/p&gt;
+
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2021-0147: daemonize is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2021-0147.html</id><updated>2023-02-01T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2021-0147.html" rel="alternate" type="text/html" title="RUSTSEC-2021-0147: daemonize is unmaintained"/><published>2023-02-01T12:00:00+00:00</published><summary xml:lang="en">`daemonize` is Unmaintained</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -1143,147 +1305,5 @@ there is no need to also update the git2 crate version.&lt;/p&gt;
 
     &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
     &lt;p&gt;The commit &lt;a href=&quot;https://github.com/bluss/twoway/commit/e99b3c718df1117ad7f54c33f6540c8f46cc17dd&quot;&gt;&lt;code&gt;e99b3c7&lt;/code&gt;&lt;/a&gt; releasing version 0.2.2 explicitely deprecates &lt;code&gt;twoway&lt;/code&gt; in favour of &lt;a href=&quot;https://crates.io/crates/memchr&quot;&gt;&lt;code&gt;memchr&lt;/code&gt;&lt;/a&gt; crate.&lt;/p&gt;
-
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0079: Vulnerability in elf_rs</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0079.html</id><updated>2023-01-18T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2022-0079.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0079: Vulnerability in elf_rs"/><published>2023-01-15T12:00:00+00:00</published><summary xml:lang="en">ELF header parsing library doesn&amp;apos;t check for valid offset</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/elf_rs/RUSTSEC-2022-0079.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/elf_rs/RUSTSEC-2022-0079.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2022-0079
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;ELF header parsing library doesn&apos;t check for valid offset&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2022-10-31&quot;&gt;
-          October 31, 2022
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-01-15&quot;&gt;
-          January 15, 2023
-        &lt;/time&gt;
-        
-        &lt;time datetime=&quot;2023-01-18&quot;&gt;
-          (last modified: January 18, 2023)
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/elf_rs.html&quot;&gt;elf_rs&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/elf_rs&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/elf.html&quot;&gt;#elf&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/header.html&quot;&gt;#header&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;a href=&quot;https://github.com/vincenthouyi/elf_rs/issues/11&quot;&gt;
-          https://github.com/vincenthouyi/elf_rs/issues/11
-        &lt;/a&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.3.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;The crate has several unsafe sections that don&apos;t perform proper pointer validation.&lt;/p&gt;
-&lt;p&gt;An example can be found in the following function:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;fn section_header_raw(&amp;amp;self) -&amp;gt; &amp;amp;[ET::SectionHeader] {
-    let sh_off = self.elf_header().section_header_offset() as usize;
-    let sh_num = self.elf_header().section_header_entry_num() as usize;
-    unsafe {
-        let sh_ptr = self.content().as_ptr().add(sh_off);
-        from_raw_parts(sh_ptr as *const ET::SectionHeader, sh_num)
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;While this will work perfectly fine &lt;em&gt;if&lt;/em&gt; the ELF header is valid, malicious or
-malformed input can contain a section header offset of an arbitrary size, meaning
-that the resultant pointer in the unsafe block can point to an artibrary address
-in the address space of the process.&lt;/p&gt;
-&lt;p&gt;This can result in unpredictable behaviour, and in our fuzz testing, we discovered
-that it&apos;s trivial to cause SIGABRT (signal 6), or SEGV (signal 11).&lt;/p&gt;
-&lt;p&gt;The function should either be marked as unsafe, with a note that the caller is responsible
-for providing only valid inputs, or it should ideally do the due diligence to ensure that the
-offset doesn&apos;t exceed the bounds of the header (and add additional checks as necessary).&lt;/p&gt;
 
   &lt;/article&gt;</content></entry></feed>
