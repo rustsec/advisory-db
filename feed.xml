@@ -464,6 +464,136 @@ was only set to &lt;code&gt;true&lt;/code&gt; if the call came from a direct &lt
 only impacts custom precompiles that actually uses &lt;code&gt;is_static&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;For those affected, the issue can lead to possible incorrect state transitions.&lt;/p&gt;
 
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0004: Vulnerability in bzip2</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0004.html</id><updated>2023-02-02T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0004.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0004: Vulnerability in bzip2"/><published>2023-02-02T12:00:00+00:00</published><summary xml:lang="en">bzip2 Denial of Service (DoS)</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/bzip2/RUSTSEC-2023-0004.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/bzip2/RUSTSEC-2023-0004.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2023-0004
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;bzip2 Denial of Service (DoS)&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-09-01&quot;&gt;
+          September  1, 2023
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-02-02&quot;&gt;
+          February  2, 2023
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/bzip2.html&quot;&gt;bzip2&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/bzip2&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-22895&quot;&gt;CVE-2023-22895&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-96jv-r488-c2rj&quot;&gt;GHSA-96jv-r488-c2rj&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https://github.com/alexcrichton/bzip2-rs/pull/86&quot;&gt;
+          https://github.com/alexcrichton/bzip2-rs/pull/86
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.4.4&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Working with specific payloads can cause a Denial of Service (DoS) vector.&lt;/p&gt;
+&lt;p&gt;Both &lt;code&gt;Decompress&lt;/code&gt; and &lt;code&gt;Compress&lt;/code&gt; implementations can enter into infinite loops
+given specific payloads entered that trigger it.&lt;/p&gt;
+&lt;p&gt;The issue is described in great detail in the &lt;a href=&quot;https://github.com/alexcrichton/bzip2-rs/pull/86&quot;&gt;bzip2 repository issue&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Thanks to bjrjk for finding and providing the patch for the issue and the
+maintainer responsibly responding to release a fix quickly.&lt;/p&gt;
+&lt;p&gt;Users who use the crate with untrusted data should update the &lt;code&gt;bzip2&lt;/code&gt; to 0.4.4.&lt;/p&gt;
+
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0085: Vulnerability in matrix-sdk-crypto</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0085.html</id><updated>2023-02-02T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2022-0085.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0085: Vulnerability in matrix-sdk-crypto"/><published>2023-02-02T12:00:00+00:00</published><summary xml:lang="en">matrix-sdk Impersonation of room keys</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -1293,107 +1423,5 @@ bumps its libgit2-sys dependency to ensure no vulnerable libgit2-sys versions
 are used, but contains no code changes: if you update the libgit2-sys version
 there is no need to also update the git2 crate version.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/libgit2/libgit2/security/advisories/GHSA-8643-3wh5-rmjq&quot;&gt;You can learn more about this vulnerability in libgit2&apos;s advisory&lt;/a&gt;&lt;/p&gt;
-
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0081: json is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0081.html</id><updated>2023-01-19T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2022-0081.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0081: json is unmaintained"/><published>2023-01-19T12:00:00+00:00</published><summary xml:lang="en">json is unmaintained</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/json/RUSTSEC-2022-0081.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/json/RUSTSEC-2022-0081.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2022-0081
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;json is unmaintained&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2022-02-01&quot;&gt;
-          February  1, 2022
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-01-19&quot;&gt;
-          January 19, 2023
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/json.html&quot;&gt;json&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/json&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unmaintained
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;a href=&quot;https://github.com/maciejhirsz/json-rust/issues/205&quot;&gt;
-          https://github.com/maciejhirsz/json-rust/issues/205
-        &lt;/a&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;Last release was almost 3 years ago.&lt;/p&gt;
-&lt;p&gt;The maintainer is unresponsive with outstanding issues.&lt;/p&gt;
-&lt;p&gt;One of the outstanding issues include &lt;a href=&quot;https://github.com/maciejhirsz/json-rust/issues/196&quot;&gt;a possible soundness issue&lt;/a&gt;.&lt;/p&gt;
-&lt;h2&gt;Possible Alternative(s)&lt;/h2&gt;
-&lt;p&gt;The below list has not been vetted in any way and may or may not contain alternatives;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://crates.io/crates/serde_json&quot;&gt;serde_json&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://crates.io/crates/json-deserializer&quot;&gt;json-deserializer&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://crates.io/crates/simd-json&quot;&gt;simd-json&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
 
   &lt;/article&gt;</content></entry></feed>
