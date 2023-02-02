@@ -1,0 +1,60 @@
+{
+  "id": "RUSTSEC-2022-0087",
+  "modified": "2023-02-02T11:45:24Z",
+  "published": "2022-10-10T12:00:00Z",
+  "aliases": [
+    "CVE-2022-39292",
+    "GHSA-4mjx-2gh5-ph8h"
+  ],
+  "related": [],
+  "summary": "Slack Webhooks secrets leak in debug logs",
+  "details": "Debug log formatting made it possible to leak Webhooks secrets into debug logs.\n\nThe patched version has introduced more strict checks to avoid this.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "slack-morphism",
+        "purl": "pkg:cargo/slack-morphism"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        }
+      },
+      "database_specific": {
+        "categories": [],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "1.3.2"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/slack-morphism"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2022-0087.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/abdolence/slack-morphism-rust/commit/65ef9fac4f39c4e171e2952a6cf029bb0d059a89"
+    }
+  ]
+}
