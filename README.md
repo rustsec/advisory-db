@@ -85,7 +85,6 @@ categories = ["crypto-failure"]
 keywords = ["ssl", "mitm"]
 
 # Vulnerability aliases, e.g. CVE IDs (optional but recommended)
-# Request a CVE for your RustSec vulns: https://iwantacve.org/
 #aliases = ["CVE-2018-XXXX"]
 
 # Related vulnerabilities (optional)
