@@ -136,6 +136,138 @@ is uncommon. As such, this vulnerability is most likely to only affect
 applications which have implemented their own functionality for retrieving CRLs
 over a network.&lt;/p&gt;
 
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0007: Vulnerability in openssl-src</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0007.html</id><updated>2023-02-07T12:00:00+00:00</updated><category term="crypto-failure"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0007.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0007: Vulnerability in openssl-src"/><published>2023-02-07T12:00:00+00:00</published><summary xml:lang="en">Timing Oracle in RSA Decryption</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/openssl-src/RUSTSEC-2023-0007.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/openssl-src/RUSTSEC-2023-0007.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2023-0007
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Timing Oracle in RSA Decryption&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-02-07&quot;&gt;
+          February  7, 2023
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-02-07&quot;&gt;
+          February  7, 2023
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/openssl-src.html&quot;&gt;openssl-src&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/openssl-src&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/crypto-failure.html&quot;&gt;crypto-failure&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-4304&quot;&gt;CVE-2022-4304&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https://www.openssl.org/news/secadv/20230207.txt&quot;&gt;
+          https://www.openssl.org/news/secadv/20230207.txt
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=111.25, &amp;lt;300.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=300.0.12&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;A timing based side channel exists in the OpenSSL RSA Decryption implementation
+which could be sufficient to recover a plaintext across a network in a
+Bleichenbacher style attack. To achieve a successful decryption an attacker
+would have to be able to send a very large number of trial messages for
+decryption. The vulnerability affects all RSA padding modes: PKCS#1 v1.5,
+RSA-OEAP and RSASVE.&lt;/p&gt;
+&lt;p&gt;For example, in a TLS connection, RSA is commonly used by a client to send an
+encrypted pre-master secret to the server. An attacker that had observed a
+genuine connection between a client and a server could use this flaw to send
+trial messages to the server and record the time taken to process them. After a
+sufficiently large number of messages the attacker could recover the pre-master
+secret used for the original connection and thus be able to decrypt the
+application data sent over that connection.&lt;/p&gt;
+
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0088: Vulnerability in tauri</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0088.html</id><updated>2023-02-05T12:00:00+00:00</updated><category term="privilege-escalation"/><link href="https://rustsec.org/advisories/RUSTSEC-2022-0088.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0088: Vulnerability in tauri"/><published>2023-02-05T12:00:00+00:00</published><summary xml:lang="en">`tauri`&amp;apos;s `readDir` endpoint allows possible enumeration outside of filesystem scope</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
