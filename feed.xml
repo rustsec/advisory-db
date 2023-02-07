@@ -692,6 +692,147 @@ to cause a denial of service attack.&lt;/p&gt;
 but applications might call the function if there are additional
 security requirements imposed by standards such as FIPS 140-3.&lt;/p&gt;
 
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0013: Vulnerability in openssl-src</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0013.html</id><updated>2023-02-07T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0013.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0013: Vulnerability in openssl-src"/><published>2023-02-07T12:00:00+00:00</published><summary xml:lang="en">`NULL` dereference during PKCS7 data verification</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/openssl-src/RUSTSEC-2023-0013.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/openssl-src/RUSTSEC-2023-0013.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2023-0013
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;NULL&lt;/code&gt; dereference during PKCS7 data verification&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-02-07&quot;&gt;
+          February  7, 2023
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-02-07&quot;&gt;
+          February  7, 2023
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/openssl-src.html&quot;&gt;openssl-src&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/openssl-src&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-0401&quot;&gt;CVE-2023-0401&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https://www.openssl.org/news/secadv/20230207.txt&quot;&gt;
+          https://www.openssl.org/news/secadv/20230207.txt
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=300.0.12&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;lt;300.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;A &lt;code&gt;NULL&lt;/code&gt; pointer can be dereferenced when signatures are being
+verified on PKCS7 &lt;code&gt;signed&lt;/code&gt; or &lt;code&gt;signedAndEnveloped&lt;/code&gt; data. In case the hash
+algorithm used for the signature is known to the OpenSSL library but
+the implementation of the hash algorithm is not available the digest
+initialization will fail. There is a missing check for the return
+value from the initialization function which later leads to invalid
+usage of the digest API most likely leading to a crash.&lt;/p&gt;
+&lt;p&gt;The unavailability of an algorithm can be caused by using FIPS
+enabled configuration of providers or more commonly by not loading
+the legacy provider.&lt;/p&gt;
+&lt;p&gt;PKCS7 data is processed by the SMIME library calls and also by the
+time stamp (TS) library calls. The TLS implementation in OpenSSL does
+not call these functions however third party applications would be
+affected if they call these functions to verify signatures on untrusted
+data.&lt;/p&gt;
+
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0011: Vulnerability in openssl-src</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0011.html</id><updated>2023-02-07T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0011.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0011: Vulnerability in openssl-src"/><published>2023-02-07T12:00:00+00:00</published><summary xml:lang="en">Invalid pointer dereference in `d2i_PKCS7` functions</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
