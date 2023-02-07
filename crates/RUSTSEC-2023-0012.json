@@ -1,0 +1,61 @@
+{
+  "id": "RUSTSEC-2023-0012",
+  "modified": "2023-02-07T20:08:34Z",
+  "published": "2023-02-07T12:00:00Z",
+  "aliases": [
+    "CVE-2023-0217"
+  ],
+  "related": [],
+  "summary": "`NULL` dereference validating DSA public key",
+  "details": "An invalid pointer dereference on read can be triggered when an\napplication tries to check a malformed DSA public key by the\n`EVP_PKEY_public_check()` function. This will most likely lead\nto an application crash. This function can be called on public\nkeys supplied from untrusted sources which could allow an attacker\nto cause a denial of service attack.\n\nThe TLS implementation in OpenSSL does not call this function\nbut applications might call the function if there are additional\nsecurity requirements imposed by standards such as FIPS 140-3.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "openssl-src",
+        "purl": "pkg:cargo/openssl-src"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        }
+      },
+      "database_specific": {
+        "categories": [
+          "denial-of-service"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "300.0.0"
+            },
+            {
+              "fixed": "300.0.12"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/openssl-src"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2023-0012.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://www.openssl.org/news/secadv/20230207.txt"
+    }
+  ]
+}
