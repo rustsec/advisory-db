@@ -136,6 +136,146 @@ is uncommon. As such, this vulnerability is most likely to only affect
 applications which have implemented their own functionality for retrieving CRLs
 over a network.&lt;/p&gt;
 
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0009: Vulnerability in openssl-src</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0009.html</id><updated>2023-02-07T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0009.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0009: Vulnerability in openssl-src"/><published>2023-02-07T12:00:00+00:00</published><summary xml:lang="en">Use-after-free following `BIO_new_NDEF`</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/openssl-src/RUSTSEC-2023-0009.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/openssl-src/RUSTSEC-2023-0009.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2023-0009
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Use-after-free following &lt;code&gt;BIO_new_NDEF&lt;/code&gt;&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-02-07&quot;&gt;
+          February  7, 2023
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-02-07&quot;&gt;
+          February  7, 2023
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/openssl-src.html&quot;&gt;openssl-src&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/openssl-src&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-0215&quot;&gt;CVE-2023-0215&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https://www.openssl.org/news/secadv/20230207.txt&quot;&gt;
+          https://www.openssl.org/news/secadv/20230207.txt
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=111.25, &amp;lt;300.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=300.0.12&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;The public API function &lt;code&gt;BIO_new_NDEF&lt;/code&gt; is a helper function used for streaming
+ASN.1 data via a &lt;code&gt;BIO&lt;/code&gt;. It is primarily used internally to OpenSSL to support the
+SMIME, CMS and PKCS7 streaming capabilities, but may also be called directly by
+end user applications.&lt;/p&gt;
+&lt;p&gt;The function receives a &lt;code&gt;BIO&lt;/code&gt; from the caller, prepends a new &lt;code&gt;BIO_f_asn1&lt;/code&gt; filter
+&lt;code&gt;BIO&lt;/code&gt; onto the front of it to form a &lt;code&gt;BIO&lt;/code&gt; chain, and then returns the new head of
+the &lt;code&gt;BIO&lt;/code&gt; chain to the caller. Under certain conditions, for example if a CMS
+recipient public key is invalid, the new filter &lt;code&gt;BIO&lt;/code&gt; is freed and the function
+returns a &lt;code&gt;NULL&lt;/code&gt; result indicating a failure. However, in this case, the &lt;code&gt;BIO&lt;/code&gt; chain
+is not properly cleaned up and the &lt;code&gt;BIO&lt;/code&gt; passed by the caller still retains
+internal pointers to the previously freed filter &lt;code&gt;BIO&lt;/code&gt;. If the caller then goes on
+to call &lt;code&gt;BIO_pop()&lt;/code&gt; on the &lt;code&gt;BIO&lt;/code&gt; then a use-after-free will occur. This will most
+likely result in a crash.&lt;/p&gt;
+&lt;p&gt;This scenario occurs directly in the internal function &lt;code&gt;B64_write_ASN1()&lt;/code&gt; which
+may cause &lt;code&gt;BIO_new_NDEF()&lt;/code&gt; to be called and will subsequently call &lt;code&gt;BIO_pop()&lt;/code&gt; on
+the &lt;code&gt;BIO&lt;/code&gt;. This internal function is in turn called by the public API functions
+&lt;code&gt;PEM_write_bio_ASN1_stream&lt;/code&gt;, &lt;code&gt;PEM_write_bio_CMS_stream&lt;/code&gt;, &lt;code&gt;PEM_write_bio_PKCS7_stream&lt;/code&gt;,
+&lt;code&gt;SMIME_write_ASN1&lt;/code&gt;, &lt;code&gt;SMIME_write_CMS&lt;/code&gt; and &lt;code&gt;SMIME_write_PKCS7&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Other public API functions that may be impacted by this include
+&lt;code&gt;i2d_ASN1_bio_stream&lt;/code&gt;, &lt;code&gt;BIO_new_CMS&lt;/code&gt;, &lt;code&gt;BIO_new_PKCS7&lt;/code&gt;, &lt;code&gt;i2d_CMS_bio_stream&lt;/code&gt; and
+&lt;code&gt;i2d_PKCS7_bio_stream&lt;/code&gt;.&lt;/p&gt;
+
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0008: Vulnerability in openssl-src</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0008.html</id><updated>2023-02-07T12:00:00+00:00</updated><category term="denial-of-service"/><category term="memory-exposure"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0008.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0008: Vulnerability in openssl-src"/><published>2023-02-07T12:00:00+00:00</published><summary xml:lang="en">X.509 Name Constraints Read Buffer Overflow</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
