@@ -1,0 +1,61 @@
+{
+  "id": "RUSTSEC-2023-0011",
+  "modified": "2023-02-07T20:07:36Z",
+  "published": "2023-02-07T12:00:00Z",
+  "aliases": [
+    "CVE-2023-0216"
+  ],
+  "related": [],
+  "summary": "Invalid pointer dereference in `d2i_PKCS7` functions",
+  "details": "An invalid pointer dereference on read can be triggered when an\napplication tries to load malformed PKCS7 data with the\n`d2i_PKCS7()`, `d2i_PKCS7_bio()` or `d2i_PKCS7_fp()` functions.\n\nThe result of the dereference is an application crash which could\nlead to a denial of service attack. The TLS implementation in OpenSSL\ndoes not call this function however third party applications might\ncall these functions on untrusted data.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "openssl-src",
+        "purl": "pkg:cargo/openssl-src"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        }
+      },
+      "database_specific": {
+        "categories": [
+          "denial-of-service"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "300.0.0"
+            },
+            {
+              "fixed": "300.0.12"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/openssl-src"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2023-0011.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://www.openssl.org/news/secadv/20230207.txt"
+    }
+  ]
+}
