@@ -388,7 +388,7 @@
 <p>Users and library authors with time in their dependency tree should perform <code>cargo update</code>, which will pull in the updated, unaffected code.</p>
 <p>Users of time 0.1 do not have a patch and should upgrade to an unaffected version: time 0.2.23 or greater or the 0.3 series.</p>
 <h3>Workarounds</h3>
-<p>A possible workaround for crates affected through the transitive dependency in <code>chrono</code>, is to avoid using the default <code>oldtime</code> feature dependency of the <code>chrono</code> crate by disabling its default-features and manually specifying the required features instead.</p>
+<p>A possible workaround for crates affected through the transitive dependency in <code>chrono</code>, is to avoid using the default <code>oldtime</code> feature dependency of the <code>chrono</code> crate by disabling its <code>default-features</code> and manually specifying the required features instead.</p>
 <h4>Examples:</h4>
 <p><code>Cargo.toml</code>:</p>
 <pre><code class="language-toml">chrono = { version = &quot;0.4&quot;, default-features = false, features = [&quot;serde&quot;] }
@@ -400,8 +400,8 @@
 </code></pre>
 <p>Sources:</p>
 <ul>
-<li>https://github.com/chronotope/chrono/issues/602#issuecomment-1242149249</li>
-<li>https://github.com/vityafx/serde-aux/issues/21</li>
+<li><a href="https://github.com/chronotope/chrono/issues/602#issuecomment-1242149249">chronotope/chrono#602 (comment)</a></li>
+<li><a href="https://github.com/vityafx/serde-aux/issues/21">vityafx/serde-aux#21</a></li>
 </ul>
 
   </article>
