@@ -87,8 +87,8 @@
           November 19, 2020
         </time>
         
-        <time datetime="2022-08-28">
-          (last modified: August 28, 2022)
+        <time datetime="2023-02-08">
+          (last modified: February  8, 2023)
         </time>
         
       </dd>
@@ -388,7 +388,21 @@
 <p>Users and library authors with time in their dependency tree should perform <code>cargo update</code>, which will pull in the updated, unaffected code.</p>
 <p>Users of time 0.1 do not have a patch and should upgrade to an unaffected version: time 0.2.23 or greater or the 0.3 series.</p>
 <h3>Workarounds</h3>
-<p>No workarounds are known.</p>
+<p>A possible workaround for crates affected through the transitive dependency in <code>chrono</code>, is to avoid using the default <code>oldtime</code> feature dependency of the <code>chrono</code> crate by disabling its default-features and manually specifying the required features instead.</p>
+<h4>Examples:</h4>
+<p><code>Cargo.toml</code>:</p>
+<pre><code class="language-toml">chrono = { version = &quot;0.4&quot;, default-features = false, features = [&quot;serde&quot;] }
+</code></pre>
+<pre><code class="language-toml">chrono = { version = &quot;0.4.22&quot;, default-features = false, features = [&quot;clock&quot;] }
+</code></pre>
+<p>Commandline:</p>
+<pre><code class="language-bash">cargo add chrono --no-default-features -F clock
+</code></pre>
+<p>Sources:</p>
+<ul>
+<li>https://github.com/chronotope/chrono/issues/602#issuecomment-1242149249</li>
+<li>https://github.com/vityafx/serde-aux/issues/21</li>
+</ul>
 
   </article>
 </main>
