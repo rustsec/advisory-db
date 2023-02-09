@@ -87,6 +87,10 @@
           January  9, 2023
         </time>
         
+        <time datetime="2023-02-09">
+          (last modified: February  9, 2023)
+        </time>
+        
       </dd>
 
       <dt id="package">Package</dt>
@@ -202,7 +206,7 @@
     <h3 id="description">Description</h3>
     <p>On Windows, configuring a named pipe server with <a href="https://docs.rs/tokio/latest/tokio/net/windows/named_pipe/struct.ServerOptions.html#method.pipe_mode">pipe_mode</a> will force <a href="https://docs.rs/tokio/latest/tokio/net/windows/named_pipe/struct.ServerOptions.html">ServerOptions</a>::<a href="https://docs.rs/tokio/latest/tokio/net/windows/named_pipe/struct.ServerOptions.html#method.reject_remote_clients">reject_remote_clients</a> as <code>false</code>.</p>
 <p>This drops any intended explicit configuration for the <a href="https://docs.rs/tokio/latest/tokio/net/windows/named_pipe/struct.ServerOptions.html#method.reject_remote_clients">reject_remote_clients</a> that may have been set as <code>true</code> previously.</p>
-<p>The default setting of <a href="https://docs.rs/tokio/latest/tokio/net/windows/named_pipe/struct.ServerOptions.html#method.reject_remote_clients">reject_remote_clients</a> is normally <code>true</code> meaning the default is also overriden as <code>false</code>.</p>
+<p>The default setting of <a href="https://docs.rs/tokio/latest/tokio/net/windows/named_pipe/struct.ServerOptions.html#method.reject_remote_clients">reject_remote_clients</a> is normally <code>true</code> meaning the default is also overridden as <code>false</code>.</p>
 <h2>Workarounds</h2>
 <p>Ensure that <a href="https://docs.rs/tokio/latest/tokio/net/windows/named_pipe/struct.ServerOptions.html#method.pipe_mode">pipe_mode</a> is set first after initializing a <a href="https://docs.rs/tokio/latest/tokio/net/windows/named_pipe/struct.ServerOptions.html">ServerOptions</a>. For example:</p>
 <pre><code class="language-rust">let mut opts = ServerOptions::new();

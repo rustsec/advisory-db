@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>RUSTSEC-2020-0030: mozwire: Missing sanitization in mozwire allows local file overwrite of files ending in .conf › RustSec Advisory Database</title>
+<title>RUSTSEC-2020-0167: pnet_packet: `pnet_packet` buffer overrun in `set_payload` setters › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -56,18 +56,18 @@
   <article>
     
         <span class="floating-menu">
-          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/mozwire/RUSTSEC-2020-0030.md">History</a> ⋅ 
-          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/mozwire/RUSTSEC-2020-0030.md">Edit</a>
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/pnet_packet/RUSTSEC-2020-0167.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/pnet_packet/RUSTSEC-2020-0167.md">Edit</a>
         </span>
     
 
     <header>
       <h1>
         
-        RUSTSEC-2020-0030
+        RUSTSEC-2020-0167
         
       </h1>
-      <span class="subtitle"><p>Missing sanitization in mozwire allows local file overwrite of files ending in .conf</p>
+      <span class="subtitle"><p><code>pnet_packet</code> buffer overrun in <code>set_payload</code> setters</p>
 </span>
     </header>
 
@@ -76,19 +76,15 @@
     <dl>
       <dt id="reported">Reported</dt>
       <dd>
-        <time datetime="2020-08-18">
-          August 18, 2020
+        <time datetime="2020-06-19">
+          June 19, 2020
         </time>
       </dd>
 
       <dt id="issued">Issued</dt>
       <dd>
-        <time datetime="2020-10-02">
-          October  2, 2020
-        </time>
-        
         <time datetime="2023-02-09">
-          (last modified: February  9, 2023)
+          February  9, 2023
         </time>
         
       </dd>
@@ -97,8 +93,8 @@
       <dd>
         
         
-        <a href="/packages/mozwire.html">mozwire</a>
-          (<a href="https://crates.io/crates/mozwire">crates.io</a>)
+        <a href="/packages/pnet_packet.html">pnet_packet</a>
+          (<a href="https://crates.io/crates/pnet_packet">crates.io</a>)
         
         
       </dd>
@@ -111,36 +107,25 @@
       </dd>
 
       
-
-      
-      <dt id="keywords">Keywords</dt>
-      <dd>
-        
-          <a href="/keywords/file-overwrite.html">#file-overwrite</a>
-        
-      </dd>
-      
-
-      
-      <dt id="aliases">Aliases</dt>
+      <dt id="categories">Categories</dt>
       <dd>
         <ul>
           
-          <li>
-            
-            <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-35883">CVE-2020-35883</a>
-            
-          </li>
+          <li><a href="/categories/memory-corruption.html">memory-corruption</a></li>
           
         </ul>
       </dd>
       
 
       
+
+      
+
+      
       <dt id="details">Details</dt>
       <dd>
-        <a href="https://github.com/NilsIrl/MozWire/issues/14">
-          https://github.com/NilsIrl/MozWire/issues/14
+        <a href="https://github.com/libpnet/libpnet/issues/449">
+          https://github.com/libpnet/libpnet/issues/449
         </a>
       </dd>
       
@@ -149,15 +134,15 @@
 
       
       <dt id="cvss_score">CVSS Score</dt>
-      <dd>9.1 <span class="tag critical">
-        CRITICAL
+      <dd>6 <span class="tag medium">
+        MEDIUM
       </span></dd>
 
       <dt id="cvss_details">CVSS Details</dt>
       <dd>
         <dl>
           
-          <dt>Attack vector</dt><dd>Network</dd>
+          <dt>Attack vector</dt><dd>Local</dd>
           
 
           
@@ -165,7 +150,7 @@
           
 
           
-          <dt>Privileges required</dt><dd>None</dd>
+          <dt>Privileges required</dt><dd>High</dd>
           
 
           
@@ -191,7 +176,7 @@
       </dd>
 
       <dt id="cvss">CVSS Vector</dt>
-      <dd><a href="https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:H">CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:H</a></dd>
+      <dd><a href="https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=CVSS:3.0/AV:L/AC:L/PR:H/UI:N/S:U/C:N/I:H/A:H">CVSS:3.0/AV:L/AC:L/PR:H/UI:N/S:U/C:N/I:H/A:H</a></dd>
 
       
 
@@ -200,7 +185,7 @@
         
         <ul>
           
-          <li><code>&gt;0.4.1</code></li>
+          <li><code>&gt;=0.27.2</code></li>
           
         </ul>
         
@@ -216,11 +201,8 @@
     
 
     <h3 id="description">Description</h3>
-    <p>The client software downloaded a list of servers from mozilla's servers and created local files named
-after the hostname field in the json document.</p>
-<p>No verification of the content of the string was made, and it could therefore have included '../' leading to path traversal.</p>
-<p>This allows an attacker in control of mozilla's servers to overwrite/create local files named .conf.</p>
-<p>The flaw was corrected by sanitizing the hostname field.</p>
+    <p>As indicated by this <a href="https://github.com/libpnet/libpnet/issues/449#issuecomment-663355987">issue</a>, a buffer overrun is possible in the <code>set_payload</code> setter of the various mutable &quot;Packet&quot; struct setters. The offending <code>set_payload</code> functions were defined within the struct <code>impl</code> blocks in earlier versions of the package, and later by the <code>packet</code> macro.</p>
+<p>Fixed in the <code>packet</code> macro by <a href="https://github.com/libpnet/libpnet/pull/455">this</a> PR.</p>
 
   </article>
 </main>
