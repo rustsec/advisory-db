@@ -1,12 +1,12 @@
 {
   "id": "RUSTSEC-2020-0030",
-  "modified": "2021-10-19T22:14:35Z",
+  "modified": "2023-02-09T03:11:29Z",
   "published": "2020-08-18T12:00:00Z",
   "aliases": [
     "CVE-2020-35883"
   ],
   "related": [],
-  "summary": "Missing sanitazion in mozwire allows local file overwrite of files ending in .conf",
+  "summary": "Missing sanitization in mozwire allows local file overwrite of files ending in .conf",
   "details": "The client software downloaded a list of servers from mozilla's servers and created local files named\nafter the hostname field in the json document.\n\nNo verification of the content of the string was made, and it could therefore have included '../' leading to path traversal.\n\nThis allows an attacker in control of mozilla's servers to overwrite/create local files named .conf.\n\nThe flaw was corrected by sanitizing the hostname field.",
   "affected": [
     {
