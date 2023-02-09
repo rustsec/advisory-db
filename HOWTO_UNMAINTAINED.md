@@ -47,7 +47,7 @@ unreachable, the following criteria must be met:
 
 - Stale repository: no recent maintenance activity, including any of the
   following: recent commits, responses from the author on open issues,
-  crate releases, or other publically visible activity by the author.
+  crate releases, or other publicly visible activity by the author.
   Inactivity over a period of 1 year or more is the preferred threshold.
 - Contact attempts with the author made with no response. Ideally these
   attempts are made via a public GitHub issue, so that issue can be
