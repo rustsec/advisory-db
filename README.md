@@ -115,6 +115,8 @@ keywords = ["ssl", "mitm"]
 functions = { "mycrate::MyType::vulnerable_function" = ["< 1.2.0, >= 1.1.0"] }
 
 # Versions which include fixes for this vulnerability (mandatory)
+# All selectors supported by Cargo are supported here:
+# https://doc.rust-lang.org/cargo/reference/specifying-dependencies.html
 # use patched = [] e.g. in case of unmaintained where there is no fix
 [versions]
 patched = [">= 1.2.0"]
