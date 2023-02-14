@@ -108,6 +108,172 @@
 &lt;p&gt;&lt;strong&gt;It is advised that ALL users of &lt;code&gt;v0.7.1&lt;/code&gt; and &lt;code&gt;v0.7.2&lt;/code&gt; of the &lt;code&gt;cortex-m-rt&lt;/code&gt; crate update to the latest version (&lt;code&gt;v0.7.3&lt;/code&gt;), AS SOON AS POSSIBLE.&lt;/strong&gt; Users of &lt;code&gt;v0.7.0&lt;/code&gt; and prior versions of &lt;code&gt;cortex-m-rt&lt;/code&gt; are not affected by this regression.&lt;/p&gt;
 &lt;p&gt;It will be necessary to rebuild all affected firmware binaries, and flash or deploy the new firmware binaries to affected devices.&lt;/p&gt;
 
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0090: Vulnerability in libsqlite3-sys</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0090.html</id><updated>2023-02-14T12:00:00+00:00</updated><category term="denial-of-service"/><category term="code-execution"/><link href="https://rustsec.org/advisories/RUSTSEC-2022-0090.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0090: Vulnerability in libsqlite3-sys"/><published>2023-02-14T12:00:00+00:00</published><summary xml:lang="en">`libsqlite3-sys` via C SQLite CVE-2022-35737</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/libsqlite3-sys/RUSTSEC-2022-0090.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/libsqlite3-sys/RUSTSEC-2022-0090.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2022-0090
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;libsqlite3-sys&lt;/code&gt; via C SQLite CVE-2022-35737&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2022-08-03&quot;&gt;
+          August  3, 2022
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-02-14&quot;&gt;
+          February 14, 2023
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/libsqlite3-sys.html&quot;&gt;libsqlite3-sys&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/libsqlite3-sys&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/code-execution.html&quot;&gt;code-execution&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-35737&quot;&gt;CVE-2022-35737&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https://nvd.nist.gov/vuln/detail/CVE-2022-35737&quot;&gt;
+          https://nvd.nist.gov/vuln/detail/CVE-2022-35737
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;7.5 &lt;span class=&quot;tag high&quot;&gt;
+        HIGH
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+          &lt;dt&gt;Attack vector&lt;/dt&gt;&lt;dd&gt;Network&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Attack complexity&lt;/dt&gt;&lt;dd&gt;Low&lt;/d&gt;
+          
+
+          
+          &lt;dt&gt;Privileges required&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;User interaction&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Scope&lt;/dt&gt;&lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+      &lt;dd&gt;&lt;a href=&quot;https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&lt;/a&gt;&lt;/dd&gt;
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.25.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;It was sometimes possible for SQLite versions &amp;gt;= 1.0.12, &amp;lt; 3.39.2 to allow an array-bounds overflow when large string were input into SQLite&apos;s &lt;code&gt;printf&lt;/code&gt; function.&lt;/p&gt;
+&lt;p&gt;As &lt;code&gt;libsqlite3-sys&lt;/code&gt; bundles SQLite, it is susceptible to the vulnerability. &lt;code&gt;libsqlite3-sys&lt;/code&gt; was updated to bundle the patched version of SQLite &lt;a href=&quot;https://github.com/rusqlite/rusqlite/releases/tag/sys0.25.1&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2020-0167: Vulnerability in pnet_packet</title><id>https://rustsec.org/advisories/RUSTSEC-2020-0167.html</id><updated>2023-02-09T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2020-0167.html" rel="alternate" type="text/html" title="RUSTSEC-2020-0167: Vulnerability in pnet_packet"/><published>2023-02-09T12:00:00+00:00</published><summary xml:lang="en">`pnet_packet` buffer overrun in `set_payload` setters</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
