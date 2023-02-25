@@ -1,114 +1,5 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2023-02-14T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2023-0014: Unsoundness in cortex-m-rt</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0014.html</id><updated>2023-02-14T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2023-0014.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0014: Unsoundness in cortex-m-rt"/><published>2023-02-14T12:00:00+00:00</published><summary xml:lang="en">Miscompilation in cortex-m-rt 0.7.1 and 0.7.2</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/cortex-m-rt/RUSTSEC-2023-0014.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/cortex-m-rt/RUSTSEC-2023-0014.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2023-0014
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Miscompilation in cortex-m-rt 0.7.1 and 0.7.2&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-02-13&quot;&gt;
-          February 13, 2023
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-02-14&quot;&gt;
-          February 14, 2023
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/cortex-m-rt.html&quot;&gt;cortex-m-rt&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/cortex-m-rt&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unsound
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;a href=&quot;https://github.com/rust-embedded/cortex-m/discussions/469&quot;&gt;
-          https://github.com/rust-embedded/cortex-m/discussions/469
-        &lt;/a&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.7.3&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;lt;=0.7.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;Version 0.7.1 of the &lt;code&gt;cortex-m-rt&lt;/code&gt; crate introduced a regression causing the stack to NOT be eight-byte aligned prior to calling &lt;code&gt;main&lt;/code&gt; (or any other specified entrypoint), violating the &lt;a href=&quot;https://github.com/ARM-software/abi-aa/blob/edd7460d87493fff124b8b5713acf71ffc06ee91/aapcs32/aapcs32.rst#6212stack-constraints-at-a-public-interface&quot;&gt;stack ABI of AAPCS32&lt;/a&gt;, the default ABI used by all Cortex-M targets. This regression is also present in version 0.7.2 of the &lt;code&gt;cortex-m-rt&lt;/code&gt; crate.&lt;/p&gt;
-&lt;p&gt;This regression can cause certain compiler optimizations (which assume the eight-byte alignment) to produce incorrect behavior at runtime. This incorrect behavior has been &lt;a href=&quot;https://github.com/peter9477/test2&quot;&gt;observed in real-world applications&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;It is advised that ALL users of &lt;code&gt;v0.7.1&lt;/code&gt; and &lt;code&gt;v0.7.2&lt;/code&gt; of the &lt;code&gt;cortex-m-rt&lt;/code&gt; crate update to the latest version (&lt;code&gt;v0.7.3&lt;/code&gt;), AS SOON AS POSSIBLE.&lt;/strong&gt; Users of &lt;code&gt;v0.7.0&lt;/code&gt; and prior versions of &lt;code&gt;cortex-m-rt&lt;/code&gt; are not affected by this regression.&lt;/p&gt;
-&lt;p&gt;It will be necessary to rebuild all affected firmware binaries, and flash or deploy the new firmware binaries to affected devices.&lt;/p&gt;
-
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0090: Vulnerability in libsqlite3-sys</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0090.html</id><updated>2023-02-14T12:00:00+00:00</updated><category term="denial-of-service"/><category term="code-execution"/><link href="https://rustsec.org/advisories/RUSTSEC-2022-0090.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0090: Vulnerability in libsqlite3-sys"/><published>2023-02-14T12:00:00+00:00</published><summary xml:lang="en">`libsqlite3-sys` via C SQLite CVE-2022-35737</summary><content xml:lang="en" type="html">  &lt;article&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2023-02-14T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2022-0090: Vulnerability in libsqlite3-sys</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0090.html</id><updated>2023-02-14T12:00:00+00:00</updated><category term="denial-of-service"/><category term="code-execution"/><link href="https://rustsec.org/advisories/RUSTSEC-2022-0090.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0090: Vulnerability in libsqlite3-sys"/><published>2023-02-14T12:00:00+00:00</published><summary xml:lang="en">`libsqlite3-sys` via C SQLite CVE-2022-35737</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
           &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/libsqlite3-sys/RUSTSEC-2022-0090.md&quot;&gt;History&lt;/a&gt; ⋅ 
@@ -274,6 +165,115 @@
     &lt;p&gt;It was sometimes possible for SQLite versions &amp;gt;= 1.0.12, &amp;lt; 3.39.2 to allow an array-bounds overflow when large string were input into SQLite&apos;s &lt;code&gt;printf&lt;/code&gt; function.&lt;/p&gt;
 &lt;p&gt;As &lt;code&gt;libsqlite3-sys&lt;/code&gt; bundles SQLite, it is susceptible to the vulnerability. &lt;code&gt;libsqlite3-sys&lt;/code&gt; was updated to bundle the patched version of SQLite &lt;a href=&quot;https://github.com/rusqlite/rusqlite/releases/tag/sys0.25.1&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0014: Unsoundness in cortex-m-rt</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0014.html</id><updated>2023-02-14T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2023-0014.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0014: Unsoundness in cortex-m-rt"/><published>2023-02-14T12:00:00+00:00</published><summary xml:lang="en">Miscompilation in cortex-m-rt 0.7.1 and 0.7.2</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/cortex-m-rt/RUSTSEC-2023-0014.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/cortex-m-rt/RUSTSEC-2023-0014.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2023-0014
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Miscompilation in cortex-m-rt 0.7.1 and 0.7.2&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-02-13&quot;&gt;
+          February 13, 2023
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-02-14&quot;&gt;
+          February 14, 2023
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/cortex-m-rt.html&quot;&gt;cortex-m-rt&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/cortex-m-rt&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https://github.com/rust-embedded/cortex-m/discussions/469&quot;&gt;
+          https://github.com/rust-embedded/cortex-m/discussions/469
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.7.3&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;lt;=0.7.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Version 0.7.1 of the &lt;code&gt;cortex-m-rt&lt;/code&gt; crate introduced a regression causing the stack to NOT be eight-byte aligned prior to calling &lt;code&gt;main&lt;/code&gt; (or any other specified entrypoint), violating the &lt;a href=&quot;https://github.com/ARM-software/abi-aa/blob/edd7460d87493fff124b8b5713acf71ffc06ee91/aapcs32/aapcs32.rst#6212stack-constraints-at-a-public-interface&quot;&gt;stack ABI of AAPCS32&lt;/a&gt;, the default ABI used by all Cortex-M targets. This regression is also present in version 0.7.2 of the &lt;code&gt;cortex-m-rt&lt;/code&gt; crate.&lt;/p&gt;
+&lt;p&gt;This regression can cause certain compiler optimizations (which assume the eight-byte alignment) to produce incorrect behavior at runtime. This incorrect behavior has been &lt;a href=&quot;https://github.com/peter9477/test2&quot;&gt;observed in real-world applications&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;It is advised that ALL users of &lt;code&gt;v0.7.1&lt;/code&gt; and &lt;code&gt;v0.7.2&lt;/code&gt; of the &lt;code&gt;cortex-m-rt&lt;/code&gt; crate update to the latest version (&lt;code&gt;v0.7.3&lt;/code&gt;), AS SOON AS POSSIBLE.&lt;/strong&gt; Users of &lt;code&gt;v0.7.0&lt;/code&gt; and prior versions of &lt;code&gt;cortex-m-rt&lt;/code&gt; are not affected by this regression.&lt;/p&gt;
+&lt;p&gt;It will be necessary to rebuild all affected firmware binaries, and flash or deploy the new firmware binaries to affected devices.&lt;/p&gt;
+
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2020-0167: Vulnerability in pnet_packet</title><id>https://rustsec.org/advisories/RUSTSEC-2020-0167.html</id><updated>2023-02-09T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2020-0167.html" rel="alternate" type="text/html" title="RUSTSEC-2020-0167: Vulnerability in pnet_packet"/><published>2023-02-09T12:00:00+00:00</published><summary xml:lang="en">`pnet_packet` buffer overrun in `set_payload` setters</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -425,191 +425,21 @@
     &lt;p&gt;As indicated by this &lt;a href=&quot;https://github.com/libpnet/libpnet/issues/449#issuecomment-663355987&quot;&gt;issue&lt;/a&gt;, a buffer overrun is possible in the &lt;code&gt;set_payload&lt;/code&gt; setter of the various mutable &amp;quot;Packet&amp;quot; struct setters. The offending &lt;code&gt;set_payload&lt;/code&gt; functions were defined within the struct &lt;code&gt;impl&lt;/code&gt; blocks in earlier versions of the package, and later by the &lt;code&gt;packet&lt;/code&gt; macro.&lt;/p&gt;
 &lt;p&gt;Fixed in the &lt;code&gt;packet&lt;/code&gt; macro by &lt;a href=&quot;https://github.com/libpnet/libpnet/pull/455&quot;&gt;this&lt;/a&gt; PR.&lt;/p&gt;
 
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0089: Vulnerability in aliyun-oss-client</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0089.html</id><updated>2023-02-07T12:00:00+00:00</updated><category term="crypto-failure"/><link href="https://rustsec.org/advisories/RUSTSEC-2022-0089.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0089: Vulnerability in aliyun-oss-client"/><published>2023-02-07T12:00:00+00:00</published><summary xml:lang="en">`aliyun-oss-client` secret exposure</summary><content xml:lang="en" type="html">  &lt;article&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0011: Vulnerability in openssl-src</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0011.html</id><updated>2023-02-07T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0011.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0011: Vulnerability in openssl-src"/><published>2023-02-07T12:00:00+00:00</published><summary xml:lang="en">Invalid pointer dereference in `d2i_PKCS7` functions</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/aliyun-oss-client/RUSTSEC-2022-0089.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/aliyun-oss-client/RUSTSEC-2022-0089.md&quot;&gt;Edit&lt;/a&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/openssl-src/RUSTSEC-2023-0011.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/openssl-src/RUSTSEC-2023-0011.md&quot;&gt;Edit&lt;/a&gt;
         &lt;/span&gt;
     
 
     &lt;header&gt;
       &lt;h1&gt;
         
-        RUSTSEC-2022-0089
+        RUSTSEC-2023-0011
         
       &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;aliyun-oss-client&lt;/code&gt; secret exposure&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2022-11-19&quot;&gt;
-          November 19, 2022
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-02-07&quot;&gt;
-          February  7, 2023
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/aliyun-oss-client.html&quot;&gt;aliyun-oss-client&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/aliyun-oss-client&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/crypto-failure.html&quot;&gt;crypto-failure&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-39397&quot;&gt;CVE-2022-39397&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-3w3h-7xgx-grwc&quot;&gt;GHSA-3w3h-7xgx-grwc&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;a href=&quot;https://github.com/advisories/GHSA-3w3h-7xgx-grwc&quot;&gt;
-          https://github.com/advisories/GHSA-3w3h-7xgx-grwc
-        &lt;/a&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
-      &lt;dd&gt;5.6 &lt;span class=&quot;tag medium&quot;&gt;
-        MEDIUM
-      &lt;/span&gt;&lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;dl&gt;
-          
-          &lt;dt&gt;Attack vector&lt;/dt&gt;&lt;dd&gt;Physical&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Attack complexity&lt;/dt&gt;&lt;dd&gt;Low&lt;/d&gt;
-          
-
-          
-          &lt;dt&gt;Privileges required&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;User interaction&lt;/dt&gt;&lt;dd&gt;Required&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Scope&lt;/dt&gt;&lt;dd&gt;Changed&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
-          
-        &lt;/dl&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
-      &lt;dd&gt;&lt;a href=&quot;https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=CVSS:3.1/AV:P/AC:L/PR:H/UI:R/S:C/C:H/I:L/A:N&quot;&gt;CVSS:3.1/AV:P/AC:L/PR:H/UI:R/S:C/C:H/I:L/A:N&lt;/a&gt;&lt;/dd&gt;
-
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.8.1&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;The &lt;code&gt;aliyun-oss-client&lt;/code&gt; unintentionally divulges the authentication secret.&lt;/p&gt;
-&lt;p&gt;This bug was fixed in &lt;a href=&quot;https://github.com/tu6ge/oss-rs/commit/e4553f7d74fce682d802f8fb073943387796df29&quot;&gt;this&lt;/a&gt; commit by limiting the concerned traits to be &lt;code&gt;pub&lt;/code&gt; only within the crate.&lt;/p&gt;
-
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0010: Vulnerability in openssl-src</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0010.html</id><updated>2023-02-07T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0010.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0010: Vulnerability in openssl-src"/><published>2023-02-07T12:00:00+00:00</published><summary xml:lang="en">Double free after calling `PEM_read_bio_ex`</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/openssl-src/RUSTSEC-2023-0010.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/openssl-src/RUSTSEC-2023-0010.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2023-0010
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Double free after calling &lt;code&gt;PEM_read_bio_ex&lt;/code&gt;&lt;/p&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Invalid pointer dereference in &lt;code&gt;d2i_PKCS7&lt;/code&gt; functions&lt;/p&gt;
 &lt;/span&gt;
     &lt;/header&gt;
 
@@ -668,7 +498,7 @@
           
           &lt;li&gt;
             
-            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-4450&quot;&gt;CVE-2022-4450&lt;/a&gt;
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-0216&quot;&gt;CVE-2023-0216&lt;/a&gt;
             
           &lt;/li&gt;
           
@@ -695,14 +525,21 @@
         
         &lt;ul&gt;
           
-          &lt;li&gt;&lt;code&gt;&amp;gt;=111.25, &amp;lt;300.0&lt;/code&gt;&lt;/li&gt;
-          
           &lt;li&gt;&lt;code&gt;&amp;gt;=300.0.12&lt;/code&gt;&lt;/li&gt;
           
         &lt;/ul&gt;
         
       &lt;/dd&gt;
 
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;lt;300.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
       
 
       
@@ -713,26 +550,13 @@
     
 
     &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;The function &lt;code&gt;PEM_read_bio_ex()&lt;/code&gt; reads a PEM file from a BIO and parses and
-decodes the &amp;quot;name&amp;quot; (e.g. &amp;quot;CERTIFICATE&amp;quot;), any header data and the payload data.
-If the function succeeds then the &amp;quot;name_out&amp;quot;, &amp;quot;header&amp;quot; and &amp;quot;data&amp;quot; arguments are
-populated with pointers to buffers containing the relevant decoded data. The
-caller is responsible for freeing those buffers. It is possible to construct a
-PEM file that results in 0 bytes of payload data. In this case &lt;code&gt;PEM_read_bio_ex()&lt;/code&gt;
-will return a failure code but will populate the header argument with a pointer
-to a buffer that has already been freed. If the caller also frees this buffer
-then a double free will occur. This will most likely lead to a crash. This
-could be exploited by an attacker who has the ability to supply malicious PEM
-files for parsing to achieve a denial of service attack.&lt;/p&gt;
-&lt;p&gt;The functions &lt;code&gt;PEM_read_bio()&lt;/code&gt; and &lt;code&gt;PEM_read()&lt;/code&gt; are simple wrappers around
-&lt;code&gt;PEM_read_bio_ex()&lt;/code&gt; and therefore these functions are also directly affected.&lt;/p&gt;
-&lt;p&gt;These functions are also called indirectly by a number of other OpenSSL
-functions including &lt;code&gt;PEM_X509_INFO_read_bio_ex()&lt;/code&gt; and
-&lt;code&gt;SSL_CTX_use_serverinfo_file()&lt;/code&gt; which are also vulnerable. Some OpenSSL internal
-uses of these functions are not vulnerable because the caller does not free the
-header argument if &lt;code&gt;PEM_read_bio_ex()&lt;/code&gt; returns a failure code. These locations
-include the &lt;code&gt;PEM_read_bio_TYPE()&lt;/code&gt; functions as well as the decoders introduced in
-OpenSSL 3.0.&lt;/p&gt;
+    &lt;p&gt;An invalid pointer dereference on read can be triggered when an
+application tries to load malformed PKCS7 data with the
+&lt;code&gt;d2i_PKCS7()&lt;/code&gt;, &lt;code&gt;d2i_PKCS7_bio()&lt;/code&gt; or &lt;code&gt;d2i_PKCS7_fp()&lt;/code&gt; functions.&lt;/p&gt;
+&lt;p&gt;The result of the dereference is an application crash which could
+lead to a denial of service attack. The TLS implementation in OpenSSL
+does not call this function however third party applications might
+call these functions on untrusted data.&lt;/p&gt;
 
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0006: Vulnerability in openssl-src</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0006.html</id><updated>2023-02-07T12:00:00+00:00</updated><category term="denial-of-service"/><category term="memory-exposure"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0006.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0006: Vulnerability in openssl-src"/><published>2023-02-07T12:00:00+00:00</published><summary xml:lang="en">X.400 address type confusion in X.509 `GeneralName`</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
@@ -1011,148 +835,6 @@ the &lt;code&gt;BIO&lt;/code&gt;. This internal function is in turn called by th
 &lt;code&gt;i2d_ASN1_bio_stream&lt;/code&gt;, &lt;code&gt;BIO_new_CMS&lt;/code&gt;, &lt;code&gt;BIO_new_PKCS7&lt;/code&gt;, &lt;code&gt;i2d_CMS_bio_stream&lt;/code&gt; and
 &lt;code&gt;i2d_PKCS7_bio_stream&lt;/code&gt;.&lt;/p&gt;
 
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0008: Vulnerability in openssl-src</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0008.html</id><updated>2023-02-07T12:00:00+00:00</updated><category term="denial-of-service"/><category term="memory-exposure"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0008.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0008: Vulnerability in openssl-src"/><published>2023-02-07T12:00:00+00:00</published><summary xml:lang="en">X.509 Name Constraints Read Buffer Overflow</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/openssl-src/RUSTSEC-2023-0008.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/openssl-src/RUSTSEC-2023-0008.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2023-0008
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;X.509 Name Constraints Read Buffer Overflow&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-02-07&quot;&gt;
-          February  7, 2023
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-02-07&quot;&gt;
-          February  7, 2023
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/openssl-src.html&quot;&gt;openssl-src&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/openssl-src&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/memory-exposure.html&quot;&gt;memory-exposure&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-4203&quot;&gt;CVE-2022-4203&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;a href=&quot;https://www.openssl.org/news/secadv/20230207.txt&quot;&gt;
-          https://www.openssl.org/news/secadv/20230207.txt
-        &lt;/a&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=300.0.12&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;lt;300.0.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;A read buffer overrun can be triggered in X.509 certificate verification,
-specifically in name constraint checking. Note that this occurs
-after certificate chain signature verification and requires either a
-CA to have signed the malicious certificate or for the application to
-continue certificate verification despite failure to construct a path
-to a trusted issuer.&lt;/p&gt;
-&lt;p&gt;The read buffer overrun might result in a crash which could lead to
-a denial of service attack. In theory it could also result in the disclosure
-of private memory contents (such as private keys, or sensitive plaintext)
-although we are not aware of any working exploit leading to memory
-contents disclosure as of the time of release of this advisory.&lt;/p&gt;
-&lt;p&gt;In a TLS client, this can be triggered by connecting to a malicious
-server. In a TLS server, this can be triggered if the server requests
-client authentication and a malicious client connects.&lt;/p&gt;
-
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0012: Vulnerability in openssl-src</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0012.html</id><updated>2023-02-07T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0012.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0012: Vulnerability in openssl-src"/><published>2023-02-07T12:00:00+00:00</published><summary xml:lang="en">`NULL` dereference validating DSA public key</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -1287,6 +969,277 @@ to cause a denial of service attack.&lt;/p&gt;
 &lt;p&gt;The TLS implementation in OpenSSL does not call this function
 but applications might call the function if there are additional
 security requirements imposed by standards such as FIPS 140-3.&lt;/p&gt;
+
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0007: Vulnerability in openssl-src</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0007.html</id><updated>2023-02-07T12:00:00+00:00</updated><category term="crypto-failure"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0007.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0007: Vulnerability in openssl-src"/><published>2023-02-07T12:00:00+00:00</published><summary xml:lang="en">Timing Oracle in RSA Decryption</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/openssl-src/RUSTSEC-2023-0007.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/openssl-src/RUSTSEC-2023-0007.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2023-0007
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Timing Oracle in RSA Decryption&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-02-07&quot;&gt;
+          February  7, 2023
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-02-07&quot;&gt;
+          February  7, 2023
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/openssl-src.html&quot;&gt;openssl-src&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/openssl-src&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/crypto-failure.html&quot;&gt;crypto-failure&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-4304&quot;&gt;CVE-2022-4304&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https://www.openssl.org/news/secadv/20230207.txt&quot;&gt;
+          https://www.openssl.org/news/secadv/20230207.txt
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=111.25, &amp;lt;300.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=300.0.12&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;A timing based side channel exists in the OpenSSL RSA Decryption implementation
+which could be sufficient to recover a plaintext across a network in a
+Bleichenbacher style attack. To achieve a successful decryption an attacker
+would have to be able to send a very large number of trial messages for
+decryption. The vulnerability affects all RSA padding modes: PKCS#1 v1.5,
+RSA-OEAP and RSASVE.&lt;/p&gt;
+&lt;p&gt;For example, in a TLS connection, RSA is commonly used by a client to send an
+encrypted pre-master secret to the server. An attacker that had observed a
+genuine connection between a client and a server could use this flaw to send
+trial messages to the server and record the time taken to process them. After a
+sufficiently large number of messages the attacker could recover the pre-master
+secret used for the original connection and thus be able to decrypt the
+application data sent over that connection.&lt;/p&gt;
+
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0010: Vulnerability in openssl-src</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0010.html</id><updated>2023-02-07T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0010.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0010: Vulnerability in openssl-src"/><published>2023-02-07T12:00:00+00:00</published><summary xml:lang="en">Double free after calling `PEM_read_bio_ex`</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/openssl-src/RUSTSEC-2023-0010.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/openssl-src/RUSTSEC-2023-0010.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2023-0010
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Double free after calling &lt;code&gt;PEM_read_bio_ex&lt;/code&gt;&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-02-07&quot;&gt;
+          February  7, 2023
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-02-07&quot;&gt;
+          February  7, 2023
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/openssl-src.html&quot;&gt;openssl-src&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/openssl-src&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-4450&quot;&gt;CVE-2022-4450&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https://www.openssl.org/news/secadv/20230207.txt&quot;&gt;
+          https://www.openssl.org/news/secadv/20230207.txt
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=111.25, &amp;lt;300.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=300.0.12&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;The function &lt;code&gt;PEM_read_bio_ex()&lt;/code&gt; reads a PEM file from a BIO and parses and
+decodes the &amp;quot;name&amp;quot; (e.g. &amp;quot;CERTIFICATE&amp;quot;), any header data and the payload data.
+If the function succeeds then the &amp;quot;name_out&amp;quot;, &amp;quot;header&amp;quot; and &amp;quot;data&amp;quot; arguments are
+populated with pointers to buffers containing the relevant decoded data. The
+caller is responsible for freeing those buffers. It is possible to construct a
+PEM file that results in 0 bytes of payload data. In this case &lt;code&gt;PEM_read_bio_ex()&lt;/code&gt;
+will return a failure code but will populate the header argument with a pointer
+to a buffer that has already been freed. If the caller also frees this buffer
+then a double free will occur. This will most likely lead to a crash. This
+could be exploited by an attacker who has the ability to supply malicious PEM
+files for parsing to achieve a denial of service attack.&lt;/p&gt;
+&lt;p&gt;The functions &lt;code&gt;PEM_read_bio()&lt;/code&gt; and &lt;code&gt;PEM_read()&lt;/code&gt; are simple wrappers around
+&lt;code&gt;PEM_read_bio_ex()&lt;/code&gt; and therefore these functions are also directly affected.&lt;/p&gt;
+&lt;p&gt;These functions are also called indirectly by a number of other OpenSSL
+functions including &lt;code&gt;PEM_X509_INFO_read_bio_ex()&lt;/code&gt; and
+&lt;code&gt;SSL_CTX_use_serverinfo_file()&lt;/code&gt; which are also vulnerable. Some OpenSSL internal
+uses of these functions are not vulnerable because the caller does not free the
+header argument if &lt;code&gt;PEM_read_bio_ex()&lt;/code&gt; returns a failure code. These locations
+include the &lt;code&gt;PEM_read_bio_TYPE()&lt;/code&gt; functions as well as the decoders introduced in
+OpenSSL 3.0.&lt;/p&gt;
 
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0013: Vulnerability in openssl-src</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0013.html</id><updated>2023-02-07T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0013.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0013: Vulnerability in openssl-src"/><published>2023-02-07T12:00:00+00:00</published><summary xml:lang="en">`NULL` dereference during PKCS7 data verification</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
@@ -1428,270 +1381,5 @@ time stamp (TS) library calls. The TLS implementation in OpenSSL does
 not call these functions however third party applications would be
 affected if they call these functions to verify signatures on untrusted
 data.&lt;/p&gt;
-
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0011: Vulnerability in openssl-src</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0011.html</id><updated>2023-02-07T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0011.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0011: Vulnerability in openssl-src"/><published>2023-02-07T12:00:00+00:00</published><summary xml:lang="en">Invalid pointer dereference in `d2i_PKCS7` functions</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/openssl-src/RUSTSEC-2023-0011.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/openssl-src/RUSTSEC-2023-0011.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2023-0011
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Invalid pointer dereference in &lt;code&gt;d2i_PKCS7&lt;/code&gt; functions&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-02-07&quot;&gt;
-          February  7, 2023
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-02-07&quot;&gt;
-          February  7, 2023
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/openssl-src.html&quot;&gt;openssl-src&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/openssl-src&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-0216&quot;&gt;CVE-2023-0216&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;a href=&quot;https://www.openssl.org/news/secadv/20230207.txt&quot;&gt;
-          https://www.openssl.org/news/secadv/20230207.txt
-        &lt;/a&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=300.0.12&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;lt;300.0.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;An invalid pointer dereference on read can be triggered when an
-application tries to load malformed PKCS7 data with the
-&lt;code&gt;d2i_PKCS7()&lt;/code&gt;, &lt;code&gt;d2i_PKCS7_bio()&lt;/code&gt; or &lt;code&gt;d2i_PKCS7_fp()&lt;/code&gt; functions.&lt;/p&gt;
-&lt;p&gt;The result of the dereference is an application crash which could
-lead to a denial of service attack. The TLS implementation in OpenSSL
-does not call this function however third party applications might
-call these functions on untrusted data.&lt;/p&gt;
-
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0007: Vulnerability in openssl-src</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0007.html</id><updated>2023-02-07T12:00:00+00:00</updated><category term="crypto-failure"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0007.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0007: Vulnerability in openssl-src"/><published>2023-02-07T12:00:00+00:00</published><summary xml:lang="en">Timing Oracle in RSA Decryption</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/openssl-src/RUSTSEC-2023-0007.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/openssl-src/RUSTSEC-2023-0007.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2023-0007
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Timing Oracle in RSA Decryption&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-02-07&quot;&gt;
-          February  7, 2023
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-02-07&quot;&gt;
-          February  7, 2023
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/openssl-src.html&quot;&gt;openssl-src&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/openssl-src&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/crypto-failure.html&quot;&gt;crypto-failure&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-4304&quot;&gt;CVE-2022-4304&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;a href=&quot;https://www.openssl.org/news/secadv/20230207.txt&quot;&gt;
-          https://www.openssl.org/news/secadv/20230207.txt
-        &lt;/a&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=111.25, &amp;lt;300.0&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=300.0.12&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;A timing based side channel exists in the OpenSSL RSA Decryption implementation
-which could be sufficient to recover a plaintext across a network in a
-Bleichenbacher style attack. To achieve a successful decryption an attacker
-would have to be able to send a very large number of trial messages for
-decryption. The vulnerability affects all RSA padding modes: PKCS#1 v1.5,
-RSA-OEAP and RSASVE.&lt;/p&gt;
-&lt;p&gt;For example, in a TLS connection, RSA is commonly used by a client to send an
-encrypted pre-master secret to the server. An attacker that had observed a
-genuine connection between a client and a server could use this flaw to send
-trial messages to the server and record the time taken to process them. After a
-sufficiently large number of messages the attacker could recover the pre-master
-secret used for the original connection and thus be able to decrypt the
-application data sent over that connection.&lt;/p&gt;
 
   &lt;/article&gt;</content></entry></feed>
