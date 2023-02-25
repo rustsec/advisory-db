@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories with keyword &#x27;out-of-bounds-read&#x27; › RustSec Advisory Database</title>
+<title>RUSTSEC-2023-0016: partial_sort: Possible out-of-bounds read in release mode › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,79 +52,128 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/partial_sort/RUSTSEC-2023-0016.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/partial_sort/RUSTSEC-2023-0016.md">Edit</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2023-0016
+        
+      </h1>
+      <span class="subtitle"><p>Possible out-of-bounds read in release mode</p>
 </span>
-      <h1>Advisories with keyword &#x27;out-of-bounds-read&#x27;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2023-02-25">
-    February 25, 2023
-  </time>
+    
 
-  
-  <h3>
-    
-        
-          <span class="tag info">INFO</span>
-        
-    
-    <a href="/advisories/RUSTSEC-2023-0016.html">
-      RUSTSEC-2023-0016: Unsoundness in partial_sort
-    </a>
-  </h3>
-  <span><p>Possible out-of-bounds read in release mode</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2022-08-11">
-    August 11, 2022
-  </time>
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2023-02-20">
+          February 20, 2023
+        </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2023-02-25">
+          February 25, 2023
+        </time>
         
-    
-    <a href="/advisories/RUSTSEC-2022-0046.html">
-      RUSTSEC-2022-0046: Vulnerability in rocksdb
-    </a>
-  </h3>
-  <span><p>Out-of-bounds read when opening multiple column families with TTL</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2021-09-17">
-    September 17, 2021
-  </time>
+      </dd>
 
-  
-  <h3>
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        <a href="/packages/partial_sort.html">partial_sort</a>
+          (<a href="https://crates.io/crates/partial_sort">crates.io</a>)
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        <span class="tag info">INFO</span>
+        Unsound
+        
+      </dd>
+
+      
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/memory-exposure.html">memory-exposure</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/out-of-bounds-read.html">#out-of-bounds-read</a>
+        
+      </dd>
+      
+
+      
+
+      
+      <dt id="details">Details</dt>
+      <dd>
+        <a href="https://github.com/sundy-li/partial_sort/issues/7">
+          https://github.com/sundy-li/partial_sort/issues/7
+        </a>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&gt;=0.2.0</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+
+      
+      
+    </dl>
+
     
-      <span class="tag medium">MEDIUM</span>
-      
-    <a href="/advisories/RUSTSEC-2021-0110.html">
-      RUSTSEC-2021-0110: Vulnerability in wasmtime
-    </a>
-  </h3>
-  <span><p>Multiple Vulnerabilities in Wasmtime</p>
-</span>
-  
-</li>
-      
-    </ul>
+    
+
+    <h3 id="description">Description</h3>
+    <p>Affected versions of this crate were using a debug assertion to validate the
+<code>last</code> parameter of <code>partial_sort()</code>. This would allow invalid inputs to cause
+an out-of-bounds read instead of immediately panicking, when compiled without
+debug assertions.</p>
+<p>All writes are bounds-checked, so the out-of-bounds memory access is read-only.
+This also means that the first attempted out-of-bounds write will panic,
+limiting the possible reads.</p>
+<p>The accessible region is further limited by an initial bounds-checked read
+at <code>(last / 2) - 1</code>, i.e., it is proportional to the size of the vector.</p>
+<p>This bug has been fixed in v0.2.0.</p>
+
   </article>
 </main>
