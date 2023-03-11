@@ -878,6 +878,115 @@ limiting the possible reads.&lt;/p&gt;
 at &lt;code&gt;(last / 2) - 1&lt;/code&gt;, i.e., it is proportional to the size of the vector.&lt;/p&gt;
 &lt;p&gt;This bug has been fixed in v0.2.0.&lt;/p&gt;
 
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0014: Unsoundness in cortex-m-rt</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0014.html</id><updated>2023-02-14T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2023-0014.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0014: Unsoundness in cortex-m-rt"/><published>2023-02-14T12:00:00+00:00</published><summary xml:lang="en">Miscompilation in cortex-m-rt 0.7.1 and 0.7.2</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/cortex-m-rt/RUSTSEC-2023-0014.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/cortex-m-rt/RUSTSEC-2023-0014.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2023-0014
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Miscompilation in cortex-m-rt 0.7.1 and 0.7.2&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-02-13&quot;&gt;
+          February 13, 2023
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-02-14&quot;&gt;
+          February 14, 2023
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/cortex-m-rt.html&quot;&gt;cortex-m-rt&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/cortex-m-rt&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https://github.com/rust-embedded/cortex-m/discussions/469&quot;&gt;
+          https://github.com/rust-embedded/cortex-m/discussions/469
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.7.3&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;lt;=0.7.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Version 0.7.1 of the &lt;code&gt;cortex-m-rt&lt;/code&gt; crate introduced a regression causing the stack to NOT be eight-byte aligned prior to calling &lt;code&gt;main&lt;/code&gt; (or any other specified entrypoint), violating the &lt;a href=&quot;https://github.com/ARM-software/abi-aa/blob/edd7460d87493fff124b8b5713acf71ffc06ee91/aapcs32/aapcs32.rst#6212stack-constraints-at-a-public-interface&quot;&gt;stack ABI of AAPCS32&lt;/a&gt;, the default ABI used by all Cortex-M targets. This regression is also present in version 0.7.2 of the &lt;code&gt;cortex-m-rt&lt;/code&gt; crate.&lt;/p&gt;
+&lt;p&gt;This regression can cause certain compiler optimizations (which assume the eight-byte alignment) to produce incorrect behavior at runtime. This incorrect behavior has been &lt;a href=&quot;https://github.com/peter9477/test2&quot;&gt;observed in real-world applications&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;It is advised that ALL users of &lt;code&gt;v0.7.1&lt;/code&gt; and &lt;code&gt;v0.7.2&lt;/code&gt; of the &lt;code&gt;cortex-m-rt&lt;/code&gt; crate update to the latest version (&lt;code&gt;v0.7.3&lt;/code&gt;), AS SOON AS POSSIBLE.&lt;/strong&gt; Users of &lt;code&gt;v0.7.0&lt;/code&gt; and prior versions of &lt;code&gt;cortex-m-rt&lt;/code&gt; are not affected by this regression.&lt;/p&gt;
+&lt;p&gt;It will be necessary to rebuild all affected firmware binaries, and flash or deploy the new firmware binaries to affected devices.&lt;/p&gt;
+
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0090: Vulnerability in libsqlite3-sys</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0090.html</id><updated>2023-02-14T12:00:00+00:00</updated><category term="denial-of-service"/><category term="code-execution"/><link href="https://rustsec.org/advisories/RUSTSEC-2022-0090.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0090: Vulnerability in libsqlite3-sys"/><published>2023-02-14T12:00:00+00:00</published><summary xml:lang="en">`libsqlite3-sys` via C SQLite CVE-2022-35737</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -1044,115 +1153,6 @@ at &lt;code&gt;(last / 2) - 1&lt;/code&gt;, i.e., it is proportional to the size
     &lt;p&gt;It was sometimes possible for SQLite versions &amp;gt;= 1.0.12, &amp;lt; 3.39.2 to allow an array-bounds overflow when large string were input into SQLite&apos;s &lt;code&gt;printf&lt;/code&gt; function.&lt;/p&gt;
 &lt;p&gt;As &lt;code&gt;libsqlite3-sys&lt;/code&gt; bundles SQLite, it is susceptible to the vulnerability. &lt;code&gt;libsqlite3-sys&lt;/code&gt; was updated to bundle the patched version of SQLite &lt;a href=&quot;https://github.com/rusqlite/rusqlite/releases/tag/sys0.25.1&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0014: Unsoundness in cortex-m-rt</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0014.html</id><updated>2023-02-14T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2023-0014.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0014: Unsoundness in cortex-m-rt"/><published>2023-02-14T12:00:00+00:00</published><summary xml:lang="en">Miscompilation in cortex-m-rt 0.7.1 and 0.7.2</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/cortex-m-rt/RUSTSEC-2023-0014.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/cortex-m-rt/RUSTSEC-2023-0014.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2023-0014
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Miscompilation in cortex-m-rt 0.7.1 and 0.7.2&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-02-13&quot;&gt;
-          February 13, 2023
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-02-14&quot;&gt;
-          February 14, 2023
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/cortex-m-rt.html&quot;&gt;cortex-m-rt&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/cortex-m-rt&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unsound
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;a href=&quot;https://github.com/rust-embedded/cortex-m/discussions/469&quot;&gt;
-          https://github.com/rust-embedded/cortex-m/discussions/469
-        &lt;/a&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.7.3&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;lt;=0.7.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;Version 0.7.1 of the &lt;code&gt;cortex-m-rt&lt;/code&gt; crate introduced a regression causing the stack to NOT be eight-byte aligned prior to calling &lt;code&gt;main&lt;/code&gt; (or any other specified entrypoint), violating the &lt;a href=&quot;https://github.com/ARM-software/abi-aa/blob/edd7460d87493fff124b8b5713acf71ffc06ee91/aapcs32/aapcs32.rst#6212stack-constraints-at-a-public-interface&quot;&gt;stack ABI of AAPCS32&lt;/a&gt;, the default ABI used by all Cortex-M targets. This regression is also present in version 0.7.2 of the &lt;code&gt;cortex-m-rt&lt;/code&gt; crate.&lt;/p&gt;
-&lt;p&gt;This regression can cause certain compiler optimizations (which assume the eight-byte alignment) to produce incorrect behavior at runtime. This incorrect behavior has been &lt;a href=&quot;https://github.com/peter9477/test2&quot;&gt;observed in real-world applications&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;It is advised that ALL users of &lt;code&gt;v0.7.1&lt;/code&gt; and &lt;code&gt;v0.7.2&lt;/code&gt; of the &lt;code&gt;cortex-m-rt&lt;/code&gt; crate update to the latest version (&lt;code&gt;v0.7.3&lt;/code&gt;), AS SOON AS POSSIBLE.&lt;/strong&gt; Users of &lt;code&gt;v0.7.0&lt;/code&gt; and prior versions of &lt;code&gt;cortex-m-rt&lt;/code&gt; are not affected by this regression.&lt;/p&gt;
-&lt;p&gt;It will be necessary to rebuild all affected firmware binaries, and flash or deploy the new firmware binaries to affected devices.&lt;/p&gt;
-
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2020-0167: Vulnerability in pnet_packet</title><id>https://rustsec.org/advisories/RUSTSEC-2020-0167.html</id><updated>2023-02-09T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2020-0167.html" rel="alternate" type="text/html" title="RUSTSEC-2020-0167: Vulnerability in pnet_packet"/><published>2023-02-09T12:00:00+00:00</published><summary xml:lang="en">`pnet_packet` buffer overrun in `set_payload` setters</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -1304,21 +1304,21 @@ at &lt;code&gt;(last / 2) - 1&lt;/code&gt;, i.e., it is proportional to the size
     &lt;p&gt;As indicated by this &lt;a href=&quot;https://github.com/libpnet/libpnet/issues/449#issuecomment-663355987&quot;&gt;issue&lt;/a&gt;, a buffer overrun is possible in the &lt;code&gt;set_payload&lt;/code&gt; setter of the various mutable &amp;quot;Packet&amp;quot; struct setters. The offending &lt;code&gt;set_payload&lt;/code&gt; functions were defined within the struct &lt;code&gt;impl&lt;/code&gt; blocks in earlier versions of the package, and later by the &lt;code&gt;packet&lt;/code&gt; macro.&lt;/p&gt;
 &lt;p&gt;Fixed in the &lt;code&gt;packet&lt;/code&gt; macro by &lt;a href=&quot;https://github.com/libpnet/libpnet/pull/455&quot;&gt;this&lt;/a&gt; PR.&lt;/p&gt;
 
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0011: Vulnerability in openssl-src</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0011.html</id><updated>2023-02-07T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0011.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0011: Vulnerability in openssl-src"/><published>2023-02-07T12:00:00+00:00</published><summary xml:lang="en">Invalid pointer dereference in `d2i_PKCS7` functions</summary><content xml:lang="en" type="html">  &lt;article&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0006: Vulnerability in openssl-src</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0006.html</id><updated>2023-02-07T12:00:00+00:00</updated><category term="denial-of-service"/><category term="memory-exposure"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0006.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0006: Vulnerability in openssl-src"/><published>2023-02-07T12:00:00+00:00</published><summary xml:lang="en">X.400 address type confusion in X.509 `GeneralName`</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/openssl-src/RUSTSEC-2023-0011.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/openssl-src/RUSTSEC-2023-0011.md&quot;&gt;Edit&lt;/a&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/openssl-src/RUSTSEC-2023-0006.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/openssl-src/RUSTSEC-2023-0006.md&quot;&gt;Edit&lt;/a&gt;
         &lt;/span&gt;
     
 
     &lt;header&gt;
       &lt;h1&gt;
         
-        RUSTSEC-2023-0011
+        RUSTSEC-2023-0006
         
       &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Invalid pointer dereference in &lt;code&gt;d2i_PKCS7&lt;/code&gt; functions&lt;/p&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;X.400 address type confusion in X.509 &lt;code&gt;GeneralName&lt;/code&gt;&lt;/p&gt;
 &lt;/span&gt;
     &lt;/header&gt;
 
@@ -1364,6 +1364,8 @@ at &lt;code&gt;(last / 2) - 1&lt;/code&gt;, i.e., it is proportional to the size
           
           &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
           
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-exposure.html&quot;&gt;memory-exposure&lt;/a&gt;&lt;/li&gt;
+          
         &lt;/ul&gt;
       &lt;/dd&gt;
       
@@ -1377,7 +1379,7 @@ at &lt;code&gt;(last / 2) - 1&lt;/code&gt;, i.e., it is proportional to the size
           
           &lt;li&gt;
             
-            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-0216&quot;&gt;CVE-2023-0216&lt;/a&gt;
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-0286&quot;&gt;CVE-2023-0286&lt;/a&gt;
             
           &lt;/li&gt;
           
@@ -1404,21 +1406,14 @@ at &lt;code&gt;(last / 2) - 1&lt;/code&gt;, i.e., it is proportional to the size
         
         &lt;ul&gt;
           
+          &lt;li&gt;&lt;code&gt;&amp;gt;=111.25, &amp;lt;300.0&lt;/code&gt;&lt;/li&gt;
+          
           &lt;li&gt;&lt;code&gt;&amp;gt;=300.0.12&lt;/code&gt;&lt;/li&gt;
           
         &lt;/ul&gt;
         
       &lt;/dd&gt;
 
-      
-      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;lt;300.0.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
       
 
       
@@ -1429,12 +1424,21 @@ at &lt;code&gt;(last / 2) - 1&lt;/code&gt;, i.e., it is proportional to the size
     
 
     &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;An invalid pointer dereference on read can be triggered when an
-application tries to load malformed PKCS7 data with the
-&lt;code&gt;d2i_PKCS7()&lt;/code&gt;, &lt;code&gt;d2i_PKCS7_bio()&lt;/code&gt; or &lt;code&gt;d2i_PKCS7_fp()&lt;/code&gt; functions.&lt;/p&gt;
-&lt;p&gt;The result of the dereference is an application crash which could
-lead to a denial of service attack. The TLS implementation in OpenSSL
-does not call this function however third party applications might
-call these functions on untrusted data.&lt;/p&gt;
+    &lt;p&gt;There is a type confusion vulnerability relating to X.400 address processing
+inside an X.509 &lt;code&gt;GeneralName&lt;/code&gt;. X.400 addresses were parsed as an &lt;code&gt;ASN1_STRING&lt;/code&gt; but
+the public structure definition for &lt;code&gt;GENERAL_NAME&lt;/code&gt; incorrectly specified the type
+of the &lt;code&gt;x400Address&lt;/code&gt; field as &lt;code&gt;ASN1_TYPE&lt;/code&gt;. This field is subsequently interpreted by
+the OpenSSL function &lt;code&gt;GENERAL_NAME_cmp&lt;/code&gt; as an &lt;code&gt;ASN1_TYPE&lt;/code&gt; rather than an
+&lt;code&gt;ASN1_STRING&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;When CRL checking is enabled (i.e. the application sets the
+&lt;code&gt;X509_V_FLAG_CRL_CHECK&lt;/code&gt; flag), this vulnerability may allow an attacker to pass
+arbitrary pointers to a &lt;code&gt;memcmp&lt;/code&gt; call, enabling them to read memory contents or
+enact a denial of service. In most cases, the attack requires the attacker to
+provide both the certificate chain and CRL, neither of which need to have a
+valid signature. If the attacker only controls one of these inputs, the other
+input must already contain an X.400 address as a CRL distribution point, which
+is uncommon. As such, this vulnerability is most likely to only affect
+applications which have implemented their own functionality for retrieving CRLs
+over a network.&lt;/p&gt;
 
   &lt;/article&gt;</content></entry></feed>
