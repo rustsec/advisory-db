@@ -144,6 +144,100 @@
     &lt;p&gt;&lt;code&gt;Out::from_raw&lt;/code&gt; in affected versions allows writing a value to invalid memory address without requiring &lt;code&gt;unsafe&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;The soundness issue has been addressed by making &lt;code&gt;Out::from_raw&lt;/code&gt; an unsafe function.&lt;/p&gt;
 
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2019-0040: boxfnonce is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2019-0040.html</id><updated>2023-03-12T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2019-0040.html" rel="alternate" type="text/html" title="RUSTSEC-2019-0040: boxfnonce is unmaintained"/><published>2023-03-12T12:00:00+00:00</published><summary xml:lang="en">`boxfnonce` obsolete with release of Rust 1.35.0</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/boxfnonce/RUSTSEC-2019-0040.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/boxfnonce/RUSTSEC-2019-0040.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2019-0040
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;boxfnonce&lt;/code&gt; obsolete with release of Rust 1.35.0&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2019-06-20&quot;&gt;
+          June 20, 2019
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-03-12&quot;&gt;
+          March 12, 2023
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/boxfnonce.html&quot;&gt;boxfnonce&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/boxfnonce&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unmaintained
+        
+      &lt;/dd&gt;
+
+      
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https://github.com/stbuehler/rust-boxfnonce/commit/058ac7e1a7d732076da9d8a37baa66bcb67758d8&quot;&gt;
+          https://github.com/stbuehler/rust-boxfnonce/commit/058ac7e1a7d732076da9d8a37baa66bcb67758d8
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;&lt;a href=&quot;https://github.com/stbuehler/rust-boxfnonce/commit/058ac7e1a7d732076da9d8a37baa66bcb67758d8&quot;&gt;This&lt;/a&gt; commit marks the &lt;code&gt;boxfnonce&lt;/code&gt; crate as obsolete and the GitHub repo has since been archived.&lt;/p&gt;
+&lt;p&gt;The functionality of &lt;code&gt;boxfnonce&lt;/code&gt; has been added to Rust since 1.35.0. Use &lt;code&gt;Box&amp;lt;dyn FnOnce(...) -&amp;gt; ...&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2021-0150: ncollide3d is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2021-0150.html</id><updated>2023-03-12T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2021-0150.html" rel="alternate" type="text/html" title="RUSTSEC-2021-0150: ncollide3d is unmaintained"/><published>2023-03-12T12:00:00+00:00</published><summary xml:lang="en">ncollide3d is unmaintained</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -1071,186 +1165,5 @@ avoid the initial race. Pragmatically, other processes should be fine with the
 path based entry points : this is the same interface &lt;code&gt;std::fs::remove_dir_all&lt;/code&gt;
 offers, and an unprivileged process running in an attacker controlled
 directory can&apos;t do anything that the attacker can&apos;t already do.&lt;/p&gt;
-
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0091: Vulnerability in tauri</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0091.html</id><updated>2023-02-25T12:00:00+00:00</updated><category term="privilege-escalation"/><link href="https://rustsec.org/advisories/RUSTSEC-2022-0091.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0091: Vulnerability in tauri"/><published>2023-02-25T12:00:00+00:00</published><summary xml:lang="en">`tauri` filesystem scope partial bypass</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/tauri/RUSTSEC-2022-0091.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/tauri/RUSTSEC-2022-0091.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2022-0091
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;tauri&lt;/code&gt; filesystem scope partial bypass&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2022-09-19&quot;&gt;
-          September 19, 2022
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-02-25&quot;&gt;
-          February 25, 2023
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/tauri.html&quot;&gt;tauri&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/tauri&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/privilege-escalation.html&quot;&gt;privilege-escalation&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-41874&quot;&gt;CVE-2022-41874&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-q9wv-22m9-vhqh&quot;&gt;GHSA-q9wv-22m9-vhqh&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;a href=&quot;https://github.com/tauri-apps/tauri/issues/5234&quot;&gt;
-          https://github.com/tauri-apps/tauri/issues/5234
-        &lt;/a&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
-      &lt;dd&gt;2.3 &lt;span class=&quot;tag low&quot;&gt;
-        LOW
-      &lt;/span&gt;&lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;dl&gt;
-          
-          &lt;dt&gt;Attack vector&lt;/dt&gt;&lt;dd&gt;Local&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Attack complexity&lt;/dt&gt;&lt;dd&gt;High&lt;/d&gt;
-          
-
-          
-          &lt;dt&gt;Privileges required&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;User interaction&lt;/dt&gt;&lt;dd&gt;Required&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Scope&lt;/dt&gt;&lt;dd&gt;Changed&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
-          
-        &lt;/dl&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
-      &lt;dd&gt;&lt;a href=&quot;https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:C/C:L/I:N/A:N&quot;&gt;CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:C/C:L/I:N/A:N&lt;/a&gt;&lt;/dd&gt;
-
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=1.0.7, &amp;lt;1.1.0&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=1.1.2&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;lt;1.0.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;A bug identified in &lt;a href=&quot;https://github.com/tauri-apps/tauri/issues/5234&quot;&gt;this&lt;/a&gt; issue allows a partial filesystem scope bypass if glob characters are used within file dialog or drag-and-drop functionalities.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/tauri-apps/tauri/pull/5237&quot;&gt;This&lt;/a&gt; PR fixes the issue by escaping glob characters.&lt;/p&gt;
 
   &lt;/article&gt;</content></entry></feed>
