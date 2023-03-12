@@ -332,6 +332,103 @@
     &lt;p&gt;The maintainer has advised that this crate is passively-maintained and that it
 is being superseded by the &lt;a href=&quot;https://github.com/dimforge/parry&quot;&gt;Parry&lt;/a&gt; project.&lt;/p&gt;
 
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2021-0153: encoding is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2021-0153.html</id><updated>2023-03-12T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2021-0153.html" rel="alternate" type="text/html" title="RUSTSEC-2021-0153: encoding is unmaintained"/><published>2023-03-12T12:00:00+00:00</published><summary xml:lang="en">`encoding` is unmaintained</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/encoding/RUSTSEC-2021-0153.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/encoding/RUSTSEC-2021-0153.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2021-0153
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;encoding&lt;/code&gt; is unmaintained&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2021-12-05&quot;&gt;
+          December  5, 2021
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-03-12&quot;&gt;
+          March 12, 2023
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/encoding.html&quot;&gt;encoding&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/encoding&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unmaintained
+        
+      &lt;/dd&gt;
+
+      
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https://github.com/lifthrasiir/rust-encoding/issues/127&quot;&gt;
+          https://github.com/lifthrasiir/rust-encoding/issues/127
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Last release was on 2016-08-28. The &lt;a href=&quot;https://github.com/lifthrasiir/rust-encoding/issues/127&quot;&gt;issue&lt;/a&gt; inquiring as to the status of the crate has gone unanswered by the maintainer.&lt;/p&gt;
+&lt;h2&gt;Possible alternatives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://crates.io/crates/encoding_rs&quot;&gt;encoding_rs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2020-0168: mach is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2020-0168.html</id><updated>2023-03-12T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2020-0168.html" rel="alternate" type="text/html" title="RUSTSEC-2020-0168: mach is unmaintained"/><published>2023-03-12T12:00:00+00:00</published><summary xml:lang="en">mach is unmaintained</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -973,197 +1070,5 @@ is being superseded by the &lt;a href=&quot;https://github.com/dimforge/rapier&q
     &lt;p&gt;&lt;code&gt;maligned::align_first&lt;/code&gt; manually allocates with an alignment larger than T, and then uses &lt;code&gt;Vec::from_raw_parts&lt;/code&gt; on that allocation to get a &lt;code&gt;Vec&amp;lt;T&amp;gt;&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://doc.rust-lang.org/std/alloc/trait.GlobalAlloc.html#tymethod.dealloc&quot;&gt;&lt;code&gt;GlobalAlloc::dealloc&lt;/code&gt;&lt;/a&gt; requires that the &lt;code&gt;layout&lt;/code&gt; argument must be the same layout that was used to allocate that block of memory.&lt;/p&gt;
 &lt;p&gt;When deallocating, &lt;code&gt;Box&lt;/code&gt; and &lt;code&gt;Vec&lt;/code&gt; may not respect the specified alignment and can cause undefined behavior.&lt;/p&gt;
-
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0018: Vulnerability in remove_dir_all</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0018.html</id><updated>2023-03-04T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2023-0018.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0018: Vulnerability in remove_dir_all"/><published>2023-03-04T12:00:00+00:00</published><summary xml:lang="en">Race Condition Enabling Link Following and Time-of-check Time-of-use (TOCTOU)</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/remove_dir_all/RUSTSEC-2023-0018.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/remove_dir_all/RUSTSEC-2023-0018.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2023-0018
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Race Condition Enabling Link Following and Time-of-check Time-of-use (TOCTOU)&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-02-24&quot;&gt;
-          February 24, 2023
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-03-04&quot;&gt;
-          March  4, 2023
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/remove_dir_all.html&quot;&gt;remove_dir_all&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/remove_dir_all&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/TOCTOU.html&quot;&gt;#TOCTOU&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-mc8h-8q98-g5hr&quot;&gt;GHSA-mc8h-8q98-g5hr&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;a href=&quot;https://github.com/XAMPPRocky/remove_dir_all/commit/7247a8b6ee59fc99bbb69ca6b3ca4bfd8c809ead&quot;&gt;
-          https://github.com/XAMPPRocky/remove_dir_all/commit/7247a8b6ee59fc99bbb69ca6b3ca4bfd8c809ead
-        &lt;/a&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.8.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-    &lt;dl&gt;
-      &lt;dt&gt;Affected Functions&lt;/dt&gt;
-      &lt;dd&gt;Version&lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;remove_dir_all::ensure_empty_dir&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;lt;0.8.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;remove_dir_all::remove_dir_all&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;lt;0.8.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;remove_dir_all::remove_dir_contents&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;lt;0.8.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-    &lt;/dl&gt;
-    
-
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;The remove_dir_all crate is a Rust library that offers additional features over the Rust
-standard library fs::remove_dir_all function.&lt;/p&gt;
-&lt;p&gt;It was possible to trick a privileged process doing a recursive delete in an
-attacker controlled directory into deleting privileged files, on all operating systems.&lt;/p&gt;
-&lt;p&gt;For instance, consider deleting a tree called &apos;etc&apos; in a parent directory
-called &apos;p&apos;. Between calling &lt;code&gt;remove_dir_all(&amp;quot;a&amp;quot;)&lt;/code&gt; and remove_dir_all(&amp;quot;a&amp;quot;)
-actually starting its work, the attacker can move &apos;p&apos; to &apos;p-prime&apos;, and
-replace &apos;p&apos; with a symlink to &apos;/&apos;. Then the privileged process deletes &apos;p/etc&apos;
-which is actually /etc, and now your system is broken. There are some
-mitigations for this exact scenario, such as CWD relative file lookup, but
-they are not guaranteed - any code using absolute paths will not have that
-protection in place.&lt;/p&gt;
-&lt;p&gt;The same attack could be performed at any point in the directory tree being
-deleted: if &apos;a&apos; contains a child directory called &apos;etc&apos;, attacking the
-deletion by replacing &apos;a&apos; with a link is possible.&lt;/p&gt;
-&lt;p&gt;The new code in this release mitigates the attack within the directory tree
-being deleted by using file-handle relative operations: to open &apos;a/etc&apos;, the
-path &apos;etc&apos; relative to &apos;a&apos; is opened, where &apos;a&apos; is represented by a file
-descriptor (Unix) or handle (Windows). With the exception of the entry points
-into the directory deletion logic, this is robust against manipulation of the
-directory hierarchy, and remove_dir_all will only delete files and directories
-contained in the tree it is deleting.&lt;/p&gt;
-&lt;p&gt;The entry path however is a challenge - as described above, there are some
-potential mitigations, but since using them must be done by the calling code,
-it is hard to be confident about the security properties of the path based
-interface.&lt;/p&gt;
-&lt;p&gt;The new extension trait &lt;code&gt;RemoveDir&lt;/code&gt; provides an interface where it is much
-harder to get it wrong.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;somedir.remove_dir_contents(&amp;quot;name-of-child&amp;quot;)&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Callers can then make their own security evaluation about how to securely get
-a directory handle. That is still not particularly obvious, and we&apos;re going to
-follow up with a helper of some sort (probably in the &lt;code&gt;fs_at&lt;/code&gt; crate). Once
-that is available, the path based entry points will get deprecated.&lt;/p&gt;
-&lt;p&gt;In the interim, processes that might run with elevated privileges should
-figure out how to securely identify the directory they are going to delete, to
-avoid the initial race. Pragmatically, other processes should be fine with the
-path based entry points : this is the same interface &lt;code&gt;std::fs::remove_dir_all&lt;/code&gt;
-offers, and an unprivileged process running in an attacker controlled
-directory can&apos;t do anything that the attacker can&apos;t already do.&lt;/p&gt;
 
   &lt;/article&gt;</content></entry></feed>
