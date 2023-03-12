@@ -144,6 +144,114 @@
     &lt;p&gt;&lt;code&gt;Out::from_raw&lt;/code&gt; in affected versions allows writing a value to invalid memory address without requiring &lt;code&gt;unsafe&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;The soundness issue has been addressed by making &lt;code&gt;Out::from_raw&lt;/code&gt; an unsafe function.&lt;/p&gt;
 
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0020: Unsoundness in const-cstr</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0020.html</id><updated>2023-03-12T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2023-0020.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0020: Unsoundness in const-cstr"/><published>2023-03-12T12:00:00+00:00</published><summary xml:lang="en">const-cstr is Unmaintained</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/const-cstr/RUSTSEC-2023-0020.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/const-cstr/RUSTSEC-2023-0020.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2023-0020
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;const-cstr is Unmaintained&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-03-12&quot;&gt;
+          March 12, 2023
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-03-12&quot;&gt;
+          March 12, 2023
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/const-cstr.html&quot;&gt;const-cstr&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/const-cstr&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https://github.com/abonander/const-cstr&quot;&gt;
+          https://github.com/abonander/const-cstr
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Last release was about five years ago.&lt;/p&gt;
+&lt;p&gt;The maintainer(s) have been unreachable to respond to any issues that may or may not include security issues.&lt;/p&gt;
+&lt;p&gt;The repository is now archived and there is no security policy in place to contact the maintainer(s) otherwise.&lt;/p&gt;
+&lt;p&gt;No direct fork exist.&lt;/p&gt;
+&lt;h1&gt;const-cstr is Unsound&lt;/h1&gt;
+&lt;p&gt;The crate violates the safety contract of &lt;a href=&quot;https://doc.rust-lang.org/std/ffi/struct.CStr.html#method.from_bytes_with_nul_unchecked&quot;&gt;ffi::CStr::from_bytes_with_nul_unchecked&lt;/a&gt; used in &lt;code&gt;ConstCStr::as_cstr&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;No interior nul bytes checking is done either by the constructor or the canonical macro to create the &lt;code&gt;ConstCStr&lt;/code&gt;&lt;/p&gt;
+&lt;h1&gt;const-cstr Panic&lt;/h1&gt;
+&lt;p&gt;Additionally the crate may cause runtime panics if statically compiled and ran with any untrusted data that is not nul-terminated.&lt;/p&gt;
+&lt;p&gt;This is however unlikely but the the crate should not be used for untrusted data in context where panic may create a DoS vector.&lt;/p&gt;
+&lt;h2&gt;Possible Alternatives&lt;/h2&gt;
+&lt;p&gt;The below may or may not provide alternative(s)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://docs.rs/const-str/latest/const_str/macro.cstr.html&quot;&gt;const_str::cstr!&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://crates.io/crates/cstr&quot;&gt;cstr::cstr!&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2019-0040: boxfnonce is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2019-0040.html</id><updated>2023-03-12T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2019-0040.html" rel="alternate" type="text/html" title="RUSTSEC-2019-0040: boxfnonce is unmaintained"/><published>2023-03-12T12:00:00+00:00</published><summary xml:lang="en">`boxfnonce` obsolete with release of Rust 1.35.0</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -908,167 +1016,5 @@ is being superseded by the &lt;a href=&quot;https://github.com/dimforge/rapier&q
 &lt;li&gt;&lt;a href=&quot;https://crates.io/crates/html5ever&quot;&gt;html5ever&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://crates.io/crates/xml-rs&quot;&gt;xml-rs&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0017: Unsoundness in maligned</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0017.html</id><updated>2023-03-04T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0017.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0017: Unsoundness in maligned"/><published>2023-03-04T12:00:00+00:00</published><summary xml:lang="en">`maligned::align_first` causes incorrect deallocation</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/maligned/RUSTSEC-2023-0017.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/maligned/RUSTSEC-2023-0017.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2023-0017
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;maligned::align_first&lt;/code&gt; causes incorrect deallocation&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-03-04&quot;&gt;
-          March  4, 2023
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-03-04&quot;&gt;
-          March  4, 2023
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/maligned.html&quot;&gt;maligned&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/maligned&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unsound
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/unsound.html&quot;&gt;#unsound&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/alloc.html&quot;&gt;#alloc&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/align.html&quot;&gt;#align&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;a href=&quot;https://github.com/tylerhawkes/maligned/issues/5&quot;&gt;
-          https://github.com/tylerhawkes/maligned/issues/5
-        &lt;/a&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-    &lt;dl&gt;
-      &lt;dt&gt;Affected Functions&lt;/dt&gt;
-      &lt;dd&gt;Version&lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;maligned::align_first&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;maligned::align_first_boxed&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;maligned::align_first_boxed_cloned&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;maligned::align_first_boxed_default&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-    &lt;/dl&gt;
-    
-
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;&lt;code&gt;maligned::align_first&lt;/code&gt; manually allocates with an alignment larger than T, and then uses &lt;code&gt;Vec::from_raw_parts&lt;/code&gt; on that allocation to get a &lt;code&gt;Vec&amp;lt;T&amp;gt;&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://doc.rust-lang.org/std/alloc/trait.GlobalAlloc.html#tymethod.dealloc&quot;&gt;&lt;code&gt;GlobalAlloc::dealloc&lt;/code&gt;&lt;/a&gt; requires that the &lt;code&gt;layout&lt;/code&gt; argument must be the same layout that was used to allocate that block of memory.&lt;/p&gt;
-&lt;p&gt;When deallocating, &lt;code&gt;Box&lt;/code&gt; and &lt;code&gt;Vec&lt;/code&gt; may not respect the specified alignment and can cause undefined behavior.&lt;/p&gt;
 
   &lt;/article&gt;</content></entry></feed>
