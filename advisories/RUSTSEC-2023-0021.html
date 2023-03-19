@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories with keyword &#x27;NULL-pointer-dereference&#x27; › RustSec Advisory Database</title>
+<title>RUSTSEC-2023-0021: stb_image: NULL pointer derefernce in `stb_image` › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,58 +52,119 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/stb_image/RUSTSEC-2023-0021.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/stb_image/RUSTSEC-2023-0021.md">Edit</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2023-0021
+        
+      </h1>
+      <span class="subtitle"><p>NULL pointer derefernce in <code>stb_image</code></p>
 </span>
-      <h1>Advisories with keyword &#x27;NULL-pointer-dereference&#x27;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2023-03-19">
-    March 19, 2023
-  </time>
-
-  
-  <h3>
     
+
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2023-03-19">
+          March 19, 2023
+        </time>
+      </dd>
+
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2023-03-19">
+          March 19, 2023
+        </time>
         
-    
-    <a href="/advisories/RUSTSEC-2023-0021.html">
-      RUSTSEC-2023-0021: Vulnerability in stb_image
-    </a>
-  </h3>
-  <span><p>NULL pointer derefernce in <code>stb_image</code></p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2020-10-31">
-    October 31, 2020
-  </time>
+      </dd>
 
-  
-  <h3>
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        <a href="/packages/stb_image.html">stb_image</a>
+          (<a href="https://crates.io/crates/stb_image">crates.io</a>)
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        Vulnerability
+        
+      </dd>
+
+      
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/memory-corruption.html">memory-corruption</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/NULL-pointer-dereference.html">#NULL-pointer-dereference</a>
+        
+      </dd>
+      
+
+      
+
+      
+      <dt id="details">Details</dt>
+      <dd>
+        <a href="https://github.com/servo/rust-stb-image/pull/102">
+          https://github.com/servo/rust-stb-image/pull/102
+        </a>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&gt;=0.2.5</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+
+      
+      
+    </dl>
+
     
-      <span class="tag medium">MEDIUM</span>
-      
-    <a href="/advisories/RUSTSEC-2020-0061.html">
-      RUSTSEC-2020-0061: Vulnerability in futures-task
-    </a>
-  </h3>
-  <span><p>futures_task::noop_waker_ref can segfault due to dereferencing a NULL pointer</p>
-</span>
-  
-</li>
-      
-    </ul>
+    
+
+    <h3 id="description">Description</h3>
+    <p>A bug in error handling in the <code>stb_image</code> C library could cause a NULL pointer dereference when attempting to load an invalid or unsupported image file.  This is fixed in version 0.2.5 and later of the <code>stb_image</code> Rust crate, by patching the C code to correctly handle NULL pointers.</p>
+<p>Thank you to GitHub user 0xdd96 for finding and fixing this vulnerability.</p>
+
   </article>
 </main>
