@@ -1,5 +1,111 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2023-03-19T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2023-0021: Vulnerability in stb_image</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0021.html</id><updated>2023-03-19T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0021.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0021: Vulnerability in stb_image"/><published>2023-03-19T12:00:00+00:00</published><summary xml:lang="en">NULL pointer derefernce in `stb_image`</summary><content xml:lang="en" type="html">  &lt;article&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2023-03-22T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2022-0092: Unsoundness in rmp-serde</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0092.html</id><updated>2023-03-22T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2022-0092.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0092: Unsoundness in rmp-serde"/><published>2023-03-22T12:00:00+00:00</published><summary xml:lang="en">`rmp-serde` `Raw` and `RawRef` unsound</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/rmp-serde/RUSTSEC-2022-0092.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/rmp-serde/RUSTSEC-2022-0092.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2022-0092
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;rmp-serde&lt;/code&gt; &lt;code&gt;Raw&lt;/code&gt; and &lt;code&gt;RawRef&lt;/code&gt; unsound&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2022-04-13&quot;&gt;
+          April 13, 2022
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-03-22&quot;&gt;
+          March 22, 2023
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/rmp-serde.html&quot;&gt;rmp-serde&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/rmp-serde&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https://github.com/3Hren/msgpack-rust/issues/305&quot;&gt;
+          https://github.com/3Hren/msgpack-rust/issues/305
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=1.1.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;It was found that &lt;code&gt;Raw::from_utf8&lt;/code&gt; expects valid UTF-8. If invalid UTF-8 is received it can cause the process to crash.&lt;/p&gt;
+
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0021: Vulnerability in stb_image</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0021.html</id><updated>2023-03-19T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0021.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0021: Vulnerability in stb_image"/><published>2023-03-19T12:00:00+00:00</published><summary xml:lang="en">NULL pointer derefernce in `stb_image`</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
           &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/stb_image/RUSTSEC-2023-0021.md&quot;&gt;History&lt;/a&gt; ⋅ 
@@ -885,100 +991,6 @@ is being superseded by the &lt;a href=&quot;https://github.com/dimforge/parry&qu
         
         &lt;a href=&quot;/packages/nphysics3d.html&quot;&gt;nphysics3d&lt;/a&gt;
           (&lt;a href=&quot;https://crates.io/crates/nphysics3d&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unmaintained
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;a href=&quot;https://github.com/dimforge/nphysics&quot;&gt;
-          https://github.com/dimforge/nphysics
-        &lt;/a&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;The maintainer has advised that this crate is passively-maintained and that it
-is being superseded by the &lt;a href=&quot;https://github.com/dimforge/rapier&quot;&gt;Rapier&lt;/a&gt; project.&lt;/p&gt;
-
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2021-0149: nphysics2d is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2021-0149.html</id><updated>2023-03-11T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2021-0149.html" rel="alternate" type="text/html" title="RUSTSEC-2021-0149: nphysics2d is unmaintained"/><published>2023-03-11T12:00:00+00:00</published><summary xml:lang="en">nphysics2d is unmaintained</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/nphysics2d/RUSTSEC-2021-0149.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/nphysics2d/RUSTSEC-2021-0149.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2021-0149
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;nphysics2d is unmaintained&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2021-01-29&quot;&gt;
-          January 29, 2021
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-03-11&quot;&gt;
-          March 11, 2023
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/nphysics2d.html&quot;&gt;nphysics2d&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/nphysics2d&quot;&gt;crates.io&lt;/a&gt;)
         
         
       &lt;/dd&gt;
