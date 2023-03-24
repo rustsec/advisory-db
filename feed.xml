@@ -264,6 +264,141 @@ function &lt;code&gt;X509V3_EXT_nconf&lt;/code&gt;. This function parses all inp
 which can perform arbitrary file reads.&lt;/p&gt;
 &lt;p&gt;Thanks to David Benjamin (Google) for reporting this issue.&lt;/p&gt;
 
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0024: Vulnerability in openssl</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0024.html</id><updated>2023-03-24T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0024.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0024: Vulnerability in openssl"/><published>2023-03-24T12:00:00+00:00</published><summary xml:lang="en">`openssl` `X509Extension::new` and `X509Extension::new_nid` null pointer dereference</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/openssl/RUSTSEC-2023-0024.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/openssl/RUSTSEC-2023-0024.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2023-0024
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;openssl&lt;/code&gt; &lt;code&gt;X509Extension::new&lt;/code&gt; and &lt;code&gt;X509Extension::new_nid&lt;/code&gt; null pointer dereference&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-03-24&quot;&gt;
+          March 24, 2023
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-03-24&quot;&gt;
+          March 24, 2023
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/openssl.html&quot;&gt;openssl&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/openssl&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https://github.com/sfackler/rust-openssl/pull/1854&quot;&gt;
+          https://github.com/sfackler/rust-openssl/pull/1854
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.10.48&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;openssl::x509::X509Extension::new&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;lt;0.10.48, &amp;gt;=0.9.7&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;openssl::x509::X509Extension::new_nid&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;lt;0.10.48, &amp;gt;=0.9.7&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;These functions would crash when the context argument was None with certain extension types.&lt;/p&gt;
+&lt;p&gt;Thanks to David Benjamin (Google) for reporting this issue.&lt;/p&gt;
+
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0092: Unsoundness in rmp-serde</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0092.html</id><updated>2023-03-22T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2022-0092.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0092: Unsoundness in rmp-serde"/><published>2023-03-22T12:00:00+00:00</published><summary xml:lang="en">`rmp-serde` `Raw` and `RawRef` unsound</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -1010,114 +1145,6 @@ is being superseded by the &lt;a href=&quot;https://github.com/dimforge/parry&qu
 &lt;p&gt;These may or may not be suitable alternatives and have not been vetted in any way;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://crates.io/crates/mach2&quot;&gt;mach2&lt;/a&gt; - direct fork&lt;/li&gt;
-&lt;/ul&gt;
-
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0020: Unsoundness in const-cstr</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0020.html</id><updated>2023-03-12T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2023-0020.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0020: Unsoundness in const-cstr"/><published>2023-03-12T12:00:00+00:00</published><summary xml:lang="en">const-cstr is Unmaintained</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/const-cstr/RUSTSEC-2023-0020.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/const-cstr/RUSTSEC-2023-0020.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2023-0020
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;const-cstr is Unmaintained&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-03-12&quot;&gt;
-          March 12, 2023
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-03-12&quot;&gt;
-          March 12, 2023
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/const-cstr.html&quot;&gt;const-cstr&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/const-cstr&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unsound
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;a href=&quot;https://github.com/abonander/const-cstr&quot;&gt;
-          https://github.com/abonander/const-cstr
-        &lt;/a&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;Last release was about five years ago.&lt;/p&gt;
-&lt;p&gt;The maintainer(s) have been unreachable to respond to any issues that may or may not include security issues.&lt;/p&gt;
-&lt;p&gt;The repository is now archived and there is no security policy in place to contact the maintainer(s) otherwise.&lt;/p&gt;
-&lt;p&gt;No direct fork exist.&lt;/p&gt;
-&lt;h1&gt;const-cstr is Unsound&lt;/h1&gt;
-&lt;p&gt;The crate violates the safety contract of &lt;a href=&quot;https://doc.rust-lang.org/std/ffi/struct.CStr.html#method.from_bytes_with_nul_unchecked&quot;&gt;ffi::CStr::from_bytes_with_nul_unchecked&lt;/a&gt; used in &lt;code&gt;ConstCStr::as_cstr&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;No interior nul bytes checking is done either by the constructor or the canonical macro to create the &lt;code&gt;ConstCStr&lt;/code&gt;&lt;/p&gt;
-&lt;h1&gt;const-cstr Panic&lt;/h1&gt;
-&lt;p&gt;Additionally the crate may cause runtime panics if statically compiled and ran with any untrusted data that is not nul-terminated.&lt;/p&gt;
-&lt;p&gt;This is however unlikely but the the crate should not be used for untrusted data in context where panic may create a DoS vector.&lt;/p&gt;
-&lt;h2&gt;Possible Alternatives&lt;/h2&gt;
-&lt;p&gt;The below may or may not provide alternative(s)&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://docs.rs/const-str/latest/const_str/macro.cstr.html&quot;&gt;const_str::cstr!&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://crates.io/crates/cstr&quot;&gt;cstr::cstr!&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
   &lt;/article&gt;</content></entry></feed>
