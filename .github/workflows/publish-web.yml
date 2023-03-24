@@ -14,9 +14,12 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: ~/.cargo/bin
-          key: rustsec-admin-v0.8.5f
+          key: rustsec-admin-v0.8.5
       - run: |
-          cargo install rustsec-admin --vers 0.8.5
+          VERSION="0.8.5"
+          if ! ( rustsec-admin --version | grep -q "$VERSION" )
+            cargo install rustsec-admin --force --vers "$VERSION"
+          fi
           rustsec-admin web .
           git config user.name github-actions
           git config user.email github-actions@github.com
