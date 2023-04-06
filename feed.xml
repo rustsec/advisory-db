@@ -1,5 +1,151 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2023-04-03T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2023-0031: Unsoundness in spin</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0031.html</id><updated>2023-04-03T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2023-0031.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0031: Unsoundness in spin"/><published>2023-04-03T12:00:00+00:00</published><summary xml:lang="en">Initialisation failure in `Once::try_call_once` can lead to undefined behaviour for other initialisers</summary><content xml:lang="en" type="html">  &lt;article&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2023-04-06T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2023-0032: Unsoundness in ntru</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0032.html</id><updated>2023-04-06T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0032.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0032: Unsoundness in ntru"/><published>2023-04-06T12:00:00+00:00</published><summary xml:lang="en">Unsound FFI: Wrong API usage causes write past allocated area</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/ntru/RUSTSEC-2023-0032.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/ntru/RUSTSEC-2023-0032.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2023-0032
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Unsound FFI: Wrong API usage causes write past allocated area&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-03-22&quot;&gt;
+          March 22, 2023
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-04-06&quot;&gt;
+          April  6, 2023
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/ntru.html&quot;&gt;ntru&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/ntru&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/ffi.html&quot;&gt;#ffi&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/buffer-overflow.html&quot;&gt;#buffer-overflow&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https://github.com/FrinkGlobal/ntru-rs/issues/8&quot;&gt;
+          https://github.com/FrinkGlobal/ntru-rs/issues/8
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;ntru::types::PrivateKey::export&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.4.3&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;ntru::types::PublicKey::export&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.4.3&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;The following usage causes undefined behavior.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-rust&quot;&gt;let kp: ntru::types::KeyPair = …;
+kp.get_public().export(Default::default())
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;When compiled with debug assertions, the code above will trigger a &lt;code&gt;attempt to subtract with overflow&lt;/code&gt; panic before UB occurs.
+Other mistakes (e.g. using &lt;code&gt;EncParams&lt;/code&gt; from a different key) may always trigger UB.&lt;/p&gt;
+&lt;p&gt;Likely, older versions of this crate are also affected, but have not been tested.&lt;/p&gt;
+
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0031: Unsoundness in spin</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0031.html</id><updated>2023-04-03T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2023-0031.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0031: Unsoundness in spin"/><published>2023-04-03T12:00:00+00:00</published><summary xml:lang="en">Initialisation failure in `Once::try_call_once` can lead to undefined behaviour for other initialisers</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
           &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/spin/RUSTSEC-2023-0031.md&quot;&gt;History&lt;/a&gt; ⋅ 
@@ -1150,100 +1296,5 @@ not modifying the value.&lt;/p&gt;
 function &lt;code&gt;X509V3_EXT_nconf&lt;/code&gt;. This function parses all input using an OpenSSL mini-language
 which can perform arbitrary file reads.&lt;/p&gt;
 &lt;p&gt;Thanks to David Benjamin (Google) for reporting this issue.&lt;/p&gt;
-
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0026: git-path is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0026.html</id><updated>2023-03-24T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2023-0026.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0026: git-path is unmaintained"/><published>2023-03-24T12:00:00+00:00</published><summary xml:lang="en">Gitoxide has renamed its crates.</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/git-path/RUSTSEC-2023-0026.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/git-path/RUSTSEC-2023-0026.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2023-0026
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Gitoxide has renamed its crates.&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-03-14&quot;&gt;
-          March 14, 2023
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-03-24&quot;&gt;
-          March 24, 2023
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/git-path.html&quot;&gt;git-path&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/git-path&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unmaintained
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;a href=&quot;https://github.com/Byron/gitoxide/pull/741&quot;&gt;
-          https://github.com/Byron/gitoxide/pull/741
-        &lt;/a&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;All crates in the gitoxide project have been renamed from git-&lt;!-- raw HTML omitted --&gt; to
-gix-&lt;!-- raw HTML omitted --&gt;. The git- prefixed crates are no longer being updated. Switch
-to using gix-path to continue receiving updates.&lt;/p&gt;
 
   &lt;/article&gt;</content></entry></feed>
