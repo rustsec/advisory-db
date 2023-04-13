@@ -104,10 +104,13 @@
     
 
     &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;Affected versions of borsh cause undefined behaviour when zero-sized-types (ZST) are parsed and the Copy/Clone traits are not implemented/derived.
-For instance if 1000 instances of a ZST are deserialized, and the ZST is not copy (this can be achieved through a a singleton),
-then accessing/writing to deserialized data will cause a segmentation fault.&lt;/p&gt;
-&lt;p&gt;There is currently no way for borsh to read data without also providing a Rust type. Therefore, it there are not ZST used for serialization, then you are not affected by this issue.&lt;/p&gt;
+    &lt;p&gt;Affected versions of borsh cause undefined behavior when zero-sized-types (ZST)
+are parsed and the Copy/Clone traits are not implemented/derived.
+For instance if 1000 instances of a ZST are deserialized, and the ZST is not copy
+(this can be achieved through a singleton), then accessing/writing to deserialized
+data will cause a segmentation fault.&lt;/p&gt;
+&lt;p&gt;There is currently no way for borsh to read data without also providing a Rust type.
+Therefore, if not ZST are used for serialization, then you are not affected by this issue.&lt;/p&gt;
 
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0032: Unsoundness in ntru</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0032.html</id><updated>2023-04-06T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0032.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0032: Unsoundness in ntru"/><published>2023-04-06T12:00:00+00:00</published><summary xml:lang="en">Unsound FFI: Wrong API usage causes write past allocated area</summary><content xml:lang="en" type="html">  &lt;article&gt;
     

@@ -158,10 +158,13 @@
     
 
     <h3 id="description">Description</h3>
-    <p>Affected versions of borsh cause undefined behaviour when zero-sized-types (ZST) are parsed and the Copy/Clone traits are not implemented/derived.
-For instance if 1000 instances of a ZST are deserialized, and the ZST is not copy (this can be achieved through a a singleton),
-then accessing/writing to deserialized data will cause a segmentation fault.</p>
-<p>There is currently no way for borsh to read data without also providing a Rust type. Therefore, it there are not ZST used for serialization, then you are not affected by this issue.</p>
+    <p>Affected versions of borsh cause undefined behavior when zero-sized-types (ZST)
+are parsed and the Copy/Clone traits are not implemented/derived.
+For instance if 1000 instances of a ZST are deserialized, and the ZST is not copy
+(this can be achieved through a singleton), then accessing/writing to deserialized
+data will cause a segmentation fault.</p>
+<p>There is currently no way for borsh to read data without also providing a Rust type.
+Therefore, if not ZST are used for serialization, then you are not affected by this issue.</p>
 
   </article>
 </main>
