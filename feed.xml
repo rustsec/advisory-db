@@ -1,5 +1,136 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2023-04-20T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2023-0034: Vulnerability in h2</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0034.html</id><updated>2023-04-20T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0034.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0034: Vulnerability in h2"/><published>2023-04-20T12:00:00+00:00</published><summary xml:lang="en">Resource exhaustion vulnerability in h2 may lead to Denial of Service (DoS)</summary><content xml:lang="en" type="html">  &lt;article&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2023-04-23T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2023-0035: Unsoundness in enumflags2</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0035.html</id><updated>2023-04-23T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2023-0035.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0035: Unsoundness in enumflags2"/><published>2023-04-23T12:00:00+00:00</published><summary xml:lang="en">Adverserial use of `make_bitflags!` macro can cause undefined behavior</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/enumflags2/RUSTSEC-2023-0035.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/enumflags2/RUSTSEC-2023-0035.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2023-0035
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Adverserial use of &lt;code&gt;make_bitflags!&lt;/code&gt; macro can cause undefined behavior&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-04-17&quot;&gt;
+          April 17, 2023
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-04-23&quot;&gt;
+          April 23, 2023
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/enumflags2.html&quot;&gt;enumflags2&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/enumflags2&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https://github.com/meithecatte/enumflags2/releases/tag/v0.7.7&quot;&gt;
+          https://github.com/meithecatte/enumflags2/releases/tag/v0.7.7
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.7.7&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;lt;0.7.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;The macro relied on an expression of the form &lt;code&gt;Enum::Variant&lt;/code&gt; always being a
+variant of the enum. However, it may also be an associated integer constant, in
+which case there&apos;s no guarantee that the value of said constant consists only of
+bits valid for this bitflag type.&lt;/p&gt;
+&lt;p&gt;Thus, code like this could create an invalid &lt;code&gt;BitFlags&amp;lt;Test&amp;gt;&lt;/code&gt;, which would cause
+iterating over it to trigger undefined behavior. As the debug formatter
+internally iterates over the value, it is also affected.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-rust&quot;&gt;use enumflags2::{bitflags, make_bitflags};
+
+#[bitflags]
+#[repr(u8)]
+#[derive(Copy, Clone, Debug)]
+enum Test {
+    A = 1,
+    B = 2,
+}
+
+impl Test {
+    const C: u8 = 69;
+}
+
+fn main() {
+    let x = make_bitflags!(Test::{C});
+    // printing or iterating over x is UB
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0034: Vulnerability in h2</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0034.html</id><updated>2023-04-20T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0034.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0034: Vulnerability in h2"/><published>2023-04-20T12:00:00+00:00</published><summary xml:lang="en">Resource exhaustion vulnerability in h2 may lead to Denial of Service (DoS)</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
           &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/h2/RUSTSEC-2023-0034.md&quot;&gt;History&lt;/a&gt; ⋅ 
@@ -1145,133 +1276,5 @@ In the previous step the &lt;code&gt;host&lt;/code&gt; was set to the common nam
 attacker-controlled value it was given&lt;/li&gt;
 &lt;li&gt;The client has been fooled by the MitM proxy into accepting the attacker-controlled certificate&lt;/li&gt;
 &lt;/ol&gt;
-
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0022: Vulnerability in openssl</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0022.html</id><updated>2023-03-24T12:00:00+00:00</updated><category term="thread-safety"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0022.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0022: Vulnerability in openssl"/><published>2023-03-24T12:00:00+00:00</published><summary xml:lang="en">`openssl` `X509NameBuilder::build` returned object is not thread safe</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/openssl/RUSTSEC-2023-0022.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/openssl/RUSTSEC-2023-0022.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2023-0022
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;openssl&lt;/code&gt; &lt;code&gt;X509NameBuilder::build&lt;/code&gt; returned object is not thread safe&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-03-24&quot;&gt;
-          March 24, 2023
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-03-24&quot;&gt;
-          March 24, 2023
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/openssl.html&quot;&gt;openssl&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/openssl&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/thread-safety.html&quot;&gt;thread-safety&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;a href=&quot;https://github.com/sfackler/rust-openssl/pull/1854&quot;&gt;
-          https://github.com/sfackler/rust-openssl/pull/1854
-        &lt;/a&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.10.48&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-    &lt;dl&gt;
-      &lt;dt&gt;Affected Functions&lt;/dt&gt;
-      &lt;dd&gt;Version&lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;openssl::x509::X509NameBuilder::build&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;lt;0.10.48, &amp;gt;=0.9.7&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-    &lt;/dl&gt;
-    
-
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;OpenSSL has a &lt;code&gt;modified&lt;/code&gt; bit that it can set on on &lt;code&gt;X509_NAME&lt;/code&gt; objects. If this
-bit is set then the object is not thread-safe even when it appears the code is
-not modifying the value.&lt;/p&gt;
-&lt;p&gt;Thanks to David Benjamin (Google) for reporting this issue.&lt;/p&gt;
 
   &lt;/article&gt;</content></entry></feed>
