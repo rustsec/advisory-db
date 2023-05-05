@@ -9,6 +9,12 @@
   "related": [],
   "summary": "panic safety: double drop or uninitialized drop of T upon panic",
   "details": "Affected versions of this crate did not guard against potential panics that may happen from user-provided functions `T::default()` and `T::drop()`.\n\nPanic within `T::default()` leads to dropping uninitialized `T`, when it is invoked from `common::Slice::<T, H>::new()`.\nPanic within `T::drop()` leads to double drop of `T`, when it is invoked either from `common::SliceVec::<T, H>::resize_with()` or `common::SliceVec::<T, H>::resize()`\n\nEither case causes memory corruption in the heap memory.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

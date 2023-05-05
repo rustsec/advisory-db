@@ -8,6 +8,12 @@
   "related": [],
   "summary": "Cache<K>: Send/Sync impls needs trait bounds on `K`",
   "details": "Affected versions of this crate unconditionally implement Send/Sync for `Cache<K>`.\nThis allows users to insert `K` that is not Send or not Sync.\n\nThis allows users to create data races by using non-Send types like `Arc<Cell<T>>` or `Rc<T>` as `K` in `Cache<K>`. It is also possible to create data races by using types like `Cell<T>` or `RefCell<T>` (types that are `Send` but not `Sync`).\nSuch data races can lead to memory corruption.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

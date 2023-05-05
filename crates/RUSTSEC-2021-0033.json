@@ -9,6 +9,12 @@
   "related": [],
   "summary": "push_cloned can drop uninitialized memory or double free on panic",
   "details": "Affected versions of `stack_dst` used a `push_inner` function that increased\nthe internal length of the array and then called `val.clone()`.\n\nIf the `val.clone()` call panics, the stack could drop an already dropped\nelement or drop uninitialized memory.\n\nThis issue was fixed in `2a4d538` by increasing the length of the array after\nelements are cloned.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

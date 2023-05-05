@@ -8,6 +8,12 @@
   "related": [],
   "summary": "Improper `Sync` implementation on `FuturesUnordered` in futures-utils can cause data corruption",
   "details": "Affected versions of the crate had an unsound `Sync` implementation on the `FuturesUnordered` structure, which used a `Cell` for\ninterior mutability without any code to handle synchronized access to the underlying task list's length and head safely.\n\nThis could of lead to data corruption since two threads modifying the list at once could see incorrect values due to the lack\nof access synchronization.\n\nThe issue was fixed by adding access synchronization code around insertion of tasks into the list.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

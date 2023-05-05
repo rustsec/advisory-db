@@ -8,6 +8,12 @@
   "related": [],
   "summary": "ImageChunkMut needs bounds on its Send and Sync traits",
   "details": "In the affected versions of this crate, `ImageChunkMut<'_, T>` unconditionally implements `Send` and `Sync`, allowing to create data races.\n\nThis can result in a memory corruption or undefined behavior when non thread-safe types are moved and referenced across thread boundaries.\n\nThe flaw was corrected in commit e7fb2f5 by adding `T: Send` bound to the `Send` impl and adding `T: Sync` bound to the `Sync` impl.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

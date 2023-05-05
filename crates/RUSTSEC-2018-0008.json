@@ -8,6 +8,12 @@
   "related": [],
   "summary": "Bug in SliceDeque::move_head_unchecked allows read of corrupted memory",
   "details": "Affected versions of this crate did not properly update the\nhead and tail of the deque when inserting and removing elements from the front\nif, before insertion or removal, the tail of the deque was in the mirrored\nmemory region, and if, after insertion or removal, the head of the deque is\nexactly at the beginning of the mirrored memory region.\n\nAn attacker that controls both element insertion and removal into the deque\ncould put it in a corrupted state. Once the deque enters such an state, its head\nand tail are corrupted, but in bounds of the allocated memory. This can result\nin partial reads and writes, reads of uninitialized memory, reads of memory\ncontaining previously dropped objects, etc. An attacker could exploit this to\nalter program execution.\n\nThe flaw was corrected by properly updating the head and tail of the deque in\nthis case.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

@@ -9,6 +9,7 @@
   "related": [],
   "summary": "Panic due to improper UTF-8 indexing",
   "details": "When parsing untrusted rulex expressions, rulex may panic, possibly enabling\na Denial of Service attack. This happens when the expression contains a multi-\nbyte UTF-8 code point in a string literal or after a backslash, because rulex\ntries to slice into the code point and panics as a result.\n\nThe flaw was corrected in commits `fac6d58b25` and `330b3534e7` by using\n`len_utf8()` to derive character width in bytes instead of assuming ASCII\nencoding of 1 byte per char.",
+  "severity": [],
   "affected": [
     {
       "package": {

@@ -8,6 +8,12 @@
   "related": [],
   "summary": "`OCSP_basic_verify` may incorrectly verify the response signing certificate",
   "details": "The function `OCSP_basic_verify` verifies the signer certificate on an OCSP\nresponse. In the case where the (non-default) flag OCSP_NOCHECKS is used then\nthe response will be positive (meaning a successful verification) even in the\ncase where the response signing certificate fails to verify.\n\nIt is anticipated that most users of `OCSP_basic_verify` will not use the\nOCSP_NOCHECKS flag. In this case the `OCSP_basic_verify` function will return\na negative value (indicating a fatal error) in the case of a certificate\nverification failure. The normal expected return value in this case would be 0.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N"
+    }
+  ],
   "affected": [
     {
       "package": {

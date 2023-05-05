@@ -8,6 +8,12 @@
   "related": [],
   "summary": "`Sectors::get` accesses unclaimed/uninitialized memory",
   "details": "Affected versions of this crate arbitrarily calls `Vec::set_len` to increase length of a vector without claiming more memory for the vector. Affected versions of this crate\nalso calls user-provided `Read` on the uninitialized memory of the vector that was\nextended with `Vec::set_len`.\n\nThis can overwrite active entities in adjacent heap memory and seems to be a major security issue. Also, calling user-provided `Read` on uninitialized memory is defined as UB in Rust.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

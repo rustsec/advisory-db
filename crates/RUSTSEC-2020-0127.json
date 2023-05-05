@@ -8,6 +8,12 @@
   "related": [],
   "summary": "SyncRef's clone() and debug() allow data races",
   "details": "Affected versions of this crate unconditionally implement `Sync` for `SyncRef<T>`.\nThis definition allows data races if `&T` is accessible through `&SyncRef`.\n\n`SyncRef<T>` derives `Clone` and `Debug`, and the default implementations of those traits access `&T` by invoking `T::clone()` & `T::fmt()`. It is possible to create data races & undefined behavior by concurrently invoking `SyncRef<T>::clone()` or `SyncRef<T>::fmt()` from multiple threads with `T: !Sync`.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

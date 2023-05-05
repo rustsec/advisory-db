@@ -8,6 +8,12 @@
   "related": [],
   "summary": "Insufficient size checks in outgoing buffer in ws allows remote attacker to run the process out of memory",
   "details": "Affected versions of this crate did not properly check and cap the growth of the outgoing buffer.\n\nThis allows a remote attacker to take down the process by growing the buffer of their (single) connection until the process runs out of memory it can allocate and is killed.\n\nThe flaw was corrected in the [`parity-ws` fork](https://crates.io/crates/parity-ws) (>=0.10.0) by [disconnecting a client when the buffer runs full](https://github.com/housleyjk/ws-rs/pull/328).",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

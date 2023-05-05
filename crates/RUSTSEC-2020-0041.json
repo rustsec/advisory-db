@@ -13,6 +13,12 @@
   "related": [],
   "summary": "Multiple soundness issues in Chunk and InlineArray",
   "details": "Chunk:\n\n* Array size is not checked when constructed with `unit()` and `pair()`.\n* Array size is not checked when constructed with `From<InlineArray<A, T>>`.\n* `Clone` and `insert_from` are not panic-safe; A panicking iterator causes memory safety issues with them.\n\nInlineArray:\n\n* Generates unaligned references for types with a large alignment requirement.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

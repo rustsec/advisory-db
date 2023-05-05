@@ -6,6 +6,7 @@
   "related": [],
   "summary": "`Read` on uninitialized buffer may cause UB ('tectonic_xdv' crate)",
   "details": "Affected versions of this crate passes an uninitialized buffer to a user-provided `Read` implementation.\n\nArbitrary `Read` implementations can read from the uninitialized buffer (memory exposure) and also can return incorrect number of bytes written to the buffer. Reading from uninitialized memory produces undefined values that can quickly invoke undefined behavior.\n\nThe problem was fixed in commit `cdff034` by zero-initializing the buffer before passing it to a user-provided `Read` implementation.",
+  "severity": [],
   "affected": [
     {
       "package": {

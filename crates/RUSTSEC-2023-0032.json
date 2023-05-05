@@ -6,6 +6,7 @@
   "related": [],
   "summary": "Unsound FFI: Wrong API usage causes write past allocated area",
   "details": "The following usage causes undefined behavior.\n```rust\nlet kp: ntru::types::KeyPair = …;\nkp.get_public().export(Default::default())\n```\n\nWhen compiled with debug assertions, the code above will trigger a `attempt to subtract with overflow` panic before UB occurs.\nOther mistakes (e.g. using `EncParams` from a different key) may always trigger UB.\n\nLikely, older versions of this crate are also affected, but have not been tested.",
+  "severity": [],
   "affected": [
     {
       "package": {

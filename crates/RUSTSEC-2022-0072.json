@@ -6,6 +6,7 @@
   "related": [],
   "summary": "Location header incorporates user input, allowing open redirect",
   "details": "When `hyper-staticfile` performs a redirect for a directory request (e.g. a\nrequest for `/dir` that redirects to `/dir/`), the `Location` header value was\nderived from user input (the request path), simply appending a slash. The\nintent was to perform an origin-relative redirect, but specific inputs\nallowed performing a scheme-relative redirect instead.\n\nAn attacker could craft a special URL that would appear to be for the correct\ndomain, but immediately redirects to a malicious domain. Such a URL can benefit\nphishing attacks, for example an innocent looking link in an email.",
+  "severity": [],
   "affected": [
     {
       "package": {

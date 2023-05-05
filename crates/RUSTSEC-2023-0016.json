@@ -6,6 +6,7 @@
   "related": [],
   "summary": "Possible out-of-bounds read in release mode",
   "details": "Affected versions of this crate were using a debug assertion to validate the\n`last` parameter of `partial_sort()`. This would allow invalid inputs to cause\nan out-of-bounds read instead of immediately panicking, when compiled without\ndebug assertions.\n\nAll writes are bounds-checked, so the out-of-bounds memory access is read-only.\nThis also means that the first attempted out-of-bounds write will panic,\nlimiting the possible reads.\n\nThe accessible region is further limited by an initial bounds-checked read\nat `(last / 2) - 1`, i.e., it is proportional to the size of the vector.\n\nThis bug has been fixed in v0.2.0.",
+  "severity": [],
   "affected": [
     {
       "package": {

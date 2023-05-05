@@ -8,6 +8,12 @@
   "related": [],
   "summary": "ReadTicket and WriteTicket should only be sendable when T is Send",
   "details": "Affected versions of this crate unconditionally implemented `Send` for `ReadTicket<T>` & `WriteTicket<T>`.\nThis allows to send non-Send `T` to other threads.\n\nThis can allows creating data races by cloning types with internal mutability and sending them to other threads (as `T` of `ReadTicket<T>`/`WriteTicket<T>`). Such data races can cause memory corruption or other undefined behavior.\n\nThe flaw was corrected in commit a986a93 by adding `T: Send` bounds to `Send` impls of `ReadTicket<T>`/`WriteTicket<T>`.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

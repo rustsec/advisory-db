@@ -9,6 +9,7 @@
   "related": [],
   "summary": "Resource exhaustion vulnerability in h2 may lead to Denial of Service (DoS)",
   "details": "If an attacker is able to flood the network with pairs of `HEADERS`/`RST_STREAM` frames, such that the `h2` application is not able to accept them faster than the bytes are received, the pending accept queue can grow in memory usage. Being able to do this consistently can result in excessive memory use, and eventually trigger Out Of Memory.\n\nThis flaw is corrected in [hyperium/h2#668](https://github.com/hyperium/h2/pull/668), which restricts remote reset stream count by default.",
+  "severity": [],
   "affected": [
     {
       "package": {

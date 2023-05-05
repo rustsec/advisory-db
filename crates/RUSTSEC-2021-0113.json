@@ -6,6 +6,7 @@
   "related": [],
   "summary": "AtomicBucket<T> unconditionally implements Send/Sync",
   "details": "In the affected versions of the crate, `AtomicBucket<T>` unconditionally implements `Send`/`Sync` traits. Therefore, users can create a data race to the inner\n`T: !Sync` by using the `AtomicBucket::data_with()` API.\nSuch data races can potentially cause memory corruption or other undefined behavior.\n\nThe flaw was fixed in commit 8e6daab by adding appropriate Send/Sync bounds to the Send/Sync impl of struct `Block<T>` (which is a data type contained inside `AtomicBucket<T>`).",
+  "severity": [],
   "affected": [
     {
       "package": {

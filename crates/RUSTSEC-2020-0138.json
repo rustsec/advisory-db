@@ -8,6 +8,12 @@
   "related": [],
   "summary": "ReaderResult should be bounded by Sync",
   "details": "Affected versions of this crate implements `Sync` for `ReaderResult<T, E>` with the trait bound `T: Send, E: Send`.\n\nSince matching on the public enum `ReaderResult<T, E>` provides access to `&T` & `&E`,\nallowing data race to a non-Sync type `T` or `E`.\nThis can result in a memory corruption when multiple threads concurrently access `&T` or `&E`.\n\nSuggested fix for the bug is change the trait bounds imposed on `T` & `E` to be `T: Sync, E: Sync`.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

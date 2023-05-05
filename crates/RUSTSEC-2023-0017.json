@@ -6,6 +6,7 @@
   "related": [],
   "summary": "`maligned::align_first` causes incorrect deallocation",
   "details": "`maligned::align_first` manually allocates with an alignment larger than T, and then uses `Vec::from_raw_parts` on that allocation to get a `Vec<T>`.\n\n[`GlobalAlloc::dealloc`](https://doc.rust-lang.org/std/alloc/trait.GlobalAlloc.html#tymethod.dealloc) requires that the `layout` argument must be the same layout that was used to allocate that block of memory.\n\nWhen deallocating, `Box` and `Vec` may not respect the specified alignment and can cause undefined behavior.",
+  "severity": [],
   "affected": [
     {
       "package": {

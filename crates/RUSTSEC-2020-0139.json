@@ -8,6 +8,12 @@
   "related": [],
   "summary": "dces' World type can cause data races",
   "details": "The `World` type in `dces` is marked as `Send` without bounds on its\n`EntityStore` and `ComponentStore`.\n\nThis allows non-thread safe `EntityStore` and `ComponentStore`s to be sent\nacross threads and cause data races.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

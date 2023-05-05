@@ -8,6 +8,12 @@
   "related": [],
   "summary": "Contents of uninitialized memory exposed in DeflateOutput's AsyncRead implementation",
   "details": "Affected versions of this crate passes an uninitialized buffer to a user-provided trait function `AsyncRead::poll_read()`.\n\nArbitrary `AsyncRead::poll_read()` implementations can read from the uninitialized buffer (memory exposure) and also can return incorrect number of bytes written to the buffer.\nReading from uninitialized memory produces undefined values that can quickly invoke undefined behavior.\n\nThe flaw was fixed in commit 5ba266a by ensuring the newly allocated part of the buffer is zero-initialized before passing it to a user-provided `AsyncRead::poll_read()`.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

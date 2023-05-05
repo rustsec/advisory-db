@@ -8,6 +8,12 @@
   "related": [],
   "summary": "Null pointer deref in `X509_issuer_and_serial_hash()`",
   "details": "The OpenSSL public API function `X509_issuer_and_serial_hash()` attempts to\ncreate a unique hash value based on the issuer and serial number data contained\nwithin an X509 certificate. However it fails to correctly handle any errors\nthat may occur while parsing the issuer field (which might occur if the issuer\nfield is maliciously constructed). This may subsequently result in a NULL\npointer deref and a crash leading to a potential denial of service attack.\n\nThe function `X509_issuer_and_serial_hash()` is never directly called by OpenSSL\nitself so applications are only vulnerable if they use this function directly\nand they use it on certificates that may have been obtained from untrusted\nsources.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

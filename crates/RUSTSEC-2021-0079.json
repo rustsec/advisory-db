@@ -9,6 +9,12 @@
   "related": [],
   "summary": "Integer overflow in `hyper`'s parsing of the `Transfer-Encoding` header leads to data loss",
   "details": "When decoding chunk sizes that are too large, `hyper`'s code would encounter an integer overflow. Depending on the situation,\nthis could lead to data loss from an incorrect total size, or in rarer cases, a request smuggling attack.\n\nTo be vulnerable, you must be using `hyper` for any HTTP/1 purpose, including as a client or server, and consumers must send\nrequests or responses that specify a chunk size greater than 18 exabytes. For a possible request smuggling attack to be possible,\nany upstream proxies must accept a chunk size greater than 64 bits.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

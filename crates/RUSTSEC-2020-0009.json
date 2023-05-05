@@ -8,6 +8,12 @@
   "related": [],
   "summary": "`read_scalar` and `read_scalar_at` allow transmuting values without `unsafe` blocks",
   "details": "The `read_scalar` and `read_scalar_at` functions are unsound\nbecause they allow transmuting values without `unsafe` blocks.\n\nThe following example shows how to create a dangling reference:\n\n```\nfn main() {\n    #[derive(Copy, Clone, PartialEq, Debug)]\n    struct S(&'static str);\n    impl flatbuffers::EndianScalar for S {\n        fn to_little_endian(self) -> Self { self }\n        fn from_little_endian(self) -> Self { self }\n    }\n    println!(\"{:?}\", flatbuffers::read_scalar::<S>(&[1; std::mem::size_of::<S>()]));\n}\n```",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

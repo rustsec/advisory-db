@@ -6,6 +6,7 @@
   "related": [],
   "summary": "Deserialization functions pass uninitialized memory to user-provided Read",
   "details": "Affected versions of this crate passed an uninitialized buffer to a\nuser-provided `Read` instance in:\n\n* `deserialize_binary`\n* `deserialize_string`\n* `deserialize_extension_others`\n* `deserialize_string_primitive`\n\nThis can result in safe `Read` implementations reading from the uninitialized\nbuffer leading to undefined behavior.",
+  "severity": [],
   "affected": [
     {
       "package": {

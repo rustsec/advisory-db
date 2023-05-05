@@ -9,6 +9,7 @@
   "related": [],
   "summary": "out-of-bounds read possible when setting list-of-pointers",
   "details": "If a message consumer expects data\nof type \"list of pointers\",\nand if the consumer performs certain specific actions on such data,\nthen a message producer can cause the consumer to read out-of-bounds memory.\nThis could trigger a process crash in the consumer,\nor in some cases could allow exfiltration of private in-memory data.\n\nThe C++ Cap'n Proto library is also affected by this bug.\nSee the [advisory](https://github.com/capnproto/capnproto/tree/master/security-advisories/2022-11-30-0-pointer-list-bounds.md)\non the main Cap'n Proto repo for a succinct description of\nthe exact circumstances in which the problem can arise.",
+  "severity": [],
   "affected": [
     {
       "package": {

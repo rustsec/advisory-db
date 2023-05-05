@@ -6,6 +6,7 @@
   "related": [],
   "summary": " Invalid use of `mem::uninitialized` causes `use-of-uninitialized-value`",
   "details": "The compression and decompression function used `mem:uninitialized`\nto create an array of uninitialized values, to later write values into it.\nThis later leads to reads from uninitialized memory.\n\nThe flaw was corrected in commit b633bf265e41c60dfce3be7eac4e4dd5e18d06cf\nby using a heap-allocated `Vec` and removing out use of `mem::uninitialized`.\nThe fix was released in v0.3.2 and v1.0.0\n\nSubsequently the crate was deprecated and its use is discouraged.",
+  "severity": [],
   "affected": [
     {
       "package": {

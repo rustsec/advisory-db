@@ -8,6 +8,12 @@
   "related": [],
   "summary": "Soundness issue with base::Error",
   "details": "`base::Error` type contains public field named `ptr`.\nWith this definition, it is possible to create a `base::Error` with an invalid pointer and trigger memory safety errors\nsuch as use-after-free or double-free with safe Rust.\n\nThe users of `xcb` crate are advised not to manipulate the field.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

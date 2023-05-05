@@ -8,6 +8,12 @@
   "related": [],
   "summary": "MsQueue and SegQueue suffer from double-free",
   "details": "Even if an element is popped from a queue, crossbeam would run its\ndestructor inside the epoch-based garbage collector. This is a source\nof double frees.\n\nThe flaw was corrected by wrapping elements inside queues in a\n`ManuallyDrop`.\n\nThanks to @c0gent for reporting the issue.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

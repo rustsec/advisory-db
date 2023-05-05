@@ -8,6 +8,12 @@
   "related": [],
   "summary": "SyncChannel<T> can move 'T: !Send' to other threads",
   "details": "Affected versions of this crate unconditionally implement Send/Sync for `SyncChannel<T>`.\n`SyncChannel<T>` doesn't provide access to `&T` but merely serves as a channel that consumes and returns owned `T`.\n\nUsers can create UB in safe Rust by sending `T: !Send` to other threads with `SyncChannel::send/recv` APIs. Using `T = Arc<Cell<_>` allows to create data races (which can lead to memory corruption), and using `T = MutexGuard<T>` allows to unlock a mutex from a thread that didn't lock the mutex.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

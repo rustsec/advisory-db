@@ -8,6 +8,12 @@
   "related": [],
   "summary": "split_at allows obtaining multiple mutable references to the same data",
   "details": "Affected versions of this crate assumed that `Borrow<Idx>` was guaranteed to\nreturn the same value on `.borrow()`. The borrowed index value was used to\nretrieve a mutable reference to a value.\n\nIf the `Borrow<Idx>` implementation returned a different index, the split arena\nwould allow retrieving the index as a mutable reference creating two mutable\nreferences to the same element. This violates Rust's aliasing rules and allows\nfor memory safety issues such as writing out of bounds and use-after-frees.\n\nThe flaw was corrected in commit `6b83f9d` by storing the `.borrow()` value in\na temporary variable.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

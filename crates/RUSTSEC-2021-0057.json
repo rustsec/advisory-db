@@ -8,6 +8,12 @@
   "related": [],
   "summary": "Integer overflow in CipherUpdate",
   "details": "Calls to `EVP_CipherUpdate`, `EVP_EncryptUpdate` and `EVP_DecryptUpdate` may overflow\nthe output length argument in some cases where the input length is close to the\nmaximum permissable length for an integer on the platform. In such cases the\nreturn value from the function call will be 1 (indicating success), but the\noutput length value will be negative. This could cause applications to behave\nincorrectly or crash.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

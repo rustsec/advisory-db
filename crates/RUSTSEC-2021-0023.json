@@ -8,6 +8,12 @@
   "related": [],
   "summary": "Incorrect check on buffer length when seeding RNGs",
   "details": "Summary: rand_core::le::read_u32_into and read_u64_into have incorrect checks on the source buffer length, allowing the destination buffer to be under-filled.\n\nImplications: some downstream RNGs, including Hc128Rng (but not the more widely used ChaCha*Rng), allow seeding using the SeedableRng::from_seed trait-function with too short keys.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

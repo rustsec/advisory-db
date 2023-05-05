@@ -8,6 +8,7 @@
   "related": [],
   "summary": "'merge_sort::merge()' crashes with double-free for `T: Drop`",
   "details": "In the affected versions of this crate, `merge_sort::merge()` wildly duplicates and drops ownership of `T` without guarding against double-free. Due to such implementation,\nsimply invoking `merge_sort::merge()` on `Vec<T: Drop>` can cause **double free** bugs.",
+  "severity": [],
   "affected": [
     {
       "package": {

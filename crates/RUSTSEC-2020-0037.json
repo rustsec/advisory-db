@@ -8,6 +8,12 @@
   "related": [],
   "summary": "Misbehaving `HandleLike` implementation can lead to memory safety violation",
   "details": "Unsafe code in `ObjectPool` has time-of-check to time-of-use (TOCTOU) bug that\ncan eventually lead to a memory safety violation. `ObjectPool` and `HandlePool`\nimplicitly assumes that `HandleLike` trait methods are pure, i.e., they always\nreturn the same value. However, this assumption is unsound since `HandleLike`\nis a safe, public trait that allows a custom implementation.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

@@ -8,6 +8,12 @@
   "related": [],
   "summary": "PartialReader passes uninitialized memory to user-provided Read",
   "details": "Affected versions of this crate passed an uniniitalized buffer to a\nuser-provided `Read` instance in `PartialReader::read`.\n\nThis can result in safe `Read` implementations reading from the uninitialized\nbuffer leading to undefined behavior.\n\nThe flaw was fixed in commit [`39d62c6`](https://github.com/uutils/coreutils/commit/39d62c6c1f809022c903180471c10fde6ecd12d1)\nby zero-initializing the passed buffer.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L"
+    }
+  ],
   "affected": [
     {
       "package": {

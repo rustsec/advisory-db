@@ -9,6 +9,7 @@
   "related": [],
   "summary": "Multiple memory safety issues in insert_row",
   "details": "When inserting rows from an iterator at a particular index, `toodee` would shift\nitems over, duplicating their ownership. The space reserved for the new elements\nwas based on the `len()` returned by the `ExactSizeIterator`.\n\nThis could result in elements in the array being freed twice if the iterator\npanics. Uninitialized or previously freed elements could also be exposed if the\n`len()` didn't match the number of elements.\n\nThese issues were fixed in commit `ced70c17` by temporarily setting the length\nof the array smaller while processing it and adding assertions on the number\nof elements returned by the iterator.",
+  "severity": [],
   "affected": [
     {
       "package": {

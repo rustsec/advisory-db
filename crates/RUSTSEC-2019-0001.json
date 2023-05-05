@@ -8,6 +8,12 @@
   "related": [],
   "summary": "Uncontrolled recursion leads to abort in HTML serialization",
   "details": "Affected versions of this crate did use recursion for serialization of HTML\nDOM trees.\n\nThis allows an attacker to cause abort due to stack overflow by providing\na pathologically nested input.\n\nThe flaw was corrected by serializing the DOM tree iteratively instead.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

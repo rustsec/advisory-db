@@ -6,6 +6,7 @@
   "related": [],
   "summary": "Optional `Deserialize` implementations lacking validation",
   "details": "When activating the non-default feature `serialize`, most structs implement\n`serde::Deserialize` without sufficient validation. This allows breaking\ninvariants in safe code, leading to:\n\n* Undefined behavior in `as_string()` methods (which use\n  `std::str::from_utf8_unchecked()` internally).\n* Panics due to failed assertions.\n\nSee https://github.com/gz/rust-cpuid/issues/43.",
+  "severity": [],
   "affected": [
     {
       "package": {

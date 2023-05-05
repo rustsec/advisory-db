@@ -6,6 +6,7 @@
   "related": [],
   "summary": "Space bug in `clean_text`",
   "details": "An incorrect mapping from HTML specification to ASCII codes was used.\nBecause HTML treats the Form Feed as whitespace, code like this has an injection bug:\n\n    let html = format!(\"<div title={}>\", clean_text(user_supplied_string));\n\nApplications are not affected if they quote their attributes, or if they don't use `clean_text` at all.",
+  "severity": [],
   "affected": [
     {
       "package": {

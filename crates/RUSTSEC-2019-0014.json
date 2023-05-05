@@ -8,6 +8,12 @@
   "related": [],
   "summary": "Flaw in interface may drop uninitialized instance of arbitrary types",
   "details": "Affected versions of this crate would call `Vec::set_len` on an uninitialized\nvector with user-provided type parameter, in an interface of the HDR image\nformat decoder. They would then also call other code that could panic before\ninitializing all instances.\n\nThis could run Drop implementations on uninitialized types, equivalent to\nuse-after-free, and allow an attacker arbitrary code execution.\n\nTwo different fixes were applied. It is possible to conserve the interface by\nensuring proper initialization before calling `Vec::set_len`. Drop is no longer\ncalled in case of panic, though.\n\nStarting from version `0.22`, a breaking change to the interface requires\ncallers to pre-allocate the output buffer and pass a mutable slice instead,\navoiding all unsafe code.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

@@ -8,6 +8,12 @@
   "related": [],
   "summary": "`Versionize::deserialize` implementation for `FamStructWrapper<T>` is lacking bound checks, potentially leading to out of bounds memory accesses",
   "details": "An issue was discovered in the `Versionize::deserialize` implementation provided by the `versionize` crate for `vmm_sys_util::fam::FamStructWrapper`, which can lead to out of bounds memory accesses. The impact started with version 0.1.1. The issue was corrected in version 0.1.10 by inserting a check that verifies, for any deserialized header, the lengths of compared flexible arrays are equal and aborting deserialization otherwise.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:C/C:N/I:L/A:L"
+    }
+  ],
   "affected": [
     {
       "package": {

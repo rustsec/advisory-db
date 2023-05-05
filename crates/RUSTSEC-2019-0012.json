@@ -8,6 +8,12 @@
   "related": [],
   "summary": "Memory corruption in SmallVec::grow()",
   "details": "Attempting to call `grow` on a spilled SmallVec with a value less than the current capacity causes corruption of memory allocator data structures.\n\nAn attacker that controls the value passed to `grow` may exploit this flaw to obtain memory contents or gain remote code execution.\n\nCredits to @ehuss for discovering, reporting and fixing the bug.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

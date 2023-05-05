@@ -8,6 +8,12 @@
   "related": [],
   "summary": "VecCopy allows misaligned access to elements",
   "details": "`VecCopy::data` is created as a Vec of u8 but can be used to store and retrieve\nelements of different types leading to misaligned access.\n\nThe issue was resolved in v0.5.0 by replacing data being stored by `Vec<u8>` with a custom managed\npointer.  Elements are now stored and retrieved using types with proper alignment corresponding to\noriginal types.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

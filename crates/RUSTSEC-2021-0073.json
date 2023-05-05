@@ -8,6 +8,7 @@
   "related": [],
   "summary": "Conversion from `prost_types::Timestamp` to `SystemTime` can cause an overflow and panic",
   "details": "Affected versions of this crate contained a bug in which untrusted input could cause an overflow and panic when converting a `Timestamp` to `SystemTime`.\n\nIt is recommended to upgrade to `prost-types` v0.8 and switch the usage of `From<Timestamp> for SystemTime` to `TryFrom<Timestamp> for SystemTime`.\n\nSee [#438] for more information.\n\n[#438]: https://github.com/tokio-rs/prost/issues/438",
+  "severity": [],
   "affected": [
     {
       "package": {

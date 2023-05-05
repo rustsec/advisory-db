@@ -8,6 +8,12 @@
   "related": [],
   "summary": "EventList's From<EventList> conversions can double drop on panic.",
   "details": "Affected versions of this crate read from a container using `ptr::read` in\n`From<EventList>`, and then call a user specified `Into<Event>` function.\n\nThis issue can result in a double-free if the user provided function panics.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

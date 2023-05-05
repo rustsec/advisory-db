@@ -9,6 +9,12 @@
   "related": [],
   "summary": "`tauri`'s `readDir` endpoint allows possible enumeration outside of filesystem scope",
   "details": "It is possible for `readDir` to incorrectly enumerate files from a symlinked directory if called recursively when specifying an empty string for the dir parameter as outlined in [this](https://github.com/tauri-apps/tauri/issues/4882) issue.\n\nThis is corrected in [this](https://github.com/tauri-apps/tauri/pull/5123) PR by checking if a directory is a symlink before reading from it.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:N/A:N"
+    }
+  ],
   "affected": [
     {
       "package": {

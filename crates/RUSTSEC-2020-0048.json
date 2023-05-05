@@ -8,6 +8,12 @@
   "related": [],
   "summary": "Use-after-free in BodyStream due to lack of pinning",
   "details": "Affected versions of this crate did not require the buffer wrapped in `BodyStream` to be pinned,\nbut treated it as if it had a fixed location in memory. This may result in a use-after-free.\n \nThe flaw was corrected by making the trait `MessageBody` require `Unpin`\nand making `poll_next()` function accept `Pin<&mut Self>` instead of `&mut self`.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

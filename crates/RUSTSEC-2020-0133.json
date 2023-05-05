@@ -8,6 +8,12 @@
   "related": [],
   "summary": "Queue<T> should have a Send bound on its Send/Sync traits",
   "details": "Affected versions of this crate unconditionally implements `Send`/`Sync` for `Queue<T>`.\n\nThis allows (1) creating data races to a `T: !Sync` and (2) sending `T: !Send` to other threads, resulting in memory corruption or other undefined behavior.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

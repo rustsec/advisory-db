@@ -8,6 +8,12 @@
   "related": [],
   "summary": "LateStatic has incorrect Sync bound",
   "details": "Affected versions of this crate implemented `Sync` for `LateStatic` with `T: Send`, so that it is possible to create a data race to a type `T: Send + !Sync` (e.g. `Cell<T>`).\n\nThis can result in a memory corruption or other kinds of undefined behavior.\n\nThe flaw was corrected in commit 11f396c by replacing the `T: Send` bound to `T: Sync` bound in the `Sync` impl for `LateStatic<T>`.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

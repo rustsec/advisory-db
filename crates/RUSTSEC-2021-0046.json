@@ -8,6 +8,12 @@
   "related": [],
   "summary": "misc::vec_with_size() can drop uninitialized memory if clone panics",
   "details": "`misc::vec_with_size` creates a vector of the provided `size` and immediately\ncalls `vec.set_len(size)` on it, initially filling it with uninitialized memory.\nIt then inserts elements using `vec[i] = value.clone()`.\n\nIf the `value.clone()` call panics, uninitialized items in the vector will be\ndropped leading to undefined behavior.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

@@ -8,6 +8,12 @@
   "related": [],
   "summary": "Lifetime boundary for `raw_slice` and `raw_slice_mut` are incorrect",
   "details": "The affected version of `rulinalg` has incorrect lifetime boundary definitions\nfor `RowMut::raw_slice` and `RowMut::raw_slice_mut`. They do not conform with\nRust's borrowing rule and allows the user to create multiple mutable references\nto the same location. This may result in unexpected calculation result and data\nrace if both references are used at the same time.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

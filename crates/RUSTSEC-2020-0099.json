@@ -8,6 +8,12 @@
   "related": [],
   "summary": "Aovec<T> lacks bound on its Send and Sync traits allowing data races",
   "details": "`aovec::Aovec<T>` is a vector type that implements `Send` and `Sync` for all\ntypes `T`.\n\nThis allows non-Send types such as `Rc` and non-Sync types such as `Cell` to\nbe used across thread boundaries which can trigger undefined behavior and\nmemory corruption.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

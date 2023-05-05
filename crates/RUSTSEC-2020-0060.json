@@ -8,6 +8,12 @@
   "related": [],
   "summary": "futures_task::waker may cause a use-after-free if used on a type that isn't 'static",
   "details": "Affected versions of the crate did not properly implement a `'static` lifetime bound on the `waker` function.\nThis resulted in a use-after-free if `Waker::wake()` is called after original data had been dropped.\n\nThe flaw was corrected by adding `'static` lifetime bound to the data `waker` takes.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

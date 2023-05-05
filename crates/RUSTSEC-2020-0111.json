@@ -8,6 +8,12 @@
   "related": [],
   "summary": "may_queue's Queue lacks Send/Sync bound for its Send/Sync trait.",
   "details": "Affected versions of `may_queue` implements `Send`/`Sync` for its `Queue` type without restricting it to `Send`able types and `Sync`able types.\n\nThis allows non-`Sync` types such as `Cell` to be shared across threads leading to undefined behavior and memory corruption in concurrent programs.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

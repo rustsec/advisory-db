@@ -8,6 +8,7 @@
   "related": [],
   "summary": "Heap memory corruption with RSA private key operation",
   "details": "The OpenSSL 3.0.4 release introduced a serious bug in the RSA\nimplementation for X86_64 CPUs supporting the AVX512IFMA instructions.\nThis issue makes the RSA implementation with 2048 bit private keys\nincorrect on such machines and memory corruption will happen during\nthe computation. As a consequence of the memory corruption an attacker\nmay be able to trigger a remote code execution on the machine performing\nthe computation.\n\nSSL/TLS servers or other servers using 2048 bit RSA private keys running\non machines supporting AVX512IFMA instructions of the X86_64 architecture\nare affected by this issue.\n\nNote that on a vulnerable machine, proper testing of OpenSSL would fail and\nshould be noticed before deployment.",
+  "severity": [],
   "affected": [
     {
       "package": {

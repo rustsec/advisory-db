@@ -8,6 +8,12 @@
   "related": [],
   "summary": "`Shared` can cause a data race",
   "details": "`Shared` data structure in `model` crate implements `Send` and `Sync` traits regardless of the inner type.\nThis allows safe Rust code to trigger a data race, which is undefined behavior in Rust.\n\nUsers are advised to treat `Shared` as an unsafe type.\nIt should not be used outside of the testing context,\nand care must be taken so that the testing code does not have a data race\nbesides a race condition that is expected to be caught by the test.\n\nCheck [the Rustonomicon](https://doc.rust-lang.org/nomicon/races.html) for the difference between\na data race and a general race condition.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

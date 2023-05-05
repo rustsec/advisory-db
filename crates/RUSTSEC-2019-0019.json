@@ -8,6 +8,12 @@
   "related": [],
   "summary": "HMAC-BLAKE2 algorithms compute incorrect results",
   "details": "When used in conjunction with the Hash-based Message Authentication Code (HMAC),\nthe BLAKE2b and BLAKE2s implementations in `blake2` crate versions prior to\nv0.8.1 used an incorrect block size (32-bytes instead of 64-bytes for BLAKE2s,\nand 64-bytes instead of 128-bytes for BLAKE2b), causing them to miscompute the\n`MacResult`.\n\nThe v0.8.1 release of the `blake2` crate uses the correct block sizes.\n\nNote that this advisory only impacts usage of BLAKE2 with HMAC, and does not\nimpact `Digest` functionality.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

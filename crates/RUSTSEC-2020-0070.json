@@ -12,6 +12,7 @@
   "related": [],
   "summary": "Some lock_api lock guard objects can cause data races",
   "details": "Affected versions of lock_api had unsound implementations of the `Send` or\n`Sync` traits for some guard objects, namely:\n\n* MappedMutexGuard\n* MappedRwLockReadGuard\n* MappedRwLockWriteGuard\n* RwLockReadGuard\n* RwLockWriteGuard\n\nThese guards could allow data races through types that are not safe to `Send`\nacross thread boundaries in safe Rust code.\n\nThis issue was fixed by changing the trait bounds on the `Mapped` guard types\nand removing the `Sync` trait for the `RwLock` guards.",
+  "severity": [],
   "affected": [
     {
       "package": {

@@ -8,6 +8,12 @@
   "related": [],
   "summary": "futures_task::noop_waker_ref can segfault due to dereferencing a NULL pointer",
   "details": "Affected versions of the crate used a `UnsafeCell` in thread-local storage to return a noop waker reference,\nassuming that the reference would never be returned from another thread.\n\nThis resulted in a segmentation fault crash if `Waker::wake_by_ref()` was called on a waker returned from another thread due to \nit attempting to dereference a pointer that wasn't accessible from the main thread.\n\nReproduction Example (from issue):\n```rust\nuse futures_task::noop_waker_ref;\nfn main() {\n    let waker = std::thread::spawn(|| noop_waker_ref()).join().unwrap();\n    waker.wake_by_ref();\n}\n```\n\nThe flaw was corrected by using a `OnceCell::Lazy<>` wrapper around the noop waker instead of thread-local storage.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

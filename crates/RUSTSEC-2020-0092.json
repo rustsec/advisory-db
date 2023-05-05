@@ -8,6 +8,12 @@
   "related": [],
   "summary": "Send/Sync bound needed on V in `impl Send/Sync for ARCache<K, V>`",
   "details": "Affected versions of this crate unconditionally implemented `Send`/`Sync` traits for `ARCache<K, V>` type.\n\nThis allows users to send/access types that do not implement `Send`/`Sync`, which can cause a data race.\n\nThe flaw was corrected in the 0.2.6 release by adding bounds `K: Send + Sync` & `V: Send + Sync` to affected `Send`/`Sync` trait implementations.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:N/I:N/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

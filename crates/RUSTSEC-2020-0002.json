@@ -8,6 +8,12 @@
   "related": [],
   "summary": "Parsing a specially crafted message can result in a stack overflow",
   "details": "Affected versions of this crate contained a bug in which decoding untrusted\ninput could overflow the stack.\n\nOn architectures with stack probes (like x86), this can be used for denial of\nservice attacks, while on architectures without stack probes (like ARM)\noverflowing the stack is unsound and can result in potential memory corruption\n(or even RCE).\n \nThe flaw was quickly corrected by @danburkert and released in version 0.6.1.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

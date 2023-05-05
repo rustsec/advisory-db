@@ -8,6 +8,7 @@
   "related": [],
   "summary": "Infinite loop in `BN_mod_sqrt()` reachable when parsing certificates",
   "details": "The `BN_mod_sqrt()` function, which computes a modular square root, contains\na bug that can cause it to loop forever for non-prime moduli.\n\nInternally this function is used when parsing certificates that contain\nelliptic curve public keys in compressed form or explicit elliptic curve\nparameters with a base point encoded in compressed form.\n\nIt is possible to trigger the infinite loop by crafting a certificate that\nhas invalid explicit curve parameters.\n\nSince certificate parsing happens prior to verification of the certificate\nsignature, any process that parses an externally supplied certificate may thus\nbe subject to a denial of service attack. The infinite loop can also be\nreached when parsing crafted private keys as they can contain explicit\nelliptic curve parameters.\n\nThus vulnerable situations include:\n\n - TLS clients consuming server certificates\n - TLS servers consuming client certificates\n - Hosting providers taking certificates or private keys from customers\n - Certificate authorities parsing certification requests from subscribers\n - Anything else which parses ASN.1 elliptic curve parameters\n\nAlso any other applications that use the `BN_mod_sqrt()` where the attacker\ncan control the parameter values are vulnerable to this DoS issue.",
+  "severity": [],
   "affected": [
     {
       "package": {

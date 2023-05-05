@@ -8,6 +8,12 @@
   "related": [],
   "summary": "Dangling reference in `access::Map` with Constant",
   "details": "Using the `arc_swap::access::Map` with the `Constant` test helper (or with\nuser-provided implementation of the `Access` trait) could sometimes lead to the\nmap returning dangling references.\n\nReplaced by implementation without `unsafe`, at the cost of added `Clone` bound\non the closure and small penalty on performance.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

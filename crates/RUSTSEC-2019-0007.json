@@ -8,6 +8,12 @@
   "related": [],
   "summary": "Processing of maliciously crafted length fields causes memory allocation SIGABRTs",
   "details": "Affected versions of this crate tried to preallocate a vector for an arbitrary amount of bytes announced by the ASN.1-DER length field without further checks.\n\nThis allows an attacker to trigger a SIGABRT by creating length fields that announce more bytes than the allocator can provide.\n \nThe flaw was corrected by not preallocating memory.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

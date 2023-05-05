@@ -8,6 +8,12 @@
   "related": [],
   "summary": "Relies on undefined behavior of `char::from_u32_unchecked`",
   "details": "The Windows implementation of this crate relied on the behavior of\n`std::char::from_u32_unchecked` when its safety clause is violated.\nEven though this worked with Rust versions up to 1.42 (at least),\nthat behavior could change with any new Rust version, possibly leading\na security issue.\n\nThe flaw was corrected in version 2.0.0.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

@@ -7,6 +7,7 @@
   "related": [],
   "summary": "Improper validation of Windows paths could lead to directory traversal attack",
   "details": "`tower_http::services::fs::ServeDir` didn't correctly validate Windows paths\nmeaning paths like `/foo/bar/c:/windows/web/screen/img101.png` would be allowed\nand respond with the contents of `c:/windows/web/screen/img101.png`. Thus users\ncould potentially read files anywhere on the filesystem.\n\nThis only impacts Windows. Linux and other unix likes are not impacted by this.\n\nSee [tower-http#204] for more details.\n\n[tower-http#204]: https://github.com/tower-rs/tower-http/pull/204",
+  "severity": [],
   "affected": [
     {
       "package": {

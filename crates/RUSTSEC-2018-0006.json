@@ -8,6 +8,12 @@
   "related": [],
   "summary": "Uncontrolled recursion leads to abort in deserialization",
   "details": "Affected versions of this crate did not prevent deep recursion while\ndeserializing data structures.\n\nThis allows an attacker to make a YAML file with deeply nested structures\nthat causes an abort while deserializing it.\n\nThe flaw was corrected by checking the recursion depth.\n\nNote: `clap 2.33` is not affected by this because it uses `yaml-rust`\nin a way that doesn't trigger the vulnerability. More specifically:\n\n1. The input to the YAML parser is always trusted - is included at compile\ntime via `include_str!`.\n\n2. The nesting level is never deep enough to trigger the overflow in practice\n(at most 5).",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

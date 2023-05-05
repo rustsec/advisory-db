@@ -6,6 +6,7 @@
   "related": [],
   "summary": "Improper validation of Windows paths could lead to directory traversal attack",
   "details": "Path resolution in `warp::filters::fs::dir` didn't correctly validate Windows paths\nmeaning paths like `/foo/bar/c:/windows/web/screen/img101.png` would be allowed\nand respond with the contents of `c:/windows/web/screen/img101.png`. Thus users\ncould potentially read files anywhere on the filesystem.\n\nThis only impacts Windows. Linux and other unix likes are not impacted by this.",
+  "severity": [],
   "affected": [
     {
       "package": {

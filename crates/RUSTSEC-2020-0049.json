@@ -8,6 +8,12 @@
   "related": [],
   "summary": "Use-after-free in Framed due to lack of pinning",
   "details": "Affected versions of this crate did not require the buffer wrapped in `Framed` to be pinned,\nbut treated it as if it had a fixed location in memory. This may result in a use-after-free.\n \nThe flaw was corrected by making the affected functions accept `Pin<&mut Self>` instead of `&mut self`.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

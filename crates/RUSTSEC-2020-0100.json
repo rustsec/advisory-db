@@ -8,6 +8,12 @@
   "related": [],
   "summary": "Double free when calling `sys_info::disk_info` from multiple threads",
   "details": "Affected versions of `sys-info` use a static, global, list to store temporary disk information while running. The function that cleans up this list,\n`DFCleanup`, assumes a single threaded environment and will try to free the same memory twice in a multithreaded environment.\n\nThis results in consistent double-frees and segfaults when calling `sys_info::disk_info` from multiple threads at once.\n\nThe issue was fixed by moving the global variable into a local scope.\n\n## Safer Alternatives:\n - [`sysinfo`](https://crates.io/crates/sysinfo)",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

@@ -8,6 +8,12 @@
   "related": [],
   "summary": "tokio-rustls reads may cause excessive memory usage",
   "details": "`tokio-rustls` does not call `process_new_packets` immediately after `read`,\nso the expected termination condition `wants_read` always returns true.\nAs long as new incoming data arrives faster than it is processed\nand the reader does not return pending, data will be buffered.\n\nThis may cause DoS.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

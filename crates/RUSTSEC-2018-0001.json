@@ -8,6 +8,12 @@
   "related": [],
   "summary": "An integer underflow could lead to panic",
   "details": "A mistake in error handling in untrusted before 0.6.2 could lead to an integer\nunderflow and panic if a user of the crate didn't properly check for errors\nreturned by untrusted.\n\nCombination of these two programming errors (one in untrusted and another by\nuser of this crate) could lead to a panic and maybe a denial of service of\naffected software.\n\nThe error in untrusted is fixed in release 0.6.2 released 2018-06-21. It's also\nadvisable that users of untrusted check for their sources for cases where errors\nreturned by untrusted are not handled correctly.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

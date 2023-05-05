@@ -8,6 +8,12 @@
   "related": [],
   "summary": "StackVec::extend can write out of bounds when size_hint is incorrect",
   "details": "`StackVec::extend` used the lower and upper bounds from an Iterator's\n`size_hint` to determine how many items to push into the stack based vector.\n\nIf the `size_hint` implementation returned a lower bound that was larger than\nthe upper bound, `StackVec` would write out of bounds and overwrite memory\non the stack. As mentioned by the [size_hint](https://doc.rust-lang.org/std/iter/trait.Iterator.html#provided-methods)\ndocumentation, `size_hint` is mainly for optimization and incorrect\nimplementations should not lead to memory safety issues.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L"
+    }
+  ],
   "affected": [
     {
       "package": {

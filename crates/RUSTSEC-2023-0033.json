@@ -6,6 +6,7 @@
   "related": [],
   "summary": "Parsing borsh messages with ZST which are not-copy/clone is unsound",
   "details": "Affected versions of borsh cause undefined behavior when zero-sized-types (ZST) \nare parsed and the Copy/Clone traits are not implemented/derived.\nFor instance if 1000 instances of a ZST are deserialized, and the ZST is not copy \n(this can be achieved through a singleton), then accessing/writing to deserialized \ndata will cause a segmentation fault.\n\nThere is currently no way for borsh to read data without also providing a Rust type. \nTherefore, if not ZST are used for serialization, then you are not affected by this issue.",
+  "severity": [],
   "affected": [
     {
       "package": {

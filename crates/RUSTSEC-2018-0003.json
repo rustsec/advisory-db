@@ -8,6 +8,12 @@
   "related": [],
   "summary": "Possible double free during unwinding in SmallVec::insert_many",
   "details": "If an iterator passed to `SmallVec::insert_many` panicked in `Iterator::next`,\ndestructors were run during unwinding while the vector was in an inconsistent\nstate, possibly causing a double free (a destructor running on two copies of\nthe same value).\n\nThis is fixed in smallvec 0.6.3 by ensuring that the vector's length is not\nupdated to include moved items until they have been removed from their\noriginal positions.  Items may now be leaked if `Iterator::next` panics, but\nthey will not be dropped more than once.\n\nThank you to @Vurich for reporting this bug.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

@@ -8,6 +8,12 @@
   "related": [],
   "summary": "Malicious input could cause uninitialized memory to be exposed",
   "details": "Affected versions of Claxon made an invalid assumption about the decode buffer\nsize being a multiple of a value read from the bitstream. This could cause parts\nof the decode buffer to not be overwritten. If the decode buffer was newly\nallocated and uninitialized, this uninitialized memory could be exposed.\n\nThis allows an attacker to observe parts of the uninitialized memory in the\ndecoded audio stream.\n\nThe flaw was corrected by checking that the value read from the bitstream divides\nthe decode buffer size, and returning a format error if it does not. If an error\nis returned, the decode buffer is not exposed. Regression tests and an\nadditional fuzzer have been added to prevent similar flaws in the future.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:N"
+    }
+  ],
   "affected": [
     {
       "package": {

@@ -6,6 +6,7 @@
   "related": [],
   "summary": "Parser creates invalid uninitialized value",
   "details": "Affected versions of this crate called `mem::uninitialized()` in the HTTP1 parser to create values of type `httparse::Header` (from the `httparse` crate).\nThis is unsound, since `Header` contains references and thus must be non-null.\n \nThe flaw was corrected by avoiding the use of `mem::uninitialized()`, using `MaybeUninit` instead.",
+  "severity": [],
   "affected": [
     {
       "package": {

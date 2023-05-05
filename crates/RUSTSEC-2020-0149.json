@@ -8,6 +8,12 @@
   "related": [],
   "summary": "Data race and memory safety issue in `Index`",
   "details": "The `appendix` crate implements a key-value mapping data structure called\n`Index<K, V>` that is stored on disk. The crate allows for any type to inhabit\nthe generic `K` and `V` type parameters and implements Send and Sync for them\nunconditionally.\n\nUsing a type that is not marked as `Send` or `Sync` with `Index` can allow it\nto be used across multiple threads leading to data races. Additionally using\nreference types for the keys or values will lead to the segmentation faults\nin the crate's code.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

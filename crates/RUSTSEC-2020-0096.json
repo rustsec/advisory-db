@@ -8,6 +8,12 @@
   "related": [],
   "summary": "TreeFocus lacks bounds on its Send and Sync traits",
   "details": "Affected versions of `im` contains `TreeFocus` that unconditionally implements `Send` and `Sync`.\n\nThis allows a data race in safe Rust code if `TreeFocus` is extracted from `Focus` type.\nTypical users that only use `Focus` type are not affected.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:N/I:N/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

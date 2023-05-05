@@ -8,6 +8,7 @@
   "related": [],
   "summary": "AES OCB fails to encrypt some bytes",
   "details": "AES OCB mode for 32-bit x86 platforms using the AES-NI assembly optimised\nimplementation will not encrypt the entirety of the data under some\ncircumstances.  This could reveal sixteen bytes of data that was\npreexisting in the memory that wasn't written.  In the special case of\n\"in place\" encryption, sixteen bytes of the plaintext would be revealed.\n\nSince OpenSSL does not support OCB based cipher suites for TLS and DTLS,\nthey are both unaffected.",
+  "severity": [],
   "affected": [
     {
       "package": {

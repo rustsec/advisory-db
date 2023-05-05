@@ -8,6 +8,12 @@
   "related": [],
   "summary": "SliceDeque::drain_filter can double drop an element if the predicate panics",
   "details": "Affected versions of the crate incremented the current index of the drain filter\niterator *before* calling the predicate function `self.pred`.\n\nIf the predicate function panics, it is possible for the last element in the\niterator to be dropped twice.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

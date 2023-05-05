@@ -9,6 +9,12 @@
   "related": [],
   "summary": "Multiple Transfer-Encoding headers misinterprets request payload",
   "details": "hyper's HTTP server code had a flaw that incorrectly understands some requests\nwith multiple transfer-encoding headers to have a chunked payload, when it\nshould have been rejected as illegal. This combined with an upstream HTTP proxy\nthat understands the request payload boundary differently can result in\n\"request smuggling\" or \"desync attacks\".",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

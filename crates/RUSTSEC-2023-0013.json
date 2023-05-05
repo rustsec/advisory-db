@@ -8,6 +8,7 @@
   "related": [],
   "summary": "`NULL` dereference during PKCS7 data verification",
   "details": "A `NULL` pointer can be dereferenced when signatures are being\nverified on PKCS7 `signed` or `signedAndEnveloped` data. In case the hash\nalgorithm used for the signature is known to the OpenSSL library but\nthe implementation of the hash algorithm is not available the digest\ninitialization will fail. There is a missing check for the return\nvalue from the initialization function which later leads to invalid\nusage of the digest API most likely leading to a crash.\n\nThe unavailability of an algorithm can be caused by using FIPS\nenabled configuration of providers or more commonly by not loading\nthe legacy provider.\n\nPKCS7 data is processed by the SMIME library calls and also by the\ntime stamp (TS) library calls. The TLS implementation in OpenSSL does\nnot call these functions however third party applications would be\naffected if they call these functions to verify signatures on untrusted\ndata.",
+  "severity": [],
   "affected": [
     {
       "package": {

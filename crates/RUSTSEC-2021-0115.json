@@ -6,6 +6,7 @@
   "related": [],
   "summary": "`#[zeroize(drop)]` doesn't implement `Drop` for `enum`s",
   "details": "Affected versions of this crate did not implement `Drop` when `#[zeroize(drop)]` was used on an `enum`.\n\nThis can result in memory not being zeroed out after dropping it, which is exactly what is intended when adding this attribute.\n\nThe flaw was corrected in version 1.2 and `#[zeroize(drop)]` on `enum`s now properly implements `Drop`.",
+  "severity": [],
   "affected": [
     {
       "package": {

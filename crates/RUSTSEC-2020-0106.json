@@ -8,6 +8,12 @@
   "related": [],
   "summary": "Queues allow non-Send types to be sent to other threads, allowing data races",
   "details": "Affected versions of this crate unconditionally implemented `Send` for types used in queue implementations (`InnerSend<RW, T>`, `InnerRecv<RW, T>`, `FutInnerSend<RW, T>`, `FutInnerRecv<RW, T>`).\n\nThis allows users to send non-Send types to other threads, which can lead to data race bugs or other undefined behavior.\n\nThe flaw was corrected in v0.1.7 by adding `T: Send` bound to to the `Send` impl of four data types explained above.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

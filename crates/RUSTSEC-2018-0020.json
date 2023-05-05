@@ -9,6 +9,12 @@
   "related": [],
   "summary": "Possible use-after-free with `proplist::Iterator`",
   "details": "Affected versions contained a possible use-after-free issue with property list iteration\ndue to a lack of a lifetime constraint tying the lifetime of a `proplist::Iterator` to the\n`Proplist` object for which it was created. This made it possible for users, without\nexperiencing a compiler error/warning, to destroy the `Proplist` object before the iterator,\nthus destroying the underlying C object the iterator works upon, before the iterator may be\nfinished with it.\n\nThis impacts all versions of the crate before `2.5.0` back to `1.0.5`. Before version\n`1.0.5` the function that produces the iterator was broken to the point of being useless.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:H/A:N"
+    }
+  ],
   "affected": [
     {
       "package": {

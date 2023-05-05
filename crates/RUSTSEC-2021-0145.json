@@ -6,6 +6,7 @@
   "related": [],
   "summary": "Potential unaligned read",
   "details": "On windows, `atty` dereferences a potentially unaligned pointer.\n\nIn practice however, the pointer won't be unaligned unless a custom global allocator is used.\n\nIn particular, the `System` allocator on windows uses `HeapAlloc`, which guarantees a large enough alignment.\n\n# atty is Unmaintained\n\nA Pull Request with a fix has been provided over a year ago but the maintainer seems to be unreachable.\n\nLast release of `atty` was almost 3 years ago.\n\n## Possible Alternative(s)\n\nThe below list has not been vetted in any way and may or may not contain alternatives;\n\n - [is-terminal](https://crates.io/crates/is-terminal)\n - std::io::IsTerminal *nightly-only experimental*",
+  "severity": [],
   "affected": [
     {
       "package": {

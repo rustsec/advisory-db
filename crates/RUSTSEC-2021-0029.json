@@ -8,6 +8,12 @@
   "related": [],
   "summary": "Tape::take_bytes exposes uninitialized memory to a user-provided Read",
   "details": "Affected versions of this crate passed an unininitialized buffer to a\nuser-provided `Read` instance in `Tape::take_bytes`.\n\nThis can result in safe `Read` implementations reading from the uninitialized\nbuffer leading to undefined behavior.\n\nThe flaw was corrected in commit `1f2dc7f37dd` by removing the unsafe block\nand zero-initializing the buffer.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
+    }
+  ],
   "affected": [
     {
       "package": {

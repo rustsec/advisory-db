@@ -6,6 +6,7 @@
   "related": [],
   "summary": "Arrow2 allows double free in `safe` code",
   "details": "The struct `Ffi_ArrowArray` implements `#derive(Clone)` that is inconsistent with\nits custom implementation of `Drop`, resulting in a double free when cloned.\n\nCloning this struct in `safe` results in a segmentation fault, which is unsound.\n\nThis derive was removed from this struct. All users are advised to either:\n* bump the patch version of this crate (for versions `v0.7,v0.8,v0.9`), or\n* migrate to a more recent version of  the crate (when using `<0.7`).\n\nDoing so elimitates this vulnerability (code no longer compiles).",
+  "severity": [],
   "affected": [
     {
       "package": {

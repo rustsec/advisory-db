@@ -8,6 +8,12 @@
   "related": [],
   "summary": "Bunch<T> unconditionally implements Send/Sync",
   "details": "Affected versions of this crate unconditionally implements `Send`/`Sync` for `Bunch<T>`.\nThis allows users to insert `T: !Sync` to `Bunch<T>`. It is possible to create a data race to a `T: !Sync` by invoking the `Bunch::get()` API (which returns `&T`) from multiple threads. It is also possible to send `T: !Send` to other threads by inserting `T` inside `Bunch<T>` and sending `Bunch<T>` to another thread, allowing to create a data race by inserting types like `T = Rc<_>`.\n\nSuch data races can lead to memory corruption.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

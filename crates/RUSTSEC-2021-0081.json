@@ -8,6 +8,12 @@
   "related": [],
   "summary": "Potential request smuggling capabilities due to lack of input validation",
   "details": "Affected versions of this crate did not properly detect invalid requests that could allow HTTP/1 request smuggling (HRS) attacks when running alongside a vulnerable front-end proxy server. This can result in leaked internal and/or user data, including credentials, when the front-end proxy is also vulnerable.\n\nPopular front-end proxies and load balancers already mitigate HRS attacks so it is recommended that they are also kept up to date; check your specific set up. You should upgrade even if the front-end proxy receives exclusively HTTP/2 traffic and connects to the back-end using HTTP/1; several downgrade attacks are known that can also expose HRS vulnerabilities.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
+    }
+  ],
   "affected": [
     {
       "package": {

@@ -8,6 +8,12 @@
   "related": [],
   "summary": "Internally mutating methods take immutable ref self",
   "details": "Affected versions of this crate exposed several methods which took `self` by\nimmutable reference, despite the requesting the RenderDoc API to set a mutable\nvalue internally.\n\nThis is technically unsound and calling these methods from multiple threads\nwithout synchronization could lead to unexpected and unpredictable behavior.\n\nThe flaw was corrected in release 0.5.0.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

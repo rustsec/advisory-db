@@ -8,6 +8,7 @@
   "related": [],
   "summary": "Remote memory exhaustion in ckb",
   "details": "In the ckb sync protocol, SyncState maintains a HashMap called 'misbehavior' that keeps a score of a peer's violations of the protocol. This HashMap is keyed to PeerIndex (an alias for SessionId), and entries are never removed from it. SessionId is an integer that increases monotonically with every new connection.\n\nA remote attacker can manipulate this HashMap to grow forever, resulting in degraded performance and ultimately a panic on allocation failure or being killed by the OS, depending on the platform.\n\nThis is a critical severity security bug. It could be exploited to create a targeted or network-wide denial of service, to reduce the hash power of the network as part of a 51% attack, and perhaps in other creative ways.",
+  "severity": [],
   "affected": [
     {
       "package": {

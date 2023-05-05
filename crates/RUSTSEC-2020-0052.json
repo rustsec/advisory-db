@@ -10,6 +10,7 @@
   "related": [],
   "summary": "Undefined Behavior in bounded channel",
   "details": "The affected version of this crate's the `bounded` channel incorrectly assumes that `Vec::from_iter` has allocated capacity that same as the number of iterator elements. `Vec::from_iter` does not actually guarantee that and may allocate extra memory. The destructor of the `bounded` channel reconstructs `Vec` from the raw pointer based on the incorrect assumes described above. This is unsound and causing deallocation with the incorrect capacity when `Vec::from_iter` has allocated different sizes with the number of iterator elements.",
+  "severity": [],
   "affected": [
     {
       "package": {

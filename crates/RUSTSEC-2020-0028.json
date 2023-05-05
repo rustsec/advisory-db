@@ -8,6 +8,12 @@
   "related": [],
   "summary": "`LocalRequest::clone` creates multiple mutable references to the same object",
   "details": "The affected version of `rocket` contains a `Clone` trait implementation of\n`LocalRequest` that reuses the pointer to inner `Request` object.\nThis causes data race in rare combinations of APIs if the original and the\ncloned objects are modified at the same time.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

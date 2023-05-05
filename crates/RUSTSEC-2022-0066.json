@@ -9,6 +9,12 @@
   "related": [],
   "summary": "Denial of Service from unchecked request length",
   "details": "Prior to version 0.4.2, `conduit-hyper` did not check any limit on a request's\nlength before calling `hyper::body::to_bytes`. An attacker could send a\nmalicious request with an abnormally large `Content-Length`, which could lead\nto a panic if memory allocation failed for that request.\n\nIn version 0.4.2, `conduit-hyper` sets an internal limit of 128 MiB per\nrequest, otherwise returning status 400 (\"Bad Request\").",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

@@ -8,6 +8,12 @@
   "related": [],
   "summary": "Send/Sync bound needed on T  for Send/Sync impl of RcuCell<T>",
   "details": "Affected versions of this crate unconditionally implement Send/Sync for `RcuCell<T>`.\nThis allows users to send `T: !Send` to other threads (while `T` enclosed within `RcuCell<T>`), and allows users to concurrently access `T: !Sync` by using the APIs of `RcuCell<T>` that provide access to `&T`.\n\nThis can result in memory corruption caused by data races.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

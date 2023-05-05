@@ -6,6 +6,7 @@
   "related": [],
   "summary": "Use after free in lru crate",
   "details": "Lru crate has use after free vulnerability.\n\nLru crate has two functions for getting an iterator. Both iterators give\nreferences to key and value. Calling specific functions, like pop(), will remove\nand free the value, and but it's still possible to access the reference of value\nwhich is already dropped causing use after free.",
+  "severity": [],
   "affected": [
     {
       "package": {

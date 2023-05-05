@@ -8,6 +8,12 @@
   "related": [],
   "summary": "MutexGuard::map can cause a data race in safe code",
   "details": "Affected versions of the crate had a Send/Sync implementation for MappedMutexGuard that only considered variance on T, while MappedMutexGuard dereferenced to U.\n\nThis could of led to data races in safe Rust code when a closure used in MutexGuard::map() returns U that is unrelated to T.\n\nThe issue was fixed by fixing `Send` and `Sync` implementations, and by adding a `PhantomData<&'a mut U>` marker to the `MappedMutexGuard` type to tell the compiler that the guard is over\nU too.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:N/I:N/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

@@ -6,6 +6,7 @@
   "related": [],
   "summary": "`tokio::io::ReadHalf<T>::unsplit` is Unsound",
   "details": "`tokio::io::ReadHalf<T>::unsplit` can violate the `Pin` contract\n\nThe soundness issue is described in the [tokio/issues#5372](https://github.com/tokio-rs/tokio/issues/5372)\n\nSpecific set of conditions needed to trigger an issue (a !Unpin type in ReadHalf)\nis unusual, combined with the difficulty of making any arbitrary use-after-free\nexploitable in Rust without doing a lot of careful alignment of data types in\nthe surrounding code.\n\nThe `tokio` feature `io-util` is also required to be enabled to trigger this\nsoundness issue.\n\nThanks to zachs18 reporting the issue to Tokio team responsibly and taiki-e\nand carllerche appropriately responding and fixing the soundness bug.\n\nTokio before 0.2.0 used `futures` 0.1 that did not have `Pin`, so it is not\naffected by this issue.",
+  "severity": [],
   "affected": [
     {
       "package": {

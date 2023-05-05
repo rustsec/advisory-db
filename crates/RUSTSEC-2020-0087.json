@@ -8,6 +8,12 @@
   "related": [],
   "summary": "TryMutex<T> allows sending non-Send type across threads",
   "details": "Affected versions of this crate unconditionally implemented Sync trait for `TryMutex<T>` type.\n\nThis allows users to put non-Send `T` type in `TryMutex` and send it to another thread, which can cause a data race.\n\nThe flaw was corrected in the 0.3.0 release by adding `T: Send` bound for the Sync trait implementation.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

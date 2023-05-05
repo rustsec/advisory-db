@@ -8,6 +8,12 @@
   "related": [],
   "summary": "panic safety: double drop may happen within `util::{mutate, mutate2}`",
   "details": "Upon panic in a user-provided function `f`, `fn mutate()` & `fn mutate2` drops twice a same object.\n\nAffected versions of this crate did not guard against double drop while temporarily duplicating an object's ownership with `ptr::read()`.\n\nDropping a same object can result in memory corruption.\n\nThe flaw was corrected in version \"0.9.11\" by fixing the code to abort upon panic.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

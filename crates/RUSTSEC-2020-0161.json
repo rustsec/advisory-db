@@ -6,6 +6,7 @@
   "related": [],
   "summary": "`array!` macro is unsound in presence of traits that implement methods it calls internally",
   "details": "Affected versions of this crate called some methods using auto-ref. The affected code looked like this.\n\n```rust\nlet mut arr = $crate::__core::mem::MaybeUninit::uninit();\nlet mut vec = $crate::__ArrayVec::<T>::new(arr.as_mut_ptr() as *mut T);\n```\n\nIn this case, the problem is that `as_mut_ptr` is a method of `&mut MaybeUninit`, not `MaybeUninit`. This made it possible for traits to hijack the method calls in order to cause unsoundness.\n\n```rust\ntrait AsMutPtr<T> {\n    fn as_mut_ptr(&self) -> *mut T;\n}\nimpl<T> AsMutPtr<T> for std::mem::MaybeUninit<T> {\n    fn as_mut_ptr(&self) -> *mut T {\n        std::ptr::null_mut()\n    }\n}\narray![0; 1];\n```\n\nThe flaw was corrected by explicitly referencing variables in macro body in order to avoid auto-ref.",
+  "severity": [],
   "affected": [
     {
       "package": {

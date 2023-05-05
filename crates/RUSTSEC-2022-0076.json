@@ -9,6 +9,12 @@
   "related": [],
   "summary": "Bug in Wasmtime implementation of pooling instance allocator",
   "details": "Bug in Wasmtime's implementation of its pooling instance allocator when the allocator is configured to give WebAssembly instances a maximum of zero pages of memory.\n\nIn this configuration, the virtual memory mapping for WebAssembly memories did not meet the compiler-required configuration requirements for safely executing WebAssembly modules. Wasmtime's default settings require virtual memory page faults to indicate that wasm reads/writes are out-of-bounds, but the pooling allocator's configuration would not create an appropriate virtual memory mapping for this meaning out of bounds reads/writes can successfully read/write memory unrelated to the wasm sandbox within range of the base address of the memory mapping created by the pooling allocator.\n\nThis bug is not applicable with the default settings of the `wasmtime` crate.\n\nThis bug can only be triggered by setting `InstanceLimits::memory_pages` to zero.\n\nThis is expected to be a very rare configuration since this means that wasm modules cannot allocate any pages of linear memory.\n\nAll wasm modules produced by all current toolchains are highly likely to use linear memory, so it's expected to be unlikely that this configuration is set to zero by any production embedding of Wasmtime.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N"
+    }
+  ],
   "affected": [
     {
       "package": {

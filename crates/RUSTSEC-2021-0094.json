@@ -6,6 +6,7 @@
   "related": [],
   "summary": "Window can read out of bounds if Read instance returns more bytes than buffer size",
   "details": "`rdiff` performs a diff of two provided strings or files. As part of its reading\ncode it uses the return value of a `Read` instance to set the length of\nits internal character vector.\n\nIf the `Read` implementation claims that it has read more bytes than the length\nof the provided buffer, the length of the vector will be set to longer than its\ncapacity. This causes `rdiff` APIs to return uninitialized memory in its API\nmethods.",
+  "severity": [],
   "affected": [
     {
       "package": {

@@ -8,6 +8,12 @@
   "related": [],
   "summary": "Argument injection in sendmail transport",
   "details": "Affected versions of lettre allowed argument injection\nto the sendmail command. It was possible, using forged `to` addresses,\nto pass arbitrary arguments to the sendmail executable.\n\nDepending on the implementation (original sendmail, postfix, exim, etc.)\nit could be possible in some cases to write email data into arbitrary files (using sendmail's\nlogging features).\n \nThe flaw is corrected by modifying the executed command to stop parsing arguments\nbefore passing the destination addresses.\n\nNOTE: This vulnerability only affects the `sendmail` transport. Others, including `smtp`, are not\naffected.\n\nThis vulnerability was reported by vin01.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N"
+    }
+  ],
   "affected": [
     {
       "package": {

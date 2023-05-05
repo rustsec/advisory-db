@@ -8,6 +8,12 @@
   "related": [],
   "summary": "Matrix::new() drops uninitialized memory",
   "details": "`Matrix::new()` internally calls `Matrix::fill_with()` which uses `*ptr = value` pattern to initialize the buffer.\nThis pattern assumes that there is an initialized struct at the address and drops it, which results in dropping of uninitialized struct.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

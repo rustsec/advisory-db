@@ -8,6 +8,12 @@
   "related": [],
   "summary": "bespoke Cell implementation allows obtaining several mutable references to the same data",
   "details": "The custom implementation of a Cell primitive in the affected versions of this crate\ndoes not keep track of mutable references to the underlying data.\n\nThis allows obtaining several mutable references to the same object\nwhich may result in arbitrary memory corruption, most likely use-after-free.\n\nThe flaw was corrected by switching from a bespoke `Cell<T>` implementation to `Rc<RefCell<T>>`.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

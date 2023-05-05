@@ -6,6 +6,7 @@
   "related": [],
   "summary": "Force cast a &Vec<T> to &[T]",
   "details": "In function `Table::as_ref`, a reference of vector is force cast to slice. There are multiple problems here:\n1. To guarantee the size is correct, we have to first do `Vec::shrink_to_fit`. The function requires a mutable reference, so we have to force cast from immutable to mutable, which is UB.\n2. Even if (1) is sound, `&Vec<T>` and `&[T]` still might not have the same layout. Treating them equally may lead to UB.",
+  "severity": [],
   "affected": [
     {
       "package": {

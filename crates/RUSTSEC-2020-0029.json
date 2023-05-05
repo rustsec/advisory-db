@@ -8,6 +8,12 @@
   "related": [],
   "summary": "Allows viewing and modifying arbitrary structs as bytes",
   "details": "Affected versions of rgb crate allow viewing and modifying data of any type `T` wrapped in `RGB<T>` as bytes,\nand do not correctly constrain `RGB<T>` and other wrapper structures to the types for which it is safe to do so.\n\nSafety violation possible for a type wrapped in `RGB<T>` and similar wrapper structures:\n\n * If `T` contains padding, viewing it as bytes may lead to exposure of contents of uninitialized memory.\n * If `T` contains a pointer, modifying it as bytes may lead to dereferencing of arbitrary pointers.\n * Any safety and/or validity invariants for `T` may be violated.\n \nThe issue was resolved by requiring all types wrapped in structures provided by RGB crate to implement an unsafe marker trait.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N"
+    }
+  ],
   "affected": [
     {
       "package": {

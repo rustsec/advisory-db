@@ -8,6 +8,12 @@
   "related": [],
   "summary": "HeaderMap::Drain API is unsound",
   "details": "Affected versions of this crate incorrectly used raw pointer,\nwhich introduced unsoundness in its public safe API.\n\n[Failing to drop the Drain struct causes double-free](https://github.com/hyperium/http/issues/354),\nand [it is possible to violate Rust's alias rule and cause data race with Drain's Iterator implementation](https://github.com/hyperium/http/issues/355).\n\nThe flaw was corrected in 0.1.20 release of `http` crate.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

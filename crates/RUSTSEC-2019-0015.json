@@ -8,6 +8,12 @@
   "related": [],
   "summary": "Flaw in generativity allows out-of-bounds access",
   "details": "Affected versions of this crate did not properly implement the generativity,\nbecause the invariant lifetimes were not necessarily `drop`ped.\n\nThis allows an attacker to mix up two arenas, using indices created from one\narena with another one. This might lead to an out-of-bounds read or write\naccess into the memory reserved for the arena.\n\nThe flaw was corrected by implementing generativity correctly in version 0.4.0.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

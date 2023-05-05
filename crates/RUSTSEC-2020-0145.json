@@ -8,6 +8,12 @@
   "related": [],
   "summary": "Use-after-free when cloning a partially consumed `Vec` iterator",
   "details": "The `IntoIter` `Clone` implementation clones the whole underlying `Vec`.\nIf the iterator is partially consumed the consumed items will be copied, thus creating a use-after-free access.\n\nA proof of concept is available in the original bug report.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

@@ -8,6 +8,12 @@
   "related": [],
   "summary": "scalarmult() vulnerable to degenerate public keys",
   "details": "The `scalarmult()` function included in previous versions of this crate\naccepted all-zero public keys, for which the resulting Diffie-Hellman shared\nsecret will always be zero regardless of the private key used.\n\nThis issue was fixed by checking for this class of keys and rejecting them\nif they are used.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:N"
+    }
+  ],
   "affected": [
     {
       "package": {

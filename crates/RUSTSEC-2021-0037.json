@@ -8,6 +8,12 @@
   "related": [],
   "summary": "Fix a use-after-free bug in diesels Sqlite backend",
   "details": "We've misused `sqlite3_column_name`. The\n[SQLite](https://www.sqlite.org/c3ref/column_name.html) documentation\nstates that the following:\n\n> The returned string pointer is valid until either the prepared statement\n> is destroyed by sqlite3_finalize() or until the statement is automatically\n> reprepared by the first call to sqlite3_step() for a particular\n> run or until the next call to sqlite3_column_name()\n> or sqlite3_column_name16() on the same column.\n\nAs part of our `query_by_name` infrastructure we've first received all\nfield names for the prepared statement and stored them as string slices\nfor later use. After that we called `sqlite3_step()` for the first time,\nwhich invalids the pointer and therefore the stored string slice.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

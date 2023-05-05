@@ -8,6 +8,12 @@
   "related": [],
   "summary": "nanorand 0.5.0 - RNGs failed to generate properly for non-64-bit numbers",
   "details": "In versions of `nanorand` prior to 0.5.1, `RandomGen` implementations for standard unsigned integers could\nfail to properly generate numbers, due to using bit-shifting to truncate a 64-bit number, rather than just\nan `as` conversion.\n\nThis often manifested as RNGs returning nothing but 0, including the cryptographically secure `ChaCha` random\nnumber generator..",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N"
+    }
+  ],
   "affected": [
     {
       "package": {

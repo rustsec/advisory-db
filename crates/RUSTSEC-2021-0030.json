@@ -8,6 +8,12 @@
   "related": [],
   "summary": "move_elements can double-free objects on panic",
   "details": "Affected versions of `scratchpad` used `ptr::read` to read elements while\ncalling a user provided function `f` on them.\n\nSince the pointer read duplicates ownership, a panic inside the user provided\n`f` function could cause a double free when unwinding.\n\nThe flaw was fixed in commit `891561bea` by removing the unsafe block and using\na plain iterator.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {

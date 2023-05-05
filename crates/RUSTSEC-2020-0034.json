@@ -10,6 +10,7 @@
   "related": [],
   "summary": "Multiple security issues including data race, buffer overflow, and uninitialized memory drop",
   "details": "`arr` crate contains multiple security issues. Specifically,\n\n1. It incorrectly implements Sync/Send bounds, which allows to smuggle non-Sync/Send types across the thread boundary.\n2. `Index` and `IndexMut` implementation does not check the array bound.\n3. `Array::new_from_template()` drops uninitialized memory.",
+  "severity": [],
   "affected": [
     {
       "package": {

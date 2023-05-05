@@ -8,6 +8,7 @@
   "related": [],
   "summary": "Data race when sending and receiving after closing a `oneshot` channel",
   "details": "If a `tokio::sync::oneshot` channel is closed (via the\n[`oneshot::Receiver::close`] method), a data race may occur if the\n`oneshot::Sender::send` method is called while the corresponding\n`oneshot::Receiver` is `await`ed or calling `try_recv`.\n\nWhen these methods are called concurrently on a closed channel, the two halves\nof the channel can concurrently access a shared memory location, resulting in a\ndata race. This has been observed to [cause memory corruption][corruption].\n\nNote that the race only occurs when **both** halves of the channel are used\nafter the `Receiver` half has called `close`. Code where `close` is not used, or where the\n`Receiver` is not `await`ed and `try_recv` is not called after calling `close`,\nis not affected.\n\nSee [tokio#4225][issue] for more details.\n\n[corruption]: https://github.com/tokio-rs/tokio/issues/4225#issuecomment-967434847\n[issue]: https://github.com/tokio-rs/tokio/issues/4225\n[`oneshot::Receiver::close`]: https://docs.rs/tokio/1.14.0/tokio/sync/oneshot/struct.Receiver.html#method.close",
+  "severity": [],
   "affected": [
     {
       "package": {

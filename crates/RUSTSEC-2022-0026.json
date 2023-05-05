@@ -8,6 +8,12 @@
   "related": [],
   "summary": "Incorrect MAC key used in the RC4-MD5 ciphersuite",
   "details": "The OpenSSL 3.0 implementation of the RC4-MD5 ciphersuite incorrectly uses the\nAAD data as the MAC key. This makes the MAC key trivially predictable.\n\nAn attacker could exploit this issue by performing a man-in-the-middle attack to\nmodify data being sent from one endpoint to an OpenSSL 3.0 recipient such that\nthe modified data would still pass the MAC integrity check.\n\nNote that data sent from an OpenSSL 3.0 endpoint to a non-OpenSSL 3.0 endpoint\nwill always be rejected by the recipient and the connection will fail at that\npoint. Many application protocols require data to be sent from the client to the\nserver first. Therefore, in such a case, only an OpenSSL 3.0 server would be\nimpacted when talking to a non-OpenSSL 3.0 client.\n\nIf both endpoints are OpenSSL 3.0 then the attacker could modify data being\nsent in both directions. In this case both clients and servers could be\naffected, regardless of the application protocol.\n\nNote that in the absence of an attacker this bug means that an OpenSSL 3.0\nendpoint communicating with a non-OpenSSL 3.0 endpoint will fail to complete the\nhandshake when using this ciphersuite.\n\nThe confidentiality of data is not impacted by this issue, i.e. an attacker\ncannot decrypt data that has been encrypted using this ciphersuite - they can\nonly modify it.\n\nIn order for this attack to work both endpoints must legitimately negotiate the\nRC4-MD5 ciphersuite. This ciphersuite is not compiled by default in OpenSSL 3.0,\nand is not available within the default provider or the default ciphersuite\nlist. This ciphersuite will never be used if TLSv1.3 has been negotiated. In\norder for an OpenSSL 3.0 endpoint to use this ciphersuite the following must\nhave occurred:\n\n1. OpenSSL must have been compiled with the (non-default) compile time option\n   enable-weak-ssl-ciphers\n2. OpenSSL must have had the legacy provider explicitly loaded (either through\n   application code or via configuration)\n3. The ciphersuite must have been explicitly added to the ciphersuite list\n4. The libssl security level must have been set to 0 (default is 1)\n5. A version of SSL/TLS below TLSv1.3 must have been negotiated\n6. Both endpoints must negotiate the RC4-MD5 ciphersuite in preference to any\n   others that both endpoints have in common",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N"
+    }
+  ],
   "affected": [
     {
       "package": {

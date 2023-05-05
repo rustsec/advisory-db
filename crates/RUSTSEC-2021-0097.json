@@ -8,6 +8,12 @@
   "related": [],
   "summary": "SM2 Decryption Buffer Overflow",
   "details": "In order to decrypt SM2 encrypted data an application is expected to call the\nAPI function `EVP_PKEY_decrypt()`. Typically an application will call this\nfunction twice. The first time, on entry, the \"out\" parameter can be NULL and,\non exit, the \"outlen\" parameter is populated with the buffer size required to\nhold the decrypted plaintext. The application can then allocate a sufficiently\nsized buffer and call `EVP_PKEY_decrypt()` again, but this time passing a non-NULL\nvalue for the \"out\" parameter.\n\nA bug in the implementation of the SM2 decryption code means that the\ncalculation of the buffer size required to hold the plaintext returned by the\nfirst call to `EVP_PKEY_decrypt()` can be smaller than the actual size required by\nthe second call. This can lead to a buffer overflow when `EVP_PKEY_decrypt()` is\ncalled by the application a second time with a buffer that is too small.\n\nA malicious attacker who is able present SM2 content for decryption to an\napplication could cause attacker chosen data to overflow the buffer by up to a\nmaximum of 62 bytes altering the contents of other data held after the\nbuffer, possibly changing application behaviour or causing the application to\ncrash. The location of the buffer is application dependent but is typically\nheap allocated.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+    }
+  ],
   "affected": [
     {
       "package": {
