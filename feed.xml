@@ -120,6 +120,127 @@ causes the application to panic.  An attacker may be able to use this
 to cause a denial-of-service.  However, it is not possible for an
 attacker to read from or write to the application&apos;s address space.&lt;/p&gt;
 
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0039: Vulnerability in buffered-reader</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0039.html</id><updated>2023-05-31T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0039.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0039: Vulnerability in buffered-reader"/><published>2023-05-31T12:00:00+00:00</published><summary xml:lang="en">Out-of-bounds array access leads to panic</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/buffered-reader/RUSTSEC-2023-0039.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/buffered-reader/RUSTSEC-2023-0039.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2023-0039
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Out-of-bounds array access leads to panic&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-05-16&quot;&gt;
+          May 16, 2023
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-05-31&quot;&gt;
+          May 31, 2023
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/buffered-reader.html&quot;&gt;buffered-reader&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/buffered-reader&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/panic.html&quot;&gt;#panic&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https://lists.sequoia-pgp.org/hyperkitty/list/announce@lists.sequoia-pgp.org/thread/SN2E3QRT4DMQ5JNEK6VIN6DJ5SH766DI/&quot;&gt;
+          https://lists.sequoia-pgp.org/hyperkitty/list/announce@lists.sequoia-pgp.org/thread/SN2E3QRT4DMQ5JNEK6VIN6DJ5SH766DI/
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=1.0.2, &amp;lt;1.1.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=1.1.5, &amp;lt;1.2.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=1.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Affected versions of the crate have a bug where attacker-controlled
+input can result in the use of an out-of-bound array index.  Rust
+detects the use of the out-of-bound index and causes the application
+to panic.  An attacker may be able to use this to cause a
+denial-of-service.  However, it is not possible for an attacker to
+read from or write to the application&apos;s address space.&lt;/p&gt;
+
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0037: xsalsa20poly1305 is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0037.html</id><updated>2023-05-17T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2023-0037.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0037: xsalsa20poly1305 is unmaintained"/><published>2023-05-17T12:00:00+00:00</published><summary xml:lang="en">crate has been renamed to `crypto_secretbox`</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -1121,140 +1242,5 @@ Other mistakes (e.g. using &lt;code&gt;EncParams&lt;/code&gt; from a different k
 
     &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
     &lt;p&gt;An issue was discovered in the &lt;code&gt;Versionize::deserialize&lt;/code&gt; implementation provided by the &lt;code&gt;versionize&lt;/code&gt; crate for &lt;code&gt;vmm_sys_util::fam::FamStructWrapper&lt;/code&gt;, which can lead to out of bounds memory accesses. The impact started with version 0.1.1. The issue was corrected in version 0.1.10 by inserting a check that verifies, for any deserialized header, the lengths of compared flexible arrays are equal and aborting deserialization otherwise.&lt;/p&gt;
-
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0029: Vulnerability in nats</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0029.html</id><updated>2023-03-25T12:00:00+00:00</updated><category term="crypto-failure"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0029.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0029: Vulnerability in nats"/><published>2023-03-25T12:00:00+00:00</published><summary xml:lang="en">TLS certificate common name validation bypass</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/nats/RUSTSEC-2023-0029.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/nats/RUSTSEC-2023-0029.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2023-0029
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;TLS certificate common name validation bypass&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-03-24&quot;&gt;
-          March 24, 2023
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-03-25&quot;&gt;
-          March 25, 2023
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/nats.html&quot;&gt;nats&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/nats&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/crypto-failure.html&quot;&gt;crypto-failure&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/tls.html&quot;&gt;#tls&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/mitm.html&quot;&gt;#mitm&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;lt;0.9.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;The NATS official Rust clients are vulnerable to MitM when using TLS.&lt;/p&gt;
-&lt;p&gt;A fix for the &lt;code&gt;nats&lt;/code&gt; crate hasn&apos;t been released yet. Since the &lt;code&gt;nats&lt;/code&gt; crate
-is going to be deprecated anyway, consider switching to &lt;code&gt;async-nats&lt;/code&gt; &lt;code&gt;&amp;gt;= 0.29&lt;/code&gt;
-which already fixed this vulnerability.&lt;/p&gt;
-&lt;p&gt;The common name of the server&apos;s TLS certificate is validated against
-the &lt;code&gt;host&lt;/code&gt;name provided by the server&apos;s plaintext &lt;code&gt;INFO&lt;/code&gt; message
-during the initial connection setup phase. A MitM proxy can tamper with
-the &lt;code&gt;host&lt;/code&gt; field&apos;s value by substituting it with the common name of a
-valid certificate it controls, fooling the client into accepting it.&lt;/p&gt;
-&lt;h2&gt;Reproduction steps&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;The NATS Rust client tries to establish a new connection&lt;/li&gt;
-&lt;li&gt;The connection is intercepted by a MitM proxy&lt;/li&gt;
-&lt;li&gt;The proxy makes a separate connection to the NATS server&lt;/li&gt;
-&lt;li&gt;The NATS server replies with an &lt;code&gt;INFO&lt;/code&gt; message&lt;/li&gt;
-&lt;li&gt;The proxy reads the &lt;code&gt;INFO&lt;/code&gt;, alters the &lt;code&gt;host&lt;/code&gt; JSON field and passes
-the tampered &lt;code&gt;INFO&lt;/code&gt; back to the client&lt;/li&gt;
-&lt;li&gt;The proxy upgrades the client connection to TLS, presenting a certificate issued
-by a certificate authority present in the client&apos;s keychain.
-In the previous step the &lt;code&gt;host&lt;/code&gt; was set to the common name of said certificate&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;rustls&lt;/code&gt; accepts the certificate, having verified that the common name matches the
-attacker-controlled value it was given&lt;/li&gt;
-&lt;li&gt;The client has been fooled by the MitM proxy into accepting the attacker-controlled certificate&lt;/li&gt;
-&lt;/ol&gt;
 
   &lt;/article&gt;</content></entry></feed>
