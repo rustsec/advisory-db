@@ -1,5 +1,129 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2023-06-03T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2023-0041: Vulnerability in trust-dns-server</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0041.html</id><updated>2023-06-03T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0041.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0041: Vulnerability in trust-dns-server"/><published>2023-06-03T12:00:00+00:00</published><summary xml:lang="en">Remote Attackers can cause Denial-of-Service (packet loops) with crafted DNS packets</summary><content xml:lang="en" type="html">  &lt;article&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2023-06-12T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2023-0042: Unsoundness in ouroboros</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0042.html</id><updated>2023-06-12T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2023-0042.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0042: Unsoundness in ouroboros"/><published>2023-06-12T12:00:00+00:00</published><summary xml:lang="en">Ouroboros is Unsound</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/ouroboros/RUSTSEC-2023-0042.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/ouroboros/RUSTSEC-2023-0042.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2023-0042
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Ouroboros is Unsound&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-06-11&quot;&gt;
+          June 11, 2023
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-06-12&quot;&gt;
+          June 12, 2023
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/ouroboros.html&quot;&gt;ouroboros&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/ouroboros&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https://github.com/joshua-maros/ouroboros/issues/88&quot;&gt;
+          https://github.com/joshua-maros/ouroboros/issues/88
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;h2&gt;Summary&lt;/h2&gt;
+&lt;p&gt;Ouroboros has a soundness problem. A fix was attempted but
+unsuccessful, leaving the crate unmaintained. Migrate code to use
+&lt;a href=&quot;https://github.com/Voultapher/self_cell&quot;&gt;self_cell&lt;/a&gt; instead.&lt;/p&gt;
+&lt;h2&gt;More details:&lt;/h2&gt;
+&lt;p&gt;Currently, Ouroboros works internally by creating a struct where all
+uses of &apos;this are replaced by &apos;static. However, a recent addition to
+Miri checks that references passed to functions are valid during the
+entire execution of the function, even when those references are
+passed inside a struct. This poses an issue for dropping
+self-referencing values, as the reference becomes invalid during the
+dropping process. Effectively, since self-referencing structs are
+not allowed in vanilla Rust, there is no allowance for dropping data
+during a function that has also been given a reference to that data.
+There&apos;s usually no way to pass a and &amp;amp;a to the same function.&lt;/p&gt;
+&lt;p&gt;A fix was attempted, where the struct would be turned in to a raw
+byte array and only transformed back into the underlying data type
+inside each function. This is allowable as a reference can be
+created and die over the body of a function, as long as the
+reference was created inside the function. However, this is also
+not sound if the original struct contains padding. There is no
+way to initialize padding bytes to a known value that Miri will
+accept, so when it is cast to an array some of the bytes contain
+uninitialized values. This is not acceptable (despite the fact
+that these bytes are never read) due to the potential for
+optimizations that may read from the uninitialized bytes. Besides
+which, this fix does not allow for template or constant parameters
+as there is no way to check the size of a templated type without
+giving specific, concrete values for the template parameters.&lt;/p&gt;
+&lt;p&gt;The crate at this point is no longer maintained, and previous
+users should migrate their code to use
+&lt;a href=&quot;https://github.com/Voultapher/self_cell&quot;&gt;self_cell&lt;/a&gt; instead.&lt;/p&gt;
+
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0041: Vulnerability in trust-dns-server</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0041.html</id><updated>2023-06-03T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0041.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0041: Vulnerability in trust-dns-server"/><published>2023-06-03T12:00:00+00:00</published><summary xml:lang="en">Remote Attackers can cause Denial-of-Service (packet loops) with crafted DNS packets</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
           &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/trust-dns-server/RUSTSEC-2023-0041.md&quot;&gt;History&lt;/a&gt; ⋅ 
@@ -1036,151 +1160,5 @@ For instance if 1000 instances of a ZST are deserialized, and the ZST is not cop
 data will cause a segmentation fault.&lt;/p&gt;
 &lt;p&gt;There is currently no way for borsh to read data without also providing a Rust type.
 Therefore, if not ZST are used for serialization, then you are not affected by this issue.&lt;/p&gt;
-
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0032: Unsoundness in ntru</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0032.html</id><updated>2023-04-06T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0032.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0032: Unsoundness in ntru"/><published>2023-04-06T12:00:00+00:00</published><summary xml:lang="en">Unsound FFI: Wrong API usage causes write past allocated area</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/ntru/RUSTSEC-2023-0032.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/ntru/RUSTSEC-2023-0032.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2023-0032
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Unsound FFI: Wrong API usage causes write past allocated area&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-03-22&quot;&gt;
-          March 22, 2023
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-04-06&quot;&gt;
-          April  6, 2023
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/ntru.html&quot;&gt;ntru&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/ntru&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unsound
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/ffi.html&quot;&gt;#ffi&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/buffer-overflow.html&quot;&gt;#buffer-overflow&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;a href=&quot;https://github.com/FrinkGlobal/ntru-rs/issues/8&quot;&gt;
-          https://github.com/FrinkGlobal/ntru-rs/issues/8
-        &lt;/a&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-    &lt;dl&gt;
-      &lt;dt&gt;Affected Functions&lt;/dt&gt;
-      &lt;dd&gt;Version&lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;ntru::types::PrivateKey::export&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.4.3&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;ntru::types::PublicKey::export&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.4.3&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-    &lt;/dl&gt;
-    
-
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;The following usage causes undefined behavior.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-rust&quot;&gt;let kp: ntru::types::KeyPair = …;
-kp.get_public().export(Default::default())
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;When compiled with debug assertions, the code above will trigger a &lt;code&gt;attempt to subtract with overflow&lt;/code&gt; panic before UB occurs.
-Other mistakes (e.g. using &lt;code&gt;EncParams&lt;/code&gt; from a different key) may always trigger UB.&lt;/p&gt;
-&lt;p&gt;Likely, older versions of this crate are also affected, but have not been tested.&lt;/p&gt;
 
   &lt;/article&gt;</content></entry></feed>
