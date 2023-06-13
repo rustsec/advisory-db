@@ -1,8 +1,12 @@
 {
   "id": "RUSTSEC-2021-0082",
-  "modified": "2021-10-17T22:19:40Z",
+  "modified": "2023-06-13T13:10:24Z",
   "published": "2021-08-14T12:00:00Z",
-  "aliases": [],
+  "aliases": [
+    "CVE-2021-45680",
+    "GHSA-jmwx-r3gq-qq3p",
+    "GHSA-x76r-966h-5qv9"
+  ],
   "related": [],
   "summary": "vec-const attempts to construct a Vec from a pointer to a const slice",
   "details": "Affected versions of this crate claimed to construct a const `Vec` with nonzero length and capacity, but that cannot be done because such a `Vec` requires a pointer from an allocator.\n\nThe implementation was later changed to just construct a `std::borrow::Cow`.",

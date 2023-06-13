@@ -1,8 +1,12 @@
 {
   "id": "RUSTSEC-2021-0130",
-  "modified": "2021-12-21T15:50:24Z",
+  "modified": "2023-06-13T13:10:24Z",
   "published": "2021-12-21T12:00:00Z",
-  "aliases": [],
+  "aliases": [
+    "CVE-2021-45720",
+    "GHSA-qqmc-hwqp-8g2w",
+    "GHSA-v362-2895-h9r2"
+  ],
   "related": [],
   "summary": "Use after free in lru crate",
   "details": "Lru crate has use after free vulnerability.\n\nLru crate has two functions for getting an iterator. Both iterators give\nreferences to key and value. Calling specific functions, like pop(), will remove\nand free the value, and but it's still possible to access the reference of value\nwhich is already dropped causing use after free.",

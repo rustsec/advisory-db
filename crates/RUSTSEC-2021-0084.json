@@ -1,8 +1,12 @@
 {
   "id": "RUSTSEC-2021-0084",
-  "modified": "2021-08-22T01:20:01Z",
+  "modified": "2023-06-13T13:10:24Z",
   "published": "2021-01-03T12:00:00Z",
-  "aliases": [],
+  "aliases": [
+    "CVE-2021-45682",
+    "GHSA-5phc-849h-vcxg",
+    "GHSA-jv2r-jx6q-89jg"
+  ],
   "related": [],
   "summary": "`Read` on uninitialized buffer can cause UB (impl of `ReadKVExt`)",
   "details": "Affected versions of this crate passes an uninitialized buffer to a user-provided `Read` implementation.\n\nArbitrary `Read` implementations can read from the uninitialized buffer (memory exposure) and also can return incorrect number of bytes written to the buffer.\nReading from uninitialized memory produces undefined values that can quickly invoke undefined behavior.",

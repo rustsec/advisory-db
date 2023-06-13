@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2023-0022",
-  "modified": "2023-03-24T02:21:14Z",
+  "modified": "2023-06-13T13:10:24Z",
   "published": "2023-03-24T12:00:00Z",
-  "aliases": [],
+  "aliases": [
+    "GHSA-3gxf-9r58-2ghg"
+  ],
   "related": [],
   "summary": "`openssl` `X509NameBuilder::build` returned object is not thread safe",
   "details": "OpenSSL has a `modified` bit that it can set on on `X509_NAME` objects. If this\nbit is set then the object is not thread-safe even when it appears the code is\nnot modifying the value.\n\nThanks to David Benjamin (Google) for reporting this issue.",

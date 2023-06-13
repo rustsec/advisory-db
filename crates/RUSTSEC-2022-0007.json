@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2022-0007",
-  "modified": "2022-01-24T17:41:17Z",
+  "modified": "2023-06-13T13:10:24Z",
   "published": "2022-01-24T12:00:00Z",
-  "aliases": [],
+  "aliases": [
+    "GHSA-9c9f-7x9p-4wqp"
+  ],
   "related": [],
   "summary": "A malicious coder can get unsound access to TCell or TLCell memory",
   "details": "This is impossible to do by accident, but by carefully constructing\nmarker types to be covariant, a malicious coder can cheat the\nsingleton check in `TCellOwner` and `TLCellOwner`, giving unsound\naccess to cell memory.  This could take the form of getting two\nmutable references to the same memory, or a mutable reference and an\nimmutable reference.\n\nThe fix is for the crate to internally force the marker type to be\ninvariant.  This blocks the conversion between covariant types which\nRust normally allows.",

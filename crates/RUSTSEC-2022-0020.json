@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2022-0020",
-  "modified": "2022-05-10T15:20:48Z",
+  "modified": "2023-06-13T13:10:24Z",
   "published": "2022-05-10T12:00:00Z",
-  "aliases": [],
+  "aliases": [
+    "GHSA-8gj8-hv75-gp94"
+  ],
   "related": [],
   "summary": "`SegQueue` creates zero value of any type",
   "details": "Affected versions of this crate called `mem::zeroed()` to create values of a user-supplied type `T`.\nThis is unsound e.g. if `T` is a reference type (which must be non-null).\n \nThe flaw was corrected by avoiding the use of `mem::zeroed()`, using `MaybeUninit` instead.",

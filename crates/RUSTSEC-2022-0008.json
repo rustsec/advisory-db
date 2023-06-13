@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2022-0008",
-  "modified": "2022-02-04T15:22:53Z",
+  "modified": "2023-06-13T13:10:24Z",
   "published": "2022-01-02T12:00:00Z",
-  "aliases": [],
+  "aliases": [
+    "GHSA-x4mq-m75f-mx8m"
+  ],
   "related": [],
   "summary": "Delegate functions are missing `Send` bound",
   "details": "Affected versions of this crate did not require event handlers to have `Send` bound despite there being no guarantee of them being called on any particular thread, which can potentially lead to data races and undefined behavior.\n\nThe flaw was corrected in commit [afe3252](https://github.com/microsoft/windows-rs/commit/afe32525c22209aa8f632a0f4ad607863b51796a) by adding `Send` bounds.",
