@@ -87,6 +87,10 @@
           June 12, 2023
         </time>
         
+        <time datetime="2023-06-15">
+          (last modified: June 15, 2023)
+        </time>
+        
       </dd>
 
       <dt id="package">Package</dt>
@@ -130,7 +134,11 @@
       <dt id="patched">Patched</dt>
       <dd>
         
-        no patched versions
+        <ul>
+          
+          <li><code>&gt;=0.16.0</code></li>
+          
+        </ul>
         
       </dd>
 
@@ -145,11 +153,9 @@
 
     <h3 id="description">Description</h3>
     <h2>Summary</h2>
-<p>Ouroboros has a soundness problem. A fix was attempted but
-unsuccessful, leaving the crate unmaintained. Migrate code to use
-<a href="https://github.com/Voultapher/self_cell">self_cell</a> instead.</p>
+<p>Ouroboros has a soundness problem, but a fix has been implemented in 0.16.0.</p>
 <h2>More details:</h2>
-<p>Currently, Ouroboros works internally by creating a struct where all
+<p>In 0.15.0, Ouroboros works internally by creating a struct where all
 uses of 'this are replaced by 'static. However, a recent addition to
 Miri checks that references passed to functions are valid during the
 entire execution of the function, even when those references are
@@ -173,9 +179,8 @@ optimizations that may read from the uninitialized bytes. Besides
 which, this fix does not allow for template or constant parameters
 as there is no way to check the size of a templated type without
 giving specific, concrete values for the template parameters.</p>
-<p>The crate at this point is no longer maintained, and previous
-users should migrate their code to use
-<a href="https://github.com/Voultapher/self_cell">self_cell</a> instead.</p>
+<p>The final solution was to use this fix while wrapping the raw byte
+array in <code>MaybeUninit&lt;&gt;</code>.</p>
 
   </article>
 </main>

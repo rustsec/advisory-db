@@ -102,7 +102,7 @@
     &lt;p&gt;The &lt;a href=&quot;https://crates.io/crates/ftp&quot;&gt;&lt;code&gt;ftp&lt;/code&gt;&lt;/a&gt; crate is not maintained any more;
 use &lt;a href=&quot;https://crates.io/crates/suppaftp&quot;&gt;&lt;code&gt;suppaftp&lt;/code&gt;&lt;/a&gt; instead.&lt;/p&gt;
 
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0042: Unsoundness in ouroboros</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0042.html</id><updated>2023-06-12T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2023-0042.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0042: Unsoundness in ouroboros"/><published>2023-06-12T12:00:00+00:00</published><summary xml:lang="en">Ouroboros is Unsound</summary><content xml:lang="en" type="html">  &lt;article&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0042: Unsoundness in ouroboros</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0042.html</id><updated>2023-06-15T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2023-0042.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0042: Unsoundness in ouroboros"/><published>2023-06-12T12:00:00+00:00</published><summary xml:lang="en">Ouroboros is Unsound</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
           &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/ouroboros/RUSTSEC-2023-0042.md&quot;&gt;History&lt;/a&gt; ⋅ 
@@ -134,6 +134,10 @@ use &lt;a href=&quot;https://crates.io/crates/suppaftp&quot;&gt;&lt;code&gt;supp
       &lt;dd&gt;
         &lt;time datetime=&quot;2023-06-12&quot;&gt;
           June 12, 2023
+        &lt;/time&gt;
+        
+        &lt;time datetime=&quot;2023-06-15&quot;&gt;
+          (last modified: June 15, 2023)
         &lt;/time&gt;
         
       &lt;/dd&gt;
@@ -179,7 +183,11 @@ use &lt;a href=&quot;https://crates.io/crates/suppaftp&quot;&gt;&lt;code&gt;supp
       &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
       &lt;dd&gt;
         
-        no patched versions
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.16.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
         
       &lt;/dd&gt;
 
@@ -194,11 +202,9 @@ use &lt;a href=&quot;https://crates.io/crates/suppaftp&quot;&gt;&lt;code&gt;supp
 
     &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
     &lt;h2&gt;Summary&lt;/h2&gt;
-&lt;p&gt;Ouroboros has a soundness problem. A fix was attempted but
-unsuccessful, leaving the crate unmaintained. Migrate code to use
-&lt;a href=&quot;https://github.com/Voultapher/self_cell&quot;&gt;self_cell&lt;/a&gt; instead.&lt;/p&gt;
+&lt;p&gt;Ouroboros has a soundness problem, but a fix has been implemented in 0.16.0.&lt;/p&gt;
 &lt;h2&gt;More details:&lt;/h2&gt;
-&lt;p&gt;Currently, Ouroboros works internally by creating a struct where all
+&lt;p&gt;In 0.15.0, Ouroboros works internally by creating a struct where all
 uses of &apos;this are replaced by &apos;static. However, a recent addition to
 Miri checks that references passed to functions are valid during the
 entire execution of the function, even when those references are
@@ -222,9 +228,8 @@ optimizations that may read from the uninitialized bytes. Besides
 which, this fix does not allow for template or constant parameters
 as there is no way to check the size of a templated type without
 giving specific, concrete values for the template parameters.&lt;/p&gt;
-&lt;p&gt;The crate at this point is no longer maintained, and previous
-users should migrate their code to use
-&lt;a href=&quot;https://github.com/Voultapher/self_cell&quot;&gt;self_cell&lt;/a&gt; instead.&lt;/p&gt;
+&lt;p&gt;The final solution was to use this fix while wrapping the raw byte
+array in &lt;code&gt;MaybeUninit&amp;lt;&amp;gt;&lt;/code&gt;.&lt;/p&gt;
 
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0041: Vulnerability in trust-dns-server</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0041.html</id><updated>2023-06-13T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0041.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0041: Vulnerability in trust-dns-server"/><published>2023-06-03T12:00:00+00:00</published><summary xml:lang="en">Remote Attackers can cause Denial-of-Service (packet loops) with crafted DNS packets</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
@@ -466,144 +471,6 @@ Multiple packets from the attacker consume multiple CPU cores.&lt;/p&gt;
 &lt;li&gt;&lt;a href=&quot;https://crates.io/crates/sysinfo&quot;&gt;&lt;code&gt;sysinfo&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0039: Vulnerability in buffered-reader</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0039.html</id><updated>2023-06-13T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0039.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0039: Vulnerability in buffered-reader"/><published>2023-05-31T12:00:00+00:00</published><summary xml:lang="en">Out-of-bounds array access leads to panic</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/buffered-reader/RUSTSEC-2023-0039.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/buffered-reader/RUSTSEC-2023-0039.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2023-0039
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Out-of-bounds array access leads to panic&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-05-16&quot;&gt;
-          May 16, 2023
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-05-31&quot;&gt;
-          May 31, 2023
-        &lt;/time&gt;
-        
-        &lt;time datetime=&quot;2023-06-13&quot;&gt;
-          (last modified: June 13, 2023)
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/buffered-reader.html&quot;&gt;buffered-reader&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/buffered-reader&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/panic.html&quot;&gt;#panic&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-29mf-62xx-28jq&quot;&gt;GHSA-29mf-62xx-28jq&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;a href=&quot;https://lists.sequoia-pgp.org/hyperkitty/list/announce@lists.sequoia-pgp.org/thread/SN2E3QRT4DMQ5JNEK6VIN6DJ5SH766DI/&quot;&gt;
-          https://lists.sequoia-pgp.org/hyperkitty/list/announce@lists.sequoia-pgp.org/thread/SN2E3QRT4DMQ5JNEK6VIN6DJ5SH766DI/
-        &lt;/a&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=1.0.2, &amp;lt;1.1.0&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=1.1.5, &amp;lt;1.2.0&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=1.2.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;Affected versions of the crate have a bug where attacker-controlled
-input can result in the use of an out-of-bound array index.  Rust
-detects the use of the out-of-bound index and causes the application
-to panic.  An attacker may be able to use this to cause a
-denial-of-service.  However, it is not possible for an attacker to
-read from or write to the application&apos;s address space.&lt;/p&gt;
-
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0038: Vulnerability in sequoia-openpgp</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0038.html</id><updated>2023-06-13T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0038.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0038: Vulnerability in sequoia-openpgp"/><published>2023-05-31T12:00:00+00:00</published><summary xml:lang="en">Out-of-bounds array access leads to panic</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -741,6 +608,144 @@ array index.  Rust detects the use of the out-of-bound index and
 causes the application to panic.  An attacker may be able to use this
 to cause a denial-of-service.  However, it is not possible for an
 attacker to read from or write to the application&apos;s address space.&lt;/p&gt;
+
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0039: Vulnerability in buffered-reader</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0039.html</id><updated>2023-06-13T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0039.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0039: Vulnerability in buffered-reader"/><published>2023-05-31T12:00:00+00:00</published><summary xml:lang="en">Out-of-bounds array access leads to panic</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/buffered-reader/RUSTSEC-2023-0039.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/buffered-reader/RUSTSEC-2023-0039.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2023-0039
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Out-of-bounds array access leads to panic&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-05-16&quot;&gt;
+          May 16, 2023
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-05-31&quot;&gt;
+          May 31, 2023
+        &lt;/time&gt;
+        
+        &lt;time datetime=&quot;2023-06-13&quot;&gt;
+          (last modified: June 13, 2023)
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/buffered-reader.html&quot;&gt;buffered-reader&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/buffered-reader&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/panic.html&quot;&gt;#panic&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-29mf-62xx-28jq&quot;&gt;GHSA-29mf-62xx-28jq&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https://lists.sequoia-pgp.org/hyperkitty/list/announce@lists.sequoia-pgp.org/thread/SN2E3QRT4DMQ5JNEK6VIN6DJ5SH766DI/&quot;&gt;
+          https://lists.sequoia-pgp.org/hyperkitty/list/announce@lists.sequoia-pgp.org/thread/SN2E3QRT4DMQ5JNEK6VIN6DJ5SH766DI/
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=1.0.2, &amp;lt;1.1.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=1.1.5, &amp;lt;1.2.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=1.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Affected versions of the crate have a bug where attacker-controlled
+input can result in the use of an out-of-bound array index.  Rust
+detects the use of the out-of-bound index and causes the application
+to panic.  An attacker may be able to use this to cause a
+denial-of-service.  However, it is not possible for an attacker to
+read from or write to the application&apos;s address space.&lt;/p&gt;
 
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0037: xsalsa20poly1305 is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0037.html</id><updated>2023-05-17T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2023-0037.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0037: xsalsa20poly1305 is unmaintained"/><published>2023-05-17T12:00:00+00:00</published><summary xml:lang="en">crate has been renamed to `crypto_secretbox`</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
