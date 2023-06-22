@@ -1,5 +1,107 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2023-06-21T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2023-0045: Unsoundness in memoffset</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0045.html</id><updated>2023-06-21T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0045.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0045: Unsoundness in memoffset"/><published>2023-06-21T12:00:00+00:00</published><summary xml:lang="en">memoffset allows reading uninitialized memory</summary><content xml:lang="en" type="html">  &lt;article&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2023-06-22T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2023-0046: Unsoundness in cyfs-base</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0046.html</id><updated>2023-06-22T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2023-0046.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0046: Unsoundness in cyfs-base"/><published>2023-06-22T12:00:00+00:00</published><summary xml:lang="en">Misaligned pointer dereference in `ChunkId::new`</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/cyfs-base/RUSTSEC-2023-0046.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/cyfs-base/RUSTSEC-2023-0046.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2023-0046
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Misaligned pointer dereference in &lt;code&gt;ChunkId::new&lt;/code&gt;&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-06-15&quot;&gt;
+          June 15, 2023
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-06-22&quot;&gt;
+          June 22, 2023
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/cyfs-base.html&quot;&gt;cyfs-base&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/cyfs-base&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/alignment.html&quot;&gt;#alignment&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/unsound.html&quot;&gt;#unsound&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https://github.com/buckyos/CYFS/issues/275&quot;&gt;
+          https://github.com/buckyos/CYFS/issues/275
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;The function &lt;code&gt;ChunkId::new&lt;/code&gt; creates a misaligned pointer by casting mutable pointer of &lt;code&gt;u8&lt;/code&gt; slice which has alignment 1 to the mutable pointer of &lt;code&gt;u32&lt;/code&gt; which has alignment 4, and dereference the misaligned pointer leading UB, which should not be allowed in safe function.&lt;/p&gt;
+
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0045: Unsoundness in memoffset</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0045.html</id><updated>2023-06-21T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0045.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0045: Unsoundness in memoffset"/><published>2023-06-21T12:00:00+00:00</published><summary xml:lang="en">memoffset allows reading uninitialized memory</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
           &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/memoffset/RUSTSEC-2023-0045.md&quot;&gt;History&lt;/a&gt; ⋅ 
@@ -1102,103 +1204,5 @@ attacker to read from or write to the application&apos;s address space.&lt;/p&gt
     &lt;p&gt;This crate has been forked/renamed from &lt;code&gt;xsalsa20poly1305&lt;/code&gt; to &lt;code&gt;crypto_secretbox&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;The new repository location is at:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/RustCrypto/nacl-compat/tree/master/crypto_secretbox&quot;&gt;https://github.com/RustCrypto/nacl-compat/tree/master/crypto_secretbox&lt;/a&gt;&lt;/p&gt;
-
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0036: tree_magic is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0036.html</id><updated>2023-04-25T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2023-0036.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0036: tree_magic is unmaintained"/><published>2023-04-25T12:00:00+00:00</published><summary xml:lang="en">tree_magic is Unmaintained</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/tree_magic/RUSTSEC-2023-0036.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/tree_magic/RUSTSEC-2023-0036.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2023-0036
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;tree_magic is Unmaintained&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-04-11&quot;&gt;
-          April 11, 2023
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-04-25&quot;&gt;
-          April 25, 2023
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/tree_magic.html&quot;&gt;tree_magic&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/tree_magic&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unmaintained
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;a href=&quot;https://github.com/aahancoc/tree_magic/issues/16&quot;&gt;
-          https://github.com/aahancoc/tree_magic/issues/16
-        &lt;/a&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;The &lt;code&gt;tree_magic&lt;/code&gt; crate is unmaintained. The author has archived the github
-repository.&lt;/p&gt;
-&lt;p&gt;Alternatives:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://crates.io/crates/tree_magic_mini&quot;&gt;tree_magic_mini&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
 
   &lt;/article&gt;</content></entry></feed>
