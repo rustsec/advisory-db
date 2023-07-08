@@ -16,11 +16,11 @@ jobs:
       uses: actions/cache@v3
       with:
         path: ~/.cargo/bin
-        key: rustsec-admin-v0.8.5
+        key: rustsec-admin-v0.8.6
 
     - name: Install rustsec-admin
       run: |
-        VERSION="0.8.5"
+        VERSION="0.8.6"
         if ! ( rustsec-admin --version | grep -q "$VERSION" ); then
           cargo install rustsec-admin --force --vers "$VERSION"
         fi
