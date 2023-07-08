@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2023-0046",
-  "modified": "2023-06-22T15:43:08Z",
+  "modified": "2023-07-08T12:30:19Z",
   "published": "2023-06-15T12:00:00Z",
-  "aliases": [],
+  "aliases": [
+    "GHSA-g753-ghr7-q33w"
+  ],
   "related": [],
   "summary": "Misaligned pointer dereference in `ChunkId::new`",
   "details": "The function `ChunkId::new` creates a misaligned pointer by casting mutable pointer of `u8` slice which has alignment 1 to the mutable pointer of `u32` which has alignment 4, and dereference the misaligned pointer leading UB, which should not be allowed in safe function.",
