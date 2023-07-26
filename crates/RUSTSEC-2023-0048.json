@@ -1,0 +1,76 @@
+{
+  "id": "RUSTSEC-2023-0048",
+  "modified": "2023-07-26T22:15:10Z",
+  "published": "2023-07-26T12:00:00Z",
+  "aliases": [],
+  "related": [],
+  "summary": "Unsoundness in `intern` methods on `intaglio` symbol interners",
+  "details": "Affected versions of this crate have a stacked borrows violation when creating\nreferences to interned contents. All interner types are affected.\n\nThe flaw was corrected in version 1.9.0 by reordering move and borrowing\noperations and storing interned contents by raw pointer instead of as a `Box`.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "intaglio",
+        "purl": "pkg:cargo/intaglio"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": [
+            "intaglio::SymbolTable::intern",
+            "intaglio::bytes::SymbolTable::intern",
+            "intaglio::cstr::SymbolTable::intern",
+            "intaglio::osstr::SymbolTable::intern",
+            "intaglio::path::SymbolTable::intern"
+          ]
+        }
+      },
+      "database_specific": {
+        "categories": [],
+        "cvss": null,
+        "informational": "unsound"
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "1.9.0"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/intaglio"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2023-0048.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/artichoke/intaglio/pull/236"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/artichoke/intaglio/issues/235"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/artichoke/intaglio/pull/236"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/artichoke/intaglio/releases/tag/v1.9.0"
+    }
+  ]
+}
