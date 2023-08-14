@@ -1,5 +1,121 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2023-08-07T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2023-0049: tui is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0049.html</id><updated>2023-08-07T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2023-0049.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0049: tui is unmaintained"/><published>2023-08-07T12:00:00+00:00</published><summary xml:lang="en">`tui` is unmaintained; use `ratatui` instead</summary><content xml:lang="en" type="html">  &lt;article&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2023-08-14T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2022-0093: Vulnerability in ed25519-dalek</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0093.html</id><updated>2023-08-14T12:00:00+00:00</updated><category term="crypto-failure"/><link href="https://rustsec.org/advisories/RUSTSEC-2022-0093.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0093: Vulnerability in ed25519-dalek"/><published>2023-08-14T12:00:00+00:00</published><summary xml:lang="en">Double Public Key Signing Function Oracle Attack on `ed25519-dalek`</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/ed25519-dalek/RUSTSEC-2022-0093.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/ed25519-dalek/RUSTSEC-2022-0093.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2022-0093
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Double Public Key Signing Function Oracle Attack on &lt;code&gt;ed25519-dalek&lt;/code&gt;&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2022-06-11&quot;&gt;
+          June 11, 2022
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-08-14&quot;&gt;
+          August 14, 2023
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/ed25519-dalek.html&quot;&gt;ed25519-dalek&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/ed25519-dalek&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/crypto-failure.html&quot;&gt;crypto-failure&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;a href=&quot;https://github.com/MystenLabs/ed25519-unsafe-libs&quot;&gt;
+          https://github.com/MystenLabs/ed25519-unsafe-libs
+        &lt;/a&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Versions of &lt;code&gt;ed25519-dalek&lt;/code&gt; prior to v2.0 model private and public keys as
+separate types which can be assembled into a &lt;code&gt;Keypair&lt;/code&gt;, and also provide APIs
+for serializing and deserializing 64-byte private/public keypairs.&lt;/p&gt;
+&lt;p&gt;Such APIs and serializations are inherently unsafe as the public key is one of
+the inputs used in the deterministic computation of the &lt;code&gt;S&lt;/code&gt; part of the signature,
+but not in the &lt;code&gt;R&lt;/code&gt; value. An adversary could somehow use the signing function as
+an oracle that allows arbitrary public keys as input can obtain two signatures
+for the same message sharing the same &lt;code&gt;R&lt;/code&gt; and only differ on the &lt;code&gt;S&lt;/code&gt; part.&lt;/p&gt;
+&lt;p&gt;Unfortunately, when this happens, one can easily extract the private key.&lt;/p&gt;
+&lt;p&gt;Revised public APIs in v2.0 of &lt;code&gt;ed25519-dalek&lt;/code&gt; do NOT allow a decoupled
+private/public keypair as signing input, except as part of specially labeled
+&amp;quot;hazmat&amp;quot; APIs which are clearly labeled as being dangerous if misused.&lt;/p&gt;
+
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0049: tui is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0049.html</id><updated>2023-08-07T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2023-0049.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0049: tui is unmaintained"/><published>2023-08-07T12:00:00+00:00</published><summary xml:lang="en">`tui` is unmaintained; use `ratatui` instead</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
           &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/tui/RUSTSEC-2023-0049.md&quot;&gt;History&lt;/a&gt; ⋅ 
@@ -1184,102 +1300,5 @@ Same setup as above, but now &lt;em&gt;A&lt;/em&gt; sends the reply to itself.
 The packet is sent out as fast as the CPU and network stack manage.
 This locks up a CPU core.
 Multiple packets from the attacker consume multiple CPU cores.&lt;/p&gt;
-
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0040: users is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0040.html</id><updated>2023-06-01T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2023-0040.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0040: users is unmaintained"/><published>2023-06-01T12:00:00+00:00</published><summary xml:lang="en">`users` crate is unmaintained</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/users/RUSTSEC-2023-0040.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/users/RUSTSEC-2023-0040.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2023-0040
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;users&lt;/code&gt; crate is unmaintained&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-06-01&quot;&gt;
-          June  1, 2023
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-06-01&quot;&gt;
-          June  1, 2023
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/users.html&quot;&gt;users&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/users&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unmaintained
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;a href=&quot;https://github.com/ogham/rust-users/issues/54&quot;&gt;
-          https://github.com/ogham/rust-users/issues/54
-        &lt;/a&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;The &lt;code&gt;users&lt;/code&gt; crate hasn&apos;t seen any action since 2020-10-08. The developer seems &lt;a href=&quot;https://github.com/ogham/rust-users/issues/54&quot;&gt;MIA&lt;/a&gt; since.&lt;/p&gt;
-&lt;h2&gt;Recommended alternatives&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://crates.io/crates/sysinfo&quot;&gt;&lt;code&gt;sysinfo&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
 
   &lt;/article&gt;</content></entry></feed>
