@@ -29,6 +29,8 @@ and reporting (send PRs to add yours):
 To report a new vulnerability, open a pull request using the template below.
 See [CONTRIBUTING.md] for more information.
 
+See [HOWTO_UNMAINTAINED.md] before filing an advisory for an unmaintained crate.
+
 <a href="https://github.com/RustSec/advisory-db/blob/main/CONTRIBUTING.md">
   <img alt="Report Vulnerability" width="250px" height="60px" src="https://rustsec.org/img/report-vuln-button.svg">
 </a>
@@ -151,3 +153,4 @@ All content in this repository is placed in the public domain.
 [trivy]: https://aquasecurity.github.io/trivy/
 [dependabot]: https://docs.github.com/en/code-security/dependabot/dependabot-security-updates/about-dependabot-security-updates
 [CONTRIBUTING.md]: https://github.com/RustSec/advisory-db/blob/main/CONTRIBUTING.md
+[HOWTO_UNMAINTAINED.md]: https://github.com/RustSec/advisory-db/blob/main/HOWTO_UNMAINTAINED.md
