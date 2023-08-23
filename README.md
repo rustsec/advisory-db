@@ -153,4 +153,4 @@ All content in this repository is placed in the public domain.
 [trivy]: https://aquasecurity.github.io/trivy/
 [dependabot]: https://docs.github.com/en/code-security/dependabot/dependabot-security-updates/about-dependabot-security-updates
 [CONTRIBUTING.md]: https://github.com/RustSec/advisory-db/blob/main/CONTRIBUTING.md
-[HOWTO_UNMAINTAINED.md]: https://github.com/RustSec/advisory-db/blob/main/HOWTO_UNMAINTAINED.md
+[HOWTO_UNMAINTAINED.md]: ./HOWTO_UNMAINTAINED.md
