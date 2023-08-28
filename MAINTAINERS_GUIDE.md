@@ -6,7 +6,7 @@ Reviewing a pull request, step by step:
 
 This is something first-time submitters may struggle with.
  
-You can usually make changes directly to the sumbitter's branch. It's a great way to make CI pass and help out first-timers, but avoid making substantial changes to content this way without consuling the submitter.
+You can usually make changes directly to the submitter's branch. It's a great way to make CI pass and help out first-timers, but avoid making substantial changes to content this way without consulting the submitter.
 
 ## Make sure the developers of the crate in question are aware of the issue
 

@@ -12,7 +12,7 @@ We also [export](https://github.com/rustsec/advisory-db/tree/osv) data to the [O
 All our data is available on [osv.dev](https://osv.dev/list?ecosystem=crates.io&q=)
 and through their [API](https://osv.dev/#use-the-api).
 
-[Github Advisory Database](https://github.com/advisories/) imports our advisories.
+[GitHub Advisory Database](https://github.com/advisories/) imports our advisories.
 
 The following tools consume this advisory database and can be used for auditing
 and reporting (send PRs to add yours):
@@ -62,13 +62,14 @@ date = "2021-01-31"
 #withdrawn = "YYYY-MM-DD"
 
 # URL to a long-form description of this issue, e.g. a GitHub issue/PR,
-# a change log entry, or a blogpost announcing the release (optional)
+# a change log entry, or a blogpost announcing the release (optional, except
+# for advisories using a license that requires attribution).
 url = "https://github.com/mystuff/mycrate/issues/123"
 
 # URL to additional helpful references regarding the advisory (optional)
 #references = ["https://github.com/mystuff/mycrate/discussions/1"]
 
-# Optional: Indicates the type of informational security  advisory
+# Optional: Indicates the type of informational security advisory
 #  - "unsound" for soundness issues
 #  - "unmaintained" for crates that are no longer maintained
 #  - "notice" for other informational notices
@@ -92,6 +93,13 @@ keywords = ["ssl", "mitm"]
 # Related vulnerabilities (optional)
 # e.g. CVE for a C library wrapped by a -sys crate)
 #related = ["CVE-2018-YYYY", "CVE-2018-ZZZZ"]
+
+# Optional: the advisory license as an SPDX identifier. The default is "CC0-1.0".
+# Accepted values are "CC0-1.0" and "CC-BY-4.0".
+# When using "CC-BY-4.0", the `url` field must constain the link to the source
+# advisory. This should only be used for advisories imported for the GitHub
+# Advisory database ("GHSA").
+#license = "CC-BY-4.0"
 
 # Optional: metadata which narrows the scope of what this advisory affects
 [affected]
@@ -131,9 +139,15 @@ The above [TOML] "front matter" is followed by the long description in [Markdown
 
 ## License
 
-All content in this repository is placed in the public domain.
+All content in this repository is placed in the public domain, except otherwise specified.
 
-[![Public Domain](http://i.creativecommons.org/p/zero/1.0/88x31.png)](https://github.com/RustSec/advisory-db/blob/main/LICENSE.txt)
+[![Public Domain](http://i.creativecommons.org/p/zero/1.0/88x31.png)](https://github.com/RustSec/advisory-db/blob/main/LICENSES/CC0-1.0.txt)
+
+The exceptions are advisories imported from [GitHub Advisory Database](https://docs.github.com/en/site-policy/github-terms/github-terms-for-additional-products-and-features#advisory-database),
+placed under CC-BY 4.0 license.
+They contain a `license` field explicitly indicating their license and a `url` field pointing to the original advisory for proper attribution.
+
+[![Creative Commons Attribution](https://licensebuttons.net/l/by/4.0/88x31.png)](https://github.com/RustSec/advisory-db/blob/main/LICENSES/CC-BY-4.0.txt)
 
 [//]: # (badges)
 

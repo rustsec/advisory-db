@@ -26,7 +26,7 @@ unaffected = ["<= 0.1.2"]
 This is an example template for a RustSec advisory. Please copy this to
 `crates/<crate-name>` and rename it to `RUSTSEC-0000-0000.md`.
 
-In this section of the advisory you can write an extended description
+In this section of the advisory, you can write an extended description
 of the vulnerability, will be converted into HTML and rendered at
 <https://rustsec.org>.
 
@@ -34,10 +34,10 @@ of the vulnerability, will be converted into HTML and rendered at
 - TOML "front matter". See `README.md` for schema.
 - Please include as much detail as you'd like.
 
-A well structured advisory will include information like:
+A well-structured advisory will include information like:
 
 Affected versions of this crate did not properly check for integer overflow when allocating a buffer in `MyBuffer::with_capacity()` (bug description/location/root cause).
 
-This can result in a memory corruption (consequence of the bug) when large integer is given to the parameter (trigger condition).
+This can result in a memory corruption (consequence of the bug) when a large integer is given to the parameter (trigger condition).
 
 The flaw was corrected in commit abc123 by using `saturating_mul()` when calculating the buffer size (fix description).

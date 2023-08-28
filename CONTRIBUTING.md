@@ -52,13 +52,13 @@ When in doubt, please open a PR.
 
 **Q: Do I need to be owner of a crate to file an advisory?**
 
-A:  No, anyone can file an advisory against any crate. The legitimacy of
+A: No, anyone can file an advisory against any crate. The legitimacy of
     vulnerabilities will be determined prior to merging. If a vulnerability
-    turns out to be fake it will be removed from the database.
+    turns out to be fake, it will be removed from the database.
     
 **Q: Can I file an advisory without creating a pull request?**
 
-A: Yes, instead of creating a full advisory yourself you can also
+A: Yes, instead of creating a full advisory yourself, you can also
    [open an issue on the advisory-db repo](https://github.com/RustSec/advisory-db/issues)
    or email information about the vulnerability to
    [rustsec@googlegroups.com](mailto:rustsec@googlegroups.com).
