@@ -1,5 +1,103 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2023-08-24T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2023-0054: Vulnerability in mail-internals</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0054.html</id><updated>2023-08-27T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0054.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0054: Vulnerability in mail-internals"/><published>2023-08-24T12:00:00+00:00</published><summary xml:lang="en">Use-after-free in `vec_insert_bytes`</summary><content xml:lang="en" type="html">  &lt;article&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2023-09-03T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2023-0055: Unsoundness in lexical</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0055.html</id><updated>2023-09-03T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2023-0055.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0055: Unsoundness in lexical"/><published>2023-09-03T12:00:00+00:00</published><summary xml:lang="en">Multiple soundness issues</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/lexical/RUSTSEC-2023-0055.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/lexical/RUSTSEC-2023-0055.md&quot;&gt;Edit&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2023-0055
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Multiple soundness issues&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-09-03&quot;&gt;
+          September  3, 2023
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-09-03&quot;&gt;
+          September  3, 2023
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/lexical.html&quot;&gt;lexical&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/lexical&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;&lt;code&gt;lexical&lt;/code&gt; contains multiple soundness issues:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/Alexhuszagh/rust-lexical/issues/102&quot;&gt;Bytes::read() allows creating instances of types with invalid bit patterns&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/Alexhuszagh/rust-lexical/issues/101&quot;&gt;BytesIter::read() advances iterators out of bounds&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/Alexhuszagh/rust-lexical/issues/104&quot;&gt;The &lt;code&gt;BytesIter&lt;/code&gt; trait has safety invariants but is public and not marked &lt;code&gt;unsafe&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/Alexhuszagh/rust-lexical/issues/95&quot;&gt;&lt;code&gt;write_float()&lt;/code&gt; calls &lt;code&gt;MaybeUninit::assume_init()&lt;/code&gt; on uninitialized data, which is is not allowed by the Rust abstract machine&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The crate also has some correctness issues and appears to be unmaintained.&lt;/p&gt;
+&lt;h2&gt;Alternatives&lt;/h2&gt;
+&lt;p&gt;For quickly parsing floating-point numbers third-party crates are no longer needed. A fast float parsing algorith by the author of &lt;code&gt;lexical&lt;/code&gt; has been &lt;a href=&quot;https://github.com/rust-lang/rust/pull/86761&quot;&gt;merged&lt;/a&gt; into libcore.&lt;/p&gt;
+&lt;p&gt;For quickly parsing integers, consider &lt;code&gt;atoi&lt;/code&gt; and &lt;code&gt;btoi&lt;/code&gt; crates (100% safe code). &lt;code&gt;atoi_radix10&lt;/code&gt; provides even faster parsing, but only with &lt;code&gt;-C target-cpu=native&lt;/code&gt;, and at the cost of some &lt;code&gt;unsafe&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;For formatting integers in a &lt;code&gt;#[no_std]&lt;/code&gt; context consider the &lt;a href=&quot;https://crates.io/crates/numtoa&quot;&gt;&lt;code&gt;numtoa&lt;/code&gt;&lt;/a&gt; crate.&lt;/p&gt;
+&lt;p&gt;For working with big numbers consider &lt;code&gt;num-bigint&lt;/code&gt; and &lt;code&gt;num-traits&lt;/code&gt;.&lt;/p&gt;
+
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0054: Vulnerability in mail-internals</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0054.html</id><updated>2023-08-27T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0054.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0054: Vulnerability in mail-internals"/><published>2023-08-24T12:00:00+00:00</published><summary xml:lang="en">Use-after-free in `vec_insert_bytes`</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
           &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/mail-internals/RUSTSEC-2023-0054.md&quot;&gt;History&lt;/a&gt; ⋅ 
@@ -1240,124 +1338,5 @@ operations and storing interned contents by raw pointer instead of as a &lt;code
 
     &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
     &lt;p&gt;The implementation of &lt;code&gt;FromMdbValue&lt;/code&gt; have several unsoundness issues. First of all, it allows to reinterpret arbitrary bytes as a bool and could make undefined behavior happen with safe function. Secondly, it allows transmuting pointer without taking memory layout into consideration. The details of reproducing the bug were included in url above.&lt;/p&gt;
-
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0046: Unsoundness in cyfs-base</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0046.html</id><updated>2023-07-08T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2023-0046.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0046: Unsoundness in cyfs-base"/><published>2023-06-22T12:00:00+00:00</published><summary xml:lang="en">Misaligned pointer dereference in `ChunkId::new`</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/cyfs-base/RUSTSEC-2023-0046.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/cyfs-base/RUSTSEC-2023-0046.md&quot;&gt;Edit&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2023-0046
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Misaligned pointer dereference in &lt;code&gt;ChunkId::new&lt;/code&gt;&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-06-15&quot;&gt;
-          June 15, 2023
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-06-22&quot;&gt;
-          June 22, 2023
-        &lt;/time&gt;
-        
-        &lt;time datetime=&quot;2023-07-08&quot;&gt;
-          (last modified: July  8, 2023)
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/cyfs-base.html&quot;&gt;cyfs-base&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/cyfs-base&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unsound
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/alignment.html&quot;&gt;#alignment&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/unsound.html&quot;&gt;#unsound&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-g753-ghr7-q33w&quot;&gt;GHSA-g753-ghr7-q33w&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;a href=&quot;https://github.com/buckyos/CYFS/issues/275&quot;&gt;
-          https://github.com/buckyos/CYFS/issues/275
-        &lt;/a&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;The function &lt;code&gt;ChunkId::new&lt;/code&gt; creates a misaligned pointer by casting mutable pointer of &lt;code&gt;u8&lt;/code&gt; slice which has alignment 1 to the mutable pointer of &lt;code&gt;u32&lt;/code&gt; which has alignment 4, and dereference the misaligned pointer leading UB, which should not be allowed in safe function.&lt;/p&gt;
 
   &lt;/article&gt;</content></entry></feed>
