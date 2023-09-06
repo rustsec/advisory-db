@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package &#x27;vm-memory&#x27; › RustSec Advisory Database</title>
+<title>RUSTSEC-2023-0056: vm-memory: Default functions in VolatileMemory trait lack bounds checks, potentially leading to out-of-bounds memory accesses › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,58 +52,233 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/vm-memory/RUSTSEC-2023-0056.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/vm-memory/RUSTSEC-2023-0056.md">Edit</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2023-0056
+        
+      </h1>
+      <span class="subtitle"><p>Default functions in VolatileMemory trait lack bounds checks, potentially leading to out-of-bounds memory accesses</p>
 </span>
-      <h1>Advisories for package &#x27;vm-memory&#x27;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2023-09-06">
-    September  6, 2023
-  </time>
-
-  
-  <h3>
     
-      <span class="tag low">LOW</span>
-      
-    <a href="/advisories/RUSTSEC-2023-0056.html">
-      RUSTSEC-2023-0056: Unsoundness in vm-memory
-    </a>
-  </h3>
-  <span><p>Default functions in VolatileMemory trait lack bounds checks, potentially leading to out-of-bounds memory accesses</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2021-09-10">
-    September 10, 2021
-  </time>
 
-  
-  <h3>
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2023-09-01">
+          September  1, 2023
+        </time>
+      </dd>
+
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2023-09-06">
+          September  6, 2023
+        </time>
+        
+      </dd>
+
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        <a href="/packages/vm-memory.html">vm-memory</a>
+          (<a href="https://crates.io/crates/vm-memory">crates.io</a>)
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        <span class="tag info">INFO</span>
+        Unsound
+        
+      </dd>
+
+      
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/memory-exposure.html">memory-exposure</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      <dt id="aliases">Aliases</dt>
+      <dd>
+        <ul>
+          
+          <li>
+            
+            <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-41051">CVE-2023-41051</a>
+            
+          </li>
+          
+          <li>
+            
+            <a href="https://github.com/advisories/GHSA-49hh-fprx-m68g">GHSA-49hh-fprx-m68g</a>
+            
+          </li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="details">Details</dt>
+      <dd>
+        <a href="https://github.com/rust-vmm/vm-memory/issues/250">
+          https://github.com/rust-vmm/vm-memory/issues/250
+        </a>
+      </dd>
+      
+
+      
+
+      
+      <dt id="cvss_score">CVSS Score</dt>
+      <dd>2.5 <span class="tag low">
+        LOW
+      </span></dd>
+
+      <dt id="cvss_details">CVSS Details</dt>
+      <dd>
+        <dl>
+          
+          <dt>Attack vector</dt><dd>Local</dd>
+          
+
+          
+          <dt>Attack complexity</dt><dd>High</d>
+          
+
+          
+          <dt>Privileges required</dt><dd>None</dd>
+          
+
+          
+          <dt>User interaction</dt><dd>Required</dd>
+          
+
+          
+          <dt>Scope</dt><dd>Unchanged</dd>
+          
+
+          
+          <dt>Confidentiality</dt><dd>None</dd>
+          
+
+          
+          <dt>Integrity</dt><dd>None</dd>
+          
+
+          
+          <dt>Availability</dt><dd>Low</dd>
+          
+        </dl>
+      </dd>
+
+      <dt id="cvss">CVSS Vector</dt>
+      <dd><a href="https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=CVSS:3.1/AV:L/AC:H/PR:N/UI:R/S:U/C:N/I:N/A:L">CVSS:3.1/AV:L/AC:H/PR:N/UI:R/S:U/C:N/I:N/A:L</a></dd>
+
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&gt;=0.12.2</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+
+      
+      
+
+      
+      
+    </dl>
+
     
-      <span class="tag high">HIGH</span>
+    
+    <dl>
+      <dt>Affected Functions</dt>
+      <dd>Version</dd>
       
-    <a href="/advisories/RUSTSEC-2020-0157.html">
-      RUSTSEC-2020-0157: Vulnerability in vm-memory
-    </a>
-  </h3>
-  <span><p>Improper Synchronization and Race Condition in vm-memory</p>
-</span>
-  
-</li>
+      <dt><code>vm_memory::volatile_memory::VolatileMemory::aligned_as_mut</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&lt;0.12.2</code></li>
+          
+        </ul>
+      </dd>
       
-    </ul>
+      <dt><code>vm_memory::volatile_memory::VolatileMemory::aligned_as_ref</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&lt;0.12.2</code></li>
+          
+        </ul>
+      </dd>
+      
+      <dt><code>vm_memory::volatile_memory::VolatileMemory::get_array_ref</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&lt;0.12.2</code></li>
+          
+        </ul>
+      </dd>
+      
+      <dt><code>vm_memory::volatile_memory::VolatileMemory::get_atomic_ref</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&lt;0.12.2</code></li>
+          
+        </ul>
+      </dd>
+      
+      <dt><code>vm_memory::volatile_memory::VolatileMemory::get_ref</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&lt;0.12.2</code></li>
+          
+        </ul>
+      </dd>
+      
+    </dl>
+    
+
+    
+
+    <h3 id="description">Description</h3>
+    <p>An issue was discovered in the default implementations of the <code>VolatileMemory::{get_atomic_ref, aligned_as_ref, aligned_as_mut, get_ref, get_array_ref}</code> trait functions, which allows out-of-bounds memory access if the <code>VolatileMemory::get_slice</code> function returns a <code>VolatileSlice</code> whose length is less than the function’s <code>count</code> argument. No implementations of <code>get_slice</code> provided in <code>vm_memory</code> are affected. Users of custom <code>VolatileMemory</code> implementations may be impacted if the custom implementation does not adhere to <code>get_slice</code>'s documentation.</p>
+<p>The issue started in version 0.1.0 but was fixed in version 0.12.2 by inserting a check that verifies that the <code>VolatileSlice</code> returned by <code>get_slice</code> is of the correct length.</p>
+
   </article>
 </main>
