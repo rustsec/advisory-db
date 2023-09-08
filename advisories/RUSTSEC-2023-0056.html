@@ -57,7 +57,8 @@
     
         <span class="floating-menu">
           <a href="https://github.com/RustSec/advisory-db/commits/main/crates/vm-memory/RUSTSEC-2023-0056.md">History</a> ⋅ 
-          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/vm-memory/RUSTSEC-2023-0056.md">Edit</a>
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/vm-memory/RUSTSEC-2023-0056.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2023-0056">JSON (OSV)</a>
         </span>
     
 
@@ -142,11 +143,24 @@
       
 
       
-      <dt id="details">Details</dt>
+      <dt id="details">References</dt>
       <dd>
-        <a href="https://github.com/rust-vmm/vm-memory/issues/250">
-          https://github.com/rust-vmm/vm-memory/issues/250
-        </a>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/rust-vmm/vm-memory/issues/250">
+              https://github.com/rust-vmm/vm-memory/issues/250
+            </a>
+          </li>
+        
+        
+          <li>
+            <a href="https://github.com/rust-vmm/vm-memory/commit/aff1dd4a5259f7deba56692840f7a2d9ca34c9c8">
+              https://github.com/rust-vmm/vm-memory/commit/aff1dd4a5259f7deba56692840f7a2d9ca34c9c8
+            </a>
+          </li>
+        
+        </ul>
       </dd>
       
 
@@ -280,5 +294,11 @@
     <p>An issue was discovered in the default implementations of the <code>VolatileMemory::{get_atomic_ref, aligned_as_ref, aligned_as_mut, get_ref, get_array_ref}</code> trait functions, which allows out-of-bounds memory access if the <code>VolatileMemory::get_slice</code> function returns a <code>VolatileSlice</code> whose length is less than the function’s <code>count</code> argument. No implementations of <code>get_slice</code> provided in <code>vm_memory</code> are affected. Users of custom <code>VolatileMemory</code> implementations may be impacted if the custom implementation does not adhere to <code>get_slice</code>'s documentation.</p>
 <p>The issue started in version 0.1.0 but was fixed in version 0.12.2 by inserting a check that verifies that the <code>VolatileSlice</code> returned by <code>get_slice</code> is of the correct length.</p>
 
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>

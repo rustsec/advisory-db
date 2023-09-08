@@ -57,7 +57,8 @@
     
         <span class="floating-menu">
           <a href="https://github.com/RustSec/advisory-db/commits/main/crates/convec/RUSTSEC-2020-0125.md">History</a> ⋅ 
-          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/convec/RUSTSEC-2020-0125.md">Edit</a>
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/convec/RUSTSEC-2020-0125.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2020-0125">JSON (OSV)</a>
         </span>
     
 
@@ -147,11 +148,18 @@
       
 
       
-      <dt id="details">Details</dt>
+      <dt id="details">References</dt>
       <dd>
-        <a href="https://github.com/krl/convec/issues/2">
-          https://github.com/krl/convec/issues/2
-        </a>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/krl/convec/issues/2">
+              https://github.com/krl/convec/issues/2
+            </a>
+          </li>
+        
+        
+        </ul>
       </dd>
       
 
@@ -227,5 +235,11 @@ This allows users to insert <code>T</code> that is not Send or not Sync.</p>
 <p>This allows users to create data races by using non-Send types like <code>Arc&lt;Cell&lt;_&gt;&gt;</code> or <code>Rc&lt;_&gt;</code> as <code>T</code> in <code>ConVec&lt;T&gt;</code>. It is also possible to create data races by using types like <code>Cell&lt;_&gt;</code> or <code>RefCell&lt;_&gt;</code> as <code>T</code> (types that are <code>Send</code> but not <code>Sync</code>).
 Such data races can lead to memory corruption.</p>
 
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>

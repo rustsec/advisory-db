@@ -57,7 +57,8 @@
     
         <span class="floating-menu">
           <a href="https://github.com/RustSec/advisory-db/commits/main/crates/ordered-float/RUSTSEC-2020-0082.md">History</a> ⋅ 
-          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/ordered-float/RUSTSEC-2020-0082.md">Edit</a>
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/ordered-float/RUSTSEC-2020-0082.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2020-0082">JSON (OSV)</a>
         </span>
     
 
@@ -143,11 +144,18 @@
       
 
       
-      <dt id="details">Details</dt>
+      <dt id="details">References</dt>
       <dd>
-        <a href="https://github.com/reem/rust-ordered-float/pull/71">
-          https://github.com/reem/rust-ordered-float/pull/71
-        </a>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/reem/rust-ordered-float/pull/71">
+              https://github.com/reem/rust-ordered-float/pull/71
+            </a>
+          </li>
+        
+        
+        </ul>
       </dd>
       
 
@@ -242,5 +250,11 @@
 <p>This was mitigated starting in version 0.4.0, by panicking if the assigned value is NaN.  However, in affected versions from 0.4.0 onward, code that uses the <code>NotNan</code> value during unwinding, or that continues after catching the panic, could still observe the invalid value and trigger undefined behavior.</p>
 <p>The flaw is fully corrected in versions 1.1.1 and 2.0.1, by ensuring that the assignment operators panic without modifying the operand, if the result would be <code>NaN</code>.</p>
 
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>

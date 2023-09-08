@@ -57,7 +57,8 @@
     
         <span class="floating-menu">
           <a href="https://github.com/RustSec/advisory-db/commits/main/crates/crossbeam-channel/RUSTSEC-2020-0052.md">History</a> ⋅ 
-          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/crossbeam-channel/RUSTSEC-2020-0052.md">Edit</a>
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/crossbeam-channel/RUSTSEC-2020-0052.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2020-0052">JSON (OSV)</a>
         </span>
     
 
@@ -157,11 +158,18 @@
       
 
       
-      <dt id="details">Details</dt>
+      <dt id="details">References</dt>
       <dd>
-        <a href="https://github.com/crossbeam-rs/crossbeam/pull/533">
-          https://github.com/crossbeam-rs/crossbeam/pull/533
-        </a>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/crossbeam-rs/crossbeam/pull/533">
+              https://github.com/crossbeam-rs/crossbeam/pull/533
+            </a>
+          </li>
+        
+        
+        </ul>
       </dd>
       
 
@@ -202,5 +210,11 @@
     <h3 id="description">Description</h3>
     <p>The affected version of this crate's the <code>bounded</code> channel incorrectly assumes that <code>Vec::from_iter</code> has allocated capacity that same as the number of iterator elements. <code>Vec::from_iter</code> does not actually guarantee that and may allocate extra memory. The destructor of the <code>bounded</code> channel reconstructs <code>Vec</code> from the raw pointer based on the incorrect assumes described above. This is unsound and causing deallocation with the incorrect capacity when <code>Vec::from_iter</code> has allocated different sizes with the number of iterator elements.</p>
 
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>

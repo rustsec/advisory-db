@@ -57,7 +57,8 @@
     
         <span class="floating-menu">
           <a href="https://github.com/RustSec/advisory-db/commits/main/crates/bunch/RUSTSEC-2020-0130.md">History</a> ⋅ 
-          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/bunch/RUSTSEC-2020-0130.md">Edit</a>
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/bunch/RUSTSEC-2020-0130.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2020-0130">JSON (OSV)</a>
         </span>
     
 
@@ -147,11 +148,18 @@
       
 
       
-      <dt id="details">Details</dt>
+      <dt id="details">References</dt>
       <dd>
-        <a href="https://github.com/krl/bunch/issues/1">
-          https://github.com/krl/bunch/issues/1
-        </a>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/krl/bunch/issues/1">
+              https://github.com/krl/bunch/issues/1
+            </a>
+          </li>
+        
+        
+        </ul>
       </dd>
       
 
@@ -226,5 +234,11 @@
 This allows users to insert <code>T: !Sync</code> to <code>Bunch&lt;T&gt;</code>. It is possible to create a data race to a <code>T: !Sync</code> by invoking the <code>Bunch::get()</code> API (which returns <code>&amp;T</code>) from multiple threads. It is also possible to send <code>T: !Send</code> to other threads by inserting <code>T</code> inside <code>Bunch&lt;T&gt;</code> and sending <code>Bunch&lt;T&gt;</code> to another thread, allowing to create a data race by inserting types like <code>T = Rc&lt;_&gt;</code>.</p>
 <p>Such data races can lead to memory corruption.</p>
 
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>

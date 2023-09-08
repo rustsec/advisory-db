@@ -57,7 +57,8 @@
     
         <span class="floating-menu">
           <a href="https://github.com/RustSec/advisory-db/commits/main/crates/noise_search/RUSTSEC-2020-0141.md">History</a> ⋅ 
-          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/noise_search/RUSTSEC-2020-0141.md">Edit</a>
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/noise_search/RUSTSEC-2020-0141.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2020-0141">JSON (OSV)</a>
         </span>
     
 
@@ -147,11 +148,18 @@
       
 
       
-      <dt id="details">Details</dt>
+      <dt id="details">References</dt>
       <dd>
-        <a href="https://github.com/pipedown/noise/issues/72">
-          https://github.com/pipedown/noise/issues/72
-        </a>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/pipedown/noise/issues/72">
+              https://github.com/pipedown/noise/issues/72
+            </a>
+          </li>
+        
+        
+        </ul>
       </dd>
       
 
@@ -226,5 +234,11 @@
 This can lead to data races when types that are either <code>!Send</code> or <code>!Sync</code> (e.g. <code>Rc&lt;T&gt;</code>, <code>Arc&lt;Cell&lt;_&gt;&gt;</code>) are contained inside <code>MvccRwLock</code> and sent across thread boundaries. The data races can potentially lead to memory corruption (as demonstrated in the PoC from the original report issue).</p>
 <p>Also, safe APIs of <code>MvccRwLock</code> allow aliasing violations by allowing <code>&amp;T</code> and <code>LockResult&lt;MutexGuard&lt;Box&lt;T&gt;&gt;&gt;</code> to co-exist in conflicting lifetime regions. The APIs of <code>MvccRwLock</code> should either be marked as <code>unsafe</code> or <code>MbccRwLock</code> should be changed to private or pub(crate).</p>
 
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>

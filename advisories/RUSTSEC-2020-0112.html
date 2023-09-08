@@ -57,7 +57,8 @@
     
         <span class="floating-menu">
           <a href="https://github.com/RustSec/advisory-db/commits/main/crates/buttplug/RUSTSEC-2020-0112.md">History</a> ⋅ 
-          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/buttplug/RUSTSEC-2020-0112.md">Edit</a>
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/buttplug/RUSTSEC-2020-0112.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2020-0112">JSON (OSV)</a>
         </span>
     
 
@@ -147,11 +148,18 @@
       
 
       
-      <dt id="details">Details</dt>
+      <dt id="details">References</dt>
       <dd>
-        <a href="https://github.com/buttplugio/buttplug-rs/issues/225">
-          https://github.com/buttplugio/buttplug-rs/issues/225
-        </a>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/buttplugio/buttplug-rs/issues/225">
+              https://github.com/buttplugio/buttplug-rs/issues/225
+            </a>
+          </li>
+        
+        
+        </ul>
       </dd>
       
 
@@ -231,5 +239,11 @@
 If <code>T: !Sync</code> for <code>ButtplugFutureStateShared&lt;T&gt;</code>, it is possible to cause data race to <code>T</code> (e.g. <code>T</code>=<code>Arc&lt;Cell&lt;_&gt;&gt;</code>) and lead to undefined behavior.</p>
 <p>The flaw was corrected in version 1.0.4 by removing manual implementations of <code>Send</code>/<code>Sync</code> for <code>ButtplugFutureStateShared&lt;T&gt;</code> to let rustc generate auto trait implementations with correct trait bounds on <code>T</code>.</p>
 
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>

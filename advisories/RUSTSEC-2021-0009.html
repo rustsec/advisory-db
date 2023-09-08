@@ -57,7 +57,8 @@
     
         <span class="floating-menu">
           <a href="https://github.com/RustSec/advisory-db/commits/main/crates/basic_dsp_matrix/RUSTSEC-2021-0009.md">History</a> ⋅ 
-          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/basic_dsp_matrix/RUSTSEC-2021-0009.md">Edit</a>
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/basic_dsp_matrix/RUSTSEC-2021-0009.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2021-0009">JSON (OSV)</a>
         </span>
     
 
@@ -145,11 +146,18 @@
       
 
       
-      <dt id="details">Details</dt>
+      <dt id="details">References</dt>
       <dd>
-        <a href="https://github.com/liebharc/basic_dsp/issues/47">
-          https://github.com/liebharc/basic_dsp/issues/47
-        </a>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/liebharc/basic_dsp/issues/47">
+              https://github.com/liebharc/basic_dsp/issues/47
+            </a>
+          </li>
+        
+        
+        </ul>
       </dd>
       
 
@@ -227,5 +235,11 @@
     <p>Affected versions of this crate did not guard against double drop while temporarily duplicating objects' ownership using <code>ptr::read()</code>. Upon panic in a user-provided function <code>conversion</code>, objects that are copied by <code>ptr::read()</code> are dropped twice, leading to memory corruption.</p>
 <p>The flaw was corrected in v0.9.2 by using <code>ManuallyDrop&lt;T&gt;</code> to enclose objects that are to be temporarily duplicated.</p>
 
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>

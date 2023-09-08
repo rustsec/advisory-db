@@ -57,7 +57,8 @@
     
         <span class="floating-menu">
           <a href="https://github.com/RustSec/advisory-db/commits/main/crates/cdr/RUSTSEC-2021-0012.md">History</a> ⋅ 
-          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/cdr/RUSTSEC-2021-0012.md">Edit</a>
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/cdr/RUSTSEC-2021-0012.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2021-0012">JSON (OSV)</a>
         </span>
     
 
@@ -145,11 +146,18 @@
       
 
       
-      <dt id="details">Details</dt>
+      <dt id="details">References</dt>
       <dd>
-        <a href="https://github.com/hrektts/cdr-rs/issues/10">
-          https://github.com/hrektts/cdr-rs/issues/10
-        </a>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/hrektts/cdr-rs/issues/10">
+              https://github.com/hrektts/cdr-rs/issues/10
+            </a>
+          </li>
+        
+        
+        </ul>
       </dd>
       
 
@@ -228,5 +236,11 @@
 <p>Passing an uninitialized buffer to an arbitrary <code>Read</code> implementation is currently defined as undefined behavior in Rust. Official documentation for the <code>Read</code> trait explains the following: &quot;It is your responsibility to make sure that buf is initialized before calling read. Calling read with an uninitialized buf (of the kind one obtains via MaybeUninit<!-- raw HTML omitted -->) is not safe, and can lead to undefined behavior.&quot;</p>
 <p>The flaw was corrected in commit ce310f7 by zero-initializing the newly allocated buffer before handing it to <code>Deserializer.reader.read_exact()</code>.</p>
 
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>

@@ -57,7 +57,8 @@
     
         <span class="floating-menu">
           <a href="https://github.com/RustSec/advisory-db/commits/main/crates/conqueue/RUSTSEC-2020-0117.md">History</a> ⋅ 
-          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/conqueue/RUSTSEC-2020-0117.md">Edit</a>
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/conqueue/RUSTSEC-2020-0117.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2020-0117">JSON (OSV)</a>
         </span>
     
 
@@ -147,11 +148,18 @@
       
 
       
-      <dt id="details">Details</dt>
+      <dt id="details">References</dt>
       <dd>
-        <a href="https://github.com/longshorej/conqueue/issues/9">
-          https://github.com/longshorej/conqueue/issues/9
-        </a>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/longshorej/conqueue/issues/9">
+              https://github.com/longshorej/conqueue/issues/9
+            </a>
+          </li>
+        
+        
+        </ul>
       </dd>
       
 
@@ -231,5 +239,11 @@ allowing to send non-Send <code>T</code> to other threads by invoking <code>(&am
 <p>This fails to prevent users from creating data races by sending types like <code>Rc&lt;T&gt;</code> or <code>Arc&lt;Cell&lt;T&gt;&gt;</code> to other threads, which can lead to memory corruption.</p>
 <p>The flaw was corrected in commit 1e462c3 by imposing <code>T: Send</code> to both <code>Send</code>/<code>Sync</code> impls for <code>QueueSender&lt;T&gt;</code>/<code>QueueReceiver&lt;T&gt;</code>.</p>
 
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>

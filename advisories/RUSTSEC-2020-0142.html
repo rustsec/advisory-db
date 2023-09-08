@@ -57,7 +57,8 @@
     
         <span class="floating-menu">
           <a href="https://github.com/RustSec/advisory-db/commits/main/crates/syncpool/RUSTSEC-2020-0142.md">History</a> ⋅ 
-          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/syncpool/RUSTSEC-2020-0142.md">Edit</a>
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/syncpool/RUSTSEC-2020-0142.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2020-0142">JSON (OSV)</a>
         </span>
     
 
@@ -151,11 +152,18 @@
       
 
       
-      <dt id="details">Details</dt>
+      <dt id="details">References</dt>
       <dd>
-        <a href="https://github.com/Chopinsky/byte_buffer/issues/2">
-          https://github.com/Chopinsky/byte_buffer/issues/2
-        </a>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/Chopinsky/byte_buffer/issues/2">
+              https://github.com/Chopinsky/byte_buffer/issues/2
+            </a>
+          </li>
+        
+        
+        </ul>
       </dd>
       
 
@@ -234,5 +242,11 @@
 <p>This can lead to data races when non Send types like <code>Cell&lt;T&gt;</code> or <code>Rc&lt;T&gt;</code> are contained inside <code>Bucket2</code> and sent across thread boundaries. The data races can potentially lead to memory corruption (as demonstrated in the PoC from the original report issue).</p>
 <p>The flaw was corrected in commit 15b2828 by adding a <code>T: Send</code> bound to the <code>Send</code> impl of <code>Bucket2&lt;T&gt;</code>.</p>
 
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
