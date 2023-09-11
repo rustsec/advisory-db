@@ -258,6 +258,129 @@ running at compile time.&lt;/p&gt;
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0059: Unsoundness in users</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0059.html</id><updated>2023-09-10T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2023-0059.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0059: Unsoundness in users"/><published>2023-09-10T12:00:00+00:00</published><summary xml:lang="en">Unaligned read of `*const *const c_char` pointer</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/users/RUSTSEC-2023-0059.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/users/RUSTSEC-2023-0059.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2023-0059&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2023-0059
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Unaligned read of &lt;code&gt;*const *const c_char&lt;/code&gt; pointer&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-09-10&quot;&gt;
+          September 10, 2023
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-09-10&quot;&gt;
+          September 10, 2023
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/users.html&quot;&gt;users&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/users&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/unaligned-read.html&quot;&gt;#unaligned-read&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/ogham/rust-users/issues/55&quot;&gt;
+              https://github.com/ogham/rust-users/issues/55
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Affected versions dereference a potentially unaligned pointer. The pointer is
+commonly unaligned in practice, resulting in undefined behavior.&lt;/p&gt;
+&lt;p&gt;In some build modes, this is observable as a panic followed by abort. In other
+build modes the UB may manifest in some other way, including the possibility of
+working correctly in some architectures.&lt;/p&gt;
+&lt;p&gt;The crate is not currently maintained, so a patched version is not available.&lt;/p&gt;
+&lt;h2&gt;Recommended alternatives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://crates.io/crates/sysinfo&quot;&gt;&lt;code&gt;sysinfo&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0056: Unsoundness in vm-memory</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0056.html</id><updated>2023-09-06T12:00:00+00:00</updated><category term="memory-exposure"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0056.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0056: Unsoundness in vm-memory"/><published>2023-09-06T12:00:00+00:00</published><summary xml:lang="en">Default functions in VolatileMemory trait lack bounds checks, potentially leading to out-of-bounds memory accesses</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -1409,153 +1532,6 @@ repository.&lt;/p&gt;
 &lt;li&gt;&lt;a href=&quot;https://crates.io/crates/multer&quot;&gt;multer&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://crates.io/crates/multiparty&quot;&gt;multiparty&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0093: Vulnerability in ed25519-dalek</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0093.html</id><updated>2023-08-27T12:00:00+00:00</updated><category term="crypto-failure"/><link href="https://rustsec.org/advisories/RUSTSEC-2022-0093.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0093: Vulnerability in ed25519-dalek"/><published>2023-08-14T12:00:00+00:00</published><summary xml:lang="en">Double Public Key Signing Function Oracle Attack on `ed25519-dalek`</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/ed25519-dalek/RUSTSEC-2022-0093.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/ed25519-dalek/RUSTSEC-2022-0093.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2022-0093&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2022-0093
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Double Public Key Signing Function Oracle Attack on &lt;code&gt;ed25519-dalek&lt;/code&gt;&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2022-06-11&quot;&gt;
-          June 11, 2022
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-08-14&quot;&gt;
-          August 14, 2023
-        &lt;/time&gt;
-        
-        &lt;time datetime=&quot;2023-08-27&quot;&gt;
-          (last modified: August 27, 2023)
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/ed25519-dalek.html&quot;&gt;ed25519-dalek&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/ed25519-dalek&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/crypto-failure.html&quot;&gt;crypto-failure&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-w5vr-6qhr-36cc&quot;&gt;GHSA-w5vr-6qhr-36cc&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/MystenLabs/ed25519-unsafe-libs&quot;&gt;
-              https://github.com/MystenLabs/ed25519-unsafe-libs
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=2&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;Versions of &lt;code&gt;ed25519-dalek&lt;/code&gt; prior to v2.0 model private and public keys as
-separate types which can be assembled into a &lt;code&gt;Keypair&lt;/code&gt;, and also provide APIs
-for serializing and deserializing 64-byte private/public keypairs.&lt;/p&gt;
-&lt;p&gt;Such APIs and serializations are inherently unsafe as the public key is one of
-the inputs used in the deterministic computation of the &lt;code&gt;S&lt;/code&gt; part of the signature,
-but not in the &lt;code&gt;R&lt;/code&gt; value. An adversary could somehow use the signing function as
-an oracle that allows arbitrary public keys as input can obtain two signatures
-for the same message sharing the same &lt;code&gt;R&lt;/code&gt; and only differ on the &lt;code&gt;S&lt;/code&gt; part.&lt;/p&gt;
-&lt;p&gt;Unfortunately, when this happens, one can easily extract the private key.&lt;/p&gt;
-&lt;p&gt;Revised public APIs in v2.0 of &lt;code&gt;ed25519-dalek&lt;/code&gt; do NOT allow a decoupled
-private/public keypair as signing input, except as part of specially labeled
-&amp;quot;hazmat&amp;quot; APIs which are clearly labeled as being dangerous if misused.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;

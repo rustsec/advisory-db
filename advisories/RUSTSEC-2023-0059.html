@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories with keyword &#x27;unaligned-read&#x27; › RustSec Advisory Database</title>
+<title>RUSTSEC-2023-0059: users: Unaligned read of `*const *const c_char` pointer › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,62 +52,129 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/users/RUSTSEC-2023-0059.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/users/RUSTSEC-2023-0059.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2023-0059">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2023-0059
+        
+      </h1>
+      <span class="subtitle"><p>Unaligned read of <code>*const *const c_char</code> pointer</p>
 </span>
-      <h1>Advisories with keyword &#x27;unaligned-read&#x27;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2023-09-10">
-    September 10, 2023
-  </time>
+    
 
-  
-  <h3>
-    
-        
-          <span class="tag info">INFO</span>
-        
-    
-    <a href="/advisories/RUSTSEC-2023-0059.html">
-      RUSTSEC-2023-0059: Unsoundness in users
-    </a>
-  </h3>
-  <span><p>Unaligned read of <code>*const *const c_char</code> pointer</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2022-11-22">
-    November 22, 2022
-  </time>
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2023-09-10">
+          September 10, 2023
+        </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2023-09-10">
+          September 10, 2023
+        </time>
         
-          <span class="tag info">INFO</span>
+      </dd>
+
+      <dt id="package">Package</dt>
+      <dd>
         
-    
-    <a href="/advisories/RUSTSEC-2021-0145.html">
-      RUSTSEC-2021-0145: Unsoundness in atty
-    </a>
-  </h3>
-  <span><p>Potential unaligned read</p>
-</span>
-  
-</li>
+        
+        <a href="/packages/users.html">users</a>
+          (<a href="https://crates.io/crates/users">crates.io</a>)
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        <span class="tag info">INFO</span>
+        Unsound
+        
+      </dd>
+
       
-    </ul>
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/unaligned-read.html">#unaligned-read</a>
+        
+      </dd>
+      
+
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/ogham/rust-users/issues/55">
+              https://github.com/ogham/rust-users/issues/55
+            </a>
+          </li>
+        
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        no patched versions
+        
+      </dd>
+
+      
+
+      
+      
+    </dl>
+
+    
+    
+
+    <h3 id="description">Description</h3>
+    <p>Affected versions dereference a potentially unaligned pointer. The pointer is
+commonly unaligned in practice, resulting in undefined behavior.</p>
+<p>In some build modes, this is observable as a panic followed by abort. In other
+build modes the UB may manifest in some other way, including the possibility of
+working correctly in some architectures.</p>
+<p>The crate is not currently maintained, so a patched version is not available.</p>
+<h2>Recommended alternatives</h2>
+<ul>
+<li><a href="https://crates.io/crates/sysinfo"><code>sysinfo</code></a></li>
+</ul>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
