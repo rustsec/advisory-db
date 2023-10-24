@@ -803,6 +803,142 @@ Unfortunately this is issue was not found by our fuzzing infrastructure.&lt;/p&g
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0060: Vulnerability in libwebp-sys2</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0060.html</id><updated>2023-09-26T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0060.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0060: Vulnerability in libwebp-sys2"/><published>2023-09-13T12:00:00+00:00</published><summary xml:lang="en">libwebp: OOB write in BuildHuffmanTable</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/libwebp-sys2/RUSTSEC-2023-0060.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/libwebp-sys2/RUSTSEC-2023-0060.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2023-0060&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2023-0060
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;libwebp: OOB write in BuildHuffmanTable&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-09-12&quot;&gt;
+          September 12, 2023
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-09-13&quot;&gt;
+          September 13, 2023
+        &lt;/time&gt;
+        
+        &lt;time datetime=&quot;2023-09-26&quot;&gt;
+          (last modified: September 26, 2023)
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/libwebp-sys2.html&quot;&gt;libwebp-sys2&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/libwebp-sys2&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/webp.html&quot;&gt;#webp&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-5129&quot;&gt;CVE-2023-5129&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-4863&quot;&gt;CVE-2023-4863&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.1.8&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;&lt;a href=&quot;https://chromereleases.googleblog.com/2023/09/stable-channel-update-for-desktop_11.html&quot;&gt;Google&lt;/a&gt; and &lt;a href=&quot;https://www.mozilla.org/en-US/security/advisories/mfsa2023-40/&quot;&gt;Mozilla&lt;/a&gt; have released security advisories for RCE due to heap overflow in libwebp. Google warns the vulnerability has been exploited in the wild.&lt;/p&gt;
+&lt;p&gt;libwebp needs to be updated to 1.3.2 to include a patch for &amp;quot;OOB write in BuildHuffmanTable&amp;quot;.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0062: Vulnerability in bcder</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0062.html</id><updated>2023-09-13T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0062.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0062: Vulnerability in bcder"/><published>2023-09-13T12:00:00+00:00</published><summary xml:lang="en">BER/CER/DER decoder panics on invalid input</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -1138,22 +1274,22 @@ returning errors as expected.&lt;/p&gt;
 
     
     &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0060: Vulnerability in libwebp-sys2</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0060.html</id><updated>2023-09-26T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0060.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0060: Vulnerability in libwebp-sys2"/><published>2023-09-13T12:00:00+00:00</published><summary xml:lang="en">libwebp: OOB write in BuildHuffmanTable</summary><content xml:lang="en" type="html">  &lt;article&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0059: Unsoundness in users</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0059.html</id><updated>2023-09-12T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2023-0059.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0059: Unsoundness in users"/><published>2023-09-10T12:00:00+00:00</published><summary xml:lang="en">Unaligned read of `*const *const c_char` pointer</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/libwebp-sys2/RUSTSEC-2023-0060.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/libwebp-sys2/RUSTSEC-2023-0060.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2023-0060&quot;&gt;JSON (OSV)&lt;/a&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/users/RUSTSEC-2023-0059.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/users/RUSTSEC-2023-0059.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2023-0059&quot;&gt;JSON (OSV)&lt;/a&gt;
         &lt;/span&gt;
     
 
     &lt;header&gt;
       &lt;h1&gt;
         
-        RUSTSEC-2023-0060
+        RUSTSEC-2023-0059
         
       &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;libwebp: OOB write in BuildHuffmanTable&lt;/p&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Unaligned read of &lt;code&gt;*const *const c_char&lt;/code&gt; pointer&lt;/p&gt;
 &lt;/span&gt;
     &lt;/header&gt;
 
@@ -1162,19 +1298,19 @@ returning errors as expected.&lt;/p&gt;
     &lt;dl&gt;
       &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
       &lt;dd&gt;
+        &lt;time datetime=&quot;2023-09-10&quot;&gt;
+          September 10, 2023
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-09-10&quot;&gt;
+          September 10, 2023
+        &lt;/time&gt;
+        
         &lt;time datetime=&quot;2023-09-12&quot;&gt;
-          September 12, 2023
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-09-13&quot;&gt;
-          September 13, 2023
-        &lt;/time&gt;
-        
-        &lt;time datetime=&quot;2023-09-26&quot;&gt;
-          (last modified: September 26, 2023)
+          (last modified: September 12, 2023)
         &lt;/time&gt;
         
       &lt;/dd&gt;
@@ -1183,140 +1319,8 @@ returning errors as expected.&lt;/p&gt;
       &lt;dd&gt;
         
         
-        &lt;a href=&quot;/packages/libwebp-sys2.html&quot;&gt;libwebp-sys2&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/libwebp-sys2&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/webp.html&quot;&gt;#webp&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-5129&quot;&gt;CVE-2023-5129&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-4863&quot;&gt;CVE-2023-4863&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.1.8&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;&lt;a href=&quot;https://chromereleases.googleblog.com/2023/09/stable-channel-update-for-desktop_11.html&quot;&gt;Google&lt;/a&gt; and &lt;a href=&quot;https://www.mozilla.org/en-US/security/advisories/mfsa2023-40/&quot;&gt;Mozilla&lt;/a&gt; have released security advisories for RCE due to heap overflow in libwebp. Google warns the vulnerability has been exploited in the wild.&lt;/p&gt;
-&lt;p&gt;libwebp needs to be updated to 1.3.2 to include a patch for &amp;quot;OOB write in BuildHuffmanTable&amp;quot;.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0058: Unsoundness in inventory</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0058.html</id><updated>2023-09-10T12:00:00+00:00</updated><category term="thread-safety"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0058.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0058: Unsoundness in inventory"/><published>2023-09-10T12:00:00+00:00</published><summary xml:lang="en">Exposes reference to non-Sync data to an arbitrary thread</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/inventory/RUSTSEC-2023-0058.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/inventory/RUSTSEC-2023-0058.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2023-0058&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2023-0058
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Exposes reference to non-Sync data to an arbitrary thread&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-09-10&quot;&gt;
-          September 10, 2023
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-09-10&quot;&gt;
-          September 10, 2023
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/inventory.html&quot;&gt;inventory&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/inventory&quot;&gt;crates.io&lt;/a&gt;)
+        &lt;a href=&quot;/packages/users.html&quot;&gt;users&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/users&quot;&gt;crates.io&lt;/a&gt;)
         
         
       &lt;/dd&gt;
@@ -1330,21 +1334,12 @@ returning errors as expected.&lt;/p&gt;
       &lt;/dd&gt;
 
       
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/thread-safety.html&quot;&gt;thread-safety&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
 
       
       &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
       &lt;dd&gt;
         
-          &lt;a href=&quot;/keywords/life-before-main.html&quot;&gt;#life-before-main&lt;/a&gt;
+          &lt;a href=&quot;/keywords/unaligned-read.html&quot;&gt;#unaligned-read&lt;/a&gt;
         
       &lt;/dd&gt;
       
@@ -1357,8 +1352,8 @@ returning errors as expected.&lt;/p&gt;
         &lt;ul&gt;
         
           &lt;li&gt;
-            &lt;a href=&quot;https://github.com/dtolnay/inventory/pull/42&quot;&gt;
-              https://github.com/dtolnay/inventory/pull/42
+            &lt;a href=&quot;https://github.com/ogham/rust-users/issues/55&quot;&gt;
+              https://github.com/ogham/rust-users/issues/55
             &lt;/a&gt;
           &lt;/li&gt;
         
@@ -1375,11 +1370,7 @@ returning errors as expected.&lt;/p&gt;
       &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
       &lt;dd&gt;
         
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.2.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
+        no patched versions
         
       &lt;/dd&gt;
 
@@ -1393,13 +1384,17 @@ returning errors as expected.&lt;/p&gt;
     
 
     &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;Affected versions do not enforce a &lt;code&gt;Sync&lt;/code&gt; bound on the type of caller-provided
-value held in the plugin registry. References to these values are made
-accessible to arbitrary threads other than the one that constructed them.&lt;/p&gt;
-&lt;p&gt;A caller could use this flaw to submit thread-unsafe data into inventory, then
-access it as a reference simultaneously from multiple threads.&lt;/p&gt;
-&lt;p&gt;The flaw was corrected by enforcing that data submitted by the caller into
-inventory is &lt;code&gt;Sync&lt;/code&gt;.&lt;/p&gt;
+    &lt;p&gt;Affected versions dereference a potentially unaligned pointer. The pointer is
+commonly unaligned in practice, resulting in undefined behavior.&lt;/p&gt;
+&lt;p&gt;In some build modes, this is observable as a panic followed by abort. In other
+build modes the UB may manifest in some other way, including the possibility of
+working correctly in some architectures.&lt;/p&gt;
+&lt;p&gt;The crate is not currently maintained, so a patched version is not available.&lt;/p&gt;
+&lt;h2&gt;Recommended alternatives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://crates.io/crates/uzers&quot;&gt;&lt;code&gt;uzers&lt;/code&gt;&lt;/a&gt; (an actively maintained fork of the &lt;code&gt;users&lt;/code&gt; crate)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://crates.io/crates/sysinfo&quot;&gt;&lt;code&gt;sysinfo&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
