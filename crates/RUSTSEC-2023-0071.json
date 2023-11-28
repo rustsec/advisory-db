@@ -1,0 +1,64 @@
+{
+  "id": "RUSTSEC-2023-0071",
+  "modified": "2023-11-28T14:10:45Z",
+  "published": "2023-11-22T12:00:00Z",
+  "aliases": [],
+  "related": [],
+  "summary": "Marvin Attack: potential key recovery through timing sidechannels",
+  "details": "The [Marvin Attack] is a timing sidechannel vulnerability which allows\nperforming RSA decryption and signing operations as an attacker with the\nability to observe only the time of the decryption operation performed with\nthe private key.\n\nA recent survey of RSA implementations found that the Rust `rsa` crate is one\nof many implementations vulnerable to this attack.\n\nNo fixed version is available at this time.\n\n[Marvin Attack]: https://people.redhat.com/~hkario/marvin/",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "rsa",
+        "purl": "pkg:cargo/rsa"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        }
+      },
+      "database_specific": {
+        "categories": [
+          "crypto-failure"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/rsa"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2023-0071.html"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/RustCrypto/RSA/issues/19#issuecomment-1822995643"
+    },
+    {
+      "type": "WEB",
+      "url": "https://people.redhat.com/~hkario/marvin/"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
