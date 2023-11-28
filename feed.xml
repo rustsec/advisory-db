@@ -215,6 +215,19 @@
       
 
       
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-c38w-74pg-36hr&quot;&gt;GHSA-c38w-74pg-36hr&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
 
       
       &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
@@ -241,6 +254,51 @@
       
 
       
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;7.4 &lt;span class=&quot;tag high&quot;&gt;
+        HIGH
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+          &lt;dt&gt;Attack vector&lt;/dt&gt;&lt;dd&gt;Network&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Attack complexity&lt;/dt&gt;&lt;dd&gt;High&lt;/d&gt;
+          
+
+          
+          &lt;dt&gt;Privileges required&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;User interaction&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Scope&lt;/dt&gt;&lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+      &lt;dd&gt;&lt;a href=&quot;https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N&quot;&gt;CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N&lt;/a&gt;&lt;/dd&gt;
+
       
 
       &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
@@ -260,13 +318,14 @@
     
 
     &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;The &lt;a href=&quot;https://people.redhat.com/~hkario/marvin/&quot;&gt;Marvin Attack&lt;/a&gt; is a timing sidechannel vulnerability which allows
-performing RSA decryption and signing operations as an attacker with the
-ability to observe only the time of the decryption operation performed with
-the private key.&lt;/p&gt;
-&lt;p&gt;A recent survey of RSA implementations found that the Rust &lt;code&gt;rsa&lt;/code&gt; crate is one
-of many implementations vulnerable to this attack.&lt;/p&gt;
-&lt;p&gt;No fixed version is available at this time.&lt;/p&gt;
+    &lt;h2&gt;Impact&lt;/h2&gt;
+&lt;p&gt;Due to a non-constant-time implementation, information about the private key is leaked through timing information which is observable over the network. An attacker may be able to use that information to recover the key.&lt;/p&gt;
+&lt;h2&gt;Patches&lt;/h2&gt;
+&lt;p&gt;No patch is yet available, however work is underway to migrate to a fully constant-time implementation.&lt;/p&gt;
+&lt;h2&gt;Workarounds&lt;/h2&gt;
+&lt;p&gt;The only currently available workaround is to avoid using the &lt;code&gt;rsa&lt;/code&gt; crate in settings where attackers are able to observe timing information, e.g. local use on a non-compromised computer is fine.&lt;/p&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;p&gt;This vulnerability was discovered as part of the &amp;quot;&lt;a href=&quot;https://people.redhat.com/~hkario/marvin/&quot;&gt;Marvin Attack&lt;/a&gt;&amp;quot;, which revealed several implementations of RSA including OpenSSL had not properly mitigated timing sidechannel attacks.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;

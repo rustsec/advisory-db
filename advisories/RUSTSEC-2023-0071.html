@@ -128,6 +128,19 @@
       
 
       
+      <dt id="aliases">Aliases</dt>
+      <dd>
+        <ul>
+          
+          <li>
+            
+            <a href="https://github.com/advisories/GHSA-c38w-74pg-36hr">GHSA-c38w-74pg-36hr</a>
+            
+          </li>
+          
+        </ul>
+      </dd>
+      
 
       
       <dt id="details">References</dt>
@@ -154,6 +167,51 @@
       
 
       
+      <dt id="cvss_score">CVSS Score</dt>
+      <dd>7.4 <span class="tag high">
+        HIGH
+      </span></dd>
+
+      <dt id="cvss_details">CVSS Details</dt>
+      <dd>
+        <dl>
+          
+          <dt>Attack vector</dt><dd>Network</dd>
+          
+
+          
+          <dt>Attack complexity</dt><dd>High</d>
+          
+
+          
+          <dt>Privileges required</dt><dd>None</dd>
+          
+
+          
+          <dt>User interaction</dt><dd>None</dd>
+          
+
+          
+          <dt>Scope</dt><dd>Unchanged</dd>
+          
+
+          
+          <dt>Confidentiality</dt><dd>High</dd>
+          
+
+          
+          <dt>Integrity</dt><dd>High</dd>
+          
+
+          
+          <dt>Availability</dt><dd>None</dd>
+          
+        </dl>
+      </dd>
+
+      <dt id="cvss">CVSS Vector</dt>
+      <dd><a href="https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N">CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N</a></dd>
+
       
 
       <dt id="patched">Patched</dt>
@@ -173,13 +231,14 @@
     
 
     <h3 id="description">Description</h3>
-    <p>The <a href="https://people.redhat.com/~hkario/marvin/">Marvin Attack</a> is a timing sidechannel vulnerability which allows
-performing RSA decryption and signing operations as an attacker with the
-ability to observe only the time of the decryption operation performed with
-the private key.</p>
-<p>A recent survey of RSA implementations found that the Rust <code>rsa</code> crate is one
-of many implementations vulnerable to this attack.</p>
-<p>No fixed version is available at this time.</p>
+    <h2>Impact</h2>
+<p>Due to a non-constant-time implementation, information about the private key is leaked through timing information which is observable over the network. An attacker may be able to use that information to recover the key.</p>
+<h2>Patches</h2>
+<p>No patch is yet available, however work is underway to migrate to a fully constant-time implementation.</p>
+<h2>Workarounds</h2>
+<p>The only currently available workaround is to avoid using the <code>rsa</code> crate in settings where attackers are able to observe timing information, e.g. local use on a non-compromised computer is fine.</p>
+<h2>References</h2>
+<p>This vulnerability was discovered as part of the &quot;<a href="https://people.redhat.com/~hkario/marvin/">Marvin Attack</a>&quot;, which revealed several implementations of RSA including OpenSSL had not properly mitigated timing sidechannel attacks.</p>
 
 
     <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
