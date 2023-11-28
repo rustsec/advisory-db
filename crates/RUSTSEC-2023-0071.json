@@ -1,12 +1,19 @@
 {
   "id": "RUSTSEC-2023-0071",
-  "modified": "2023-11-28T14:10:45Z",
+  "modified": "2023-11-28T15:30:30Z",
   "published": "2023-11-22T12:00:00Z",
-  "aliases": [],
+  "aliases": [
+    "GHSA-c38w-74pg-36hr"
+  ],
   "related": [],
   "summary": "Marvin Attack: potential key recovery through timing sidechannels",
-  "details": "The [Marvin Attack] is a timing sidechannel vulnerability which allows\nperforming RSA decryption and signing operations as an attacker with the\nability to observe only the time of the decryption operation performed with\nthe private key.\n\nA recent survey of RSA implementations found that the Rust `rsa` crate is one\nof many implementations vulnerable to this attack.\n\nNo fixed version is available at this time.\n\n[Marvin Attack]: https://people.redhat.com/~hkario/marvin/",
-  "severity": [],
+  "details": "## Impact\nDue to a non-constant-time implementation, information about the private key is leaked through timing information which is observable over the network. An attacker may be able to use that information to recover the key.\n\n## Patches\nNo patch is yet available, however work is underway to migrate to a fully constant-time implementation.\n\n## Workarounds\nThe only currently available workaround is to avoid using the `rsa` crate in settings where attackers are able to observe timing information, e.g. local use on a non-compromised computer is fine.\n\n## References\nThis vulnerability was discovered as part of the \"[Marvin Attack]\", which revealed several implementations of RSA including OpenSSL had not properly mitigated timing sidechannel attacks.\n\n[Marvin Attack]: https://people.redhat.com/~hkario/marvin/",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N"
+    }
+  ],
   "affected": [
     {
       "package": {
@@ -25,7 +32,7 @@
         "categories": [
           "crypto-failure"
         ],
-        "cvss": null,
+        "cvss": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N",
         "informational": null
       },
       "ranges": [
