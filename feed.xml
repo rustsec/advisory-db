@@ -221,6 +221,12 @@
           
           &lt;li&gt;
             
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-49092&quot;&gt;CVE-2023-49092&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
             &lt;a href=&quot;https://github.com/advisories/GHSA-c38w-74pg-36hr&quot;&gt;GHSA-c38w-74pg-36hr&lt;/a&gt;
             
           &lt;/li&gt;
@@ -318,13 +324,13 @@
     
 
     &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;h2&gt;Impact&lt;/h2&gt;
+    &lt;h3&gt;Impact&lt;/h3&gt;
 &lt;p&gt;Due to a non-constant-time implementation, information about the private key is leaked through timing information which is observable over the network. An attacker may be able to use that information to recover the key.&lt;/p&gt;
-&lt;h2&gt;Patches&lt;/h2&gt;
+&lt;h3&gt;Patches&lt;/h3&gt;
 &lt;p&gt;No patch is yet available, however work is underway to migrate to a fully constant-time implementation.&lt;/p&gt;
-&lt;h2&gt;Workarounds&lt;/h2&gt;
+&lt;h3&gt;Workarounds&lt;/h3&gt;
 &lt;p&gt;The only currently available workaround is to avoid using the &lt;code&gt;rsa&lt;/code&gt; crate in settings where attackers are able to observe timing information, e.g. local use on a non-compromised computer is fine.&lt;/p&gt;
-&lt;h2&gt;References&lt;/h2&gt;
+&lt;h3&gt;References&lt;/h3&gt;
 &lt;p&gt;This vulnerability was discovered as part of the &amp;quot;&lt;a href=&quot;https://people.redhat.com/~hkario/marvin/&quot;&gt;Marvin Attack&lt;/a&gt;&amp;quot;, which revealed several implementations of RSA including OpenSSL had not properly mitigated timing sidechannel attacks.&lt;/p&gt;
 
 
