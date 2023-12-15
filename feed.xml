@@ -239,6 +239,215 @@
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0071: Vulnerability in rsa</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0071.html</id><updated>2023-12-15T12:00:00+00:00</updated><category term="crypto-failure"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0071.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0071: Vulnerability in rsa"/><published>2023-11-28T12:00:00+00:00</published><summary xml:lang="en">Marvin Attack: potential key recovery through timing sidechannels</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/rsa/RUSTSEC-2023-0071.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/rsa/RUSTSEC-2023-0071.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2023-0071&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2023-0071
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Marvin Attack: potential key recovery through timing sidechannels&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-11-22&quot;&gt;
+          November 22, 2023
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-11-28&quot;&gt;
+          November 28, 2023
+        &lt;/time&gt;
+        
+        &lt;time datetime=&quot;2023-12-15&quot;&gt;
+          (last modified: December 15, 2023)
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/rsa.html&quot;&gt;rsa&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/rsa&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/crypto-failure.html&quot;&gt;crypto-failure&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/cryptography.html&quot;&gt;#cryptography&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-49092&quot;&gt;CVE-2023-49092&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-c38w-74pg-36hr&quot;&gt;GHSA-c38w-74pg-36hr&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-4grx-2x9w-596c&quot;&gt;GHSA-4grx-2x9w-596c&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/RustCrypto/RSA/issues/19#issuecomment-1822995643&quot;&gt;
+              https://github.com/RustCrypto/RSA/issues/19#issuecomment-1822995643
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://people.redhat.com/~hkario/marvin/&quot;&gt;
+              https://people.redhat.com/~hkario/marvin/
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;5.9 &lt;span class=&quot;tag medium&quot;&gt;
+        MEDIUM
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+          &lt;dt&gt;Attack vector&lt;/dt&gt;&lt;dd&gt;Network&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Attack complexity&lt;/dt&gt;&lt;dd&gt;High&lt;/d&gt;
+          
+
+          
+          &lt;dt&gt;Privileges required&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;User interaction&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Scope&lt;/dt&gt;&lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+      &lt;dd&gt;&lt;a href=&quot;https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N&quot;&gt;CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N&lt;/a&gt;&lt;/dd&gt;
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;h3&gt;Impact&lt;/h3&gt;
+&lt;p&gt;Due to a non-constant-time implementation, information about the private key is leaked through timing information which is observable over the network. An attacker may be able to use that information to recover the key.&lt;/p&gt;
+&lt;h3&gt;Patches&lt;/h3&gt;
+&lt;p&gt;No patch is yet available, however work is underway to migrate to a fully constant-time implementation.&lt;/p&gt;
+&lt;h3&gt;Workarounds&lt;/h3&gt;
+&lt;p&gt;The only currently available workaround is to avoid using the &lt;code&gt;rsa&lt;/code&gt; crate in settings where attackers are able to observe timing information, e.g. local use on a non-compromised computer is fine.&lt;/p&gt;
+&lt;h3&gt;References&lt;/h3&gt;
+&lt;p&gt;This vulnerability was discovered as part of the &amp;quot;&lt;a href=&quot;https://people.redhat.com/~hkario/marvin/&quot;&gt;Marvin Attack&lt;/a&gt;&amp;quot;, which revealed several implementations of RSA including OpenSSL had not properly mitigated timing sidechannel attacks.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0072: Unsoundness in openssl</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0072.html</id><updated>2023-11-28T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0072.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0072: Unsoundness in openssl"/><published>2023-11-28T12:00:00+00:00</published><summary xml:lang="en">`openssl` `X509StoreRef::objects` is unsound</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -373,205 +582,6 @@
     &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
     &lt;p&gt;This function returned a reference into an OpenSSL datastructure, but there was no way to ensure OpenSSL would not mutate the datastructure behind ones back.&lt;/p&gt;
 &lt;p&gt;Use of this function should be replaced with &lt;code&gt;X509StoreRef::all_certificates&lt;/code&gt;.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0071: Vulnerability in rsa</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0071.html</id><updated>2023-11-28T12:00:00+00:00</updated><category term="crypto-failure"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0071.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0071: Vulnerability in rsa"/><published>2023-11-28T12:00:00+00:00</published><summary xml:lang="en">Marvin Attack: potential key recovery through timing sidechannels</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/rsa/RUSTSEC-2023-0071.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/rsa/RUSTSEC-2023-0071.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2023-0071&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2023-0071
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Marvin Attack: potential key recovery through timing sidechannels&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-11-22&quot;&gt;
-          November 22, 2023
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-11-28&quot;&gt;
-          November 28, 2023
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/rsa.html&quot;&gt;rsa&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/rsa&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/crypto-failure.html&quot;&gt;crypto-failure&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/cryptography.html&quot;&gt;#cryptography&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-49092&quot;&gt;CVE-2023-49092&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-c38w-74pg-36hr&quot;&gt;GHSA-c38w-74pg-36hr&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/RustCrypto/RSA/issues/19#issuecomment-1822995643&quot;&gt;
-              https://github.com/RustCrypto/RSA/issues/19#issuecomment-1822995643
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://people.redhat.com/~hkario/marvin/&quot;&gt;
-              https://people.redhat.com/~hkario/marvin/
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
-      &lt;dd&gt;7.4 &lt;span class=&quot;tag high&quot;&gt;
-        HIGH
-      &lt;/span&gt;&lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;dl&gt;
-          
-          &lt;dt&gt;Attack vector&lt;/dt&gt;&lt;dd&gt;Network&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Attack complexity&lt;/dt&gt;&lt;dd&gt;High&lt;/d&gt;
-          
-
-          
-          &lt;dt&gt;Privileges required&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;User interaction&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Scope&lt;/dt&gt;&lt;dd&gt;Unchanged&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
-          
-        &lt;/dl&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
-      &lt;dd&gt;&lt;a href=&quot;https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N&quot;&gt;CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N&lt;/a&gt;&lt;/dd&gt;
-
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;h3&gt;Impact&lt;/h3&gt;
-&lt;p&gt;Due to a non-constant-time implementation, information about the private key is leaked through timing information which is observable over the network. An attacker may be able to use that information to recover the key.&lt;/p&gt;
-&lt;h3&gt;Patches&lt;/h3&gt;
-&lt;p&gt;No patch is yet available, however work is underway to migrate to a fully constant-time implementation.&lt;/p&gt;
-&lt;h3&gt;Workarounds&lt;/h3&gt;
-&lt;p&gt;The only currently available workaround is to avoid using the &lt;code&gt;rsa&lt;/code&gt; crate in settings where attackers are able to observe timing information, e.g. local use on a non-compromised computer is fine.&lt;/p&gt;
-&lt;h3&gt;References&lt;/h3&gt;
-&lt;p&gt;This vulnerability was discovered as part of the &amp;quot;&lt;a href=&quot;https://people.redhat.com/~hkario/marvin/&quot;&gt;Marvin Attack&lt;/a&gt;&amp;quot;, which revealed several implementations of RSA including OpenSSL had not properly mitigated timing sidechannel attacks.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
