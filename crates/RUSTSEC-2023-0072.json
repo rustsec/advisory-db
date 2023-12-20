@@ -1,11 +1,11 @@
 {
   "id": "RUSTSEC-2023-0072",
-  "modified": "2023-11-28T14:17:30Z",
+  "modified": "2023-12-20T22:33:20Z",
   "published": "2023-11-23T12:00:00Z",
   "aliases": [],
   "related": [],
   "summary": "`openssl` `X509StoreRef::objects` is unsound",
-  "details": "This function returned a reference into an OpenSSL datastructure, but there was no way to ensure OpenSSL would not mutate the datastructure behind ones back.\n\nUse of this function should be replaced with `X509StoreRef::all_certificates`.",
+  "details": "This function returned a shared reference into an OpenSSL datastructure but did not account for interior mutability. OpenSSL may modify the data behind this reference, meaning accesses can race and the reference is unsound.\n\nUse of this function should be replaced with `X509StoreRef::all_certificates`.",
   "severity": [],
   "affected": [
     {
