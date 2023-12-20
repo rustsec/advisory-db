@@ -682,7 +682,7 @@ https://github.com/google/zerocopy/issues/679 for more detail.&lt;/p&gt;
 
     
     &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0072: Unsoundness in openssl</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0072.html</id><updated>2023-11-28T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0072.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0072: Unsoundness in openssl"/><published>2023-11-28T12:00:00+00:00</published><summary xml:lang="en">`openssl` `X509StoreRef::objects` is unsound</summary><content xml:lang="en" type="html">  &lt;article&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0072: Unsoundness in openssl</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0072.html</id><updated>2023-12-20T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0072.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0072: Unsoundness in openssl"/><published>2023-11-28T12:00:00+00:00</published><summary xml:lang="en">`openssl` `X509StoreRef::objects` is unsound</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
           &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/openssl/RUSTSEC-2023-0072.md&quot;&gt;History&lt;/a&gt; ⋅ 
@@ -715,6 +715,10 @@ https://github.com/google/zerocopy/issues/679 for more detail.&lt;/p&gt;
       &lt;dd&gt;
         &lt;time datetime=&quot;2023-11-28&quot;&gt;
           November 28, 2023
+        &lt;/time&gt;
+        
+        &lt;time datetime=&quot;2023-12-20&quot;&gt;
+          (last modified: December 20, 2023)
         &lt;/time&gt;
         
       &lt;/dd&gt;
@@ -814,7 +818,7 @@ https://github.com/google/zerocopy/issues/679 for more detail.&lt;/p&gt;
     
 
     &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;This function returned a reference into an OpenSSL datastructure, but there was no way to ensure OpenSSL would not mutate the datastructure behind ones back.&lt;/p&gt;
+    &lt;p&gt;This function returned a shared reference into an OpenSSL datastructure but did not account for interior mutability. OpenSSL may modify the data behind this reference, meaning accesses can race and the reference is unsound.&lt;/p&gt;
 &lt;p&gt;Use of this function should be replaced with &lt;code&gt;X509StoreRef::all_certificates&lt;/code&gt;.&lt;/p&gt;
 
 

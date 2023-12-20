@@ -88,6 +88,10 @@
           November 28, 2023
         </time>
         
+        <time datetime="2023-12-20">
+          (last modified: December 20, 2023)
+        </time>
+        
       </dd>
 
       <dt id="package">Package</dt>
@@ -185,7 +189,7 @@
     
 
     <h3 id="description">Description</h3>
-    <p>This function returned a reference into an OpenSSL datastructure, but there was no way to ensure OpenSSL would not mutate the datastructure behind ones back.</p>
+    <p>This function returned a shared reference into an OpenSSL datastructure but did not account for interior mutability. OpenSSL may modify the data behind this reference, meaning accesses can race and the reference is unsound.</p>
 <p>Use of this function should be replaced with <code>X509StoreRef::all_certificates</code>.</p>
 
 
