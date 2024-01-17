@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package &#x27;h2&#x27; › RustSec Advisory Database</title>
+<title>RUSTSEC-2024-0003: h2: Resource exhaustion vulnerability in h2 may lead to Denial of Service (DoS) › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,58 +52,156 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/h2/RUSTSEC-2024-0003.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/h2/RUSTSEC-2024-0003.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2024-0003">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2024-0003
+        
+      </h1>
+      <span class="subtitle"><p>Resource exhaustion vulnerability in h2 may lead to Denial of Service (DoS)</p>
 </span>
-      <h1>Advisories for package &#x27;h2&#x27;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2024-01-17">
-    January 17, 2024
-  </time>
+    
 
-  
-  <h3>
-    
-        
-    
-    <a href="/advisories/RUSTSEC-2024-0003.html">
-      RUSTSEC-2024-0003: Vulnerability in h2
-    </a>
-  </h3>
-  <span><p>Resource exhaustion vulnerability in h2 may lead to Denial of Service (DoS)</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2023-04-20">
-    April 20, 2023
-  </time>
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2024-01-17">
+          January 17, 2024
+        </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2024-01-17">
+          January 17, 2024
+        </time>
         
-    
-    <a href="/advisories/RUSTSEC-2023-0034.html">
-      RUSTSEC-2023-0034: Vulnerability in h2
-    </a>
-  </h3>
-  <span><p>Resource exhaustion vulnerability in h2 may lead to Denial of Service (DoS)</p>
-</span>
-  
-</li>
+      </dd>
+
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        <a href="/packages/h2.html">h2</a>
+          (<a href="https://crates.io/crates/h2">crates.io</a>)
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        Vulnerability
+        
+      </dd>
+
       
-    </ul>
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/denial-of-service.html">denial-of-service</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/http.html">#http</a>
+        
+          <a href="/keywords/http2.html">#http2</a>
+        
+          <a href="/keywords/h2.html">#h2</a>
+        
+      </dd>
+      
+
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+        
+          <li>
+            <a href="https://github.com/Netflix/security-bulletins/blob/master/advisories/third-party/2019-002.md">
+              https://github.com/Netflix/security-bulletins/blob/master/advisories/third-party/2019-002.md
+            </a>
+          </li>
+        
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="related">Related</dt>
+      <dd>
+        <ul>
+          
+          <li>
+            
+            <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-9514">CVE-2019-9514</a>
+            
+          </li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>^0.3.24</code></li>
+          
+          <li><code>&gt;=0.4.2</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+
+      
+      
+    </dl>
+
+    
+    
+
+    <h3 id="description">Description</h3>
+    <p>An attacker with an HTTP/2 connection to an affected endpoint can send a steady stream of invalid frames to force the
+generation of reset frames on the victim endpoint.
+By closing their recv window, the attacker could then force these resets to be queued in an unbounded fashion,
+resulting in Out Of Memory (OOM) and high CPU usage.</p>
+<p>This fix is corrected in <a href="https://github.com/hyperium/h2/pull/737">hyperium/h2#737</a>, which limits the total number of
+internal error resets emitted by default before the connection is closed.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
