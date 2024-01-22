@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+
+<meta name="author" content="Rust Project Developers">
+<meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
+<title>RUSTSEC-2024-0006: shlex: Multiple issues involving quote API › RustSec Advisory Database</title>
+
+<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
+<link href="/css/basic.css" rel="stylesheet">
+<link href="/css/highlight.css" rel="stylesheet">
+<link href="/css/index.css" rel="stylesheet">
+
+<script src="/js/index.js" defer></script>
+<script src="/js/search.js" defer></script>
+
+<header>
+  <div class="header-top">
+    <h1><a href="/"><img class="logo-image" src="/img/rustsec-logo.svg" /></a></h1>
+    
+    <div class="search">
+      <form onsubmit="return searchform();">
+        <input type="search" id="search-term"
+               placeholder="Look up package or ID..." required
+               size="20">
+      </form>
+    </div>
+    
+  </div>
+  <nav>
+    <div>
+      <a href="/">About</a>
+      <a href="/advisories/">Advisories</a>
+      <a href="/contributing.html">Report Vulnerabilities</a>
+    </div>
+    <div>
+      <a href="https://rust-lang.zulipchat.com/login/#narrow/stream/146229-wg-secure-code/" title="Zulip" aria-label="Zulip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="height:1em;fill:currentColor"><path d="M473.09 122.97c0 22.69-10.19 42.85-25.72 55.08L296.61 312.69c-2.8 2.4-6.44-1.47-4.42-4.7l55.3-110.72c1.55-3.1-.46-6.91-3.64-6.91H129.36c-33.22 0-60.4-30.32-60.4-67.37 0-37.06 27.18-67.37 60.4-67.37h283.33c33.22-.02 60.4 30.3 60.4 67.35zM129.36 506.05h283.33c33.22 0 60.4-30.32 60.4-67.37 0-37.06-27.18-67.37-60.4-67.37H198.2c-3.18 0-5.19-3.81-3.64-6.91l55.3-110.72c2.02-3.23-1.62-7.1-4.42-4.7L94.68 383.6c-15.53 12.22-25.72 32.39-25.72 55.08 0 37.05 27.18 67.37 60.4 67.37zm522.5-124.15l124.78-179.6v-1.56H663.52v-48.98h190.09v34.21L731.55 363.24v1.56h124.01v48.98h-203.7V381.9zm338.98-230.14V302.6c0 45.09 17.1 68.03 47.43 68.03 31.1 0 48.2-21.77 48.2-68.03V151.76h59.09V298.7c0 80.86-40.82 119.34-109.24 119.34-66.09 0-104.96-36.54-104.96-120.12V151.76h59.48zm244.91 0h59.48v212.25h104.18v49.76h-163.66V151.76zm297 0v262.01h-59.48V151.76h59.48zm90.18 3.5c18.27-3.11 43.93-5.44 80.08-5.44 36.54 0 62.59 7 80.08 20.99 16.72 13.22 27.99 34.99 27.99 60.64 0 25.66-8.55 47.43-24.1 62.2-20.21 19.05-50.15 27.6-85.13 27.6-7.77 0-14.77-.39-20.21-1.17v93.69h-58.7V155.26zm58.7 118.96c5.05 1.17 11.27 1.55 19.83 1.55 31.49 0 50.92-15.94 50.92-42.76 0-24.1-16.72-38.49-46.26-38.49-12.05 0-20.21 1.17-24.49 2.33v77.37z"/></svg></a>
+      <a href="https://twitter.com/RustSec/" title="Twitter" aria-label="Twitter"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="height:1em;fill:currentColor"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg></a>
+      <a href="https://github.com/RustSec/" title="GitHub" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" style="height:1em;fill:currentColor"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></a>
+      <a href="/feed.xml" title="Atom Feed" aria-label="Atom Feed"><svg xmlns="http://www.w3.org/2000/svg" style="height:1em" viewBox="0 0 8 8">
+        <style type="text/css">
+          .button {stroke: none; fill: currentColor;}
+          .symbol {stroke: none; fill-opacity=0;}
+        </style>
+        <rect   class="button" width="8" height="8" rx="1.5" />
+        <circle class="symbol" cx="2" cy="6" r="1" />
+        <path   class="symbol" d="m 1,4 a 3,3 0 0 1 3,3 h 1 a 4,4 0 0 0 -4,-4 z" />
+        <path   class="symbol" d="m 1,2 a 5,5 0 0 1 5,5 h 1 a 6,6 0 0 0 -6,-6 z" />
+      </svg></a>
+    </div>
+  </nav>
+</header>
+
+<main class="advisory">
+  <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/shlex/RUSTSEC-2024-0006.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/shlex/RUSTSEC-2024-0006.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2024-0006">JSON (OSV)</a>
+        </span>
+    
+
+    <header>
+      <h1>
+        
+        RUSTSEC-2024-0006
+        
+      </h1>
+      <span class="subtitle"><p>Multiple issues involving quote API</p>
+</span>
+    </header>
+
+    
+
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2024-01-21">
+          January 21, 2024
+        </time>
+      </dd>
+
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2024-01-22">
+          January 22, 2024
+        </time>
+        
+      </dd>
+
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        <a href="/packages/shlex.html">shlex</a>
+          (<a href="https://crates.io/crates/shlex">crates.io</a>)
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        Vulnerability
+        
+      </dd>
+
+      
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/code-execution.html">code-execution</a></li>
+          
+          <li><a href="/categories/file-disclosure.html">file-disclosure</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      <dt id="aliases">Aliases</dt>
+      <dd>
+        <ul>
+          
+          <li>
+            
+            <a href="https://github.com/advisories/GHSA-r7qv-8r2h-pg27">GHSA-r7qv-8r2h-pg27</a>
+            
+          </li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/comex/rust-shlex/security/advisories/GHSA-r7qv-8r2h-pg27">
+              https://github.com/comex/rust-shlex/security/advisories/GHSA-r7qv-8r2h-pg27
+            </a>
+          </li>
+        
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&gt;=1.3.0</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+
+      
+      
+
+      
+      
+    </dl>
+
+    
+    
+    <dl>
+      <dt>Affected Functions</dt>
+      <dd>Version</dd>
+      
+      <dt><code>shlex::bytes::join</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&lt;1.2.1</code></li>
+          
+        </ul>
+      </dd>
+      
+      <dt><code>shlex::bytes::quote</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&lt;1.2.1</code></li>
+          
+        </ul>
+      </dd>
+      
+      <dt><code>shlex::join</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&lt;1.2.1</code></li>
+          
+        </ul>
+      </dd>
+      
+      <dt><code>shlex::quote</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&lt;1.2.1</code></li>
+          
+        </ul>
+      </dd>
+      
+    </dl>
+    
+
+    
+
+    <h3 id="description">Description</h3>
+    <h2>Issue 1: Failure to quote characters</h2>
+<p>Affected versions of this crate allowed the bytes <code>{</code> and <code>\xa0</code> to appear
+unquoted and unescaped in command arguments.</p>
+<p>If the output of <code>quote</code> or <code>join</code> is passed to a shell, then what should be a
+single command argument could be interpreted as multiple arguments.</p>
+<p>This does not <em>directly</em> allow arbitrary command execution (you can't inject a
+command substitution or similar).  But depending on the command you're running,
+being able to inject multiple arguments where only one is expected could lead
+to undesired consequences, potentially including arbitrary command execution.</p>
+<p>The flaw was corrected in version 1.2.1 by escaping additional characters.
+Updating to 1.3.0 is recommended, but 1.2.1 offers a more minimal fix if
+desired.</p>
+<p>Workaround: Check for the bytes <code>{</code> and <code>\xa0</code> in <code>quote</code>/<code>join</code> input or
+output.</p>
+<p>(Note: <code>{</code> is problematic because it is used for glob expansion.  <code>\xa0</code> is
+problematic because it's treated as a word separator in <a href="https://docs.rs/shlex/latest/shlex/quoting_warning/index.html#solved-xa0">specific
+environments</a>.)</p>
+<h2>Issue 2: Dangerous API w.r.t. nul bytes</h2>
+<p>Version 1.3.0 deprecates the <code>quote</code> and <code>join</code> APIs in favor of <code>try_quote</code>
+and <code>try_join</code>, which behave the same except that they have <code>Result</code> return
+type, returning <code>Err</code> if the input contains nul bytes.</p>
+<p>Strings containing nul bytes generally cannot be used in Unix command arguments
+or environment variables, and most shells cannot handle nul bytes even
+internally.  If you try to pass one anyway, then the results might be
+security-sensitive in uncommon scenarios.  <a href="https://docs.rs/shlex/latest/shlex/quoting_warning/index.html#nul-bytes">More details here.</a></p>
+<p>Due to the low severity, the behavior of the original <code>quote</code> and <code>join</code> APIs
+has not changed; they continue to allow nuls.</p>
+<p>Workaround: Manually check for nul bytes in <code>quote</code>/<code>join</code> input or output.</p>
+<h2>Issue 3: Lack of documentation for interactive shell risks</h2>
+<p>The <code>quote</code> family of functions does not and cannot escape control characters.
+With non-interactive shells this is perfectly safe, as control characters have
+no special effect.  But if you writing directly to the standard input of an
+interactive shell (or through a pty), then control characters <a href="https://docs.rs/shlex/latest/shlex/quoting_warning/index.html#control-characters-interactive-contexts-only">can cause
+misbehavior including arbitrary command injection.</a></p>
+<p>This is essentially unfixable, and has not been patched.  But as of version
+1.3.0, documentation has been added.</p>
+<p>Future versions of <code>shlex</code> may add API variants that avoid the issue at the
+cost of reduced portability.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
+  </article>
+</main>
