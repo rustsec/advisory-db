@@ -1,7 +1,7 @@
 # RustSec Advisory Database
 
 [![Build Status][build-image]][build-link]
-![Maintained: Q1 2023][maintained-image]
+![Maintained: Q1 2024][maintained-image]
 [![Project Chat][chat-image]][chat-link]
 
 The RustSec Advisory Database is a repository of security advisories filed
@@ -153,7 +153,7 @@ They contain a `license` field explicitly indicating their license and a `url` f
 
 [build-image]: https://github.com/rustsec/advisory-db/workflows/Validate/badge.svg
 [build-link]: https://github.com/rustsec/advisory-db/actions
-[maintained-image]: https://img.shields.io/maintenance/yes/2023.svg
+[maintained-image]: https://img.shields.io/maintenance/yes/2024.svg
 [chat-image]: https://img.shields.io/badge/zulip-join_chat-blue.svg
 [chat-link]: https://rust-lang.zulipchat.com/#narrow/stream/146229-wg-secure-code/
 
