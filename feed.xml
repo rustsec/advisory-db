@@ -1,159 +1,5 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2024-01-24T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2024-0009: Vulnerability in trillium-http</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0009.html</id><updated>2024-01-24T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2024-0009.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0009: Vulnerability in trillium-http"/><published>2024-01-24T12:00:00+00:00</published><summary xml:lang="en">Improper Neutralization of CRLF Sequences in HTTP Headers (&amp;apos;HTTP Request/Response Splitting&amp;apos;)</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/trillium-http/RUSTSEC-2024-0009.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/trillium-http/RUSTSEC-2024-0009.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0009&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2024-0009
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Improper Neutralization of CRLF Sequences in HTTP Headers (&apos;HTTP Request/Response Splitting&apos;)&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2024-01-23&quot;&gt;
-          January 23, 2024
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2024-01-24&quot;&gt;
-          January 24, 2024
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/trillium-http.html&quot;&gt;trillium-http&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/trillium-http&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/http.html&quot;&gt;#http&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/request.html&quot;&gt;#request&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/splitting.html&quot;&gt;#splitting&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-9f9p-cp3c-72jf&quot;&gt;GHSA-9f9p-cp3c-72jf&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/trillium-rs/trillium/security/advisories/GHSA-9f9p-cp3c-72jf&quot;&gt;
-              https://github.com/trillium-rs/trillium/security/advisories/GHSA-9f9p-cp3c-72jf
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.3.12&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;h3&gt;Summary&lt;/h3&gt;
-&lt;p&gt;Insufficient validation of outbound header values may lead to request splitting or response splitting attacks in scenarios where attackers have sufficient control over outbound headers.&lt;/p&gt;
-&lt;h3&gt;Details&lt;/h3&gt;
-&lt;p&gt;Outbound &lt;code&gt;trillium_http::HeaderValue&lt;/code&gt; and &lt;code&gt;trillium_http::HeaderName&lt;/code&gt; can be constructed infallibly and were not checked for illegal bytes when sending responses from the server. Thus, if an attacker has sufficient control over header values (or names) in an outbound response that they could inject &lt;code&gt;\r\n&lt;/code&gt; sequences, they could get the client and server out of sync, and then pivot to gain control over other parts of requests or responses. (i.e. exfiltrating data from other requests, SSRF, etc.)&lt;/p&gt;
-&lt;h3&gt;Patches&lt;/h3&gt;
-&lt;h4&gt;trillium-http &amp;gt;= 0.3.12:&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;If a header name is invalid in server response headers, the specific header and any associated values are omitted from network transmission.&lt;/li&gt;
-&lt;li&gt;If a header value is invalid in server response headers, the individual header value is omitted from network transmission. Other headers values with the same header name will still be sent.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Workarounds&lt;/h3&gt;
-&lt;p&gt;trillium services should sanitize or validate untrusted input that is included in header values and header names. Carriage return, newline, and null characters are not allowed.&lt;/p&gt;
-&lt;h3&gt;Impact&lt;/h3&gt;
-&lt;p&gt;This only affects use cases where attackers have control of outbound headers, and can insert &amp;quot;\r\n&amp;quot; sequences. Specifically, if untrusted and unvalidated input is inserted into header names or values.&lt;/p&gt;
-&lt;h3&gt;Credit&lt;/h3&gt;
-&lt;p&gt;Discovered and reported by &lt;a href=&quot;https://github.com/divergentdave&quot;&gt;@divergentdave&lt;/a&gt;&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0008: Vulnerability in trillium-client</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0008.html</id><updated>2024-01-24T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2024-0008.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0008: Vulnerability in trillium-client"/><published>2024-01-24T12:00:00+00:00</published><summary xml:lang="en">Improper Neutralization of CRLF Sequences in HTTP Headers (&amp;apos;HTTP Request/Response Splitting&amp;apos;)</summary><content xml:lang="en" type="html">  &lt;article&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2024-01-24T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2024-0008: Vulnerability in trillium-client</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0008.html</id><updated>2024-01-24T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2024-0008.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0008: Vulnerability in trillium-client"/><published>2024-01-24T12:00:00+00:00</published><summary xml:lang="en">Improper Neutralization of CRLF Sequences in HTTP Headers (&amp;apos;HTTP Request/Response Splitting&amp;apos;)</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
           &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/trillium-client/RUSTSEC-2024-0008.md&quot;&gt;History&lt;/a&gt; ⋅ 
@@ -233,6 +79,12 @@
             
           &lt;/li&gt;
           
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-23644&quot;&gt;CVE-2024-23644&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
         &lt;/ul&gt;
       &lt;/dd&gt;
       
@@ -295,6 +147,166 @@
 &lt;/ul&gt;
 &lt;h3&gt;Workarounds&lt;/h3&gt;
 &lt;p&gt;trillium client applications should sanitize or validate untrusted input that is included in header values and header names. Carriage return, newline, and null characters are not allowed.&lt;/p&gt;
+&lt;h3&gt;Impact&lt;/h3&gt;
+&lt;p&gt;This only affects use cases where attackers have control of outbound headers, and can insert &amp;quot;\r\n&amp;quot; sequences. Specifically, if untrusted and unvalidated input is inserted into header names or values.&lt;/p&gt;
+&lt;h3&gt;Credit&lt;/h3&gt;
+&lt;p&gt;Discovered and reported by &lt;a href=&quot;https://github.com/divergentdave&quot;&gt;@divergentdave&lt;/a&gt;&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0009: Vulnerability in trillium-http</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0009.html</id><updated>2024-01-24T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2024-0009.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0009: Vulnerability in trillium-http"/><published>2024-01-24T12:00:00+00:00</published><summary xml:lang="en">Improper Neutralization of CRLF Sequences in HTTP Headers (&amp;apos;HTTP Request/Response Splitting&amp;apos;)</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/trillium-http/RUSTSEC-2024-0009.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/trillium-http/RUSTSEC-2024-0009.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0009&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2024-0009
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Improper Neutralization of CRLF Sequences in HTTP Headers (&apos;HTTP Request/Response Splitting&apos;)&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2024-01-23&quot;&gt;
+          January 23, 2024
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2024-01-24&quot;&gt;
+          January 24, 2024
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/trillium-http.html&quot;&gt;trillium-http&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/trillium-http&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/http.html&quot;&gt;#http&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/request.html&quot;&gt;#request&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/splitting.html&quot;&gt;#splitting&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-9f9p-cp3c-72jf&quot;&gt;GHSA-9f9p-cp3c-72jf&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-23644&quot;&gt;CVE-2024-23644&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/trillium-rs/trillium/security/advisories/GHSA-9f9p-cp3c-72jf&quot;&gt;
+              https://github.com/trillium-rs/trillium/security/advisories/GHSA-9f9p-cp3c-72jf
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.3.12&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;h3&gt;Summary&lt;/h3&gt;
+&lt;p&gt;Insufficient validation of outbound header values may lead to request splitting or response splitting attacks in scenarios where attackers have sufficient control over outbound headers.&lt;/p&gt;
+&lt;h3&gt;Details&lt;/h3&gt;
+&lt;p&gt;Outbound &lt;code&gt;trillium_http::HeaderValue&lt;/code&gt; and &lt;code&gt;trillium_http::HeaderName&lt;/code&gt; can be constructed infallibly and were not checked for illegal bytes when sending responses from the server. Thus, if an attacker has sufficient control over header values (or names) in an outbound response that they could inject &lt;code&gt;\r\n&lt;/code&gt; sequences, they could get the client and server out of sync, and then pivot to gain control over other parts of requests or responses. (i.e. exfiltrating data from other requests, SSRF, etc.)&lt;/p&gt;
+&lt;h3&gt;Patches&lt;/h3&gt;
+&lt;h4&gt;trillium-http &amp;gt;= 0.3.12:&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;If a header name is invalid in server response headers, the specific header and any associated values are omitted from network transmission.&lt;/li&gt;
+&lt;li&gt;If a header value is invalid in server response headers, the individual header value is omitted from network transmission. Other headers values with the same header name will still be sent.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Workarounds&lt;/h3&gt;
+&lt;p&gt;trillium services should sanitize or validate untrusted input that is included in header values and header names. Carriage return, newline, and null characters are not allowed.&lt;/p&gt;
 &lt;h3&gt;Impact&lt;/h3&gt;
 &lt;p&gt;This only affects use cases where attackers have control of outbound headers, and can insert &amp;quot;\r\n&amp;quot; sequences. Specifically, if untrusted and unvalidated input is inserted into header names or values.&lt;/p&gt;
 &lt;h3&gt;Credit&lt;/h3&gt;
@@ -1068,198 +1080,6 @@ internal error resets emitted by default before the connection is closed.&lt;/p&
 
     
     &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0078: Unsoundness in tracing</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0078.html</id><updated>2024-01-13T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0078.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0078: Unsoundness in tracing"/><published>2024-01-13T12:00:00+00:00</published><summary xml:lang="en">Potential stack use-after-free in `Instrumented::into_inner`</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/tracing/RUSTSEC-2023-0078.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/tracing/RUSTSEC-2023-0078.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2023-0078&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2023-0078
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Potential stack use-after-free in &lt;code&gt;Instrumented::into_inner&lt;/code&gt;&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-10-19&quot;&gt;
-          October 19, 2023
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2024-01-13&quot;&gt;
-          January 13, 2024
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/tracing.html&quot;&gt;tracing&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/tracing&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unsound
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/use-after-free.html&quot;&gt;#use-after-free&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/tokio-rs/tracing/pull/2765&quot;&gt;
-              https://github.com/tokio-rs/tracing/pull/2765
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.1.40&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;lt;=0.1.37&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-    &lt;dl&gt;
-      &lt;dt&gt;Affected Functions&lt;/dt&gt;
-      &lt;dd&gt;Version&lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;tracing::instrument::Instrumented::into_inner&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.1.38&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;lt;0.1.40&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-    &lt;/dl&gt;
-    
-
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;The implementation of the &lt;a href=&quot;https://docs.rs/tracing/latest/tracing/instrument/struct.Instrumented.html#method.into_inner&quot;&gt;&lt;code&gt;Instrumented::into_inner&lt;/code&gt;&lt;/a&gt; method in affected
-versions of this crate contains undefined behavior due to incorrect use of
-&lt;a href=&quot;https://doc.rust-lang.org/std/mem/fn.forget.html&quot;&gt;&lt;code&gt;std::mem::forget&lt;/code&gt;&lt;/a&gt; The function creates &lt;code&gt;*const&lt;/code&gt; pointers to &lt;code&gt;self&lt;/code&gt;, calls
-&lt;a href=&quot;https://doc.rust-lang.org/std/mem/fn.forget.html&quot;&gt;&lt;code&gt;mem::forget(self)&lt;/code&gt;&lt;/a&gt;, and then moves values out of those
-pointers using &lt;a href=&quot;https://doc.rust-lang.org/std/primitive.pointer.html#method.read-1&quot;&gt;&lt;code&gt;std::ptr::read&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-rust&quot;&gt;// To manually destructure `Instrumented` without `Drop`, we
-// move it into a ManuallyDrop and use pointers to its fields
-let span: *const Span = &amp;amp;this.span;
-let inner: *const ManuallyDrop&amp;lt;T&amp;gt; = &amp;amp;this.inner;
-mem::forget(self);
-// SAFETY: Those pointers are valid for reads, because `Drop` didn&apos;t
-//         run, and properly aligned, because `Instrumented` isn&apos;t
-//         `#[repr(packed)]`.
-let _span = unsafe { span.read() };
-let inner = unsafe { inner.read() };
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;However, the &lt;a href=&quot;https://doc.rust-lang.org/std/mem/fn.forget.html&quot;&gt;&lt;code&gt;mem::forget&lt;/code&gt; documentation&lt;/a&gt; states:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Any resources the value manages, such as heap memory or a file handle, will
-linger forever in an unreachable state. &lt;strong&gt;However, it does not guarantee that
-pointers to this memory will remain valid.&lt;/strong&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;This means that these pointers are no longer valid. This could result in a stack
-use-after-free if LLVM chooses to reuse &lt;code&gt;self&lt;/code&gt;&apos;s stack slot for a rebinding
-after the call to &lt;a href=&quot;https://doc.rust-lang.org/std/mem/fn.forget.html&quot;&gt;&lt;code&gt;std::mem::forget&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;This undefined behavior has not been observed to cause miscompilation as of Rust
-1.73.0. However, any use of this method with the affected versions of &lt;code&gt;tracing&lt;/code&gt;
-are unsound.&lt;/p&gt;
-&lt;p&gt;The flaw was corrected in commit &lt;a href=&quot;https://github.com/tokio-rs/tracing/commit/20a1762b3fd5f1fafead198fd18e469c68683721&quot;&gt;20a1762&lt;/a&gt; (&lt;a href=&quot;https://github.com/tokio-rs/tracing/pull/2765&quot;&gt;PR #2765&lt;/a&gt;) by replacing the use of
-&lt;a href=&quot;https://doc.rust-lang.org/std/mem/fn.forget.html&quot;&gt;&lt;code&gt;std::mem::forget&lt;/code&gt;&lt;/a&gt; with &lt;code&gt;std::mem::ManuallyDrop&lt;/code&gt;, ensuring that the stack slot
-is not reused and the pointers remain valid when they are read. The fix is
-published in &lt;code&gt;tracing&lt;/code&gt; &lt;a href=&quot;https://crates.io/crates/tracing/0.1.40&quot;&gt;v0.1.40&lt;/a&gt;. Affected versions have been yanked from
-crates.io.&lt;/p&gt;
-&lt;p&gt;Thanks to &lt;a href=&quot;https://github.com/cramertj&quot;&gt;Taylor Cramer&lt;/a&gt; and &lt;a href=&quot;https://github.com/manishearth&quot;&gt;Manish Goregaokar&lt;/a&gt; for finding and correcting
-this issue!&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0002: Unsoundness in vmm-sys-util</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0002.html</id><updated>2024-01-13T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2024-0002.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0002: Unsoundness in vmm-sys-util"/><published>2024-01-13T12:00:00+00:00</published><summary xml:lang="en">`serde` deserialization for `FamStructWrapper` lacks bound checks that could potentially lead to out-of-bounds memory access</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -1606,6 +1426,198 @@ instead, and returning an error on invalid input. However this fix has not yet
 been published to crates.io as a patch version for 0.2.&lt;/p&gt;
 &lt;p&gt;Separately, &lt;a href=&quot;https://github.com/rust-lang/ferris-says/pull/32&quot;&gt;ferris-says#32&lt;/a&gt; has introduced a different API for version 0.3
 which accepts input as &lt;code&gt;&amp;amp;str&lt;/code&gt; rather than &lt;code&gt;&amp;amp;[u8]&lt;/code&gt;, so is unaffected by this bug.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0078: Unsoundness in tracing</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0078.html</id><updated>2024-01-13T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0078.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0078: Unsoundness in tracing"/><published>2024-01-13T12:00:00+00:00</published><summary xml:lang="en">Potential stack use-after-free in `Instrumented::into_inner`</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/tracing/RUSTSEC-2023-0078.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/tracing/RUSTSEC-2023-0078.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2023-0078&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2023-0078
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Potential stack use-after-free in &lt;code&gt;Instrumented::into_inner&lt;/code&gt;&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-10-19&quot;&gt;
+          October 19, 2023
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2024-01-13&quot;&gt;
+          January 13, 2024
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/tracing.html&quot;&gt;tracing&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/tracing&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/use-after-free.html&quot;&gt;#use-after-free&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/tokio-rs/tracing/pull/2765&quot;&gt;
+              https://github.com/tokio-rs/tracing/pull/2765
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.1.40&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;lt;=0.1.37&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;tracing::instrument::Instrumented::into_inner&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.1.38&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;lt;0.1.40&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;The implementation of the &lt;a href=&quot;https://docs.rs/tracing/latest/tracing/instrument/struct.Instrumented.html#method.into_inner&quot;&gt;&lt;code&gt;Instrumented::into_inner&lt;/code&gt;&lt;/a&gt; method in affected
+versions of this crate contains undefined behavior due to incorrect use of
+&lt;a href=&quot;https://doc.rust-lang.org/std/mem/fn.forget.html&quot;&gt;&lt;code&gt;std::mem::forget&lt;/code&gt;&lt;/a&gt; The function creates &lt;code&gt;*const&lt;/code&gt; pointers to &lt;code&gt;self&lt;/code&gt;, calls
+&lt;a href=&quot;https://doc.rust-lang.org/std/mem/fn.forget.html&quot;&gt;&lt;code&gt;mem::forget(self)&lt;/code&gt;&lt;/a&gt;, and then moves values out of those
+pointers using &lt;a href=&quot;https://doc.rust-lang.org/std/primitive.pointer.html#method.read-1&quot;&gt;&lt;code&gt;std::ptr::read&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-rust&quot;&gt;// To manually destructure `Instrumented` without `Drop`, we
+// move it into a ManuallyDrop and use pointers to its fields
+let span: *const Span = &amp;amp;this.span;
+let inner: *const ManuallyDrop&amp;lt;T&amp;gt; = &amp;amp;this.inner;
+mem::forget(self);
+// SAFETY: Those pointers are valid for reads, because `Drop` didn&apos;t
+//         run, and properly aligned, because `Instrumented` isn&apos;t
+//         `#[repr(packed)]`.
+let _span = unsafe { span.read() };
+let inner = unsafe { inner.read() };
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;However, the &lt;a href=&quot;https://doc.rust-lang.org/std/mem/fn.forget.html&quot;&gt;&lt;code&gt;mem::forget&lt;/code&gt; documentation&lt;/a&gt; states:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Any resources the value manages, such as heap memory or a file handle, will
+linger forever in an unreachable state. &lt;strong&gt;However, it does not guarantee that
+pointers to this memory will remain valid.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This means that these pointers are no longer valid. This could result in a stack
+use-after-free if LLVM chooses to reuse &lt;code&gt;self&lt;/code&gt;&apos;s stack slot for a rebinding
+after the call to &lt;a href=&quot;https://doc.rust-lang.org/std/mem/fn.forget.html&quot;&gt;&lt;code&gt;std::mem::forget&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This undefined behavior has not been observed to cause miscompilation as of Rust
+1.73.0. However, any use of this method with the affected versions of &lt;code&gt;tracing&lt;/code&gt;
+are unsound.&lt;/p&gt;
+&lt;p&gt;The flaw was corrected in commit &lt;a href=&quot;https://github.com/tokio-rs/tracing/commit/20a1762b3fd5f1fafead198fd18e469c68683721&quot;&gt;20a1762&lt;/a&gt; (&lt;a href=&quot;https://github.com/tokio-rs/tracing/pull/2765&quot;&gt;PR #2765&lt;/a&gt;) by replacing the use of
+&lt;a href=&quot;https://doc.rust-lang.org/std/mem/fn.forget.html&quot;&gt;&lt;code&gt;std::mem::forget&lt;/code&gt;&lt;/a&gt; with &lt;code&gt;std::mem::ManuallyDrop&lt;/code&gt;, ensuring that the stack slot
+is not reused and the pointers remain valid when they are read. The fix is
+published in &lt;code&gt;tracing&lt;/code&gt; &lt;a href=&quot;https://crates.io/crates/tracing/0.1.40&quot;&gt;v0.1.40&lt;/a&gt;. Affected versions have been yanked from
+crates.io.&lt;/p&gt;
+&lt;p&gt;Thanks to &lt;a href=&quot;https://github.com/cramertj&quot;&gt;Taylor Cramer&lt;/a&gt; and &lt;a href=&quot;https://github.com/manishearth&quot;&gt;Manish Goregaokar&lt;/a&gt; for finding and correcting
+this issue!&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
