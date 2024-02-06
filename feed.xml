@@ -484,6 +484,125 @@ reference to the stored string.&lt;/p&gt;
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0005: Unsoundness in threadalone</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0005.html</id><updated>2024-01-22T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2024-0005.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0005: Unsoundness in threadalone"/><published>2024-01-22T12:00:00+00:00</published><summary xml:lang="en">Unsound sending of non-Send types across threads</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/threadalone/RUSTSEC-2024-0005.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/threadalone/RUSTSEC-2024-0005.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0005&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2024-0005
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Unsound sending of non-Send types across threads&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2024-01-07&quot;&gt;
+          January  7, 2024
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2024-01-22&quot;&gt;
+          January 22, 2024
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/threadalone.html&quot;&gt;threadalone&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/threadalone&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/cr0sh/threadalone/issues/1&quot;&gt;
+              https://github.com/cr0sh/threadalone/issues/1
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.2.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Affected versions can run the &lt;code&gt;Drop&lt;/code&gt; impl of a non-Send type on a different
+thread than it was created on.&lt;/p&gt;
+&lt;p&gt;The flaw occurs when a stderr write performed by the &lt;code&gt;threadalone&lt;/code&gt; crate fails,
+for example because stderr is redirected to a location on a filesystem that is
+full, or because stderr is a pipe that has been closed by the reader.&lt;/p&gt;
+&lt;p&gt;Dropping a non-Send type on the wrong thread is unsound. If used with a type
+such as a pthread-based &lt;code&gt;MutexGuard&lt;/code&gt;, &lt;a href=&quot;https://github.com/rust-lang/rust/issues/23465#issuecomment-82730326&quot;&gt;the consequence is undefined
+behavior&lt;/a&gt;. If used with &lt;code&gt;Rc&lt;/code&gt;, there would be a data race on the
+reference count, which is likewise undefined behavior.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0006: Vulnerability in shlex</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0006.html</id><updated>2024-01-22T12:00:00+00:00</updated><category term="code-execution"/><category term="file-disclosure"/><link href="https://rustsec.org/advisories/RUSTSEC-2024-0006.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0006: Vulnerability in shlex"/><published>2024-01-22T12:00:00+00:00</published><summary xml:lang="en">Multiple issues involving quote API</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -695,125 +814,6 @@ misbehavior including arbitrary command injection.&lt;/a&gt;&lt;/p&gt;
 1.3.0, documentation has been added.&lt;/p&gt;
 &lt;p&gt;Future versions of &lt;code&gt;shlex&lt;/code&gt; may add API variants that avoid the issue at the
 cost of reduced portability.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0005: Unsoundness in threadalone</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0005.html</id><updated>2024-01-22T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2024-0005.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0005: Unsoundness in threadalone"/><published>2024-01-22T12:00:00+00:00</published><summary xml:lang="en">Unsound sending of non-Send types across threads</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/threadalone/RUSTSEC-2024-0005.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/threadalone/RUSTSEC-2024-0005.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0005&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2024-0005
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Unsound sending of non-Send types across threads&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2024-01-07&quot;&gt;
-          January  7, 2024
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2024-01-22&quot;&gt;
-          January 22, 2024
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/threadalone.html&quot;&gt;threadalone&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/threadalone&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unsound
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/cr0sh/threadalone/issues/1&quot;&gt;
-              https://github.com/cr0sh/threadalone/issues/1
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.2.1&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;Affected versions can run the &lt;code&gt;Drop&lt;/code&gt; impl of a non-Send type on a different
-thread than it was created on.&lt;/p&gt;
-&lt;p&gt;The flaw occurs when a stderr write performed by the &lt;code&gt;threadalone&lt;/code&gt; crate fails,
-for example because stderr is redirected to a location on a filesystem that is
-full, or because stderr is a pipe that has been closed by the reader.&lt;/p&gt;
-&lt;p&gt;Dropping a non-Send type on the wrong thread is unsound. If used with a type
-such as a pthread-based &lt;code&gt;MutexGuard&lt;/code&gt;, &lt;a href=&quot;https://github.com/rust-lang/rust/issues/23465#issuecomment-82730326&quot;&gt;the consequence is undefined
-behavior&lt;/a&gt;. If used with &lt;code&gt;Rc&lt;/code&gt;, there would be a data race on the
-reference count, which is likewise undefined behavior.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
@@ -1073,6 +1073,198 @@ By closing their recv window, the attacker could then force these resets to be q
 resulting in Out Of Memory (OOM) and high CPU usage.&lt;/p&gt;
 &lt;p&gt;This fix is corrected in &lt;a href=&quot;https://github.com/hyperium/h2/pull/737&quot;&gt;hyperium/h2#737&lt;/a&gt;, which limits the total number of
 internal error resets emitted by default before the connection is closed.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0078: Unsoundness in tracing</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0078.html</id><updated>2024-01-13T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0078.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0078: Unsoundness in tracing"/><published>2024-01-13T12:00:00+00:00</published><summary xml:lang="en">Potential stack use-after-free in `Instrumented::into_inner`</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/tracing/RUSTSEC-2023-0078.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/tracing/RUSTSEC-2023-0078.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2023-0078&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2023-0078
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Potential stack use-after-free in &lt;code&gt;Instrumented::into_inner&lt;/code&gt;&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-10-19&quot;&gt;
+          October 19, 2023
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2024-01-13&quot;&gt;
+          January 13, 2024
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/tracing.html&quot;&gt;tracing&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/tracing&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/use-after-free.html&quot;&gt;#use-after-free&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/tokio-rs/tracing/pull/2765&quot;&gt;
+              https://github.com/tokio-rs/tracing/pull/2765
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.1.40&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;lt;=0.1.37&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;tracing::instrument::Instrumented::into_inner&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.1.38&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;lt;0.1.40&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;The implementation of the &lt;a href=&quot;https://docs.rs/tracing/latest/tracing/instrument/struct.Instrumented.html#method.into_inner&quot;&gt;&lt;code&gt;Instrumented::into_inner&lt;/code&gt;&lt;/a&gt; method in affected
+versions of this crate contains undefined behavior due to incorrect use of
+&lt;a href=&quot;https://doc.rust-lang.org/std/mem/fn.forget.html&quot;&gt;&lt;code&gt;std::mem::forget&lt;/code&gt;&lt;/a&gt; The function creates &lt;code&gt;*const&lt;/code&gt; pointers to &lt;code&gt;self&lt;/code&gt;, calls
+&lt;a href=&quot;https://doc.rust-lang.org/std/mem/fn.forget.html&quot;&gt;&lt;code&gt;mem::forget(self)&lt;/code&gt;&lt;/a&gt;, and then moves values out of those
+pointers using &lt;a href=&quot;https://doc.rust-lang.org/std/primitive.pointer.html#method.read-1&quot;&gt;&lt;code&gt;std::ptr::read&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-rust&quot;&gt;// To manually destructure `Instrumented` without `Drop`, we
+// move it into a ManuallyDrop and use pointers to its fields
+let span: *const Span = &amp;amp;this.span;
+let inner: *const ManuallyDrop&amp;lt;T&amp;gt; = &amp;amp;this.inner;
+mem::forget(self);
+// SAFETY: Those pointers are valid for reads, because `Drop` didn&apos;t
+//         run, and properly aligned, because `Instrumented` isn&apos;t
+//         `#[repr(packed)]`.
+let _span = unsafe { span.read() };
+let inner = unsafe { inner.read() };
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;However, the &lt;a href=&quot;https://doc.rust-lang.org/std/mem/fn.forget.html&quot;&gt;&lt;code&gt;mem::forget&lt;/code&gt; documentation&lt;/a&gt; states:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Any resources the value manages, such as heap memory or a file handle, will
+linger forever in an unreachable state. &lt;strong&gt;However, it does not guarantee that
+pointers to this memory will remain valid.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This means that these pointers are no longer valid. This could result in a stack
+use-after-free if LLVM chooses to reuse &lt;code&gt;self&lt;/code&gt;&apos;s stack slot for a rebinding
+after the call to &lt;a href=&quot;https://doc.rust-lang.org/std/mem/fn.forget.html&quot;&gt;&lt;code&gt;std::mem::forget&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This undefined behavior has not been observed to cause miscompilation as of Rust
+1.73.0. However, any use of this method with the affected versions of &lt;code&gt;tracing&lt;/code&gt;
+are unsound.&lt;/p&gt;
+&lt;p&gt;The flaw was corrected in commit &lt;a href=&quot;https://github.com/tokio-rs/tracing/commit/20a1762b3fd5f1fafead198fd18e469c68683721&quot;&gt;20a1762&lt;/a&gt; (&lt;a href=&quot;https://github.com/tokio-rs/tracing/pull/2765&quot;&gt;PR #2765&lt;/a&gt;) by replacing the use of
+&lt;a href=&quot;https://doc.rust-lang.org/std/mem/fn.forget.html&quot;&gt;&lt;code&gt;std::mem::forget&lt;/code&gt;&lt;/a&gt; with &lt;code&gt;std::mem::ManuallyDrop&lt;/code&gt;, ensuring that the stack slot
+is not reused and the pointers remain valid when they are read. The fix is
+published in &lt;code&gt;tracing&lt;/code&gt; &lt;a href=&quot;https://crates.io/crates/tracing/0.1.40&quot;&gt;v0.1.40&lt;/a&gt;. Affected versions have been yanked from
+crates.io.&lt;/p&gt;
+&lt;p&gt;Thanks to &lt;a href=&quot;https://github.com/cramertj&quot;&gt;Taylor Cramer&lt;/a&gt; and &lt;a href=&quot;https://github.com/manishearth&quot;&gt;Manish Goregaokar&lt;/a&gt; for finding and correcting
+this issue!&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
@@ -1426,198 +1618,6 @@ instead, and returning an error on invalid input. However this fix has not yet
 been published to crates.io as a patch version for 0.2.&lt;/p&gt;
 &lt;p&gt;Separately, &lt;a href=&quot;https://github.com/rust-lang/ferris-says/pull/32&quot;&gt;ferris-says#32&lt;/a&gt; has introduced a different API for version 0.3
 which accepts input as &lt;code&gt;&amp;amp;str&lt;/code&gt; rather than &lt;code&gt;&amp;amp;[u8]&lt;/code&gt;, so is unaffected by this bug.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0078: Unsoundness in tracing</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0078.html</id><updated>2024-01-13T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0078.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0078: Unsoundness in tracing"/><published>2024-01-13T12:00:00+00:00</published><summary xml:lang="en">Potential stack use-after-free in `Instrumented::into_inner`</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/tracing/RUSTSEC-2023-0078.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/tracing/RUSTSEC-2023-0078.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2023-0078&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2023-0078
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Potential stack use-after-free in &lt;code&gt;Instrumented::into_inner&lt;/code&gt;&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-10-19&quot;&gt;
-          October 19, 2023
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2024-01-13&quot;&gt;
-          January 13, 2024
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/tracing.html&quot;&gt;tracing&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/tracing&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unsound
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/use-after-free.html&quot;&gt;#use-after-free&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/tokio-rs/tracing/pull/2765&quot;&gt;
-              https://github.com/tokio-rs/tracing/pull/2765
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.1.40&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;lt;=0.1.37&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-    &lt;dl&gt;
-      &lt;dt&gt;Affected Functions&lt;/dt&gt;
-      &lt;dd&gt;Version&lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;tracing::instrument::Instrumented::into_inner&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.1.38&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;lt;0.1.40&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-    &lt;/dl&gt;
-    
-
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;The implementation of the &lt;a href=&quot;https://docs.rs/tracing/latest/tracing/instrument/struct.Instrumented.html#method.into_inner&quot;&gt;&lt;code&gt;Instrumented::into_inner&lt;/code&gt;&lt;/a&gt; method in affected
-versions of this crate contains undefined behavior due to incorrect use of
-&lt;a href=&quot;https://doc.rust-lang.org/std/mem/fn.forget.html&quot;&gt;&lt;code&gt;std::mem::forget&lt;/code&gt;&lt;/a&gt; The function creates &lt;code&gt;*const&lt;/code&gt; pointers to &lt;code&gt;self&lt;/code&gt;, calls
-&lt;a href=&quot;https://doc.rust-lang.org/std/mem/fn.forget.html&quot;&gt;&lt;code&gt;mem::forget(self)&lt;/code&gt;&lt;/a&gt;, and then moves values out of those
-pointers using &lt;a href=&quot;https://doc.rust-lang.org/std/primitive.pointer.html#method.read-1&quot;&gt;&lt;code&gt;std::ptr::read&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-rust&quot;&gt;// To manually destructure `Instrumented` without `Drop`, we
-// move it into a ManuallyDrop and use pointers to its fields
-let span: *const Span = &amp;amp;this.span;
-let inner: *const ManuallyDrop&amp;lt;T&amp;gt; = &amp;amp;this.inner;
-mem::forget(self);
-// SAFETY: Those pointers are valid for reads, because `Drop` didn&apos;t
-//         run, and properly aligned, because `Instrumented` isn&apos;t
-//         `#[repr(packed)]`.
-let _span = unsafe { span.read() };
-let inner = unsafe { inner.read() };
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;However, the &lt;a href=&quot;https://doc.rust-lang.org/std/mem/fn.forget.html&quot;&gt;&lt;code&gt;mem::forget&lt;/code&gt; documentation&lt;/a&gt; states:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Any resources the value manages, such as heap memory or a file handle, will
-linger forever in an unreachable state. &lt;strong&gt;However, it does not guarantee that
-pointers to this memory will remain valid.&lt;/strong&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;This means that these pointers are no longer valid. This could result in a stack
-use-after-free if LLVM chooses to reuse &lt;code&gt;self&lt;/code&gt;&apos;s stack slot for a rebinding
-after the call to &lt;a href=&quot;https://doc.rust-lang.org/std/mem/fn.forget.html&quot;&gt;&lt;code&gt;std::mem::forget&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;This undefined behavior has not been observed to cause miscompilation as of Rust
-1.73.0. However, any use of this method with the affected versions of &lt;code&gt;tracing&lt;/code&gt;
-are unsound.&lt;/p&gt;
-&lt;p&gt;The flaw was corrected in commit &lt;a href=&quot;https://github.com/tokio-rs/tracing/commit/20a1762b3fd5f1fafead198fd18e469c68683721&quot;&gt;20a1762&lt;/a&gt; (&lt;a href=&quot;https://github.com/tokio-rs/tracing/pull/2765&quot;&gt;PR #2765&lt;/a&gt;) by replacing the use of
-&lt;a href=&quot;https://doc.rust-lang.org/std/mem/fn.forget.html&quot;&gt;&lt;code&gt;std::mem::forget&lt;/code&gt;&lt;/a&gt; with &lt;code&gt;std::mem::ManuallyDrop&lt;/code&gt;, ensuring that the stack slot
-is not reused and the pointers remain valid when they are read. The fix is
-published in &lt;code&gt;tracing&lt;/code&gt; &lt;a href=&quot;https://crates.io/crates/tracing/0.1.40&quot;&gt;v0.1.40&lt;/a&gt;. Affected versions have been yanked from
-crates.io.&lt;/p&gt;
-&lt;p&gt;Thanks to &lt;a href=&quot;https://github.com/cramertj&quot;&gt;Taylor Cramer&lt;/a&gt; and &lt;a href=&quot;https://github.com/manishearth&quot;&gt;Manish Goregaokar&lt;/a&gt; for finding and correcting
-this issue!&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
