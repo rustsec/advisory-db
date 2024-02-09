@@ -201,6 +201,262 @@
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0011: Vulnerability in snow</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0011.html</id><updated>2024-02-09T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2024-0011.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0011: Vulnerability in snow"/><published>2024-02-09T12:00:00+00:00</published><summary xml:lang="en">Unauthenticated Nonce Increment in snow</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/snow/RUSTSEC-2024-0011.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/snow/RUSTSEC-2024-0011.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0011&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2024-0011
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Unauthenticated Nonce Increment in snow&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2024-01-23&quot;&gt;
+          January 23, 2024
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2024-02-09&quot;&gt;
+          February  9, 2024
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/snow.html&quot;&gt;snow&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/snow&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/noise.html&quot;&gt;#noise&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/nonce.html&quot;&gt;#nonce&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/state.html&quot;&gt;#state&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/mcginty/snow/security/advisories/GHSA-7g9j-g5jg-3vv3&quot;&gt;
+              https://github.com/mcginty/snow/security/advisories/GHSA-7g9j-g5jg-3vv3
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.9.5&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;There was a logic bug where unauthenticated payloads could still cause a nonce
+increment in snow&apos;s internal state. For an attacker with privileges to inject
+packets into the channel over which the Noise session operates, this could
+allow a denial-of-service attack which could prevent message delivery by
+sending garbage data.&lt;/p&gt;
+&lt;p&gt;Note that this only affects those who are using the stateful TransportState,
+not those using StatelessTransportState.&lt;/p&gt;
+&lt;p&gt;This has been patched in version 0.9.5, and all users are recommended to
+update.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0012: Vulnerability in serde-json-wasm</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0012.html</id><updated>2024-02-09T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2024-0012.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0012: Vulnerability in serde-json-wasm"/><published>2024-02-09T12:00:00+00:00</published><summary xml:lang="en">Stack overflow during recursive JSON parsing</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/serde-json-wasm/RUSTSEC-2024-0012.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/serde-json-wasm/RUSTSEC-2024-0012.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0012&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2024-0012
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Stack overflow during recursive JSON parsing&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2024-01-24&quot;&gt;
+          January 24, 2024
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2024-02-09&quot;&gt;
+          February  9, 2024
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/serde-json-wasm.html&quot;&gt;serde-json-wasm&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/serde-json-wasm&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/stack-overflow.html&quot;&gt;#stack-overflow&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/json.html&quot;&gt;#json&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=1.0.1&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.5.2, &amp;lt;1.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;When parsing untrusted, deeply nested JSON, the stack may overflow,
+possibly enabling a Denial of Service attack.
+This was fixed by adding a check for recursion depth.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0010: Vulnerability in svix</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0010.html</id><updated>2024-02-06T12:00:00+00:00</updated><category term="crypto-failure"/><link href="https://rustsec.org/advisories/RUSTSEC-2024-0010.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0010: Vulnerability in svix"/><published>2024-02-06T12:00:00+00:00</published><summary xml:lang="en">Improper comparison of different-length signatures</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -1267,348 +1523,6 @@ reference count, which is likewise undefined behavior.&lt;/p&gt;
     &lt;p&gt;The crate &lt;code&gt;cosmwasm&lt;/code&gt; is &lt;a href=&quot;https://github.com/CosmWasm/cosmwasm/issues/1430&quot;&gt;not used anymore&lt;/a&gt; since spring 2020.
 The functionality was split in multiple different crates, such as the standard library &lt;code&gt;cosmwasm-std&lt;/code&gt; and the virtual machine &lt;code&gt;cosmwasm-vm&lt;/code&gt;. An overview can be found in the &lt;a href=&quot;https://github.com/CosmWasm/cosmwasm&quot;&gt;cosmwasm repository&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;If you have this crate in your dependency tree, this is very likely by mistake and should be corrected.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0003: Vulnerability in h2</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0003.html</id><updated>2024-01-17T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2024-0003.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0003: Vulnerability in h2"/><published>2024-01-17T12:00:00+00:00</published><summary xml:lang="en">Resource exhaustion vulnerability in h2 may lead to Denial of Service (DoS)</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/h2/RUSTSEC-2024-0003.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/h2/RUSTSEC-2024-0003.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0003&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2024-0003
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Resource exhaustion vulnerability in h2 may lead to Denial of Service (DoS)&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2024-01-17&quot;&gt;
-          January 17, 2024
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2024-01-17&quot;&gt;
-          January 17, 2024
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/h2.html&quot;&gt;h2&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/h2&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/http.html&quot;&gt;#http&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/http2.html&quot;&gt;#http2&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/h2.html&quot;&gt;#h2&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/Netflix/security-bulletins/blob/master/advisories/third-party/2019-002.md&quot;&gt;
-              https://github.com/Netflix/security-bulletins/blob/master/advisories/third-party/2019-002.md
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;related&quot;&gt;Related&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-9514&quot;&gt;CVE-2019-9514&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;^0.3.24&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.4.2&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;An attacker with an HTTP/2 connection to an affected endpoint can send a steady stream of invalid frames to force the
-generation of reset frames on the victim endpoint.
-By closing their recv window, the attacker could then force these resets to be queued in an unbounded fashion,
-resulting in Out Of Memory (OOM) and high CPU usage.&lt;/p&gt;
-&lt;p&gt;This fix is corrected in &lt;a href=&quot;https://github.com/hyperium/h2/pull/737&quot;&gt;hyperium/h2#737&lt;/a&gt;, which limits the total number of
-internal error resets emitted by default before the connection is closed.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0078: Unsoundness in tracing</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0078.html</id><updated>2024-01-13T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0078.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0078: Unsoundness in tracing"/><published>2024-01-13T12:00:00+00:00</published><summary xml:lang="en">Potential stack use-after-free in `Instrumented::into_inner`</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/tracing/RUSTSEC-2023-0078.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/tracing/RUSTSEC-2023-0078.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2023-0078&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2023-0078
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Potential stack use-after-free in &lt;code&gt;Instrumented::into_inner&lt;/code&gt;&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-10-19&quot;&gt;
-          October 19, 2023
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2024-01-13&quot;&gt;
-          January 13, 2024
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/tracing.html&quot;&gt;tracing&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/tracing&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unsound
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/use-after-free.html&quot;&gt;#use-after-free&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/tokio-rs/tracing/pull/2765&quot;&gt;
-              https://github.com/tokio-rs/tracing/pull/2765
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.1.40&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;lt;=0.1.37&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-    &lt;dl&gt;
-      &lt;dt&gt;Affected Functions&lt;/dt&gt;
-      &lt;dd&gt;Version&lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;tracing::instrument::Instrumented::into_inner&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.1.38&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;lt;0.1.40&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-    &lt;/dl&gt;
-    
-
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;The implementation of the &lt;a href=&quot;https://docs.rs/tracing/latest/tracing/instrument/struct.Instrumented.html#method.into_inner&quot;&gt;&lt;code&gt;Instrumented::into_inner&lt;/code&gt;&lt;/a&gt; method in affected
-versions of this crate contains undefined behavior due to incorrect use of
-&lt;a href=&quot;https://doc.rust-lang.org/std/mem/fn.forget.html&quot;&gt;&lt;code&gt;std::mem::forget&lt;/code&gt;&lt;/a&gt; The function creates &lt;code&gt;*const&lt;/code&gt; pointers to &lt;code&gt;self&lt;/code&gt;, calls
-&lt;a href=&quot;https://doc.rust-lang.org/std/mem/fn.forget.html&quot;&gt;&lt;code&gt;mem::forget(self)&lt;/code&gt;&lt;/a&gt;, and then moves values out of those
-pointers using &lt;a href=&quot;https://doc.rust-lang.org/std/primitive.pointer.html#method.read-1&quot;&gt;&lt;code&gt;std::ptr::read&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-rust&quot;&gt;// To manually destructure `Instrumented` without `Drop`, we
-// move it into a ManuallyDrop and use pointers to its fields
-let span: *const Span = &amp;amp;this.span;
-let inner: *const ManuallyDrop&amp;lt;T&amp;gt; = &amp;amp;this.inner;
-mem::forget(self);
-// SAFETY: Those pointers are valid for reads, because `Drop` didn&apos;t
-//         run, and properly aligned, because `Instrumented` isn&apos;t
-//         `#[repr(packed)]`.
-let _span = unsafe { span.read() };
-let inner = unsafe { inner.read() };
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;However, the &lt;a href=&quot;https://doc.rust-lang.org/std/mem/fn.forget.html&quot;&gt;&lt;code&gt;mem::forget&lt;/code&gt; documentation&lt;/a&gt; states:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Any resources the value manages, such as heap memory or a file handle, will
-linger forever in an unreachable state. &lt;strong&gt;However, it does not guarantee that
-pointers to this memory will remain valid.&lt;/strong&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;This means that these pointers are no longer valid. This could result in a stack
-use-after-free if LLVM chooses to reuse &lt;code&gt;self&lt;/code&gt;&apos;s stack slot for a rebinding
-after the call to &lt;a href=&quot;https://doc.rust-lang.org/std/mem/fn.forget.html&quot;&gt;&lt;code&gt;std::mem::forget&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;This undefined behavior has not been observed to cause miscompilation as of Rust
-1.73.0. However, any use of this method with the affected versions of &lt;code&gt;tracing&lt;/code&gt;
-are unsound.&lt;/p&gt;
-&lt;p&gt;The flaw was corrected in commit &lt;a href=&quot;https://github.com/tokio-rs/tracing/commit/20a1762b3fd5f1fafead198fd18e469c68683721&quot;&gt;20a1762&lt;/a&gt; (&lt;a href=&quot;https://github.com/tokio-rs/tracing/pull/2765&quot;&gt;PR #2765&lt;/a&gt;) by replacing the use of
-&lt;a href=&quot;https://doc.rust-lang.org/std/mem/fn.forget.html&quot;&gt;&lt;code&gt;std::mem::forget&lt;/code&gt;&lt;/a&gt; with &lt;code&gt;std::mem::ManuallyDrop&lt;/code&gt;, ensuring that the stack slot
-is not reused and the pointers remain valid when they are read. The fix is
-published in &lt;code&gt;tracing&lt;/code&gt; &lt;a href=&quot;https://crates.io/crates/tracing/0.1.40&quot;&gt;v0.1.40&lt;/a&gt;. Affected versions have been yanked from
-crates.io.&lt;/p&gt;
-&lt;p&gt;Thanks to &lt;a href=&quot;https://github.com/cramertj&quot;&gt;Taylor Cramer&lt;/a&gt; and &lt;a href=&quot;https://github.com/manishearth&quot;&gt;Manish Goregaokar&lt;/a&gt; for finding and correcting
-this issue!&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
