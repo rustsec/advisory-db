@@ -141,165 +141,6 @@ pass in &lt;code&gt;v1,&lt;/code&gt; as the signature, which would always pass v
 
     
     &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0008: Vulnerability in trillium-client</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0008.html</id><updated>2024-01-24T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2024-0008.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0008: Vulnerability in trillium-client"/><published>2024-01-24T12:00:00+00:00</published><summary xml:lang="en">Improper Neutralization of CRLF Sequences in HTTP Headers (&amp;apos;HTTP Request/Response Splitting&amp;apos;)</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/trillium-client/RUSTSEC-2024-0008.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/trillium-client/RUSTSEC-2024-0008.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0008&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2024-0008
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Improper Neutralization of CRLF Sequences in HTTP Headers (&apos;HTTP Request/Response Splitting&apos;)&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2024-01-23&quot;&gt;
-          January 23, 2024
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2024-01-24&quot;&gt;
-          January 24, 2024
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/trillium-client.html&quot;&gt;trillium-client&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/trillium-client&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/http.html&quot;&gt;#http&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/request.html&quot;&gt;#request&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/splitting.html&quot;&gt;#splitting&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-9f9p-cp3c-72jf&quot;&gt;GHSA-9f9p-cp3c-72jf&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-23644&quot;&gt;CVE-2024-23644&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/trillium-rs/trillium/security/advisories/GHSA-9f9p-cp3c-72jf&quot;&gt;
-              https://github.com/trillium-rs/trillium/security/advisories/GHSA-9f9p-cp3c-72jf
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.5.4&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;h3&gt;Summary&lt;/h3&gt;
-&lt;p&gt;Insufficient validation of outbound header values may lead to request splitting or response splitting attacks in scenarios where attackers have sufficient control over outbound headers.&lt;/p&gt;
-&lt;h3&gt;Details&lt;/h3&gt;
-&lt;p&gt;Outbound &lt;code&gt;trillium_http::HeaderValue&lt;/code&gt; and &lt;code&gt;trillium_http::HeaderName&lt;/code&gt; can be constructed infallibly and were not checked for illegal bytes when sending requests. Thus, if an attacker has sufficient control over header values (or names) in a request that they could inject &lt;code&gt;\r\n&lt;/code&gt; sequences, they could get the client and server out of sync, and then pivot to gain control over other parts of requests or responses. (i.e. exfiltrating data from other requests, SSRF, etc.)&lt;/p&gt;
-&lt;h3&gt;Patches&lt;/h3&gt;
-&lt;h4&gt;trillium-client &amp;gt;= 0.5.4:&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;If any header name or header value is invalid in the client request headers, awaiting the client Conn returns an &lt;code&gt;Error::MalformedHeader&lt;/code&gt; prior to any network access.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Workarounds&lt;/h3&gt;
-&lt;p&gt;trillium client applications should sanitize or validate untrusted input that is included in header values and header names. Carriage return, newline, and null characters are not allowed.&lt;/p&gt;
-&lt;h3&gt;Impact&lt;/h3&gt;
-&lt;p&gt;This only affects use cases where attackers have control of outbound headers, and can insert &amp;quot;\r\n&amp;quot; sequences. Specifically, if untrusted and unvalidated input is inserted into header names or values.&lt;/p&gt;
-&lt;h3&gt;Credit&lt;/h3&gt;
-&lt;p&gt;Discovered and reported by &lt;a href=&quot;https://github.com/divergentdave&quot;&gt;@divergentdave&lt;/a&gt;&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0009: Vulnerability in trillium-http</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0009.html</id><updated>2024-01-24T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2024-0009.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0009: Vulnerability in trillium-http"/><published>2024-01-24T12:00:00+00:00</published><summary xml:lang="en">Improper Neutralization of CRLF Sequences in HTTP Headers (&amp;apos;HTTP Request/Response Splitting&amp;apos;)</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -449,6 +290,165 @@ pass in &lt;code&gt;v1,&lt;/code&gt; as the signature, which would always pass v
 &lt;/ul&gt;
 &lt;h3&gt;Workarounds&lt;/h3&gt;
 &lt;p&gt;trillium services should sanitize or validate untrusted input that is included in header values and header names. Carriage return, newline, and null characters are not allowed.&lt;/p&gt;
+&lt;h3&gt;Impact&lt;/h3&gt;
+&lt;p&gt;This only affects use cases where attackers have control of outbound headers, and can insert &amp;quot;\r\n&amp;quot; sequences. Specifically, if untrusted and unvalidated input is inserted into header names or values.&lt;/p&gt;
+&lt;h3&gt;Credit&lt;/h3&gt;
+&lt;p&gt;Discovered and reported by &lt;a href=&quot;https://github.com/divergentdave&quot;&gt;@divergentdave&lt;/a&gt;&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0008: Vulnerability in trillium-client</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0008.html</id><updated>2024-01-24T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2024-0008.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0008: Vulnerability in trillium-client"/><published>2024-01-24T12:00:00+00:00</published><summary xml:lang="en">Improper Neutralization of CRLF Sequences in HTTP Headers (&amp;apos;HTTP Request/Response Splitting&amp;apos;)</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/trillium-client/RUSTSEC-2024-0008.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/trillium-client/RUSTSEC-2024-0008.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0008&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2024-0008
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Improper Neutralization of CRLF Sequences in HTTP Headers (&apos;HTTP Request/Response Splitting&apos;)&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2024-01-23&quot;&gt;
+          January 23, 2024
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2024-01-24&quot;&gt;
+          January 24, 2024
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/trillium-client.html&quot;&gt;trillium-client&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/trillium-client&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/http.html&quot;&gt;#http&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/request.html&quot;&gt;#request&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/splitting.html&quot;&gt;#splitting&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-9f9p-cp3c-72jf&quot;&gt;GHSA-9f9p-cp3c-72jf&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-23644&quot;&gt;CVE-2024-23644&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/trillium-rs/trillium/security/advisories/GHSA-9f9p-cp3c-72jf&quot;&gt;
+              https://github.com/trillium-rs/trillium/security/advisories/GHSA-9f9p-cp3c-72jf
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.5.4&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;h3&gt;Summary&lt;/h3&gt;
+&lt;p&gt;Insufficient validation of outbound header values may lead to request splitting or response splitting attacks in scenarios where attackers have sufficient control over outbound headers.&lt;/p&gt;
+&lt;h3&gt;Details&lt;/h3&gt;
+&lt;p&gt;Outbound &lt;code&gt;trillium_http::HeaderValue&lt;/code&gt; and &lt;code&gt;trillium_http::HeaderName&lt;/code&gt; can be constructed infallibly and were not checked for illegal bytes when sending requests. Thus, if an attacker has sufficient control over header values (or names) in a request that they could inject &lt;code&gt;\r\n&lt;/code&gt; sequences, they could get the client and server out of sync, and then pivot to gain control over other parts of requests or responses. (i.e. exfiltrating data from other requests, SSRF, etc.)&lt;/p&gt;
+&lt;h3&gt;Patches&lt;/h3&gt;
+&lt;h4&gt;trillium-client &amp;gt;= 0.5.4:&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;If any header name or header value is invalid in the client request headers, awaiting the client Conn returns an &lt;code&gt;Error::MalformedHeader&lt;/code&gt; prior to any network access.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Workarounds&lt;/h3&gt;
+&lt;p&gt;trillium client applications should sanitize or validate untrusted input that is included in header values and header names. Carriage return, newline, and null characters are not allowed.&lt;/p&gt;
 &lt;h3&gt;Impact&lt;/h3&gt;
 &lt;p&gt;This only affects use cases where attackers have control of outbound headers, and can insert &amp;quot;\r\n&amp;quot; sequences. Specifically, if untrusted and unvalidated input is inserted into header names or values.&lt;/p&gt;
 &lt;h3&gt;Credit&lt;/h3&gt;
@@ -619,125 +619,6 @@ The locale can be read with &lt;code&gt;AtomicStr::as_str()&lt;/code&gt;.
 &lt;code&gt;AtomicStr::as_str()&lt;/code&gt; does not increment the usage counter of the &lt;code&gt;Arc&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;If the locale is changed in one thread, another thread can have a stale -- possibly already freed --
 reference to the stored string.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0005: Unsoundness in threadalone</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0005.html</id><updated>2024-01-22T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2024-0005.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0005: Unsoundness in threadalone"/><published>2024-01-22T12:00:00+00:00</published><summary xml:lang="en">Unsound sending of non-Send types across threads</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/threadalone/RUSTSEC-2024-0005.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/threadalone/RUSTSEC-2024-0005.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0005&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2024-0005
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Unsound sending of non-Send types across threads&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2024-01-07&quot;&gt;
-          January  7, 2024
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2024-01-22&quot;&gt;
-          January 22, 2024
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/threadalone.html&quot;&gt;threadalone&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/threadalone&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unsound
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/cr0sh/threadalone/issues/1&quot;&gt;
-              https://github.com/cr0sh/threadalone/issues/1
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.2.1&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;Affected versions can run the &lt;code&gt;Drop&lt;/code&gt; impl of a non-Send type on a different
-thread than it was created on.&lt;/p&gt;
-&lt;p&gt;The flaw occurs when a stderr write performed by the &lt;code&gt;threadalone&lt;/code&gt; crate fails,
-for example because stderr is redirected to a location on a filesystem that is
-full, or because stderr is a pipe that has been closed by the reader.&lt;/p&gt;
-&lt;p&gt;Dropping a non-Send type on the wrong thread is unsound. If used with a type
-such as a pthread-based &lt;code&gt;MutexGuard&lt;/code&gt;, &lt;a href=&quot;https://github.com/rust-lang/rust/issues/23465#issuecomment-82730326&quot;&gt;the consequence is undefined
-behavior&lt;/a&gt;. If used with &lt;code&gt;Rc&lt;/code&gt;, there would be a data race on the
-reference count, which is likewise undefined behavior.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
@@ -956,6 +837,125 @@ misbehavior including arbitrary command injection.&lt;/a&gt;&lt;/p&gt;
 1.3.0, documentation has been added.&lt;/p&gt;
 &lt;p&gt;Future versions of &lt;code&gt;shlex&lt;/code&gt; may add API variants that avoid the issue at the
 cost of reduced portability.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0005: Unsoundness in threadalone</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0005.html</id><updated>2024-01-22T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2024-0005.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0005: Unsoundness in threadalone"/><published>2024-01-22T12:00:00+00:00</published><summary xml:lang="en">Unsound sending of non-Send types across threads</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/threadalone/RUSTSEC-2024-0005.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/threadalone/RUSTSEC-2024-0005.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0005&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2024-0005
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Unsound sending of non-Send types across threads&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2024-01-07&quot;&gt;
+          January  7, 2024
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2024-01-22&quot;&gt;
+          January 22, 2024
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/threadalone.html&quot;&gt;threadalone&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/threadalone&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/cr0sh/threadalone/issues/1&quot;&gt;
+              https://github.com/cr0sh/threadalone/issues/1
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.2.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Affected versions can run the &lt;code&gt;Drop&lt;/code&gt; impl of a non-Send type on a different
+thread than it was created on.&lt;/p&gt;
+&lt;p&gt;The flaw occurs when a stderr write performed by the &lt;code&gt;threadalone&lt;/code&gt; crate fails,
+for example because stderr is redirected to a location on a filesystem that is
+full, or because stderr is a pipe that has been closed by the reader.&lt;/p&gt;
+&lt;p&gt;Dropping a non-Send type on the wrong thread is unsound. If used with a type
+such as a pthread-based &lt;code&gt;MutexGuard&lt;/code&gt;, &lt;a href=&quot;https://github.com/rust-lang/rust/issues/23465#issuecomment-82730326&quot;&gt;the consequence is undefined
+behavior&lt;/a&gt;. If used with &lt;code&gt;Rc&lt;/code&gt;, there would be a data race on the
+reference count, which is likewise undefined behavior.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
