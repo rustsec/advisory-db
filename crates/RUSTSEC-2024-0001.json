@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2024-0001",
-  "modified": "2024-01-14T03:38:29Z",
+  "modified": "2024-02-10T15:57:43Z",
   "published": "2024-01-13T12:00:00Z",
-  "aliases": [],
+  "aliases": [
+    "GHSA-v363-rrf2-5fmj"
+  ],
   "related": [],
   "summary": "Unsound use of str::from_utf8_unchecked on bytes which are not UTF-8",
   "details": "Affected versions receive a `&[u8]` from the caller through a safe API, and pass\nit directly to the unsafe `str::from_utf8_unchecked` function.\n\nThe behavior of `ferris_says::say` is undefined if the bytes from the caller\ndon't happen to be valid UTF-8.\n\nThe flaw was corrected in [ferris-says#21] by using the safe `str::from_utf8`\ninstead, and returning an error on invalid input. However this fix has not yet\nbeen published to crates.io as a patch version for 0.2.\n\nSeparately, [ferris-says#32] has introduced a different API for version 0.3\nwhich accepts input as `&str` rather than `&[u8]`, so is unaffected by this bug.\n\n[ferris-says#21]: https://github.com/rust-lang/ferris-says/pull/21\n[ferris-says#32]: https://github.com/rust-lang/ferris-says/pull/32",

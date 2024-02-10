@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2024-0010",
-  "modified": "2024-02-06T17:57:48Z",
+  "modified": "2024-02-10T15:57:43Z",
   "published": "2024-02-06T12:00:00Z",
-  "aliases": [],
+  "aliases": [
+    "GHSA-w277-wpqf-rcfv"
+  ],
   "related": [],
   "summary": "Improper comparison of different-length signatures",
   "details": "The `Webhook::verify` function incorrectly compared signatures of\ndifferent lengths - the two signatures would only be compared up to\nthe length of the shorter signature. This allowed an attacker to\npass in `v1,` as the signature, which would always pass verification.",

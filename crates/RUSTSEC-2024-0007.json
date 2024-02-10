@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2024-0007",
-  "modified": "2024-01-23T14:45:36Z",
+  "modified": "2024-02-10T15:57:43Z",
   "published": "2024-01-19T12:00:00Z",
-  "aliases": [],
+  "aliases": [
+    "GHSA-c8v3-jhv9-4ppc"
+  ],
   "related": [],
   "summary": "Use-after-free when setting the locale",
   "details": "Version 3.0.0 introduced an `AtomicStr` type, that is used to store the current locale.\nIt stores the locale as a raw pointer to an `Arc<String>`.\nThe locale can be read with `AtomicStr::as_str()`.\n`AtomicStr::as_str()` does not increment the usage counter of the `Arc`.\n\nIf the locale is changed in one thread, another thread can have a stale -- possibly already freed --\nreference to the stored string.",

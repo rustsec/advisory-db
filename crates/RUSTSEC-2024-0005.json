@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2024-0005",
-  "modified": "2024-01-22T02:05:54Z",
+  "modified": "2024-02-10T15:57:43Z",
   "published": "2024-01-07T12:00:00Z",
-  "aliases": [],
+  "aliases": [
+    "GHSA-w59h-378f-2frm"
+  ],
   "related": [],
   "summary": "Unsound sending of non-Send types across threads",
   "details": "Affected versions can run the `Drop` impl of a non-Send type on a different\nthread than it was created on.\n\nThe flaw occurs when a stderr write performed by the `threadalone` crate fails,\nfor example because stderr is redirected to a location on a filesystem that is\nfull, or because stderr is a pipe that has been closed by the reader.\n\nDropping a non-Send type on the wrong thread is unsound. If used with a type\nsuch as a pthread-based `MutexGuard`, [the consequence is undefined\nbehavior][mutexguard]. If used with `Rc`, there would be a data race on the\nreference count, which is likewise undefined behavior.\n\n[mutexguard]: https://github.com/rust-lang/rust/issues/23465#issuecomment-82730326",

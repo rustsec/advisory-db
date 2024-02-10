@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2023-0058",
-  "modified": "2023-09-11T00:54:53Z",
+  "modified": "2024-02-10T15:57:43Z",
   "published": "2023-09-10T12:00:00Z",
-  "aliases": [],
+  "aliases": [
+    "GHSA-36xm-35qq-795w"
+  ],
   "related": [],
   "summary": "Exposes reference to non-Sync data to an arbitrary thread",
   "details": "Affected versions do not enforce a `Sync` bound on the type of caller-provided\nvalue held in the plugin registry. References to these values are made\naccessible to arbitrary threads other than the one that constructed them.\n\nA caller could use this flaw to submit thread-unsafe data into inventory, then\naccess it as a reference simultaneously from multiple threads.\n\nThe flaw was corrected by enforcing that data submitted by the caller into\ninventory is `Sync`.",

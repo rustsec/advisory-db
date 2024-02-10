@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2023-0057",
-  "modified": "2023-09-10T17:34:00Z",
+  "modified": "2024-02-10T15:57:43Z",
   "published": "2023-09-10T12:00:00Z",
-  "aliases": [],
+  "aliases": [
+    "GHSA-ghc8-5cgm-5rpf"
+  ],
   "related": [],
   "summary": "Fails to prohibit standard library access prior to initialization of Rust standard library runtime",
   "details": "Affected versions allow arbitrary caller-provided code to execute before the\nlifetime of `main`.\n\nIf the caller-provided code accesses particular pieces of the standard library\nthat require an initialized Rust runtime, such as `std::io` or `std::thread`,\nthese may not behave as documented. Panics are likely; UB is possible.\n\nThe flaw was corrected by enforcing that only code written within the\n`inventory` crate, which is guaranteed not to access runtime-dependent parts of\nthe standard library, runs before `main`. Caller-provided code is restricted to\nrunning at compile time.",
