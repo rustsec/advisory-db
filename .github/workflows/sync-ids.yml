@@ -26,7 +26,7 @@ jobs:
         fi
 
     - name: Synchronize IDs
-      id: sync-ids
+      id: sync_ids
       run: |
         mkdir -p /tmp/osv
         curl --silent --output /tmp/osv/advisories.zip https://osv-vulnerabilities.storage.googleapis.com/crates.io/all.zip
@@ -40,5 +40,5 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         commit-message: ${{ steps.assign.outputs.commit_message }}
-        title: ${{ steps.assign.outputs.commit_message }}
+        title: ${{ steps.sync_id.outputs.commit_message }}
         branch: sync-ids
