@@ -1,13 +1,15 @@
 {
   "id": "RUSTSEC-2024-0013",
-  "modified": "2024-02-10T02:46:05Z",
+  "modified": "2024-02-15T01:22:49Z",
   "published": "2024-02-06T12:00:00Z",
-  "aliases": [],
+  "aliases": [
+    "GHSA-22q8-ghmq-63vf"
+  ],
   "related": [
-    "GHSA-j2v7-4f6v-gpg8",
+    "CVE-2024-24575",
     "CVE-2024-24577",
     "GHSA-54mf-x2rh-hq9v",
-    "CVE-2024-24575"
+    "GHSA-j2v7-4f6v-gpg8"
   ],
   "summary": "Memory corruption, denial of service, and arbitrary code execution in libgit2",
   "details": "The [libgit2](https://github.com/libgit2/libgit2/) project fixed three security issues in the 1.7.2 release. These issues are:\n\n* The `git_revparse_single` function can potentially enter an infinite loop on a well-crafted input, potentially causing a Denial of Service. This function is exposed in the `git2` crate via the [`Repository::revparse_single`](https://docs.rs/git2/latest/git2/struct.Repository.html#method.revparse_single) method.\n* The `git_index_add` function may cause heap corruption and possibly lead to arbitrary code execution. This function is exposed in the `git2` crate via the [`Index::add`](https://docs.rs/git2/latest/git2/struct.Index.html#method.add) method.\n* The smart transport negotiation may experience an out-of-bounds read when a remote server did not advertise capabilities.\n\nThe `libgit2-sys` crate bundles libgit2, or optionally links to a system libgit2 library. In either case, versions of the libgit2 library less than 1.7.2 are vulnerable. The 0.16.2 release of `libgit2-sys` bundles the fixed version of 1.7.2, and requires a system libgit2 version of at least 1.7.2.\n\nIt is recommended that all users upgrade.",
