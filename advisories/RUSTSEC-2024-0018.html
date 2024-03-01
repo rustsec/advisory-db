@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package &#x27;crayon&#x27; › RustSec Advisory Database</title>
+<title>RUSTSEC-2024-0018: crayon: ObjectPool creates uninitialized memory when freeing objects › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,58 +52,175 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/crayon/RUSTSEC-2024-0018.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/crayon/RUSTSEC-2024-0018.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2024-0018">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2024-0018
+        
+      </h1>
+      <span class="subtitle"><p>ObjectPool creates uninitialized memory when freeing objects</p>
 </span>
-      <h1>Advisories for package &#x27;crayon&#x27;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2024-03-01">
-    March  1, 2024
-  </time>
-
-  
-  <h3>
     
+
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2024-02-27">
+          February 27, 2024
+        </time>
+      </dd>
+
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2024-03-01">
+          March  1, 2024
+        </time>
         
-    
-    <a href="/advisories/RUSTSEC-2024-0018.html">
-      RUSTSEC-2024-0018: Vulnerability in crayon
-    </a>
-  </h3>
-  <span><p>ObjectPool creates uninitialized memory when freeing objects</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2020-10-01">
-    October  1, 2020
-  </time>
+      </dd>
 
-  
-  <h3>
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        <a href="/packages/crayon.html">crayon</a>
+          (<a href="https://crates.io/crates/crayon">crates.io</a>)
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        Vulnerability
+        
+      </dd>
+
+      
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/memory-corruption.html">memory-corruption</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/std--mem--uninitialized.html">#std--mem--uninitialized</a>
+        
+          <a href="/keywords/address-sanitizer.html">#address-sanitizer</a>
+        
+      </dd>
+      
+
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/shawnscode/crayon/issues/109">
+              https://github.com/shawnscode/crayon/issues/109
+            </a>
+          </li>
+        
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        no patched versions
+        
+      </dd>
+
+      
+      <dt id="unaffected">Unaffected</dt>
+      <dd>
+        <ul>
+          
+          <li><code>&lt;0.6.0</code></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      
+
+      
+      
+    </dl>
+
     
-      <span class="tag high">HIGH</span>
+    
+    <dl>
+      <dt>Affected Functions</dt>
+      <dd>Version</dd>
       
-    <a href="/advisories/RUSTSEC-2020-0037.html">
-      RUSTSEC-2020-0037: Unsoundness in crayon
-    </a>
-  </h3>
-  <span><p>Misbehaving <code>HandleLike</code> implementation can lead to memory safety violation</p>
-</span>
-  
-</li>
+      <dt><code>crayon::utils::object_pool::ObjectPool&lt;H,T&gt;::free</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&gt;=0.6.0</code></li>
+          
+        </ul>
+      </dd>
       
-    </ul>
+    </dl>
+    
+
+    
+
+    <h3 id="description">Description</h3>
+    <p>As of version 0.6.0, the ObjectPool explicitly creates an uninitialized instance of its
+type parameter when it attempts to free an object, and swaps it into the storage. This
+causes instant undefined behavior due to reading the uninitialized memory in order to
+write it to the pool storage.</p>
+<p>Extremely basic usage of the crate can trigger this issue, e.g. this code from a doctest:</p>
+<pre><code class="language-rust">use crayon::prelude::*;
+application::oneshot().unwrap();
+
+let mut params = MeshParams::default();
+
+let mesh = video::create_mesh(params, None).unwrap();
+
+// Deletes the mesh object.
+video::delete_mesh(mesh); // &lt;-- UB
+</code></pre>
+<p>The Clippy warning for this code was silenced in commit c2fde19caf6149d91faa504263f0bc5cafc35de5.</p>
+<p>Discovered via https://asan.saethlin.dev/ub?crate=crayon&amp;version=0.7.1</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
