@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package &#x27;mio&#x27; › RustSec Advisory Database</title>
+<title>RUSTSEC-2024-0019: mio: Tokens for named pipes may be delivered after deregistration › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,58 +52,187 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/mio/RUSTSEC-2024-0019.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/mio/RUSTSEC-2024-0019.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2024-0019">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2024-0019
+        
+      </h1>
+      <span class="subtitle"><p>Tokens for named pipes may be delivered after deregistration</p>
 </span>
-      <h1>Advisories for package &#x27;mio&#x27;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2024-03-04">
-    March  4, 2024
-  </time>
-
-  
-  <h3>
     
+
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2024-03-04">
+          March  4, 2024
+        </time>
+      </dd>
+
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2024-03-04">
+          March  4, 2024
+        </time>
         
-    
-    <a href="/advisories/RUSTSEC-2024-0019.html">
-      RUSTSEC-2024-0019: Vulnerability in mio
-    </a>
-  </h3>
-  <span><p>Tokens for named pipes may be delivered after deregistration</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2020-12-02">
-    December  2, 2020
-  </time>
+      </dd>
 
-  
-  <h3>
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        <a href="/packages/mio.html">mio</a>
+          (<a href="https://crates.io/crates/mio">crates.io</a>)
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        Vulnerability
+        
+      </dd>
+
+      
+
+      
+
+      
+      <dt id="aliases">Aliases</dt>
+      <dd>
+        <ul>
+          
+          <li>
+            
+            <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-27308">CVE-2024-27308</a>
+            
+          </li>
+          
+          <li>
+            
+            <a href="https://github.com/advisories/GHSA-r8w9-5wcg-vfj7">GHSA-r8w9-5wcg-vfj7</a>
+            
+          </li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/tokio-rs/mio/security/advisories/GHSA-r8w9-5wcg-vfj7">
+              https://github.com/tokio-rs/mio/security/advisories/GHSA-r8w9-5wcg-vfj7
+            </a>
+          </li>
+        
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&gt;=0.8.11</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+      <dt id="unaffected">Unaffected</dt>
+      <dd>
+        <ul>
+          
+          <li><code>&lt;0.7.2</code></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      
+
+      
+      <dt>Affected OSes</dt>
+      <dd>
+        <ul>
+          
+          <li><code>windows</code></li>
+          
+        </ul>
+      </dd>
+      
+      
+    </dl>
+
     
-      <span class="tag medium">MEDIUM</span>
+    
+    <dl>
+      <dt>Affected Functions</dt>
+      <dd>Version</dd>
       
-    <a href="/advisories/RUSTSEC-2020-0081.html">
-      RUSTSEC-2020-0081: Unsoundness in mio
-    </a>
-  </h3>
-  <span><p><code>mio</code> invalidly assumes the memory layout of std::net::SocketAddr</p>
-</span>
-  
-</li>
+      <dt><code>mio::windows::NamedPipe::new</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&gt;=0.7.2, &lt;=0.8.10</code></li>
+          
+        </ul>
+      </dd>
       
-    </ul>
+    </dl>
+    
+
+    
+
+    <h3 id="description">Description</h3>
+    <h2>Impact</h2>
+<p>When using named pipes on Windows, mio will under some circumstances return invalid tokens that correspond to named pipes that have already been deregistered from the mio registry. The impact of this vulnerability depends on how mio is used. For some applications, invalid tokens may be ignored or cause a warning or a crash. On the other hand, for applications that store pointers in the tokens, this vulnerability may result in a use-after-free.</p>
+<p>For users of Tokio, this vulnerability is serious and can result in a use-after-free in Tokio.</p>
+<p>The vulnerability is Windows-specific, and can only happen if you are using named pipes. Other IO resources are not affected.</p>
+<h2>Affected versions</h2>
+<p>This vulnerability has been fixed in mio v0.8.11.</p>
+<p>All versions of mio between v0.7.2 and v0.8.10 are vulnerable.</p>
+<p>Tokio is vulnerable when you are using a vulnerable version of mio AND you are using at least Tokio v1.30.0. Versions of Tokio prior to v1.30.0 will ignore invalid tokens, so they are not vulnerable.</p>
+<h2>Workarounds</h2>
+<p>Vulnerable libraries that use mio can work around this issue by detecting and ignoring invalid tokens.</p>
+<h2>Technical details</h2>
+<p>When an IO resource registered with mio has a readiness event, mio delivers that readiness event to the user using a user-specified token. Mio guarantees that when an IO resource is <a href="https://docs.rs/mio/latest/mio/struct.Registry.html#method.deregister">deregistered</a>, then it will never return the token for that IO resource again. However, for named pipes on windows, mio may sometimes deliver the token for a named pipe even though the named pipe has been previously deregistered.</p>
+<p>This vulnerability was originally reported in the Tokio issue tracker: <a href="https://github.com/tokio-rs/tokio/issues/6369">tokio-rs/tokio#6369</a><br />
+This vulnerability was fixed in: <a href="https://github.com/tokio-rs/mio/pull/1760">tokio-rs/mio#1760</a></p>
+<p>Thank you to <a href="https://github.com/rofoun">@rofoun</a> and <a href="https://github.com/radekvit">@radekvit</a> for discovering and reporting this issue.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
