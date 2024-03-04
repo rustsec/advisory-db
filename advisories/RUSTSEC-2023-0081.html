@@ -88,6 +88,10 @@
           February 22, 2024
         </time>
         
+        <time datetime="2024-03-04">
+          (last modified: March  4, 2024)
+        </time>
+        
       </dd>
 
       <dt id="package">Package</dt>
@@ -153,6 +157,23 @@
 
     <h3 id="description">Description</h3>
     <p>The latest crates.io release was in 2019. The repository has been archived by the author.</p>
+<h2>Migration</h2>
+<ul>
+<li>
+<p><code>safemem::copy_over(slice, src_idx, dest_idx, len);</code> can be replaced with <code>slice.copy_within(src_idx..src_idx+len, dest_idx);</code> as of <code>rust 1.37.0</code>.</p>
+</li>
+<li>
+<p><code>safemem::write_bytes(slice, byte);</code> can be replaced with <code>slice.fill(byte);</code> as of <code>rust 1.50.0</code></p>
+</li>
+<li>
+<p><code>safemem::prepend(slice, vec);</code> can be replaced with</p>
+<pre><code class="language-rust">let old_len = vec.len();
+vec.extend_from_slice(slice);
+vec.rotate_left(old_len);
+</code></pre>
+<p>as of <code>rust 1.26.0</code></p>
+</li>
+</ul>
 
 
     <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>

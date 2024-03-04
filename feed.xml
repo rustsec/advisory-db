@@ -951,7 +951,7 @@ video::delete_mesh(mesh); // &amp;lt;-- UB
 
     
     &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0081: safemem is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0081.html</id><updated>2024-02-22T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2023-0081.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0081: safemem is unmaintained"/><published>2024-02-22T12:00:00+00:00</published><summary xml:lang="en">safemem is unmaintained</summary><content xml:lang="en" type="html">  &lt;article&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0081: safemem is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0081.html</id><updated>2024-03-04T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2023-0081.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0081: safemem is unmaintained"/><published>2024-02-22T12:00:00+00:00</published><summary xml:lang="en">safemem is unmaintained</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
           &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/safemem/RUSTSEC-2023-0081.md&quot;&gt;History&lt;/a&gt; ⋅ 
@@ -984,6 +984,10 @@ video::delete_mesh(mesh); // &amp;lt;-- UB
       &lt;dd&gt;
         &lt;time datetime=&quot;2024-02-22&quot;&gt;
           February 22, 2024
+        &lt;/time&gt;
+        
+        &lt;time datetime=&quot;2024-03-04&quot;&gt;
+          (last modified: March  4, 2024)
         &lt;/time&gt;
         
       &lt;/dd&gt;
@@ -1051,6 +1055,23 @@ video::delete_mesh(mesh); // &amp;lt;-- UB
 
     &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
     &lt;p&gt;The latest crates.io release was in 2019. The repository has been archived by the author.&lt;/p&gt;
+&lt;h2&gt;Migration&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;safemem::copy_over(slice, src_idx, dest_idx, len);&lt;/code&gt; can be replaced with &lt;code&gt;slice.copy_within(src_idx..src_idx+len, dest_idx);&lt;/code&gt; as of &lt;code&gt;rust 1.37.0&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;safemem::write_bytes(slice, byte);&lt;/code&gt; can be replaced with &lt;code&gt;slice.fill(byte);&lt;/code&gt; as of &lt;code&gt;rust 1.50.0&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;safemem::prepend(slice, vec);&lt;/code&gt; can be replaced with&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-rust&quot;&gt;let old_len = vec.len();
+vec.extend_from_slice(slice);
+vec.rotate_left(old_len);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;as of &lt;code&gt;rust 1.26.0&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
