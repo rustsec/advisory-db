@@ -1,0 +1,69 @@
+{
+  "id": "RUSTSEC-2024-0020",
+  "modified": "2024-03-05T01:31:53Z",
+  "published": "2024-02-28T12:00:00Z",
+  "aliases": [],
+  "related": [],
+  "summary": "Stack buffer overflow with whoami on illumos and Solaris",
+  "details": "With older versions of the whoami crate, calling the `username` function leads to an immediate stack\nbuffer overflow on illumos and Solaris. Denial of service and data corruption have both been\nobserved in the wild, and the issue is possibly exploitable as well.\n\nThis also affects any other Unix platforms that aren't any of: `linux`, `macos`, `freebsd`,\n`dragonfly`, `bitrig`, `openbsd`, `netbsd`.\n\nThis issue has been addressed in whoami 1.5.0.\n\nFor more information, see [this GitHub issue](https://github.com/ardaku/whoami/issues/91).",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "whoami",
+        "purl": "pkg:cargo/whoami"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [
+            "illumos",
+            "solaris"
+          ],
+          "functions": [
+            "whoami::username"
+          ]
+        }
+      },
+      "database_specific": {
+        "categories": [
+          "denial-of-service",
+          "memory-corruption"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "1.5.0"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/whoami"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2024-0020.html"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/ardaku/whoami/issues/91"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
