@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>RUSTSEC-2024-0020: whoami: Stack buffer overflow with whoami on illumos and Solaris › RustSec Advisory Database</title>
+<title>RUSTSEC-2024-0020: whoami: Stack buffer overflow with whoami on several Unix platforms › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -68,7 +68,7 @@
         RUSTSEC-2024-0020
         
       </h1>
-      <span class="subtitle"><p>Stack buffer overflow with whoami on illumos and Solaris</p>
+      <span class="subtitle"><p>Stack buffer overflow with whoami on several Unix platforms</p>
 </span>
     </header>
 
@@ -86,6 +86,10 @@
       <dd>
         <time datetime="2024-03-05">
           March  5, 2024
+        </time>
+        
+        <time datetime="2024-03-06">
+          (last modified: March  6, 2024)
         </time>
         
       </dd>
@@ -168,6 +172,15 @@
       </dd>
 
       
+      <dt id="unaffected">Unaffected</dt>
+      <dd>
+        <ul>
+          
+          <li><code>&lt;0.5.3</code></li>
+          
+        </ul>
+      </dd>
+      
 
       
       
@@ -181,6 +194,14 @@
           
           <li><code>solaris</code></li>
           
+          <li><code>dragonfly</code></li>
+          
+          <li><code>freebsd</code></li>
+          
+          <li><code>netbsd</code></li>
+          
+          <li><code>openbsd</code></li>
+          
         </ul>
       </dd>
       
@@ -193,7 +214,34 @@
       <dt>Affected Functions</dt>
       <dd>Version</dd>
       
+      <dt><code>whoami::realname</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&lt;1.5.0</code></li>
+          
+        </ul>
+      </dd>
+      
+      <dt><code>whoami::realname_os</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&lt;1.5.0</code></li>
+          
+        </ul>
+      </dd>
+      
       <dt><code>whoami::username</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&lt;1.5.0</code></li>
+          
+        </ul>
+      </dd>
+      
+      <dt><code>whoami::username_os</code></dt>
       <dd>
         <ul>
           
@@ -208,11 +256,27 @@
     
 
     <h3 id="description">Description</h3>
-    <p>With older versions of the whoami crate, calling the <code>username</code> function leads to an immediate stack
-buffer overflow on illumos and Solaris. Denial of service and data corruption have both been
-observed in the wild, and the issue is possibly exploitable as well.</p>
-<p>This also affects any other Unix platforms that aren't any of: <code>linux</code>, <code>macos</code>, <code>freebsd</code>,
-<code>dragonfly</code>, <code>bitrig</code>, <code>openbsd</code>, <code>netbsd</code>.</p>
+    <p>With versions of the whoami crate &gt;= 0.5.3 and &lt; 1.5.0, calling any of these functions leads to an
+immediate stack buffer overflow on illumos and Solaris:</p>
+<ul>
+<li><code>whoami::username</code></li>
+<li><code>whoami::realname</code></li>
+<li><code>whoami::username_os</code></li>
+<li><code>whoami::realname_os</code></li>
+</ul>
+<p>With versions of the whoami crate &gt;= 0.5.3 and &lt; 1.0.1, calling any of the above functions also
+leads to a stack buffer overflow on these platforms:</p>
+<ul>
+<li>Bitrig</li>
+<li>DragonFlyBSD</li>
+<li>FreeBSD</li>
+<li>NetBSD</li>
+<li>OpenBSD</li>
+</ul>
+<p>This occurs because of an incorrect definition of the <code>passwd</code> struct on those platforms.</p>
+<p>As a result of this issue, denial of service and data corruption have both been observed in the
+wild. The issue is possibly exploitable as well.</p>
+<p>This vulnerability also affects other Unix platforms that aren't Linux or macOS.</p>
 <p>This issue has been addressed in whoami 1.5.0.</p>
 <p>For more information, see <a href="https://github.com/ardaku/whoami/issues/91">this GitHub issue</a>.</p>
 
