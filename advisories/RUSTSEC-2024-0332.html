@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories with keyword &#x27;h2&#x27; › RustSec Advisory Database</title>
+<title>RUSTSEC-2024-0332: h2: Degradation of service in h2 servers with CONTINUATION Flood › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,77 +52,143 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/h2/RUSTSEC-2024-0332.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/h2/RUSTSEC-2024-0332.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2024-0332">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2024-0332
+        
+      </h1>
+      <span class="subtitle"><p>Degradation of service in h2 servers with CONTINUATION Flood</p>
 </span>
-      <h1>Advisories with keyword &#x27;h2&#x27;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2024-04-03">
-    April  3, 2024
-  </time>
+    
 
-  
-  <h3>
-    
-        
-    
-    <a href="/advisories/RUSTSEC-2024-0332.html">
-      RUSTSEC-2024-0332: Vulnerability in h2
-    </a>
-  </h3>
-  <span><p>Degradation of service in h2 servers with CONTINUATION Flood</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2024-01-17">
-    January 17, 2024
-  </time>
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2024-04-03">
+          April  3, 2024
+        </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2024-04-03">
+          April  3, 2024
+        </time>
         
-    
-    <a href="/advisories/RUSTSEC-2024-0003.html">
-      RUSTSEC-2024-0003: Vulnerability in h2
-    </a>
-  </h3>
-  <span><p>Resource exhaustion vulnerability in h2 may lead to Denial of Service (DoS)</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2023-04-20">
-    April 20, 2023
-  </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="package">Package</dt>
+      <dd>
         
-    
-    <a href="/advisories/RUSTSEC-2023-0034.html">
-      RUSTSEC-2023-0034: Vulnerability in h2
-    </a>
-  </h3>
-  <span><p>Resource exhaustion vulnerability in h2 may lead to Denial of Service (DoS)</p>
-</span>
-  
-</li>
+        
+        <a href="/packages/h2.html">h2</a>
+          (<a href="https://crates.io/crates/h2">crates.io</a>)
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        Vulnerability
+        
+      </dd>
+
       
-    </ul>
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/denial-of-service.html">denial-of-service</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/http.html">#http</a>
+        
+          <a href="/keywords/http2.html">#http2</a>
+        
+          <a href="/keywords/h2.html">#h2</a>
+        
+      </dd>
+      
+
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+        
+          <li>
+            <a href="https://seanmonstar.com/blog/hyper-http2-continuation-flood/">
+              https://seanmonstar.com/blog/hyper-http2-continuation-flood/
+            </a>
+          </li>
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>^0.3.26</code></li>
+          
+          <li><code>&gt;=0.4.4</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+
+      
+      
+    </dl>
+
+    
+    
+
+    <h3 id="description">Description</h3>
+    <p>An attacker can send a flood of CONTINUATION frames, causing <code>h2</code> to process them indefinitely.
+This results in an increase in CPU usage.</p>
+<p>Tokio task budget helps prevent this from a complete denial-of-service, as the server can still
+respond to legitimate requests, albeit with increased latency.</p>
+<p>More details at &quot;https://seanmonstar.com/blog/hyper-http2-continuation-flood/.</p>
+<p>Patches available for 0.4.x and 0.3.x versions.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
