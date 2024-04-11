@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2023-0085",
-  "modified": "2024-03-15T15:18:14Z",
+  "modified": "2024-04-11T16:16:20Z",
   "published": "2023-09-15T12:00:00Z",
-  "aliases": [],
+  "aliases": [
+    "GHSA-w7hm-hmxv-pvhf"
+  ],
   "related": [],
   "summary": "HPACK decoder panics on invalid input",
   "details": "Due to insufficient checking of input data, decoding certain data sequences can\nlead to _Decoder::decode_ panicking rather than returning an error.\n\nExample code that triggers this vulnerability looks like this:\n\n```rust\nuse hpack::Decoder;\n\npub fn main() {\n  let input = &[0x3f];\n  let mut decoder = Decoder::new();\n  let _ = decoder.decode(input);\n}\n```\n\nhpack is unmaintained. A crate with the panics fixed has been published as\n[hpack-patched](https://crates.io/crates/hpack-patched).\n\nAlso consider using [fluke-hpack](https://crates.io/crates/fluke-hpack) or\n[httlib-huffman](https://crates.io/crates/httlib-huffman) as an alternative.",

@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2024-0332",
-  "modified": "2024-04-03T18:23:14Z",
+  "modified": "2024-04-11T16:16:20Z",
   "published": "2024-04-03T12:00:00Z",
-  "aliases": [],
+  "aliases": [
+    "GHSA-q6cp-qfwq-4gcv"
+  ],
   "related": [],
   "summary": "Degradation of service in h2 servers with CONTINUATION Flood",
   "details": "An attacker can send a flood of CONTINUATION frames, causing `h2` to process them indefinitely.\nThis results in an increase in CPU usage.\n\nTokio task budget helps prevent this from a complete denial-of-service, as the server can still\nrespond to legitimate requests, albeit with increased latency.\n\nMore details at \"https://seanmonstar.com/blog/hyper-http2-continuation-flood/.\n\nPatches available for 0.4.x and 0.3.x versions.",
