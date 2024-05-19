@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package &#x27;tor-circmgr&#x27; › RustSec Advisory Database</title>
+<title>RUSTSEC-2024-0340: tor-circmgr: Tor path lengths too short when &quot;full Vanguards&quot; configured › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,58 +52,212 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/tor-circmgr/RUSTSEC-2024-0340.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/tor-circmgr/RUSTSEC-2024-0340.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2024-0340">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2024-0340
+        
+      </h1>
+      <span class="subtitle"><p>Tor path lengths too short when &quot;full Vanguards&quot; configured</p>
 </span>
-      <h1>Advisories for package &#x27;tor-circmgr&#x27;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2024-05-20">
-    May 20, 2024
-  </time>
+    
 
-  
-  <h3>
-    
-        
-    
-    <a href="/advisories/RUSTSEC-2024-0340.html">
-      RUSTSEC-2024-0340: Vulnerability in tor-circmgr
-    </a>
-  </h3>
-  <span><p>Tor path lengths too short when &quot;full Vanguards&quot; configured</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2024-05-20">
-    May 20, 2024
-  </time>
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2024-05-15">
+          May 15, 2024
+        </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2024-05-20">
+          May 20, 2024
+        </time>
         
-    
-    <a href="/advisories/RUSTSEC-2024-0339.html">
-      RUSTSEC-2024-0339: Vulnerability in tor-circmgr
-    </a>
-  </h3>
-  <span><p>Tor path lengths too short when &quot;Vanguards lite&quot; configured</p>
-</span>
-  
-</li>
+      </dd>
+
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        <a href="/packages/tor-circmgr.html">tor-circmgr</a>
+          (<a href="https://crates.io/crates/tor-circmgr">crates.io</a>)
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        Vulnerability
+        
+      </dd>
+
       
-    </ul>
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/tor.html">#tor</a>
+        
+          <a href="/keywords/privacy.html">#privacy</a>
+        
+          <a href="/keywords/information-leak.html">#information-leak</a>
+        
+      </dd>
+      
+
+      
+      <dt id="aliases">Aliases</dt>
+      <dd>
+        <ul>
+          
+          <li>
+            
+            TROVE-2024-004
+            
+          </li>
+          
+          <li>
+            
+            <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-35313">CVE-2024-35313</a>
+            
+          </li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://gitlab.torproject.org/tpo/core/arti/-/issues/1409">
+              https://gitlab.torproject.org/tpo/core/arti/-/issues/1409
+            </a>
+          </li>
+        
+        
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="related">Related</dt>
+      <dd>
+        <ul>
+          
+          <li>
+            
+            TROVE-2024-003
+            
+          </li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&gt;=0.18.1</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+      <dt id="unaffected">Unaffected</dt>
+      <dd>
+        <ul>
+          
+          <li><code>&lt;0.18.0</code></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      
+    </dl>
+
+    
+    
+
+    <h3 id="description">Description</h3>
+    <h2>Description</h2>
+<p>When building anonymizing circuits to or from an onion service with
+full vanguards enabled,
+the circuit manager code would build the circuits with one hop too few.</p>
+<h2>Impact</h2>
+<p>This makes users of this code more vulnerable to some kinds of traffic analysis
+when they run or visit onion services.</p>
+<h2>Vulnerable configurations and use cases</h2>
+<p>Arti configured with &quot;full vangaurds&quot; is vulnerable.</p>
+<p>Only users who make connections to Onion Services
+(Tor Hidden Services) are affected.
+Note, however, that when used as a browser proxy,
+malicious web pages can typically make such connections.</p>
+<h2>Mitigation</h2>
+<p>Preventing access to Tor Hidden Services will avoid the problem,
+with corresponding loss of functionality.
+This can be achieved in the Arti configuration file with:</p>
+<pre><code>[address_filter]
+allow_onion_addrs = false
+</code></pre>
+<p>Changing the configuration (eg to turn off vanguards)
+reclassifies the behaviour as &quot;as configured&quot;,
+but reduces security rather than improving it,
+so is not a mitigation.</p>
+<h2>Resolution</h2>
+<p>Rebuild <code>arti</code> (or other affected applications)
+with a fixed version of <code>tor-circmgr</code>:
+0.18.1 or later.</p>
+<p>The fixed <code>tor-circmgr</code> is on crates.io and available in
+<a href="https://gitlab.torproject.org/tpo/core/arti">the upstream git repository</a>
+at signed tag <code>arti-v1.2.3</code>.</p>
+<h3>Note about older versions</h3>
+<p>Even though earlier versions are classified as &quot;not affected&quot;,
+this is because in those versions the Vanguards feature
+is experimental, or absent.
+Downgrading worsens security, rather than improving it.</p>
+<h2>References</h2>
+<ul>
+<li><a href="https://gitlab.torproject.org/tpo/core/arti/-/issues/1400">arti#1400</a>:
+the ticket in the Arti bugtracker.</li>
+<li><a href="https://gitlab.torproject.org/tpo/core/team/-/wikis/NetworkTeam/TROVE">TROVE</a>
+Tor Project vulnerability database.</li>
+<li><a href="https://gitlab.torproject.org/tpo/core/arti/-/issues/1409">arti#1409</a>:
+the similar bug with the vanguards lite feature.</li>
+</ul>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
