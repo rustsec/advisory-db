@@ -7,6 +7,11 @@ These advisories serve to inform the Rust community about both the existence
 of unmaintained crates within a particular project, and also serve to guide
 switching to maintained alternatives.
 
+When approaching a potentially unmaintained crate, do not behave rudely
+towards open soruce maintainers. Submitting a RUSTSEC advisory for an
+unmaintained crate should not be treated as a weapon to coerce open source
+maintainers.
+
 ## Definition of an "unmaintained" crate
 
 We consider crates unmaintained when they fall into either of the following
