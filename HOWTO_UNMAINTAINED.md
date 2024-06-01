@@ -8,7 +8,7 @@ of unmaintained crates within a particular project, and also serve to guide
 switching to maintained alternatives.
 
 When approaching a potentially unmaintained crate, do not behave rudely
-towards open soruce maintainers. Submitting a RUSTSEC advisory for an
+towards open source maintainers. Submitting a RUSTSEC advisory for an
 unmaintained crate should not be treated as a weapon to coerce open source
 maintainers.
 
