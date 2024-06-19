@@ -171,22 +171,22 @@ problem was recently discovered in <code>curve25519-dalek</code>.</p>
 inside a loop where LLVM saw an opportunity to insert a branch instruction (<code>jns</code> on x86) to
 conditionally bypass this code section when the mask value is set to zero as can be seen in godbolt:</p>
 <ul>
-<li>32-bit (see L106): https://godbolt.org/z/zvaWxzvqv</li>
-<li>64-bit (see L48): https://godbolt.org/z/PczYj7Pda</li>
+<li>32-bit (see L106): <a href="https://godbolt.org/z/zvaWxzvqv">https://godbolt.org/z/zvaWxzvqv</a></li>
+<li>64-bit (see L48): <a href="https://godbolt.org/z/PczYj7Pda">https://godbolt.org/z/PczYj7Pda</a></li>
 </ul>
 <p>A similar problem was recently discovered in the Kyber reference implementation:</p>
-<p>https://groups.google.com/a/list.nist.gov/g/pqc-forum/c/hqbtIGFKIpU/m/cnE3pbueBgAJ</p>
+<p><a href="https://groups.google.com/a/list.nist.gov/g/pqc-forum/c/hqbtIGFKIpU/m/cnE3pbueBgAJ">https://groups.google.com/a/list.nist.gov/g/pqc-forum/c/hqbtIGFKIpU/m/cnE3pbueBgAJ</a></p>
 <p>As discussed on that thread, one portable solution, which is also used in this PR, is to introduce a
 volatile read as an optimization barrier, which prevents the compiler from optimizing it away.</p>
 <p>The fix can be validated in godbolt here:</p>
 <ul>
-<li>32-bit: https://godbolt.org/z/jc9j7eb8E</li>
-<li>64-bit: https://godbolt.org/z/x8d46Yfah</li>
+<li>32-bit: <a href="https://godbolt.org/z/jc9j7eb8E">https://godbolt.org/z/jc9j7eb8E</a></li>
+<li>64-bit: <a href="https://godbolt.org/z/x8d46Yfah">https://godbolt.org/z/x8d46Yfah</a></li>
 </ul>
 <p>The problem was discovered and the solution independently verified by
 Alexander Wagner <a href="mailto:alexander.wagner@aisec.fraunhofer.de">alexander.wagner@aisec.fraunhofer.de</a> and Lea Themint <a href="mailto:lea.thiemt@tum.de">lea.thiemt@tum.de</a> using
 their DATA tool:</p>
-<p>https://github.com/Fraunhofer-AISEC/DATA</p>
+<p><a href="https://github.com/Fraunhofer-AISEC/DATA">https://github.com/Fraunhofer-AISEC/DATA</a></p>
 
 
     <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>

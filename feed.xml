@@ -117,22 +117,22 @@ problem was recently discovered in &lt;code&gt;curve25519-dalek&lt;/code&gt;.&lt
 inside a loop where LLVM saw an opportunity to insert a branch instruction (&lt;code&gt;jns&lt;/code&gt; on x86) to
 conditionally bypass this code section when the mask value is set to zero as can be seen in godbolt:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;32-bit (see L106): https://godbolt.org/z/zvaWxzvqv&lt;/li&gt;
-&lt;li&gt;64-bit (see L48): https://godbolt.org/z/PczYj7Pda&lt;/li&gt;
+&lt;li&gt;32-bit (see L106): &lt;a href=&quot;https://godbolt.org/z/zvaWxzvqv&quot;&gt;https://godbolt.org/z/zvaWxzvqv&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;64-bit (see L48): &lt;a href=&quot;https://godbolt.org/z/PczYj7Pda&quot;&gt;https://godbolt.org/z/PczYj7Pda&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;A similar problem was recently discovered in the Kyber reference implementation:&lt;/p&gt;
-&lt;p&gt;https://groups.google.com/a/list.nist.gov/g/pqc-forum/c/hqbtIGFKIpU/m/cnE3pbueBgAJ&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://groups.google.com/a/list.nist.gov/g/pqc-forum/c/hqbtIGFKIpU/m/cnE3pbueBgAJ&quot;&gt;https://groups.google.com/a/list.nist.gov/g/pqc-forum/c/hqbtIGFKIpU/m/cnE3pbueBgAJ&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;As discussed on that thread, one portable solution, which is also used in this PR, is to introduce a
 volatile read as an optimization barrier, which prevents the compiler from optimizing it away.&lt;/p&gt;
 &lt;p&gt;The fix can be validated in godbolt here:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;32-bit: https://godbolt.org/z/jc9j7eb8E&lt;/li&gt;
-&lt;li&gt;64-bit: https://godbolt.org/z/x8d46Yfah&lt;/li&gt;
+&lt;li&gt;32-bit: &lt;a href=&quot;https://godbolt.org/z/jc9j7eb8E&quot;&gt;https://godbolt.org/z/jc9j7eb8E&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;64-bit: &lt;a href=&quot;https://godbolt.org/z/x8d46Yfah&quot;&gt;https://godbolt.org/z/x8d46Yfah&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The problem was discovered and the solution independently verified by
 Alexander Wagner &lt;a href=&quot;mailto:alexander.wagner@aisec.fraunhofer.de&quot;&gt;alexander.wagner@aisec.fraunhofer.de&lt;/a&gt; and Lea Themint &lt;a href=&quot;mailto:lea.thiemt@tum.de&quot;&gt;lea.thiemt@tum.de&lt;/a&gt; using
 their DATA tool:&lt;/p&gt;
-&lt;p&gt;https://github.com/Fraunhofer-AISEC/DATA&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/Fraunhofer-AISEC/DATA&quot;&gt;https://github.com/Fraunhofer-AISEC/DATA&lt;/a&gt;&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
