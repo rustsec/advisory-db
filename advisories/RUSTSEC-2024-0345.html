@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package &#x27;sequoia-openpgp&#x27; › RustSec Advisory Database</title>
+<title>RUSTSEC-2024-0345: sequoia-openpgp: Low severity (DoS) vulnerability in sequoia-openpgp › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,58 +52,189 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/sequoia-openpgp/RUSTSEC-2024-0345.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/sequoia-openpgp/RUSTSEC-2024-0345.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2024-0345">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2024-0345
+        
+      </h1>
+      <span class="subtitle"><p>Low severity (DoS) vulnerability in sequoia-openpgp</p>
 </span>
-      <h1>Advisories for package &#x27;sequoia-openpgp&#x27;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2024-06-26">
-    June 26, 2024
-  </time>
+    
 
-  
-  <h3>
-    
-        
-    
-    <a href="/advisories/RUSTSEC-2024-0345.html">
-      RUSTSEC-2024-0345: Vulnerability in sequoia-openpgp
-    </a>
-  </h3>
-  <span><p>Low severity (DoS) vulnerability in sequoia-openpgp</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2023-05-31">
-    May 31, 2023
-  </time>
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2024-06-26">
+          June 26, 2024
+        </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2024-06-26">
+          June 26, 2024
+        </time>
         
-    
-    <a href="/advisories/RUSTSEC-2023-0038.html">
-      RUSTSEC-2023-0038: Vulnerability in sequoia-openpgp
-    </a>
-  </h3>
-  <span><p>Out-of-bounds array access leads to panic</p>
-</span>
-  
-</li>
+      </dd>
+
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        <a href="/packages/sequoia-openpgp.html">sequoia-openpgp</a>
+          (<a href="https://crates.io/crates/sequoia-openpgp">crates.io</a>)
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        Vulnerability
+        
+      </dd>
+
       
-    </ul>
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/denial-of-service.html">denial-of-service</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/infinite-loop.html">#infinite-loop</a>
+        
+      </dd>
+      
+
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://gitlab.com/sequoia-pgp/sequoia/-/issues/1106">
+              https://gitlab.com/sequoia-pgp/sequoia/-/issues/1106
+            </a>
+          </li>
+        
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&gt;=1.21.0</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+      <dt id="unaffected">Unaffected</dt>
+      <dd>
+        <ul>
+          
+          <li><code>&lt;1.13.0</code></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      
+
+      
+      
+    </dl>
+
+    
+    
+    <dl>
+      <dt>Affected Functions</dt>
+      <dd>Version</dd>
+      
+      <dt><code>sequoia_openpgp::cert::raw::RawCertParser</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&gt;=1.13.0, &lt;1.21.0</code></li>
+          
+        </ul>
+      </dd>
+      
+    </dl>
+    
+
+    
+
+    <h3 id="description">Description</h3>
+    <p>There is a denial-of-service vulnerability in sequoia-openpgp, our
+crate providing a low-level interface to our OpenPGP implementation.
+When triggered, the process will enter an infinite loop.</p>
+<p>Many thanks to Andrew Gallagher for disclosing the issue to us.</p>
+<h2>Impact</h2>
+<p>Any software directly or indirectly using the interface
+<code>sequoia_openpgp::cert::raw::RawCertParser</code>.  Notably, this includes all
+software using the <code>sequoia_cert_store</code> crate.</p>
+<h2>Details</h2>
+<p>The <code>RawCertParser</code> does not advance the input stream when
+encountering unsupported cert (primary key) versions, resulting in an
+infinite loop.</p>
+<p>The fix introduces a new raw-cert-specific
+<code>cert::raw::Error::UnuspportedCert</code>.</p>
+<h2>Affected software</h2>
+<ul>
+<li>sequoia-openpgp 1.13.0</li>
+<li>sequoia-openpgp 1.14.0</li>
+<li>sequoia-openpgp 1.15.0</li>
+<li>sequoia-openpgp 1.16.0</li>
+<li>sequoia-openpgp 1.17.0</li>
+<li>sequoia-openpgp 1.18.0</li>
+<li>sequoia-openpgp 1.19.0</li>
+<li>sequoia-openpgp 1.20.0</li>
+<li>Any software built against a vulnerable version of sequoia-openpgp
+which is directly or indirectly using the interface
+sequoia_<code>openpgp::cert::raw::RawCertParser</code>.  Notably, this includes
+all software using the <code>sequoia_cert_store</code> crate.</li>
+</ul>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
