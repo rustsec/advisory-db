@@ -88,8 +88,8 @@
           April 13, 2024
         </time>
         
-        <time datetime="2024-04-26">
-          (last modified: April 26, 2024)
+        <time datetime="2024-07-02">
+          (last modified: July  2, 2024)
         </time>
         
       </dd>
@@ -197,7 +197,7 @@
 <ul>
 <li>
 <p>The difficulty of forming an option argument <code>ssh</code> accepts, given that characters such as <code>=</code>, <code>/</code>, and <code>\</code>, are URL-encoded, <code>:</code> is removed, and the argument passed to <code>ssh</code> contains the <code>@</code> sign and subsequent host identifier, which in an effective attack must be parseable as a suffix of the operand passed to the last option.</p>
-<p>The inability to include a literal <code>=</code> prevents the use of <code>-oNAME=VALUE</code> (e.g., <code>-oProxyCommand=payload</code>). The inability to include a literal <code>/</code> or <code>\</code> prevents smuggling in a path operand residing outside the current working directory, incuding on Windows. (Although a <code>~</code> character may be smuggled in, <code>ssh</code> does not perform its own tilde expansion, so it does not form an absolute path.)</p>
+<p>The inability to include a literal <code>=</code> prevents the use of <code>-oNAME=VALUE</code> (e.g., <code>-oProxyCommand=payload</code>). The inability to include a literal <code>/</code> or <code>\</code> prevents smuggling in a path operand residing outside the current working directory, including on Windows. (Although a <code>~</code> character may be smuggled in, <code>ssh</code> does not perform its own tilde expansion, so it does not form an absolute path.)</p>
 </li>
 <li>
 <p>The difficulty, or perhaps impossibility, of completing a connection (other than when arbitrary code execution has been achieved). This complicates or altogether prevents the use of options such as <code>-A</code> and <code>-X</code> together with a connection to a real but malicious server. The reason a connection cannot generally be completed when exploiting this vulnerability is that, because the argument <code>gix-transport</code> intends as a URL is treated as an option argument, <code>ssh</code> treats the subsequent non-option argument <code>git-upload-pack</code> as the host instead of the command, but it is not a valid host name.</p>
