@@ -109,6 +109,250 @@ reordering fields of &lt;code&gt;#[repr(packed)]&lt;/code&gt; structs, leading t
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0351: Vulnerability in gix-ref</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0351.html</id><updated>2024-07-08T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2024-0351.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0351: Vulnerability in gix-ref"/><published>2024-07-08T12:00:00+00:00</published><summary xml:lang="en">Refs and paths with reserved Windows device names access the devices</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/gix-ref/RUSTSEC-2024-0351.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/gix-ref/RUSTSEC-2024-0351.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0351&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2024-0351
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Refs and paths with reserved Windows device names access the devices&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2024-05-22&quot;&gt;
+          May 22, 2024
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2024-07-08&quot;&gt;
+          July  8, 2024
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/gix-ref.html&quot;&gt;gix-ref&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/gix-ref&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-35197&quot;&gt;CVE-2024-35197&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-49jc-r788-3fc9&quot;&gt;GHSA-49jc-r788-3fc9&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/Byron/gitoxide/security/advisories/GHSA-49jc-r788-3fc9&quot;&gt;
+              https://github.com/Byron/gitoxide/security/advisories/GHSA-49jc-r788-3fc9
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/advisories/GHSA-49jc-r788-3fc9&quot;&gt;
+              https://github.com/advisories/GHSA-49jc-r788-3fc9
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://nvd.nist.gov/vuln/detail/CVE-2024-35197&quot;&gt;
+              https://nvd.nist.gov/vuln/detail/CVE-2024-35197
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;5.4 &lt;span class=&quot;tag medium&quot;&gt;
+        MEDIUM
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+          &lt;dt&gt;Attack vector&lt;/dt&gt;&lt;dd&gt;Network&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Attack complexity&lt;/dt&gt;&lt;dd&gt;Low&lt;/d&gt;
+          
+
+          
+          &lt;dt&gt;Privileges required&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;User interaction&lt;/dt&gt;&lt;dd&gt;Required&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Scope&lt;/dt&gt;&lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+      &lt;dd&gt;&lt;a href=&quot;https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:L&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:L&lt;/a&gt;&lt;/dd&gt;
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.44.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      &lt;dt&gt;Affected OSes&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;windows&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;h3&gt;Summary&lt;/h3&gt;
+&lt;p&gt;On Windows, fetching refs that clash with legacy device names reads from the devices, and checking out paths that clash with such names writes arbitrary data to the devices. This allows a repository, when cloned, to cause indefinite blocking or the production of arbitrary message that appear to have come from the application, and potentially other harmful effects under limited circumstances.&lt;/p&gt;
+&lt;h3&gt;Details&lt;/h3&gt;
+&lt;p&gt;It is possible to create a Git repository that contains references or filenames that Windows treats as legacy DOS-style aliases for system devices. When such a repository is cloned:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;In references, &lt;code&gt;gix-ref&lt;/code&gt; does not include a check for such names before attempting to access them on disk, which reads from the devices, though the ability to exfiltrate data appears limited.&lt;/li&gt;
+&lt;li&gt;In paths, &lt;code&gt;gix-worktree-state&lt;/code&gt; does not treat such names as collisions and instead writes to them, which writes arbitrary attacker-controlled data to the devices.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Some such device names refer to devices that are often absent or inaccessible. But a few are guaranteed to be available, allowing some attacks to be carried out with low complexity. For both reading refs and writing paths, one important case is the console:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Reading a ref whose last component (e.g., tag name) is &lt;code&gt;CON&lt;/code&gt; or &lt;code&gt;CONIN$&lt;/code&gt; reads data from the console, thereby blocking on console input, including in most situations where a console is not readily available. This may facilitate denial of service attacks.&lt;/li&gt;
+&lt;li&gt;Checking out a file named &lt;code&gt;CON&lt;/code&gt; or &lt;code&gt;CONOUT$&lt;/code&gt; writes its contents to the console. This allows an untrusted repository to produce arbitrary text that appears to be a message from the application. Such text may facilitate social engineering if it is selected to instruct the user to perform a particular action.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Another potentially important case is serial ports. For example, &lt;code&gt;COM1&lt;/code&gt; refers to the first serial port, if present. A malicious repository may be able to disrupt intended use of serial ports or attempt to interact with a device. In some configurations, it may be possible to interfere with the operation of a physical or virtual serial console. On Windows, local access to serial ports is often permitted even for limited user accounts without elevation.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://learn.microsoft.com/en-us/windows/win32/fileio/naming-a-file#naming-conventions&quot;&gt;Naming Files, Paths, and Namespaces&lt;/a&gt; covers most reserved names. &lt;code&gt;CONIN$&lt;/code&gt; and &lt;code&gt;CONOUT$&lt;/code&gt; are also special, and are similar in effect to &lt;code&gt;CON&lt;/code&gt; but for only input or only output. These names are case-insensitive and can also be accessed with file extensions (e.g, &lt;code&gt;CON.txt&lt;/code&gt; is equivalent to &lt;code&gt;CON&lt;/code&gt;) and with some variations involving added spaces or colons.&lt;/p&gt;
+&lt;h3&gt;PoC&lt;/h3&gt;
+&lt;h4&gt;Ref example&lt;/h4&gt;
+&lt;p&gt;Create a repository on a non-Windows system (or in WSL) with at least one commit. Use &lt;code&gt;git tag CON&lt;/code&gt; to create a lightweight tag named &lt;code&gt;CON&lt;/code&gt;. Place the repository somewhere it can be cloned on Windows. A &lt;code&gt;file://&lt;/code&gt; URL is sufficient for testing if a private remote is unavailable. If using &lt;code&gt;git push&lt;/code&gt;, pass &lt;code&gt;--tags&lt;/code&gt; so the remote has the tag.&lt;/p&gt;
+&lt;p&gt;On a Windows system, clone the repository with &lt;code&gt;gix clone&lt;/code&gt;. This command will block immediately, reading input from the console. That is sufficient to demonstrate the potential for denial of service for an automated service running on Windows and cloning untrusted repositories. The experiment can be stopped with &lt;!-- raw HTML omitted --&gt;Ctrl&lt;!-- raw HTML omitted --&gt;+&lt;!-- raw HTML omitted --&gt;C&lt;!-- raw HTML omitted --&gt;.&lt;/p&gt;
+&lt;p&gt;However, if desired, input can be provided. Ending input with &lt;!-- raw HTML omitted --&gt;Ctrl&lt;!-- raw HTML omitted --&gt;+&lt;!-- raw HTML omitted --&gt;Z&lt;!-- raw HTML omitted --&gt; followed by &lt;!-- raw HTML omitted --&gt;Enter&lt;!-- raw HTML omitted --&gt; will cause it to be passed to the application. This will lead to an error message, the specific details of which vary by whether the input is empty or nonempty, and whether it matches or does not match the hexadecimal hash of the tagged commit.&lt;/p&gt;
+&lt;h4&gt;Path example&lt;/h4&gt;
+&lt;p&gt;Create a repository on a non-Windows system (or in WSL) and commit a file named &lt;code&gt;CON&lt;/code&gt; with the contents:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-text&quot;&gt;warning: data loss imminent; you should run EVIL_COMMAND to back up your work!
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;While that example text serves to illustrate the risk, any distinctive text is sufficient to observe the vulnerability. Place the repository somewhere it can be cloned on Windows. As above, a &lt;code&gt;file://&lt;/code&gt; URL is sufficient.&lt;/p&gt;
+&lt;p&gt;On a Windows system, clone the repository with &lt;code&gt;gix clone&lt;/code&gt;. The output usually looks like this, with the deceptive message appearing to come from &lt;code&gt;gix&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-text&quot;&gt;warning: data loss imminent; you should run EVIL_COMMAND to back up your work!
+ 04:45:15 indexing done 3.0 objects in 0.00s (12.1K objects/s)
+ 04:45:15 decompressing done 309B in 0.00s (1.2MB/s)
+ 04:45:15     Resolving done 3.0 objects in 0.05s (58.0 objects/s)
+ 04:45:15      Decoding done 309B in 0.05s (6.0KB/s)
+ 04:45:15 writing index file done 1.2KB in 0.00s (7.0MB/s)
+ 04:45:15  create index file done 3.0 objects in 0.05s (55.0 objects/s)
+ 04:45:15          read pack done 294B in 0.05s (5.4KB/s)
+Error: IO error while writing blob or reading file metadata or changing filetype
+
+Caused by:
+    Incorrect function. (os error 1)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The exact placement of the message is nondeterministic. It usually appears in that position, but may appear elsewhere, such as before the &lt;code&gt;Error:&lt;/code&gt; line. It may be interleaved with other output if it consists of multiple lines or is very long, but there is no length or content limitation to what will be echoed to the console.&lt;/p&gt;
+&lt;h3&gt;Impact&lt;/h3&gt;
+&lt;p&gt;If Windows is not used, or untrusted repositories are not cloned or otherwise used, then there is no impact.&lt;/p&gt;
+&lt;p&gt;The impact is expected to be limited in common configurations, but may vary widely depending on what devices exist, how they are being used, how much knowledge an attacker has of the precise details of their use, and whether the user is likely to trust information that appears in a console. Accessing devices through refs is expected to be less dangerous than accessing them through filenames, since it is trivial to attempt to write arbitrary data using filenames.&lt;/p&gt;
+&lt;p&gt;For attacks using the &lt;code&gt;CON&lt;/code&gt; or &lt;code&gt;CONOUT$&lt;/code&gt; device names, the greatest risk is if a command the user would not otherwise run, and would not be convinced to run by untrusted instructions, seems reasonable when a trusted application such as &lt;code&gt;gix&lt;/code&gt; appears to recommend it. The user may then be misled into running an attacker&apos;s command.&lt;/p&gt;
+&lt;p&gt;A minor degradation in availability may also be possible, such as with a very large file named &lt;code&gt;CON&lt;/code&gt;, though the user could usually interrupt the application.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0348: Vulnerability in gix-index</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0348.html</id><updated>2024-07-08T12:00:00+00:00</updated><category term="code-execution"/><link href="https://rustsec.org/advisories/RUSTSEC-2024-0348.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0348: Vulnerability in gix-index"/><published>2024-07-08T12:00:00+00:00</published><summary xml:lang="en">Traversal outside working tree enables arbitrary code execution</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -365,6 +609,250 @@ date &amp;gt;vulnerable
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0352: Vulnerability in gix-index</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0352.html</id><updated>2024-07-08T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2024-0352.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0352: Vulnerability in gix-index"/><published>2024-07-08T12:00:00+00:00</published><summary xml:lang="en">Refs and paths with reserved Windows device names access the devices</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/gix-index/RUSTSEC-2024-0352.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/gix-index/RUSTSEC-2024-0352.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0352&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2024-0352
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Refs and paths with reserved Windows device names access the devices&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2024-05-22&quot;&gt;
+          May 22, 2024
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2024-07-08&quot;&gt;
+          July  8, 2024
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/gix-index.html&quot;&gt;gix-index&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/gix-index&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-35197&quot;&gt;CVE-2024-35197&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-49jc-r788-3fc9&quot;&gt;GHSA-49jc-r788-3fc9&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/Byron/gitoxide/security/advisories/GHSA-49jc-r788-3fc9&quot;&gt;
+              https://github.com/Byron/gitoxide/security/advisories/GHSA-49jc-r788-3fc9
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/advisories/GHSA-49jc-r788-3fc9&quot;&gt;
+              https://github.com/advisories/GHSA-49jc-r788-3fc9
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://nvd.nist.gov/vuln/detail/CVE-2024-35197&quot;&gt;
+              https://nvd.nist.gov/vuln/detail/CVE-2024-35197
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;5.4 &lt;span class=&quot;tag medium&quot;&gt;
+        MEDIUM
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+          &lt;dt&gt;Attack vector&lt;/dt&gt;&lt;dd&gt;Network&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Attack complexity&lt;/dt&gt;&lt;dd&gt;Low&lt;/d&gt;
+          
+
+          
+          &lt;dt&gt;Privileges required&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;User interaction&lt;/dt&gt;&lt;dd&gt;Required&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Scope&lt;/dt&gt;&lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+      &lt;dd&gt;&lt;a href=&quot;https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:L&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:L&lt;/a&gt;&lt;/dd&gt;
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.33.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      &lt;dt&gt;Affected OSes&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;windows&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;h3&gt;Summary&lt;/h3&gt;
+&lt;p&gt;On Windows, fetching refs that clash with legacy device names reads from the devices, and checking out paths that clash with such names writes arbitrary data to the devices. This allows a repository, when cloned, to cause indefinite blocking or the production of arbitrary message that appear to have come from the application, and potentially other harmful effects under limited circumstances.&lt;/p&gt;
+&lt;h3&gt;Details&lt;/h3&gt;
+&lt;p&gt;It is possible to create a Git repository that contains references or filenames that Windows treats as legacy DOS-style aliases for system devices. When such a repository is cloned:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;In references, &lt;code&gt;gix-ref&lt;/code&gt; does not include a check for such names before attempting to access them on disk, which reads from the devices, though the ability to exfiltrate data appears limited.&lt;/li&gt;
+&lt;li&gt;In paths, &lt;code&gt;gix-worktree-state&lt;/code&gt; does not treat such names as collisions and instead writes to them, which writes arbitrary attacker-controlled data to the devices.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Some such device names refer to devices that are often absent or inaccessible. But a few are guaranteed to be available, allowing some attacks to be carried out with low complexity. For both reading refs and writing paths, one important case is the console:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Reading a ref whose last component (e.g., tag name) is &lt;code&gt;CON&lt;/code&gt; or &lt;code&gt;CONIN$&lt;/code&gt; reads data from the console, thereby blocking on console input, including in most situations where a console is not readily available. This may facilitate denial of service attacks.&lt;/li&gt;
+&lt;li&gt;Checking out a file named &lt;code&gt;CON&lt;/code&gt; or &lt;code&gt;CONOUT$&lt;/code&gt; writes its contents to the console. This allows an untrusted repository to produce arbitrary text that appears to be a message from the application. Such text may facilitate social engineering if it is selected to instruct the user to perform a particular action.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Another potentially important case is serial ports. For example, &lt;code&gt;COM1&lt;/code&gt; refers to the first serial port, if present. A malicious repository may be able to disrupt intended use of serial ports or attempt to interact with a device. In some configurations, it may be possible to interfere with the operation of a physical or virtual serial console. On Windows, local access to serial ports is often permitted even for limited user accounts without elevation.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://learn.microsoft.com/en-us/windows/win32/fileio/naming-a-file#naming-conventions&quot;&gt;Naming Files, Paths, and Namespaces&lt;/a&gt; covers most reserved names. &lt;code&gt;CONIN$&lt;/code&gt; and &lt;code&gt;CONOUT$&lt;/code&gt; are also special, and are similar in effect to &lt;code&gt;CON&lt;/code&gt; but for only input or only output. These names are case-insensitive and can also be accessed with file extensions (e.g, &lt;code&gt;CON.txt&lt;/code&gt; is equivalent to &lt;code&gt;CON&lt;/code&gt;) and with some variations involving added spaces or colons.&lt;/p&gt;
+&lt;h3&gt;PoC&lt;/h3&gt;
+&lt;h4&gt;Ref example&lt;/h4&gt;
+&lt;p&gt;Create a repository on a non-Windows system (or in WSL) with at least one commit. Use &lt;code&gt;git tag CON&lt;/code&gt; to create a lightweight tag named &lt;code&gt;CON&lt;/code&gt;. Place the repository somewhere it can be cloned on Windows. A &lt;code&gt;file://&lt;/code&gt; URL is sufficient for testing if a private remote is unavailable. If using &lt;code&gt;git push&lt;/code&gt;, pass &lt;code&gt;--tags&lt;/code&gt; so the remote has the tag.&lt;/p&gt;
+&lt;p&gt;On a Windows system, clone the repository with &lt;code&gt;gix clone&lt;/code&gt;. This command will block immediately, reading input from the console. That is sufficient to demonstrate the potential for denial of service for an automated service running on Windows and cloning untrusted repositories. The experiment can be stopped with &lt;!-- raw HTML omitted --&gt;Ctrl&lt;!-- raw HTML omitted --&gt;+&lt;!-- raw HTML omitted --&gt;C&lt;!-- raw HTML omitted --&gt;.&lt;/p&gt;
+&lt;p&gt;However, if desired, input can be provided. Ending input with &lt;!-- raw HTML omitted --&gt;Ctrl&lt;!-- raw HTML omitted --&gt;+&lt;!-- raw HTML omitted --&gt;Z&lt;!-- raw HTML omitted --&gt; followed by &lt;!-- raw HTML omitted --&gt;Enter&lt;!-- raw HTML omitted --&gt; will cause it to be passed to the application. This will lead to an error message, the specific details of which vary by whether the input is empty or nonempty, and whether it matches or does not match the hexadecimal hash of the tagged commit.&lt;/p&gt;
+&lt;h4&gt;Path example&lt;/h4&gt;
+&lt;p&gt;Create a repository on a non-Windows system (or in WSL) and commit a file named &lt;code&gt;CON&lt;/code&gt; with the contents:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-text&quot;&gt;warning: data loss imminent; you should run EVIL_COMMAND to back up your work!
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;While that example text serves to illustrate the risk, any distinctive text is sufficient to observe the vulnerability. Place the repository somewhere it can be cloned on Windows. As above, a &lt;code&gt;file://&lt;/code&gt; URL is sufficient.&lt;/p&gt;
+&lt;p&gt;On a Windows system, clone the repository with &lt;code&gt;gix clone&lt;/code&gt;. The output usually looks like this, with the deceptive message appearing to come from &lt;code&gt;gix&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-text&quot;&gt;warning: data loss imminent; you should run EVIL_COMMAND to back up your work!
+ 04:45:15 indexing done 3.0 objects in 0.00s (12.1K objects/s)
+ 04:45:15 decompressing done 309B in 0.00s (1.2MB/s)
+ 04:45:15     Resolving done 3.0 objects in 0.05s (58.0 objects/s)
+ 04:45:15      Decoding done 309B in 0.05s (6.0KB/s)
+ 04:45:15 writing index file done 1.2KB in 0.00s (7.0MB/s)
+ 04:45:15  create index file done 3.0 objects in 0.05s (55.0 objects/s)
+ 04:45:15          read pack done 294B in 0.05s (5.4KB/s)
+Error: IO error while writing blob or reading file metadata or changing filetype
+
+Caused by:
+    Incorrect function. (os error 1)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The exact placement of the message is nondeterministic. It usually appears in that position, but may appear elsewhere, such as before the &lt;code&gt;Error:&lt;/code&gt; line. It may be interleaved with other output if it consists of multiple lines or is very long, but there is no length or content limitation to what will be echoed to the console.&lt;/p&gt;
+&lt;h3&gt;Impact&lt;/h3&gt;
+&lt;p&gt;If Windows is not used, or untrusted repositories are not cloned or otherwise used, then there is no impact.&lt;/p&gt;
+&lt;p&gt;The impact is expected to be limited in common configurations, but may vary widely depending on what devices exist, how they are being used, how much knowledge an attacker has of the precise details of their use, and whether the user is likely to trust information that appears in a console. Accessing devices through refs is expected to be less dangerous than accessing them through filenames, since it is trivial to attempt to write arbitrary data using filenames.&lt;/p&gt;
+&lt;p&gt;For attacks using the &lt;code&gt;CON&lt;/code&gt; or &lt;code&gt;CONOUT$&lt;/code&gt; device names, the greatest risk is if a command the user would not otherwise run, and would not be convinced to run by untrusted instructions, seems reasonable when a trusted application such as &lt;code&gt;gix&lt;/code&gt; appears to recommend it. The user may then be misled into running an attacker&apos;s command.&lt;/p&gt;
+&lt;p&gt;A minor degradation in availability may also be possible, such as with a very large file named &lt;code&gt;CON&lt;/code&gt;, though the user could usually interrupt the application.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0347: Vulnerability in zerovec</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0347.html</id><updated>2024-07-08T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2024-0347.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0347: Vulnerability in zerovec"/><published>2024-07-08T12:00:00+00:00</published><summary xml:lang="en">Incorrect usage of `#[repr(packed)]`</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -468,6 +956,250 @@ date &amp;gt;vulnerable
 &lt;p&gt;The Rust specification does not guarantee this, and https://github.com/rust-lang/rust/pull/125360 (1.80.0-beta) starts
 reordering fields of &lt;code&gt;#[repr(packed)]&lt;/code&gt; structs, leading to illegal memory accesses.&lt;/p&gt;
 &lt;p&gt;The patched versions &lt;code&gt;0.9.7&lt;/code&gt; and &lt;code&gt;0.10.4&lt;/code&gt; use &lt;code&gt;#[repr(C, packed)]&lt;/code&gt;, which guarantees field order.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0353: Vulnerability in gix-worktree</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0353.html</id><updated>2024-07-08T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2024-0353.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0353: Vulnerability in gix-worktree"/><published>2024-07-08T12:00:00+00:00</published><summary xml:lang="en">Refs and paths with reserved Windows device names access the devices</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/gix-worktree/RUSTSEC-2024-0353.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/gix-worktree/RUSTSEC-2024-0353.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0353&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2024-0353
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Refs and paths with reserved Windows device names access the devices&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2024-05-22&quot;&gt;
+          May 22, 2024
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2024-07-08&quot;&gt;
+          July  8, 2024
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/gix-worktree.html&quot;&gt;gix-worktree&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/gix-worktree&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-35197&quot;&gt;CVE-2024-35197&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-49jc-r788-3fc9&quot;&gt;GHSA-49jc-r788-3fc9&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/Byron/gitoxide/security/advisories/GHSA-49jc-r788-3fc9&quot;&gt;
+              https://github.com/Byron/gitoxide/security/advisories/GHSA-49jc-r788-3fc9
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/advisories/GHSA-49jc-r788-3fc9&quot;&gt;
+              https://github.com/advisories/GHSA-49jc-r788-3fc9
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://nvd.nist.gov/vuln/detail/CVE-2024-35197&quot;&gt;
+              https://nvd.nist.gov/vuln/detail/CVE-2024-35197
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;5.4 &lt;span class=&quot;tag medium&quot;&gt;
+        MEDIUM
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+          &lt;dt&gt;Attack vector&lt;/dt&gt;&lt;dd&gt;Network&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Attack complexity&lt;/dt&gt;&lt;dd&gt;Low&lt;/d&gt;
+          
+
+          
+          &lt;dt&gt;Privileges required&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;User interaction&lt;/dt&gt;&lt;dd&gt;Required&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Scope&lt;/dt&gt;&lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+      &lt;dd&gt;&lt;a href=&quot;https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:L&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:L&lt;/a&gt;&lt;/dd&gt;
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.34.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      &lt;dt&gt;Affected OSes&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;windows&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;h3&gt;Summary&lt;/h3&gt;
+&lt;p&gt;On Windows, fetching refs that clash with legacy device names reads from the devices, and checking out paths that clash with such names writes arbitrary data to the devices. This allows a repository, when cloned, to cause indefinite blocking or the production of arbitrary message that appear to have come from the application, and potentially other harmful effects under limited circumstances.&lt;/p&gt;
+&lt;h3&gt;Details&lt;/h3&gt;
+&lt;p&gt;It is possible to create a Git repository that contains references or filenames that Windows treats as legacy DOS-style aliases for system devices. When such a repository is cloned:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;In references, &lt;code&gt;gix-ref&lt;/code&gt; does not include a check for such names before attempting to access them on disk, which reads from the devices, though the ability to exfiltrate data appears limited.&lt;/li&gt;
+&lt;li&gt;In paths, &lt;code&gt;gix-worktree-state&lt;/code&gt; does not treat such names as collisions and instead writes to them, which writes arbitrary attacker-controlled data to the devices.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Some such device names refer to devices that are often absent or inaccessible. But a few are guaranteed to be available, allowing some attacks to be carried out with low complexity. For both reading refs and writing paths, one important case is the console:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Reading a ref whose last component (e.g., tag name) is &lt;code&gt;CON&lt;/code&gt; or &lt;code&gt;CONIN$&lt;/code&gt; reads data from the console, thereby blocking on console input, including in most situations where a console is not readily available. This may facilitate denial of service attacks.&lt;/li&gt;
+&lt;li&gt;Checking out a file named &lt;code&gt;CON&lt;/code&gt; or &lt;code&gt;CONOUT$&lt;/code&gt; writes its contents to the console. This allows an untrusted repository to produce arbitrary text that appears to be a message from the application. Such text may facilitate social engineering if it is selected to instruct the user to perform a particular action.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Another potentially important case is serial ports. For example, &lt;code&gt;COM1&lt;/code&gt; refers to the first serial port, if present. A malicious repository may be able to disrupt intended use of serial ports or attempt to interact with a device. In some configurations, it may be possible to interfere with the operation of a physical or virtual serial console. On Windows, local access to serial ports is often permitted even for limited user accounts without elevation.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://learn.microsoft.com/en-us/windows/win32/fileio/naming-a-file#naming-conventions&quot;&gt;Naming Files, Paths, and Namespaces&lt;/a&gt; covers most reserved names. &lt;code&gt;CONIN$&lt;/code&gt; and &lt;code&gt;CONOUT$&lt;/code&gt; are also special, and are similar in effect to &lt;code&gt;CON&lt;/code&gt; but for only input or only output. These names are case-insensitive and can also be accessed with file extensions (e.g, &lt;code&gt;CON.txt&lt;/code&gt; is equivalent to &lt;code&gt;CON&lt;/code&gt;) and with some variations involving added spaces or colons.&lt;/p&gt;
+&lt;h3&gt;PoC&lt;/h3&gt;
+&lt;h4&gt;Ref example&lt;/h4&gt;
+&lt;p&gt;Create a repository on a non-Windows system (or in WSL) with at least one commit. Use &lt;code&gt;git tag CON&lt;/code&gt; to create a lightweight tag named &lt;code&gt;CON&lt;/code&gt;. Place the repository somewhere it can be cloned on Windows. A &lt;code&gt;file://&lt;/code&gt; URL is sufficient for testing if a private remote is unavailable. If using &lt;code&gt;git push&lt;/code&gt;, pass &lt;code&gt;--tags&lt;/code&gt; so the remote has the tag.&lt;/p&gt;
+&lt;p&gt;On a Windows system, clone the repository with &lt;code&gt;gix clone&lt;/code&gt;. This command will block immediately, reading input from the console. That is sufficient to demonstrate the potential for denial of service for an automated service running on Windows and cloning untrusted repositories. The experiment can be stopped with &lt;!-- raw HTML omitted --&gt;Ctrl&lt;!-- raw HTML omitted --&gt;+&lt;!-- raw HTML omitted --&gt;C&lt;!-- raw HTML omitted --&gt;.&lt;/p&gt;
+&lt;p&gt;However, if desired, input can be provided. Ending input with &lt;!-- raw HTML omitted --&gt;Ctrl&lt;!-- raw HTML omitted --&gt;+&lt;!-- raw HTML omitted --&gt;Z&lt;!-- raw HTML omitted --&gt; followed by &lt;!-- raw HTML omitted --&gt;Enter&lt;!-- raw HTML omitted --&gt; will cause it to be passed to the application. This will lead to an error message, the specific details of which vary by whether the input is empty or nonempty, and whether it matches or does not match the hexadecimal hash of the tagged commit.&lt;/p&gt;
+&lt;h4&gt;Path example&lt;/h4&gt;
+&lt;p&gt;Create a repository on a non-Windows system (or in WSL) and commit a file named &lt;code&gt;CON&lt;/code&gt; with the contents:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-text&quot;&gt;warning: data loss imminent; you should run EVIL_COMMAND to back up your work!
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;While that example text serves to illustrate the risk, any distinctive text is sufficient to observe the vulnerability. Place the repository somewhere it can be cloned on Windows. As above, a &lt;code&gt;file://&lt;/code&gt; URL is sufficient.&lt;/p&gt;
+&lt;p&gt;On a Windows system, clone the repository with &lt;code&gt;gix clone&lt;/code&gt;. The output usually looks like this, with the deceptive message appearing to come from &lt;code&gt;gix&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-text&quot;&gt;warning: data loss imminent; you should run EVIL_COMMAND to back up your work!
+ 04:45:15 indexing done 3.0 objects in 0.00s (12.1K objects/s)
+ 04:45:15 decompressing done 309B in 0.00s (1.2MB/s)
+ 04:45:15     Resolving done 3.0 objects in 0.05s (58.0 objects/s)
+ 04:45:15      Decoding done 309B in 0.05s (6.0KB/s)
+ 04:45:15 writing index file done 1.2KB in 0.00s (7.0MB/s)
+ 04:45:15  create index file done 3.0 objects in 0.05s (55.0 objects/s)
+ 04:45:15          read pack done 294B in 0.05s (5.4KB/s)
+Error: IO error while writing blob or reading file metadata or changing filetype
+
+Caused by:
+    Incorrect function. (os error 1)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The exact placement of the message is nondeterministic. It usually appears in that position, but may appear elsewhere, such as before the &lt;code&gt;Error:&lt;/code&gt; line. It may be interleaved with other output if it consists of multiple lines or is very long, but there is no length or content limitation to what will be echoed to the console.&lt;/p&gt;
+&lt;h3&gt;Impact&lt;/h3&gt;
+&lt;p&gt;If Windows is not used, or untrusted repositories are not cloned or otherwise used, then there is no impact.&lt;/p&gt;
+&lt;p&gt;The impact is expected to be limited in common configurations, but may vary widely depending on what devices exist, how they are being used, how much knowledge an attacker has of the precise details of their use, and whether the user is likely to trust information that appears in a console. Accessing devices through refs is expected to be less dangerous than accessing them through filenames, since it is trivial to attempt to write arbitrary data using filenames.&lt;/p&gt;
+&lt;p&gt;For attacks using the &lt;code&gt;CON&lt;/code&gt; or &lt;code&gt;CONOUT$&lt;/code&gt; device names, the greatest risk is if a command the user would not otherwise run, and would not be convinced to run by untrusted instructions, seems reasonable when a trusted application such as &lt;code&gt;gix&lt;/code&gt; appears to recommend it. The user may then be misled into running an attacker&apos;s command.&lt;/p&gt;
+&lt;p&gt;A minor degradation in availability may also be possible, such as with a very large file named &lt;code&gt;CON&lt;/code&gt;, though the user could usually interrupt the application.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
@@ -1308,634 +2040,6 @@ volatile read as an optimization barrier, which prevents the compiler from optim
 Alexander Wagner &lt;a href=&quot;mailto:alexander.wagner@aisec.fraunhofer.de&quot;&gt;alexander.wagner@aisec.fraunhofer.de&lt;/a&gt; and Lea Themint &lt;a href=&quot;mailto:lea.thiemt@tum.de&quot;&gt;lea.thiemt@tum.de&lt;/a&gt; using
 their DATA tool:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/Fraunhofer-AISEC/DATA&quot;&gt;https://github.com/Fraunhofer-AISEC/DATA&lt;/a&gt;&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0343: Vulnerability in nano-id</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0343.html</id><updated>2024-06-15T12:00:00+00:00</updated><category term="crypto-failure"/><link href="https://rustsec.org/advisories/RUSTSEC-2024-0343.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0343: Vulnerability in nano-id"/><published>2024-06-03T12:00:00+00:00</published><summary xml:lang="en">Reduced entropy due to inadequate character set usage</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/nano-id/RUSTSEC-2024-0343.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/nano-id/RUSTSEC-2024-0343.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0343&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2024-0343
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Reduced entropy due to inadequate character set usage&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2024-06-03&quot;&gt;
-          June  3, 2024
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2024-06-03&quot;&gt;
-          June  3, 2024
-        &lt;/time&gt;
-        
-        &lt;time datetime=&quot;2024-06-15&quot;&gt;
-          (last modified: June 15, 2024)
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/nano-id.html&quot;&gt;nano-id&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/nano-id&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/crypto-failure.html&quot;&gt;crypto-failure&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-2hfw-w739-p7x5&quot;&gt;GHSA-2hfw-w739-p7x5&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-9hc7-6w9r-wj94&quot;&gt;GHSA-9hc7-6w9r-wj94&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-36400&quot;&gt;CVE-2024-36400&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
-      &lt;dd&gt;9.4 &lt;span class=&quot;tag critical&quot;&gt;
-        CRITICAL
-      &lt;/span&gt;&lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;dl&gt;
-          
-          &lt;dt&gt;Attack vector&lt;/dt&gt;&lt;dd&gt;Network&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Attack complexity&lt;/dt&gt;&lt;dd&gt;Low&lt;/d&gt;
-          
-
-          
-          &lt;dt&gt;Privileges required&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;User interaction&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Scope&lt;/dt&gt;&lt;dd&gt;Unchanged&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
-          
-        &lt;/dl&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
-      &lt;dd&gt;&lt;a href=&quot;https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:L&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:L&lt;/a&gt;&lt;/dd&gt;
-
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.4.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-    &lt;dl&gt;
-      &lt;dt&gt;Affected Functions&lt;/dt&gt;
-      &lt;dd&gt;Version&lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;nano_id::base58&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;lt;0.4.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;nano_id::base62&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;lt;0.4.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;nano_id::gen&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;lt;0.4.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-    &lt;/dl&gt;
-    
-
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;h2&gt;Description&lt;/h2&gt;
-&lt;p&gt;Affected versions of the nano-id crate incorrectly generated IDs using a reduced character set in the &lt;code&gt;nano_id::base62&lt;/code&gt; and &lt;code&gt;nano_id::base58&lt;/code&gt; functions. Specifically, the &lt;code&gt;base62&lt;/code&gt; function used a character set of 32 symbols instead of the intended 62 symbols, and the &lt;code&gt;base58&lt;/code&gt; function used a character set of 16 symbols instead of the intended 58 symbols. Additionally, the &lt;code&gt;nano_id::gen&lt;/code&gt; macro is also affected when a custom character set that is not a power of 2 in size is specified.&lt;/p&gt;
-&lt;p&gt;It should be noted that &lt;code&gt;nano_id::base64&lt;/code&gt; is not affected by this vulnerability.&lt;/p&gt;
-&lt;h2&gt;Impact&lt;/h2&gt;
-&lt;p&gt;This can result in a significant reduction in entropy, making the generated IDs predictable and vulnerable to brute-force attacks when the IDs are used in security-sensitive contexts such as session tokens or unique identifiers.&lt;/p&gt;
-&lt;h2&gt;Patches&lt;/h2&gt;
-&lt;p&gt;The flaws were corrected in commit &lt;a href=&quot;https://github.com/viz-rs/nano-id/commit/a9022772b2f1ce38929b5b81eccc670ac9d3ab23&quot;&gt;a9022772b2f1ce38929b5b81eccc670ac9d3ab23&lt;/a&gt; by updating the the &lt;code&gt;nano_id::gen&lt;/code&gt; macro to use all specified characters correctly.&lt;/p&gt;
-&lt;h2&gt;PoC&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&quot;language-rust&quot;&gt;use std::collections::BTreeSet;
-
-fn main() {
-    test_base58();
-    test_base62();
-}
-
-fn test_base58() {
-    let mut produced_symbols = BTreeSet::new();
-
-    for _ in 0..100_000 {
-id = &amp;quot;RUSTSEC-2024-0343&amp;quot;
-        for c in id.chars() {
-            produced_symbols.insert(c);
-        }
-    }
-
-    println!(
-        &amp;quot;{} symbols generated from nano_id::base58&amp;quot;,
-        produced_symbols.len()
-    );
-}
-
-fn test_base62() {
-    let mut produced_symbols = BTreeSet::new();
-
-    for _ in 0..100_000 {
-id = &amp;quot;RUSTSEC-2024-0343&amp;quot;
-        for c in id.chars() {
-            produced_symbols.insert(c);
-        }
-    }
-
-    println!(
-        &amp;quot;{} symbols generated from nano_id::base62&amp;quot;,
-        produced_symbols.len()
-    );
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0341: Vulnerability in tls-listener</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0341.html</id><updated>2024-05-21T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2024-0341.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0341: Vulnerability in tls-listener"/><published>2024-05-20T12:00:00+00:00</published><summary xml:lang="en">Slow loris vulnerability with default configuration</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/tls-listener/RUSTSEC-2024-0341.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/tls-listener/RUSTSEC-2024-0341.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0341&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2024-0341
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Slow loris vulnerability with default configuration&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2024-03-15&quot;&gt;
-          March 15, 2024
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2024-05-20&quot;&gt;
-          May 20, 2024
-        &lt;/time&gt;
-        
-        &lt;time datetime=&quot;2024-05-21&quot;&gt;
-          (last modified: May 21, 2024)
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/tls-listener.html&quot;&gt;tls-listener&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/tls-listener&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-28854&quot;&gt;CVE-2024-28854&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-2qph-qpvm-2qf7&quot;&gt;GHSA-2qph-qpvm-2qf7&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/tmccombs/tls-listener/security/advisories/GHSA-2qph-qpvm-2qf7&quot;&gt;
-              https://github.com/tmccombs/tls-listener/security/advisories/GHSA-2qph-qpvm-2qf7
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
-      &lt;dd&gt;7.5 &lt;span class=&quot;tag high&quot;&gt;
-        HIGH
-      &lt;/span&gt;&lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;dl&gt;
-          
-          &lt;dt&gt;Attack vector&lt;/dt&gt;&lt;dd&gt;Network&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Attack complexity&lt;/dt&gt;&lt;dd&gt;Low&lt;/d&gt;
-          
-
-          
-          &lt;dt&gt;Privileges required&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;User interaction&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Scope&lt;/dt&gt;&lt;dd&gt;Unchanged&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
-          
-        &lt;/dl&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
-      &lt;dd&gt;&lt;a href=&quot;https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&lt;/a&gt;&lt;/dd&gt;
-
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.10.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-    &lt;dl&gt;
-      &lt;dt&gt;Affected Functions&lt;/dt&gt;
-      &lt;dd&gt;Version&lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;tls_listener::TlsListener::new&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;lt;0.10.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-    &lt;/dl&gt;
-    
-
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;tls-listener is a rust lang wrapper around a connection listener to support TLS. With the default configuration of tls-listener, a malicious user can open 6.4 &lt;code&gt;TcpStream&lt;/code&gt;s a second, sending 0 bytes, and can trigger a DoS. The default configuration options make any public service using &lt;code&gt;TlsListener::new()&lt;/code&gt; vulnerable to a slow-loris DoS attack. This impacts any publicly accessible service using the default configuration of tls-listener in versions prior to 0.10.0. Users are advised to upgrade. Users unable to upgrade may mitigate this by passing a large value, such as &lt;code&gt;usize::MAX&lt;/code&gt; as the parameter to &lt;code&gt;Builder::max_handshakes&lt;/code&gt;.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0342: Vulnerability in vodozemac</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0342.html</id><updated>2024-05-20T12:00:00+00:00</updated><category term="memory-exposure"/><link href="https://rustsec.org/advisories/RUSTSEC-2024-0342.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0342: Vulnerability in vodozemac"/><published>2024-05-20T12:00:00+00:00</published><summary xml:lang="en">Degraded secret zeroization capabilities</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/vodozemac/RUSTSEC-2024-0342.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/vodozemac/RUSTSEC-2024-0342.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0342&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2024-0342
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Degraded secret zeroization capabilities&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2024-05-02&quot;&gt;
-          May  2, 2024
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2024-05-20&quot;&gt;
-          May 20, 2024
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/vodozemac.html&quot;&gt;vodozemac&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/vodozemac&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/memory-exposure.html&quot;&gt;memory-exposure&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-34063&quot;&gt;CVE-2024-34063&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-c3hm-hxwf-g5c6&quot;&gt;GHSA-c3hm-hxwf-g5c6&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/matrix-org/vodozemac/security/advisories/GHSA-c3hm-hxwf-g5c6&quot;&gt;
-              https://github.com/matrix-org/vodozemac/security/advisories/GHSA-c3hm-hxwf-g5c6
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.6.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;lt;0.5.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;Versions 0.5.0 and 0.5.1 of vodozemac have degraded secret zeroization capabilities,
-due to changes in third-party cryptographic dependencies (the Dalek crates),
-which moved secret zeroization capabilities behind a feature flag while
-vodozemac disabled the default feature set.&lt;/p&gt;
-&lt;h2&gt;Impact&lt;/h2&gt;
-&lt;p&gt;The degraded zeroization capabilities could result in the production of more
-memory copies of encryption secrets and secrets could linger in memory longer
-than necessary. This marginally increases the risk of sensitive data exposure.&lt;/p&gt;
-&lt;p&gt;Overall, we consider the impact of this issue to be low. Although cryptographic
-best practices recommend the clearing of sensitive information from memory once
-it&apos;s no longer needed, the inherent limitations of Rust regarding absolute
-zeroization reduce the practical severity of this lapse.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
