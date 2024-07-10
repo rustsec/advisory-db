@@ -69,6 +69,19 @@ A: We do not presently handle embargoed vulnerabilities. Please ensure embargoes
    have been lifted and details have been disclosed to the public prior to filing
    them against RustSec.
 
+**Q: Is this where I report a vulnerability in `rustc`?**
+
+A: No, for official Rust projects, please see the [Rust Security Policy](https://www.rust-lang.org/policies/security) and follow the guidelines there.
+
+**Q: Is this where I report intentionally malicious code or malware present on crates.io?**
+
+A: No, please see the [Crates.io Security Policy](https://crates.io/policies/security) to get content violating crates.io's policies taken down.
+
+**Q: I'm a crate author and someone reported a vulnerability in my crate to me. Can you help me?**
+
+A: The Rust Foundation has resources that can help handle Rust ecosystem security issues.
+Please see the [Ecosystem security help for crate authors](https://crates.io/policies/security#ecosystem-security-help) section of the crates.io security policy.
+
 [Pull Request]: https://github.com/RustSec/advisory-db/pulls
 [TOML advisory template]: https://github.com/RustSec/advisory-db#advisory-format
 [Yank]: https://doc.rust-lang.org/cargo/commands/cargo-yank.html
