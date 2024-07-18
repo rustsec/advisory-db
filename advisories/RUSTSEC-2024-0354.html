@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package &#x27;vodozemac&#x27; › RustSec Advisory Database</title>
+<title>RUSTSEC-2024-0354: vodozemac:  Usage of non-constant time base64 decoder could lead to leakage of secret key material › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,58 +52,159 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/vodozemac/RUSTSEC-2024-0354.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/vodozemac/RUSTSEC-2024-0354.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2024-0354">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2024-0354
+        
+      </h1>
+      <span class="subtitle"><p>Usage of non-constant time base64 decoder could lead to leakage of secret key material</p>
 </span>
-      <h1>Advisories for package &#x27;vodozemac&#x27;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2024-07-18">
-    July 18, 2024
-  </time>
+    
 
-  
-  <h3>
-    
-        
-    
-    <a href="/advisories/RUSTSEC-2024-0354.html">
-      RUSTSEC-2024-0354: Vulnerability in vodozemac
-    </a>
-  </h3>
-  <span><p>Usage of non-constant time base64 decoder could lead to leakage of secret key material</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2024-05-20">
-    May 20, 2024
-  </time>
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2024-07-17">
+          July 17, 2024
+        </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2024-07-18">
+          July 18, 2024
+        </time>
         
-    
-    <a href="/advisories/RUSTSEC-2024-0342.html">
-      RUSTSEC-2024-0342: Vulnerability in vodozemac
-    </a>
-  </h3>
-  <span><p>Degraded secret zeroization capabilities</p>
-</span>
-  
-</li>
+      </dd>
+
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        <a href="/packages/vodozemac.html">vodozemac</a>
+          (<a href="https://crates.io/crates/vodozemac">crates.io</a>)
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        Vulnerability
+        
+      </dd>
+
       
-    </ul>
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/crypto-failure.html">crypto-failure</a></li>
+          
+          <li><a href="/categories/memory-exposure.html">memory-exposure</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      <dt id="aliases">Aliases</dt>
+      <dd>
+        <ul>
+          
+          <li>
+            
+            <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-40640">CVE-2024-40640</a>
+            
+          </li>
+          
+          <li>
+            
+            <a href="https://github.com/advisories/GHSA-j8cm-g7r6-hfpq">GHSA-j8cm-g7r6-hfpq</a>
+            
+          </li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/matrix-org/vodozemac/security/advisories/GHSA-j8cm-g7r6-hfpq">
+              https://github.com/matrix-org/vodozemac/security/advisories/GHSA-j8cm-g7r6-hfpq
+            </a>
+          </li>
+        
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&gt;=0.7.0</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+
+      
+      
+    </dl>
+
+    
+    
+
+    <h3 id="description">Description</h3>
+    <p>Versions before 0.7.0 of vodozemac use a non-constant time base64 implementation
+for importing key material for Megolm group sessions and <code>PkDecryption</code> Ed25519
+secret keys. This flaw might allow an attacker to infer some information about
+the secret key material through a side-channel attack.</p>
+<h2>Impact</h2>
+<p>The use of a non-constant time base64 implementation might allow an attacker to
+observe timing variations in the encoding and decoding operations of the secret
+key material. This could potentially provide insights into the underlying secret
+key material.</p>
+<p>The impact of this vulnerability is considered low because exploiting the
+attacker is required to have access to high precision timing measurements, as
+well as repeated access to the base64 encoding or decoding processes.
+Additionally, the estimated leakage amount is bounded and low according to the
+referenced paper[<a href="https://arxiv.org/abs/2108.04600">1</a>].</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
