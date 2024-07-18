@@ -152,6 +152,298 @@ referenced paper[&lt;a href=&quot;https://arxiv.org/abs/2108.04600&quot;&gt;1&lt
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0355: Vulnerability in gix-path</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0355.html</id><updated>2024-07-18T12:00:00+00:00</updated><category term="code-execution"/><category term="privilege-escalation"/><link href="https://rustsec.org/advisories/RUSTSEC-2024-0355.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0355: Vulnerability in gix-path"/><published>2024-07-18T12:00:00+00:00</published><summary xml:lang="en">gix-path can use a fake program files location</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/gix-path/RUSTSEC-2024-0355.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/gix-path/RUSTSEC-2024-0355.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0355&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2024-0355
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;gix-path can use a fake program files location&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2024-07-18&quot;&gt;
+          July 18, 2024
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2024-07-18&quot;&gt;
+          July 18, 2024
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/gix-path.html&quot;&gt;gix-path&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/gix-path&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/code-execution.html&quot;&gt;code-execution&lt;/a&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/privilege-escalation.html&quot;&gt;privilege-escalation&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/search-path.html&quot;&gt;#search-path&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-40644&quot;&gt;CVE-2024-40644&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-mgvv-9p9g-3jv4&quot;&gt;GHSA-mgvv-9p9g-3jv4&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/Byron/gitoxide/security/advisories/GHSA-mgvv-9p9g-3jv4&quot;&gt;
+              https://github.com/Byron/gitoxide/security/advisories/GHSA-mgvv-9p9g-3jv4
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/advisories/GHSA-mgvv-9p9g-3jv4&quot;&gt;
+              https://github.com/advisories/GHSA-mgvv-9p9g-3jv4
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;6.8 &lt;span class=&quot;tag medium&quot;&gt;
+        MEDIUM
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+          &lt;dt&gt;Attack vector&lt;/dt&gt;&lt;dd&gt;Local&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Attack complexity&lt;/dt&gt;&lt;dd&gt;Low&lt;/d&gt;
+          
+
+          
+          &lt;dt&gt;Privileges required&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;User interaction&lt;/dt&gt;&lt;dd&gt;Required&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Scope&lt;/dt&gt;&lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+      &lt;dd&gt;&lt;a href=&quot;https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:U/C:H/I:H/A:L&quot;&gt;CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:U/C:H/I:H/A:L&lt;/a&gt;&lt;/dd&gt;
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.10.9&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;lt;0.10.8&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      
+      &lt;dt&gt;Affected OSes&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;windows&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;gix_path::env::exe_invocation&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;gix_path::env::installation_config&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;gix_path::env::installation_config_prefix&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;gix_path::env::system_prefix&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;h3&gt;Summary&lt;/h3&gt;
+&lt;p&gt;When looking for Git for Windows so it can run it to report its paths, &lt;code&gt;gix-path&lt;/code&gt; can be tricked into running another &lt;code&gt;git.exe&lt;/code&gt; placed in an untrusted location by a limited user account.&lt;/p&gt;
+&lt;h3&gt;Details&lt;/h3&gt;
+&lt;p&gt;Windows permits limited user accounts without administrative privileges to create new directories in the root of the system drive. While &lt;code&gt;gix-path&lt;/code&gt; first looks for &lt;code&gt;git&lt;/code&gt; using a &lt;code&gt;PATH&lt;/code&gt; search, in version 0.10.8 it also has a fallback strategy on Windows of checking &lt;a href=&quot;https://github.com/Byron/gitoxide/blob/6cd8b4665bb7582f744c3244abaef812be39ec35/gix-path/src/env/git.rs#L9-L14&quot;&gt;two hard-coded paths&lt;/a&gt; intended to be the 64-bit and 32-bit Program Files directories:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-rust&quot;&gt;/// Other places to find Git in.
+#[cfg(windows)]
+pub(super) static ALTERNATIVE_LOCATIONS: &amp;amp;[&amp;amp;str] = &amp;amp;[
+    &amp;quot;C:/Program Files/Git/mingw64/bin&amp;quot;,
+    &amp;quot;C:/Program Files (x86)/Git/mingw32/bin&amp;quot;,
+];
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Existing functions, as well as the newly introduced &lt;code&gt;exe_invocation&lt;/code&gt; function, were updated to make use of these alternative locations. This causes facilities in &lt;code&gt;gix_path::env&lt;/code&gt; to directly execute &lt;code&gt;git.exe&lt;/code&gt; in those locations, as well as to return its path or whatever configuration it reports to callers who rely on it.&lt;/p&gt;
+&lt;p&gt;Although unusual setups where the system drive is not &lt;code&gt;C:&lt;/code&gt;, or even where Program Files directories have non-default names, are technically possible, the main problem arises on a 32-bit Windows system. Such a system has no &lt;code&gt;C:\Program Files (x86)&lt;/code&gt; directory.&lt;/p&gt;
+&lt;p&gt;A limited user on a 32-bit Windows system can therefore create the &lt;code&gt;C:\Program Files (x86)&lt;/code&gt; directory and populate it with arbitrary contents. Once a payload has been placed at the second of the two hard-coded paths in this way, other user accounts including administrators will execute it if they run an application that uses &lt;code&gt;gix-path&lt;/code&gt; and do not have &lt;code&gt;git&lt;/code&gt; in a &lt;code&gt;PATH&lt;/code&gt; directory.&lt;/p&gt;
+&lt;p&gt;(While having &lt;code&gt;git&lt;/code&gt; found in a &lt;code&gt;PATH&lt;/code&gt; search prevents exploitation, merely having it installed in the default location under the real &lt;code&gt;C:\Program Files&lt;/code&gt; directory does not. This is because the first hard-coded path&apos;s &lt;code&gt;mingw64&lt;/code&gt; component assumes a 64-bit installation.)&lt;/p&gt;
+&lt;h3&gt;PoC&lt;/h3&gt;
+&lt;p&gt;On a 32-bit (x86) Windows 10 system, with or without Git for Windows installed:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Create a limited user account in &lt;code&gt;lusrmgr.msc&lt;/code&gt; or the Settings application.&lt;/li&gt;
+&lt;li&gt;Log in with that account and, using Windows Explorer or the &lt;code&gt;mkdir&lt;/code&gt; command in PowerShell, create the directories &lt;code&gt;C:\Program Files (x86)\Git\mingw32\bin&lt;/code&gt;. Although a limited user account cannot create regular files directly in &lt;code&gt;C:\&lt;/code&gt;, it can create directories including one called &lt;code&gt;Program Files (x86)&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Place a copy of &lt;code&gt;C:\Windows\system32\calc.exe&lt;/code&gt; in &lt;code&gt;C:\Program Files (x86)\Git\mingw32\bin&lt;/code&gt; and rename it from &lt;code&gt;calc.exe&lt;/code&gt; to &lt;code&gt;git.exe&lt;/code&gt;. A different test payload may be used if preferred, and the executable need not already be signed or trusted.&lt;/li&gt;
+&lt;li&gt;Log out, and log in as a different user. This user may be an administrator.&lt;/li&gt;
+&lt;li&gt;If &lt;code&gt;gitoxide&lt;/code&gt; is not installed, install it. If &lt;code&gt;cargo install gitoxide&lt;/code&gt; is used for the installation, then the version of &lt;code&gt;gix-path&lt;/code&gt; used in the installation can be observed.&lt;/li&gt;
+&lt;li&gt;The vulnerability is only exploitable if &lt;code&gt;git&lt;/code&gt; cannot be found in a &lt;code&gt;PATH&lt;/code&gt; search. So, in PowerShell, run &lt;code&gt;gcm git&lt;/code&gt; to check if &lt;code&gt;git&lt;/code&gt; is present in the &lt;code&gt;PATH&lt;/code&gt;. If so, temporarily remove it. One way to do this is for the current shell only, by running &lt;code&gt;$env:PATH&lt;/code&gt; to inspect it and by assigning &lt;code&gt;$env:PATH = &apos;...&apos;&lt;/code&gt; where &lt;code&gt;...&lt;/code&gt; omits directories that contain &lt;code&gt;git&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Some commands that can be run outside a repository, and most commands that can be run inside a repository, will run the Calculator or other payload at least once per invocation. Try &lt;code&gt;gix clone foo&lt;/code&gt; or, inside of a repository, &lt;code&gt;gix status&lt;/code&gt;, &lt;code&gt;gix config&lt;/code&gt;, &lt;code&gt;gix is-changed&lt;/code&gt;, &lt;code&gt;gix fetch&lt;/code&gt;, &lt;code&gt;ein t hours&lt;/code&gt;, or &lt;code&gt;ein t query&lt;/code&gt;. This is not exhaustive; most other &lt;code&gt;gix&lt;/code&gt; and &lt;code&gt;ein&lt;/code&gt; commands that access existing repository state or a network resource likewise run the payload.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Impact&lt;/h3&gt;
+&lt;p&gt;Only Windows is affected. Exploitation is unlikely except on a 32-bit system. In particular, running a 32-bit build on a 64-bit system is not a risk factor. Furthermore, the attacker must have a user account on the system, though it may be a relatively unprivileged account. Such a user can perform privilege escalation and execute code as another user, though it may be difficult to do so reliably because the targeted user account must run an application or service that uses &lt;code&gt;gix-path&lt;/code&gt; and must not have &lt;code&gt;git&lt;/code&gt; in its &lt;code&gt;PATH&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The main exploitable configuration is one where Git for Windows has been installed but not added to &lt;code&gt;PATH&lt;/code&gt;. This is one of the options in its installer, though not the default option. Alternatively, an affected program that sanitizes its &lt;code&gt;PATH&lt;/code&gt; to remove seemingly nonessential directories could allow exploitation. But for the most part, if the target user has configured a &lt;code&gt;PATH&lt;/code&gt; in which the real &lt;code&gt;git.exe&lt;/code&gt; can be found, then this cannot be exploited.&lt;/p&gt;
+&lt;p&gt;This vulnerability is comparable to &lt;a href=&quot;https://github.com/git-for-windows/git/security/advisories/GHSA-vw2c-22j4-2fh2&quot;&gt;CVE-2022-24765&lt;/a&gt;, in which an uncontrolled path like &lt;code&gt;C:\.git\config&lt;/code&gt;, which a limited user can create, could supply configuration used by other users. However, in this case, exploitation is slightly simpler because, rather than using configuration, an executable is directly run.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0347: Vulnerability in zerovec</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0347.html</id><updated>2024-07-08T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2024-0347.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0347: Vulnerability in zerovec"/><published>2024-07-08T12:00:00+00:00</published><summary xml:lang="en">Incorrect usage of `#[repr(packed)]`</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -1865,193 +2157,6 @@ date &amp;gt;vulnerable
 &lt;h3&gt;Impact&lt;/h3&gt;
 &lt;p&gt;Any use of &lt;code&gt;gix&lt;/code&gt; or another application that makes use of &lt;code&gt;gix-worktree-state&lt;/code&gt;, or otherwise relies on &lt;code&gt;gix-fs&lt;/code&gt; and &lt;code&gt;gix-worktree&lt;/code&gt; for validation, is affected, if used to clone untrusted repositories. The above description focuses on code execution, as that leads to a complete loss of confidentiality, integrity, and availability, but creating files outside a working tree without attempting to execute code can directly impact integrity as well.&lt;/p&gt;
 &lt;p&gt;In use cases where no untrusted repository is ever cloned, this vulnerability has no impact. Furthermore, the impact of this vulnerability &lt;em&gt;may&lt;/em&gt; be lower when &lt;code&gt;gix&lt;/code&gt; is used to clone a repository for CI/CD purposes, even if untrusted, since in such uses the environment is usually isolated and arbitrary code is usually run deliberately from the repository with necessary safeguards in place.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0345: Vulnerability in sequoia-openpgp</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0345.html</id><updated>2024-06-27T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2024-0345.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0345: Vulnerability in sequoia-openpgp"/><published>2024-06-26T12:00:00+00:00</published><summary xml:lang="en">Low severity (DoS) vulnerability in sequoia-openpgp</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/sequoia-openpgp/RUSTSEC-2024-0345.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/sequoia-openpgp/RUSTSEC-2024-0345.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0345&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2024-0345
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Low severity (DoS) vulnerability in sequoia-openpgp&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2024-06-26&quot;&gt;
-          June 26, 2024
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2024-06-26&quot;&gt;
-          June 26, 2024
-        &lt;/time&gt;
-        
-        &lt;time datetime=&quot;2024-06-27&quot;&gt;
-          (last modified: June 27, 2024)
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/sequoia-openpgp.html&quot;&gt;sequoia-openpgp&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/sequoia-openpgp&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/infinite-loop.html&quot;&gt;#infinite-loop&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://gitlab.com/sequoia-pgp/sequoia/-/issues/1106&quot;&gt;
-              https://gitlab.com/sequoia-pgp/sequoia/-/issues/1106
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=1.21.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;lt;1.13.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-    &lt;dl&gt;
-      &lt;dt&gt;Affected Functions&lt;/dt&gt;
-      &lt;dd&gt;Version&lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;sequoia_openpgp::cert::raw::RawCertParser&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=1.13.0, &amp;lt;1.21.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-    &lt;/dl&gt;
-    
-
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;There is a denial-of-service vulnerability in sequoia-openpgp, our
-crate providing a low-level interface to our OpenPGP implementation.
-When triggered, the process will enter an infinite loop.&lt;/p&gt;
-&lt;p&gt;Many thanks to Andrew Gallagher for disclosing the issue to us.&lt;/p&gt;
-&lt;h2&gt;Impact&lt;/h2&gt;
-&lt;p&gt;Any software directly or indirectly using the interface
-&lt;code&gt;sequoia_openpgp::cert::raw::RawCertParser&lt;/code&gt;.  Notably, this includes all
-software using the &lt;code&gt;sequoia_cert_store&lt;/code&gt; crate.&lt;/p&gt;
-&lt;h2&gt;Details&lt;/h2&gt;
-&lt;p&gt;The &lt;code&gt;RawCertParser&lt;/code&gt; does not advance the input stream when
-encountering unsupported cert (primary key) versions, resulting in an
-infinite loop.&lt;/p&gt;
-&lt;p&gt;The fix introduces a new raw-cert-specific
-&lt;code&gt;cert::raw::Error::UnuspportedCert&lt;/code&gt;.&lt;/p&gt;
-&lt;h2&gt;Affected software&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;sequoia-openpgp 1.13.0&lt;/li&gt;
-&lt;li&gt;sequoia-openpgp 1.14.0&lt;/li&gt;
-&lt;li&gt;sequoia-openpgp 1.15.0&lt;/li&gt;
-&lt;li&gt;sequoia-openpgp 1.16.0&lt;/li&gt;
-&lt;li&gt;sequoia-openpgp 1.17.0&lt;/li&gt;
-&lt;li&gt;sequoia-openpgp 1.18.0&lt;/li&gt;
-&lt;li&gt;sequoia-openpgp 1.19.0&lt;/li&gt;
-&lt;li&gt;sequoia-openpgp 1.20.0&lt;/li&gt;
-&lt;li&gt;Any software built against a vulnerable version of sequoia-openpgp
-which is directly or indirectly using the interface
-&lt;code&gt;sequoia_openpgp::cert::raw::RawCertParser&lt;/code&gt;.  Notably, this includes
-all software using the &lt;code&gt;sequoia_cert_store&lt;/code&gt; crate.&lt;/li&gt;
-&lt;/ul&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
