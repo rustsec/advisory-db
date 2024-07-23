@@ -1,5 +1,218 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2024-07-21T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2024-0357: Vulnerability in openssl</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0357.html</id><updated>2024-07-21T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2024-0357.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0357: Vulnerability in openssl"/><published>2024-07-21T12:00:00+00:00</published><summary xml:lang="en">`MemBio::get_buf` has undefined behavior with empty buffers</summary><content xml:lang="en" type="html">  &lt;article&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2024-07-23T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2024-0358: Vulnerability in object_store</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0358.html</id><updated>2024-07-23T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2024-0358.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0358: Vulnerability in object_store"/><published>2024-07-23T12:00:00+00:00</published><summary xml:lang="en">Apache Arrow Rust Object Store: AWS WebIdentityToken exposure in log files</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/object_store/RUSTSEC-2024-0358.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/object_store/RUSTSEC-2024-0358.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0358&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2024-0358
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Apache Arrow Rust Object Store: AWS WebIdentityToken exposure in log files&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2024-07-23&quot;&gt;
+          July 23, 2024
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2024-07-23&quot;&gt;
+          July 23, 2024
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/object_store.html&quot;&gt;object_store&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/object_store&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/information.html&quot;&gt;#information&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/leak.html&quot;&gt;#leak&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/aws.html&quot;&gt;#aws&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/oidc.html&quot;&gt;#oidc&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/logs.html&quot;&gt;#logs&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-41178&quot;&gt;CVE-2024-41178&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/apache/arrow-rs/pull/6074&quot;&gt;
+              https://github.com/apache/arrow-rs/pull/6074
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://www.openwall.com/lists/oss-security/2024/07/23/3&quot;&gt;
+              https://www.openwall.com/lists/oss-security/2024/07/23/3
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;3.8 &lt;span class=&quot;tag low&quot;&gt;
+        LOW
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+          &lt;dt&gt;Attack vector&lt;/dt&gt;&lt;dd&gt;Local&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Attack complexity&lt;/dt&gt;&lt;dd&gt;Low&lt;/d&gt;
+          
+
+          
+          &lt;dt&gt;Privileges required&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;User interaction&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Scope&lt;/dt&gt;&lt;dd&gt;Changed&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+      &lt;dd&gt;&lt;a href=&quot;https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:C/C:L/I:N/A:N&quot;&gt;CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:C/C:L/I:N/A:N&lt;/a&gt;&lt;/dd&gt;
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.10.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;lt;0.5.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Exposure of temporary credentials in logs in Apache Arrow Rust Object Store,
+version 0.10.1 and earlier on all platforms using AWS WebIdentityTokens.&lt;/p&gt;
+&lt;p&gt;On certain error conditions, the logs may contain the OIDC token passed to
+&lt;a href=&quot;https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRoleWithWebIdentity.html&quot;&gt;AssumeRoleWithWebIdentity&lt;/a&gt;.
+This allows someone with access to the logs to impersonate that identity,
+including performing their own calls to AssumeRoleWithWebIdentity, until the
+OIDC token expires. Typically OIDC tokens are valid for up to an hour, although
+this will vary depending on the issuer.&lt;/p&gt;
+&lt;p&gt;Users are recommended to use a different AWS authentication mechanism, disable
+logging or upgrade to version 0.10.2, which fixes this issue.&lt;/p&gt;
+&lt;h2&gt;Details&lt;/h2&gt;
+&lt;p&gt;When using AWS WebIdentityTokens with the &lt;code&gt;object_store&lt;/code&gt; crate, in the event of
+a failure and automatic retry, the underlying &lt;code&gt;reqwest&lt;/code&gt; error, including the
+full URL with the credentials, potentially in the parameters, is written to the
+logs.&lt;/p&gt;
+&lt;p&gt;Thanks to Paul Hatcherian for reporting this vulnerability&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0357: Vulnerability in openssl</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0357.html</id><updated>2024-07-21T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2024-0357.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0357: Vulnerability in openssl"/><published>2024-07-21T12:00:00+00:00</published><summary xml:lang="en">`MemBio::get_buf` has undefined behavior with empty buffers</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
           &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/openssl/RUSTSEC-2024-0357.md&quot;&gt;History&lt;/a&gt; ⋅ 
@@ -1698,262 +1911,6 @@ date &amp;gt;vulnerable
 &lt;p&gt;The Rust specification does not guarantee this, and https://github.com/rust-lang/rust/pull/125360 (1.80.0-beta) starts
 reordering fields of &lt;code&gt;#[repr(packed)]&lt;/code&gt; structs, leading to illegal memory accesses.&lt;/p&gt;
 &lt;p&gt;The patched versions &lt;code&gt;0.9.7&lt;/code&gt; and &lt;code&gt;0.10.3&lt;/code&gt; use &lt;code&gt;#[repr(C, packed)]&lt;/code&gt;, which guarantees field order.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0350: Vulnerability in gix-fs</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0350.html</id><updated>2024-07-08T12:00:00+00:00</updated><category term="code-execution"/><link href="https://rustsec.org/advisories/RUSTSEC-2024-0350.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0350: Vulnerability in gix-fs"/><published>2024-07-08T12:00:00+00:00</published><summary xml:lang="en">Traversal outside working tree enables arbitrary code execution</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/gix-fs/RUSTSEC-2024-0350.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/gix-fs/RUSTSEC-2024-0350.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0350&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2024-0350
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Traversal outside working tree enables arbitrary code execution&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2024-05-22&quot;&gt;
-          May 22, 2024
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2024-07-08&quot;&gt;
-          July  8, 2024
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/gix-fs.html&quot;&gt;gix-fs&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/gix-fs&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/code-execution.html&quot;&gt;code-execution&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/directory-traversal.html&quot;&gt;#directory-traversal&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-35186&quot;&gt;CVE-2024-35186&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-7w47-3wg8-547c&quot;&gt;GHSA-7w47-3wg8-547c&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/Byron/gitoxide/security/advisories/GHSA-7w47-3wg8-547c&quot;&gt;
-              https://github.com/Byron/gitoxide/security/advisories/GHSA-7w47-3wg8-547c
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/advisories/GHSA-7w47-3wg8-547c&quot;&gt;
-              https://github.com/advisories/GHSA-7w47-3wg8-547c
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://nvd.nist.gov/vuln/detail/CVE-2024-35186&quot;&gt;
-              https://nvd.nist.gov/vuln/detail/CVE-2024-35186
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
-      &lt;dd&gt;8.8 &lt;span class=&quot;tag high&quot;&gt;
-        HIGH
-      &lt;/span&gt;&lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;dl&gt;
-          
-          &lt;dt&gt;Attack vector&lt;/dt&gt;&lt;dd&gt;Network&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Attack complexity&lt;/dt&gt;&lt;dd&gt;Low&lt;/d&gt;
-          
-
-          
-          &lt;dt&gt;Privileges required&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;User interaction&lt;/dt&gt;&lt;dd&gt;Required&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Scope&lt;/dt&gt;&lt;dd&gt;Unchanged&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
-          
-        &lt;/dl&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
-      &lt;dd&gt;&lt;a href=&quot;https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H&lt;/a&gt;&lt;/dd&gt;
-
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.11.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;h3&gt;Summary&lt;/h3&gt;
-&lt;p&gt;During checkout, gitoxide does not verify that paths point to locations in the working tree. A specially crafted repository can, when cloned, place new files anywhere writable by the application.&lt;/p&gt;
-&lt;h3&gt;Details&lt;/h3&gt;
-&lt;p&gt;Although &lt;code&gt;gix-worktree-state&lt;/code&gt; checks for collisions with existing files, it does not itself check if a path is really in the working tree when performing a checkout, nor do the path checks in &lt;code&gt;gix-fs&lt;/code&gt; and &lt;code&gt;gix-worktree&lt;/code&gt; prevent this. Cloning an untrusted repository containing specially crafted tree or blob names will create new files outside the repository, or inside the repository or a submodule&apos;s &lt;code&gt;.git&lt;/code&gt; directory. The simplest cases are:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;A tree named &lt;code&gt;..&lt;/code&gt; to traverse upward. This facilitates arbitrary code execution because files can be placed in one or more locations where they are likely to be executed soon.&lt;/li&gt;
-&lt;li&gt;A tree named &lt;code&gt;.git&lt;/code&gt; to enter a &lt;code&gt;.git&lt;/code&gt; directory. This facilitates arbitrary code execution because hooks can be installed.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;A number of alternatives that achieve the same effect are also possible, some of which correspond to specific vulnerabilities that have affected Git in the past:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;A tree or blob whose name contains one or more &lt;code&gt;/&lt;/code&gt;, to traverse upward or downward. For example, even without containing any tree named &lt;code&gt;..&lt;/code&gt; or &lt;code&gt;.git&lt;/code&gt;, a repository can represent a file named &lt;code&gt;../outside&lt;/code&gt; or &lt;code&gt;.git/hooks/pre-commit&lt;/code&gt;. This is distinct from the more intuitive case a repository containing trees that represent those paths.&lt;/li&gt;
-&lt;li&gt;In Windows, a tree or blob whose name contains one or more &lt;code&gt;\&lt;/code&gt;, to traverse upward or downward. (Unlike &lt;code&gt;/&lt;/code&gt;, these are valid on other systems.) See &lt;a href=&quot;https://github.com/git/git/security/advisories/GHSA-xjx4-8694-q2fq&quot;&gt;GHSA-xjx4-8694-q2fq&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;On a case-insensitive filesystem (such as NTFS, APFS, or HFS+), a tree named as a case variant of &lt;code&gt;.git&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;On HFS+, a tree named like &lt;code&gt;.git&lt;/code&gt; or a case variant, with characters added that HFS+ ignores &lt;a href=&quot;https://developer.apple.com/library/archive/technotes/tn/tn1150.html#StringComparisonAlgorithm&quot;&gt;in collation&lt;/a&gt;. See https://github.com/git/git/commit/6162a1d323d24fd8cbbb1a6145a91fb849b2568f.&lt;/li&gt;
-&lt;li&gt;On NTFS, a tree equivalent to &lt;code&gt;.git&lt;/code&gt; (or a case variant) by the use of &lt;a href=&quot;https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-fscc/c54dec26-1551-4d3a-a0ea-4fa40f848eb3&quot;&gt;NTFS stream&lt;/a&gt; notation, such as &lt;code&gt;.git::$INDEX_ALLOCATION&lt;/code&gt;. See &lt;a href=&quot;https://github.com/git/git/security/advisories/GHSA-5wph-8frv-58vj&quot;&gt;GHSA-5wph-8frv-58vj&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;On an NTFS volume with &lt;a href=&quot;https://learn.microsoft.com/en-us/windows/win32/fileio/naming-a-file#short-vs-long-names&quot;&gt;8.3 aliasing&lt;/a&gt; enabled, a tree named as &lt;code&gt;git~1&lt;/code&gt; (or a case variant). See &lt;a href=&quot;https://github.com/git/git/security/advisories/GHSA-589j-mmg9-733v&quot;&gt;GHSA-589j-mmg9-733v&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;When a checkout creates some files outside the repository directory but fails to complete, the repository directory is usually removed, but the outside files remain.&lt;/p&gt;
-&lt;h3&gt;PoC&lt;/h3&gt;
-&lt;p&gt;For simplicity, these examples stage a stand-in file with a valid name, modify the index, and commit. The instructions assume &lt;code&gt;sed&lt;/code&gt; supports &lt;code&gt;-i&lt;/code&gt;, which is the case on most systems. If using Windows, a Git Bash shell should be used.&lt;/p&gt;
-&lt;h4&gt;Example: Downward traversal to install hooks&lt;/h4&gt;
-&lt;ol&gt;
-&lt;li&gt;Create a new repository with &lt;code&gt;git init dangerous-repo-installs-hook&lt;/code&gt; and &lt;code&gt;cd&lt;/code&gt; into the directory.&lt;/li&gt;
-&lt;li&gt;Create the stand-in called &lt;code&gt;.git@hooks@pre-commit&lt;/code&gt;, with the &lt;em&gt;contents&lt;/em&gt;:
-&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;#!/bin/sh
-printf &apos;Vulnerable!\n&apos;
-date &amp;gt;vulnerable
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;Stage the stand-in: &lt;code&gt;git add --chmod=+x .git@hooks@pre-commit&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Edit the index: &lt;code&gt;env LC_ALL=C sed -i.orig &apos;s|\.git@hooks@pre-commit|.git/hooks/pre-commit|&apos; .git/index&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Commit: &lt;code&gt;git commit -m &apos;Initial commit&apos;&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Optionally&lt;/em&gt;, push to a private remote.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Then, on another or the same machine:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Clone the repository with a &lt;code&gt;gix clone …&lt;/code&gt; command.&lt;/li&gt;
-&lt;li&gt;Enter the newly created directory.&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Optionally&lt;/em&gt; run &lt;code&gt;ls -l .git/hooks&lt;/code&gt; to observe that the &lt;code&gt;pre-commit&lt;/code&gt; hook is already present.&lt;/li&gt;
-&lt;li&gt;Make a new file and commit it with &lt;code&gt;git&lt;/code&gt;. This causes the payload surreptitiously installed as a &lt;code&gt;pre-commit&lt;/code&gt; hook to run, printing the message &lt;code&gt;Vulnerable!&lt;/code&gt; and creating a file in the current directory containing the current date and time.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Note that the effect is not limited to modifying the current directory. The payload could be written to perform any action that the user who runs &lt;code&gt;git commit&lt;/code&gt; is capable of.&lt;/p&gt;
-&lt;h4&gt;Example: Upward traversal to create a file above the working tree&lt;/h4&gt;
-&lt;ol&gt;
-&lt;li&gt;Create a new repository with &lt;code&gt;git init dangerous-repo-reaches-up&lt;/code&gt;, and &lt;code&gt;cd&lt;/code&gt; into the directory.&lt;/li&gt;
-&lt;li&gt;Create the stand-in: &lt;code&gt;echo &apos;A file outside the working tree, somehow.&apos; &amp;gt;..@outside&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Stage the stand-in: &lt;code&gt;git add ..@outside&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Edit the index: &lt;code&gt;env LC_ALL=C sed -i.orig &apos;s|\.\.@outside|../outside|&apos; .git/index&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Commit: &lt;code&gt;git commit -m &apos;Initial commit&apos;&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Optionally&lt;/em&gt;, push to a private remote.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Then, as above, on the same or another machine, clone the repository with a &lt;code&gt;gix clone …&lt;/code&gt; command. Observe that a file named &lt;code&gt;outside&lt;/code&gt; is present alongside (not inside) the cloned directory.&lt;/p&gt;
-&lt;h3&gt;Impact&lt;/h3&gt;
-&lt;p&gt;Any use of &lt;code&gt;gix&lt;/code&gt; or another application that makes use of &lt;code&gt;gix-worktree-state&lt;/code&gt;, or otherwise relies on &lt;code&gt;gix-fs&lt;/code&gt; and &lt;code&gt;gix-worktree&lt;/code&gt; for validation, is affected, if used to clone untrusted repositories. The above description focuses on code execution, as that leads to a complete loss of confidentiality, integrity, and availability, but creating files outside a working tree without attempting to execute code can directly impact integrity as well.&lt;/p&gt;
-&lt;p&gt;In use cases where no untrusted repository is ever cloned, this vulnerability has no impact. Furthermore, the impact of this vulnerability &lt;em&gt;may&lt;/em&gt; be lower when &lt;code&gt;gix&lt;/code&gt; is used to clone a repository for CI/CD purposes, even if untrusted, since in such uses the environment is usually isolated and arbitrary code is usually run deliberately from the repository with necessary safeguards in place.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
