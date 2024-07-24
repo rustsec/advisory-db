@@ -954,19 +954,275 @@ pub(super) static ALTERNATIVE_LOCATIONS: &amp;amp;[&amp;amp;str] = &amp;amp;[
 
     
     &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0347: Vulnerability in zerovec</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0347.html</id><updated>2024-07-08T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2024-0347.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0347: Vulnerability in zerovec"/><published>2024-07-08T12:00:00+00:00</published><summary xml:lang="en">Incorrect usage of `#[repr(packed)]`</summary><content xml:lang="en" type="html">  &lt;article&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0350: Vulnerability in gix-fs</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0350.html</id><updated>2024-07-08T12:00:00+00:00</updated><category term="code-execution"/><link href="https://rustsec.org/advisories/RUSTSEC-2024-0350.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0350: Vulnerability in gix-fs"/><published>2024-07-08T12:00:00+00:00</published><summary xml:lang="en">Traversal outside working tree enables arbitrary code execution</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/zerovec/RUSTSEC-2024-0347.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/zerovec/RUSTSEC-2024-0347.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0347&quot;&gt;JSON (OSV)&lt;/a&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/gix-fs/RUSTSEC-2024-0350.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/gix-fs/RUSTSEC-2024-0350.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0350&quot;&gt;JSON (OSV)&lt;/a&gt;
         &lt;/span&gt;
     
 
     &lt;header&gt;
       &lt;h1&gt;
         
-        RUSTSEC-2024-0347
+        RUSTSEC-2024-0350
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Traversal outside working tree enables arbitrary code execution&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2024-05-22&quot;&gt;
+          May 22, 2024
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2024-07-08&quot;&gt;
+          July  8, 2024
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/gix-fs.html&quot;&gt;gix-fs&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/gix-fs&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/code-execution.html&quot;&gt;code-execution&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/directory-traversal.html&quot;&gt;#directory-traversal&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-35186&quot;&gt;CVE-2024-35186&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-7w47-3wg8-547c&quot;&gt;GHSA-7w47-3wg8-547c&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/Byron/gitoxide/security/advisories/GHSA-7w47-3wg8-547c&quot;&gt;
+              https://github.com/Byron/gitoxide/security/advisories/GHSA-7w47-3wg8-547c
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/advisories/GHSA-7w47-3wg8-547c&quot;&gt;
+              https://github.com/advisories/GHSA-7w47-3wg8-547c
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://nvd.nist.gov/vuln/detail/CVE-2024-35186&quot;&gt;
+              https://nvd.nist.gov/vuln/detail/CVE-2024-35186
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;8.8 &lt;span class=&quot;tag high&quot;&gt;
+        HIGH
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+          &lt;dt&gt;Attack vector&lt;/dt&gt;&lt;dd&gt;Network&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Attack complexity&lt;/dt&gt;&lt;dd&gt;Low&lt;/d&gt;
+          
+
+          
+          &lt;dt&gt;Privileges required&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;User interaction&lt;/dt&gt;&lt;dd&gt;Required&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Scope&lt;/dt&gt;&lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+      &lt;dd&gt;&lt;a href=&quot;https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H&lt;/a&gt;&lt;/dd&gt;
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.11.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;h3&gt;Summary&lt;/h3&gt;
+&lt;p&gt;During checkout, gitoxide does not verify that paths point to locations in the working tree. A specially crafted repository can, when cloned, place new files anywhere writable by the application.&lt;/p&gt;
+&lt;h3&gt;Details&lt;/h3&gt;
+&lt;p&gt;Although &lt;code&gt;gix-worktree-state&lt;/code&gt; checks for collisions with existing files, it does not itself check if a path is really in the working tree when performing a checkout, nor do the path checks in &lt;code&gt;gix-fs&lt;/code&gt; and &lt;code&gt;gix-worktree&lt;/code&gt; prevent this. Cloning an untrusted repository containing specially crafted tree or blob names will create new files outside the repository, or inside the repository or a submodule&apos;s &lt;code&gt;.git&lt;/code&gt; directory. The simplest cases are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A tree named &lt;code&gt;..&lt;/code&gt; to traverse upward. This facilitates arbitrary code execution because files can be placed in one or more locations where they are likely to be executed soon.&lt;/li&gt;
+&lt;li&gt;A tree named &lt;code&gt;.git&lt;/code&gt; to enter a &lt;code&gt;.git&lt;/code&gt; directory. This facilitates arbitrary code execution because hooks can be installed.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;A number of alternatives that achieve the same effect are also possible, some of which correspond to specific vulnerabilities that have affected Git in the past:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A tree or blob whose name contains one or more &lt;code&gt;/&lt;/code&gt;, to traverse upward or downward. For example, even without containing any tree named &lt;code&gt;..&lt;/code&gt; or &lt;code&gt;.git&lt;/code&gt;, a repository can represent a file named &lt;code&gt;../outside&lt;/code&gt; or &lt;code&gt;.git/hooks/pre-commit&lt;/code&gt;. This is distinct from the more intuitive case a repository containing trees that represent those paths.&lt;/li&gt;
+&lt;li&gt;In Windows, a tree or blob whose name contains one or more &lt;code&gt;\&lt;/code&gt;, to traverse upward or downward. (Unlike &lt;code&gt;/&lt;/code&gt;, these are valid on other systems.) See &lt;a href=&quot;https://github.com/git/git/security/advisories/GHSA-xjx4-8694-q2fq&quot;&gt;GHSA-xjx4-8694-q2fq&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;On a case-insensitive filesystem (such as NTFS, APFS, or HFS+), a tree named as a case variant of &lt;code&gt;.git&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;On HFS+, a tree named like &lt;code&gt;.git&lt;/code&gt; or a case variant, with characters added that HFS+ ignores &lt;a href=&quot;https://developer.apple.com/library/archive/technotes/tn/tn1150.html#StringComparisonAlgorithm&quot;&gt;in collation&lt;/a&gt;. See https://github.com/git/git/commit/6162a1d323d24fd8cbbb1a6145a91fb849b2568f.&lt;/li&gt;
+&lt;li&gt;On NTFS, a tree equivalent to &lt;code&gt;.git&lt;/code&gt; (or a case variant) by the use of &lt;a href=&quot;https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-fscc/c54dec26-1551-4d3a-a0ea-4fa40f848eb3&quot;&gt;NTFS stream&lt;/a&gt; notation, such as &lt;code&gt;.git::$INDEX_ALLOCATION&lt;/code&gt;. See &lt;a href=&quot;https://github.com/git/git/security/advisories/GHSA-5wph-8frv-58vj&quot;&gt;GHSA-5wph-8frv-58vj&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;On an NTFS volume with &lt;a href=&quot;https://learn.microsoft.com/en-us/windows/win32/fileio/naming-a-file#short-vs-long-names&quot;&gt;8.3 aliasing&lt;/a&gt; enabled, a tree named as &lt;code&gt;git~1&lt;/code&gt; (or a case variant). See &lt;a href=&quot;https://github.com/git/git/security/advisories/GHSA-589j-mmg9-733v&quot;&gt;GHSA-589j-mmg9-733v&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;When a checkout creates some files outside the repository directory but fails to complete, the repository directory is usually removed, but the outside files remain.&lt;/p&gt;
+&lt;h3&gt;PoC&lt;/h3&gt;
+&lt;p&gt;For simplicity, these examples stage a stand-in file with a valid name, modify the index, and commit. The instructions assume &lt;code&gt;sed&lt;/code&gt; supports &lt;code&gt;-i&lt;/code&gt;, which is the case on most systems. If using Windows, a Git Bash shell should be used.&lt;/p&gt;
+&lt;h4&gt;Example: Downward traversal to install hooks&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;Create a new repository with &lt;code&gt;git init dangerous-repo-installs-hook&lt;/code&gt; and &lt;code&gt;cd&lt;/code&gt; into the directory.&lt;/li&gt;
+&lt;li&gt;Create the stand-in called &lt;code&gt;.git@hooks@pre-commit&lt;/code&gt;, with the &lt;em&gt;contents&lt;/em&gt;:
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;#!/bin/sh
+printf &apos;Vulnerable!\n&apos;
+date &amp;gt;vulnerable
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;Stage the stand-in: &lt;code&gt;git add --chmod=+x .git@hooks@pre-commit&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Edit the index: &lt;code&gt;env LC_ALL=C sed -i.orig &apos;s|\.git@hooks@pre-commit|.git/hooks/pre-commit|&apos; .git/index&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Commit: &lt;code&gt;git commit -m &apos;Initial commit&apos;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Optionally&lt;/em&gt;, push to a private remote.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Then, on another or the same machine:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Clone the repository with a &lt;code&gt;gix clone …&lt;/code&gt; command.&lt;/li&gt;
+&lt;li&gt;Enter the newly created directory.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Optionally&lt;/em&gt; run &lt;code&gt;ls -l .git/hooks&lt;/code&gt; to observe that the &lt;code&gt;pre-commit&lt;/code&gt; hook is already present.&lt;/li&gt;
+&lt;li&gt;Make a new file and commit it with &lt;code&gt;git&lt;/code&gt;. This causes the payload surreptitiously installed as a &lt;code&gt;pre-commit&lt;/code&gt; hook to run, printing the message &lt;code&gt;Vulnerable!&lt;/code&gt; and creating a file in the current directory containing the current date and time.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Note that the effect is not limited to modifying the current directory. The payload could be written to perform any action that the user who runs &lt;code&gt;git commit&lt;/code&gt; is capable of.&lt;/p&gt;
+&lt;h4&gt;Example: Upward traversal to create a file above the working tree&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;Create a new repository with &lt;code&gt;git init dangerous-repo-reaches-up&lt;/code&gt;, and &lt;code&gt;cd&lt;/code&gt; into the directory.&lt;/li&gt;
+&lt;li&gt;Create the stand-in: &lt;code&gt;echo &apos;A file outside the working tree, somehow.&apos; &amp;gt;..@outside&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Stage the stand-in: &lt;code&gt;git add ..@outside&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Edit the index: &lt;code&gt;env LC_ALL=C sed -i.orig &apos;s|\.\.@outside|../outside|&apos; .git/index&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Commit: &lt;code&gt;git commit -m &apos;Initial commit&apos;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Optionally&lt;/em&gt;, push to a private remote.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Then, as above, on the same or another machine, clone the repository with a &lt;code&gt;gix clone …&lt;/code&gt; command. Observe that a file named &lt;code&gt;outside&lt;/code&gt; is present alongside (not inside) the cloned directory.&lt;/p&gt;
+&lt;h3&gt;Impact&lt;/h3&gt;
+&lt;p&gt;Any use of &lt;code&gt;gix&lt;/code&gt; or another application that makes use of &lt;code&gt;gix-worktree-state&lt;/code&gt;, or otherwise relies on &lt;code&gt;gix-fs&lt;/code&gt; and &lt;code&gt;gix-worktree&lt;/code&gt; for validation, is affected, if used to clone untrusted repositories. The above description focuses on code execution, as that leads to a complete loss of confidentiality, integrity, and availability, but creating files outside a working tree without attempting to execute code can directly impact integrity as well.&lt;/p&gt;
+&lt;p&gt;In use cases where no untrusted repository is ever cloned, this vulnerability has no impact. Furthermore, the impact of this vulnerability &lt;em&gt;may&lt;/em&gt; be lower when &lt;code&gt;gix&lt;/code&gt; is used to clone a repository for CI/CD purposes, even if untrusted, since in such uses the environment is usually isolated and arbitrary code is usually run deliberately from the repository with necessary safeguards in place.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0346: Vulnerability in zerovec-derive</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0346.html</id><updated>2024-07-08T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2024-0346.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0346: Vulnerability in zerovec-derive"/><published>2024-07-08T12:00:00+00:00</published><summary xml:lang="en">Incorrect usage of `#[repr(packed)]`</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/zerovec-derive/RUSTSEC-2024-0346.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/zerovec-derive/RUSTSEC-2024-0346.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0346&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2024-0346
         
       &lt;/h1&gt;
       &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Incorrect usage of &lt;code&gt;#[repr(packed)]&lt;/code&gt;&lt;/p&gt;
@@ -995,8 +1251,8 @@ pub(super) static ALTERNATIVE_LOCATIONS: &amp;amp;[&amp;amp;str] = &amp;amp;[
       &lt;dd&gt;
         
         
-        &lt;a href=&quot;/packages/zerovec.html&quot;&gt;zerovec&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/zerovec&quot;&gt;crates.io&lt;/a&gt;)
+        &lt;a href=&quot;/packages/zerovec-derive.html&quot;&gt;zerovec-derive&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/zerovec-derive&quot;&gt;crates.io&lt;/a&gt;)
         
         
       &lt;/dd&gt;
@@ -1035,7 +1291,7 @@ pub(super) static ALTERNATIVE_LOCATIONS: &amp;amp;[&amp;amp;str] = &amp;amp;[
         
         &lt;ul&gt;
           
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.10.4&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.10.3&lt;/code&gt;&lt;/li&gt;
           
           &lt;li&gt;&lt;code&gt;&amp;gt;=0.9.7, &amp;lt;0.10.0&lt;/code&gt;&lt;/li&gt;
           
@@ -1056,7 +1312,7 @@ pub(super) static ALTERNATIVE_LOCATIONS: &amp;amp;[&amp;amp;str] = &amp;amp;[
     &lt;p&gt;The affected versions make unsafe memory accesses under the assumption that &lt;code&gt;#[repr(packed)]&lt;/code&gt; has a guaranteed field order.&lt;/p&gt;
 &lt;p&gt;The Rust specification does not guarantee this, and https://github.com/rust-lang/rust/pull/125360 (1.80.0-beta) starts
 reordering fields of &lt;code&gt;#[repr(packed)]&lt;/code&gt; structs, leading to illegal memory accesses.&lt;/p&gt;
-&lt;p&gt;The patched versions &lt;code&gt;0.9.7&lt;/code&gt; and &lt;code&gt;0.10.4&lt;/code&gt; use &lt;code&gt;#[repr(C, packed)]&lt;/code&gt;, which guarantees field order.&lt;/p&gt;
+&lt;p&gt;The patched versions &lt;code&gt;0.9.7&lt;/code&gt; and &lt;code&gt;0.10.3&lt;/code&gt; use &lt;code&gt;#[repr(C, packed)]&lt;/code&gt;, which guarantees field order.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
@@ -1064,19 +1320,19 @@ reordering fields of &lt;code&gt;#[repr(packed)]&lt;/code&gt; structs, leading t
 
     
     &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0351: Vulnerability in gix-ref</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0351.html</id><updated>2024-07-08T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2024-0351.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0351: Vulnerability in gix-ref"/><published>2024-07-08T12:00:00+00:00</published><summary xml:lang="en">Refs and paths with reserved Windows device names access the devices</summary><content xml:lang="en" type="html">  &lt;article&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0353: Vulnerability in gix-worktree</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0353.html</id><updated>2024-07-08T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2024-0353.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0353: Vulnerability in gix-worktree"/><published>2024-07-08T12:00:00+00:00</published><summary xml:lang="en">Refs and paths with reserved Windows device names access the devices</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/gix-ref/RUSTSEC-2024-0351.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/gix-ref/RUSTSEC-2024-0351.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0351&quot;&gt;JSON (OSV)&lt;/a&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/gix-worktree/RUSTSEC-2024-0353.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/gix-worktree/RUSTSEC-2024-0353.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0353&quot;&gt;JSON (OSV)&lt;/a&gt;
         &lt;/span&gt;
     
 
     &lt;header&gt;
       &lt;h1&gt;
         
-        RUSTSEC-2024-0351
+        RUSTSEC-2024-0353
         
       &lt;/h1&gt;
       &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Refs and paths with reserved Windows device names access the devices&lt;/p&gt;
@@ -1105,8 +1361,8 @@ reordering fields of &lt;code&gt;#[repr(packed)]&lt;/code&gt; structs, leading t
       &lt;dd&gt;
         
         
-        &lt;a href=&quot;/packages/gix-ref.html&quot;&gt;gix-ref&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/gix-ref&quot;&gt;crates.io&lt;/a&gt;)
+        &lt;a href=&quot;/packages/gix-worktree.html&quot;&gt;gix-worktree&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/gix-worktree&quot;&gt;crates.io&lt;/a&gt;)
         
         
       &lt;/dd&gt;
@@ -1226,7 +1482,7 @@ reordering fields of &lt;code&gt;#[repr(packed)]&lt;/code&gt; structs, leading t
         
         &lt;ul&gt;
           
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.44.0&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.34.0&lt;/code&gt;&lt;/li&gt;
           
         &lt;/ul&gt;
         
@@ -1308,22 +1564,22 @@ Caused by:
 
     
     &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0352: Vulnerability in gix-index</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0352.html</id><updated>2024-07-08T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2024-0352.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0352: Vulnerability in gix-index"/><published>2024-07-08T12:00:00+00:00</published><summary xml:lang="en">Refs and paths with reserved Windows device names access the devices</summary><content xml:lang="en" type="html">  &lt;article&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0349: Vulnerability in gix-worktree</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0349.html</id><updated>2024-07-08T12:00:00+00:00</updated><category term="code-execution"/><link href="https://rustsec.org/advisories/RUSTSEC-2024-0349.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0349: Vulnerability in gix-worktree"/><published>2024-07-08T12:00:00+00:00</published><summary xml:lang="en">Traversal outside working tree enables arbitrary code execution</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/gix-index/RUSTSEC-2024-0352.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/gix-index/RUSTSEC-2024-0352.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0352&quot;&gt;JSON (OSV)&lt;/a&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/gix-worktree/RUSTSEC-2024-0349.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/gix-worktree/RUSTSEC-2024-0349.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0349&quot;&gt;JSON (OSV)&lt;/a&gt;
         &lt;/span&gt;
     
 
     &lt;header&gt;
       &lt;h1&gt;
         
-        RUSTSEC-2024-0352
+        RUSTSEC-2024-0349
         
       &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Refs and paths with reserved Windows device names access the devices&lt;/p&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Traversal outside working tree enables arbitrary code execution&lt;/p&gt;
 &lt;/span&gt;
     &lt;/header&gt;
 
@@ -1349,8 +1605,8 @@ Caused by:
       &lt;dd&gt;
         
         
-        &lt;a href=&quot;/packages/gix-index.html&quot;&gt;gix-index&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/gix-index&quot;&gt;crates.io&lt;/a&gt;)
+        &lt;a href=&quot;/packages/gix-worktree.html&quot;&gt;gix-worktree&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/gix-worktree&quot;&gt;crates.io&lt;/a&gt;)
         
         
       &lt;/dd&gt;
@@ -1363,7 +1619,23 @@ Caused by:
       &lt;/dd&gt;
 
       
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/code-execution.html&quot;&gt;code-execution&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
 
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/directory-traversal.html&quot;&gt;#directory-traversal&lt;/a&gt;
+        
+      &lt;/dd&gt;
       
 
       
@@ -1373,13 +1645,13 @@ Caused by:
           
           &lt;li&gt;
             
-            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-35197&quot;&gt;CVE-2024-35197&lt;/a&gt;
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-35186&quot;&gt;CVE-2024-35186&lt;/a&gt;
             
           &lt;/li&gt;
           
           &lt;li&gt;
             
-            &lt;a href=&quot;https://github.com/advisories/GHSA-49jc-r788-3fc9&quot;&gt;GHSA-49jc-r788-3fc9&lt;/a&gt;
+            &lt;a href=&quot;https://github.com/advisories/GHSA-7w47-3wg8-547c&quot;&gt;GHSA-7w47-3wg8-547c&lt;/a&gt;
             
           &lt;/li&gt;
           
@@ -1393,21 +1665,21 @@ Caused by:
         &lt;ul&gt;
         
           &lt;li&gt;
-            &lt;a href=&quot;https://github.com/Byron/gitoxide/security/advisories/GHSA-49jc-r788-3fc9&quot;&gt;
-              https://github.com/Byron/gitoxide/security/advisories/GHSA-49jc-r788-3fc9
+            &lt;a href=&quot;https://github.com/Byron/gitoxide/security/advisories/GHSA-7w47-3wg8-547c&quot;&gt;
+              https://github.com/Byron/gitoxide/security/advisories/GHSA-7w47-3wg8-547c
             &lt;/a&gt;
           &lt;/li&gt;
         
         
           &lt;li&gt;
-            &lt;a href=&quot;https://github.com/advisories/GHSA-49jc-r788-3fc9&quot;&gt;
-              https://github.com/advisories/GHSA-49jc-r788-3fc9
+            &lt;a href=&quot;https://github.com/advisories/GHSA-7w47-3wg8-547c&quot;&gt;
+              https://github.com/advisories/GHSA-7w47-3wg8-547c
             &lt;/a&gt;
           &lt;/li&gt;
         
           &lt;li&gt;
-            &lt;a href=&quot;https://nvd.nist.gov/vuln/detail/CVE-2024-35197&quot;&gt;
-              https://nvd.nist.gov/vuln/detail/CVE-2024-35197
+            &lt;a href=&quot;https://nvd.nist.gov/vuln/detail/CVE-2024-35186&quot;&gt;
+              https://nvd.nist.gov/vuln/detail/CVE-2024-35186
             &lt;/a&gt;
           &lt;/li&gt;
         
@@ -1419,8 +1691,8 @@ Caused by:
 
       
       &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
-      &lt;dd&gt;5.4 &lt;span class=&quot;tag medium&quot;&gt;
-        MEDIUM
+      &lt;dd&gt;8.8 &lt;span class=&quot;tag high&quot;&gt;
+        HIGH
       &lt;/span&gt;&lt;/dd&gt;
 
       &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
@@ -1447,21 +1719,21 @@ Caused by:
           
 
           
-          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
           
 
           
-          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
+          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
           
 
           
-          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
+          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
           
         &lt;/dl&gt;
       &lt;/dd&gt;
 
       &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
-      &lt;dd&gt;&lt;a href=&quot;https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:L&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:L&lt;/a&gt;&lt;/dd&gt;
+      &lt;dd&gt;&lt;a href=&quot;https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H&lt;/a&gt;&lt;/dd&gt;
 
       
 
@@ -1470,7 +1742,7 @@ Caused by:
         
         &lt;ul&gt;
           
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.33.0&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.34.0&lt;/code&gt;&lt;/li&gt;
           
         &lt;/ul&gt;
         
@@ -1480,71 +1752,67 @@ Caused by:
 
       
       
-
-      
-      &lt;dt&gt;Affected OSes&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;windows&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-      
     &lt;/dl&gt;
 
     
     
 
-    
-
     &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
     &lt;h3&gt;Summary&lt;/h3&gt;
-&lt;p&gt;On Windows, fetching refs that clash with legacy device names reads from the devices, and checking out paths that clash with such names writes arbitrary data to the devices. This allows a repository, when cloned, to cause indefinite blocking or the production of arbitrary message that appear to have come from the application, and potentially other harmful effects under limited circumstances.&lt;/p&gt;
+&lt;p&gt;During checkout, gitoxide does not verify that paths point to locations in the working tree. A specially crafted repository can, when cloned, place new files anywhere writable by the application.&lt;/p&gt;
 &lt;h3&gt;Details&lt;/h3&gt;
-&lt;p&gt;It is possible to create a Git repository that contains references or filenames that Windows treats as legacy DOS-style aliases for system devices. When such a repository is cloned:&lt;/p&gt;
+&lt;p&gt;Although &lt;code&gt;gix-worktree-state&lt;/code&gt; checks for collisions with existing files, it does not itself check if a path is really in the working tree when performing a checkout, nor do the path checks in &lt;code&gt;gix-fs&lt;/code&gt; and &lt;code&gt;gix-worktree&lt;/code&gt; prevent this. Cloning an untrusted repository containing specially crafted tree or blob names will create new files outside the repository, or inside the repository or a submodule&apos;s &lt;code&gt;.git&lt;/code&gt; directory. The simplest cases are:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;In references, &lt;code&gt;gix-ref&lt;/code&gt; does not include a check for such names before attempting to access them on disk, which reads from the devices, though the ability to exfiltrate data appears limited.&lt;/li&gt;
-&lt;li&gt;In paths, &lt;code&gt;gix-worktree-state&lt;/code&gt; does not treat such names as collisions and instead writes to them, which writes arbitrary attacker-controlled data to the devices.&lt;/li&gt;
+&lt;li&gt;A tree named &lt;code&gt;..&lt;/code&gt; to traverse upward. This facilitates arbitrary code execution because files can be placed in one or more locations where they are likely to be executed soon.&lt;/li&gt;
+&lt;li&gt;A tree named &lt;code&gt;.git&lt;/code&gt; to enter a &lt;code&gt;.git&lt;/code&gt; directory. This facilitates arbitrary code execution because hooks can be installed.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Some such device names refer to devices that are often absent or inaccessible. But a few are guaranteed to be available, allowing some attacks to be carried out with low complexity. For both reading refs and writing paths, one important case is the console:&lt;/p&gt;
+&lt;p&gt;A number of alternatives that achieve the same effect are also possible, some of which correspond to specific vulnerabilities that have affected Git in the past:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Reading a ref whose last component (e.g., tag name) is &lt;code&gt;CON&lt;/code&gt; or &lt;code&gt;CONIN$&lt;/code&gt; reads data from the console, thereby blocking on console input, including in most situations where a console is not readily available. This may facilitate denial of service attacks.&lt;/li&gt;
-&lt;li&gt;Checking out a file named &lt;code&gt;CON&lt;/code&gt; or &lt;code&gt;CONOUT$&lt;/code&gt; writes its contents to the console. This allows an untrusted repository to produce arbitrary text that appears to be a message from the application. Such text may facilitate social engineering if it is selected to instruct the user to perform a particular action.&lt;/li&gt;
+&lt;li&gt;A tree or blob whose name contains one or more &lt;code&gt;/&lt;/code&gt;, to traverse upward or downward. For example, even without containing any tree named &lt;code&gt;..&lt;/code&gt; or &lt;code&gt;.git&lt;/code&gt;, a repository can represent a file named &lt;code&gt;../outside&lt;/code&gt; or &lt;code&gt;.git/hooks/pre-commit&lt;/code&gt;. This is distinct from the more intuitive case a repository containing trees that represent those paths.&lt;/li&gt;
+&lt;li&gt;In Windows, a tree or blob whose name contains one or more &lt;code&gt;\&lt;/code&gt;, to traverse upward or downward. (Unlike &lt;code&gt;/&lt;/code&gt;, these are valid on other systems.) See &lt;a href=&quot;https://github.com/git/git/security/advisories/GHSA-xjx4-8694-q2fq&quot;&gt;GHSA-xjx4-8694-q2fq&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;On a case-insensitive filesystem (such as NTFS, APFS, or HFS+), a tree named as a case variant of &lt;code&gt;.git&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;On HFS+, a tree named like &lt;code&gt;.git&lt;/code&gt; or a case variant, with characters added that HFS+ ignores &lt;a href=&quot;https://developer.apple.com/library/archive/technotes/tn/tn1150.html#StringComparisonAlgorithm&quot;&gt;in collation&lt;/a&gt;. See https://github.com/git/git/commit/6162a1d323d24fd8cbbb1a6145a91fb849b2568f.&lt;/li&gt;
+&lt;li&gt;On NTFS, a tree equivalent to &lt;code&gt;.git&lt;/code&gt; (or a case variant) by the use of &lt;a href=&quot;https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-fscc/c54dec26-1551-4d3a-a0ea-4fa40f848eb3&quot;&gt;NTFS stream&lt;/a&gt; notation, such as &lt;code&gt;.git::$INDEX_ALLOCATION&lt;/code&gt;. See &lt;a href=&quot;https://github.com/git/git/security/advisories/GHSA-5wph-8frv-58vj&quot;&gt;GHSA-5wph-8frv-58vj&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;On an NTFS volume with &lt;a href=&quot;https://learn.microsoft.com/en-us/windows/win32/fileio/naming-a-file#short-vs-long-names&quot;&gt;8.3 aliasing&lt;/a&gt; enabled, a tree named as &lt;code&gt;git~1&lt;/code&gt; (or a case variant). See &lt;a href=&quot;https://github.com/git/git/security/advisories/GHSA-589j-mmg9-733v&quot;&gt;GHSA-589j-mmg9-733v&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Another potentially important case is serial ports. For example, &lt;code&gt;COM1&lt;/code&gt; refers to the first serial port, if present. A malicious repository may be able to disrupt intended use of serial ports or attempt to interact with a device. In some configurations, it may be possible to interfere with the operation of a physical or virtual serial console. On Windows, local access to serial ports is often permitted even for limited user accounts without elevation.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://learn.microsoft.com/en-us/windows/win32/fileio/naming-a-file#naming-conventions&quot;&gt;Naming Files, Paths, and Namespaces&lt;/a&gt; covers most reserved names. &lt;code&gt;CONIN$&lt;/code&gt; and &lt;code&gt;CONOUT$&lt;/code&gt; are also special, and are similar in effect to &lt;code&gt;CON&lt;/code&gt; but for only input or only output. These names are case-insensitive and can also be accessed with file extensions (e.g, &lt;code&gt;CON.txt&lt;/code&gt; is equivalent to &lt;code&gt;CON&lt;/code&gt;) and with some variations involving added spaces or colons.&lt;/p&gt;
+&lt;p&gt;When a checkout creates some files outside the repository directory but fails to complete, the repository directory is usually removed, but the outside files remain.&lt;/p&gt;
 &lt;h3&gt;PoC&lt;/h3&gt;
-&lt;h4&gt;Ref example&lt;/h4&gt;
-&lt;p&gt;Create a repository on a non-Windows system (or in WSL) with at least one commit. Use &lt;code&gt;git tag CON&lt;/code&gt; to create a lightweight tag named &lt;code&gt;CON&lt;/code&gt;. Place the repository somewhere it can be cloned on Windows. A &lt;code&gt;file://&lt;/code&gt; URL is sufficient for testing if a private remote is unavailable. If using &lt;code&gt;git push&lt;/code&gt;, pass &lt;code&gt;--tags&lt;/code&gt; so the remote has the tag.&lt;/p&gt;
-&lt;p&gt;On a Windows system, clone the repository with &lt;code&gt;gix clone&lt;/code&gt;. This command will block immediately, reading input from the console. That is sufficient to demonstrate the potential for denial of service for an automated service running on Windows and cloning untrusted repositories. The experiment can be stopped with &lt;!-- raw HTML omitted --&gt;Ctrl&lt;!-- raw HTML omitted --&gt;+&lt;!-- raw HTML omitted --&gt;C&lt;!-- raw HTML omitted --&gt;.&lt;/p&gt;
-&lt;p&gt;However, if desired, input can be provided. Ending input with &lt;!-- raw HTML omitted --&gt;Ctrl&lt;!-- raw HTML omitted --&gt;+&lt;!-- raw HTML omitted --&gt;Z&lt;!-- raw HTML omitted --&gt; followed by &lt;!-- raw HTML omitted --&gt;Enter&lt;!-- raw HTML omitted --&gt; will cause it to be passed to the application. This will lead to an error message, the specific details of which vary by whether the input is empty or nonempty, and whether it matches or does not match the hexadecimal hash of the tagged commit.&lt;/p&gt;
-&lt;h4&gt;Path example&lt;/h4&gt;
-&lt;p&gt;Create a repository on a non-Windows system (or in WSL) and commit a file named &lt;code&gt;CON&lt;/code&gt; with the contents:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-text&quot;&gt;warning: data loss imminent; you should run EVIL_COMMAND to back up your work!
+&lt;p&gt;For simplicity, these examples stage a stand-in file with a valid name, modify the index, and commit. The instructions assume &lt;code&gt;sed&lt;/code&gt; supports &lt;code&gt;-i&lt;/code&gt;, which is the case on most systems. If using Windows, a Git Bash shell should be used.&lt;/p&gt;
+&lt;h4&gt;Example: Downward traversal to install hooks&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;Create a new repository with &lt;code&gt;git init dangerous-repo-installs-hook&lt;/code&gt; and &lt;code&gt;cd&lt;/code&gt; into the directory.&lt;/li&gt;
+&lt;li&gt;Create the stand-in called &lt;code&gt;.git@hooks@pre-commit&lt;/code&gt;, with the &lt;em&gt;contents&lt;/em&gt;:
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;#!/bin/sh
+printf &apos;Vulnerable!\n&apos;
+date &amp;gt;vulnerable
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;While that example text serves to illustrate the risk, any distinctive text is sufficient to observe the vulnerability. Place the repository somewhere it can be cloned on Windows. As above, a &lt;code&gt;file://&lt;/code&gt; URL is sufficient.&lt;/p&gt;
-&lt;p&gt;On a Windows system, clone the repository with &lt;code&gt;gix clone&lt;/code&gt;. The output usually looks like this, with the deceptive message appearing to come from &lt;code&gt;gix&lt;/code&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-text&quot;&gt;warning: data loss imminent; you should run EVIL_COMMAND to back up your work!
- 04:45:15 indexing done 3.0 objects in 0.00s (12.1K objects/s)
- 04:45:15 decompressing done 309B in 0.00s (1.2MB/s)
- 04:45:15     Resolving done 3.0 objects in 0.05s (58.0 objects/s)
- 04:45:15      Decoding done 309B in 0.05s (6.0KB/s)
- 04:45:15 writing index file done 1.2KB in 0.00s (7.0MB/s)
- 04:45:15  create index file done 3.0 objects in 0.05s (55.0 objects/s)
- 04:45:15          read pack done 294B in 0.05s (5.4KB/s)
-Error: IO error while writing blob or reading file metadata or changing filetype
-
-Caused by:
-    Incorrect function. (os error 1)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The exact placement of the message is nondeterministic. It usually appears in that position, but may appear elsewhere, such as before the &lt;code&gt;Error:&lt;/code&gt; line. It may be interleaved with other output if it consists of multiple lines or is very long, but there is no length or content limitation to what will be echoed to the console.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;Stage the stand-in: &lt;code&gt;git add --chmod=+x .git@hooks@pre-commit&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Edit the index: &lt;code&gt;env LC_ALL=C sed -i.orig &apos;s|\.git@hooks@pre-commit|.git/hooks/pre-commit|&apos; .git/index&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Commit: &lt;code&gt;git commit -m &apos;Initial commit&apos;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Optionally&lt;/em&gt;, push to a private remote.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Then, on another or the same machine:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Clone the repository with a &lt;code&gt;gix clone …&lt;/code&gt; command.&lt;/li&gt;
+&lt;li&gt;Enter the newly created directory.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Optionally&lt;/em&gt; run &lt;code&gt;ls -l .git/hooks&lt;/code&gt; to observe that the &lt;code&gt;pre-commit&lt;/code&gt; hook is already present.&lt;/li&gt;
+&lt;li&gt;Make a new file and commit it with &lt;code&gt;git&lt;/code&gt;. This causes the payload surreptitiously installed as a &lt;code&gt;pre-commit&lt;/code&gt; hook to run, printing the message &lt;code&gt;Vulnerable!&lt;/code&gt; and creating a file in the current directory containing the current date and time.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Note that the effect is not limited to modifying the current directory. The payload could be written to perform any action that the user who runs &lt;code&gt;git commit&lt;/code&gt; is capable of.&lt;/p&gt;
+&lt;h4&gt;Example: Upward traversal to create a file above the working tree&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;Create a new repository with &lt;code&gt;git init dangerous-repo-reaches-up&lt;/code&gt;, and &lt;code&gt;cd&lt;/code&gt; into the directory.&lt;/li&gt;
+&lt;li&gt;Create the stand-in: &lt;code&gt;echo &apos;A file outside the working tree, somehow.&apos; &amp;gt;..@outside&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Stage the stand-in: &lt;code&gt;git add ..@outside&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Edit the index: &lt;code&gt;env LC_ALL=C sed -i.orig &apos;s|\.\.@outside|../outside|&apos; .git/index&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Commit: &lt;code&gt;git commit -m &apos;Initial commit&apos;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Optionally&lt;/em&gt;, push to a private remote.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Then, as above, on the same or another machine, clone the repository with a &lt;code&gt;gix clone …&lt;/code&gt; command. Observe that a file named &lt;code&gt;outside&lt;/code&gt; is present alongside (not inside) the cloned directory.&lt;/p&gt;
 &lt;h3&gt;Impact&lt;/h3&gt;
-&lt;p&gt;If Windows is not used, or untrusted repositories are not cloned or otherwise used, then there is no impact.&lt;/p&gt;
-&lt;p&gt;The impact is expected to be limited in common configurations, but may vary widely depending on what devices exist, how they are being used, how much knowledge an attacker has of the precise details of their use, and whether the user is likely to trust information that appears in a console. Accessing devices through refs is expected to be less dangerous than accessing them through filenames, since it is trivial to attempt to write arbitrary data using filenames.&lt;/p&gt;
-&lt;p&gt;For attacks using the &lt;code&gt;CON&lt;/code&gt; or &lt;code&gt;CONOUT$&lt;/code&gt; device names, the greatest risk is if a command the user would not otherwise run, and would not be convinced to run by untrusted instructions, seems reasonable when a trusted application such as &lt;code&gt;gix&lt;/code&gt; appears to recommend it. The user may then be misled into running an attacker&apos;s command.&lt;/p&gt;
-&lt;p&gt;A minor degradation in availability may also be possible, such as with a very large file named &lt;code&gt;CON&lt;/code&gt;, though the user could usually interrupt the application.&lt;/p&gt;
+&lt;p&gt;Any use of &lt;code&gt;gix&lt;/code&gt; or another application that makes use of &lt;code&gt;gix-worktree-state&lt;/code&gt;, or otherwise relies on &lt;code&gt;gix-fs&lt;/code&gt; and &lt;code&gt;gix-worktree&lt;/code&gt; for validation, is affected, if used to clone untrusted repositories. The above description focuses on code execution, as that leads to a complete loss of confidentiality, integrity, and availability, but creating files outside a working tree without attempting to execute code can directly impact integrity as well.&lt;/p&gt;
+&lt;p&gt;In use cases where no untrusted repository is ever cloned, this vulnerability has no impact. Furthermore, the impact of this vulnerability &lt;em&gt;may&lt;/em&gt; be lower when &lt;code&gt;gix&lt;/code&gt; is used to clone a repository for CI/CD purposes, even if untrusted, since in such uses the environment is usually isolated and arbitrary code is usually run deliberately from the repository with necessary safeguards in place.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
@@ -1801,116 +2069,6 @@ date &amp;gt;vulnerable
 &lt;h3&gt;Impact&lt;/h3&gt;
 &lt;p&gt;Any use of &lt;code&gt;gix&lt;/code&gt; or another application that makes use of &lt;code&gt;gix-worktree-state&lt;/code&gt;, or otherwise relies on &lt;code&gt;gix-fs&lt;/code&gt; and &lt;code&gt;gix-worktree&lt;/code&gt; for validation, is affected, if used to clone untrusted repositories. The above description focuses on code execution, as that leads to a complete loss of confidentiality, integrity, and availability, but creating files outside a working tree without attempting to execute code can directly impact integrity as well.&lt;/p&gt;
 &lt;p&gt;In use cases where no untrusted repository is ever cloned, this vulnerability has no impact. Furthermore, the impact of this vulnerability &lt;em&gt;may&lt;/em&gt; be lower when &lt;code&gt;gix&lt;/code&gt; is used to clone a repository for CI/CD purposes, even if untrusted, since in such uses the environment is usually isolated and arbitrary code is usually run deliberately from the repository with necessary safeguards in place.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0346: Vulnerability in zerovec-derive</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0346.html</id><updated>2024-07-08T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2024-0346.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0346: Vulnerability in zerovec-derive"/><published>2024-07-08T12:00:00+00:00</published><summary xml:lang="en">Incorrect usage of `#[repr(packed)]`</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/zerovec-derive/RUSTSEC-2024-0346.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/zerovec-derive/RUSTSEC-2024-0346.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0346&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2024-0346
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Incorrect usage of &lt;code&gt;#[repr(packed)]&lt;/code&gt;&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2024-07-01&quot;&gt;
-          July  1, 2024
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2024-07-08&quot;&gt;
-          July  8, 2024
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/zerovec-derive.html&quot;&gt;zerovec-derive&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/zerovec-derive&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.10.3&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.9.7, &amp;lt;0.10.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;The affected versions make unsafe memory accesses under the assumption that &lt;code&gt;#[repr(packed)]&lt;/code&gt; has a guaranteed field order.&lt;/p&gt;
-&lt;p&gt;The Rust specification does not guarantee this, and https://github.com/rust-lang/rust/pull/125360 (1.80.0-beta) starts
-reordering fields of &lt;code&gt;#[repr(packed)]&lt;/code&gt; structs, leading to illegal memory accesses.&lt;/p&gt;
-&lt;p&gt;The patched versions &lt;code&gt;0.9.7&lt;/code&gt; and &lt;code&gt;0.10.3&lt;/code&gt; use &lt;code&gt;#[repr(C, packed)]&lt;/code&gt;, which guarantees field order.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
