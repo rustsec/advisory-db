@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories with keyword &#x27;overflow&#x27; › RustSec Advisory Database</title>
+<title>RUSTSEC-2024-0363: sqlx: Binary Protocol Misinterpretation caused by Truncating or Overflowing Casts › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,58 +52,167 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/sqlx/RUSTSEC-2024-0363.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/sqlx/RUSTSEC-2024-0363.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2024-0363">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2024-0363
+        
+      </h1>
+      <span class="subtitle"><p>Binary Protocol Misinterpretation caused by Truncating or Overflowing Casts</p>
 </span>
-      <h1>Advisories with keyword &#x27;overflow&#x27;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2024-08-16">
-    August 16, 2024
-  </time>
+    
 
-  
-  <h3>
-    
-        
-    
-    <a href="/advisories/RUSTSEC-2024-0363.html">
-      RUSTSEC-2024-0363: Vulnerability in sqlx
-    </a>
-  </h3>
-  <span><p>Binary Protocol Misinterpretation caused by Truncating or Overflowing Casts</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2024-04-24">
-    April 24, 2024
-  </time>
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2024-08-15">
+          August 15, 2024
+        </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2024-08-16">
+          August 16, 2024
+        </time>
         
-    
-    <a href="/advisories/RUSTSEC-2024-0338.html">
-      RUSTSEC-2024-0338: Vulnerability in cosmwasm-std
-    </a>
-  </h3>
-  <span><p>Arithmetic overflows in cosmwasm-std</p>
-</span>
-  
-</li>
+      </dd>
+
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        <a href="/packages/sqlx.html">sqlx</a>
+          (<a href="https://crates.io/crates/sqlx">crates.io</a>)
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        Vulnerability
+        
+      </dd>
+
       
-    </ul>
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/format-injection.html">format-injection</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/sql.html">#sql</a>
+        
+          <a href="/keywords/injection.html">#injection</a>
+        
+          <a href="/keywords/overflow.html">#overflow</a>
+        
+          <a href="/keywords/truncation.html">#truncation</a>
+        
+      </dd>
+      
+
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/launchbadge/sqlx/issues/3440">
+              https://github.com/launchbadge/sqlx/issues/3440
+            </a>
+          </li>
+        
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&gt;=0.8.1</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+
+      
+      
+    </dl>
+
+    
+    
+
+    <h3 id="description">Description</h3>
+    <p>The following presentation at this year's DEF CON was brought to our attention on the SQLx Discord:</p>
+<blockquote>
+<p>SQL Injection isn't Dead: Smuggling Queries at the Protocol Level<br />
+<a href="http://web.archive.org/web/20240812130923/https://media.defcon.org/DEF%20CON%2032/DEF%20CON%2032%20presentations/DEF%20CON%2032%20-%20Paul%20Gerste%20-%20SQL%20Injection%20Isn&#x27;t%20Dead%20Smuggling%20Queries%20at%20the%20Protocol%20Level.pdf">http://web.archive.org/web/20240812130923/https://media.defcon.org/DEF%20CON%2032/DEF%20CON%2032%20presentations/DEF%20CON%2032%20-%20Paul%20Gerste%20-%20SQL%20Injection%20Isn't%20Dead%20Smuggling%20Queries%20at%20the%20Protocol%20Level.pdf</a><br />
+(Archive link for posterity.)</p>
+</blockquote>
+<p>Essentially, encoding a value larger than 4GiB can cause the length prefix in the protocol to overflow,
+causing the server to interpret the rest of the string as binary protocol commands or other data.</p>
+<p>It appears SQLx <em>does</em> perform truncating casts in a way that could be problematic,
+for example: <a href="https://github.com/launchbadge/sqlx/blob/6f2905695b9606b5f51b40ce10af63ac9e696bb8/sqlx-postgres/src/arguments.rs#L163">https://github.com/launchbadge/sqlx/blob/6f2905695b9606b5f51b40ce10af63ac9e696bb8/sqlx-postgres/src/arguments.rs#L163</a></p>
+<p>This code has existed essentially since the beginning,
+so it is reasonable to assume that all published versions <code>&lt;= 0.8.0</code> are affected.</p>
+<h2>Mitigation</h2>
+<p>As always, you should make sure your application is validating untrustworthy user input.
+Reject any input over 4 GiB, or any input that could <em>encode</em> to a string longer than 4 GiB.
+Dynamically built queries are also potentially problematic if it pushes the message size over this 4 GiB bound.</p>
+<p><a href="https://docs.rs/sqlx/latest/sqlx/trait.Encode.html#method.size_hint"><code>Encode::size_hint()</code></a>
+can be used for sanity checks, but do not assume that the size returned is accurate.
+For example, the <code>Json&lt;T&gt;</code> and <code>Text&lt;T&gt;</code> adapters have no reasonable way to predict or estimate the final encoded size,
+so they just return <code>size_of::&lt;T&gt;()</code> instead.</p>
+<p>For web application backends, consider adding some middleware that limits the size of request bodies by default.</p>
+<h2>Resolution</h2>
+<p>Work has started on a branch to add <code>#[deny]</code> directives for the following Clippy lints:</p>
+<ul>
+<li><a href="https://rust-lang.github.io/rust-clippy/master/#/cast_possible_truncation"><code>cast_possible_truncation</code></a></li>
+<li><a href="https://rust-lang.github.io/rust-clippy/master/#/cast_possible_wrap"><code>cast_possible_wrap</code></a></li>
+<li><a href="https://rust-lang.github.io/rust-clippy/master/#/cast_sign_loss"><code>cast_sign_loss</code></a></li>
+</ul>
+<p>and to manually audit the code that they flag.</p>
+<p>A fix is expected to be included in the <code>0.8.1</code> release (still WIP as of writing).</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
