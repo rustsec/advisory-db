@@ -394,7 +394,7 @@ git commit -m &apos;Initial commit&apos;
 
     
     &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0363: Vulnerability in sqlx</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0363.html</id><updated>2024-08-16T12:00:00+00:00</updated><category term="format-injection"/><link href="https://rustsec.org/advisories/RUSTSEC-2024-0363.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0363: Vulnerability in sqlx"/><published>2024-08-16T12:00:00+00:00</published><summary xml:lang="en">Binary Protocol Misinterpretation caused by Truncating or Overflowing Casts</summary><content xml:lang="en" type="html">  &lt;article&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0363: Vulnerability in sqlx</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0363.html</id><updated>2024-08-24T12:00:00+00:00</updated><category term="format-injection"/><link href="https://rustsec.org/advisories/RUSTSEC-2024-0363.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0363: Vulnerability in sqlx"/><published>2024-08-16T12:00:00+00:00</published><summary xml:lang="en">Binary Protocol Misinterpretation caused by Truncating or Overflowing Casts</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
           &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/sqlx/RUSTSEC-2024-0363.md&quot;&gt;History&lt;/a&gt; ⋅ 
@@ -427,6 +427,10 @@ git commit -m &apos;Initial commit&apos;
       &lt;dd&gt;
         &lt;time datetime=&quot;2024-08-16&quot;&gt;
           August 16, 2024
+        &lt;/time&gt;
+        
+        &lt;time datetime=&quot;2024-08-24&quot;&gt;
+          (last modified: August 24, 2024)
         &lt;/time&gt;
         
       &lt;/dd&gt;
@@ -540,14 +544,10 @@ For example, the &lt;code&gt;Json&amp;lt;T&amp;gt;&lt;/code&gt; and &lt;code&gt;
 so they just return &lt;code&gt;size_of::&amp;lt;T&amp;gt;()&lt;/code&gt; instead.&lt;/p&gt;
 &lt;p&gt;For web application backends, consider adding some middleware that limits the size of request bodies by default.&lt;/p&gt;
 &lt;h2&gt;Resolution&lt;/h2&gt;
-&lt;p&gt;Work has started on a branch to add &lt;code&gt;#[deny]&lt;/code&gt; directives for the following Clippy lints:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://rust-lang.github.io/rust-clippy/master/#/cast_possible_truncation&quot;&gt;&lt;code&gt;cast_possible_truncation&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://rust-lang.github.io/rust-clippy/master/#/cast_possible_wrap&quot;&gt;&lt;code&gt;cast_possible_wrap&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://rust-lang.github.io/rust-clippy/master/#/cast_sign_loss&quot;&gt;&lt;code&gt;cast_sign_loss&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;and to manually audit the code that they flag.&lt;/p&gt;
-&lt;p&gt;A fix is expected to be included in the &lt;code&gt;0.8.1&lt;/code&gt; release (still WIP as of writing).&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;sqlx 0.8.1&lt;/code&gt; has been released with the fix: &lt;a href=&quot;https://github.com/launchbadge/sqlx/blob/main/CHANGELOG.md#081---2024-08-23&quot;&gt;https://github.com/launchbadge/sqlx/blob/main/CHANGELOG.md#081---2024-08-23&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Postgres users are advised to upgrade ASAP as a possible exploit has been demonstrated:
+&lt;a href=&quot;https://github.com/launchbadge/sqlx/issues/3440#issuecomment-2307956901&quot;&gt;https://github.com/launchbadge/sqlx/issues/3440#issuecomment-2307956901&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;MySQL and SQLite do not &lt;em&gt;appear&lt;/em&gt; to be exploitable, but upgrading is recommended nonetheless.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;

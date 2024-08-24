@@ -88,6 +88,10 @@
           August 16, 2024
         </time>
         
+        <time datetime="2024-08-24">
+          (last modified: August 24, 2024)
+        </time>
+        
       </dd>
 
       <dt id="package">Package</dt>
@@ -199,14 +203,10 @@ For example, the <code>Json&lt;T&gt;</code> and <code>Text&lt;T&gt;</code> adapt
 so they just return <code>size_of::&lt;T&gt;()</code> instead.</p>
 <p>For web application backends, consider adding some middleware that limits the size of request bodies by default.</p>
 <h2>Resolution</h2>
-<p>Work has started on a branch to add <code>#[deny]</code> directives for the following Clippy lints:</p>
-<ul>
-<li><a href="https://rust-lang.github.io/rust-clippy/master/#/cast_possible_truncation"><code>cast_possible_truncation</code></a></li>
-<li><a href="https://rust-lang.github.io/rust-clippy/master/#/cast_possible_wrap"><code>cast_possible_wrap</code></a></li>
-<li><a href="https://rust-lang.github.io/rust-clippy/master/#/cast_sign_loss"><code>cast_sign_loss</code></a></li>
-</ul>
-<p>and to manually audit the code that they flag.</p>
-<p>A fix is expected to be included in the <code>0.8.1</code> release (still WIP as of writing).</p>
+<p><code>sqlx 0.8.1</code> has been released with the fix: <a href="https://github.com/launchbadge/sqlx/blob/main/CHANGELOG.md#081---2024-08-23">https://github.com/launchbadge/sqlx/blob/main/CHANGELOG.md#081---2024-08-23</a></p>
+<p>Postgres users are advised to upgrade ASAP as a possible exploit has been demonstrated:
+<a href="https://github.com/launchbadge/sqlx/issues/3440#issuecomment-2307956901">https://github.com/launchbadge/sqlx/issues/3440#issuecomment-2307956901</a></p>
+<p>MySQL and SQLite do not <em>appear</em> to be exploitable, but upgrading is recommended nonetheless.</p>
 
 
     <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
