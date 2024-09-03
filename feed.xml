@@ -146,7 +146,7 @@
 
     
     &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0367: Vulnerability in gix-path</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0367.html</id><updated>2024-09-02T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2024-0367.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0367: Vulnerability in gix-path"/><published>2024-09-01T12:00:00+00:00</published><summary xml:lang="en">gix-path uses local config across repos when it is the highest scope</summary><content xml:lang="en" type="html">  &lt;article&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0367: Vulnerability in gix-path</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0367.html</id><updated>2024-09-03T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2024-0367.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0367: Vulnerability in gix-path"/><published>2024-09-01T12:00:00+00:00</published><summary xml:lang="en">gix-path uses local config across repos when it is the highest scope</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
           &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/gix-path/RUSTSEC-2024-0367.md&quot;&gt;History&lt;/a&gt; ⋅ 
@@ -181,8 +181,8 @@
           September  1, 2024
         &lt;/time&gt;
         
-        &lt;time datetime=&quot;2024-09-02&quot;&gt;
-          (last modified: September  2, 2024)
+        &lt;time datetime=&quot;2024-09-03&quot;&gt;
+          (last modified: September  3, 2024)
         &lt;/time&gt;
         
       &lt;/dd&gt;
@@ -249,6 +249,18 @@
             &lt;/a&gt;
           &lt;/li&gt;
         
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/advisories/GHSA-v26r-4c9c-h3j6&quot;&gt;
+              https://github.com/advisories/GHSA-v26r-4c9c-h3j6
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://nvd.nist.gov/vuln/detail/CVE-2024-45305&quot;&gt;
+              https://nvd.nist.gov/vuln/detail/CVE-2024-45305
+            &lt;/a&gt;
+          &lt;/li&gt;
         
         &lt;/ul&gt;
       &lt;/dd&gt;
@@ -358,8 +370,8 @@
 &lt;p&gt;&lt;code&gt;gix-path&lt;/code&gt; executes &lt;code&gt;git&lt;/code&gt; to find the path of a configuration file that belongs to the &lt;code&gt;git&lt;/code&gt; installation itself, but mistakenly treats the local repository&apos;s configuration as system-wide if no higher scoped configuration is found. In rare cases, this causes a less trusted repository to be treated as more trusted, or leaks sensitive information from one repository to another, such as sending credentials to another repository&apos;s remote.&lt;/p&gt;
 &lt;h3&gt;Details&lt;/h3&gt;
 &lt;p&gt;In &lt;code&gt;gix_path::env&lt;/code&gt;, the underlying implementation of the &lt;code&gt;installation_config&lt;/code&gt; and &lt;code&gt;installation_config_prefix&lt;/code&gt; functions calls &lt;code&gt;git config -l --show-origin&lt;/code&gt; and parses the first line of the output to extract the path to the configuration file holding the configuration variable of highest &lt;a href=&quot;https://git-scm.com/docs/git-config#SCOPES&quot;&gt;scope&lt;/a&gt;:&lt;/p&gt;
-&lt;p&gt;https://github.com/Byron/gitoxide/blob/12251eb052df30105538fa831e641eea557f13d8/gix-path/src/env/git/mod.rs#L91&lt;/p&gt;
-&lt;p&gt;https://github.com/Byron/gitoxide/blob/12251eb052df30105538fa831e641eea557f13d8/gix-path/src/env/git/mod.rs#L112&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/Byron/gitoxide/blob/12251eb052df30105538fa831e641eea557f13d8/gix-path/src/env/git/mod.rs#L91&quot;&gt;https://github.com/Byron/gitoxide/blob/12251eb052df30105538fa831e641eea557f13d8/gix-path/src/env/git/mod.rs#L91&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/Byron/gitoxide/blob/12251eb052df30105538fa831e641eea557f13d8/gix-path/src/env/git/mod.rs#L112&quot;&gt;https://github.com/Byron/gitoxide/blob/12251eb052df30105538fa831e641eea557f13d8/gix-path/src/env/git/mod.rs#L112&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;While the configuration variable of highest scope is not usually in the local scope, there are practical situations where this occurs:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;A configuration file truly associated with the installation is not present on all systems and can occasionally be empty. Likewise, there may be no variables in the global scope.&lt;/li&gt;

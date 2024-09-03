@@ -88,8 +88,8 @@
           September  1, 2024
         </time>
         
-        <time datetime="2024-09-02">
-          (last modified: September  2, 2024)
+        <time datetime="2024-09-03">
+          (last modified: September  3, 2024)
         </time>
         
       </dd>
@@ -156,6 +156,18 @@
             </a>
           </li>
         
+        
+          <li>
+            <a href="https://github.com/advisories/GHSA-v26r-4c9c-h3j6">
+              https://github.com/advisories/GHSA-v26r-4c9c-h3j6
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2024-45305">
+              https://nvd.nist.gov/vuln/detail/CVE-2024-45305
+            </a>
+          </li>
         
         </ul>
       </dd>
@@ -265,8 +277,8 @@
 <p><code>gix-path</code> executes <code>git</code> to find the path of a configuration file that belongs to the <code>git</code> installation itself, but mistakenly treats the local repository's configuration as system-wide if no higher scoped configuration is found. In rare cases, this causes a less trusted repository to be treated as more trusted, or leaks sensitive information from one repository to another, such as sending credentials to another repository's remote.</p>
 <h3>Details</h3>
 <p>In <code>gix_path::env</code>, the underlying implementation of the <code>installation_config</code> and <code>installation_config_prefix</code> functions calls <code>git config -l --show-origin</code> and parses the first line of the output to extract the path to the configuration file holding the configuration variable of highest <a href="https://git-scm.com/docs/git-config#SCOPES">scope</a>:</p>
-<p>https://github.com/Byron/gitoxide/blob/12251eb052df30105538fa831e641eea557f13d8/gix-path/src/env/git/mod.rs#L91</p>
-<p>https://github.com/Byron/gitoxide/blob/12251eb052df30105538fa831e641eea557f13d8/gix-path/src/env/git/mod.rs#L112</p>
+<p><a href="https://github.com/Byron/gitoxide/blob/12251eb052df30105538fa831e641eea557f13d8/gix-path/src/env/git/mod.rs#L91">https://github.com/Byron/gitoxide/blob/12251eb052df30105538fa831e641eea557f13d8/gix-path/src/env/git/mod.rs#L91</a></p>
+<p><a href="https://github.com/Byron/gitoxide/blob/12251eb052df30105538fa831e641eea557f13d8/gix-path/src/env/git/mod.rs#L112">https://github.com/Byron/gitoxide/blob/12251eb052df30105538fa831e641eea557f13d8/gix-path/src/env/git/mod.rs#L112</a></p>
 <p>While the configuration variable of highest scope is not usually in the local scope, there are practical situations where this occurs:</p>
 <ul>
 <li>A configuration file truly associated with the installation is not present on all systems and can occasionally be empty. Likewise, there may be no variables in the global scope.</li>
