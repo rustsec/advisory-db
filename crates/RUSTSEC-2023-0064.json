@@ -1,14 +1,14 @@
 {
   "schema_version": null,
   "id": "RUSTSEC-2023-0064",
-  "modified": "2024-02-10T15:57:43Z",
+  "modified": "2024-09-03T22:37:57Z",
   "published": "2023-09-23T12:00:00Z",
   "aliases": [
     "GHSA-rrjw-j4m2-mf34"
   ],
   "related": [],
   "summary": "gix-transport code execution vulnerability",
-  "details": "The `gix-transport` crate prior to the patched version 0.36.1 would allow attackers to\nuse malicious ssh clone URLs to pass arbitrary arguments to the `ssh` program, leading\nto arbitrary code execution.\n\nPoC: `gix clone 'ssh://-oProxyCommand=open$IFS-aCalculator/foo'`\n\nThis will launch a calculator on OSX.\n\nSee https://secure.phabricator.com/T12961 for more details on similar vulnerabilities in `git`.\n\nThanks for [vin01](https://github.com/vin01) for disclosing the issue.",
+  "details": "The `gix-transport` crate prior to the patched version 0.36.1 would allow attackers to\nuse malicious ssh clone URLs to pass arbitrary arguments to the `ssh` program, leading\nto arbitrary code execution.\n\nPoC: `gix clone 'ssh://-oProxyCommand=open$IFS-aCalculator/foo'`\n\nThis will launch a calculator on OSX.\n\nSee <https://secure.phabricator.com/T12961> for more details on similar vulnerabilities in `git`.\n\nThanks to [vin01](https://github.com/vin01) for disclosing the issue.",
   "severity": [],
   "affected": [
     {
