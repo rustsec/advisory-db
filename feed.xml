@@ -1,5 +1,548 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2024-09-05T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2024-0369: Vulnerability in phonenumber</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0369.html</id><updated>2024-09-05T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2024-0369.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0369: Vulnerability in phonenumber"/><published>2024-09-05T12:00:00+00:00</published><summary xml:lang="en">phonenumber:  panic on parsing crafted phonenumber inputs</summary><content xml:lang="en" type="html">  &lt;article&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2024-09-07T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2024-0371: Vulnerability in gix-path</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0371.html</id><updated>2024-09-07T12:00:00+00:00</updated><category term="code-execution"/><category term="privilege-escalation"/><link href="https://rustsec.org/advisories/RUSTSEC-2024-0371.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0371: Vulnerability in gix-path"/><published>2024-09-07T12:00:00+00:00</published><summary xml:lang="en">gix-path improperly resolves configuration path reported by Git</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/gix-path/RUSTSEC-2024-0371.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/gix-path/RUSTSEC-2024-0371.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0371&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2024-0371
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;gix-path improperly resolves configuration path reported by Git&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2024-09-06&quot;&gt;
+          September  6, 2024
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2024-09-07&quot;&gt;
+          September  7, 2024
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/gix-path.html&quot;&gt;gix-path&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/gix-path&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/code-execution.html&quot;&gt;code-execution&lt;/a&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/privilege-escalation.html&quot;&gt;privilege-escalation&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/escape-sequences.html&quot;&gt;#escape-sequences&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-45405&quot;&gt;CVE-2024-45405&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-m8rp-vv92-46c7&quot;&gt;GHSA-m8rp-vv92-46c7&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/Byron/gitoxide/security/advisories/GHSA-m8rp-vv92-46c7&quot;&gt;
+              https://github.com/Byron/gitoxide/security/advisories/GHSA-m8rp-vv92-46c7
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/advisories/GHSA-m8rp-vv92-46c7&quot;&gt;
+              https://github.com/advisories/GHSA-m8rp-vv92-46c7
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;6 &lt;span class=&quot;tag medium&quot;&gt;
+        MEDIUM
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+          &lt;dt&gt;Attack vector&lt;/dt&gt;&lt;dd&gt;Local&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Attack complexity&lt;/dt&gt;&lt;dd&gt;High&lt;/d&gt;
+          
+
+          
+          &lt;dt&gt;Privileges required&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;User interaction&lt;/dt&gt;&lt;dd&gt;Required&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Scope&lt;/dt&gt;&lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+      &lt;dd&gt;&lt;a href=&quot;https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:U/C:H/I:H/A:N&quot;&gt;CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:U/C:H/I:H/A:N&lt;/a&gt;&lt;/dd&gt;
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.10.11&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;gix_path::env::installation_config&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;gix_path::env::installation_config_prefix&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;h3&gt;Summary&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;gix-path&lt;/code&gt; runs &lt;code&gt;git&lt;/code&gt; to find the path of a configuration file associated with the &lt;code&gt;git&lt;/code&gt; installation, but improperly resolves paths containing unusual or non-ASCII characters, in rare cases enabling a local attacker to inject configuration leading to code execution.&lt;/p&gt;
+&lt;h3&gt;Details&lt;/h3&gt;
+&lt;p&gt;In &lt;code&gt;gix_path::env&lt;/code&gt;, the underlying implementation of the &lt;code&gt;installation_config&lt;/code&gt; and &lt;code&gt;installation_config_prefix&lt;/code&gt; functions calls &lt;code&gt;git config -l --show-origin&lt;/code&gt; to find the path of a file to treat as belonging to the &lt;code&gt;git&lt;/code&gt; installation.&lt;/p&gt;
+&lt;p&gt;Affected versions of &lt;code&gt;gix-path&lt;/code&gt; do not pass &lt;code&gt;-z&lt;/code&gt;/&lt;code&gt;--null&lt;/code&gt; to cause &lt;code&gt;git&lt;/code&gt; to report literal paths (&lt;a href=&quot;https://github.com/Byron/gitoxide/commit/650a1b5cf25e086197cc55a68525a411e1c28031&quot;&gt;&lt;code&gt;650a1b5&lt;/code&gt;&lt;/a&gt;). Instead, to cover the occasional case that &lt;code&gt;git&lt;/code&gt; outputs a quoted path, they attempt to parse the path by stripping the quotation marks:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/Byron/gitoxide/blob/1cfe577d461293879e91538dbc4bbfe01722e1e8/gix-path/src/env/git/mod.rs#L138-L142&quot;&gt;https://github.com/Byron/gitoxide/blob/1cfe577d461293879e91538dbc4bbfe01722e1e8/gix-path/src/env/git/mod.rs#L138-L142&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The problem is that, when a path is quoted, it may change in substantial ways beyond the concatenation of quotation marks. If not reversed, these changes can result in another valid path that is not equivalent to the original.&lt;/p&gt;
+&lt;p&gt;This is not limited to paths with unusual characters such as quotation marks or newlines. Unless &lt;code&gt;git&lt;/code&gt; is explicitly configured with &lt;code&gt;core.quotePath&lt;/code&gt; set to &lt;code&gt;false&lt;/code&gt;, it also happens when the path contains most non-ASCII characters, including accented or non-English letters. For example, &lt;code&gt;é&lt;/code&gt; is transformed to &lt;code&gt;\303\251&lt;/code&gt;, with literal backslashes. (This is an octal representation of the bytes in its UTF-8 encoding. This behavior is not limited to systems that encode paths with UTF-8 on disk.)&lt;/p&gt;
+&lt;p&gt;Rarely, the configuration file &lt;code&gt;gix-path&lt;/code&gt; wrongly attempts to open can be created by an attacker who has a limited user account on the system. The attacker would often need to request an account username tailored to carrying out the attack.&lt;/p&gt;
+&lt;h3&gt;PoC&lt;/h3&gt;
+&lt;h4&gt;Quick demonstration on Unix&lt;/h4&gt;
+&lt;p&gt;On a Unix-like system in which Git supports no higher scope than &lt;code&gt;system&lt;/code&gt; for configuration variables (i.e., not on macOS with Apple Git), in a locale that supports UTF-8, with &lt;code&gt;gitoxide&lt;/code&gt; installed, run:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;mkdir myrepo
+cd myrepo
+git init
+printf &apos;[real]\n\trealvar = realval\n&apos; &amp;gt; &apos;é&apos;
+printf &apos;[fake]\n\tfakevar = fakeval\n&apos; &amp;gt; &apos;\303\251&apos;
+GIT_CONFIG_SYSTEM=&apos;é&apos; gix config
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If the above conditions are satisfied and the &lt;code&gt;gix&lt;/code&gt; command was built against an affected version of &lt;code&gt;gix-path&lt;/code&gt;, then the last command&apos;s output looks something like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-text&quot;&gt;# From &apos;\303\251&apos; (GitInstallation)
+[fake]
+        fakevar = fakeval
+
+# From &apos;é&apos; (System)
+[real]
+        realvar = realval
+
+# From &apos;/home/ubuntu/.gitconfig&apos; (User)
+[init]
+        defaultBranch = main
+
+# From &apos;./.git/config&apos; (Local)
+[core]
+        repositoryformatversion = 0
+        filemode = true
+        bare = false
+        logallrefupdates = true
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;Demonstration across user accounts on Windows&lt;/h4&gt;
+&lt;p&gt;On a test system running Windows on which Git for Windows is &lt;em&gt;not&lt;/em&gt; installed system-wide—resembling a scenario in which users who wish to use Git are expected to install it themselves for their accounts—create two accounts, with these usernames:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Renée&lt;/em&gt;, the target of the attack. This user may be a limited user or an administrator. Its user profile directory is assumed to be &lt;code&gt;C:\Users\Renée&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Ren&lt;/em&gt;, the user who carries out the attack. This user should be a limited user, since an administrator would not need to exploit this vulnerability to inject configuration. Its user profile directory is assumed to be &lt;code&gt;C:\Users\Ren&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;As &lt;em&gt;Ren&lt;/em&gt;, run these commands in PowerShell:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-powershell&quot;&gt;$d = &amp;quot;$HOME\303\251e\AppData\Local\Programs\Git\etc&amp;quot;
+mkdir $d
+git config --file $d\gitconfig core.sshCommand calc.exe
+icacls $HOME\303 /grant &apos;Renée:(RX)&apos; /T
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;(The &lt;code&gt;gitconfig&lt;/code&gt; file can instead be written manually, in which case &lt;em&gt;Ren&lt;/em&gt; need not have &lt;code&gt;git&lt;/code&gt;.)&lt;/p&gt;
+&lt;p&gt;As &lt;em&gt;Renée&lt;/em&gt;:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Install Git for Windows in the default location for non-systemwide installations, which for that user account is inside &lt;code&gt;C:\Users\Renée\AppData\Local\Programs&lt;/code&gt;. For a non-administrative installation, Git for Windows will pick this location automatically. Allow the installer to place the directory containing &lt;code&gt;git&lt;/code&gt; in the user&apos;s &lt;code&gt;PATH&lt;/code&gt;, as it does by default.&lt;/p&gt;
+&lt;p&gt;(The scenario can be modified for any location the attacker can predict. So, for example, &lt;em&gt;Renée&lt;/em&gt; can install Git for Windows with &lt;a href=&quot;https://scoop.sh/&quot;&gt;&lt;code&gt;scoop&lt;/code&gt;&lt;/a&gt;, and &lt;em&gt;Ren&lt;/em&gt; could carry out the attack with correspondingly modified path components in place of &lt;code&gt;AppData\Local\Programs\Git&lt;/code&gt;.)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Install &lt;code&gt;gitoxide&lt;/code&gt; using any common technique, such as by &lt;a href=&quot;https://www.rust-lang.org/tools/install&quot;&gt;installing Rust&lt;/a&gt; and then running &lt;code&gt;cargo install gitoxide&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Open a PowerShell window and run a &lt;code&gt;gix&lt;/code&gt; command that attempts to run the SSH client for transport. For example:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-pwsh&quot;&gt;gix clone ssh://localhost/myrepo.git
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;At least one, and usually two, instances of the Windows calculator will pop up. This happens because &lt;code&gt;calc.exe&lt;/code&gt; was configured in the fake configuration file the user &lt;em&gt;Ren&lt;/em&gt; was able to cause to be used, by placing it at the location &lt;code&gt;gix-path&lt;/code&gt; wrongly resolved the path of &lt;em&gt;Renée&lt;/em&gt;&apos;s own configuration file to.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The &lt;code&gt;gitconfig&lt;/code&gt; file written by the attacker can be adjusted with an arbitrary choice of payload, or to set other configuration variables.&lt;/p&gt;
+&lt;h3&gt;Impact&lt;/h3&gt;
+&lt;p&gt;On a single-user system, it is not possible to exploit this, unless &lt;code&gt;GIT_CONFIG_SYSTEM&lt;/code&gt; and &lt;code&gt;GIT_CONFIG_GLOBAL&lt;/code&gt; have been set to unusual values or Git has been installed in an unusual way. Such a scenario is not expected.&lt;/p&gt;
+&lt;p&gt;Exploitation is unlikely even on a multi-user system, though it is plausible in some uncommon configurations or use cases. It is especially unlikely with Apple Git on macOS, due to its very high scoped configuration in &lt;code&gt;/Library&lt;/code&gt; or &lt;code&gt;/Applications&lt;/code&gt; that would be detected instead, as in &lt;a href=&quot;https://github.com/advisories/GHSA-v26r-4c9c-h3j6&quot;&gt;CVE-2024-45305&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The likelihood of exploitation may be higher on Windows, where attacks such as those shown in the Windows proof-of-concept above can be performed due to the status of &lt;code&gt;\&lt;/code&gt; as a directory separator, and where there is no restriction on usernames containing accented or non-English letters (though the latter is also permitted on some other systems). Even then, complex user interaction is required. In most cases, a system administrator would have to approve an innocuous-seeming username, and then the targeted user (who could be the same or a different user) would have to use an application that uses &lt;code&gt;gix-path&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;In general, exploitation is more likely to succeed if at least one of the following applies:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Users are expected to install &lt;code&gt;git&lt;/code&gt; themselves, and are likely to do so in predictable locations.&lt;/li&gt;
+&lt;li&gt;Locations where &lt;code&gt;git&lt;/code&gt; is installed, whether due to usernames in their paths or otherwise, contain characters that &lt;code&gt;git&lt;/code&gt; quotes by default in paths, such as non-English letters and accented letters.&lt;/li&gt;
+&lt;li&gt;A custom &lt;code&gt;system&lt;/code&gt;-scope configuration file is specified with the &lt;code&gt;GIT_CONFIG_SYSTEM&lt;/code&gt; environment variable, and its path is in an unusual location or has strangely named components.&lt;/li&gt;
+&lt;li&gt;A &lt;code&gt;system&lt;/code&gt;-scope configuration file is absent, empty, or suppressed by means other than &lt;code&gt;GIT_CONFIG_NOSYSTEM&lt;/code&gt;. Currently, &lt;code&gt;gix-path&lt;/code&gt; can treat a &lt;code&gt;global&lt;/code&gt;-scope configuration file as belonging to the installation if no higher scope configuration file is available. This increases the likelihood of exploitation even on a system where &lt;code&gt;git&lt;/code&gt; is installed system-wide in an ordinary way.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;However, exploitation is expected to be very difficult even under any combination of those factors.&lt;/p&gt;
+&lt;p&gt;Although the effect here is similar to &lt;a href=&quot;https://github.com/git-for-windows/git/security/advisories/GHSA-vw2c-22j4-2fh2&quot;&gt;CVE-2022-24765&lt;/a&gt; once exploited, a greater degree of user interaction would usually be required, and the attack complexity here is much higher because the necessary conditions are uncommon and challenging to predict.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0372: Vulnerability in ic-cdk</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0372.html</id><updated>2024-09-07T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2024-0372.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0372: Vulnerability in ic-cdk"/><published>2024-09-07T12:00:00+00:00</published><summary xml:lang="en">Memory leak when calling a canister method via `ic_cdk::call`</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/ic-cdk/RUSTSEC-2024-0372.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/ic-cdk/RUSTSEC-2024-0372.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0372&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2024-0372
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Memory leak when calling a canister method via &lt;code&gt;ic_cdk::call&lt;/code&gt;&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2024-09-05&quot;&gt;
+          September  5, 2024
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2024-09-07&quot;&gt;
+          September  7, 2024
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/ic-cdk.html&quot;&gt;ic-cdk&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/ic-cdk&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/canister.html&quot;&gt;#canister&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/icp.html&quot;&gt;#icp&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/cdk.html&quot;&gt;#cdk&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-7884&quot;&gt;CVE-2024-7884&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-rwq6-crjg-9cpw&quot;&gt;GHSA-rwq6-crjg-9cpw&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/dfinity/cdk-rs/pull/509&quot;&gt;
+              https://github.com/dfinity/cdk-rs/pull/509
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;7.5 &lt;span class=&quot;tag high&quot;&gt;
+        HIGH
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+          &lt;dt&gt;Attack vector&lt;/dt&gt;&lt;dd&gt;Network&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Attack complexity&lt;/dt&gt;&lt;dd&gt;Low&lt;/d&gt;
+          
+
+          
+          &lt;dt&gt;Privileges required&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;User interaction&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Scope&lt;/dt&gt;&lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+      &lt;dd&gt;&lt;a href=&quot;https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&lt;/a&gt;&lt;/dd&gt;
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;^0.8.2&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;^0.9.3&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;^0.10.1&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;^0.11.6&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;^0.12.2&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;^0.13.5&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;^0.14.1&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;^0.15.1&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=16.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;lt;0.8.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;When a canister method is called via &lt;code&gt;ic_cdk::call*&lt;/code&gt;, a new Future &lt;code&gt;CallFuture&lt;/code&gt; is created  and can be awaited by the caller to get the execution result. Internally, the state of the Future is tracked and stored in a struct called &lt;code&gt;CallFutureState&lt;/code&gt;.  A bug in the polling implementation of the &lt;code&gt;CallFuture&lt;/code&gt; allows multiple references to be held for this internal state and not all references were dropped before the &lt;code&gt;Future&lt;/code&gt; is resolved. Since we have unaccounted references held, a copy of the internal state ended up being persisted in the canister&apos;s heap and thus causing a memory leak.&lt;/p&gt;
+&lt;h3&gt;Impact&lt;/h3&gt;
+&lt;p&gt;Canisters built in Rust with &lt;code&gt;ic_cdk&lt;/code&gt; and &lt;code&gt;ic_cdk_timers&lt;/code&gt; are affected. If these canisters call a canister method, use timers or heartbeat, they will likely leak a small amount of memory on every such operation. &lt;strong&gt;In the worst case, this could lead to heap memory exhaustion triggered by an attacker.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Motoko based canisters are not affected by the bug.&lt;/p&gt;
+&lt;h3&gt;Patches&lt;/h3&gt;
+&lt;p&gt;The patch has been backported to all minor versions between &lt;code&gt;&amp;gt;= 0.8.0, &amp;lt;= 0.15.0&lt;/code&gt;. The patched versions available are &lt;code&gt;0.8.2, 0.9.3, 0.10.1, 0.11.6, 0.12.2, 0.13.5, 0.14.1, 0.15.1&lt;/code&gt; and their previous versions have been yanked.&lt;/p&gt;
+&lt;h3&gt;Workarounds&lt;/h3&gt;
+&lt;p&gt;There are no known workarounds at the moment. Developers are recommended to upgrade their canister as soon as possible to the latest available patched version of &lt;code&gt;ic_cdk&lt;/code&gt; to avoid running out of Wasm heap memory.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Upgrading the canisters (without updating &lt;code&gt;ic_cdk&lt;/code&gt;) also frees the leaked memory but it&apos;s only a temporary solution.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;Referencesas&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/dfinity/cdk-rs/pull/509&quot;&gt;dfinity/cdk-rs/pull/509&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://docs.rs/ic-cdk/latest/ic_cdk/&quot;&gt;ic_cdk docs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://internetcomputer.org/docs/current/references/ic-interface-spec&quot;&gt;Internet Computer Specification&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0369: Vulnerability in phonenumber</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0369.html</id><updated>2024-09-05T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2024-0369.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0369: Vulnerability in phonenumber"/><published>2024-09-05T12:00:00+00:00</published><summary xml:lang="en">phonenumber:  panic on parsing crafted phonenumber inputs</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
           &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/phonenumber/RUSTSEC-2024-0369.md&quot;&gt;History&lt;/a&gt; ⋅ 
@@ -1485,269 +2028,6 @@ so they just return &lt;code&gt;size_of::&amp;lt;T&amp;gt;()&lt;/code&gt; instea
 &lt;p&gt;Postgres users are advised to upgrade ASAP as a possible exploit has been demonstrated:
 &lt;a href=&quot;https://github.com/launchbadge/sqlx/issues/3440#issuecomment-2307956901&quot;&gt;https://github.com/launchbadge/sqlx/issues/3440#issuecomment-2307956901&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;MySQL and SQLite do not &lt;em&gt;appear&lt;/em&gt; to be exploitable, but upgrading is recommended nonetheless.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0362: Vulnerability in alloy-json-abi</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0362.html</id><updated>2024-08-15T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2024-0362.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0362: Vulnerability in alloy-json-abi"/><published>2024-08-15T12:00:00+00:00</published><summary xml:lang="en">Stack overflow when parsing specially crafted JSON ABI strings</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/alloy-json-abi/RUSTSEC-2024-0362.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/alloy-json-abi/RUSTSEC-2024-0362.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0362&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2024-0362
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Stack overflow when parsing specially crafted JSON ABI strings&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2024-07-30&quot;&gt;
-          July 30, 2024
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2024-08-15&quot;&gt;
-          August 15, 2024
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/alloy-json-abi.html&quot;&gt;alloy-json-abi&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/alloy-json-abi&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/stack-overflow.html&quot;&gt;#stack-overflow&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/alloy-rs/core/issues/702&quot;&gt;
-              https://github.com/alloy-rs/core/issues/702
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.7.7&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;Affected versions of the &lt;code&gt;alloy-json-abi&lt;/code&gt; crate did not properly handle parsing of malformatted JSON ABI strings. The &lt;code&gt;JsonAbi::parse&lt;/code&gt; method can be tricked into a stack overflow when processing specially crafted input.&lt;/p&gt;
-&lt;p&gt;This stack overflow can lead to a crash of the application using this crate, potentially causing a denial of service.&lt;/p&gt;
-&lt;p&gt;The flaw was corrected in commit 4790c47.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0361: Vulnerability in cosmwasm-vm</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0361.html</id><updated>2024-08-08T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2024-0361.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0361: Vulnerability in cosmwasm-vm"/><published>2024-08-08T12:00:00+00:00</published><summary xml:lang="en">CWA-2024-004: Gas mispricing in cosmwasm-vm</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/cosmwasm-vm/RUSTSEC-2024-0361.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/cosmwasm-vm/RUSTSEC-2024-0361.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0361&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2024-0361
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;CWA-2024-004: Gas mispricing in cosmwasm-vm&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2024-08-08&quot;&gt;
-          August  8, 2024
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2024-08-08&quot;&gt;
-          August  8, 2024
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/cosmwasm-vm.html&quot;&gt;cosmwasm-vm&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/cosmwasm-vm&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/resource-consumption.html&quot;&gt;#resource-consumption&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-rg2q-2jh9-447q&quot;&gt;GHSA-rg2q-2jh9-447q&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/CosmWasm/advisories/blob/main/CWAs/CWA-2024-004.md&quot;&gt;
-              https://github.com/CosmWasm/advisories/blob/main/CWAs/CWA-2024-004.md
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=1.5.7, &amp;lt;2.0.0&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=2.0.6, &amp;lt;2.1.0&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=2.1.3&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;Some Wasm operations take significantly more gas than our benchmarks indicated. This can lead to missing the gas target we defined by a factor of ~10x. This means a malicious contract could take 10 times as much time to execute as expected, which can be used to temporarily DoS a chain.&lt;/p&gt;
-&lt;p&gt;For more information, see &lt;a href=&quot;https://github.com/CosmWasm/advisories/blob/main/CWAs/CWA-2024-004.md&quot;&gt;CWA-2024-004&lt;/a&gt;.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
