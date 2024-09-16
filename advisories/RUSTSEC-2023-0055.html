@@ -88,8 +88,8 @@
           September  3, 2023
         </time>
         
-        <time datetime="2024-07-02">
-          (last modified: July  2, 2024)
+        <time datetime="2024-09-16">
+          (last modified: September 16, 2024)
         </time>
         
       </dd>
@@ -173,7 +173,11 @@
       <dt id="patched">Patched</dt>
       <dd>
         
-        no patched versions
+        <ul>
+          
+          <li><code>&gt;=7.0.0</code></li>
+          
+        </ul>
         
       </dd>
 
@@ -194,7 +198,7 @@
 <li><a href="https://github.com/Alexhuszagh/rust-lexical/issues/104">The <code>BytesIter</code> trait has safety invariants but is public and not marked <code>unsafe</code></a></li>
 <li><a href="https://github.com/Alexhuszagh/rust-lexical/issues/95"><code>write_float()</code> calls <code>MaybeUninit::assume_init()</code> on uninitialized data, which is is not allowed by the Rust abstract machine</a></li>
 </ol>
-<p>The crate also has some correctness issues and appears to be unmaintained.</p>
+<p>The crate also has some correctness issues.</p>
 <h2>Alternatives</h2>
 <p>For quickly parsing floating-point numbers third-party crates are no longer needed. A fast float parsing algorithm by the author of <code>lexical</code> has been <a href="https://github.com/rust-lang/rust/pull/86761">merged</a> into libcore.</p>
 <p>For quickly parsing integers, consider <code>atoi</code> and <code>btoi</code> crates (100% safe code). <code>atoi_radix10</code> provides even faster parsing, but only with <code>-C target-cpu=native</code>, and at the cost of some <code>unsafe</code>.</p>
