@@ -514,6 +514,113 @@ FIPS203-compatible implementation of ML-KEM.&lt;/p&gt;
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0386: strason is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0386.html</id><updated>2024-11-10T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2024-0386.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0386: strason is unmaintained"/><published>2024-11-10T12:00:00+00:00</published><summary xml:lang="en">strason is unmaintained</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/strason/RUSTSEC-2024-0386.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/strason/RUSTSEC-2024-0386.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0386&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2024-0386
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;strason is unmaintained&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2024-09-04&quot;&gt;
+          September  4, 2024
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2024-11-10&quot;&gt;
+          November 10, 2024
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/strason.html&quot;&gt;strason&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/strason&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unmaintained
+        
+      &lt;/dd&gt;
+
+      
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/apoelstra/strason/issues/4&quot;&gt;
+              https://github.com/apoelstra/strason/issues/4
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;strason will no longer be maintained as declared by the developer. The project has been archived.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0385: cw0 is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0385.html</id><updated>2024-11-10T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2024-0385.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0385: cw0 is unmaintained"/><published>2024-11-10T12:00:00+00:00</published><summary xml:lang="en">`cw0` is unmaintained</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -1064,170 +1171,6 @@ strong reference as a mitigation. PyO3 0.23 will remove these functions entirely
     &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
     &lt;p&gt;The &lt;code&gt;heap-buffer-overflow&lt;/code&gt; is triggered in the &lt;code&gt;strlen()&lt;/code&gt; function when handling the &lt;code&gt;c_chars_to_str&lt;/code&gt; function in the dbn crate. This vulnerability occurs because the &lt;code&gt;CStr::from_ptr()&lt;/code&gt; function in Rust assumes that the provided C string is null-terminated. However, there is no guarantee that the input chars array passed to the c_chars_to_str function is properly null-terminated.&lt;/p&gt;
 &lt;p&gt;If the chars array does not contain a null byte (\0), strlen() will continue to read beyond the bounds of the buffer in search of a null terminator. This results in an out-of-bounds memory read and can lead to a heap-buffer-overflow, potentially causing memory corruption or exposing sensitive information.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0376: Vulnerability in tonic</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0376.html</id><updated>2024-10-02T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2024-0376.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0376: Vulnerability in tonic"/><published>2024-10-01T12:00:00+00:00</published><summary xml:lang="en">Remotely exploitable Denial of Service in Tonic</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/tonic/RUSTSEC-2024-0376.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/tonic/RUSTSEC-2024-0376.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0376&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2024-0376
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Remotely exploitable Denial of Service in Tonic&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2024-10-01&quot;&gt;
-          October  1, 2024
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2024-10-01&quot;&gt;
-          October  1, 2024
-        &lt;/time&gt;
-        
-        &lt;time datetime=&quot;2024-10-02&quot;&gt;
-          (last modified: October  2, 2024)
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/tonic.html&quot;&gt;tonic&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/tonic&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/dos.html&quot;&gt;#dos&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-47609&quot;&gt;CVE-2024-47609&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-4jwc-w2hc-78qv&quot;&gt;GHSA-4jwc-w2hc-78qv&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/hyperium/tonic/security/advisories/GHSA-4jwc-w2hc-78qv&quot;&gt;
-              https://github.com/hyperium/tonic/security/advisories/GHSA-4jwc-w2hc-78qv
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.12.3&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;lt;=0.11.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;h2&gt;Impact&lt;/h2&gt;
-&lt;p&gt;When using &lt;code&gt;tonic::transport::Server&lt;/code&gt; there is a remote DoS attack that can cause the server to exit cleanly on accepting a tcp/tls stream. This can be triggered via causing the accept call to error out with errors there were not covered correctly causing the accept loop to exit.&lt;/p&gt;
-&lt;p&gt;More information can be found &lt;a href=&quot;https://github.com/hyperium/tonic/issues/1897&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;Patches&lt;/h2&gt;
-&lt;p&gt;Upgrading to tonic &lt;code&gt;0.12.3&lt;/code&gt; and above contains the fix.&lt;/p&gt;
-&lt;h2&gt;Workarounds&lt;/h2&gt;
-&lt;p&gt;A custom accept loop is a possible workaround.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
