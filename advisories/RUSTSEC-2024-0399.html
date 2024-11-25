@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package &#x27;rustls&#x27; › RustSec Advisory Database</title>
+<title>RUSTSEC-2024-0399: rustls: rustls network-reachable panic in `Acceptor::accept` › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,58 +52,141 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/rustls/RUSTSEC-2024-0399.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/rustls/RUSTSEC-2024-0399.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2024-0399">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2024-0399
+        
+      </h1>
+      <span class="subtitle"><p>rustls network-reachable panic in <code>Acceptor::accept</code></p>
 </span>
-      <h1>Advisories for package &#x27;rustls&#x27;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2024-11-25">
-    November 25, 2024
-  </time>
-
-  
-  <h3>
     
+
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2024-11-22">
+          November 22, 2024
+        </time>
+      </dd>
+
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2024-11-25">
+          November 25, 2024
+        </time>
         
-    
-    <a href="/advisories/RUSTSEC-2024-0399.html">
-      RUSTSEC-2024-0399: Vulnerability in rustls
-    </a>
-  </h3>
-  <span><p>rustls network-reachable panic in <code>Acceptor::accept</code></p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2024-04-19">
-    April 19, 2024
-  </time>
+      </dd>
 
-  
-  <h3>
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        <a href="/packages/rustls.html">rustls</a>
+          (<a href="https://crates.io/crates/rustls">crates.io</a>)
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        Vulnerability
+        
+      </dd>
+
+      
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/denial-of-service.html">denial-of-service</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/rustls/rustls/issues/2227">
+              https://github.com/rustls/rustls/issues/2227
+            </a>
+          </li>
+        
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&gt;=0.23.18</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+      <dt id="unaffected">Unaffected</dt>
+      <dd>
+        <ul>
+          
+          <li><code>&gt;=0.23, &lt;0.23.13</code></li>
+          
+          <li><code>&lt;=0.22</code></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      
+    </dl>
+
     
-      <span class="tag high">HIGH</span>
-      
-    <a href="/advisories/RUSTSEC-2024-0336.html">
-      RUSTSEC-2024-0336: Vulnerability in rustls
-    </a>
-  </h3>
-  <span><p><code>rustls::ConnectionCommon::complete_io</code> could fall into an infinite loop based on network input</p>
-</span>
-  
-</li>
-      
-    </ul>
+    
+
+    <h3 id="description">Description</h3>
+    <p>A bug introduced in rustls 0.23.13 leads to a panic if the received
+TLS ClientHello is fragmented.  Only servers that use
+<code>rustls::server::Acceptor::accept()</code> are affected.</p>
+<p>Servers that use <code>tokio-rustls</code>'s <code>LazyConfigAcceptor</code> API are affected.</p>
+<p>Servers that use <code>tokio-rustls</code>'s <code>TlsAcceptor</code> API are not affected.</p>
+<p>Servers that use <code>rustls-ffi</code>'s <code>rustls_acceptor_accept</code> API are affected.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
