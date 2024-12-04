@@ -228,6 +228,157 @@
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0402: Vulnerability in hashbrown</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0402.html</id><updated>2024-12-04T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2024-0402.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0402: Vulnerability in hashbrown"/><published>2024-12-04T12:00:00+00:00</published><summary xml:lang="en">Borsh serialization of HashMap is non-canonical</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/hashbrown/RUSTSEC-2024-0402.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/hashbrown/RUSTSEC-2024-0402.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0402&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2024-0402
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Borsh serialization of HashMap is non-canonical&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2024-10-11&quot;&gt;
+          October 11, 2024
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2024-12-04&quot;&gt;
+          December  4, 2024
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/hashbrown.html&quot;&gt;hashbrown&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/hashbrown&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/borsh.html&quot;&gt;#borsh&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/rust-lang/hashbrown/issues/576&quot;&gt;
+              https://github.com/rust-lang/hashbrown/issues/576
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.15.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;lt;=0.14&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;hashbrown::HashMap::borsh_serialize&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;=0.15.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;The borsh serialization of the HashMap did not follow the borsh specification.
+It potentially produced non-canonical encodings dependent on insertion order.
+It also did not perform canonicty checks on decoding.&lt;/p&gt;
+&lt;p&gt;This can result in consensus splits and cause equivalent objects to be
+considered distinct.&lt;/p&gt;
+&lt;p&gt;This was patched in 0.15.1.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0400: Vulnerability in ruzstd</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0400.html</id><updated>2024-11-28T12:00:00+00:00</updated><category term="memory-exposure"/><link href="https://rustsec.org/advisories/RUSTSEC-2024-0400.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0400: Vulnerability in ruzstd"/><published>2024-11-28T12:00:00+00:00</published><summary xml:lang="en">`ruzstd` uninit and out-of-bounds memory reads</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -1216,120 +1367,6 @@ ensuring backward compatibility.&lt;/p&gt;
     &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
     &lt;p&gt;An invalid use of &lt;code&gt;MaybeUninit::uninit().assume_init()&lt;/code&gt; in &lt;code&gt;simd-json-derive&lt;/code&gt;&apos;s derive macro can cause undefined behavior. The original code used &lt;code&gt;MaybeUninit&lt;/code&gt; to avoid initialisation of the struct and then set the fields using &lt;code&gt;ptr::write&lt;/code&gt;. The undefined behavior triggered by this misuse of &lt;code&gt;MaybeUninit&lt;/code&gt; can lead to invlaid memory access and panics in binaries compiled in release mode (aka simd-json-derive prior to version 0.12 has UB and optimizes into some nonsense)&lt;/p&gt;
 &lt;p&gt;The &lt;code&gt;0.12.0&lt;/code&gt; removes this section of code, avoiding the use of MaybeUninit alltogether.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0094: Unsoundness in mimalloc</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0094.html</id><updated>2024-11-10T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2022-0094.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0094: Unsoundness in mimalloc"/><published>2024-11-10T12:00:00+00:00</published><summary xml:lang="en">Mimalloc Can Allocate Memory with Bad Alignment</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/mimalloc/RUSTSEC-2022-0094.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/mimalloc/RUSTSEC-2022-0094.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2022-0094&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2022-0094
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Mimalloc Can Allocate Memory with Bad Alignment&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2022-11-23&quot;&gt;
-          November 23, 2022
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2024-11-10&quot;&gt;
-          November 10, 2024
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/mimalloc.html&quot;&gt;mimalloc&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/mimalloc&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unsound
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/purpleprotocol/mimalloc_rust/issues/87&quot;&gt;
-              https://github.com/purpleprotocol/mimalloc_rust/issues/87
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=0.1.39&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;This crate depended on a promise regarding alignments made by the author of the mimalloc allocator to avoid using aligned allocation functions where possible for performance reasons.
-Since then, the mimalloc allocator&apos;s logic changed, making it break this promise.
-This caused this crate to return memory with an incorrect alignment for some allocations, particularly those with large alignments.
-The flaw was fixed by always using the aligned allocation functions.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
