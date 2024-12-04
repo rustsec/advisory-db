@@ -118,6 +118,340 @@
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0406: Vulnerability in ic-stable-structures</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0406.html</id><updated>2024-12-04T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2024-0406.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0406: Vulnerability in ic-stable-structures"/><published>2024-12-04T12:00:00+00:00</published><summary xml:lang="en">BTreeMap memory leak when deallocating nodes with overflows</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/ic-stable-structures/RUSTSEC-2024-0406.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/ic-stable-structures/RUSTSEC-2024-0406.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0406&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2024-0406
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;BTreeMap memory leak when deallocating nodes with overflows&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2024-05-17&quot;&gt;
+          May 17, 2024
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2024-12-04&quot;&gt;
+          December  4, 2024
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/ic-stable-structures.html&quot;&gt;ic-stable-structures&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/ic-stable-structures&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/canister.html&quot;&gt;#canister&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/icp.html&quot;&gt;#icp&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/memory-leak.html&quot;&gt;#memory-leak&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/stable-memory.html&quot;&gt;#stable-memory&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-4435&quot;&gt;CVE-2024-4435&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-3rcq-39xp-7xjp&quot;&gt;GHSA-3rcq-39xp-7xjp&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/dfinity/stable-structures/pull/212&quot;&gt;
+              https://github.com/dfinity/stable-structures/pull/212
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;5.9 &lt;span class=&quot;tag medium&quot;&gt;
+        MEDIUM
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+          &lt;dt&gt;Attack vector&lt;/dt&gt;&lt;dd&gt;Network&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Attack complexity&lt;/dt&gt;&lt;dd&gt;High&lt;/d&gt;
+          
+
+          
+          &lt;dt&gt;Privileges required&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;User interaction&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Scope&lt;/dt&gt;&lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+      &lt;dd&gt;&lt;a href=&quot;https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H&quot;&gt;CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H&lt;/a&gt;&lt;/dd&gt;
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.6.4&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;lt;0.6.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;When storing unbounded types in a &lt;code&gt;BTreeMap&lt;/code&gt;, a node is represented as a linked list of &amp;quot;memory chunks&amp;quot;. In some cases, when we deallocate a node only the first memory chunk is deallocated, and the rest of the memory chunks remain (incorrectly) allocated, causing a memory leak.&lt;/p&gt;
+&lt;p&gt;In the worst case, depending on how a canister uses the &lt;code&gt;BTreeMap&lt;/code&gt;, an adversary could interact with the canister through its API and trigger interactions with the map that keep consuming memory due to the memory leak. This could potentially lead to using an excessive amount of memory, or even running out of memory.&lt;/p&gt;
+&lt;p&gt;This issue has been fixed in &lt;a href=&quot;https://github.com/dfinity/stable-structures/pull/212&quot;&gt;dfinity/stable-structures/pull/212&lt;/a&gt; by changing the logic for deallocating nodes to ensure that all of a node&apos;s memory chunks are deallocated. Tests have been added to prevent regressions of this nature moving forward.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Users of stable-structure &amp;lt; 0.6.0 are not affected.&lt;/p&gt;
+&lt;h3&gt;Workarounds&lt;/h3&gt;
+&lt;p&gt;Users who are not storing unbounded types in &lt;code&gt;BTreeMap&lt;/code&gt; are not affected and do not need to upgrade. Otherwise, an upgrade to version &lt;code&gt;0.6.4&lt;/code&gt; is necessary.&lt;/p&gt;
+&lt;h3&gt;References&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/dfinity/stable-structures/security/advisories/GHSA-3rcq-39xp-7xjp&quot;&gt;GitHub Security Advisory (GHSA-3rcq-39xp-7xjp)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/dfinity/stable-structures/pull/212&quot;&gt;dfinity/stable-structures/pull/212&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://docs.rs/ic-stable-structures/0.6.4/ic_stable_structures/&quot;&gt;Stable Structures Documentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://internetcomputer.org/docs/current/developer-docs/smart-contracts/maintain/storage#stable-memory&quot;&gt;Stable Memory on the Internet Computer&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0407: Unsoundness in linkme</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0407.html</id><updated>2024-12-04T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2024-0407.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0407: Unsoundness in linkme"/><published>2024-12-04T12:00:00+00:00</published><summary xml:lang="en">Fails to ensure slice elements match the slice&amp;apos;s declared type</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/linkme/RUSTSEC-2024-0407.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/linkme/RUSTSEC-2024-0407.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0407&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2024-0407
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Fails to ensure slice elements match the slice&apos;s declared type&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2024-03-05&quot;&gt;
+          March  5, 2024
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2024-12-04&quot;&gt;
+          December  4, 2024
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/linkme.html&quot;&gt;linkme&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/linkme&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/dtolnay/linkme/issues/82&quot;&gt;
+              https://github.com/dtolnay/linkme/issues/82
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.3.24&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Affected versions allow populating a DistributedSlice of T with elements of an
+arbitrary other type that coerces to T. For example, elements of type &lt;code&gt;&amp;amp;&amp;amp;str&lt;/code&gt;
+could end up in a slice of type &lt;code&gt;[&amp;amp;str]&lt;/code&gt;, since &lt;code&gt;&amp;amp;&amp;amp;str&lt;/code&gt; coerces to &lt;code&gt;&amp;amp;str&lt;/code&gt; via a
+deref coercion.&lt;/p&gt;
+&lt;p&gt;The flaw was corrected by implementing typechecking for distributed slice
+elements in such a way that coercion no longer occurs. The element&apos;s type must
+be a subtype of the slice&apos;s declared element type.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0401: Vulnerability in zlib-rs</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0401.html</id><updated>2024-12-04T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2024-0401.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0401: Vulnerability in zlib-rs"/><published>2024-12-04T12:00:00+00:00</published><summary xml:lang="en">Denial of service because of stack overflow with malicious decompression input</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -1192,230 +1526,6 @@ already been split can be recombined without issue.&lt;/p&gt;
 coefficient range in the &lt;code&gt;sharks::math::random_polynomial&lt;/code&gt; function to &lt;code&gt;0&lt;/code&gt;. The
 &lt;code&gt;blahaj&lt;/code&gt; crate has been made available with a fixed version of the code, after
 attempts to reach the maintainer of the &lt;code&gt;sharks&lt;/code&gt; crate were unsuccessful.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0389: openslide is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0389.html</id><updated>2024-11-10T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2024-0389.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0389: openslide is unmaintained"/><published>2024-11-10T12:00:00+00:00</published><summary xml:lang="en">`openslide` is unmaintained</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/openslide/RUSTSEC-2024-0389.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/openslide/RUSTSEC-2024-0389.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0389&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2024-0389
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;openslide&lt;/code&gt; is unmaintained&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2024-07-03&quot;&gt;
-          July  3, 2024
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2024-11-10&quot;&gt;
-          November 10, 2024
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/openslide.html&quot;&gt;openslide&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/openslide&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unmaintained
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/ojskrede/openslide-rust/issues/4&quot;&gt;
-              https://github.com/ojskrede/openslide-rust/issues/4
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;The &lt;a href=&quot;https://crates.io/crates/openslide&quot;&gt;&lt;code&gt;openslide&lt;/code&gt;&lt;/a&gt; crate is no longer maintained.&lt;/p&gt;
-&lt;p&gt;Last release was on 2018-11-20.&lt;/p&gt;
-&lt;h2&gt;Possible alternatives&lt;/h2&gt;
-&lt;p&gt;Consider using an alternative, for instance:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://crates.io/crates/openslide-rs&quot;&gt;openslide-rs&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://crates.io/crates/pamly&quot;&gt;pamly&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0390: minitrace is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0390.html</id><updated>2024-11-10T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2024-0390.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0390: minitrace is unmaintained"/><published>2024-11-10T12:00:00+00:00</published><summary xml:lang="en">minitrace is Unmaintained</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/minitrace/RUSTSEC-2024-0390.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/minitrace/RUSTSEC-2024-0390.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0390&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2024-0390
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;minitrace is Unmaintained&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2024-08-14&quot;&gt;
-          August 14, 2024
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2024-11-10&quot;&gt;
-          November 10, 2024
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/minitrace.html&quot;&gt;minitrace&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/minitrace&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unmaintained
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/tikv/minitrace-rust/issues/229&quot;&gt;
-              https://github.com/tikv/minitrace-rust/issues/229
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;The minitrace maintainers have decided to continue the development of minitrace under a new organizational structure to improve community governance.&lt;/p&gt;
-&lt;p&gt;In the meantime, minitrace will no longer be maintained. For more details, refer to &lt;a href=&quot;https://github.com/tikv/minitrace-rust/issues/229&quot;&gt;tikv/minitrace-rust#229&lt;/a&gt;.&lt;/p&gt;
-&lt;h2&gt;Possible Alternative(s)&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/fast/fastrace&quot;&gt;fastrace&lt;/a&gt; is maintained by the same team responsible for minitrace, and users are encouraged to migrate to fastrace.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
