@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories with keyword &#x27;uninitialized&#x27; › RustSec Advisory Database</title>
+<title>RUSTSEC-2024-0408: pprof: Unsound usages of `std::slice::from_raw_parts` › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,60 +52,165 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/pprof/RUSTSEC-2024-0408.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/pprof/RUSTSEC-2024-0408.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2024-0408">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2024-0408
+        
+      </h1>
+      <span class="subtitle"><p>Unsound usages of <code>std::slice::from_raw_parts</code></p>
 </span>
-      <h1>Advisories with keyword &#x27;uninitialized&#x27;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2024-12-05">
-    December  5, 2024
-  </time>
+    
 
-  
-  <h3>
-    
-        
-          <span class="tag info">INFO</span>
-        
-    
-    <a href="/advisories/RUSTSEC-2024-0408.html">
-      RUSTSEC-2024-0408: Unsoundness in pprof
-    </a>
-  </h3>
-  <span><p>Unsound usages of <code>std::slice::from_raw_parts</code></p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2021-04-29">
-    April 29, 2021
-  </time>
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2024-12-04">
+          December  4, 2024
+        </time>
+      </dd>
 
-  
-  <h3>
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2024-12-05">
+          December  5, 2024
+        </time>
+        
+      </dd>
+
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        <a href="/packages/pprof.html">pprof</a>
+          (<a href="https://crates.io/crates/pprof">crates.io</a>)
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        <span class="tag info">INFO</span>
+        Unsound
+        
+      </dd>
+
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/align.html">#align</a>
+        
+          <a href="/keywords/uninitialized.html">#uninitialized</a>
+        
+      </dd>
+      
+
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/tikv/pprof-rs/issues/232">
+              https://github.com/tikv/pprof-rs/issues/232
+            </a>
+          </li>
+        
+        
+          <li>
+            <a href="https://github.com/tikv/pprof-rs/pull/255">
+              https://github.com/tikv/pprof-rs/pull/255
+            </a>
+          </li>
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&gt;=0.14.0</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+
+      
+      
+
+      
+      
+    </dl>
+
     
-      <span class="tag high">HIGH</span>
+    
+    <dl>
+      <dt>Affected Functions</dt>
+      <dd>Version</dd>
       
-    <a href="/advisories/RUSTSEC-2021-0054.html">
-      RUSTSEC-2021-0054: Vulnerability in rkyv
-    </a>
-  </h3>
-  <span><p>Archives may contain uninitialized memory</p>
-</span>
-  
-</li>
+      <dt><code>pprof::report::ReportBuilder::build</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&lt;0.14.0</code></li>
+          
+        </ul>
+      </dd>
       
-    </ul>
+      <dt><code>pprof::validate</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&lt;0.14.0</code></li>
+          
+        </ul>
+      </dd>
+      
+    </dl>
+    
+
+    
+
+    <h3 id="description">Description</h3>
+    <p>The library breaks the safety assumptions when using unsafe API <code>std::slice::from_raw_parts</code>. First, when using the API in iterator implementation (<code>TempFdArrayIterator.next</code>), generic type could be any type, which would create and pass a misaligned pointer to the unsafe API. Second, when validating the address, the code passed the type <code>c_void</code>, which could also be any type, leading to potential uninitialized memory exposure.</p>
+<p>Two unsound usages here highlight the necessity for developers to perform type checks before doing type conversion with unsafe API.</p>
+<p>The panic caused by the misalignment causes several downstream applications (e.g., <code>greptimedb</code>) to crash when using <code>pprof::report::ReportBuilder::build</code>.</p>
+<p>This was patched in 0.14.0.</p>
+<p>The developer also suggested moving to <a href="https://crates.io/crates/pprof2">pprof2</a>.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
