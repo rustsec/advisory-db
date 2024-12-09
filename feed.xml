@@ -991,6 +991,161 @@ description and its README.md that the crates are no longer maintained.&lt;/p&gt
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0421: Vulnerability in idna</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0421.html</id><updated>2024-12-09T12:00:00+00:00</updated><category term="privilege-escalation"/><link href="https://rustsec.org/advisories/RUSTSEC-2024-0421.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0421: Vulnerability in idna"/><published>2024-12-09T12:00:00+00:00</published><summary xml:lang="en">`idna` accepts Punycode labels that do not produce any non-ASCII when decoded</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/idna/RUSTSEC-2024-0421.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/idna/RUSTSEC-2024-0421.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0421&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2024-0421
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;idna&lt;/code&gt; accepts Punycode labels that do not produce any non-ASCII when decoded&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2024-12-09&quot;&gt;
+          December  9, 2024
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2024-12-09&quot;&gt;
+          December  9, 2024
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/idna.html&quot;&gt;idna&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/idna&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/privilege-escalation.html&quot;&gt;privilege-escalation&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/idna.html&quot;&gt;#idna&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/punycode.html&quot;&gt;#punycode&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/same-origin.html&quot;&gt;#same-origin&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/domain-name.html&quot;&gt;#domain-name&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-12224&quot;&gt;CVE-2024-12224&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://bugzilla.mozilla.org/show_bug.cgi?id=1887898&quot;&gt;
+              https://bugzilla.mozilla.org/show_bug.cgi?id=1887898
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=1.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;&lt;code&gt;idna&lt;/code&gt; 0.5.0 and earlier accepts Punycode labels that do not produce any non-ASCII output, which means that either ASCII labels or the empty root label can be masked such that they appear unequal without IDNA processing or when processed with a different implementation and equal when processed with &lt;code&gt;idna&lt;/code&gt; 0.5.0 or earlier.&lt;/p&gt;
+&lt;p&gt;Concretely, &lt;code&gt;example.org&lt;/code&gt; and &lt;code&gt;xn--example-.org&lt;/code&gt; become equal after processing by &lt;code&gt;idna&lt;/code&gt; 0.5.0 or earlier. Also, &lt;code&gt;example.org.xn--&lt;/code&gt; and &lt;code&gt;example.org.&lt;/code&gt; become equal after processing by &lt;code&gt;idna&lt;/code&gt; 0.5.0 or earlier.&lt;/p&gt;
+&lt;p&gt;In applications using &lt;code&gt;idna&lt;/code&gt; (but not in &lt;code&gt;idna&lt;/code&gt; itself) this may be able to lead to privilege escalation when host name comparison is part of a privilege check and the behavior is combined with a client that resolves domains with such labels instead of treating them as errors that preclude DNS resolution / URL fetching and with the attacker managing to introduce a DNS entry (and TLS certificate) for an &lt;code&gt;xn--&lt;/code&gt;-masked name that turns into the name of the target when processed by &lt;code&gt;idna&lt;/code&gt; 0.5.0 or earlier.&lt;/p&gt;
+&lt;h2&gt;Remedy&lt;/h2&gt;
+&lt;p&gt;Upgrade to &lt;code&gt;idna&lt;/code&gt; 1.0.3 or later, if depending on &lt;code&gt;idna&lt;/code&gt; directly, or to &lt;code&gt;url&lt;/code&gt; 2.5.4 or later, if depending on &lt;code&gt;idna&lt;/code&gt; via &lt;code&gt;url&lt;/code&gt;. (This issue was fixed in &lt;code&gt;idna&lt;/code&gt; 1.0.0, but versions earlier than 1.0.3 are not recommended for other reasons.)&lt;/p&gt;
+&lt;p&gt;When upgrading, please take a moment to read about &lt;a href=&quot;https://docs.rs/crate/idna_adapter/latest&quot;&gt;alternative Unicode back ends for &lt;code&gt;idna&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you are using Rust earlier than 1.81 in combination with SQLx 0.8.2 or earlier, please also read an &lt;a href=&quot;https://github.com/servo/rust-url/issues/992&quot;&gt;issue&lt;/a&gt; about combining them with &lt;code&gt;url&lt;/code&gt; 2.5.4 and &lt;code&gt;idna&lt;/code&gt; 1.0.3.&lt;/p&gt;
+&lt;h2&gt;Additional information&lt;/h2&gt;
+&lt;p&gt;This issue resulted from &lt;code&gt;idna&lt;/code&gt; 0.5.0 and earlier implementing the UTS 46 specification literally on this point and the specification having this bug. The specification bug has been fixed in &lt;a href=&quot;https://www.unicode.org/reports/tr46/tr46-33.html#Modifications&quot;&gt;revision 33 of UTS 46&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Acknowledgements&lt;/h2&gt;
+&lt;p&gt;Thanks to kageshiron for recognizing the security implications of this behavior.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0418: gdk-sys is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0418.html</id><updated>2024-12-09T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2024-0418.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0418: gdk-sys is unmaintained"/><published>2024-12-09T12:00:00+00:00</published><summary xml:lang="en">gtk-rs GTK3 bindings - no longer maintained</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
