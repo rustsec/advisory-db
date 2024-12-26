@@ -18,7 +18,9 @@ unaffected = ["<= 0.1.2"]
 [affected]
 #arch = ["x86"]
 #os = ["windows"]
-#functions = { "crate_name::MyStruct::vulnerable_fn" = [">= 1.3.0, < 1.3.4"] }
+
+#[affected.functions]
+#"crate_name::MyStruct::vulnerable_fn" = [">= 1.3.0, < 1.3.4"]
 ```
 
 # RustSec Advisory Template - Advisory Title Goes Here

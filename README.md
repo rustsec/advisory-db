@@ -122,7 +122,8 @@ keywords = ["ssl", "mitm"]
 # name (e.g. if the function was renamed between versions). 
 # The path syntax is `cratename::path::to::function`, without any
 # parameters or additional information, followed by a list of version reqs.
-functions = { "mycrate::MyType::vulnerable_function" = ["< 1.2.0, >= 1.1.0"] }
+[affected.functions]
+"mycrate::MyType::vulnerable_function" = ["< 1.2.0, >= 1.1.0"]
 
 # Versions which include fixes for this vulnerability (mandatory)
 # All selectors supported by Cargo are supported here:
