@@ -314,12 +314,12 @@
 <ul>
 <li>
 <p>With <code>destination_is_initially_empty: true</code>, executable permissions are specified when opening the file, via <a href="https://doc.rust-lang.org/std/os/unix/fs/trait.OpenOptionsExt.html#tymethod.mode"><code>OpenOptionsEx::mode</code></a>, by its effect on the behavior of <a href="https://doc.rust-lang.org/std/fs/struct.OpenOptions.html#method.open"><code>OpenOptions::open</code></a>. A mode of 0777 is safe here, for the same reason the default mode of 0666 is safe. When creating a file, the applied mode is the specified mode with any bits unset from it that are set in the umask.</p>
-<p>https://github.com/GitoxideLabs/gitoxide/blob/8d84818240d44e1f5fe78a231b5d9bffd0283918/gix-worktree-state/src/checkout/entry.rs#L265-L268</p>
+<p><a href="https://github.com/GitoxideLabs/gitoxide/blob/8d84818240d44e1f5fe78a231b5d9bffd0283918/gix-worktree-state/src/checkout/entry.rs#L265-L268">https://github.com/GitoxideLabs/gitoxide/blob/8d84818240d44e1f5fe78a231b5d9bffd0283918/gix-worktree-state/src/checkout/entry.rs#L265-L268</a></p>
 <p>The <code>set_executable_after_creation</code> flag in the <code>open_file</code> return value is then <code>false</code>.</p>
 </li>
 <li>
 <p>With <code>destination_is_initially_empty: false</code>, executable permissions are set in a separate step, via <a href="https://doc.rust-lang.org/beta/std/os/unix/fs/trait.PermissionsExt.html#tymethod.set_mode"><code>PermissionsExt::set_mode</code></a> and <a href="https://doc.rust-lang.org/beta/std/fs/fn.set_permissions.html"><code>set_permissions</code></a>. A mode of 0777 is not safe here, because the umask is not applied. The vulnerable code appears in <a href="https://github.com/GitoxideLabs/gitoxide/blob/8d84818240d44e1f5fe78a231b5d9bffd0283918/gix-worktree-state/src/checkout/entry.rs#L279-L299"><code>checkout::entry::finalize_entry</code></a>, which receives the <code>set_executable_after_creation</code> flag originally from <code>open_file</code>:</p>
-<p>https://github.com/GitoxideLabs/gitoxide/blob/8d84818240d44e1f5fe78a231b5d9bffd0283918/gix-worktree-state/src/checkout/entry.rs#L288-L293</p>
+<p><a href="https://github.com/GitoxideLabs/gitoxide/blob/8d84818240d44e1f5fe78a231b5d9bffd0283918/gix-worktree-state/src/checkout/entry.rs#L288-L293">https://github.com/GitoxideLabs/gitoxide/blob/8d84818240d44e1f5fe78a231b5d9bffd0283918/gix-worktree-state/src/checkout/entry.rs#L288-L293</a></p>
 <p>The file has unrestricted permissions.</p>
 </li>
 </ul>

@@ -260,12 +260,12 @@
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;With &lt;code&gt;destination_is_initially_empty: true&lt;/code&gt;, executable permissions are specified when opening the file, via &lt;a href=&quot;https://doc.rust-lang.org/std/os/unix/fs/trait.OpenOptionsExt.html#tymethod.mode&quot;&gt;&lt;code&gt;OpenOptionsEx::mode&lt;/code&gt;&lt;/a&gt;, by its effect on the behavior of &lt;a href=&quot;https://doc.rust-lang.org/std/fs/struct.OpenOptions.html#method.open&quot;&gt;&lt;code&gt;OpenOptions::open&lt;/code&gt;&lt;/a&gt;. A mode of 0777 is safe here, for the same reason the default mode of 0666 is safe. When creating a file, the applied mode is the specified mode with any bits unset from it that are set in the umask.&lt;/p&gt;
-&lt;p&gt;https://github.com/GitoxideLabs/gitoxide/blob/8d84818240d44e1f5fe78a231b5d9bffd0283918/gix-worktree-state/src/checkout/entry.rs#L265-L268&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/GitoxideLabs/gitoxide/blob/8d84818240d44e1f5fe78a231b5d9bffd0283918/gix-worktree-state/src/checkout/entry.rs#L265-L268&quot;&gt;https://github.com/GitoxideLabs/gitoxide/blob/8d84818240d44e1f5fe78a231b5d9bffd0283918/gix-worktree-state/src/checkout/entry.rs#L265-L268&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The &lt;code&gt;set_executable_after_creation&lt;/code&gt; flag in the &lt;code&gt;open_file&lt;/code&gt; return value is then &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;With &lt;code&gt;destination_is_initially_empty: false&lt;/code&gt;, executable permissions are set in a separate step, via &lt;a href=&quot;https://doc.rust-lang.org/beta/std/os/unix/fs/trait.PermissionsExt.html#tymethod.set_mode&quot;&gt;&lt;code&gt;PermissionsExt::set_mode&lt;/code&gt;&lt;/a&gt; and &lt;a href=&quot;https://doc.rust-lang.org/beta/std/fs/fn.set_permissions.html&quot;&gt;&lt;code&gt;set_permissions&lt;/code&gt;&lt;/a&gt;. A mode of 0777 is not safe here, because the umask is not applied. The vulnerable code appears in &lt;a href=&quot;https://github.com/GitoxideLabs/gitoxide/blob/8d84818240d44e1f5fe78a231b5d9bffd0283918/gix-worktree-state/src/checkout/entry.rs#L279-L299&quot;&gt;&lt;code&gt;checkout::entry::finalize_entry&lt;/code&gt;&lt;/a&gt;, which receives the &lt;code&gt;set_executable_after_creation&lt;/code&gt; flag originally from &lt;code&gt;open_file&lt;/code&gt;:&lt;/p&gt;
-&lt;p&gt;https://github.com/GitoxideLabs/gitoxide/blob/8d84818240d44e1f5fe78a231b5d9bffd0283918/gix-worktree-state/src/checkout/entry.rs#L288-L293&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/GitoxideLabs/gitoxide/blob/8d84818240d44e1f5fe78a231b5d9bffd0283918/gix-worktree-state/src/checkout/entry.rs#L288-L293&quot;&gt;https://github.com/GitoxideLabs/gitoxide/blob/8d84818240d44e1f5fe78a231b5d9bffd0283918/gix-worktree-state/src/checkout/entry.rs#L288-L293&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The file has unrestricted permissions.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
