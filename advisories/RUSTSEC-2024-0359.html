@@ -88,6 +88,10 @@
           July 25, 2024
         </time>
         
+        <time datetime="2025-01-19">
+          (last modified: January 19, 2025)
+        </time>
+        
       </dd>
 
       <dt id="package">Package</dt>
@@ -113,6 +117,19 @@
       
 
       
+      <dt id="aliases">Aliases</dt>
+      <dd>
+        <ul>
+          
+          <li>
+            
+            <a href="https://github.com/advisories/GHSA-cx7h-h87r-jpgr">GHSA-cx7h-h87r-jpgr</a>
+            
+          </li>
+          
+        </ul>
+      </dd>
+      
 
       
       <dt id="details">References</dt>
@@ -120,8 +137,8 @@
         <ul>
         
           <li>
-            <a href="https://github.com/Byron/gitoxide/issues/1460">
-              https://github.com/Byron/gitoxide/issues/1460
+            <a href="https://github.com/GitoxideLabs/gitoxide/issues/1460">
+              https://github.com/GitoxideLabs/gitoxide/issues/1460
             </a>
           </li>
         
@@ -161,6 +178,7 @@
 </code></pre>
 <p>The problem is that the non-UTF8 <code>str</code> <strong>is</strong> exposed to outside code: first to the <code>kstring</code> crate itself, which requires UTF-8 in its documentation and may have UB as a consequence of this, but also to <code>serde</code>, where it propagates to e.g. <code>serde_json</code>, <code>serde_yaml</code>, etc., where the same problems occur.</p>
 <p>This is not sound, and it could cause further UB down the line in these places that can view the <code>&amp;str</code>.</p>
+<p><em>Thanks to <a href="https://github.com/ssbr">Devin Jeanpierre</a> for discovering and reporting this issue.</em></p>
 
 
     <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
