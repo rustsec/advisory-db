@@ -1,0 +1,74 @@
+{
+  "schema_version": null,
+  "id": "RUSTSEC-2025-0004",
+  "modified": "2025-02-02T23:37:03Z",
+  "published": "2025-02-02T12:00:00Z",
+  "aliases": [
+    "GHSA-rpmj-rpgj-qmpm"
+  ],
+  "related": [],
+  "summary": "ssl::select_next_proto use after free",
+  "details": "In `openssl` versions before `0.10.70`, `ssl::select_next_proto` can return a slice pointing into the `server` argument's buffer but with a lifetime bound to the `client` argument. In situations where the `server` buffer's lifetime is shorter than the `client` buffer's, this can cause a use after free. This could cause the server to crash or to return arbitrary memory contents to the client.\n\n`openssl` 0.10.70 fixes the signature of `ssl::select_next_proto` to properly constrain the output buffer's lifetime to that of both input buffers.\n\nIn standard usage of `ssl::select_next_proto` in the callback passed to `SslContextBuilder::set_alpn_select_callback`, code is only affected if the `server` buffer is constructed *within* the callback. For example:\n\nNot vulnerable - the server buffer has a `'static` lifetime:\n```rust\nbuilder.set_alpn_select_callback(|_, client_protos| {\n    ssl::select_next_proto(b\"\\x02h2\", client_protos).ok_or_else(AlpnError::NOACK)\n});\n```\n\nNot vulnerable - the server buffer outlives the handshake:\n```rust\nlet server_protos = b\"\\x02h2\".to_vec();\nbuilder.set_alpn_select_callback(|_, client_protos| {\n    ssl::select_next_proto(&server_protos, client_protos).ok_or_else(AlpnError::NOACK)\n});\n```\n\nVulnerable - the server buffer is freed when the callback returns:\n```rust\nbuilder.set_alpn_select_callback(|_, client_protos| {\n    let server_protos = b\"\\x02h2\".to_vec();\n    ssl::select_next_proto(&server_protos, client_protos).ok_or_else(AlpnError::NOACK)\n});\n```",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "openssl",
+        "purl": "pkg:cargo/openssl"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": [
+            "openssl::ssl::select_next_proto"
+          ]
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "memory-exposure"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "0.10.70"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/openssl"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2025-0004.html"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://github.com/sfackler/rust-openssl/security/advisories/GHSA-rpmj-rpgj-qmpm"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/sfackler/rust-openssl/pull/2360"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
