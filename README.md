@@ -122,7 +122,8 @@ keywords = ["ssl", "mitm"]
 # name (e.g. if the function was renamed between versions). 
 # The path syntax is `cratename::path::to::function`, without any
 # parameters or additional information, followed by a list of version reqs.
-functions = { "mycrate::MyType::vulnerable_function" = ["< 1.2.0, >= 1.1.0"] }
+[affected.functions]
+"mycrate::MyType::vulnerable_function" = ["< 1.2.0, >= 1.1.0"]
 
 # Versions which include fixes for this vulnerability (mandatory)
 # All selectors supported by Cargo are supported here:
@@ -153,7 +154,7 @@ They contain a `license` field explicitly indicating their license and a `url` f
 
 [build-image]: https://github.com/rustsec/advisory-db/workflows/Validate/badge.svg
 [build-link]: https://github.com/rustsec/advisory-db/actions
-[maintained-image]: https://img.shields.io/maintenance/yes/2024.svg
+[maintained-image]: https://img.shields.io/maintenance/yes/2025.svg
 [chat-image]: https://img.shields.io/badge/zulip-join_chat-blue.svg
 [chat-link]: https://rust-lang.zulipchat.com/#narrow/stream/146229-wg-secure-code/
 
