@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories with keyword &#x27;uninitialized&#x27; › RustSec Advisory Database</title>
+<title>RUSTSEC-2024-0435: fyrox-core: Unsound usages of `Vec::from_raw_parts` › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,81 +52,152 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/fyrox-core/RUSTSEC-2024-0435.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/fyrox-core/RUSTSEC-2024-0435.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2024-0435">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2024-0435
+        
+      </h1>
+      <span class="subtitle"><p>Unsound usages of <code>Vec::from_raw_parts</code></p>
 </span>
-      <h1>Advisories with keyword &#x27;uninitialized&#x27;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2025-02-14">
-    February 14, 2025
-  </time>
+    
 
-  
-  <h3>
-    
-        
-          <span class="tag info">INFO</span>
-        
-    
-    <a href="/advisories/RUSTSEC-2024-0435.html">
-      RUSTSEC-2024-0435: Unsoundness in fyrox-core
-    </a>
-  </h3>
-  <span><p>Unsound usages of <code>Vec::from_raw_parts</code></p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2024-12-05">
-    December  5, 2024
-  </time>
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2024-12-19">
+          December 19, 2024
+        </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2025-02-14">
+          February 14, 2025
+        </time>
         
-          <span class="tag info">INFO</span>
-        
-    
-    <a href="/advisories/RUSTSEC-2024-0408.html">
-      RUSTSEC-2024-0408: Unsoundness in pprof
-    </a>
-  </h3>
-  <span><p>Unsound usages of <code>std::slice::from_raw_parts</code></p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2021-04-29">
-    April 29, 2021
-  </time>
+      </dd>
 
-  
-  <h3>
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        <a href="/packages/fyrox-core.html">fyrox-core</a>
+          (<a href="https://crates.io/crates/fyrox-core">crates.io</a>)
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        <span class="tag info">INFO</span>
+        Unsound
+        
+      </dd>
+
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/uninitialized.html">#uninitialized</a>
+        
+      </dd>
+      
+
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/FyroxEngine/Fyrox/issues/630">
+              https://github.com/FyroxEngine/Fyrox/issues/630
+            </a>
+          </li>
+        
+        
+          <li>
+            <a href="https://github.com/FyroxEngine/Fyrox/pull/662">
+              https://github.com/FyroxEngine/Fyrox/pull/662
+            </a>
+          </li>
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&gt;=0.36</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+
+      
+      
+
+      
+      
+    </dl>
+
     
-      <span class="tag high">HIGH</span>
+    
+    <dl>
+      <dt>Affected Functions</dt>
+      <dd>Version</dd>
       
-    <a href="/advisories/RUSTSEC-2021-0054.html">
-      RUSTSEC-2021-0054: Vulnerability in rkyv
-    </a>
-  </h3>
-  <span><p>Archives may contain uninitialized memory</p>
-</span>
-  
-</li>
+      <dt><code>fyrox_core::transmute_vec_as_bytes</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&gt;=0.28.1, &lt;=0.36</code></li>
+          
+        </ul>
+      </dd>
       
-    </ul>
+    </dl>
+    
+
+    
+
+    <h3 id="description">Description</h3>
+    <p>The library provides a public safe API <code>transmute_vec_as_bytes</code>, which incorrectly assumes that any generic type <code>T</code> could have stable layout, causing to uninitialized memory exposure if the users pass any types with padding bytes as <code>T</code> and cast it to <code>u8</code> pointer.</p>
+<p>In the <a href="https://github.com/FyroxEngine/Fyrox/issues/630">issue</a>, we develop a PoC to show passing struct type to <code>transmute_vec_as_bytes</code> could lead to undefined behavior with <code>Vec::from_raw_parts</code>.</p>
+<p>The developers provide a patch by changing trait of <code>Copy</code> to <code>Pod</code>, which can make sure <code>T</code> should be plain data. This was patched in the latest version of <a href="https://github.com/FyroxEngine/Fyrox/blob/3f9ad6f9667047dac051b0e97d544e5b38e5ae72/fyrox-core/src/lib.rs#L351-L360">master</a> branch, but still not on the latest release (0.28.1).</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
