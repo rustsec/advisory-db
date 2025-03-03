@@ -57,8 +57,9 @@ unreachable, the following criteria must be met:
 - Contact attempts with the author made with no response. Ideally these
   attempts are made via a public GitHub issue, so that issue can be
   cited in an unmaintained crate advisory if need be. Unresponsiveness
-  by the author over a period of 90 days is suggested before filing an
-  advisory.
+  by the author over a period of 270 days (or 60 days of
+  unresponsiveness after being notified of a vulnerability) is the
+  minimum before a crate will be considered unmaintained.
 
 ### Process
 
