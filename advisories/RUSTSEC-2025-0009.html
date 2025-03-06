@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package &#x27;ring&#x27; › RustSec Advisory Database</title>
+<title>RUSTSEC-2025-0009: ring: Some AES functions may panic when overflow checking is enabled. › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,52 +52,138 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/ring/RUSTSEC-2025-0009.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/ring/RUSTSEC-2025-0009.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2025-0009">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2025-0009
+        
+      </h1>
+      <span class="subtitle"><p>Some AES functions may panic when overflow checking is enabled.</p>
 </span>
-      <h1>Advisories for package &#x27;ring&#x27;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2025-03-06">
-    March  6, 2025
-  </time>
-
-  
-  <h3>
     
+
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2025-03-06">
+          March  6, 2025
+        </time>
+      </dd>
+
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2025-03-06">
+          March  6, 2025
+        </time>
         
-    
-    <a href="/advisories/RUSTSEC-2025-0009.html">
-      RUSTSEC-2025-0009: Vulnerability in ring
-    </a>
-  </h3>
-  <span><p>Some AES functions may panic when overflow checking is enabled.</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2025-02-21">
-    February 21, 2025
-  </time>
+      </dd>
 
-  
-  <h3><a class="withdrawn" href="/advisories/RUSTSEC-2025-0007.html">
-      RUSTSEC-2025-0007
-  </a></h3>
-  (withdrawn advisory)
-  
-</li>
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        <a href="/packages/ring.html">ring</a>
+          (<a href="https://crates.io/crates/ring">crates.io</a>)
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        Vulnerability
+        
+      </dd>
+
       
-    </ul>
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/denial-of-service.html">denial-of-service</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/briansmith/ring/blob/main/RELEASES.md#version-01712-2025-03-05">
+              https://github.com/briansmith/ring/blob/main/RELEASES.md#version-01712-2025-03-05
+            </a>
+          </li>
+        
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&gt;=0.17.12</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+
+      
+      
+    </dl>
+
+    
+    
+
+    <h3 id="description">Description</h3>
+    <p><code>ring::aead::quic::HeaderProtectionKey::new_mask()</code> may panic when overflow
+checking is enabled. In the QUIC protocol, an attacker can induce this panic by
+sending a specially-crafted packet. Even unintentionally it is likely to occur
+in 1 out of every 2**32 packets sent and/or received.</p>
+<p>On 64-bit targets operations using <code>ring::aead::{AES_128_GCM, AES_256_GCM}</code> may
+panic when overflow checking is enabled, when encrypting/decrypting approximately
+68,719,476,700 bytes (about 64 gigabytes) of data in a single chunk. Protocols
+like TLS and SSH are not affected by this because those protocols break large
+amounts of data into small chunks. Similarly, most applications will not
+attempt to encrypt/decrypt 64GB of data in one chunk.</p>
+<p>Overflow checking is not enabled in release mode by default, but
+<code>RUSTFLAGS=&quot;-C overflow-checks&quot;</code> or <code>overflow-checks = true</code> in the Cargo.toml
+profile can override this. Overflow checking is usually enabled by default in
+debug mode.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
