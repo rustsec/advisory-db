@@ -1,0 +1,67 @@
+{
+  "schema_version": null,
+  "id": "RUSTSEC-2024-0437",
+  "modified": "2025-03-07T17:08:56Z",
+  "published": "2024-12-12T12:00:00Z",
+  "aliases": [],
+  "related": [
+    "GHSA-735f-pc8j-v9w8"
+  ],
+  "summary": "Crash due to uncontrolled recursion in protobuf crate",
+  "details": "Affected version of this crate did not properly parse unknown fields when parsing a user-supplied input.\n\nThis allows an attacker to cause a stack overflow when parsing the mssage on untrusted data.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "protobuf",
+        "purl": "pkg:cargo/protobuf"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": [
+            "protobuf::coded_input_stream::CodedInputStream::skip_group"
+          ]
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "denial-of-service"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/protobuf"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2024-0437.html"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/stepancheg/rust-protobuf/issues/749"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
