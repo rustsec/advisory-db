@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories with keyword &#x27;oom&#x27; › RustSec Advisory Database</title>
+<title>RUSTSEC-2025-0015: web-push: Denial of Service via malicious Web Push endpoint › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,96 +52,145 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/web-push/RUSTSEC-2025-0015.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/web-push/RUSTSEC-2025-0015.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2025-0015">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2025-0015
+        
+      </h1>
+      <span class="subtitle"><p>Denial of Service via malicious Web Push endpoint</p>
 </span>
-      <h1>Advisories with keyword &#x27;oom&#x27;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2025-03-22">
-    March 22, 2025
-  </time>
-
-  
-  <h3>
     
+
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2025-02-16">
+          February 16, 2025
+        </time>
+      </dd>
+
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2025-03-22">
+          March 22, 2025
+        </time>
         
-    
-    <a href="/advisories/RUSTSEC-2025-0015.html">
-      RUSTSEC-2025-0015: Vulnerability in web-push
-    </a>
-  </h3>
-  <span><p>Denial of Service via malicious Web Push endpoint</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2022-09-13">
-    September 13, 2022
-  </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="package">Package</dt>
+      <dd>
         
-    
-    <a href="/advisories/RUSTSEC-2022-0055.html">
-      RUSTSEC-2022-0055: Vulnerability in axum-core
-    </a>
-  </h3>
-  <span><p>No default limit put on request bodies</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2020-10-01">
-    October  1, 2020
-  </time>
+        
+        <a href="/packages/web-push.html">web-push</a>
+          (<a href="https://crates.io/crates/web-push">crates.io</a>)
+        
+        
+      </dd>
 
-  
-  <h3>
-    
-      <span class="tag high">HIGH</span>
-      
-    <a href="/advisories/RUSTSEC-2019-0003.html">
-      RUSTSEC-2019-0003: Vulnerability in protobuf
-    </a>
-  </h3>
-  <span><p>Out of Memory in stream::read_raw_bytes_into()</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2020-10-01">
-    October  1, 2020
-  </time>
+      <dt id="type">Type</dt>
+      <dd>
+        
+        Vulnerability
+        
+      </dd>
 
-  
-  <h3>
+      
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/denial-of-service.html">denial-of-service</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/panic.html">#panic</a>
+        
+          <a href="/keywords/oom.html">#oom</a>
+        
+      </dd>
+      
+
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/pimeys/rust-web-push/pull/68">
+              https://github.com/pimeys/rust-web-push/pull/68
+            </a>
+          </li>
+        
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&gt;=0.10.3</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+
+      
+      
+    </dl>
+
     
-      <span class="tag high">HIGH</span>
-      
-    <a href="/advisories/RUSTSEC-2020-0043.html">
-      RUSTSEC-2020-0043: Vulnerability in ws
-    </a>
-  </h3>
-  <span><p>Insufficient size checks in outgoing buffer in ws allows remote attacker to run the process out of memory</p>
-</span>
-  
-</li>
-      
-    </ul>
+    
+
+    <h3 id="description">Description</h3>
+    <p>Prior to version 0.10.3, the built-in clients of the <code>web-push</code> crate
+eagerly allocated memory based on the <code>Content-Length</code> header returned by the
+Web Push endpoint. Malicious Web Push endpoints could return a large
+<code>Content-Length</code> without ever having to send as much data, leading to
+denial of service by memory exhaustion.</p>
+<p>Services providing Web Push notifications typically allow the user to
+register an arbitrary endpoint, so the endpoint should not be trusted.</p>
+<p>The fixed version 0.10.3 now limits the amount of memory it will allocate
+for each response, limits the amount of data it will read from the endpoint,
+and returns an error if the endpoint sends too much data.</p>
+<p>As before, it is recommended that services add a timeout for each request
+to Web Push endpoints.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
