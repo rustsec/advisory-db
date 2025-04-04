@@ -1,5 +1,341 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2025-04-01T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2025-0020: Vulnerability in pyo3</title><id>https://rustsec.org/advisories/RUSTSEC-2025-0020.html</id><updated>2025-04-01T12:00:00+00:00</updated><category term="memory-exposure"/><link href="https://rustsec.org/advisories/RUSTSEC-2025-0020.html" rel="alternate" type="text/html" title="RUSTSEC-2025-0020: Vulnerability in pyo3"/><published>2025-04-01T12:00:00+00:00</published><summary xml:lang="en">Risk of buffer overflow in `PyString::from_object`</summary><content xml:lang="en" type="html">  &lt;article&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2025-04-04T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2025-0021: Vulnerability in gix-features</title><id>https://rustsec.org/advisories/RUSTSEC-2025-0021.html</id><updated>2025-04-04T12:00:00+00:00</updated><category term="crypto-failure"/><link href="https://rustsec.org/advisories/RUSTSEC-2025-0021.html" rel="alternate" type="text/html" title="RUSTSEC-2025-0021: Vulnerability in gix-features"/><published>2025-04-04T12:00:00+00:00</published><summary xml:lang="en">SHA-1 collision attacks are not detected</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/gix-features/RUSTSEC-2025-0021.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/gix-features/RUSTSEC-2025-0021.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2025-0021&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2025-0021
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;SHA-1 collision attacks are not detected&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2025-04-03&quot;&gt;
+          April  3, 2025
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2025-04-04&quot;&gt;
+          April  4, 2025
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/gix-features.html&quot;&gt;gix-features&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/gix-features&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/crypto-failure.html&quot;&gt;crypto-failure&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/hash-collision.html&quot;&gt;#hash-collision&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/sha-1.html&quot;&gt;#sha-1&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/weak-hash.html&quot;&gt;#weak-hash&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-31130&quot;&gt;CVE-2025-31130&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-2frx-2596-x5r6&quot;&gt;GHSA-2frx-2596-x5r6&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/GitoxideLabs/gitoxide/security/advisories/GHSA-2frx-2596-x5r6&quot;&gt;
+              https://github.com/GitoxideLabs/gitoxide/security/advisories/GHSA-2frx-2596-x5r6
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;6.8 &lt;span class=&quot;tag medium&quot;&gt;
+        MEDIUM
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+          &lt;dt&gt;Attack vector&lt;/dt&gt;&lt;dd&gt;Network&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Attack complexity&lt;/dt&gt;&lt;dd&gt;High&lt;/d&gt;
+          
+
+          
+          &lt;dt&gt;Privileges required&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;User interaction&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Scope&lt;/dt&gt;&lt;dd&gt;Changed&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+      &lt;dd&gt;&lt;a href=&quot;https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:N/I:H/A:N&quot;&gt;CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:N/I:H/A:N&lt;/a&gt;&lt;/dd&gt;
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.41.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;gix_features::hash::Hasher::digest&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;lt;0.41.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;gix_features::hash::Hasher::update&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;lt;0.41.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;gix_features::hash::Write::flush&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;lt;0.41.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;gix_features::hash::Write::new&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;lt;0.41.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;gix_features::hash::Write::write&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;lt;0.41.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;gix_features::hash::bytes&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;lt;0.41.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;gix_features::hash::bytes_of_file&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;lt;0.41.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;gix_features::hash::bytes_with_hasher&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;lt;0.41.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;gix_features::hash::hasher&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;lt;0.41.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;h3&gt;Summary&lt;/h3&gt;
+&lt;p&gt;gitoxide uses SHA-1 hash implementations without any collision detection, leaving it vulnerable to hash collision attacks.&lt;/p&gt;
+&lt;h3&gt;Details&lt;/h3&gt;
+&lt;p&gt;gitoxide uses the &lt;code&gt;sha1_smol&lt;/code&gt; or &lt;code&gt;sha1&lt;/code&gt; crate, both of which implement standard SHA-1 without any mitigations for collision attacks. This means that two distinct Git objects with colliding SHA-1 hashes would break the Git object model and integrity checks when used with gitoxide.&lt;/p&gt;
+&lt;p&gt;The SHA-1 function is considered cryptographically insecure. However, in the wake of the SHAttered attacks, this issue was mitigated in Git 2.13.0 in 2017 by using the &lt;a href=&quot;https://github.com/crmarcstevens/sha1collisiondetection&quot;&gt;sha1collisiondetection&lt;/a&gt; algorithm by default and producing an error when known SHA-1 collisions are detected. Git is in the process of migrating to using SHA-256 for object hashes, but this has not been rolled out widely yet and gitoxide does not support SHA-256 object hashes.&lt;/p&gt;
+&lt;h3&gt;PoC&lt;/h3&gt;
+&lt;p&gt;The following program demonstrates the problem, using the two &lt;a href=&quot;https://shattered.io/&quot;&gt;SHAttered PDFs&lt;/a&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-rust&quot;&gt;use sha1_checked::{CollisionResult, Digest};
+
+fn sha1_oid_of_file(filename: &amp;amp;str) -&amp;gt; gix::ObjectId {
+    let mut hasher = gix::features::hash::hasher(gix::hash::Kind::Sha1);
+    hasher.update(&amp;amp;std::fs::read(filename).unwrap());
+    gix::ObjectId::Sha1(hasher.digest())
+}
+
+fn sha1dc_oid_of_file(filename: &amp;amp;str) -&amp;gt; Result&amp;lt;gix::ObjectId, String&amp;gt; {
+    // Matches Git’s behaviour.
+    let mut hasher = sha1_checked::Builder::default().safe_hash(false).build();
+    hasher.update(&amp;amp;std::fs::read(filename).unwrap());
+    match hasher.try_finalize() {
+        CollisionResult::Ok(digest) =&amp;gt; Ok(gix::ObjectId::Sha1(digest.into())),
+        CollisionResult::Mitigated(_) =&amp;gt; unreachable!(),
+        CollisionResult::Collision(digest) =&amp;gt; Err(format!(
+            &amp;quot;Collision attack: {}&amp;quot;,
+            gix::ObjectId::Sha1(digest.into()).to_hex()
+        )),
+    }
+}
+
+fn main() {
+    dbg!(sha1_oid_of_file(&amp;quot;shattered-1.pdf&amp;quot;));
+    dbg!(sha1_oid_of_file(&amp;quot;shattered-2.pdf&amp;quot;));
+    dbg!(sha1dc_oid_of_file(&amp;quot;shattered-1.pdf&amp;quot;));
+    dbg!(sha1dc_oid_of_file(&amp;quot;shattered-2.pdf&amp;quot;));
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The output is as follows:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[src/main.rs:24:5] sha1_oid_of_file(&amp;quot;shattered-1.pdf&amp;quot;) = Sha1(38762cf7f55934b34d179ae6a4c80cadccbb7f0a)
+[src/main.rs:25:5] sha1_oid_of_file(&amp;quot;shattered-2.pdf&amp;quot;) = Sha1(38762cf7f55934b34d179ae6a4c80cadccbb7f0a)
+[src/main.rs:26:5] sha1dc_oid_of_file(&amp;quot;shattered-1.pdf&amp;quot;) = Err(
+    &amp;quot;Collision attack: 38762cf7f55934b34d179ae6a4c80cadccbb7f0a&amp;quot;,
+)
+[src/main.rs:27:5] sha1dc_oid_of_file(&amp;quot;shattered-2.pdf&amp;quot;) = Err(
+    &amp;quot;Collision attack: 38762cf7f55934b34d179ae6a4c80cadccbb7f0a&amp;quot;,
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The latter behaviour matches Git.&lt;/p&gt;
+&lt;p&gt;Since the SHAttered PDFs are not in a valid format for Git objects, a direct proof‐of‐concept using higher‐level APIs cannot be immediately demonstrated without significant computational resources.&lt;/p&gt;
+&lt;h3&gt;Impact&lt;/h3&gt;
+&lt;p&gt;An attacker with the ability to mount a collision attack on SHA-1 like the &lt;a href=&quot;https://shattered.io/&quot;&gt;SHAttered&lt;/a&gt; or &lt;a href=&quot;https://sha-mbles.github.io/&quot;&gt;SHA-1 is a Shambles&lt;/a&gt; attacks could create two distinct Git objects with the same hash. This is becoming increasingly affordable for well‐resourced attackers, with the Shambles researchers in 2020 estimating $45k for a chosen‐prefix collision or $11k for a classical collision, and projecting less than $10k for a chosen‐prefix collision by 2025. The result could be used to disguise malicious repository contents, or potentially exploit assumptions in the logic of programs using gitoxide to cause further vulnerabilities.&lt;/p&gt;
+&lt;p&gt;This vulnerability affects any user of gitoxide, including &lt;code&gt;gix-*&lt;/code&gt; library crates, that reads or writes Git objects.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2025-0020: Vulnerability in pyo3</title><id>https://rustsec.org/advisories/RUSTSEC-2025-0020.html</id><updated>2025-04-01T12:00:00+00:00</updated><category term="memory-exposure"/><link href="https://rustsec.org/advisories/RUSTSEC-2025-0020.html" rel="alternate" type="text/html" title="RUSTSEC-2025-0020: Vulnerability in pyo3"/><published>2025-04-01T12:00:00+00:00</published><summary xml:lang="en">Risk of buffer overflow in `PyString::from_object`</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
           &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/pyo3/RUSTSEC-2025-0020.md&quot;&gt;History&lt;/a&gt; ⋅ 
@@ -1242,170 +1578,6 @@ that this project is not longer maintained as well as archived the repository&lt
 &lt;p&gt;Additionally, the project&apos;s general policy is to only patch the latest release,
 which is 0.17.12 now. It will be difficult for anybody to backport future fixes
 to versions earlier than 0.17.10 due to license changes.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0437: Vulnerability in protobuf</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0437.html</id><updated>2025-03-10T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2024-0437.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0437: Vulnerability in protobuf"/><published>2025-03-07T12:00:00+00:00</published><summary xml:lang="en">Crash due to uncontrolled recursion in protobuf crate</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/protobuf/RUSTSEC-2024-0437.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/protobuf/RUSTSEC-2024-0437.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0437&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2024-0437
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Crash due to uncontrolled recursion in protobuf crate&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2024-12-12&quot;&gt;
-          December 12, 2024
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2025-03-07&quot;&gt;
-          March  7, 2025
-        &lt;/time&gt;
-        
-        &lt;time datetime=&quot;2025-03-10&quot;&gt;
-          (last modified: March 10, 2025)
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/protobuf.html&quot;&gt;protobuf&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/protobuf&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/panic.html&quot;&gt;#panic&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/stepancheg/rust-protobuf/issues/749&quot;&gt;
-              https://github.com/stepancheg/rust-protobuf/issues/749
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;related&quot;&gt;Related&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-735f-pc8j-v9w8&quot;&gt;GHSA-735f-pc8j-v9w8&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;gt;=3.7.2&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-    &lt;dl&gt;
-      &lt;dt&gt;Affected Functions&lt;/dt&gt;
-      &lt;dd&gt;Version&lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;protobuf::coded_input_stream::CodedInputStream::skip_group&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;lt;=3.4.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-    &lt;/dl&gt;
-    
-
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;Affected version of this crate did not properly parse unknown fields when parsing a user-supplied input.&lt;/p&gt;
-&lt;p&gt;This allows an attacker to cause a stack overflow when parsing the mssage on untrusted data.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
