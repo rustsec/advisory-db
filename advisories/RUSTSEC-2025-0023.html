@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package &#x27;tokio&#x27; › RustSec Advisory Database</title>
+<title>RUSTSEC-2025-0023: tokio: Broadcast channel calls clone in parallel, but does not require `Sync` › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,119 +52,143 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/tokio/RUSTSEC-2025-0023.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/tokio/RUSTSEC-2025-0023.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2025-0023">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2025-0023
+        
+      </h1>
+      <span class="subtitle"><p>Broadcast channel calls clone in parallel, but does not require <code>Sync</code></p>
 </span>
-      <h1>Advisories for package &#x27;tokio&#x27;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2025-04-07">
-    April  7, 2025
-  </time>
+    
 
-  
-  <h3>
-    
-        
-          <span class="tag info">INFO</span>
-        
-    
-    <a href="/advisories/RUSTSEC-2025-0023.html">
-      RUSTSEC-2025-0023: Unsoundness in tokio
-    </a>
-  </h3>
-  <span><p>Broadcast channel calls clone in parallel, but does not require <code>Sync</code></p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2023-02-03">
-    February  3, 2023
-  </time>
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2025-04-07">
+          April  7, 2025
+        </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2025-04-07">
+          April  7, 2025
+        </time>
         
-          <span class="tag info">INFO</span>
-        
-    
-    <a href="/advisories/RUSTSEC-2023-0005.html">
-      RUSTSEC-2023-0005: Unsoundness in tokio
-    </a>
-  </h3>
-  <span><p><code>tokio::io::ReadHalf&lt;T&gt;::unsplit</code> is Unsound</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2023-01-09">
-    January  9, 2023
-  </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="package">Package</dt>
+      <dd>
         
-    
-    <a href="/advisories/RUSTSEC-2023-0001.html">
-      RUSTSEC-2023-0001: Vulnerability in tokio
-    </a>
-  </h3>
-  <span><p>reject_remote_clients Configuration corruption</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2021-11-17">
-    November 17, 2021
-  </time>
+        
+        <a href="/packages/tokio.html">tokio</a>
+          (<a href="https://crates.io/crates/tokio">crates.io</a>)
+        
+        
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="type">Type</dt>
+      <dd>
         
-    
-    <a href="/advisories/RUSTSEC-2021-0124.html">
-      RUSTSEC-2021-0124: Vulnerability in tokio
-    </a>
-  </h3>
-  <span><p>Data race when sending and receiving after closing a <code>oneshot</code> channel</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2021-07-08">
-    July  8, 2021
-  </time>
+        <span class="tag info">INFO</span>
+        Unsound
+        
+      </dd>
 
-  
-  <h3>
-    
-        
-    
-    <a href="/advisories/RUSTSEC-2021-0072.html">
-      RUSTSEC-2021-0072: Vulnerability in tokio
-    </a>
-  </h3>
-  <span><p>Task dropped in wrong thread when aborting <code>LocalSet</code> task</p>
-</span>
-  
-</li>
       
-    </ul>
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/memory-corruption.html">memory-corruption</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/tokio-rs/tokio/pull/7232">
+              https://github.com/tokio-rs/tokio/pull/7232
+            </a>
+          </li>
+        
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&gt;=1.38.2, &lt;1.39.0</code></li>
+          
+          <li><code>&gt;=1.43.1, &lt;1.44.0</code></li>
+          
+          <li><code>&gt;=1.44.2</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+      <dt id="unaffected">Unaffected</dt>
+      <dd>
+        <ul>
+          
+          <li><code>&lt;0.2.5</code></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      
+    </dl>
+
+    
+    
+
+    <h3 id="description">Description</h3>
+    <p>The broadcast channel internally calls <code>clone</code> on the stored value when
+receiving it, and only requires <code>T:Send</code>. This means that using the broadcast
+channel with values that are <code>Send</code> but not <code>Sync</code> can trigger unsoundness if
+the <code>clone</code> implementation makes use of the value being <code>!Sync</code>.</p>
+<p>Thank you to Austin Bonander for finding and reporting this issue.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
