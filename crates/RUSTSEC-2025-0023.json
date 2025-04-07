@@ -1,0 +1,78 @@
+{
+  "schema_version": null,
+  "id": "RUSTSEC-2025-0023",
+  "modified": "2025-04-07T07:45:16Z",
+  "published": "2025-04-07T12:00:00Z",
+  "aliases": [],
+  "related": [],
+  "summary": "Broadcast channel calls clone in parallel, but does not require `Sync`",
+  "details": "The broadcast channel internally calls `clone` on the stored value when\nreceiving it, and only requires `T:Send`. This means that using the broadcast\nchannel with values that are `Send` but not `Sync` can trigger unsoundness if\nthe `clone` implementation makes use of the value being `!Sync`.\n\nThank you to Austin Bonander for finding and reporting this issue.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "tokio",
+        "purl": "pkg:cargo/tokio"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "memory-corruption"
+        ],
+        "cvss": null,
+        "informational": "unsound"
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.2.5"
+            },
+            {
+              "fixed": "1.38.2"
+            },
+            {
+              "introduced": "1.39.0"
+            },
+            {
+              "fixed": "1.43.1"
+            },
+            {
+              "introduced": "1.44.0"
+            },
+            {
+              "fixed": "1.44.2"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/tokio"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2025-0023.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/tokio-rs/tokio/pull/7232"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
