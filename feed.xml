@@ -1,5 +1,166 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2025-04-07T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2025-0023: Unsoundness in tokio</title><id>https://rustsec.org/advisories/RUSTSEC-2025-0023.html</id><updated>2025-04-08T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2025-0023.html" rel="alternate" type="text/html" title="RUSTSEC-2025-0023: Unsoundness in tokio"/><published>2025-04-07T12:00:00+00:00</published><summary xml:lang="en">Broadcast channel calls clone in parallel, but does not require `Sync`</summary><content xml:lang="en" type="html">  &lt;article&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2025-04-10T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2025-0024: Vulnerability in crossbeam-channel</title><id>https://rustsec.org/advisories/RUSTSEC-2025-0024.html</id><updated>2025-04-10T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2025-0024.html" rel="alternate" type="text/html" title="RUSTSEC-2025-0024: Vulnerability in crossbeam-channel"/><published>2025-04-10T12:00:00+00:00</published><summary xml:lang="en">crossbeam-channel: double free on Drop</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/crossbeam-channel/RUSTSEC-2025-0024.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/crossbeam-channel/RUSTSEC-2025-0024.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2025-0024&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2025-0024
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;crossbeam-channel: double free on Drop&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2025-04-08&quot;&gt;
+          April  8, 2025
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2025-04-10&quot;&gt;
+          April 10, 2025
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/crossbeam-channel.html&quot;&gt;crossbeam-channel&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/crossbeam-channel&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/race.html&quot;&gt;#race&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            TROVE-2025-013
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/crossbeam-rs/crossbeam/pull/1187&quot;&gt;
+              https://github.com/crossbeam-rs/crossbeam/pull/1187
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;gt;=0.5.15&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;lt;=0.5.11&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;The internal &lt;code&gt;Channel&lt;/code&gt; type&apos;s &lt;code&gt;Drop&lt;/code&gt; method has a race
+which could, in some circumstances, lead to a double-free.
+This could result in memory corruption.&lt;/p&gt;
+&lt;p&gt;Quoting from the
+&lt;a href=&quot;https://github.com/crossbeam-rs/crossbeam/pull/1187#issue-2980761131&quot;&gt;upstream description in merge request #1187&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The problem lies in the fact that &lt;code&gt;dicard_all_messages&lt;/code&gt; contained two paths that could lead to &lt;code&gt;head.block&lt;/code&gt; being read but only one of them would swap the value. This meant that &lt;code&gt;dicard_all_messages&lt;/code&gt; could end up observing a non-null block pointer (and therefore attempting to free it) without setting &lt;code&gt;head.block&lt;/code&gt; to null. This would then lead to &lt;code&gt;Channel::drop&lt;/code&gt; making a second attempt at dropping the same pointer.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The bug was introduced while fixing a memory leak, in
+upstream &lt;a href=&quot;https://github.com/crossbeam-rs/crossbeam/pull/1084&quot;&gt;MR #1084&lt;/a&gt;,
+first published in 0.5.12.&lt;/p&gt;
+&lt;p&gt;The fix is in
+upstream &lt;a href=&quot;https://github.com/crossbeam-rs/crossbeam/pull/1187&quot;&gt;MR #1187&lt;/a&gt;
+and has been published in 0.5.15&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2025-0023: Unsoundness in tokio</title><id>https://rustsec.org/advisories/RUSTSEC-2025-0023.html</id><updated>2025-04-08T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2025-0023.html" rel="alternate" type="text/html" title="RUSTSEC-2025-0023: Unsoundness in tokio"/><published>2025-04-07T12:00:00+00:00</published><summary xml:lang="en">Broadcast channel calls clone in parallel, but does not require `Sync`</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
           &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/tokio/RUSTSEC-2025-0023.md&quot;&gt;History&lt;/a&gt; ⋅ 
@@ -1546,129 +1707,6 @@ a point where the original data was no longer valid, leading to a potential use 
 &lt;/ul&gt;
 &lt;p&gt;This flaw was fixed in &lt;a href=&quot;https://github.com/radekvit/pared/commit/108f540ea8acb6073751a1aa386085c1cdc4fd1e&quot;&gt;108f540ea8acb6073751a1aa386085c1cdc4fd1e&lt;/a&gt;
 by requiring that the type stored in the &lt;code&gt;Arc&lt;/code&gt;s and &lt;code&gt;Rc&lt;/code&gt;s passed to these functions contain &lt;code&gt;T: &apos;static&lt;/code&gt;.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2025-0014: humantime is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2025-0014.html</id><updated>2025-03-12T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2025-0014.html" rel="alternate" type="text/html" title="RUSTSEC-2025-0014: humantime is unmaintained"/><published>2025-03-10T12:00:00+00:00</published><summary xml:lang="en">humantime is unmaintained</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/humantime/RUSTSEC-2025-0014.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/humantime/RUSTSEC-2025-0014.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2025-0014&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        &lt;span class=&quot;withdrawn&quot;&gt;RUSTSEC-2025-0014&lt;/span&gt;
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;humantime is unmaintained&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-    &lt;hr&gt;
-    &lt;p class=&quot;warning&quot;&gt;This advisory has been withdrawn and should be ignored. It is kept only for reference.&lt;/p&gt;
-    &lt;hr&gt;
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2025-03-08&quot;&gt;
-          March  8, 2025
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2025-03-10&quot;&gt;
-          March 10, 2025
-        &lt;/time&gt;
-        
-        &lt;time datetime=&quot;2025-03-12&quot;&gt;
-          (last modified: March 12, 2025)
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/humantime.html&quot;&gt;humantime&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/humantime&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unmaintained
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/tailhook/humantime/issues/31&quot;&gt;
-              https://github.com/tailhook/humantime/issues/31
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;Latest &lt;code&gt;humantime&lt;/code&gt; crates.io release is four years old and GitHub repository has
-not seen commits in four years. Question about maintenance status has not gotten
-any reaction from maintainer: https://github.com/tailhook/humantime/issues/31&lt;/p&gt;
-&lt;h1&gt;Update: maintained again&lt;/h1&gt;
-&lt;p&gt;The maintainer has responded and transferred maintenance to the chronotope organization. 2.2.0 has been released.&lt;/p&gt;
-&lt;h2&gt;Possible alternatives&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://crates.io/crates/jiff&quot;&gt;jiff&lt;/a&gt; provides same kind of functionality&lt;/li&gt;
-&lt;/ul&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
