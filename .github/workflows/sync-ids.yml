@@ -14,17 +14,15 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: Cache cargo bin
+      id: admin-cache
       uses: actions/cache@v4
       with:
         path: ~/.cargo/bin
-        key: rustsec-admin-v0.8.9
+        key: rustsec-admin-b7c69254bda9b8f4c94bc5eaef47e5bb3a97d8cd
 
     - name: Install rustsec-admin
-      run: |
-        VERSION="0.8.9"
-        if ! ( rustsec-admin --version | grep -q "$VERSION" ); then
-          cargo install rustsec-admin --force --vers "$VERSION"
-        fi
+      if: steps.admin-cache.outputs.cache-hit != 'true'
+      run: cargo install --git https://github.com/rustsec/rustsec rustsec-admin --rev b7c69254bda9b8f4c94bc5eaef47e5bb3a97d8cd
 
     - name: Synchronize IDs
       id: sync_ids
