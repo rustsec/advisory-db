@@ -558,7 +558,7 @@ checks in public API:&lt;/p&gt;
 
     
     &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2025-0030: Unsoundness in totally-safe-transmute</title><id>https://rustsec.org/advisories/RUSTSEC-2025-0030.html</id><updated>2025-05-05T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2025-0030.html" rel="alternate" type="text/html" title="RUSTSEC-2025-0030: Unsoundness in totally-safe-transmute"/><published>2025-05-05T12:00:00+00:00</published><summary xml:lang="en">totally-safe-transmute allows transmuting any type to any other type in safe Rust</summary><content xml:lang="en" type="html">  &lt;article&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2025-0030: Unsoundness in totally-safe-transmute</title><id>https://rustsec.org/advisories/RUSTSEC-2025-0030.html</id><updated>2025-05-06T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2025-0030.html" rel="alternate" type="text/html" title="RUSTSEC-2025-0030: Unsoundness in totally-safe-transmute"/><published>2025-05-05T12:00:00+00:00</published><summary xml:lang="en">totally-safe-transmute allows transmuting any type to any other type in safe Rust</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
           &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/totally-safe-transmute/RUSTSEC-2025-0030.md&quot;&gt;History&lt;/a&gt; ⋅ 
@@ -591,6 +591,10 @@ checks in public API:&lt;/p&gt;
       &lt;dd&gt;
         &lt;time datetime=&quot;2025-05-05&quot;&gt;
           May  5, 2025
+        &lt;/time&gt;
+        
+        &lt;time datetime=&quot;2025-05-06&quot;&gt;
+          (last modified: May  6, 2025)
         &lt;/time&gt;
         
       &lt;/dd&gt;
@@ -673,7 +677,8 @@ checks in public API:&lt;/p&gt;
     
 
     &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;This crate uses a known soundness issue (https://github.com/rust-lang/rust/issues/32670) that will never get fixed. In short, Linux provides a file called &lt;code&gt;/proc/self/mem&lt;/code&gt; which can be used by a program to modify its own memory. This library modifies an enum variant number by accessing its own memory as a file to effectively transmute a variable.&lt;/p&gt;
+    &lt;p&gt;This crate is a toy and should never be used.&lt;/p&gt;
+&lt;p&gt;It showcases a known soundness issue (https://github.com/rust-lang/rust/issues/32670) that will never get fixed. In short, Linux provides a file called &lt;code&gt;/proc/self/mem&lt;/code&gt; which can be used by a program to modify its own memory. This library modifies an enum variant number by accessing its own memory as a file to effectively transmute a variable.&lt;/p&gt;
 &lt;p&gt;See also &lt;a href=&quot;https://doc.rust-lang.org/std/os/unix/io/index.html#procselfmem-and-similar-os-features&quot;&gt;https://doc.rust-lang.org/std/os/unix/io/index.html#procselfmem-and-similar-os-features&lt;/a&gt;&lt;/p&gt;
 
 
