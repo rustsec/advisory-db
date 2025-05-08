@@ -151,6 +151,162 @@
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2025-0031: Vulnerability in tanton_engine</title><id>https://rustsec.org/advisories/RUSTSEC-2025-0031.html</id><updated>2025-05-06T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2025-0031.html" rel="alternate" type="text/html" title="RUSTSEC-2025-0031: Vulnerability in tanton_engine"/><published>2025-05-06T12:00:00+00:00</published><summary xml:lang="en">Unsound public API in unmaintained crate</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/tanton_engine/RUSTSEC-2025-0031.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/tanton_engine/RUSTSEC-2025-0031.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2025-0031&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2025-0031
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Unsound public API in unmaintained crate&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2025-04-24&quot;&gt;
+          April 24, 2025
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2025-05-06&quot;&gt;
+          May  6, 2025
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/tanton_engine.html&quot;&gt;tanton_engine&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/tanton_engine&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;tanton_engine::RootMoveList::insert_score&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;^1.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;tanton_engine::RootMoveList::insert_score_depth&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;^1.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;tanton_engine::Stack::offset&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;^1.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;tanton_engine::ThreadStack::get&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;^1.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;The following functions in the &lt;code&gt;tanton_engine&lt;/code&gt; crate are unsound due to lack of sufficient boundary
+checks in public API:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Stack::offset()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ThreadStack::get()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;RootMoveList::insert_score_depth()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;RootMoveList::insert_score()&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The tanton_engine crate is no longer maintained, so there are no plans to fix this issue.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2025-0032: Unsoundness in redox_uefi_std</title><id>https://rustsec.org/advisories/RUSTSEC-2025-0032.html</id><updated>2025-05-06T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2025-0032.html" rel="alternate" type="text/html" title="RUSTSEC-2025-0032: Unsoundness in redox_uefi_std"/><published>2025-05-06T12:00:00+00:00</published><summary xml:lang="en">Safe API can cause heap-buffer-overflow</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -307,22 +463,22 @@
 
     
     &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2025-0031: Vulnerability in tanton_engine</title><id>https://rustsec.org/advisories/RUSTSEC-2025-0031.html</id><updated>2025-05-06T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2025-0031.html" rel="alternate" type="text/html" title="RUSTSEC-2025-0031: Vulnerability in tanton_engine"/><published>2025-05-06T12:00:00+00:00</published><summary xml:lang="en">Unsound public API in unmaintained crate</summary><content xml:lang="en" type="html">  &lt;article&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2025-0030: Unsoundness in totally-safe-transmute</title><id>https://rustsec.org/advisories/RUSTSEC-2025-0030.html</id><updated>2025-05-06T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2025-0030.html" rel="alternate" type="text/html" title="RUSTSEC-2025-0030: Unsoundness in totally-safe-transmute"/><published>2025-05-05T12:00:00+00:00</published><summary xml:lang="en">totally-safe-transmute allows transmuting any type to any other type in safe Rust</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/tanton_engine/RUSTSEC-2025-0031.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/tanton_engine/RUSTSEC-2025-0031.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2025-0031&quot;&gt;JSON (OSV)&lt;/a&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/totally-safe-transmute/RUSTSEC-2025-0030.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/totally-safe-transmute/RUSTSEC-2025-0030.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2025-0030&quot;&gt;JSON (OSV)&lt;/a&gt;
         &lt;/span&gt;
     
 
     &lt;header&gt;
       &lt;h1&gt;
         
-        RUSTSEC-2025-0031
+        RUSTSEC-2025-0030
         
       &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Unsound public API in unmaintained crate&lt;/p&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;totally-safe-transmute allows transmuting any type to any other type in safe Rust&lt;/p&gt;
 &lt;/span&gt;
     &lt;/header&gt;
 
@@ -331,15 +487,19 @@
     &lt;dl&gt;
       &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
       &lt;dd&gt;
-        &lt;time datetime=&quot;2025-04-24&quot;&gt;
-          April 24, 2025
+        &lt;time datetime=&quot;2025-02-10&quot;&gt;
+          February 10, 2025
         &lt;/time&gt;
       &lt;/dd&gt;
 
       &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
       &lt;dd&gt;
+        &lt;time datetime=&quot;2025-05-05&quot;&gt;
+          May  5, 2025
+        &lt;/time&gt;
+        
         &lt;time datetime=&quot;2025-05-06&quot;&gt;
-          May  6, 2025
+          (last modified: May  6, 2025)
         &lt;/time&gt;
         
       &lt;/dd&gt;
@@ -348,8 +508,8 @@
       &lt;dd&gt;
         
         
-        &lt;a href=&quot;/packages/tanton_engine.html&quot;&gt;tanton_engine&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/tanton_engine&quot;&gt;crates.io&lt;/a&gt;)
+        &lt;a href=&quot;/packages/totally-safe-transmute.html&quot;&gt;totally-safe-transmute&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/totally-safe-transmute&quot;&gt;crates.io&lt;/a&gt;)
         
         
       &lt;/dd&gt;
@@ -357,7 +517,8 @@
       &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
       &lt;dd&gt;
         
-        Vulnerability
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
         
       &lt;/dd&gt;
 
@@ -373,9 +534,30 @@
       
 
       
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/soundness-hole.html&quot;&gt;#soundness-hole&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
 
       
 
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/ben0x539/totally-safe-transmute&quot;&gt;
+              https://github.com/ben0x539/totally-safe-transmute
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
       
 
       
@@ -394,68 +576,15 @@
 
       
       
-
-      
-      
     &lt;/dl&gt;
 
     
-    
-    &lt;dl&gt;
-      &lt;dt&gt;Affected Functions&lt;/dt&gt;
-      &lt;dd&gt;Version&lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;tanton_engine::RootMoveList::insert_score&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;^1.0.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;tanton_engine::RootMoveList::insert_score_depth&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;^1.0.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;tanton_engine::Stack::offset&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;^1.0.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;tanton_engine::ThreadStack::get&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;^1.0.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-    &lt;/dl&gt;
-    
-
     
 
     &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;The following functions in the &lt;code&gt;tanton_engine&lt;/code&gt; crate are unsound due to lack of sufficient boundary
-checks in public API:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;Stack::offset()&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;ThreadStack::get()&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;RootMoveList::insert_score_depth()&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;RootMoveList::insert_score()&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The tanton_engine crate is no longer maintained, so there are no plans to fix this issue.&lt;/p&gt;
+    &lt;p&gt;This crate is a toy and should never be used.&lt;/p&gt;
+&lt;p&gt;It showcases a known soundness issue (https://github.com/rust-lang/rust/issues/32670) that will never get fixed. In short, Linux provides a file called &lt;code&gt;/proc/self/mem&lt;/code&gt; which can be used by a program to modify its own memory. This library modifies an enum variant number by accessing its own memory as a file to effectively transmute a variable.&lt;/p&gt;
+&lt;p&gt;See also &lt;a href=&quot;https://doc.rust-lang.org/std/os/unix/io/index.html#procselfmem-and-similar-os-features&quot;&gt;https://doc.rust-lang.org/std/os/unix/io/index.html#procselfmem-and-similar-os-features&lt;/a&gt;&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
@@ -715,22 +844,22 @@ checks in public API:&lt;/p&gt;
 
     
     &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2025-0030: Unsoundness in totally-safe-transmute</title><id>https://rustsec.org/advisories/RUSTSEC-2025-0030.html</id><updated>2025-05-06T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2025-0030.html" rel="alternate" type="text/html" title="RUSTSEC-2025-0030: Unsoundness in totally-safe-transmute"/><published>2025-05-05T12:00:00+00:00</published><summary xml:lang="en">totally-safe-transmute allows transmuting any type to any other type in safe Rust</summary><content xml:lang="en" type="html">  &lt;article&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0439: Vulnerability in wasmtime</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0439.html</id><updated>2025-05-02T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2024-0439.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0439: Vulnerability in wasmtime"/><published>2025-05-02T12:00:00+00:00</published><summary xml:lang="en">Race condition could lead to WebAssembly control-flow integrity and type safety violations</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/totally-safe-transmute/RUSTSEC-2025-0030.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/totally-safe-transmute/RUSTSEC-2025-0030.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2025-0030&quot;&gt;JSON (OSV)&lt;/a&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/wasmtime/RUSTSEC-2024-0439.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/wasmtime/RUSTSEC-2024-0439.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0439&quot;&gt;JSON (OSV)&lt;/a&gt;
         &lt;/span&gt;
     
 
     &lt;header&gt;
       &lt;h1&gt;
         
-        RUSTSEC-2025-0030
+        RUSTSEC-2024-0439
         
       &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;totally-safe-transmute allows transmuting any type to any other type in safe Rust&lt;/p&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Race condition could lead to WebAssembly control-flow integrity and type safety violations&lt;/p&gt;
 &lt;/span&gt;
     &lt;/header&gt;
 
@@ -739,19 +868,15 @@ checks in public API:&lt;/p&gt;
     &lt;dl&gt;
       &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
       &lt;dd&gt;
-        &lt;time datetime=&quot;2025-02-10&quot;&gt;
-          February 10, 2025
+        &lt;time datetime=&quot;2024-10-03&quot;&gt;
+          October  3, 2024
         &lt;/time&gt;
       &lt;/dd&gt;
 
       &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
       &lt;dd&gt;
-        &lt;time datetime=&quot;2025-05-05&quot;&gt;
-          May  5, 2025
-        &lt;/time&gt;
-        
-        &lt;time datetime=&quot;2025-05-06&quot;&gt;
-          (last modified: May  6, 2025)
+        &lt;time datetime=&quot;2025-05-02&quot;&gt;
+          May  2, 2025
         &lt;/time&gt;
         
       &lt;/dd&gt;
@@ -760,8 +885,8 @@ checks in public API:&lt;/p&gt;
       &lt;dd&gt;
         
         
-        &lt;a href=&quot;/packages/totally-safe-transmute.html&quot;&gt;totally-safe-transmute&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/totally-safe-transmute&quot;&gt;crates.io&lt;/a&gt;)
+        &lt;a href=&quot;/packages/wasmtime.html&quot;&gt;wasmtime&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/wasmtime&quot;&gt;crates.io&lt;/a&gt;)
         
         
       &lt;/dd&gt;
@@ -769,8 +894,388 @@ checks in public API:&lt;/p&gt;
       &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
       &lt;dd&gt;
         
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unsound
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-47813&quot;&gt;CVE-2024-47813&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-7qmx-3fpx-r45m&quot;&gt;GHSA-7qmx-3fpx-r45m&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-7qmx-3fpx-r45m&quot;&gt;
+              https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-7qmx-3fpx-r45m
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;2.9 &lt;span class=&quot;tag low&quot;&gt;
+        LOW
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+          &lt;dt&gt;Attack vector&lt;/dt&gt;&lt;dd&gt;Local&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Attack complexity&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Privileges required&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;User interaction&lt;/dt&gt;&lt;dd&gt;Required&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Scope&lt;/dt&gt;&lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+      &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:U/C:N/I:L/A:L&quot;&gt;CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:U/C:N/I:L/A:L&lt;/a&gt;&lt;/dd&gt;
+      
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=21.0.2, &amp;#60;22.0.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=22.0.1, &amp;#60;23.0.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=23.0.3, &amp;#60;24.0.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=24.0.1, &amp;#60;25.0.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=25.0.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;19.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;This is an entry in the RustSec database for the Wasmtime security advisory
+located at
+https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-7qmx-3fpx-r45m.
+For more information see the GitHub-hosted security advisory.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0093: Vulnerability in wasmtime</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0093.html</id><updated>2025-05-02T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2023-0093.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0093: Vulnerability in wasmtime"/><published>2025-05-02T12:00:00+00:00</published><summary xml:lang="en">Miscompilation of `i8x16.select` with the same inputs on x86\_64</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/wasmtime/RUSTSEC-2023-0093.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/wasmtime/RUSTSEC-2023-0093.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2023-0093&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2023-0093
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Miscompilation of &lt;code&gt;i8x16.select&lt;/code&gt; with the same inputs on x86_64&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-03-03&quot;&gt;
+          March  3, 2023
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2025-05-02&quot;&gt;
+          May  2, 2025
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/wasmtime.html&quot;&gt;wasmtime&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/wasmtime&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-27477&quot;&gt;CVE-2023-27477&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-xm67-587q-r2vw&quot;&gt;GHSA-xm67-587q-r2vw&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-xm67-587q-r2vw&quot;&gt;
+              https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-xm67-587q-r2vw
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;3.1 &lt;span class=&quot;tag low&quot;&gt;
+        LOW
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+          &lt;dt&gt;Attack vector&lt;/dt&gt;&lt;dd&gt;Network&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Attack complexity&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Privileges required&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;User interaction&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Scope&lt;/dt&gt;&lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+      &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:N/I:L/A:N&quot;&gt;CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:N/I:L/A:N&lt;/a&gt;&lt;/dd&gt;
+      
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=4.0.1, &amp;#60;5.0.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=5.0.1, &amp;#60;6.0.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=6.0.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;This is an entry in the RustSec database for the Wasmtime security advisory
+located at
+https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-xm67-587q-r2vw.
+For more information see the GitHub-hosted security advisory.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0090: Vulnerability in wasmtime</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0090.html</id><updated>2025-05-02T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0090.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0090: Vulnerability in wasmtime"/><published>2025-05-02T12:00:00+00:00</published><summary xml:lang="en">Guest-controlled out-of-bounds read/write on x86\_64</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/wasmtime/RUSTSEC-2023-0090.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/wasmtime/RUSTSEC-2023-0090.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2023-0090&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2023-0090
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Guest-controlled out-of-bounds read/write on x86_64&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2023-03-02&quot;&gt;
+          March  2, 2023
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2025-05-02&quot;&gt;
+          May  2, 2025
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/wasmtime.html&quot;&gt;wasmtime&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/wasmtime&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
         
       &lt;/dd&gt;
 
@@ -786,14 +1291,26 @@ checks in public API:&lt;/p&gt;
       
 
       
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/soundness-hole.html&quot;&gt;#soundness-hole&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
 
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-26489&quot;&gt;CVE-2023-26489&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-ff4p-7xrq-q5r8&quot;&gt;GHSA-ff4p-7xrq-q5r8&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
       
 
       
@@ -802,8 +1319,8 @@ checks in public API:&lt;/p&gt;
         &lt;ul&gt;
         
           &lt;li&gt;
-            &lt;a href=&quot;https://github.com/ben0x539/totally-safe-transmute&quot;&gt;
-              https://github.com/ben0x539/totally-safe-transmute
+            &lt;a href=&quot;https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-ff4p-7xrq-q5r8&quot;&gt;
+              https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-ff4p-7xrq-q5r8
             &lt;/a&gt;
           &lt;/li&gt;
         
@@ -815,12 +1332,68 @@ checks in public API:&lt;/p&gt;
       
 
       
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;9.9 &lt;span class=&quot;tag critical&quot;&gt;
+        CRITICAL
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+          &lt;dt&gt;Attack vector&lt;/dt&gt;&lt;dd&gt;Network&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Attack complexity&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Privileges required&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;User interaction&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Scope&lt;/dt&gt;&lt;dd&gt;Changed&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+      &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:H/A:H&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:H/A:H&lt;/a&gt;&lt;/dd&gt;
+      
+
       
 
       &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
       &lt;dd&gt;
         
-        no patched versions
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=4.0.1, &amp;#60;5.0.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=5.0.1, &amp;#60;6.0.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=6.0.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
         
       &lt;/dd&gt;
 
@@ -834,9 +1407,192 @@ checks in public API:&lt;/p&gt;
     
 
     &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;This crate is a toy and should never be used.&lt;/p&gt;
-&lt;p&gt;It showcases a known soundness issue (https://github.com/rust-lang/rust/issues/32670) that will never get fixed. In short, Linux provides a file called &lt;code&gt;/proc/self/mem&lt;/code&gt; which can be used by a program to modify its own memory. This library modifies an enum variant number by accessing its own memory as a file to effectively transmute a variable.&lt;/p&gt;
-&lt;p&gt;See also &lt;a href=&quot;https://doc.rust-lang.org/std/os/unix/io/index.html#procselfmem-and-similar-os-features&quot;&gt;https://doc.rust-lang.org/std/os/unix/io/index.html#procselfmem-and-similar-os-features&lt;/a&gt;&lt;/p&gt;
+    &lt;p&gt;This is an entry in the RustSec database for the Wasmtime security advisory
+located at
+https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-ff4p-7xrq-q5r8.
+For more information see the GitHub-hosted security advisory.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0097: Vulnerability in wasmtime</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0097.html</id><updated>2025-05-02T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2022-0097.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0097: Vulnerability in wasmtime"/><published>2025-05-02T12:00:00+00:00</published><summary xml:lang="en">Out of bounds write in `wasmtime_trap_code` C API function</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/wasmtime/RUSTSEC-2022-0097.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/wasmtime/RUSTSEC-2022-0097.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2022-0097&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2022-0097
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Out of bounds write in &lt;code&gt;wasmtime_trap_code&lt;/code&gt; C API function&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2022-11-07&quot;&gt;
+          November  7, 2022
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2025-05-02&quot;&gt;
+          May  2, 2025
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/wasmtime.html&quot;&gt;wasmtime&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/wasmtime&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-39394&quot;&gt;CVE-2022-39394&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-h84q-m8rr-3v9q&quot;&gt;GHSA-h84q-m8rr-3v9q&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-h84q-m8rr-3v9q&quot;&gt;
+              https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-h84q-m8rr-3v9q
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;3.8 &lt;span class=&quot;tag low&quot;&gt;
+        LOW
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+          &lt;dt&gt;Attack vector&lt;/dt&gt;&lt;dd&gt;Local&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Attack complexity&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Privileges required&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;User interaction&lt;/dt&gt;&lt;dd&gt;Required&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Scope&lt;/dt&gt;&lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+      &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:U/C:L/I:L/A:L&quot;&gt;CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:U/C:L/I:L/A:L&lt;/a&gt;&lt;/dd&gt;
+      
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=1.0.2, &amp;#60;2.0.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=2.0.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;This is an entry in the RustSec database for the Wasmtime security advisory
+located at
+https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-h84q-m8rr-3v9q.
+For more information see the GitHub-hosted security advisory.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
@@ -1041,138 +1797,6 @@ For more information see the GitHub-hosted security advisory.&lt;/p&gt;
 
     
     &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0095: Vulnerability in wasmtime</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0095.html</id><updated>2025-05-02T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2022-0095.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0095: Vulnerability in wasmtime"/><published>2025-05-02T12:00:00+00:00</published><summary xml:lang="en">Miscompilation of `i8x16.swizzle` and `select` with v128 inputs</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/wasmtime/RUSTSEC-2022-0095.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/wasmtime/RUSTSEC-2022-0095.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2022-0095&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2022-0095
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Miscompilation of &lt;code&gt;i8x16.swizzle&lt;/code&gt; and &lt;code&gt;select&lt;/code&gt; with v128 inputs&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2022-06-27&quot;&gt;
-          June 27, 2022
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2025-05-02&quot;&gt;
-          May  2, 2025
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/wasmtime.html&quot;&gt;wasmtime&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/wasmtime&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-31104&quot;&gt;CVE-2022-31104&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-jqwc-c49r-4w2x&quot;&gt;GHSA-jqwc-c49r-4w2x&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-jqwc-c49r-4w2x&quot;&gt;
-              https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-jqwc-c49r-4w2x
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=0.38.1&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;This is an entry in the RustSec database for the Wasmtime security advisory
-located at
-https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-jqwc-c49r-4w2x.
-For more information see the GitHub-hosted security advisory.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0098: Vulnerability in wasmtime</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0098.html</id><updated>2025-05-02T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2022-0098.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0098: Vulnerability in wasmtime"/><published>2025-05-02T12:00:00+00:00</published><summary xml:lang="en">Data leakage between instances in the pooling allocator</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -1347,1267 +1971,6 @@ For more information see the GitHub-hosted security advisory.&lt;/p&gt;
     &lt;p&gt;This is an entry in the RustSec database for the Wasmtime security advisory
 located at
 https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-wh6w-3828-g9qf.
-For more information see the GitHub-hosted security advisory.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0439: Vulnerability in wasmtime</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0439.html</id><updated>2025-05-02T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2024-0439.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0439: Vulnerability in wasmtime"/><published>2025-05-02T12:00:00+00:00</published><summary xml:lang="en">Race condition could lead to WebAssembly control-flow integrity and type safety violations</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/wasmtime/RUSTSEC-2024-0439.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/wasmtime/RUSTSEC-2024-0439.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0439&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2024-0439
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Race condition could lead to WebAssembly control-flow integrity and type safety violations&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2024-10-03&quot;&gt;
-          October  3, 2024
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2025-05-02&quot;&gt;
-          May  2, 2025
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/wasmtime.html&quot;&gt;wasmtime&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/wasmtime&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-47813&quot;&gt;CVE-2024-47813&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-7qmx-3fpx-r45m&quot;&gt;GHSA-7qmx-3fpx-r45m&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-7qmx-3fpx-r45m&quot;&gt;
-              https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-7qmx-3fpx-r45m
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
-      &lt;dd&gt;2.9 &lt;span class=&quot;tag low&quot;&gt;
-        LOW
-      &lt;/span&gt;&lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;dl&gt;
-          
-          &lt;dt&gt;Attack vector&lt;/dt&gt;&lt;dd&gt;Local&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Attack complexity&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Privileges required&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;User interaction&lt;/dt&gt;&lt;dd&gt;Required&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Scope&lt;/dt&gt;&lt;dd&gt;Unchanged&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
-          
-        &lt;/dl&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
-
-      
-      &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:U/C:N/I:L/A:L&quot;&gt;CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:U/C:N/I:L/A:L&lt;/a&gt;&lt;/dd&gt;
-      
-
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=21.0.2, &amp;#60;22.0.0&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=22.0.1, &amp;#60;23.0.0&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=23.0.3, &amp;#60;24.0.0&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=24.0.1, &amp;#60;25.0.0&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=25.0.2&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#60;19.0.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;This is an entry in the RustSec database for the Wasmtime security advisory
-located at
-https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-7qmx-3fpx-r45m.
-For more information see the GitHub-hosted security advisory.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0091: Vulnerability in wasmtime</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0091.html</id><updated>2025-05-02T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2023-0091.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0091: Vulnerability in wasmtime"/><published>2025-05-02T12:00:00+00:00</published><summary xml:lang="en">Miscompilation of wasm `i64x2.shr_s` instruction with constant input on x86\_64</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/wasmtime/RUSTSEC-2023-0091.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/wasmtime/RUSTSEC-2023-0091.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2023-0091&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2023-0091
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Miscompilation of wasm &lt;code&gt;i64x2.shr_s&lt;/code&gt; instruction with constant input on x86_64&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-09-05&quot;&gt;
-          September  5, 2023
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2025-05-02&quot;&gt;
-          May  2, 2025
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/wasmtime.html&quot;&gt;wasmtime&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/wasmtime&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-41880&quot;&gt;CVE-2023-41880&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-gw5p-q8mj-p7gh&quot;&gt;GHSA-gw5p-q8mj-p7gh&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-gw5p-q8mj-p7gh&quot;&gt;
-              https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-gw5p-q8mj-p7gh
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
-      &lt;dd&gt;2.2 &lt;span class=&quot;tag low&quot;&gt;
-        LOW
-      &lt;/span&gt;&lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;dl&gt;
-          
-          &lt;dt&gt;Attack vector&lt;/dt&gt;&lt;dd&gt;Network&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Attack complexity&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Privileges required&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;User interaction&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Scope&lt;/dt&gt;&lt;dd&gt;Unchanged&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
-          
-        &lt;/dl&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
-
-      
-      &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:N/I:L/A:N&quot;&gt;CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:N/I:L/A:N&lt;/a&gt;&lt;/dd&gt;
-      
-
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=10.0.2, &amp;#60;11.0.0&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=11.0.2, &amp;#60;12.0.0&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=12.0.2&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;This is an entry in the RustSec database for the Wasmtime security advisory
-located at
-https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-gw5p-q8mj-p7gh.
-For more information see the GitHub-hosted security advisory.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0099: Vulnerability in wasmtime</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0099.html</id><updated>2025-05-02T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2022-0099.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0099: Vulnerability in wasmtime"/><published>2025-05-02T12:00:00+00:00</published><summary xml:lang="en"> Use after free with `externref`s and epoch interruption in Wasmtime</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/wasmtime/RUSTSEC-2022-0099.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/wasmtime/RUSTSEC-2022-0099.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2022-0099&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2022-0099
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Use after free with &lt;code&gt;externref&lt;/code&gt;s and epoch interruption in Wasmtime&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2022-03-28&quot;&gt;
-          March 28, 2022
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2025-05-02&quot;&gt;
-          May  2, 2025
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/wasmtime.html&quot;&gt;wasmtime&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/wasmtime&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-24791&quot;&gt;CVE-2022-24791&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-gwc9-348x-qwv2&quot;&gt;GHSA-gwc9-348x-qwv2&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-gwc9-348x-qwv2&quot;&gt;
-              https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-gwc9-348x-qwv2
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=0.35.2&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=0.34.2, &amp;#60;0.35.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;This is an entry in the RustSec database for the Wasmtime security advisory
-located at
-https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-gwc9-348x-qwv2.
-For more information see the GitHub-hosted security advisory.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0102: Vulnerability in wasmtime</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0102.html</id><updated>2025-05-02T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2022-0102.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0102: Vulnerability in wasmtime"/><published>2025-05-02T12:00:00+00:00</published><summary xml:lang="en">Out of bounds read/write with zero-memory-pages configuration</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/wasmtime/RUSTSEC-2022-0102.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/wasmtime/RUSTSEC-2022-0102.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2022-0102&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2022-0102
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Out of bounds read/write with zero-memory-pages configuration&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2022-11-05&quot;&gt;
-          November  5, 2022
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2025-05-02&quot;&gt;
-          May  2, 2025
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/wasmtime.html&quot;&gt;wasmtime&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/wasmtime&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-39392&quot;&gt;CVE-2022-39392&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-44mr-8vmm-wjhg&quot;&gt;GHSA-44mr-8vmm-wjhg&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-44mr-8vmm-wjhg&quot;&gt;
-              https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-44mr-8vmm-wjhg
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
-      &lt;dd&gt;5.9 &lt;span class=&quot;tag medium&quot;&gt;
-        MEDIUM
-      &lt;/span&gt;&lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;dl&gt;
-          
-          &lt;dt&gt;Attack vector&lt;/dt&gt;&lt;dd&gt;Network&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Attack complexity&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Privileges required&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;User interaction&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Scope&lt;/dt&gt;&lt;dd&gt;Unchanged&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
-          
-        &lt;/dl&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
-
-      
-      &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:H/I:H/A:N&quot;&gt;CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:H/I:H/A:N&lt;/a&gt;&lt;/dd&gt;
-      
-
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=1.0.2, &amp;#60;2.0.0&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=2.0.2&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;This is an entry in the RustSec database for the Wasmtime security advisory
-located at
-https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-44mr-8vmm-wjhg.
-For more information see the GitHub-hosted security advisory.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0093: Vulnerability in wasmtime</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0093.html</id><updated>2025-05-02T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2023-0093.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0093: Vulnerability in wasmtime"/><published>2025-05-02T12:00:00+00:00</published><summary xml:lang="en">Miscompilation of `i8x16.select` with the same inputs on x86\_64</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/wasmtime/RUSTSEC-2023-0093.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/wasmtime/RUSTSEC-2023-0093.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2023-0093&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2023-0093
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Miscompilation of &lt;code&gt;i8x16.select&lt;/code&gt; with the same inputs on x86_64&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2023-03-03&quot;&gt;
-          March  3, 2023
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2025-05-02&quot;&gt;
-          May  2, 2025
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/wasmtime.html&quot;&gt;wasmtime&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/wasmtime&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-27477&quot;&gt;CVE-2023-27477&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-xm67-587q-r2vw&quot;&gt;GHSA-xm67-587q-r2vw&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-xm67-587q-r2vw&quot;&gt;
-              https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-xm67-587q-r2vw
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
-      &lt;dd&gt;3.1 &lt;span class=&quot;tag low&quot;&gt;
-        LOW
-      &lt;/span&gt;&lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;dl&gt;
-          
-          &lt;dt&gt;Attack vector&lt;/dt&gt;&lt;dd&gt;Network&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Attack complexity&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Privileges required&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;User interaction&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Scope&lt;/dt&gt;&lt;dd&gt;Unchanged&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
-          
-        &lt;/dl&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
-
-      
-      &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:N/I:L/A:N&quot;&gt;CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:N/I:L/A:N&lt;/a&gt;&lt;/dd&gt;
-      
-
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=4.0.1, &amp;#60;5.0.0&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=5.0.1, &amp;#60;6.0.0&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=6.0.1&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;This is an entry in the RustSec database for the Wasmtime security advisory
-located at
-https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-xm67-587q-r2vw.
-For more information see the GitHub-hosted security advisory.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0441: Vulnerability in wasmtime</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0441.html</id><updated>2025-05-02T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2024-0441.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0441: Vulnerability in wasmtime"/><published>2025-05-02T12:00:00+00:00</published><summary xml:lang="en">Panic when using a dropped extenref-typed element segment</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/wasmtime/RUSTSEC-2024-0441.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/wasmtime/RUSTSEC-2024-0441.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0441&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2024-0441
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Panic when using a dropped extenref-typed element segment&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2024-04-02&quot;&gt;
-          April  2, 2024
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2025-05-02&quot;&gt;
-          May  2, 2025
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/wasmtime.html&quot;&gt;wasmtime&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/wasmtime&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-30266&quot;&gt;CVE-2024-30266&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-75hq-h6g9-h4q5&quot;&gt;GHSA-75hq-h6g9-h4q5&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-75hq-h6g9-h4q5&quot;&gt;
-              https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-75hq-h6g9-h4q5
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
-      &lt;dd&gt;3.3 &lt;span class=&quot;tag low&quot;&gt;
-        LOW
-      &lt;/span&gt;&lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;dl&gt;
-          
-          &lt;dt&gt;Attack vector&lt;/dt&gt;&lt;dd&gt;Local&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Attack complexity&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Privileges required&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;User interaction&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Scope&lt;/dt&gt;&lt;dd&gt;Unchanged&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
-          
-        &lt;/dl&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
-
-      
-      &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L&quot;&gt;CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L&lt;/a&gt;&lt;/dd&gt;
-      
-
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=19.0.1&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#60;19.0.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;This is an entry in the RustSec database for the Wasmtime security advisory
-located at
-https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-75hq-h6g9-h4q5.
-For more information see the GitHub-hosted security advisory.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0097: Vulnerability in wasmtime</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0097.html</id><updated>2025-05-02T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2022-0097.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0097: Vulnerability in wasmtime"/><published>2025-05-02T12:00:00+00:00</published><summary xml:lang="en">Out of bounds write in `wasmtime_trap_code` C API function</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/wasmtime/RUSTSEC-2022-0097.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/wasmtime/RUSTSEC-2022-0097.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2022-0097&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2022-0097
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Out of bounds write in &lt;code&gt;wasmtime_trap_code&lt;/code&gt; C API function&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2022-11-07&quot;&gt;
-          November  7, 2022
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2025-05-02&quot;&gt;
-          May  2, 2025
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/wasmtime.html&quot;&gt;wasmtime&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/wasmtime&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-39394&quot;&gt;CVE-2022-39394&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-h84q-m8rr-3v9q&quot;&gt;GHSA-h84q-m8rr-3v9q&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-h84q-m8rr-3v9q&quot;&gt;
-              https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-h84q-m8rr-3v9q
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
-      &lt;dd&gt;3.8 &lt;span class=&quot;tag low&quot;&gt;
-        LOW
-      &lt;/span&gt;&lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;dl&gt;
-          
-          &lt;dt&gt;Attack vector&lt;/dt&gt;&lt;dd&gt;Local&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Attack complexity&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Privileges required&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;User interaction&lt;/dt&gt;&lt;dd&gt;Required&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Scope&lt;/dt&gt;&lt;dd&gt;Unchanged&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
-          
-        &lt;/dl&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
-
-      
-      &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:U/C:L/I:L/A:L&quot;&gt;CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:U/C:L/I:L/A:L&lt;/a&gt;&lt;/dd&gt;
-      
-
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=1.0.2, &amp;#60;2.0.0&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=2.0.2&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;This is an entry in the RustSec database for the Wasmtime security advisory
-located at
-https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-h84q-m8rr-3v9q.
 For more information see the GitHub-hosted security advisory.&lt;/p&gt;
 
 
@@ -2809,149 +2172,6 @@ For more information see the GitHub-hosted security advisory.&lt;/p&gt;
 
     
     &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0096: Vulnerability in wasmtime</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0096.html</id><updated>2025-05-02T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2022-0096.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0096: Vulnerability in wasmtime"/><published>2025-05-02T12:00:00+00:00</published><summary xml:lang="en">Invalid drop of VMExternRef from partially-initialized instances in the pooling instance allocator</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/wasmtime/RUSTSEC-2022-0096.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/wasmtime/RUSTSEC-2022-0096.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2022-0096&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2022-0096
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Invalid drop of VMExternRef from partially-initialized instances in the pooling instance allocator&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2022-02-17&quot;&gt;
-          February 17, 2022
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2025-05-02&quot;&gt;
-          May  2, 2025
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/wasmtime.html&quot;&gt;wasmtime&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/wasmtime&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-23636&quot;&gt;CVE-2022-23636&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-88xq-w8cq-xfg7&quot;&gt;GHSA-88xq-w8cq-xfg7&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-88xq-w8cq-xfg7&quot;&gt;
-              https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-88xq-w8cq-xfg7
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=0.33.1, &amp;#60;0.34.0&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=0.34.1&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;This is an entry in the RustSec database for the Wasmtime security advisory
-located at
-https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-88xq-w8cq-xfg7.
-For more information see the GitHub-hosted security advisory.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0100: Vulnerability in wasmtime</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0100.html</id><updated>2025-05-02T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2022-0100.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0100: Vulnerability in wasmtime"/><published>2025-05-02T12:00:00+00:00</published><summary xml:lang="en">Use After Free with `externref`s in Wasmtime</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -3093,22 +2313,22 @@ For more information see the GitHub-hosted security advisory.&lt;/p&gt;
 
     
     &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0090: Vulnerability in wasmtime</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0090.html</id><updated>2025-05-02T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2023-0090.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0090: Vulnerability in wasmtime"/><published>2025-05-02T12:00:00+00:00</published><summary xml:lang="en">Guest-controlled out-of-bounds read/write on x86\_64</summary><content xml:lang="en" type="html">  &lt;article&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0441: Vulnerability in wasmtime</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0441.html</id><updated>2025-05-02T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2024-0441.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0441: Vulnerability in wasmtime"/><published>2025-05-02T12:00:00+00:00</published><summary xml:lang="en">Panic when using a dropped extenref-typed element segment</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/wasmtime/RUSTSEC-2023-0090.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/wasmtime/RUSTSEC-2023-0090.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2023-0090&quot;&gt;JSON (OSV)&lt;/a&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/wasmtime/RUSTSEC-2024-0441.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/wasmtime/RUSTSEC-2024-0441.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0441&quot;&gt;JSON (OSV)&lt;/a&gt;
         &lt;/span&gt;
     
 
     &lt;header&gt;
       &lt;h1&gt;
         
-        RUSTSEC-2023-0090
+        RUSTSEC-2024-0441
         
       &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Guest-controlled out-of-bounds read/write on x86_64&lt;/p&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Panic when using a dropped extenref-typed element segment&lt;/p&gt;
 &lt;/span&gt;
     &lt;/header&gt;
 
@@ -3117,8 +2337,197 @@ For more information see the GitHub-hosted security advisory.&lt;/p&gt;
     &lt;dl&gt;
       &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
       &lt;dd&gt;
-        &lt;time datetime=&quot;2023-03-02&quot;&gt;
-          March  2, 2023
+        &lt;time datetime=&quot;2024-04-02&quot;&gt;
+          April  2, 2024
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2025-05-02&quot;&gt;
+          May  2, 2025
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/wasmtime.html&quot;&gt;wasmtime&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/wasmtime&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-30266&quot;&gt;CVE-2024-30266&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-75hq-h6g9-h4q5&quot;&gt;GHSA-75hq-h6g9-h4q5&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-75hq-h6g9-h4q5&quot;&gt;
+              https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-75hq-h6g9-h4q5
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;3.3 &lt;span class=&quot;tag low&quot;&gt;
+        LOW
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+          &lt;dt&gt;Attack vector&lt;/dt&gt;&lt;dd&gt;Local&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Attack complexity&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Privileges required&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;User interaction&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Scope&lt;/dt&gt;&lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+      &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L&quot;&gt;CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L&lt;/a&gt;&lt;/dd&gt;
+      
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=19.0.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;19.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;This is an entry in the RustSec database for the Wasmtime security advisory
+located at
+https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-75hq-h6g9-h4q5.
+For more information see the GitHub-hosted security advisory.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0099: Vulnerability in wasmtime</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0099.html</id><updated>2025-05-02T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2022-0099.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0099: Vulnerability in wasmtime"/><published>2025-05-02T12:00:00+00:00</published><summary xml:lang="en"> Use after free with `externref`s and epoch interruption in Wasmtime</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/wasmtime/RUSTSEC-2022-0099.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/wasmtime/RUSTSEC-2022-0099.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2022-0099&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2022-0099
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Use after free with &lt;code&gt;externref&lt;/code&gt;s and epoch interruption in Wasmtime&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2022-03-28&quot;&gt;
+          March 28, 2022
         &lt;/time&gt;
       &lt;/dd&gt;
 
@@ -3167,13 +2576,13 @@ For more information see the GitHub-hosted security advisory.&lt;/p&gt;
           
           &lt;li&gt;
             
-            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-26489&quot;&gt;CVE-2023-26489&lt;/a&gt;
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-24791&quot;&gt;CVE-2022-24791&lt;/a&gt;
             
           &lt;/li&gt;
           
           &lt;li&gt;
             
-            &lt;a href=&quot;https://github.com/advisories/GHSA-ff4p-7xrq-q5r8&quot;&gt;GHSA-ff4p-7xrq-q5r8&lt;/a&gt;
+            &lt;a href=&quot;https://github.com/advisories/GHSA-gwc9-348x-qwv2&quot;&gt;GHSA-gwc9-348x-qwv2&lt;/a&gt;
             
           &lt;/li&gt;
           
@@ -3187,8 +2596,8 @@ For more information see the GitHub-hosted security advisory.&lt;/p&gt;
         &lt;ul&gt;
         
           &lt;li&gt;
-            &lt;a href=&quot;https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-ff4p-7xrq-q5r8&quot;&gt;
-              https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-ff4p-7xrq-q5r8
+            &lt;a href=&quot;https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-gwc9-348x-qwv2&quot;&gt;
+              https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-gwc9-348x-qwv2
             &lt;/a&gt;
           &lt;/li&gt;
         
@@ -3200,54 +2609,6 @@ For more information see the GitHub-hosted security advisory.&lt;/p&gt;
       
 
       
-      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
-      &lt;dd&gt;9.9 &lt;span class=&quot;tag critical&quot;&gt;
-        CRITICAL
-      &lt;/span&gt;&lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;dl&gt;
-          
-          &lt;dt&gt;Attack vector&lt;/dt&gt;&lt;dd&gt;Network&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Attack complexity&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Privileges required&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;User interaction&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Scope&lt;/dt&gt;&lt;dd&gt;Changed&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
-          
-
-          
-          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
-          
-        &lt;/dl&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
-
-      
-      &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:H/A:H&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:H/A:H&lt;/a&gt;&lt;/dd&gt;
-      
-
       
 
       &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
@@ -3255,11 +2616,9 @@ For more information see the GitHub-hosted security advisory.&lt;/p&gt;
         
         &lt;ul&gt;
           
-          &lt;li&gt;&lt;code&gt;&amp;#62;=4.0.1, &amp;#60;5.0.0&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.35.2&lt;/code&gt;&lt;/li&gt;
           
-          &lt;li&gt;&lt;code&gt;&amp;#62;=5.0.1, &amp;#60;6.0.0&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=6.0.1&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.34.2, &amp;#60;0.35.0&lt;/code&gt;&lt;/li&gt;
           
         &lt;/ul&gt;
         
@@ -3277,7 +2636,7 @@ For more information see the GitHub-hosted security advisory.&lt;/p&gt;
     &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
     &lt;p&gt;This is an entry in the RustSec database for the Wasmtime security advisory
 located at
-https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-ff4p-7xrq-q5r8.
+https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-gwc9-348x-qwv2.
 For more information see the GitHub-hosted security advisory.&lt;/p&gt;
 
 
@@ -3286,22 +2645,22 @@ For more information see the GitHub-hosted security advisory.&lt;/p&gt;
 
     
     &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0101: Vulnerability in wasmtime</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0101.html</id><updated>2025-05-02T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2022-0101.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0101: Vulnerability in wasmtime"/><published>2025-05-02T12:00:00+00:00</published><summary xml:lang="en">Miscompilation of constant values in division on AArch64</summary><content xml:lang="en" type="html">  &lt;article&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2023-0091: Vulnerability in wasmtime</title><id>https://rustsec.org/advisories/RUSTSEC-2023-0091.html</id><updated>2025-05-02T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2023-0091.html" rel="alternate" type="text/html" title="RUSTSEC-2023-0091: Vulnerability in wasmtime"/><published>2025-05-02T12:00:00+00:00</published><summary xml:lang="en">Miscompilation of wasm `i64x2.shr_s` instruction with constant input on x86\_64</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/wasmtime/RUSTSEC-2022-0101.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/wasmtime/RUSTSEC-2022-0101.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2022-0101&quot;&gt;JSON (OSV)&lt;/a&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/wasmtime/RUSTSEC-2023-0091.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/wasmtime/RUSTSEC-2023-0091.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2023-0091&quot;&gt;JSON (OSV)&lt;/a&gt;
         &lt;/span&gt;
     
 
     &lt;header&gt;
       &lt;h1&gt;
         
-        RUSTSEC-2022-0101
+        RUSTSEC-2023-0091
         
       &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Miscompilation of constant values in division on AArch64&lt;/p&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Miscompilation of wasm &lt;code&gt;i64x2.shr_s&lt;/code&gt; instruction with constant input on x86_64&lt;/p&gt;
 &lt;/span&gt;
     &lt;/header&gt;
 
@@ -3310,8 +2669,8 @@ For more information see the GitHub-hosted security advisory.&lt;/p&gt;
     &lt;dl&gt;
       &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
       &lt;dd&gt;
-        &lt;time datetime=&quot;2022-07-05&quot;&gt;
-          July  5, 2022
+        &lt;time datetime=&quot;2023-09-05&quot;&gt;
+          September  5, 2023
         &lt;/time&gt;
       &lt;/dd&gt;
 
@@ -3351,13 +2710,13 @@ For more information see the GitHub-hosted security advisory.&lt;/p&gt;
           
           &lt;li&gt;
             
-            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-23636&quot;&gt;CVE-2022-23636&lt;/a&gt;
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-41880&quot;&gt;CVE-2023-41880&lt;/a&gt;
             
           &lt;/li&gt;
           
           &lt;li&gt;
             
-            &lt;a href=&quot;https://github.com/advisories/GHSA-7f6x-jwh5-m9r4&quot;&gt;GHSA-7f6x-jwh5-m9r4&lt;/a&gt;
+            &lt;a href=&quot;https://github.com/advisories/GHSA-gw5p-q8mj-p7gh&quot;&gt;GHSA-gw5p-q8mj-p7gh&lt;/a&gt;
             
           &lt;/li&gt;
           
@@ -3371,8 +2730,201 @@ For more information see the GitHub-hosted security advisory.&lt;/p&gt;
         &lt;ul&gt;
         
           &lt;li&gt;
-            &lt;a href=&quot;https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-7f6x-jwh5-m9r4&quot;&gt;
-              https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-7f6x-jwh5-m9r4
+            &lt;a href=&quot;https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-gw5p-q8mj-p7gh&quot;&gt;
+              https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-gw5p-q8mj-p7gh
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;2.2 &lt;span class=&quot;tag low&quot;&gt;
+        LOW
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+          &lt;dt&gt;Attack vector&lt;/dt&gt;&lt;dd&gt;Network&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Attack complexity&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Privileges required&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;User interaction&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Scope&lt;/dt&gt;&lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;Low&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+      &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:N/I:L/A:N&quot;&gt;CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:N/I:L/A:N&lt;/a&gt;&lt;/dd&gt;
+      
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=10.0.2, &amp;#60;11.0.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=11.0.2, &amp;#60;12.0.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=12.0.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;This is an entry in the RustSec database for the Wasmtime security advisory
+located at
+https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-gw5p-q8mj-p7gh.
+For more information see the GitHub-hosted security advisory.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0096: Vulnerability in wasmtime</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0096.html</id><updated>2025-05-02T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2022-0096.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0096: Vulnerability in wasmtime"/><published>2025-05-02T12:00:00+00:00</published><summary xml:lang="en">Invalid drop of VMExternRef from partially-initialized instances in the pooling instance allocator</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/wasmtime/RUSTSEC-2022-0096.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/wasmtime/RUSTSEC-2022-0096.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2022-0096&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2022-0096
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Invalid drop of VMExternRef from partially-initialized instances in the pooling instance allocator&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2022-02-17&quot;&gt;
+          February 17, 2022
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2025-05-02&quot;&gt;
+          May  2, 2025
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/wasmtime.html&quot;&gt;wasmtime&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/wasmtime&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-23636&quot;&gt;CVE-2022-23636&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-88xq-w8cq-xfg7&quot;&gt;GHSA-88xq-w8cq-xfg7&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-88xq-w8cq-xfg7&quot;&gt;
+              https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-88xq-w8cq-xfg7
             &lt;/a&gt;
           &lt;/li&gt;
         
@@ -3391,7 +2943,9 @@ For more information see the GitHub-hosted security advisory.&lt;/p&gt;
         
         &lt;ul&gt;
           
-          &lt;li&gt;&lt;code&gt;&amp;#62;=0.38.2&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.33.1, &amp;#60;0.34.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.34.1&lt;/code&gt;&lt;/li&gt;
           
         &lt;/ul&gt;
         
@@ -3409,7 +2963,7 @@ For more information see the GitHub-hosted security advisory.&lt;/p&gt;
     &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
     &lt;p&gt;This is an entry in the RustSec database for the Wasmtime security advisory
 located at
-https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-7f6x-jwh5-m9r4.
+https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-88xq-w8cq-xfg7.
 For more information see the GitHub-hosted security advisory.&lt;/p&gt;
 
 
@@ -3554,22 +3108,22 @@ For more information see the GitHub-hosted security advisory.&lt;/p&gt;
 
     
     &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2025-0027: Unsoundness in mp3-metadata</title><id>https://rustsec.org/advisories/RUSTSEC-2025-0027.html</id><updated>2025-05-06T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2025-0027.html" rel="alternate" type="text/html" title="RUSTSEC-2025-0027: Unsoundness in mp3-metadata"/><published>2025-04-30T12:00:00+00:00</published><summary xml:lang="en">Panic in mp3-metadata due to the lack of bounds checking</summary><content xml:lang="en" type="html">  &lt;article&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0102: Vulnerability in wasmtime</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0102.html</id><updated>2025-05-02T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2022-0102.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0102: Vulnerability in wasmtime"/><published>2025-05-02T12:00:00+00:00</published><summary xml:lang="en">Out of bounds read/write with zero-memory-pages configuration</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/mp3-metadata/RUSTSEC-2025-0027.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/mp3-metadata/RUSTSEC-2025-0027.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2025-0027&quot;&gt;JSON (OSV)&lt;/a&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/wasmtime/RUSTSEC-2022-0102.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/wasmtime/RUSTSEC-2022-0102.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2022-0102&quot;&gt;JSON (OSV)&lt;/a&gt;
         &lt;/span&gt;
     
 
     &lt;header&gt;
       &lt;h1&gt;
         
-        RUSTSEC-2025-0027
+        RUSTSEC-2022-0102
         
       &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Panic in mp3-metadata due to the lack of bounds checking&lt;/p&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Out of bounds read/write with zero-memory-pages configuration&lt;/p&gt;
 &lt;/span&gt;
     &lt;/header&gt;
 
@@ -3578,19 +3132,15 @@ For more information see the GitHub-hosted security advisory.&lt;/p&gt;
     &lt;dl&gt;
       &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
       &lt;dd&gt;
-        &lt;time datetime=&quot;2025-04-28&quot;&gt;
-          April 28, 2025
+        &lt;time datetime=&quot;2022-11-05&quot;&gt;
+          November  5, 2022
         &lt;/time&gt;
       &lt;/dd&gt;
 
       &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
       &lt;dd&gt;
-        &lt;time datetime=&quot;2025-04-30&quot;&gt;
-          April 30, 2025
-        &lt;/time&gt;
-        
-        &lt;time datetime=&quot;2025-05-06&quot;&gt;
-          (last modified: May  6, 2025)
+        &lt;time datetime=&quot;2025-05-02&quot;&gt;
+          May  2, 2025
         &lt;/time&gt;
         
       &lt;/dd&gt;
@@ -3599,8 +3149,8 @@ For more information see the GitHub-hosted security advisory.&lt;/p&gt;
       &lt;dd&gt;
         
         
-        &lt;a href=&quot;/packages/mp3-metadata.html&quot;&gt;mp3-metadata&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/mp3-metadata&quot;&gt;crates.io&lt;/a&gt;)
+        &lt;a href=&quot;/packages/wasmtime.html&quot;&gt;wasmtime&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/wasmtime&quot;&gt;crates.io&lt;/a&gt;)
         
         
       &lt;/dd&gt;
@@ -3608,24 +3158,33 @@ For more information see the GitHub-hosted security advisory.&lt;/p&gt;
       &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
       &lt;dd&gt;
         
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unsound
+        Vulnerability
         
       &lt;/dd&gt;
 
       
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
       &lt;dd&gt;
         &lt;ul&gt;
           
-          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-39392&quot;&gt;CVE-2022-39392&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-44mr-8vmm-wjhg&quot;&gt;GHSA-44mr-8vmm-wjhg&lt;/a&gt;
+            
+          &lt;/li&gt;
           
         &lt;/ul&gt;
       &lt;/dd&gt;
-      
-
-      
-
       
 
       
@@ -3634,8 +3193,190 @@ For more information see the GitHub-hosted security advisory.&lt;/p&gt;
         &lt;ul&gt;
         
           &lt;li&gt;
-            &lt;a href=&quot;https://github.com/GuillaumeGomez/mp3-metadata/issues/36&quot;&gt;
-              https://github.com/GuillaumeGomez/mp3-metadata/issues/36
+            &lt;a href=&quot;https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-44mr-8vmm-wjhg&quot;&gt;
+              https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-44mr-8vmm-wjhg
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;5.9 &lt;span class=&quot;tag medium&quot;&gt;
+        MEDIUM
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+          &lt;dt&gt;Attack vector&lt;/dt&gt;&lt;dd&gt;Network&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Attack complexity&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Privileges required&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;User interaction&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Scope&lt;/dt&gt;&lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Confidentiality&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Integrity&lt;/dt&gt;&lt;dd&gt;High&lt;/dd&gt;
+          
+
+          
+          &lt;dt&gt;Availability&lt;/dt&gt;&lt;dd&gt;None&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+      &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:H/I:H/A:N&quot;&gt;CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:H/I:H/A:N&lt;/a&gt;&lt;/dd&gt;
+      
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=1.0.2, &amp;#60;2.0.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=2.0.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;This is an entry in the RustSec database for the Wasmtime security advisory
+located at
+https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-44mr-8vmm-wjhg.
+For more information see the GitHub-hosted security advisory.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0095: Vulnerability in wasmtime</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0095.html</id><updated>2025-05-02T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2022-0095.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0095: Vulnerability in wasmtime"/><published>2025-05-02T12:00:00+00:00</published><summary xml:lang="en">Miscompilation of `i8x16.swizzle` and `select` with v128 inputs</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/wasmtime/RUSTSEC-2022-0095.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/wasmtime/RUSTSEC-2022-0095.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2022-0095&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2022-0095
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Miscompilation of &lt;code&gt;i8x16.swizzle&lt;/code&gt; and &lt;code&gt;select&lt;/code&gt; with v128 inputs&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2022-06-27&quot;&gt;
+          June 27, 2022
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2025-05-02&quot;&gt;
+          May  2, 2025
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/wasmtime.html&quot;&gt;wasmtime&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/wasmtime&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-31104&quot;&gt;CVE-2022-31104&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-jqwc-c49r-4w2x&quot;&gt;GHSA-jqwc-c49r-4w2x&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-jqwc-c49r-4w2x&quot;&gt;
+              https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-jqwc-c49r-4w2x
             &lt;/a&gt;
           &lt;/li&gt;
         
@@ -3654,7 +3395,7 @@ For more information see the GitHub-hosted security advisory.&lt;/p&gt;
         
         &lt;ul&gt;
           
-          &lt;li&gt;&lt;code&gt;&amp;#62;=0.4.0&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.38.1&lt;/code&gt;&lt;/li&gt;
           
         &lt;/ul&gt;
         
@@ -3664,36 +3405,148 @@ For more information see the GitHub-hosted security advisory.&lt;/p&gt;
 
       
       
-
-      
-      
     &lt;/dl&gt;
 
     
     
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;This is an entry in the RustSec database for the Wasmtime security advisory
+located at
+https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-jqwc-c49r-4w2x.
+For more information see the GitHub-hosted security advisory.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2022-0101: Vulnerability in wasmtime</title><id>https://rustsec.org/advisories/RUSTSEC-2022-0101.html</id><updated>2025-05-02T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2022-0101.html" rel="alternate" type="text/html" title="RUSTSEC-2022-0101: Vulnerability in wasmtime"/><published>2025-05-02T12:00:00+00:00</published><summary xml:lang="en">Miscompilation of constant values in division on AArch64</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/wasmtime/RUSTSEC-2022-0101.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/wasmtime/RUSTSEC-2022-0101.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2022-0101&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2022-0101
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Miscompilation of constant values in division on AArch64&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
     &lt;dl&gt;
-      &lt;dt&gt;Affected Functions&lt;/dt&gt;
-      &lt;dd&gt;Version&lt;/dd&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2022-07-05&quot;&gt;
+          July  5, 2022
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2025-05-02&quot;&gt;
+          May  2, 2025
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/wasmtime.html&quot;&gt;wasmtime&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/wasmtime&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
       
-      &lt;dt&gt;&lt;code&gt;mp3_metadata::read_from_slice&lt;/code&gt;&lt;/dt&gt;
+
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
       &lt;dd&gt;
         &lt;ul&gt;
           
-          &lt;li&gt;&lt;code&gt;&amp;#60;0.4.0&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-23636&quot;&gt;CVE-2022-23636&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-7f6x-jwh5-m9r4&quot;&gt;GHSA-7f6x-jwh5-m9r4&lt;/a&gt;
+            
+          &lt;/li&gt;
           
         &lt;/ul&gt;
       &lt;/dd&gt;
       
-    &lt;/dl&gt;
-    
 
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-7f6x-jwh5-m9r4&quot;&gt;
+              https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-7f6x-jwh5-m9r4
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.38.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
     
 
     &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;The &lt;code&gt;get_id3()&lt;/code&gt; methods used by &lt;code&gt;mp3_metadata::read_from_slice()&lt;/code&gt; does not perform adequate bounds
-checking when recreating the tag due to the use of desynchronization.&lt;/p&gt;
-&lt;p&gt;Fixed in &lt;a href=&quot;https://github.com/GuillaumeGomez/mp3-metadata/pull/37&quot;&gt;Fix index error&lt;/a&gt;, released as
-part of 0.4.0.&lt;/p&gt;
+    &lt;p&gt;This is an entry in the RustSec database for the Wasmtime security advisory
+located at
+https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-7f6x-jwh5-m9r4.
+For more information see the GitHub-hosted security advisory.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
