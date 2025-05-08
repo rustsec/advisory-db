@@ -1,0 +1,64 @@
+{
+  "id": "RUSTSEC-2025-0034",
+  "modified": "2025-05-08T07:32:19Z",
+  "published": "2025-05-06T12:00:00Z",
+  "aliases": [],
+  "related": [],
+  "summary": "soundness issue and unmaintained",
+  "details": "`FastMap::get()` lacks sufficient checks to its parameter index and is used to unsafely get a `Vec` element.\n\n`fast_id_map` is unmaintained.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "fast_id_map",
+        "purl": "pkg:cargo/fast_id_map"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": [
+            "fast_id_map::FastMap::get"
+          ]
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "memory-corruption"
+        ],
+        "cvss": null,
+        "informational": "unsound"
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/fast_id_map"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2025-0034.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/Bruce0203/fast_map"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
