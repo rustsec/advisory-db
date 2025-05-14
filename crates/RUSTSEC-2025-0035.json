@@ -1,0 +1,74 @@
+{
+  "id": "RUSTSEC-2025-0035",
+  "modified": "2025-05-14T20:55:51Z",
+  "published": "2025-04-23T12:00:00Z",
+  "aliases": [],
+  "related": [],
+  "summary": "Multiple soundness issues in `macroquad`",
+  "details": "Several soundness issues have been reported. Resolving them doesn't seem to be considered a priority. In particular, unprincipled use of\nmutable statics is pervasive throughout the library, making it possible to cause use-after-free in safe code.\n\nCurrently, no fixed version is available.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "macroquad",
+        "purl": "pkg:cargo/macroquad"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "memory-corruption"
+        ],
+        "cvss": null,
+        "informational": "unsound"
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/macroquad"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2025-0035.html"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/not-fl3/macroquad/issues/333"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/not-fl3/macroquad/issues/634"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/not-fl3/macroquad/issues/746"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/not-fl3/macroquad/issues/723"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
