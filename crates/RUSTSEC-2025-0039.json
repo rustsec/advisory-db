@@ -1,0 +1,66 @@
+{
+  "id": "RUSTSEC-2025-0039",
+  "modified": "2025-06-02T07:46:01Z",
+  "published": "2025-05-06T12:00:00Z",
+  "aliases": [],
+  "related": [],
+  "summary": "Lack of sufficient checks in public API",
+  "details": "The following functions in the anon-vec crate are unsound due to insufficient checks on their\narguments::\n\n- `AnonVec::get_ref()`\n- `AnonVec::get_mut()`\n- `AnonVec::remove_get()`\n\nThe crate was built as a learning project and is not being maintained.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "anon-vec",
+        "purl": "pkg:cargo/anon-vec"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": [
+            "anon_vec::AnonVec::get_mut",
+            "anon_vec::AnonVec::get_ref",
+            "anon_vec::AnonVec::remove_get"
+          ]
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "memory-corruption"
+        ],
+        "cvss": null,
+        "informational": "unsound"
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/anon-vec"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2025-0039.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/RylanYancey/anon-vec"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
