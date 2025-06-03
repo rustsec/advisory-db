@@ -1,0 +1,62 @@
+{
+  "id": "RUSTSEC-2025-0040",
+  "modified": "2025-06-03T11:30:36Z",
+  "published": "2025-01-15T12:00:00Z",
+  "aliases": [],
+  "related": [],
+  "summary": "`root` appended to group listings",
+  "details": "Affected versions append `root` to group listings, unless the correct listing\nhas exactly 1024 groups.\n\nThis affects both:\n\n- The supplementary groups of a user\n- The group access list of the current process\n\nIf the caller uses this information for access control, this may lead to\nprivilege escalation.\n\nThis crate is not currently maintained, so a patched version is not available.\n\nVersions older than 0.8.0 do not contain the affected functions, so downgrading\nto them is a workaround.\n\n## Recommended alternatives\n- [`uzers`](https://crates.io/crates/uzers) (an actively maintained fork of the `users` crate)\n- [`sysinfo`](https://crates.io/crates/sysinfo)",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "users",
+        "purl": "pkg:cargo/users"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "privilege-escalation"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.8.0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/users"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2025-0040.html"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/ogham/rust-users/issues/44"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
