@@ -1,0 +1,71 @@
+{
+  "id": "RUSTSEC-2025-0041",
+  "modified": "2025-06-12T09:17:43Z",
+  "published": "2025-06-11T12:00:00Z",
+  "aliases": [
+    "CVE-2025-48937",
+    "GHSA-x958-rvg6-956w"
+  ],
+  "related": [],
+  "summary": "matrix-sdk-crypto vulnerable to encrypted event sender spoofing by homeserver administrator",
+  "details": "matrix-sdk-crypto versions 0.8.0 up to and including 0.11.0 does not correctly validate\nthe sender of an encrypted event. Accordingly, a malicious homeserver operator\ncan modify events served to clients, making those events appear to the recipient\nas if they were sent by another user.\n\nAlthough the CVSS score is 4.9 (AV:N/AC:L/PR:H/UI:N/S:U/C:N/I:H/A:N), we\nconsider this a High severity security issue.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:N/I:H/A:N"
+    }
+  ],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "matrix-sdk-crypto",
+        "purl": "pkg:cargo/matrix-sdk-crypto"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [],
+        "cvss": "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:N/I:H/A:N",
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.8.0"
+            },
+            {
+              "fixed": "0.11.1"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/matrix-sdk-crypto"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2025-0041.html"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://github.com/matrix-org/matrix-rust-sdk/security/advisories/GHSA-x958-rvg6-956w"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
