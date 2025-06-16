@@ -13,7 +13,7 @@ To add an advisory to the RustSec database, open a [Pull Request] against
 3. Write a human-readable Markdown description in the same file, after the <code>\```</code> marker and a newline. Use [this example advisory][example] as a reference.
 4. Open a [Pull Request]. After being reviewed your advisory will be assigned
    a `RUSTSEC-*` advisory identifier and be published to the database.
-   
+
 ### Optional Steps
 
 Feel free to do either or both of these as you see fit (we recommend you do both):
@@ -55,13 +55,11 @@ When in doubt, please open a PR.
 A: No, anyone can file an advisory against any crate. The legitimacy of
     vulnerabilities will be determined prior to merging. If a vulnerability
     turns out to be fake, it will be removed from the database.
-    
+
 **Q: Can I file an advisory without creating a pull request?**
 
 A: Yes, instead of creating a full advisory yourself, you can also
-   [open an issue on the advisory-db repo](https://github.com/RustSec/advisory-db/issues)
-   or email information about the vulnerability to
-   [rustsec@googlegroups.com](mailto:rustsec@googlegroups.com).
+   [open an issue on the advisory-db repo](https://github.com/RustSec/advisory-db/issues).
 
 **Q: Does this project have a GPG key or other means of handling embargoed vulnerabilities?**
 
