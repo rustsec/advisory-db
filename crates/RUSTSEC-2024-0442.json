@@ -1,0 +1,67 @@
+{
+  "id": "RUSTSEC-2024-0442",
+  "modified": "2025-06-17T09:04:25Z",
+  "published": "2024-07-06T12:00:00Z",
+  "aliases": [],
+  "related": [],
+  "summary": "Dump Undefined Memory by `JitDumpFile`",
+  "details": "The unsound function `dump_code_load_record` uses `from_raw_parts` to directly convert \nthe pointer `addr` and `len` into a slice without any validation and that memory block \nwould be dumped.\n\nThus, the 'safe' function dump_code_load_record is actually 'unsafe' since it requires \nthe caller to guarantee that the addr is valid and len must not overflow.\nOtherwise, the function could dump the memory into file illegally, causing memory leak.\n\n> **Note**: this is an internal-only crate in the Wasmtime project not intended for\nexternal use and is more strongly signaled nowadays as of\n[bytecodealliance/wasmtime#10963](https://github.com/bytecodealliance/wasmtime/pull/10963).\nPlease open an issue in Wasmtime if you're using this crate directly.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "wasmtime-jit-debug",
+        "purl": "pkg:cargo/wasmtime-jit-debug"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": [
+            "wasmtime_jit_debug::perf_jitdump::JitDumpFile::dump_code_load_record"
+          ]
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "memory-exposure"
+        ],
+        "cvss": null,
+        "informational": "unsound"
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "24.0.0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/wasmtime-jit-debug"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2024-0442.html"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/bytecodealliance/wasmtime/issues/8905"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
