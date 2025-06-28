@@ -1,0 +1,33 @@
+[advisory]
+id = "TEMP-2025-0001"
+package = "image"
+date = "2025-06-28"
+url = "https://github.com/image-rs/image"
+title = "Multiple denial-of-service vulnerabilities in `image` crate"
+description = """
+The `image` crate is vulnerable to multiple denial-of-service (DoS) vulnerabilities across different decoders.
+
+Confirmed vulnerable decoders:
+- **HDR**: Header with extreme dimensions (`+X 4294967295`) causes memory exhaustion and crash.
+- **TIFF**: Malformed IFD with `ImageWidth = 0x7FFFFFFF` leads to abort due to unbounded allocation.
+- **PNG**: Malformed IDAT or zTXt chunks can trigger panics or excessive memory use.
+
+All issues reproduce reliably in release builds, with `ulimit -v` confirming memory exhaustion. Minimal payloads (~30 bytes) are sufficient to trigger each crash.
+
+These bugs pose a risk for applications using the `image` crate to process untrusted image data, such as:
+- Web services
+- Machine learning pipelines
+- CLI tools
+"""
+keywords = ["image", "oom", "dos", "panic", "decoder"]
+categories = ["denial-of-service"]
+cvss = "AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H"
+
+[affected]
+functions = []
+arch = []
+os = []
+versions = "<=0.25.6"
+
+[references]
+url = "https://github.com/image-rs/image/issues"
