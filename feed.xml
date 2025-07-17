@@ -1,5 +1,166 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2025-07-14T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2025-0044: Vulnerability in slice-ring-buffer</title><id>https://rustsec.org/advisories/RUSTSEC-2025-0044.html</id><updated>2025-07-14T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2025-0044.html" rel="alternate" type="text/html" title="RUSTSEC-2025-0044: Vulnerability in slice-ring-buffer"/><published>2025-07-14T12:00:00+00:00</published><summary xml:lang="en">Four unique double-free vulnerabilities triggered via safe APIs</summary><content xml:lang="en" type="html">  &lt;article&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2025-07-17T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2025-0045: Unsoundness in static_cell</title><id>https://rustsec.org/advisories/RUSTSEC-2025-0045.html</id><updated>2025-07-17T12:00:00+00:00</updated><category term="memory-exposure"/><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2025-0045.html" rel="alternate" type="text/html" title="RUSTSEC-2025-0045: Unsoundness in static_cell"/><published>2025-07-17T12:00:00+00:00</published><summary xml:lang="en">ConstStaticCell could have been used to pass non-Send values to another thread</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/static_cell/RUSTSEC-2025-0045.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/static_cell/RUSTSEC-2025-0045.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2025-0045&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2025-0045
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;ConstStaticCell could have been used to pass non-Send values to another thread&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2025-07-17&quot;&gt;
+          July 17, 2025
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2025-07-17&quot;&gt;
+          July 17, 2025
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/static_cell.html&quot;&gt;static_cell&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/static_cell&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-exposure.html&quot;&gt;memory-exposure&lt;/a&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/send.html&quot;&gt;#send&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/thread-safety.html&quot;&gt;#thread-safety&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/embassy-rs/static-cell/issues/19&quot;&gt;
+              https://github.com/embassy-rs/static-cell/issues/19
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=2.1.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;=2.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;static_cell::ConstStaticCell::new&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;=2.1.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;&lt;code&gt;ConstStaticCell&amp;lt;T&amp;gt;&lt;/code&gt; could have been used to pass non-&lt;code&gt;Send&lt;/code&gt; values to another thread, because &lt;code&gt;T&lt;/code&gt; was not required to be &lt;code&gt;Send&lt;/code&gt; while &lt;code&gt;ConstStaticCell&lt;/code&gt; is &lt;code&gt;Send&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;This was corrected by introducing a &lt;code&gt;T: Send&lt;/code&gt; bound.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2025-0044: Vulnerability in slice-ring-buffer</title><id>https://rustsec.org/advisories/RUSTSEC-2025-0044.html</id><updated>2025-07-14T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2025-0044.html" rel="alternate" type="text/html" title="RUSTSEC-2025-0044: Vulnerability in slice-ring-buffer"/><published>2025-07-14T12:00:00+00:00</published><summary xml:lang="en">Four unique double-free vulnerabilities triggered via safe APIs</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
           &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/slice-ring-buffer/RUSTSEC-2025-0044.md&quot;&gt;History&lt;/a&gt; ⋅ 
@@ -1393,121 +1554,6 @@ buffer without sufficient checks.&lt;/p&gt;
 &lt;p&gt;This allows an attacker to craft malicious HTTP/1.1 requests which could lead to request smuggling or cache poisoning.&lt;/p&gt;
 &lt;p&gt;This flaw was corrected in commit fda3317ec822678564d641e7cf1c9b77ee3759ff by ensuring that the downstream request body is always drained before a connection can be reused.&lt;/p&gt;
 &lt;p&gt;See &lt;a href=&quot;https://blog.cloudflare.com/resolving-a-request-smuggling-vulnerability-in-pingora/&quot;&gt;the blog post&lt;/a&gt; for more information.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2025-0036: surf is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2025-0036.html</id><updated>2025-05-17T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2025-0036.html" rel="alternate" type="text/html" title="RUSTSEC-2025-0036: surf is unmaintained"/><published>2025-05-17T12:00:00+00:00</published><summary xml:lang="en">surf is unmaintained</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/surf/RUSTSEC-2025-0036.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/surf/RUSTSEC-2025-0036.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2025-0036&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2025-0036
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;surf is unmaintained&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2025-05-17&quot;&gt;
-          May 17, 2025
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2025-05-17&quot;&gt;
-          May 17, 2025
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/surf.html&quot;&gt;surf&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/surf&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unmaintained
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/http-rs/surf/issues/352&quot;&gt;
-              https://github.com/http-rs/surf/issues/352
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;The developer has indicated that the crate is unmaintained.&lt;/p&gt;
-&lt;p&gt;The last release is over three years old (from 2021), the crate depends on the
-deprecated &lt;code&gt;async-std&lt;/code&gt; crate and on a very old version of &lt;code&gt;rustls&lt;/code&gt; for TLS
-support.&lt;/p&gt;
-&lt;h2&gt;Possible alternatives&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://crates.io/crates/reqwest&quot;&gt;reqwest&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://crates.io/crates/ureq&quot;&gt;ureq&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
