@@ -1,0 +1,74 @@
+{
+  "id": "RUSTSEC-2025-0051",
+  "modified": "2025-08-22T11:20:53Z",
+  "published": "2025-08-05T12:00:00Z",
+  "aliases": [],
+  "related": [],
+  "summary": "`xcb::Connection::connect_to_fd*` functions violate I/O safety",
+  "details": "The API of `xcb::Connection` has constructors which allow an arbitrary `RawFd`\nto be used as a socket connection. On either failure of these constructors or\non the drop of `Connection`, it closes the associated file descriptor. Thus, a\nprogram which uses an `OwnedFd` (such as a `UnixStream`) as the file descriptor\ncan close the file descriptor and continue to attempt using it or close an\nalready-closed file descriptor, violating I/O safety.\n\nStarting in version 1.6.0, `xcb` provides `Connection::connect_with_fd` and\n`Connection::connect_with_fd_and_extensions` as safe alternatives and\ndeprecates the problematic functions.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "xcb",
+        "purl": "pkg:cargo/xcb"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": [
+            "xcb::Connection::connect_to_fd",
+            "xcb::Connection::connect_to_fd_with_extensions"
+          ]
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [],
+        "cvss": null,
+        "informational": "unsound"
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "1.6.0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/xcb"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2025-0051.html"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/rust-x-bindings/rust-xcb/issues/282"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/rust-x-bindings/rust-xcb/issues/167"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/rust-x-bindings/rust-xcb/pull/283"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
