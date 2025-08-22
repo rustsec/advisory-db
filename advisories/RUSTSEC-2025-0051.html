@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package &#39;xcb&#39; › RustSec Advisory Database</title>
+<title>RUSTSEC-2025-0051: xcb: `xcb::Connection::connect_to_fd*` functions violate I/O safety › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,79 +52,166 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/xcb/RUSTSEC-2025-0051.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/xcb/RUSTSEC-2025-0051.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2025-0051">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2025-0051
+        
+      </h1>
+      <span class="subtitle"><p><code>xcb::Connection::connect_to_fd*</code> functions violate I/O safety</p>
 </span>
-      <h1>Advisories for package &#39;xcb&#39;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2025-08-22">
-    August 22, 2025
-  </time>
+    
 
-  
-  <h3>
-    
-        
-          <span class="tag info">INFO</span>
-        
-    
-    <a href="/advisories/RUSTSEC-2025-0051.html">
-      RUSTSEC-2025-0051: Unsoundness in xcb
-    </a>
-  </h3>
-  <span><p><code>xcb::Connection::connect_to_fd*</code> functions violate I/O safety</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2021-02-04">
-    February  4, 2021
-  </time>
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2025-08-05">
+          August  5, 2025
+        </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2025-08-22">
+          August 22, 2025
+        </time>
         
-    
-    <a href="/advisories/RUSTSEC-2021-0019.html">
-      RUSTSEC-2021-0019: Vulnerability in xcb
-    </a>
-  </h3>
-  <span><p>Multiple soundness issues</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2021-01-18">
-    January 18, 2021
-  </time>
+      </dd>
 
-  
-  <h3>
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        <a href="/packages/xcb.html">xcb</a>
+          (<a href="https://crates.io/crates/xcb">crates.io</a>)
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        <span class="tag info">INFO</span>
+        Unsound
+        
+      </dd>
+
+      
+
+      
+
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/rust-x-bindings/rust-xcb/issues/282">
+              https://github.com/rust-x-bindings/rust-xcb/issues/282
+            </a>
+          </li>
+        
+        
+          <li>
+            <a href="https://github.com/rust-x-bindings/rust-xcb/issues/167">
+              https://github.com/rust-x-bindings/rust-xcb/issues/167
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://github.com/rust-x-bindings/rust-xcb/pull/283">
+              https://github.com/rust-x-bindings/rust-xcb/pull/283
+            </a>
+          </li>
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&#62;=1.6.0</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+
+      
+      
+
+      
+      
+    </dl>
+
     
-      <span class="tag medium">MEDIUM</span>
+    
+    <dl>
+      <dt>Affected Functions</dt>
+      <dd>Version</dd>
       
-    <a href="/advisories/RUSTSEC-2020-0097.html">
-      RUSTSEC-2020-0097: Unsoundness in xcb
-    </a>
-  </h3>
-  <span><p>Soundness issue with base::Error</p>
-</span>
-  
-</li>
+      <dt><code>xcb::Connection::connect_to_fd</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#62;=1.0.0-beta.0</code></li>
+          
+        </ul>
+      </dd>
       
-    </ul>
+      <dt><code>xcb::Connection::connect_to_fd_with_extensions</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#62;=1.0.0-beta.0</code></li>
+          
+        </ul>
+      </dd>
+      
+    </dl>
+    
+
+    
+
+    <h3 id="description">Description</h3>
+    <p>The API of <code>xcb::Connection</code> has constructors which allow an arbitrary <code>RawFd</code>
+to be used as a socket connection. On either failure of these constructors or
+on the drop of <code>Connection</code>, it closes the associated file descriptor. Thus, a
+program which uses an <code>OwnedFd</code> (such as a <code>UnixStream</code>) as the file descriptor
+can close the file descriptor and continue to attempt using it or close an
+already-closed file descriptor, violating I/O safety.</p>
+<p>Starting in version 1.6.0, <code>xcb</code> provides <code>Connection::connect_with_fd</code> and
+<code>Connection::connect_with_fd_and_extensions</code> as safe alternatives and
+deprecates the problematic functions.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
