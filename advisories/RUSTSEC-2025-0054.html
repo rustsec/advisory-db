@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package &#39;array-queue&#39; › RustSec Advisory Database</title>
+<title>RUSTSEC-2025-0054: array-queue: ArrayQueue::push_front is not panic-safe › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,58 +52,167 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/array-queue/RUSTSEC-2025-0054.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/array-queue/RUSTSEC-2025-0054.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2025-0054">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2025-0054
+        
+      </h1>
+      <span class="subtitle"><p>ArrayQueue::push_front is not panic-safe</p>
 </span>
-      <h1>Advisories for package &#39;array-queue&#39;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2025-09-01">
-    September  1, 2025
-  </time>
-
-  
-  <h3>
     
+
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2025-08-14">
+          August 14, 2025
+        </time>
+      </dd>
+
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2025-09-01">
+          September  1, 2025
+        </time>
         
-    
-    <a href="/advisories/RUSTSEC-2025-0054.html">
-      RUSTSEC-2025-0054: Vulnerability in array-queue
-    </a>
-  </h3>
-  <span><p>ArrayQueue::push_front is not panic-safe</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2020-10-01">
-    October  1, 2020
-  </time>
+      </dd>
 
-  
-  <h3>
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        <a href="/packages/array-queue.html">array-queue</a>
+          (<a href="https://crates.io/crates/array-queue">crates.io</a>)
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        Vulnerability
+        
+      </dd>
+
+      
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/memory-corruption.html">memory-corruption</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/memory-safety.html">#memory-safety</a>
+        
+          <a href="/keywords/panic-safety.html">#panic-safety</a>
+        
+          <a href="/keywords/uninitialized-memory.html">#uninitialized-memory</a>
+        
+      </dd>
+      
+
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/raviqqe/array-queue/issues/3">
+              https://github.com/raviqqe/array-queue/issues/3
+            </a>
+          </li>
+        
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&#62;=0.4.0</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+      <dt id="unaffected">Unaffected</dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;0.3.0</code></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      
+
+      
+      
+    </dl>
+
     
-      <span class="tag medium">MEDIUM</span>
+    
+    <dl>
+      <dt>Affected Functions</dt>
+      <dd>Version</dd>
       
-    <a href="/advisories/RUSTSEC-2020-0047.html">
-      RUSTSEC-2020-0047: Vulnerability in array-queue
-    </a>
-  </h3>
-  <span><p>array_queue pop_back() may cause a use-after-free</p>
-</span>
-  
-</li>
+      <dt><code>array_queue::ArrayQueue::push_front</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#62;=0.3.0, &#60;=0.3.3</code></li>
+          
+        </ul>
+      </dd>
       
-    </ul>
+    </dl>
+    
+
+    
+
+    <h3 id="description">Description</h3>
+    <p>The safe API <code>array_queue::ArrayQueue::push_front</code> can lead to deallocating uninitialized memory if a panic occurs while invoking the <code>clone</code> method on the passed argument.</p>
+<p>Specifically, <code>push_front</code> receives an argument that is intended to be cloned and pushed, whose type implements the <code>Clone</code> trait. Furthermore, the method updates the queue's <code>start</code> index before initializing the slot for the newly pushed element. User-defined implementations of <code>Clone</code> may include a <code>clone</code> method that can panic. If such a panic occurs during initialization, the structure is left with an advanced <code>start</code> index pointing to an uninitialized slot. When <code>ArrayQueue</code> is later dropped, its destructor treats that slot as initialized and attempts to drop it, resulting in an attempt to free uninitialized memory.</p>
+<p>The bug was fixed in commit <code>728fe1b</code>.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
