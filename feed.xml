@@ -110,6 +110,116 @@
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2025-0057: fxhash is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2025-0057.html</id><updated>2025-09-05T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2025-0057.html" rel="alternate" type="text/html" title="RUSTSEC-2025-0057: fxhash is unmaintained"/><published>2025-09-05T12:00:00+00:00</published><summary xml:lang="en">fxhash - no longer maintained</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/fxhash/RUSTSEC-2025-0057.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/fxhash/RUSTSEC-2025-0057.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2025-0057&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2025-0057
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;fxhash - no longer maintained&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2025-09-05&quot;&gt;
+          September  5, 2025
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2025-09-05&quot;&gt;
+          September  5, 2025
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/fxhash.html&quot;&gt;fxhash&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/fxhash&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unmaintained
+        
+      &lt;/dd&gt;
+
+      
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/cbreeden/fxhash/issues/20&quot;&gt;
+              https://github.com/cbreeden/fxhash/issues/20
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;The fxhash crate is no longer maintained.&lt;/p&gt;
+&lt;p&gt;The repository is stale and owner is no longer active on GitHub.&lt;/p&gt;
+&lt;p&gt;Please take a look at &lt;a href=&quot;https://github.com/rust-lang/rustc-hash&quot;&gt;rustc-hash&lt;/a&gt; instead.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2025-0055: Vulnerability in tracing-subscriber</title><id>https://rustsec.org/advisories/RUSTSEC-2025-0055.html</id><updated>2025-09-02T12:00:00+00:00</updated><category term="format-injection"/><link href="https://rustsec.org/advisories/RUSTSEC-2025-0055.html" rel="alternate" type="text/html" title="RUSTSEC-2025-0055: Vulnerability in tracing-subscriber"/><published>2025-09-02T12:00:00+00:00</published><summary xml:lang="en">Logging user input may result in poisoning logs with ANSI escape sequences</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -1321,119 +1431,6 @@ deprecates the problematic functions.&lt;/p&gt;
     &lt;p&gt;The &lt;code&gt;get&lt;/code&gt; and &lt;code&gt;set&lt;/code&gt; methods of the public trait &lt;code&gt;scratchpad::Tracking&lt;/code&gt; interact with unsafe code regions in the crate, and they influence the computation of addresses returned as raw pointers. However, the trait itself is not marked as unsafe, meaning users may provide custom implementations under the assumption that the crate upholds all safety guarantees.&lt;/p&gt;
 &lt;p&gt;This becomes problematic because even safe implementations of &lt;code&gt;get&lt;/code&gt; and &lt;code&gt;set&lt;/code&gt;-written without using any unsafe code-can still result in ill-formed raw pointers. These pointers may later be dereferenced within safe APIs of the crate (e.g., &lt;code&gt;marker::MarkerBack::allocate_slice_copy&lt;/code&gt;), potentially leading to arbitrary memory access or heap buffer overflows.&lt;/p&gt;
 &lt;p&gt;According to the &lt;a href=&quot;https://github.com/okready/scratchpad/commit/957dee1a3902f48600b06910e8e0b1d5ee7dab83&quot;&gt;penultimate commit&lt;/a&gt;, the crate is in maintenance mode awaiting a cleanup that will reduce the area of unsafe code. Note that the last commits to the repository are from 4 years ago.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2025-0048: tsify-next is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2025-0048.html</id><updated>2025-08-13T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2025-0048.html" rel="alternate" type="text/html" title="RUSTSEC-2025-0048: tsify-next is unmaintained"/><published>2025-08-13T12:00:00+00:00</published><summary xml:lang="en">tsify-next is unmaintained, use tsify instead</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/tsify-next/RUSTSEC-2025-0048.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/tsify-next/RUSTSEC-2025-0048.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2025-0048&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2025-0048
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;tsify-next is unmaintained, use tsify instead&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2025-07-29&quot;&gt;
-          July 29, 2025
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2025-08-13&quot;&gt;
-          August 13, 2025
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/tsify-next.html&quot;&gt;tsify-next&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/tsify-next&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unmaintained
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/siefkenj/tsify/pull/56&quot;&gt;
-              https://github.com/siefkenj/tsify/pull/56
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/siefkenj/tsify/issues/57&quot;&gt;
-              https://github.com/siefkenj/tsify/issues/57
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;The &lt;code&gt;tsify-next&lt;/code&gt; crate is not maintained any more; use &lt;a href=&quot;https://crates.io/crates/tsify&quot;&gt;&lt;code&gt;tsify&lt;/code&gt;&lt;/a&gt; instead.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
