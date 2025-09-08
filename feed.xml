@@ -330,6 +330,171 @@
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2025-0062: Vulnerability in toodee</title><id>https://rustsec.org/advisories/RUSTSEC-2025-0062.html</id><updated>2025-09-08T12:00:00+00:00</updated><category term="memory-corruption"/><category term="memory-exposure"/><link href="https://rustsec.org/advisories/RUSTSEC-2025-0062.html" rel="alternate" type="text/html" title="RUSTSEC-2025-0062: Vulnerability in toodee"/><published>2025-09-08T12:00:00+00:00</published><summary xml:lang="en">Heap Buffer Overflow in the DrainCol Destructor</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/toodee/RUSTSEC-2025-0062.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/toodee/RUSTSEC-2025-0062.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2025-0062&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2025-0062
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Heap Buffer Overflow in the DrainCol Destructor&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2025-05-22&quot;&gt;
+          May 22, 2025
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2025-09-08&quot;&gt;
+          September  8, 2025
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/toodee.html&quot;&gt;toodee&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/toodee&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-exposure.html&quot;&gt;memory-exposure&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/memory-safety.html&quot;&gt;#memory-safety&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/buffer-overflow.html&quot;&gt;#buffer-overflow&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/antonmarsden/toodee/issues/26&quot;&gt;
+              https://github.com/antonmarsden/toodee/issues/26
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.6.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;toodee::DrainCol::drop&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.2.0, &amp;#60;=0.5.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;An off-by-one error in the &lt;code&gt;DrainCol::drop&lt;/code&gt; destructor could cause an unsafe memory copy
+operation to exceed the bounds of the associated vector.&lt;/p&gt;
+&lt;p&gt;The error was related to the size of the data being copied in one of the &lt;code&gt;ptr::copy&lt;/code&gt;
+invocations inside the destructor.&lt;/p&gt;
+&lt;p&gt;When removing the first column from a TooDee object, the DrainCol return object could cause
+a heap buffer overflow vulnerability when it is dropped.&lt;/p&gt;
+&lt;p&gt;The issue was fixed in commit &lt;code&gt;e6e16d5&lt;/code&gt; by reducing the copied size by one.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2025-0058: custom_derive is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2025-0058.html</id><updated>2025-09-07T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2025-0058.html" rel="alternate" type="text/html" title="RUSTSEC-2025-0058: custom_derive is unmaintained"/><published>2025-09-07T12:00:00+00:00</published><summary xml:lang="en">custom_derive crate is unmaintained</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -1160,128 +1325,6 @@
 &lt;p&gt;The safe API &lt;code&gt;arenavec::common::SliceVec::split_off&lt;/code&gt; can duplicate the ownership of the elements in &lt;code&gt;self&lt;/code&gt; (of type &lt;code&gt;SliceVec&lt;/code&gt;) if they implement the &lt;code&gt;Drop&lt;/code&gt; trait. Specifically, when &lt;code&gt;at == 0&lt;/code&gt;, the method returns a new &lt;code&gt;SliceVec&lt;/code&gt; with the same length as &lt;code&gt;self&lt;/code&gt;. Since both &lt;code&gt;self&lt;/code&gt; and the returned object point to the same heap memory, dropping one will deallocate the shared memory. When the other is subsequently dropped, it will attempt to free the same memory again, resulting in a double free violation.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0443: Unsoundness in webp</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0443.html</id><updated>2025-08-29T12:00:00+00:00</updated><category term="memory-exposure"/><link href="https://rustsec.org/advisories/RUSTSEC-2024-0443.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0443: Unsoundness in webp"/><published>2025-08-29T12:00:00+00:00</published><summary xml:lang="en">webp crate may expose memory contents when encoding an image</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/webp/RUSTSEC-2024-0443.md&quot;&gt;History&lt;/a&gt; ⋅ 
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/webp/RUSTSEC-2024-0443.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0443&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2024-0443
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;webp crate may expose memory contents when encoding an image&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2024-09-06&quot;&gt;
-          September  6, 2024
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2025-08-29&quot;&gt;
-          August 29, 2025
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/webp.html&quot;&gt;webp&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/webp&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unsound
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/memory-exposure.html&quot;&gt;memory-exposure&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/jaredforth/webp/issues/40&quot;&gt;
-              https://github.com/jaredforth/webp/issues/40
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=0.3.1&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;Affected versions of this crate did not check that the input slice passed to &lt;code&gt;&amp;quot;webp::Encoder::encode()&lt;/code&gt; is large enough for the specified image dimensions.&lt;/p&gt;
-&lt;p&gt;If the input slice is too short, the library will read out of bounds of the buffer and encode other memory contents as an image, resulting in memory exposure or a segmentation fault.&lt;/p&gt;
-&lt;p&gt;The flaw was corrected in &lt;a href=&quot;https://github.com/jaredforth/webp/pull/44&quot;&gt;pull request #44&lt;/a&gt; by always validating the input buffer size when constructing the encoder.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
