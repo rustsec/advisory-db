@@ -71,6 +71,10 @@ When creating the advisory, please include a link to an open issue
 on the upstream project repository where the maintenance status has been
 discussed in the `url = "..."` field of the advisory.
 
+If the upstream project repository has issues disabled, or if an upstream
+issue does not adequately explain the circumstances, please include
+`url = "..."` linking to an issue in the `advisory-db` project.
+
 For more information on adding an advisory to the RustSec DB, see:
 
 <https://github.com/RustSec/advisory-db/blob/main/CONTRIBUTING.md>
