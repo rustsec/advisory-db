@@ -1,5 +1,239 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2025-09-12T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2021-0154: Unsoundness in fuser</title><id>https://rustsec.org/advisories/RUSTSEC-2021-0154.html</id><updated>2025-09-12T12:00:00+00:00</updated><category term="code-execution"/><link href="https://rustsec.org/advisories/RUSTSEC-2021-0154.html" rel="alternate" type="text/html" title="RUSTSEC-2021-0154: Unsoundness in fuser"/><published>2025-09-12T12:00:00+00:00</published><summary xml:lang="en">Uninitalized memory read &amp;amp; leak caused by fuser crate</summary><content xml:lang="en" type="html">  &lt;article&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2025-09-12T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2025-0067: Unsoundness in libyml</title><id>https://rustsec.org/advisories/RUSTSEC-2025-0067.html</id><updated>2025-09-12T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2025-0067.html" rel="alternate" type="text/html" title="RUSTSEC-2025-0067: Unsoundness in libyml"/><published>2025-09-12T12:00:00+00:00</published><summary xml:lang="en">`libyml::string::yaml_string_extend` is unsound and unmaintained</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/libyml/RUSTSEC-2025-0067.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/libyml/RUSTSEC-2025-0067.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2025-0067&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2025-0067
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;libyml::string::yaml_string_extend&lt;/code&gt; is unsound and unmaintained&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2025-09-11&quot;&gt;
+          September 11, 2025
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2025-09-12&quot;&gt;
+          September 12, 2025
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/libyml.html&quot;&gt;libyml&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/libyml&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/rustsec/advisory-db/issues/2395&quot;&gt;
+              https://github.com/rustsec/advisory-db/issues/2395
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;In version 0.0.4, &lt;code&gt;libyml::string::yaml_string_extend&lt;/code&gt; was revised resulting in undefined behaviour, which is unsound.&lt;/p&gt;
+&lt;p&gt;The GitHub project for &lt;code&gt;libyml&lt;/code&gt; was archived after unsoundness issues were raised.&lt;/p&gt;
+&lt;p&gt;If you rely on this crate, it is highly recommended switching to a maintained alternative.&lt;/p&gt;
+&lt;h2&gt;Recommended alternatives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://crates.io/crates/libyaml-safer&quot;&gt;&lt;code&gt;libyaml-safer&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://crates.io/crates/unsafe-libyaml-norway&quot;&gt;&lt;code&gt;unsafe-libyaml-norway&lt;/code&gt;&lt;/a&gt; - Maintained fork of &lt;code&gt;unsafe-libyaml&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2025-0068: Unsoundness in serde_yml</title><id>https://rustsec.org/advisories/RUSTSEC-2025-0068.html</id><updated>2025-09-12T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2025-0068.html" rel="alternate" type="text/html" title="RUSTSEC-2025-0068: Unsoundness in serde_yml"/><published>2025-09-12T12:00:00+00:00</published><summary xml:lang="en">serde_yml crate is unsound and unmaintained</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/serde_yml/RUSTSEC-2025-0068.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/serde_yml/RUSTSEC-2025-0068.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2025-0068&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2025-0068
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;serde_yml crate is unsound and unmaintained&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2025-09-11&quot;&gt;
+          September 11, 2025
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2025-09-12&quot;&gt;
+          September 12, 2025
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/serde_yml.html&quot;&gt;serde_yml&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/serde_yml&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/rustsec/advisory-db/issues/2395&quot;&gt;
+              https://github.com/rustsec/advisory-db/issues/2395
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Using &lt;code&gt;serde_yml::ser::Serializer.emitter&lt;/code&gt; can cause a segmentation fault, which is unsound.&lt;/p&gt;
+&lt;p&gt;The GitHub project for &lt;code&gt;serde_yml&lt;/code&gt; was archived after unsoundness issues were raised.&lt;/p&gt;
+&lt;p&gt;If you rely on this crate, it is highly recommended switching to a maintained alternative.&lt;/p&gt;
+&lt;h2&gt;Recommended alternatives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://crates.io/crates/serde_norway&quot;&gt;&lt;code&gt;serde_norway&lt;/code&gt;&lt;/a&gt; - Maintained fork of &lt;code&gt;serde_yaml&lt;/code&gt;, using &lt;code&gt;unsafe-libyaml-norway&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://crates.io/crates/serde_yaml_ng&quot;&gt;&lt;code&gt;serde_yaml_ng&lt;/code&gt;&lt;/a&gt; - Maintained fork of &lt;code&gt;serde_yaml&lt;/code&gt;, using unmaintained &lt;code&gt;unsafe-libyaml&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Incomplete pure Rust alternatives&lt;/h2&gt;
+&lt;p&gt;These implementation do not rely on C &lt;code&gt;libyaml&lt;/code&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://crates.io/crates/serde_yaml2&quot;&gt;&lt;code&gt;serde_yaml2&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://crates.io/crates/yaml-peg&quot;&gt;&lt;code&gt;yaml-peg&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2021-0154: Unsoundness in fuser</title><id>https://rustsec.org/advisories/RUSTSEC-2021-0154.html</id><updated>2025-09-12T12:00:00+00:00</updated><category term="code-execution"/><link href="https://rustsec.org/advisories/RUSTSEC-2021-0154.html" rel="alternate" type="text/html" title="RUSTSEC-2021-0154: Unsoundness in fuser"/><published>2025-09-12T12:00:00+00:00</published><summary xml:lang="en">Uninitalized memory read &amp;amp; leak caused by fuser crate</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
           &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/fuser/RUSTSEC-2021-0154.md&quot;&gt;History&lt;/a&gt; ⋅ 
