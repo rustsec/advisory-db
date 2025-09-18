@@ -1,0 +1,75 @@
+{
+  "id": "RUSTSEC-2025-0070",
+  "modified": "2025-09-18T07:10:31Z",
+  "published": "2025-09-17T12:00:00Z",
+  "aliases": [
+    "CVE-2025-8671"
+  ],
+  "related": [],
+  "summary": "Pingora MadeYouReset HTTP/2 vulnerability",
+  "details": "Pingora deployments using versions prior to 0.6.0 that include HTTP/2 server support may be affected by the vulnerability described in CVE-2025-8671. Under certain conditions, Pingora applications may allocate buffers before the HTTP/2 reset and resulting stream cancellation is processed by the server. Repeated resets can force excessive memory consumption and lead to denial-of-service.\n\nOn affected versions, malicious clients could trigger unusually high memory consumption, which may result in service instability or process termination.\n\nThis issue is addressed by ensuring Pingora uses patched versions of HTTP/2 dependencies that include reset-handling safeguards to release connection resources before excessive memory buildup. Users are requested to upgrade to versions >= 0.6.0, which incorporates the required fixes.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "pingora-core",
+        "purl": "pkg:cargo/pingora-core"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "denial-of-service"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "0.6.0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/pingora-core"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2025-0070.html"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://github.com/cloudflare/pingora/security/advisories/GHSA-393w-9x6h-8gc7"
+    },
+    {
+      "type": "WEB",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-8671"
+    },
+    {
+      "type": "WEB",
+      "url": "https://blog.cloudflare.com/madeyoureset-an-http-2-vulnerability-thwarted-by-rapid-reset-mitigations/"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
