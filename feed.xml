@@ -208,10 +208,11 @@
     
 
     &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;An uncaught panic triggered by malformed input to &lt;code&gt;alloy_dyn_abi::TypedData&lt;/code&gt; could lead to a denial-of-service (DoS) when the library is used in auto-restarting software.&lt;/p&gt;
+    &lt;p&gt;An uncaught panic triggered by malformed input to &lt;code&gt;alloy_dyn_abi::TypedData&lt;/code&gt; could lead to a denial-of-service (DoS) via &lt;code&gt;eip712_signing_hash()&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Software with high availability requirements such as network services may be particularly impacted. If in use, external auto-restarting mechanisms can partially mitigate the availability issues unless repeated attacks are possible.&lt;/p&gt;
 &lt;p&gt;The vulnerability was patched by adding a check to ensure the element is not empty before accessing its first element; an error is returned if it is empty. The fix is included in version &lt;a href=&quot;https://crates.io/crates/alloy-dyn-abi/1.4.1&quot;&gt;v1.4.1&lt;/a&gt; and backported to &lt;a href=&quot;https://crates.io/crates/alloy-dyn-abi/0.8.26&quot;&gt;v0.8.26&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;There is no known workaround that mitigates the vulnerability. Upgrading to a patched version is the recommended course of action.&lt;/p&gt;
-&lt;p&gt;Reported by &lt;a href=&quot;https://github.com/cr-tk&quot;&gt;Christian Reitter&lt;/a&gt; &amp;amp; &lt;a href=&quot;https://github.com/emostov&quot;&gt;Zeke Mostov&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Reported by &lt;a href=&quot;https://github.com/cr-tk&quot;&gt;Christian Reitter&lt;/a&gt; &amp;amp; &lt;a href=&quot;https://github.com/emostov&quot;&gt;Zeke Mostov&lt;/a&gt; from &lt;a href=&quot;https://www.turnkey.com/&quot;&gt;Turnkey&lt;/a&gt;.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;

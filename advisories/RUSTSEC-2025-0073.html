@@ -262,10 +262,11 @@
     
 
     <h3 id="description">Description</h3>
-    <p>An uncaught panic triggered by malformed input to <code>alloy_dyn_abi::TypedData</code> could lead to a denial-of-service (DoS) when the library is used in auto-restarting software.</p>
+    <p>An uncaught panic triggered by malformed input to <code>alloy_dyn_abi::TypedData</code> could lead to a denial-of-service (DoS) via <code>eip712_signing_hash()</code>.</p>
+<p>Software with high availability requirements such as network services may be particularly impacted. If in use, external auto-restarting mechanisms can partially mitigate the availability issues unless repeated attacks are possible.</p>
 <p>The vulnerability was patched by adding a check to ensure the element is not empty before accessing its first element; an error is returned if it is empty. The fix is included in version <a href="https://crates.io/crates/alloy-dyn-abi/1.4.1">v1.4.1</a> and backported to <a href="https://crates.io/crates/alloy-dyn-abi/0.8.26">v0.8.26</a>.</p>
 <p>There is no known workaround that mitigates the vulnerability. Upgrading to a patched version is the recommended course of action.</p>
-<p>Reported by <a href="https://github.com/cr-tk">Christian Reitter</a> &amp; <a href="https://github.com/emostov">Zeke Mostov</a>.</p>
+<p>Reported by <a href="https://github.com/cr-tk">Christian Reitter</a> &amp; <a href="https://github.com/emostov">Zeke Mostov</a> from <a href="https://www.turnkey.com/">Turnkey</a>.</p>
 
 
     <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
