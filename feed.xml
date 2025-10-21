@@ -325,6 +325,163 @@
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2025-0105: Unsoundness in direct_ring_buffer</title><id>https://rustsec.org/advisories/RUSTSEC-2025-0105.html</id><updated>2025-10-21T12:00:00+00:00</updated><category term="memory-exposure"/><link href="https://rustsec.org/advisories/RUSTSEC-2025-0105.html" rel="alternate" type="text/html" title="RUSTSEC-2025-0105: Unsoundness in direct_ring_buffer"/><published>2025-10-21T12:00:00+00:00</published><summary xml:lang="en">Uninitialized memory exposure in create_ring_buffer</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/direct_ring_buffer/RUSTSEC-2025-0105.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/direct_ring_buffer/RUSTSEC-2025-0105.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2025-0105&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2025-0105
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Uninitialized memory exposure in create_ring_buffer&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2025-10-21&quot;&gt;
+          October 21, 2025
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2025-10-21&quot;&gt;
+          October 21, 2025
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/direct_ring_buffer.html&quot;&gt;direct_ring_buffer&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/direct_ring_buffer&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-exposure.html&quot;&gt;memory-exposure&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/uninitialized-memory.html&quot;&gt;#uninitialized-memory&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/soundness.html&quot;&gt;#soundness&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/ain1084/direct_ring_buffer/issues/1&quot;&gt;
+              https://github.com/ain1084/direct_ring_buffer/issues/1
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/ain1084/direct_ring_buffer/pull/2&quot;&gt;
+              https://github.com/ain1084/direct_ring_buffer/pull/2
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.2.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;direct_ring_buffer::create_ring_buffer&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;=0.2.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;The safe function &lt;code&gt;create_ring_buffer&lt;/code&gt; allocates a buffer using &lt;code&gt;Vec::with_capacity&lt;/code&gt; followed by &lt;code&gt;set_len&lt;/code&gt;, creating a &lt;code&gt;Box&amp;lt;[T]&amp;gt;&lt;/code&gt; containing uninitialized memory.&lt;/p&gt;
+&lt;p&gt;This leads to undefined behavior when functions like &lt;code&gt;write_slices&lt;/code&gt; create typed slices (e.g., &lt;code&gt;&amp;amp;mut [bool]&lt;/code&gt;) over the uninitialized memory, violating Rust&apos;s validity invariants. The issue has been confirmed using Miri.&lt;/p&gt;
+&lt;p&gt;Fixed in version 0.2.2 by using &lt;code&gt;resize_with&lt;/code&gt; to properly initialize the buffer with &lt;code&gt;T::default()&lt;/code&gt;, adding a &lt;code&gt;T: Default&lt;/code&gt; bound to ensure sound initialization.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2025-0077: unic-ucd is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2025-0077.html</id><updated>2025-10-21T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2025-0077.html" rel="alternate" type="text/html" title="RUSTSEC-2025-0077: unic-ucd is unmaintained"/><published>2025-10-21T12:00:00+00:00</published><summary xml:lang="en">`unic-ucd` is unmaintained</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;

@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories with keyword &#39;soundness&#39; › RustSec Advisory Database</title>
+<title>RUSTSEC-2025-0105: direct_ring_buffer: Uninitialized memory exposure in create_ring_buffer › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,98 +52,163 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/direct_ring_buffer/RUSTSEC-2025-0105.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/direct_ring_buffer/RUSTSEC-2025-0105.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2025-0105">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2025-0105
+        
+      </h1>
+      <span class="subtitle"><p>Uninitialized memory exposure in create_ring_buffer</p>
 </span>
-      <h1>Advisories with keyword &#39;soundness&#39;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2025-10-21">
-    October 21, 2025
-  </time>
-
-  
-  <h3>
     
+
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2025-10-21">
+          October 21, 2025
+        </time>
+      </dd>
+
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2025-10-21">
+          October 21, 2025
+        </time>
         
-          <span class="tag info">INFO</span>
+      </dd>
+
+      <dt id="package">Package</dt>
+      <dd>
         
-    
-    <a href="/advisories/RUSTSEC-2025-0105.html">
-      RUSTSEC-2025-0105: Unsoundness in direct_ring_buffer
-    </a>
-  </h3>
-  <span><p>Uninitialized memory exposure in create_ring_buffer</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2021-05-22">
-    May 22, 2021
-  </time>
-
-  
-  <h3>
-    
         
-    
-    <a href="/advisories/RUSTSEC-2021-0068.html">
-      RUSTSEC-2021-0068: Vulnerability in iced-x86
-    </a>
-  </h3>
-  <span><p>Soundness issue in <code>iced-x86</code> versions &lt;= 1.10.3</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2021-03-01">
-    March  1, 2021
-  </time>
+        <a href="/packages/direct_ring_buffer.html">direct_ring_buffer</a>
+          (<a href="https://crates.io/crates/direct_ring_buffer">crates.io</a>)
+        
+        
+      </dd>
 
-  
-  <h3>
-    
-      <span class="tag high">HIGH</span>
-      
-    <a href="/advisories/RUSTSEC-2020-0146.html">
-      RUSTSEC-2020-0146: Vulnerability in generic-array
-    </a>
-  </h3>
-  <span><p>arr! macro erases lifetimes</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2021-01-19">
-    January 19, 2021
-  </time>
+      <dt id="type">Type</dt>
+      <dd>
+        
+        <span class="tag info">INFO</span>
+        Unsound
+        
+      </dd>
 
-  
-  <h3>
+      
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/memory-exposure.html">memory-exposure</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/uninitialized-memory.html">#uninitialized-memory</a>
+        
+          <a href="/keywords/soundness.html">#soundness</a>
+        
+      </dd>
+      
+
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/ain1084/direct_ring_buffer/issues/1">
+              https://github.com/ain1084/direct_ring_buffer/issues/1
+            </a>
+          </li>
+        
+        
+          <li>
+            <a href="https://github.com/ain1084/direct_ring_buffer/pull/2">
+              https://github.com/ain1084/direct_ring_buffer/pull/2
+            </a>
+          </li>
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&#62;=0.2.2</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+
+      
+      
+
+      
+      
+    </dl>
+
     
-      <span class="tag high">HIGH</span>
+    
+    <dl>
+      <dt>Affected Functions</dt>
+      <dd>Version</dd>
       
-    <a href="/advisories/RUSTSEC-2021-0006.html">
-      RUSTSEC-2021-0006: Unsoundness in cache
-    </a>
-  </h3>
-  <span><p>Exposes internally used raw pointer</p>
-</span>
-  
-</li>
+      <dt><code>direct_ring_buffer::create_ring_buffer</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;=0.2.1</code></li>
+          
+        </ul>
+      </dd>
       
-    </ul>
+    </dl>
+    
+
+    
+
+    <h3 id="description">Description</h3>
+    <p>The safe function <code>create_ring_buffer</code> allocates a buffer using <code>Vec::with_capacity</code> followed by <code>set_len</code>, creating a <code>Box&lt;[T]&gt;</code> containing uninitialized memory.</p>
+<p>This leads to undefined behavior when functions like <code>write_slices</code> create typed slices (e.g., <code>&amp;mut [bool]</code>) over the uninitialized memory, violating Rust's validity invariants. The issue has been confirmed using Miri.</p>
+<p>Fixed in version 0.2.2 by using <code>resize_with</code> to properly initialize the buffer with <code>T::default()</code>, adding a <code>T: Default</code> bound to ensure sound initialization.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
