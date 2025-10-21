@@ -4,40 +4,40 @@ on:
   workflow_dispatch:
   schedule:
     # daily run on default "main" branch
-    - cron: '30 1 * * *'
+    - cron: "30 1 * * *"
 
 jobs:
   sync-ids:
     name: Synchronize IDs
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v5
+      - uses: actions/checkout@v5
 
-    - name: Cache cargo bin
-      id: admin-cache
-      uses: actions/cache@v4
-      with:
-        path: ~/.cargo/bin
-        key: rustsec-admin-b7c69254bda9b8f4c94bc5eaef47e5bb3a97d8cd
+      - name: Cache cargo bin
+        id: admin-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cargo/bin
+          key: rustsec-admin-b7c69254bda9b8f4c94bc5eaef47e5bb3a97d8cd
 
-    - name: Install rustsec-admin
-      if: steps.admin-cache.outputs.cache-hit != 'true'
-      run: cargo install --git https://github.com/rustsec/rustsec rustsec-admin --rev b7c69254bda9b8f4c94bc5eaef47e5bb3a97d8cd
+      - name: Install rustsec-admin
+        if: steps.admin-cache.outputs.cache-hit != 'true'
+        run: cargo install --git https://github.com/rustsec/rustsec rustsec-admin --rev b7c69254bda9b8f4c94bc5eaef47e5bb3a97d8cd
 
-    - name: Synchronize IDs
-      id: sync_ids
-      run: |
-        mkdir -p /tmp/osv
-        curl --silent --output /tmp/osv/advisories.zip https://osv-vulnerabilities.storage.googleapis.com/crates.io/all.zip
-        unzip -d /tmp/osv -q /tmp/osv/advisories.zip
-        rustsec-admin sync --osv /tmp/osv/ .
-        message="Synchronize IDs ($(date +%F))"
-        echo "commit_message=${message}" >> $GITHUB_OUTPUT
+      - name: Synchronize IDs
+        id: sync_ids
+        run: |
+          mkdir -p /tmp/osv
+          curl --silent --output /tmp/osv/advisories.zip https://osv-vulnerabilities.storage.googleapis.com/crates.io/all.zip
+          unzip -d /tmp/osv -q /tmp/osv/advisories.zip
+          rustsec-admin sync --osv /tmp/osv/ .
+          message="Synchronize IDs ($(date +%F))"
+          echo "commit_message=${message}" >> $GITHUB_OUTPUT
 
-    - name: Create pull request
-      uses: peter-evans/create-pull-request@v7
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        commit-message: ${{ steps.sync_ids.outputs.commit_message }}
-        title: ${{ steps.sync_ids.outputs.commit_message }}
-        branch: sync-ids
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: ${{ steps.sync_ids.outputs.commit_message }}
+          title: ${{ steps.sync_ids.outputs.commit_message }}
+          branch: sync-ids
