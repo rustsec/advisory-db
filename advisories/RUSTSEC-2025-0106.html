@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories with keyword &#39;undefined-behavior&#39; › RustSec Advisory Database</title>
+<title>RUSTSEC-2025-0106: orx-pinned-vec: Undefined behavior in index_of_ptr with empty slices › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,83 +52,162 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/orx-pinned-vec/RUSTSEC-2025-0106.md">History</a> ⋅ 
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/orx-pinned-vec/RUSTSEC-2025-0106.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2025-0106">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2025-0106
+        
+      </h1>
+      <span class="subtitle"><p>Undefined behavior in index_of_ptr with empty slices</p>
 </span>
-      <h1>Advisories with keyword &#39;undefined-behavior&#39;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2025-10-21">
-    October 21, 2025
-  </time>
+    
 
-  
-  <h3>
-    
-        
-          <span class="tag info">INFO</span>
-        
-    
-    <a href="/advisories/RUSTSEC-2025-0106.html">
-      RUSTSEC-2025-0106: Unsoundness in orx-pinned-vec
-    </a>
-  </h3>
-  <span><p>Undefined behavior in index_of_ptr with empty slices</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2025-05-14">
-    May 14, 2025
-  </time>
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2025-10-21">
+          October 21, 2025
+        </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2025-10-21">
+          October 21, 2025
+        </time>
         
-          <span class="tag info">INFO</span>
-        
-    
-    <a href="/advisories/RUSTSEC-2025-0035.html">
-      RUSTSEC-2025-0035: Unsoundness in macroquad
-    </a>
-  </h3>
-  <span><p>Multiple soundness issues in <code>macroquad</code></p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2024-11-10">
-    November 10, 2024
-  </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="package">Package</dt>
+      <dd>
         
-          <span class="tag info">INFO</span>
         
-    
-    <a href="/advisories/RUSTSEC-2023-0087.html">
-      RUSTSEC-2023-0087: Unsoundness in simd-json-derive
-    </a>
-  </h3>
-  <span><p><code>MaybeUninit</code> misuse in <code>simd-json-derive</code></p>
-</span>
-  
-</li>
+        <a href="/packages/orx-pinned-vec.html">orx-pinned-vec</a>
+          (<a href="https://crates.io/crates/orx-pinned-vec">crates.io</a>)
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        <span class="tag info">INFO</span>
+        Unsound
+        
+      </dd>
+
       
-    </ul>
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/memory-corruption.html">memory-corruption</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/undefined-behavior.html">#undefined-behavior</a>
+        
+          <a href="/keywords/soundness.html">#soundness</a>
+        
+      </dd>
+      
+
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/orxfun/orx-pinned-vec/issues/52">
+              https://github.com/orxfun/orx-pinned-vec/issues/52
+            </a>
+          </li>
+        
+        
+          <li>
+            <a href="https://github.com/orxfun/orx-pinned-vec/pull/53">
+              https://github.com/orxfun/orx-pinned-vec/pull/53
+            </a>
+          </li>
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&#62;=3.21.0</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+
+      
+      
+
+      
+      
+    </dl>
+
+    
+    
+    <dl>
+      <dt>Affected Functions</dt>
+      <dd>Version</dd>
+      
+      <dt><code>orx_pinned_vec::utils::slice::index_of_ptr</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;3.21.0</code></li>
+          
+        </ul>
+      </dd>
+      
+    </dl>
+    
+
+    
+
+    <h3 id="description">Description</h3>
+    <p>The safe function <code>index_of_ptr</code> causes undefined behavior when called with an empty slice.</p>
+<p>The issue occurs in the line <code>ptr.add(slice.len() - 1)</code> which underflows when <code>slice.len()</code> is 0, creating a pointer with a massive offset. According to Rust's safety rules, creating such a pointer causes immediate undefined behavior.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>

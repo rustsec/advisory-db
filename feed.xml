@@ -3011,6 +3011,162 @@
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2025-0106: Unsoundness in orx-pinned-vec</title><id>https://rustsec.org/advisories/RUSTSEC-2025-0106.html</id><updated>2025-10-21T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2025-0106.html" rel="alternate" type="text/html" title="RUSTSEC-2025-0106: Unsoundness in orx-pinned-vec"/><published>2025-10-21T12:00:00+00:00</published><summary xml:lang="en">Undefined behavior in index_of_ptr with empty slices</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/orx-pinned-vec/RUSTSEC-2025-0106.md&quot;&gt;History&lt;/a&gt; ⋅ 
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/orx-pinned-vec/RUSTSEC-2025-0106.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2025-0106&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2025-0106
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Undefined behavior in index_of_ptr with empty slices&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2025-10-21&quot;&gt;
+          October 21, 2025
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2025-10-21&quot;&gt;
+          October 21, 2025
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/orx-pinned-vec.html&quot;&gt;orx-pinned-vec&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/orx-pinned-vec&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/undefined-behavior.html&quot;&gt;#undefined-behavior&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/soundness.html&quot;&gt;#soundness&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/orxfun/orx-pinned-vec/issues/52&quot;&gt;
+              https://github.com/orxfun/orx-pinned-vec/issues/52
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/orxfun/orx-pinned-vec/pull/53&quot;&gt;
+              https://github.com/orxfun/orx-pinned-vec/pull/53
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=3.21.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;orx_pinned_vec::utils::slice::index_of_ptr&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;3.21.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;The safe function &lt;code&gt;index_of_ptr&lt;/code&gt; causes undefined behavior when called with an empty slice.&lt;/p&gt;
+&lt;p&gt;The issue occurs in the line &lt;code&gt;ptr.add(slice.len() - 1)&lt;/code&gt; which underflows when &lt;code&gt;slice.len()&lt;/code&gt; is 0, creating a pointer with a massive offset. According to Rust&apos;s safety rules, creating such a pointer causes immediate undefined behavior.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2025-0100: unic-ucd-ident is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2025-0100.html</id><updated>2025-10-21T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2025-0100.html" rel="alternate" type="text/html" title="RUSTSEC-2025-0100: unic-ucd-ident is unmaintained"/><published>2025-10-21T12:00:00+00:00</published><summary xml:lang="en">`unic-ucd-ident` is unmaintained</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
