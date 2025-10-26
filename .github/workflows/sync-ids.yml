@@ -6,16 +6,22 @@ on:
     # daily run on default "main" branch
     - cron: "30 1 * * *"
 
+permissions: {}
+
 jobs:
   sync-ids:
     name: Synchronize IDs
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write # needed to create pull requests
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
 
       - name: Cache cargo bin
         id: admin-cache
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         with:
           path: ~/.cargo/bin
           key: rustsec-admin-c7f56c474e01619b78b9c39bdb626d982f3bee90
@@ -35,7 +41,7 @@ jobs:
           echo "commit_message=${message}" >> $GITHUB_OUTPUT
 
       - name: Create pull request
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7.0.8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: ${{ steps.sync_ids.outputs.commit_message }}
