@@ -1,0 +1,64 @@
+[
+  {
+    "id": "RUSTSEC-2025-0030",
+    "modified": "2025-05-06T20:14:30Z",
+    "published": "2025-02-10T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "totally-safe-transmute allows transmuting any type to any other type in safe Rust",
+    "details": "This crate is a toy and should never be used.\n\nIt showcases a known soundness issue (https://github.com/rust-lang/rust/issues/32670) that will never get fixed. In short, Linux provides a file called `/proc/self/mem` which can be used by a program to modify its own memory. This library modifies an enum variant number by accessing its own memory as a file to effectively transmute a variable.\n\nSee also <https://doc.rust-lang.org/std/os/unix/io/index.html#procselfmem-and-similar-os-features>",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "totally-safe-transmute",
+          "purl": "pkg:cargo/totally-safe-transmute"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/totally-safe-transmute"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2025-0030.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/ben0x539/totally-safe-transmute"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

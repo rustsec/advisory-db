@@ -1,0 +1,76 @@
+[
+  {
+    "id": "RUSTSEC-2020-0098",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2020-12-18T12:00:00Z",
+    "aliases": [
+      "CVE-2020-36206",
+      "GHSA-9mxw-4856-9cm5"
+    ],
+    "related": [],
+    "summary": "UsbContext trait did not require implementers to be Send and Sync.",
+    "details": "Affected versions of `rusb` did not require `UsbContext` to implement `Send`\nand `Sync`. However, through `Device` and `DeviceHandle` it is possible to use\n`UsbContext`s across threads.\n\nThis issue allows non-thread safe `UsbContext` types to be used concurrently\nleading to data races and memory corruption.\n\nThe issue was fixed by adding `Send` and `Sync` bounds to `UsbContext`.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "rusb",
+          "purl": "pkg:cargo/rusb"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption",
+            "thread-safety"
+          ],
+          "cvss": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H",
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.7.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/rusb"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2020-0098.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/a1ien/rusb/issues/44"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

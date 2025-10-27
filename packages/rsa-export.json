@@ -1,0 +1,66 @@
+[
+  {
+    "id": "RUSTSEC-2024-0333",
+    "modified": "2024-04-12T16:29:46Z",
+    "published": "2024-04-06T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "`rsa-export` is unmaintained",
+    "details": "This crate has been deprecated in favour of using the native support for exporting RSA keys into the standard PEM format.  \nSee [docs.rs documentation].\n\nIn addition to that, the operations in this crate (arithmetic and Base64 encoding) are not done in constant-time, \npotentially [exposing the user to sidechannel attacks].\n\n[docs.rs documentation]: https://docs.rs/rsa/0.9.6/rsa/index.html#pkcs8-rsa-key-encoding\n[exposing the user to sidechannel attacks]: https://arxiv.org/pdf/2108.04600.pdf",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "rsa-export",
+          "purl": "pkg:cargo/rsa-export"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": "unmaintained"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/rsa-export"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2024-0333.html"
+      },
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/rsa-export/0.3.3"
+      },
+      {
+        "type": "WEB",
+        "url": "https://gitlab.com/smallglitch/rsa-export/-/commit/e29f17170d655a6f62eca8bf1f64ef0ce5807058"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

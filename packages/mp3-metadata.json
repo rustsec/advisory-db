@@ -1,0 +1,69 @@
+[
+  {
+    "id": "RUSTSEC-2025-0027",
+    "modified": "2025-05-06T19:24:32Z",
+    "published": "2025-04-28T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Panic in mp3-metadata due to the lack of bounds checking",
+    "details": "The `get_id3()` methods used by `mp3_metadata::read_from_slice()` does not perform adequate bounds\nchecking when recreating the tag due to the use of desynchronization.\n\nFixed in [Fix index error](https://github.com/GuillaumeGomez/mp3-metadata/pull/37), released as\npart of 0.4.0.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "mp3-metadata",
+          "purl": "pkg:cargo/mp3-metadata"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "mp3_metadata::read_from_slice"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.4.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/mp3-metadata"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2025-0027.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/GuillaumeGomez/mp3-metadata/issues/36"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

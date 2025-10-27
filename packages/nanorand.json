@@ -1,0 +1,144 @@
+[
+  {
+    "id": "RUSTSEC-2021-0114",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2021-09-23T12:00:00Z",
+    "aliases": [
+      "CVE-2021-45705",
+      "GHSA-p6gj-gpc8-f8xw",
+      "GHSA-r57r-j98g-587f"
+    ],
+    "related": [],
+    "summary": "Aliased mutable references from `tls_rand` & `TlsWyRand`",
+    "details": "`TlsWyRand`'s implementation of `Deref` unconditionally dereferences a raw pointer, and returns \nmultiple mutable references to the same object, which is undefined behavior.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "nanorand",
+          "purl": "pkg:cargo/nanorand"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "nanorand::tls::tls_rand"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.5.0"
+              },
+              {
+                "fixed": "0.6.1"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/nanorand"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0114.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/Absolucy/nanorand-rs/issues/28"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2020-0089",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2020-12-09T12:00:00Z",
+    "aliases": [
+      "CVE-2020-35926",
+      "GHSA-m9m5-cg5h-r582"
+    ],
+    "related": [],
+    "summary": "nanorand 0.5.0 - RNGs failed to generate properly for non-64-bit numbers",
+    "details": "In versions of `nanorand` prior to 0.5.1, `RandomGen` implementations for standard unsigned integers could\nfail to properly generate numbers, due to using bit-shifting to truncate a 64-bit number, rather than just\nan `as` conversion.\n\nThis often manifested as RNGs returning nothing but 0, including the cryptographically secure `ChaCha` random\nnumber generator..",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "nanorand",
+          "purl": "pkg:cargo/nanorand"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "crypto-failure"
+          ],
+          "cvss": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.5.1"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/nanorand"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2020-0089.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://twitter.com/aspenluxxxy/status/1336684692284772352"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

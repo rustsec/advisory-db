@@ -1,0 +1,73 @@
+[
+  {
+    "id": "RUSTSEC-2023-0070",
+    "modified": "2024-02-10T15:57:43Z",
+    "published": "2023-11-10T12:00:00Z",
+    "aliases": [
+      "GHSA-48m6-wm5p-rr6h"
+    ],
+    "related": [],
+    "summary": "Insufficient covariance check makes self_cell unsound",
+    "details": "All public versions prior to `1.02` used an insufficient check to ensure that\nusers correctly marked the dependent type as either `covariant` or\n`not_covariant`. This allowed users to mark a dependent as covariant even though\nits type was not covariant but invariant, for certain invariant types involving\ntrait object lifetimes. One example for such a dependent type is `type\nDependent<'a> = RefCell<Box<dyn fmt::Display + 'a>>`. Such a type allowed\nunsound usage in purely safe user code that leads to undefined behavior. The\npatched versions now produce a compile time error if such a type is marked as\n`covariant`.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "self_cell",
+          "purl": "pkg:cargo/self_cell"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.10.3"
+              },
+              {
+                "introduced": "1.0.0"
+              },
+              {
+                "fixed": "1.0.2"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/self_cell"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2023-0070.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/Voultapher/self_cell/issues/49"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

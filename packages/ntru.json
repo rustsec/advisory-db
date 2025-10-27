@@ -1,0 +1,69 @@
+[
+  {
+    "id": "RUSTSEC-2023-0032",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2023-03-22T12:00:00Z",
+    "aliases": [
+      "GHSA-fq33-vmhv-48xh"
+    ],
+    "related": [],
+    "summary": "Unsound FFI: Wrong API usage causes write past allocated area",
+    "details": "The following usage causes undefined behavior.\n```rust\nlet kp: ntru::types::KeyPair = …;\nkp.get_public().export(Default::default())\n```\n\nWhen compiled with debug assertions, the code above will trigger a `attempt to subtract with overflow` panic before UB occurs.\nOther mistakes (e.g. using `EncParams` from a different key) may always trigger UB.\n\nLikely, older versions of this crate are also affected, but have not been tested.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "ntru",
+          "purl": "pkg:cargo/ntru"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "ntru::types::PrivateKey::export",
+              "ntru::types::PublicKey::export"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/ntru"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2023-0032.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/FrinkGlobal/ntru-rs/issues/8"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

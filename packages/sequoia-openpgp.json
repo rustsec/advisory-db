@@ -1,0 +1,152 @@
+[
+  {
+    "id": "RUSTSEC-2024-0345",
+    "modified": "2024-06-27T12:08:11Z",
+    "published": "2024-06-26T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Low severity (DoS) vulnerability in sequoia-openpgp",
+    "details": "There is a denial-of-service vulnerability in sequoia-openpgp, our\ncrate providing a low-level interface to our OpenPGP implementation.\nWhen triggered, the process will enter an infinite loop.\n\nMany thanks to Andrew Gallagher for disclosing the issue to us.\n\n## Impact\n\nAny software directly or indirectly using the interface\n`sequoia_openpgp::cert::raw::RawCertParser`.  Notably, this includes all\nsoftware using the `sequoia_cert_store` crate.\n\n## Details\n\nThe `RawCertParser` does not advance the input stream when\nencountering unsupported cert (primary key) versions, resulting in an\ninfinite loop.\n\nThe fix introduces a new raw-cert-specific\n`cert::raw::Error::UnuspportedCert`.\n\n## Affected software\n\n- sequoia-openpgp 1.13.0\n- sequoia-openpgp 1.14.0\n- sequoia-openpgp 1.15.0\n- sequoia-openpgp 1.16.0\n- sequoia-openpgp 1.17.0\n- sequoia-openpgp 1.18.0\n- sequoia-openpgp 1.19.0\n- sequoia-openpgp 1.20.0\n- Any software built against a vulnerable version of sequoia-openpgp\n  which is directly or indirectly using the interface\n  `sequoia_openpgp::cert::raw::RawCertParser`.  Notably, this includes\n  all software using the `sequoia_cert_store` crate.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "sequoia-openpgp",
+          "purl": "pkg:cargo/sequoia-openpgp"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "sequoia_openpgp::cert::raw::RawCertParser"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "1.13.0"
+              },
+              {
+                "fixed": "1.21.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/sequoia-openpgp"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2024-0345.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://gitlab.com/sequoia-pgp/sequoia/-/issues/1106"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2023-0038",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2023-05-16T12:00:00Z",
+    "aliases": [
+      "GHSA-25mx-8f3v-8wh7"
+    ],
+    "related": [],
+    "summary": "Out-of-bounds array access leads to panic",
+    "details": "Affected versions of the crate have several bugs where\nattacker-controlled input can result in the use of an out-of-bound\narray index.  Rust detects the use of the out-of-bound index and\ncauses the application to panic.  An attacker may be able to use this\nto cause a denial-of-service.  However, it is not possible for an\nattacker to read from or write to the application's address space.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "sequoia-openpgp",
+          "purl": "pkg:cargo/sequoia-openpgp"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "1.1.1"
+              },
+              {
+                "introduced": "1.2.0"
+              },
+              {
+                "fixed": "1.8.1"
+              },
+              {
+                "introduced": "1.9.0"
+              },
+              {
+                "fixed": "1.16.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/sequoia-openpgp"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2023-0038.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://lists.sequoia-pgp.org/hyperkitty/list/announce@lists.sequoia-pgp.org/thread/SN2E3QRT4DMQ5JNEK6VIN6DJ5SH766DI/"
+      },
+      {
+        "type": "WEB",
+        "url": "https://gitlab.com/sequoia-pgp/sequoia/-/tags/openpgp%2Fv1.16.0"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

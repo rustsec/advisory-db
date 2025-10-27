@@ -1,0 +1,77 @@
+[
+  {
+    "id": "RUSTSEC-2021-0027",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2021-01-07T12:00:00Z",
+    "aliases": [
+      "CVE-2021-28027",
+      "GHSA-cpqj-r29q-chrh"
+    ],
+    "related": [],
+    "summary": "Loading a bgzip block can write out of bounds if size overflows.",
+    "details": "Affected versions of `bam` set the length of an internal buffer using\n`self.compressed.set_len(block_size - HEADER_SIZE - MIN_EXTRA_SIZE)` and then\nwrote into it. While `block_size` was constrained to a proper maximum, when it\nwas too small the subtraction could overflow negatively to a large number past\nthe capacity of `self.compressed`.\n\nThis can result in memory corruption in the form of writing out of bounds when\nloading a `bgzip` file with a small `block_size`.\n\nCommit `061eee38d4` fixed this issue by checking for the underflow when setting\nthe buffer size.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "bam",
+          "purl": "pkg:cargo/bam"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "bam::bgzip::Block::load"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.1.3"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/bam"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0027.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://gitlab.com/tprodanov/bam/-/issues/4"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

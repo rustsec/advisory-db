@@ -1,0 +1,150 @@
+[
+  {
+    "id": "RUSTSEC-2022-0072",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2022-12-23T12:00:00Z",
+    "aliases": [
+      "GHSA-5wvv-q5fv-2388"
+    ],
+    "related": [],
+    "summary": "Location header incorporates user input, allowing open redirect",
+    "details": "When `hyper-staticfile` performs a redirect for a directory request (e.g. a\nrequest for `/dir` that redirects to `/dir/`), the `Location` header value was\nderived from user input (the request path), simply appending a slash. The\nintent was to perform an origin-relative redirect, but specific inputs\nallowed performing a scheme-relative redirect instead.\n\nAn attacker could craft a special URL that would appear to be for the correct\ndomain, but immediately redirects to a malicious domain. Such a URL can benefit\nphishing attacks, for example an innocent looking link in an email.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "hyper-staticfile",
+          "purl": "pkg:cargo/hyper-staticfile"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "format-injection"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.9.4"
+              },
+              {
+                "introduced": "0.10.0-0"
+              },
+              {
+                "fixed": "0.10.0-alpha.5"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/hyper-staticfile"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2022-0072.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/stephank/hyper-staticfile/commit/f12cadc6666c6f555d29725f5bc45da2103f24ea"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2022-0069",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2022-11-30T12:00:00Z",
+    "aliases": [
+      "GHSA-7p7c-pvvx-2vx3"
+    ],
+    "related": [],
+    "summary": "Improper validation of Windows paths could lead to directory traversal attack",
+    "details": "Path resolution in `hyper-staticfile` didn't correctly validate Windows paths\nmeaning paths like `/foo/bar/c:/windows/web/screen/img101.png` would be allowed\nand respond with the contents of `c:/windows/web/screen/img101.png`. Thus users\ncould potentially read files anywhere on the filesystem.\n\nThis only impacts Windows. Linux and other unix likes are not impacted by this.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "hyper-staticfile",
+          "purl": "pkg:cargo/hyper-staticfile"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [
+              "windows"
+            ],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "file-disclosure"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.9.2"
+              },
+              {
+                "introduced": "0.10.0-0"
+              },
+              {
+                "fixed": "0.10.0-alpha.2"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/hyper-staticfile"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2022-0069.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/stephank/hyper-staticfile/issues/35"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

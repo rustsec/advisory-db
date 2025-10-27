@@ -1,0 +1,74 @@
+[
+  {
+    "id": "RUSTSEC-2020-0143",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2020-12-25T12:00:00Z",
+    "aliases": [
+      "CVE-2020-36463",
+      "GHSA-jf43-3v8j-qwwr",
+      "GHSA-r2x6-vrxx-jgv4"
+    ],
+    "related": [],
+    "summary": "Queues allow non-Send types to be sent to other threads, allowing data races",
+    "details": "Affected versions of this crate unconditionally implemented `Send` for types used in queue implementations (`InnerSend<RW, T>`, `InnerRecv<RW, T>`, `FutInnerSend<RW, T>`, `FutInnerRecv<RW, T>`).\n\nThis allows users to send non-Send types to other threads, which can lead to data race bugs or other undefined behavior.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "multiqueue",
+          "purl": "pkg:cargo/multiqueue"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption",
+            "thread-safety"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/multiqueue"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2020-0143.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/schets/multiqueue/issues/31"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

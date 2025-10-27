@@ -1,0 +1,146 @@
+[
+  {
+    "id": "RUSTSEC-2025-0108",
+    "modified": "2025-10-22T11:48:30Z",
+    "published": "2025-10-21T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Uninitialized memory exposure in string reading functions",
+    "details": "Multiple string reading functions expose uninitialized memory by setting length to capacity when no null terminator is found.\n\nThis allows reading uninitialized memory which may contain sensitive data from previous allocations.\n\nThe ncurses-rs repository is archived and unmaintained.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "ncurses",
+          "purl": "pkg:cargo/ncurses"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "ncurses::inchnstr",
+              "ncurses::inchstr",
+              "ncurses::innstr",
+              "ncurses::mvwinchnstr",
+              "ncurses::mvwinchstr",
+              "ncurses::mvwinnstr",
+              "ncurses::winchnstr",
+              "ncurses::winchstr",
+              "ncurses::winnstr",
+              "ncurses::winstr"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-exposure"
+          ],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/ncurses"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2025-0108.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/RustSec/advisory-db/pull/2427"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2019-0006",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2019-06-15T12:00:00Z",
+    "aliases": [
+      "CVE-2019-15547",
+      "CVE-2019-15548",
+      "GHSA-32v7-ghpr-c8hg",
+      "GHSA-g7r5-x7cr-vm3v"
+    ],
+    "related": [],
+    "summary": "Buffer overflow and format vulnerabilities in functions exposed without unsafe",
+    "details": "`ncurses` exposes functions from the ncurses library which:\n\n- Pass buffers without length to C functions that may write an arbitrary amount of\n  data, leading to a buffer overflow. (`instr`, `mvwinstr`, etc)\n- Passes rust &str to strings expecting C format arguments, allowing hostile\n  input to execute a format string attack, which trivially allows writing\n  arbitrary data to stack memory (functions in the `printw` family).",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "ncurses",
+          "purl": "pkg:cargo/ncurses"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "ncurses::instr",
+              "ncurses::mvprintw",
+              "ncurses::mvwinstr",
+              "ncurses::mvwprintw",
+              "ncurses::printw"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/ncurses"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2019-0006.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/RustSec/advisory-db/issues/106"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

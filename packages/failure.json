@@ -1,0 +1,144 @@
+[
+  {
+    "id": "RUSTSEC-2019-0036",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2019-11-13T12:00:00Z",
+    "aliases": [
+      "CVE-2019-25010",
+      "CVE-2020-25575",
+      "GHSA-jq66-xh47-j9f3",
+      "GHSA-r98r-j25q-rmpr"
+    ],
+    "related": [],
+    "summary": "Type confusion if __private_get_type_id__ is overridden",
+    "details": "Safe Rust code can implement malfunctioning `__private_get_type_id__` and cause\ntype confusion when downcasting, which is an undefined behavior.\n\nUsers who derive `Fail` trait are not affected.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "failure",
+          "purl": "pkg:cargo/failure"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "failure::Fail::__private_get_type_id__"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/failure"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2019-0036.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/rust-lang-nursery/failure/issues/336"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2020-0036",
+    "modified": "2024-02-10T15:57:43Z",
+    "published": "2020-05-02T12:00:00Z",
+    "aliases": [
+      "CVE-2019-25010",
+      "CVE-2020-25575",
+      "GHSA-jq66-xh47-j9f3",
+      "GHSA-r98r-j25q-rmpr"
+    ],
+    "related": [],
+    "summary": "failure is officially deprecated/unmaintained",
+    "details": "The `failure` crate is officially end-of-life: it has been marked as deprecated\nby the former maintainer, who has announced that there will be no updates or\nmaintenance work on it going forward.\n\nThe following are some suggested actively developed alternatives to switch to:\n\n- [`anyhow`](https://crates.io/crates/anyhow)\n- [`eyre`](https://crates.io/crates/eyre)\n- [`fehler`](https://crates.io/crates/fehler)\n- [`snafu`](https://crates.io/crates/snafu)\n- [`thiserror`](https://crates.io/crates/thiserror)",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "failure",
+          "purl": "pkg:cargo/failure"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+          "informational": "unmaintained"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/failure"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2020-0036.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/rust-lang-nursery/failure/pull/347"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

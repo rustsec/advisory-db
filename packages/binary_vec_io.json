@@ -1,0 +1,67 @@
+[
+  {
+    "id": "RUSTSEC-2025-0109",
+    "modified": "2025-10-22T21:23:29Z",
+    "published": "2025-10-21T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Out-of-bounds memory access in binary_read_to_ref and binary_write_from_ref",
+    "details": "Safe functions accept a single `&T` or `&mut T` but multiply by `n` to create slices extending beyond allocated memory when `n > 1`.\n\nThese functions use `from_raw_parts` to create slices larger than the underlying allocation, violating memory safety.\n\nThe binary_vec_io repository is archived and unmaintained.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "binary_vec_io",
+          "purl": "pkg:cargo/binary_vec_io"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "binary_vec_io::binary_read_to_ref",
+              "binary_vec_io::binary_write_from_ref"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/binary_vec_io"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2025-0109.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/RustSec/advisory-db/pull/2428"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

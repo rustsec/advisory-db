@@ -1,0 +1,136 @@
+[
+  {
+    "id": "RUSTSEC-2024-0018",
+    "modified": "2024-04-11T16:16:20Z",
+    "published": "2024-02-27T12:00:00Z",
+    "aliases": [
+      "GHSA-xfhw-6mc4-mgxf"
+    ],
+    "related": [],
+    "summary": "ObjectPool creates uninitialized memory when freeing objects",
+    "details": "As of version 0.6.0, the ObjectPool explicitly creates an uninitialized instance of its\ntype parameter when it attempts to free an object, and swaps it into the storage. This\ncauses instant undefined behavior due to reading the uninitialized memory in order to\nwrite it to the pool storage.\n\nExtremely basic usage of the crate can trigger this issue, e.g. this code from a doctest:\n\n```rust\nuse crayon::prelude::*;\napplication::oneshot().unwrap();\n\nlet mut params = MeshParams::default();\n\nlet mesh = video::create_mesh(params, None).unwrap();\n\n// Deletes the mesh object.\nvideo::delete_mesh(mesh); // <-- UB\n```\n\nThe Clippy warning for this code was silenced in commit c2fde19caf6149d91faa504263f0bc5cafc35de5.\n\nDiscovered via https://asan.saethlin.dev/ub?crate=crayon&version=0.7.1",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "crayon",
+          "purl": "pkg:cargo/crayon"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "crayon::utils::object_pool::ObjectPool<H,T>::free"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.6.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/crayon"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2024-0018.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/shawnscode/crayon/issues/109"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2020-0037",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2020-08-31T12:00:00Z",
+    "aliases": [
+      "CVE-2020-35889",
+      "GHSA-m833-jv95-mfjh"
+    ],
+    "related": [],
+    "summary": "Misbehaving `HandleLike` implementation can lead to memory safety violation",
+    "details": "Unsafe code in `ObjectPool` has time-of-check to time-of-use (TOCTOU) bug that\ncan eventually lead to a memory safety violation. `ObjectPool` and `HandlePool`\nimplicitly assumes that `HandleLike` trait methods are pure, i.e., they always\nreturn the same value. However, this assumption is unsound since `HandleLike`\nis a safe, public trait that allows a custom implementation.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "crayon",
+          "purl": "pkg:cargo/crayon"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/crayon"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2020-0037.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/shawnscode/crayon/issues/87"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

@@ -1,0 +1,69 @@
+[
+  {
+    "id": "RUSTSEC-2020-0160",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2020-01-21T12:00:00Z",
+    "aliases": [
+      "GHSA-978j-88f3-p5j3"
+    ],
+    "related": [],
+    "summary": "Threshold value is ignored (all shares are n=3)",
+    "details": "Affected versions of this crate did not properly calculate secret shares requirements.\n\nThis reduces the security of the algorithm by restricting the crate to always\nusing a threshold value of three, rather than a configurable limit.\n\nThe flaw was corrected by correctly configuring the threshold.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "shamir",
+          "purl": "pkg:cargo/shamir"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "crypto-failure"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "2.0.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/shamir"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2020-0160.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/Nebulosus/shamir/issues/3"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

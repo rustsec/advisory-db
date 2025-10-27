@@ -1,0 +1,70 @@
+[
+  {
+    "id": "RUSTSEC-2020-0169",
+    "modified": "2024-12-04T12:55:45Z",
+    "published": "2020-02-07T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "multi_mut is Unmaintained",
+    "details": "Last release was about 6 years ago.\n\nThere is an outstanding [soundness issue](https://github.com/golddranks/multi_mut/issues/1).\n\nThe maintainer has not responded for two years to the existing soundness issue.\n\nRust compiler has enabled errors relating to LLVM noalias rules and may not\ncompile anymore where as the old compiler versions had turned these off.\n\nThe maintainer has stated:\n\n> I will take no responsibility of undefined behaviour possibly caused by this crate.\n\nThis crate may or may not be suitable for use anymore given the outstanding issues.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "multi_mut",
+          "purl": "pkg:cargo/multi_mut"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/multi_mut"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2020-0169.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/golddranks/multi_mut/issues/1"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/rust-lang/rust/issues/39155"
+      },
+      {
+        "type": "WEB",
+        "url": "https://www.reddit.com/r/rust/comments/5ofuun/multi_mut_multiple_mutable_references_to_hashmap/"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

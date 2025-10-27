@@ -1,0 +1,73 @@
+[
+  {
+    "id": "RUSTSEC-2020-0138",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2020-11-10T12:00:00Z",
+    "aliases": [
+      "CVE-2020-36458",
+      "GHSA-f997-8gxg-r354"
+    ],
+    "related": [],
+    "summary": "ReaderResult should be bounded by Sync",
+    "details": "Affected versions of this crate implements `Sync` for `ReaderResult<T, E>` with the trait bound `T: Send, E: Send`.\n\nSince matching on the public enum `ReaderResult<T, E>` provides access to `&T` & `&E`,\nallowing data race to a non-Sync type `T` or `E`.\nThis can result in a memory corruption when multiple threads concurrently access `&T` or `&E`.\n\nSuggested fix for the bug is change the trait bounds imposed on `T` & `E` to be `T: Sync, E: Sync`.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "lexer",
+          "purl": "pkg:cargo/lexer"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption",
+            "thread-safety"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/lexer"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2020-0138.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://gitlab.com/nathanfaucett/rs-lexer/-/issues/2"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

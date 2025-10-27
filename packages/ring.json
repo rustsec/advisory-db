@@ -1,0 +1,191 @@
+[
+  {
+    "id": "RUSTSEC-2025-0010",
+    "modified": "2025-03-07T15:46:47Z",
+    "published": "2025-03-05T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Versions of *ring* prior to 0.17 are unmaintained.",
+    "details": "*ring* 0.16.20 was released over 4 years ago and isn't maintained, tested, etc.\n\nAdditionally, the project's general policy is to only patch the latest release,\nwhich is 0.17.12 now. It will be difficult for anybody to backport future fixes\nto versions earlier than 0.17.10 due to license changes.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "ring",
+          "purl": "pkg:cargo/ring"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": "unmaintained"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.17.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/ring"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2025-0010.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/briansmith/ring/discussions/2450"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2025-0009",
+    "modified": "2025-03-06T21:44:11Z",
+    "published": "2025-03-06T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Some AES functions may panic when overflow checking is enabled.",
+    "details": "`ring::aead::quic::HeaderProtectionKey::new_mask()` may panic when overflow\nchecking is enabled. In the QUIC protocol, an attacker can induce this panic by\nsending a specially-crafted packet. Even unintentionally it is likely to occur\nin 1 out of every 2**32 packets sent and/or received.\n\nOn 64-bit targets operations using `ring::aead::{AES_128_GCM, AES_256_GCM}` may\npanic when overflow checking is enabled, when encrypting/decrypting approximately\n68,719,476,700 bytes (about 64 gigabytes) of data in a single chunk. Protocols\nlike TLS and SSH are not affected by this because those protocols break large\namounts of data into small chunks. Similarly, most applications will not\nattempt to encrypt/decrypt 64GB of data in one chunk.\n\nOverflow checking is not enabled in release mode by default, but\n`RUSTFLAGS=\"-C overflow-checks\"` or `overflow-checks = true` in the Cargo.toml\nprofile can override this. Overflow checking is usually enabled by default in\ndebug mode.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "ring",
+          "purl": "pkg:cargo/ring"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.17.12"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/ring"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2025-0009.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/briansmith/ring/blob/main/RELEASES.md#version-01712-2025-03-05"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2025-0007",
+    "modified": "2025-03-06T21:16:59Z",
+    "published": "2025-02-20T12:00:00Z",
+    "withdrawn": "2025-02-22T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "*ring* is unmaintained",
+    "details": "The author has announced an indefinite hiatus in its development, noting that\nany reported security vulnerabilities may go unaddressed for prolonged periods\nof time.\n\n# Update: security maintenance only\n\nAfter this advisory was published, the author graciously agreed to give\naccess to the rustls team. The rustls team is committed to providing\nsecurity (only) maintenance for *ring* for the foreseeable future.\n\n# Update: back to normal\n\nThings are more-or-less back to how they were before, and in particular the\nsituation isn't \"security maintenance only.\"",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "ring",
+          "purl": "pkg:cargo/ring"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": "unmaintained"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/ring"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2025-0007.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/briansmith/ring/discussions/2414"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

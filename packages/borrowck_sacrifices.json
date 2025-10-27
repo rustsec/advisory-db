@@ -1,0 +1,69 @@
+[
+  {
+    "id": "RUSTSEC-2025-0107",
+    "modified": "2025-10-22T05:49:18Z",
+    "published": "2025-10-21T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Uninitialized memory exposure in any_as_u8_slice",
+    "details": "The safe function `any_as_u8_slice` can create byte slices that reference uninitialized memory when used with types containing padding bytes.\n\nThe function uses `slice::from_raw_parts` to create a `&[u8]` covering the entire size of a type, including padding bytes. According to Rust's documentation, `from_raw_parts` requires all bytes to be properly initialized, but padding bytes in structs are not guaranteed to be initialized. This violates the safety contract and causes undefined behavior.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "borrowck_sacrifices",
+          "purl": "pkg:cargo/borrowck_sacrifices"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "borrowck_sacrifices::unsafe_casts::any_as_u8_slice"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-exposure"
+          ],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.2.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/borrowck_sacrifices"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2025-0107.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/alexpyattaev/borrowck_sacrifices/issues/1"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

@@ -1,0 +1,79 @@
+[
+  {
+    "id": "RUSTSEC-2024-0007",
+    "modified": "2024-02-10T15:57:43Z",
+    "published": "2024-01-19T12:00:00Z",
+    "aliases": [
+      "GHSA-c8v3-jhv9-4ppc"
+    ],
+    "related": [],
+    "summary": "Use-after-free when setting the locale",
+    "details": "Version 3.0.0 introduced an `AtomicStr` type, that is used to store the current locale.\nIt stores the locale as a raw pointer to an `Arc<String>`.\nThe locale can be read with `AtomicStr::as_str()`.\n`AtomicStr::as_str()` does not increment the usage counter of the `Arc`.\n\nIf the locale is changed in one thread, another thread can have a stale -- possibly already freed --\nreference to the stored string.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "rust-i18n-support",
+          "purl": "pkg:cargo/rust-i18n-support"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "rust_i18n_support::AtomicStr::as_str"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-exposure"
+          ],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "3.0.0"
+              },
+              {
+                "fixed": "3.0.1"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/rust-i18n-support"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2024-0007.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/longbridgeapp/rust-i18n/issues/71"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/longbridgeapp/rust-i18n/pull/72"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/longbridgeapp/rust-i18n/releases/tag/v3.0.1"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

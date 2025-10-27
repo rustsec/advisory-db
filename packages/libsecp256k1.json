@@ -1,0 +1,141 @@
+[
+  {
+    "id": "RUSTSEC-2021-0076",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2021-07-13T12:00:00Z",
+    "aliases": [
+      "CVE-2021-38195",
+      "GHSA-g4vj-x7v9-h82m"
+    ],
+    "related": [],
+    "summary": "libsecp256k1 allows overflowing signatures",
+    "details": "libsecp256k1 accepts signatures whose R or S parameter is larger than the\nsecp256k1 curve order, which differs from other implementations. This could\nlead to invalid signatures being verified.\n\nThe error is resolved in 0.5.0 by adding a `check_overflow` flag.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "libsecp256k1",
+          "purl": "pkg:cargo/libsecp256k1"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "crypto-failure"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.5.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/libsecp256k1"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0076.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/paritytech/libsecp256k1/pull/67"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2019-0027",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2019-10-14T12:00:00Z",
+    "aliases": [
+      "CVE-2019-25003",
+      "GHSA-hrjm-c879-pp86"
+    ],
+    "related": [],
+    "summary": "Flaw in Scalar::check_overflow allows side-channel timing attack",
+    "details": "Versions of `libsecp256k1` prior to `0.3.1` did not execute\nScalar::check_overflow in constant time.\n\nThis allows an attacker to potentially leak information via a timing attack.\n\nThe flaw was corrected by modifying Scalar::check_overflow to execute in\nconstant time.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "libsecp256k1",
+          "purl": "pkg:cargo/libsecp256k1"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "libsecp256k1::Scalar::check_overflow"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "crypto-failure"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.3.1"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/libsecp256k1"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2019-0027.html"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

@@ -1,0 +1,68 @@
+[
+  {
+    "id": "RUSTSEC-2021-0085",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2021-01-03T12:00:00Z",
+    "aliases": [
+      "CVE-2021-45683",
+      "GHSA-c6px-4grw-hrjr",
+      "GHSA-cw4j-cf6c-mmfv"
+    ],
+    "related": [],
+    "summary": "'Read' on uninitialized memory may cause UB",
+    "details": "Affected versions of this crate passes an uninitialized buffer to a user-provided `Read` implementation. The crate currently contains 4 occurrences of such cases.\n\nArbitrary `Read` implementations can read from the uninitialized buffer (memory exposure) and also can return incorrect number of bytes written to the buffer.\nReading from uninitialized memory produces undefined values that can quickly invoke undefined behavior.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "binjs_io",
+          "purl": "pkg:cargo/binjs_io"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-exposure"
+          ],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/binjs_io"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0085.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/binast/binjs-ref/issues/460"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

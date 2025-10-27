@@ -1,0 +1,69 @@
+[
+  {
+    "id": "RUSTSEC-2025-0044",
+    "modified": "2025-07-14T20:21:09Z",
+    "published": "2025-06-16T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Four unique double-free vulnerabilities triggered via safe APIs",
+    "details": "The crate [`slice-ring-buffer`](https://crates.io/crates/slice-ring-buffer) was developed as a fork of [`slice-deque`](https://crates.io/crates/slice-deque) to continue maintenance and provide security patches, since the latter has been officially unmaintained ([RUSTSEC-2020-0158](https://rustsec.org/advisories/RUSTSEC-2020-0158.html)).\n\nWhile `slice-ring-buffer` has addressed some previously reported memory safety issues inherited from its fork origin ([RUSTSEC-2021-0047](https://rustsec.org/advisories/RUSTSEC-2021-0047.html)), it still retains multiple unresolved memory corruption vulnerabilities.\n\nSpecifically, we have discovered four new memory safety bugs, each resulting in double-free violations that can occur when only safe APIs are invoked. These vulnerabilities correspond to four distinct safe APIs in the crate, each exposing unsound and vulnerable behavior due to incorrect usage of unsafe code internally.\n\nUnfortunately, the maintainer doesn't have much availability to resolve these issues so there's no concrete timeline for fixes. Community contributions towards fixing these vulnerabilities would be much appreciated.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "slice-ring-buffer",
+          "purl": "pkg:cargo/slice-ring-buffer"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "slice_ring_buffer::IntoIter::clone",
+              "slice_ring_buffer::SliceRingBuffer::extend_from_slice",
+              "slice_ring_buffer::SliceRingBuffer::insert",
+              "slice_ring_buffer::SliceRingBuffer::shrink_to_fit"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/slice-ring-buffer"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2025-0044.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/LiquidityC/slice_ring_buffer/issues/12"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

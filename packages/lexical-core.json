@@ -1,0 +1,83 @@
+[
+  {
+    "id": "RUSTSEC-2023-0086",
+    "modified": "2024-09-16T14:16:22Z",
+    "published": "2023-09-03T12:00:00Z",
+    "aliases": [],
+    "related": [
+      "RUSTSEC-2023-0055"
+    ],
+    "summary": "Multiple soundness issues",
+    "details": "`RUSTSEC-2024-0377` contains multiple soundness issues:\n\n 1. [Bytes::read() allows creating instances of types with invalid bit patterns](https://github.com/Alexhuszagh/rust-lexical/issues/102)\n 1. [BytesIter::read() advances iterators out of bounds](https://github.com/Alexhuszagh/rust-lexical/issues/101)\n 1. [The `BytesIter` trait has safety invariants but is public and not marked `unsafe`](https://github.com/Alexhuszagh/rust-lexical/issues/104)\n 1. [`write_float()` calls `MaybeUninit::assume_init()` on uninitialized data, which is is not allowed by the Rust abstract machine](https://github.com/Alexhuszagh/rust-lexical/issues/95)\n 1. [`radix()` calls `MaybeUninit::assume_init()` on uninitialized data, which is is not allowed by the Rust abstract machine](https://github.com/Alexhuszagh/rust-lexical/issues/126)\n\nVersion 1.0 fixes these issues, removes the vast majority of `unsafe` code, and also fixes some correctness issues.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "lexical-core",
+          "purl": "pkg:cargo/lexical-core"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "1.0.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/lexical-core"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2023-0086.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/Alexhuszagh/rust-lexical/issues/102"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/Alexhuszagh/rust-lexical/issues/101"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/Alexhuszagh/rust-lexical/issues/95"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/Alexhuszagh/rust-lexical/issues/104"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/Alexhuszagh/rust-lexical/issues/126"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

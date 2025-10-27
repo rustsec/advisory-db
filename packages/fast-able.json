@@ -1,0 +1,65 @@
+[
+  {
+    "id": "RUSTSEC-2025-0063",
+    "modified": "2025-09-11T06:59:56Z",
+    "published": "2025-04-25T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Possible unsound public API",
+    "details": "The public accessible struct SyncVec has a public safe method get_unchecked. It accept a parameter index and used in the get_unchecked without sufficient checks as mentioned [here](https://doc.rust-lang.org/std/primitive.slice.html#method.get_unchecked).",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "fast-able",
+          "purl": "pkg:cargo/fast-able"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "fast_able::vec::SyncVec::get_unchecked"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "1.13.7"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/fast-able"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2025-0063.html"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

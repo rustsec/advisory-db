@@ -1,0 +1,76 @@
+[
+  {
+    "id": "RUSTSEC-2020-0101",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2020-12-22T12:00:00Z",
+    "aliases": [
+      "CVE-2020-36208",
+      "GHSA-3jc5-5hc5-33gj"
+    ],
+    "related": [],
+    "summary": "conquer-once's OnceCell lacks Send bound for its Sync trait.",
+    "details": "Affected versions of `conquer-once` implements `Sync` for its `OnceCell` type\nwithout restricting it to `Send`able types.\n\nThis allows non-`Send` but `Sync` types such as `MutexGuard` to be sent across\nthreads leading to undefined behavior and memory corruption in concurrent\nprograms.\n\nThe issue was fixed by adding a `Send` constraint to `OnceCell`.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "conquer-once",
+          "purl": "pkg:cargo/conquer-once"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption",
+            "thread-safety"
+          ],
+          "cvss": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.3.2"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/conquer-once"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2020-0101.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/oliver-giersch/conquer-once/issues/3"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

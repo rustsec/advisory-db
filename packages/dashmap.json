@@ -1,0 +1,85 @@
+[
+  {
+    "id": "RUSTSEC-2022-0002",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2022-01-10T12:00:00Z",
+    "aliases": [
+      "GHSA-mpg5-fvwp-42m2"
+    ],
+    "related": [],
+    "summary": "Unsoundness in `dashmap` references",
+    "details": "Reference returned by some methods of `Ref` (and similar types) may outlive the `Ref` and escape the lock.\nThis causes undefined behavior and may result in a segfault.\n\nMore information in [`dashmap#167`](https://github.com/xacrimon/dashmap/issues/167) issue.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "dashmap",
+          "purl": "pkg:cargo/dashmap"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "dashmap::mapref::multiple::RefMulti::key",
+              "dashmap::mapref::multiple::RefMulti::pair",
+              "dashmap::mapref::multiple::RefMulti::value",
+              "dashmap::mapref::multiple::RefMutMulti::key",
+              "dashmap::mapref::multiple::RefMutMulti::pair",
+              "dashmap::mapref::multiple::RefMutMulti::pair_mut",
+              "dashmap::mapref::one::Ref::key",
+              "dashmap::mapref::one::Ref::pair",
+              "dashmap::mapref::one::Ref::value",
+              "dashmap::mapref::one::RefMut::key",
+              "dashmap::mapref::one::RefMut::pair",
+              "dashmap::mapref::one::RefMut::pair_mut",
+              "dashmap::setref::multiple::RefMulti::key",
+              "dashmap::setref::one::Ref::key"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-exposure",
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "5.0.0"
+              },
+              {
+                "fixed": "5.1.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/dashmap"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2022-0002.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/xacrimon/dashmap/issues/167"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

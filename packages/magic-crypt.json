@@ -1,0 +1,64 @@
+[
+  {
+    "id": "RUSTSEC-2024-0430",
+    "modified": "2024-12-28T17:33:55Z",
+    "published": "2024-12-28T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Use of insecure cryptographic algorithms",
+    "details": "This crate uses a number of cryptographic algorithms that are no longer\nconsidered secure and it uses them in ways that do not guarantee the integrity\nof the encrypted data.\n\n`MagicCrypt64` uses the insecure DES block cipher in CBC mode without\nauthentication. This allows for practical brute force and padding oracle\nattacks and does not protect the integrity of the encrypted data. Key and IV\nare generated from user input using CRC64, which is not at all a key derivation\nfunction.\n\n`MagicCrypt64`, `MagicCrypt128`, `MagicCrypt192`, and `MagicCrypt256` are all\nvulnerable to padding-oracle attacks. None of them protect the integrity of the\nciphertext. Furthermore, none use password-based key derivation functions, even\nthough the key is intended to be generated from a password.\n\nEach of the implementations are unsound in that they use uninitialized memory\nwithout `MaybeUninit` or equivalent structures.\n\nFor more information, visit the [issue](https://github.com/magiclen/rust-magiccrypt/issues/17).",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "magic-crypt",
+          "purl": "pkg:cargo/magic-crypt"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "crypto-failure"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/magic-crypt"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2024-0430.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/magiclen/rust-magiccrypt/issues/17"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

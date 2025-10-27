@@ -1,0 +1,164 @@
+[
+  {
+    "id": "RUSTSEC-2024-0366",
+    "modified": "2024-08-27T16:22:21Z",
+    "published": "2024-08-27T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "CWA-2023-004: Excessive number of function parameters in compiled Wasm",
+    "details": "A specifically crafted Wasm file can cause the VM to consume excessive amounts of memory when compiling a contract.\nThis can lead to high memory usage, slowdowns, potentially a crash and can poison a lock in the VM,\npreventing any further interaction with contracts.\n\nFor more information, see [CWA-2023-004](https://github.com/CosmWasm/advisories/blob/main/CWAs/CWA-2023-004.md).",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "cosmwasm-vm",
+          "purl": "pkg:cargo/cosmwasm-vm"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "1.2.8"
+              },
+              {
+                "introduced": "1.3.0"
+              },
+              {
+                "fixed": "1.3.4"
+              },
+              {
+                "introduced": "1.4.0"
+              },
+              {
+                "fixed": "1.4.2"
+              },
+              {
+                "introduced": "1.5.0"
+              },
+              {
+                "fixed": "1.5.1"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/cosmwasm-vm"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2024-0366.html"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://github.com/CosmWasm/advisories/blob/main/CWAs/CWA-2023-004.md"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2024-0361",
+    "modified": "2024-08-08T17:11:37Z",
+    "published": "2024-08-08T12:00:00Z",
+    "aliases": [
+      "GHSA-rg2q-2jh9-447q"
+    ],
+    "related": [],
+    "summary": "CWA-2024-004: Gas mispricing in cosmwasm-vm",
+    "details": "Some Wasm operations take significantly more gas than our benchmarks indicated. This can lead to missing the gas target we defined by a factor of ~10x. This means a malicious contract could take 10 times as much time to execute as expected, which can be used to temporarily DoS a chain.\n\nFor more information, see [CWA-2024-004](https://github.com/CosmWasm/advisories/blob/main/CWAs/CWA-2024-004.md).",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "cosmwasm-vm",
+          "purl": "pkg:cargo/cosmwasm-vm"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "1.5.7"
+              },
+              {
+                "introduced": "2.0.0"
+              },
+              {
+                "fixed": "2.0.6"
+              },
+              {
+                "introduced": "2.1.0"
+              },
+              {
+                "fixed": "2.1.3"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/cosmwasm-vm"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2024-0361.html"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://github.com/CosmWasm/advisories/blob/main/CWAs/CWA-2024-004.md"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

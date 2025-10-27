@@ -1,0 +1,107 @@
+[
+  {
+    "id": "RUSTSEC-2024-0433",
+    "modified": "2025-01-03T18:23:54Z",
+    "published": "2024-12-18T12:00:00Z",
+    "aliases": [
+      "GHSA-4fg7-vxc8-qx5w"
+    ],
+    "related": [
+      "GHSA-32gq-x56h-299c"
+    ],
+    "summary": "Malicious plugin names, recipients, or identities can cause arbitrary binary execution",
+    "details": "A plugin name containing a path separator may allow an attacker to execute an arbitrary\nbinary.\n\nSuch a plugin name can be provided through an attacker-controlled input to the following\n`age` APIs when the `plugin` feature flag is enabled:\n- [`age::plugin::Identity::from_str`](https://docs.rs/age/0.11.0/age/plugin/struct.Identity.html#impl-FromStr-for-Identity)\n  (or equivalently [`str::parse::<age::plugin::Identity>()`](https://doc.rust-lang.org/stable/core/primitive.str.html#method.parse))\n- [`age::plugin::Identity::default_for_plugin`](https://docs.rs/age/0.11.0/age/plugin/struct.Identity.html#method.default_for_plugin)\n- [`age::plugin::IdentityPluginV1::new`](https://docs.rs/age/0.11.0/age/plugin/struct.IdentityPluginV1.html#method.new)\n  (the `plugin_name` argument)\n- [`age::plugin::Recipient::from_str`](https://docs.rs/age/0.11.0/age/plugin/struct.Recipient.html#impl-FromStr-for-Recipient)\n  (or equivalently [`str::parse::<age::plugin::Recipient>()`](https://doc.rust-lang.org/stable/core/primitive.str.html#method.parse))\n- [`age::plugin::RecipientPluginV1::new`](https://docs.rs/age/0.11.0/age/plugin/struct.RecipientPluginV1.html#method.new)\n  (the `plugin_name` argument)\n\nOn UNIX systems, a directory matching `age-plugin-*` needs to exist in the working\ndirectory for the attack to succeed.\n\nThe binary is executed with a single flag, either `--age-plugin=recipient-v1` or\n`--age-plugin=identity-v1`. The standard input includes the recipient or identity string,\nand the random file key (if encrypting) or the header of the file (if decrypting). The\nformat is constrained by the [age-plugin](https://c2sp.org/age-plugin) protocol.\n\nAn equivalent issue was fixed in [the reference Go implementation of age](https://github.com/FiloSottile/age),\nsee advisory [GHSA-32gq-x56h-299c](https://github.com/FiloSottile/age/security/advisories/GHSA-32gq-x56h-299c).\n\nThanks to ⬡-49016 for reporting this issue.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "age",
+          "purl": "pkg:cargo/age"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "age::plugin::Identity::default_for_plugin",
+              "age::plugin::Identity::from_str",
+              "age::plugin::IdentityPluginV1::new",
+              "age::plugin::Recipient::from_str",
+              "age::plugin::RecipientPluginV1::new"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "code-execution"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.6.0"
+              },
+              {
+                "fixed": "0.6.1"
+              },
+              {
+                "introduced": "0.7.0"
+              },
+              {
+                "fixed": "0.7.2"
+              },
+              {
+                "introduced": "0.8.0"
+              },
+              {
+                "fixed": "0.8.2"
+              },
+              {
+                "introduced": "0.9.0"
+              },
+              {
+                "fixed": "0.9.3"
+              },
+              {
+                "introduced": "0.10.0"
+              },
+              {
+                "fixed": "0.10.1"
+              },
+              {
+                "introduced": "0.11.0"
+              },
+              {
+                "fixed": "0.11.1"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/age"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2024-0433.html"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://github.com/str4d/rage/security/advisories/GHSA-4fg7-vxc8-qx5w"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

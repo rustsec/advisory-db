@@ -1,0 +1,82 @@
+[
+  {
+    "id": "RUSTSEC-2022-0040",
+    "modified": "2023-10-14T21:21:18Z",
+    "published": "2022-01-26T12:00:00Z",
+    "aliases": [
+      "GHSA-9qxh-258v-666c"
+    ],
+    "related": [],
+    "summary": "Multiple soundness issues in `owning_ref`",
+    "details": "- `OwningRef::map_with_owner` is [unsound](https://github.com/Kimundi/owning-ref-rs/issues/77) and may result in a use-after-free.\n- `OwningRef::map` is [unsound](https://github.com/Kimundi/owning-ref-rs/issues/71) and may result in a use-after-free.\n- `OwningRefMut::as_owner` and `OwningRefMut::as_owner_mut` are [unsound](https://github.com/Kimundi/owning-ref-rs/issues/61) and may result in a use-after-free.\n- The crate [violates Rust's aliasing rules](https://github.com/Kimundi/owning-ref-rs/issues/49), which may cause miscompilations on recent compilers that emit the LLVM `noalias` attribute.\n\n`safer_owning_ref` is a replacement crate which fixes these issues.\nNo patched versions of the original crate are available, and the maintainer is unresponsive.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "owning_ref",
+          "purl": "pkg:cargo/owning_ref"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/owning_ref"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2022-0040.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/noamtashma/owning-ref-unsoundness"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/Kimundi/owning-ref-rs/issues/49"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/Kimundi/owning-ref-rs/issues/61"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/Kimundi/owning-ref-rs/issues/71"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/Kimundi/owning-ref-rs/issues/77"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

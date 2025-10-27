@@ -1,0 +1,62 @@
+[
+  {
+    "id": "RUSTSEC-2025-0068",
+    "modified": "2025-09-12T07:28:19Z",
+    "published": "2025-09-11T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "serde_yml crate is unsound and unmaintained",
+    "details": "Using `serde_yml::ser::Serializer.emitter` can cause a segmentation fault, which is unsound.\n\nThe GitHub project for `serde_yml` was archived after unsoundness issues were raised.\n\nIf you rely on this crate, it is highly recommended switching to a maintained alternative.\n\n## Recommended alternatives\n\n- [`serde_norway`](https://crates.io/crates/serde_norway) - Maintained fork of `serde_yaml`, using `unsafe-libyaml-norway`\n- [`serde_yaml_ng`](https://crates.io/crates/serde_yaml_ng) - Maintained fork of `serde_yaml`, using unmaintained `unsafe-libyaml`\n\n## Incomplete pure Rust alternatives\n\nThese implementation do not rely on C `libyaml`.\n\n- [`serde_yaml2`](https://crates.io/crates/serde_yaml2)\n- [`yaml-peg`](https://crates.io/crates/yaml-peg)",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "serde_yml",
+          "purl": "pkg:cargo/serde_yml"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/serde_yml"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2025-0068.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/rustsec/advisory-db/issues/2395"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

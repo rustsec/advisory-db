@@ -1,0 +1,73 @@
+[
+  {
+    "id": "RUSTSEC-2025-0106",
+    "modified": "2025-10-21T20:30:05Z",
+    "published": "2025-10-21T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Undefined behavior in index_of_ptr with empty slices",
+    "details": "The safe function `index_of_ptr` causes undefined behavior when called with an empty slice.\n\nThe issue occurs in the line `ptr.add(slice.len() - 1)` which underflows when `slice.len()` is 0, creating a pointer with a massive offset. According to Rust's safety rules, creating such a pointer causes immediate undefined behavior.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "orx-pinned-vec",
+          "purl": "pkg:cargo/orx-pinned-vec"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "orx_pinned_vec::utils::slice::index_of_ptr"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "3.21.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/orx-pinned-vec"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2025-0106.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/orxfun/orx-pinned-vec/issues/52"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/orxfun/orx-pinned-vec/pull/53"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

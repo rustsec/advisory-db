@@ -1,0 +1,68 @@
+[
+  {
+    "id": "RUSTSEC-2021-0115",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2021-09-24T12:00:00Z",
+    "aliases": [
+      "CVE-2021-45706",
+      "GHSA-c5hx-w945-j4pq"
+    ],
+    "related": [],
+    "summary": "`#[zeroize(drop)]` doesn't implement `Drop` for `enum`s",
+    "details": "Affected versions of this crate did not implement `Drop` when `#[zeroize(drop)]` was used on an `enum`.\n\nThis can result in memory not being zeroed out after dropping it, which is exactly what is intended when adding this attribute.\n\nThe flaw was corrected in version 1.2 and `#[zeroize(drop)]` on `enum`s now properly implements `Drop`.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "zeroize_derive",
+          "purl": "pkg:cargo/zeroize_derive"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "1.1.1"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/zeroize_derive"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0115.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/iqlusioninc/crates/issues/876"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

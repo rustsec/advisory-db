@@ -1,0 +1,70 @@
+[
+  {
+    "id": "RUSTSEC-2025-0018",
+    "modified": "2025-03-26T17:38:20Z",
+    "published": "2025-03-26T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Potential out-of-bounds read with a malformed ELF file and the HashTable API.",
+    "details": "Affected versions of this crate only validated the `index` argument of\n`HashTable::get_bucket` and `HashTable::get_chain` against the input-controlled\n`bucket_count` and `chain_count` fields, but not against the size of the ELF\nsection. As a result, a malformed ELF file could trigger out-of-bounds reads in\na consumer of the HashTable API by setting these fields to inappropriately large\nvalues that would fall outside the relevant hash table section, and by\nintroducing correspondingly out-of-bounds hash table indexes elsewhere in the ELF\nfile.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "xmas-elf",
+          "purl": "pkg:cargo/xmas-elf"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "xmas_elf::hash::HashTable::get_bucket",
+              "xmas_elf::hash::HashTable::get_chain"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-exposure"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.10.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/xmas-elf"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2025-0018.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/nrc/xmas-elf/issues/86"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

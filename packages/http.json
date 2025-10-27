@@ -1,0 +1,150 @@
+[
+  {
+    "id": "RUSTSEC-2019-0034",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2019-11-16T12:00:00Z",
+    "aliases": [
+      "CVE-2019-25009",
+      "GHSA-6rhx-hqxm-8p36"
+    ],
+    "related": [],
+    "summary": "HeaderMap::Drain API is unsound",
+    "details": "Affected versions of this crate incorrectly used raw pointer,\nwhich introduced unsoundness in its public safe API.\n\n[Failing to drop the Drain struct causes double-free](https://github.com/hyperium/http/issues/354),\nand [it is possible to violate Rust's alias rule and cause data race with Drain's Iterator implementation](https://github.com/hyperium/http/issues/355).\n\nThe flaw was corrected in 0.1.20 release of `http` crate.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "http",
+          "purl": "pkg:cargo/http"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "http::header::HeaderMap::drain"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.1.20"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/http"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2019-0034.html"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2019-0033",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2019-11-16T12:00:00Z",
+    "aliases": [
+      "CVE-2019-25008",
+      "CVE-2020-25574",
+      "GHSA-x7vr-c387-8w57",
+      "GHSA-xvc9-xwgj-4cq9"
+    ],
+    "related": [],
+    "summary": "Integer Overflow in HeaderMap::reserve() can cause Denial of Service",
+    "details": "`HeaderMap::reserve()` used `usize::next_power_of_two()` to calculate the increased capacity.\nHowever, `next_power_of_two()` silently overflows to 0 if given a sufficiently large number\nin release mode.\n\nIf the map was not empty when the overflow happens,\nthe library will invoke `self.grow(0)` and start infinite probing.\nThis allows an attacker who controls the argument to `reserve()`\nto cause a potential denial of service (DoS).\n\nThe flaw was corrected in 0.1.20 release of `http` crate.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "http",
+          "purl": "pkg:cargo/http"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "http::header::HeaderMap::reserve"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.1.20"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/http"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2019-0033.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/hyperium/http/issues/352"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

@@ -1,0 +1,148 @@
+[
+  {
+    "id": "RUSTSEC-2021-0081",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2021-06-16T12:00:00Z",
+    "aliases": [
+      "CVE-2021-38512",
+      "GHSA-8928-2fgm-6x9x"
+    ],
+    "related": [],
+    "summary": "Potential request smuggling capabilities due to lack of input validation",
+    "details": "Affected versions of this crate did not properly detect invalid requests that could allow HTTP/1 request smuggling (HRS) attacks when running alongside a vulnerable front-end proxy server. This can result in leaked internal and/or user data, including credentials, when the front-end proxy is also vulnerable.\n\nPopular front-end proxies and load balancers already mitigate HRS attacks so it is recommended that they are also kept up to date; check your specific set up. You should upgrade even if the front-end proxy receives exclusively HTTP/2 traffic and connects to the back-end using HTTP/1; several downgrade attacks are known that can also expose HRS vulnerabilities.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "actix-http",
+          "purl": "pkg:cargo/actix-http"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "2.2.1"
+              },
+              {
+                "introduced": "3.0.0-0"
+              },
+              {
+                "fixed": "3.0.0-beta.9"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/actix-http"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0081.html"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2020-0048",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2020-01-24T12:00:00Z",
+    "aliases": [
+      "CVE-2020-35901",
+      "GHSA-v3j6-xf77-8r9c"
+    ],
+    "related": [],
+    "summary": "Use-after-free in BodyStream due to lack of pinning",
+    "details": "Affected versions of this crate did not require the buffer wrapped in `BodyStream` to be pinned,\nbut treated it as if it had a fixed location in memory. This may result in a use-after-free.\n \nThe flaw was corrected by making the trait `MessageBody` require `Unpin`\nand making `poll_next()` function accept `Pin<&mut Self>` instead of `&mut self`.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "actix-http",
+          "purl": "pkg:cargo/actix-http"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "2.0.0-alpha.1"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/actix-http"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2020-0048.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/actix/actix-web/issues/1321"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

@@ -1,0 +1,68 @@
+[
+  {
+    "id": "RUSTSEC-2020-0153",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2020-12-31T12:00:00Z",
+    "aliases": [
+      "CVE-2020-36511",
+      "GHSA-72r2-rg28-47v9",
+      "GHSA-v2ch-fc8f-qm33"
+    ],
+    "related": [],
+    "summary": "`read` on uninitialized buffer may cause UB (bite::read::BiteReadExpandedExt::read_framed_max)",
+    "details": "Affected versions of this crate calls a user provided `Read` implementation on an uninitialized buffer.\n\n`Read` on uninitialized buffer is defined as undefined behavior in Rust.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "bite",
+          "purl": "pkg:cargo/bite"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-exposure"
+          ],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/bite"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2020-0153.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/hinaria/bite/issues/1"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

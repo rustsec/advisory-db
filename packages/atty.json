@@ -1,0 +1,134 @@
+[
+  {
+    "id": "RUSTSEC-2024-0375",
+    "modified": "2024-09-26T12:26:22Z",
+    "published": "2024-09-25T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "`atty` is unmaintained",
+    "details": "The maintainer of `atty` has [published](https://github.com/softprops/atty/commit/5bfdbe9e48c6ca6a4909e8d5b04f5e843a257e93) an official notice that the crate is no longer\nunder development, and that users should instead rely on the functionality in the standard library's [`IsTerminal`](https://doc.rust-lang.org/std/io/trait.IsTerminal.html) trait.\n\n## Alternative(s)\n\n- [std::io::IsTerminal](https://doc.rust-lang.org/stable/std/io/trait.IsTerminal.html) - Stable since Rust 1.70.0 and the recommended replacement per the `atty` maintainer.\n- [is-terminal](https://crates.io/crates/is-terminal) - Standalone crate supporting Rust older than 1.70.0",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "atty",
+          "purl": "pkg:cargo/atty"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": "unmaintained"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/atty"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2024-0375.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/softprops/atty/issues/57"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2021-0145",
+    "modified": "2023-07-08T12:30:19Z",
+    "published": "2021-07-04T12:00:00Z",
+    "aliases": [
+      "GHSA-g98v-hv3f-hcfr"
+    ],
+    "related": [],
+    "summary": "Potential unaligned read",
+    "details": "On windows, `atty` dereferences a potentially unaligned pointer.\n\nIn practice however, the pointer won't be unaligned unless a custom global allocator is used.\n\nIn particular, the `System` allocator on windows uses `HeapAlloc`, which guarantees a large enough alignment.\n\n# atty is Unmaintained\n\nA Pull Request with a fix has been provided over a year ago but the maintainer seems to be unreachable.\n\nLast release of `atty` was almost 3 years ago.\n\n## Possible Alternative(s)\n\nThe below list has not been vetted in any way and may or may not contain alternatives;\n\n - [std::io::IsTerminal](https://doc.rust-lang.org/stable/std/io/trait.IsTerminal.html) - Stable since Rust 1.70.0\n - [is-terminal](https://crates.io/crates/is-terminal) - Standalone crate supporting Rust older than 1.70.0",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "atty",
+          "purl": "pkg:cargo/atty"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [
+              "windows"
+            ],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/atty"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0145.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/softprops/atty/issues/50"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/softprops/atty/pull/51"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/softprops/atty/issues/57"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

@@ -1,0 +1,143 @@
+[
+  {
+    "id": "RUSTSEC-2020-0128",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2020-11-24T12:00:00Z",
+    "aliases": [
+      "CVE-2020-36448",
+      "GHSA-g78p-g85h-q6ww"
+    ],
+    "related": [],
+    "summary": "Cache<K>: Send/Sync impls needs trait bounds on `K`",
+    "details": "Affected versions of this crate unconditionally implement Send/Sync for `Cache<K>`.\nThis allows users to insert `K` that is not Send or not Sync.\n\nThis allows users to create data races by using non-Send types like `Arc<Cell<T>>` or `Rc<T>` as `K` in `Cache<K>`. It is also possible to create data races by using types like `Cell<T>` or `RefCell<T>` (types that are `Send` but not `Sync`).\nSuch data races can lead to memory corruption.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "cache",
+          "purl": "pkg:cargo/cache"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption",
+            "thread-safety"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/cache"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2020-0128.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/krl/cache/issues/1"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2021-0006",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2021-01-01T12:00:00Z",
+    "aliases": [
+      "CVE-2021-25903",
+      "GHSA-gh87-6jr3-8q47"
+    ],
+    "related": [],
+    "summary": "Exposes internally used raw pointer",
+    "details": "Affected versions of this crate dereference a raw pointer that can be modified\nwithout using `unsafe` code.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "cache",
+          "purl": "pkg:cargo/cache"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/cache"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0006.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/krl/cache/issues/2"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

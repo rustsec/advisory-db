@@ -1,0 +1,75 @@
+[
+  {
+    "id": "RUSTSEC-2020-0045",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2020-01-08T12:00:00Z",
+    "aliases": [
+      "CVE-2020-35898",
+      "GHSA-hhw2-pqhf-vmx2"
+    ],
+    "related": [],
+    "summary": "bespoke Cell implementation allows obtaining several mutable references to the same data",
+    "details": "The custom implementation of a Cell primitive in the affected versions of this crate\ndoes not keep track of mutable references to the underlying data.\n\nThis allows obtaining several mutable references to the same object\nwhich may result in arbitrary memory corruption, most likely use-after-free.\n\nThe flaw was corrected by switching from a bespoke `Cell<T>` implementation to `Rc<RefCell<T>>`.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "actix-utils",
+          "purl": "pkg:cargo/actix-utils"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:H",
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "2.0.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/actix-utils"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2020-0045.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/actix/actix-net/issues/160"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

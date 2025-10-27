@@ -1,0 +1,76 @@
+[
+  {
+    "id": "RUSTSEC-2020-0148",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2020-12-10T12:00:00Z",
+    "aliases": [
+      "CVE-2020-36466",
+      "CVE-2020-36467",
+      "CVE-2020-36468",
+      "GHSA-f3mq-99jr-ww4r",
+      "GHSA-f9xr-3m55-5q2v",
+      "GHSA-pwhf-7427-9vv2"
+    ],
+    "related": [],
+    "summary": "Multiple soundness issues in `Ptr`",
+    "details": "Affected versions of this crate have the following issues:\n\n1. `Ptr` implements `Send` and `Sync` for all types, this can lead to data\n   races by sending non-thread safe types across threads.\n\n2. `Ptr::get` violates mutable alias rules by returning multiple mutable\n   references to the same object.\n\n3. `Ptr::write` uses non-atomic writes to the underlying pointer. This means\n   that when used across threads it can lead to data races.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "cgc",
+          "purl": "pkg:cargo/cgc"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/cgc"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2020-0148.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/playXE/cgc/issues/5"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

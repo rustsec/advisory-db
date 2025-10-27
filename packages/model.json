@@ -1,0 +1,72 @@
+[
+  {
+    "id": "RUSTSEC-2020-0140",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2020-11-10T12:00:00Z",
+    "aliases": [
+      "CVE-2020-36460",
+      "GHSA-mxv6-q98x-h958"
+    ],
+    "related": [],
+    "summary": "`Shared` can cause a data race",
+    "details": "`Shared` data structure in `model` crate implements `Send` and `Sync` traits regardless of the inner type.\nThis allows safe Rust code to trigger a data race, which is undefined behavior in Rust.\n\nUsers are advised to treat `Shared` as an unsafe type.\nIt should not be used outside of the testing context,\nand care must be taken so that the testing code does not have a data race\nbesides a race condition that is expected to be caught by the test.\n\nCheck [the Rustonomicon](https://doc.rust-lang.org/nomicon/races.html) for the difference between\na data race and a general race condition.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "model",
+          "purl": "pkg:cargo/model"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "thread-safety"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/model"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2020-0140.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/spacejam/model/issues/3"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

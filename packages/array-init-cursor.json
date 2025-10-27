@@ -1,0 +1,67 @@
+[
+  {
+    "id": "RUSTSEC-2025-0019",
+    "modified": "2025-03-30T09:10:10Z",
+    "published": "2025-03-27T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "`array-init-cursor` in version 0.2.0 and below is unsound when used with types that implement `Drop`",
+    "details": "The `Drop` implementation will get run twice when using the cursor.\n\nThis issue does not affect you, if you are using only using the crate with\ntypes that are `Copy` such as `u8`.\n\nThis issue also does not affect you, if you are only depending on it through\nthe crate `planus`.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "array-init-cursor",
+          "purl": "pkg:cargo/array-init-cursor"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.2.1"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/array-init-cursor"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2025-0019.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/planus-org/planus/issues/293"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

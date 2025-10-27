@@ -1,0 +1,521 @@
+[
+  {
+    "id": "RUSTSEC-2022-0022",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2022-05-10T12:00:00Z",
+    "aliases": [
+      "GHSA-f67m-9j94-qv9j"
+    ],
+    "related": [],
+    "summary": "Parser creates invalid uninitialized value",
+    "details": "Affected versions of this crate called `mem::uninitialized()` in the HTTP1 parser to create values of type `httparse::Header` (from the `httparse` crate).\nThis is unsound, since `Header` contains references and thus must be non-null.\n \nThe flaw was corrected by avoiding the use of `mem::uninitialized()`, using `MaybeUninit` instead.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "hyper",
+          "purl": "pkg:cargo/hyper"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.14.12"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/hyper"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2022-0022.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/hyperium/hyper/pull/2545"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2021-0079",
+    "modified": "2021-10-19T22:14:35Z",
+    "published": "2021-07-07T12:00:00Z",
+    "aliases": [
+      "CVE-2021-32714",
+      "GHSA-5h46-h7hh-c6x9"
+    ],
+    "related": [],
+    "summary": "Integer overflow in `hyper`'s parsing of the `Transfer-Encoding` header leads to data loss",
+    "details": "When decoding chunk sizes that are too large, `hyper`'s code would encounter an integer overflow. Depending on the situation,\nthis could lead to data loss from an incorrect total size, or in rarer cases, a request smuggling attack.\n\nTo be vulnerable, you must be using `hyper` for any HTTP/1 purpose, including as a client or server, and consumers must send\nrequests or responses that specify a chunk size greater than 18 exabytes. For a possible request smuggling attack to be possible,\nany upstream proxies must accept a chunk size greater than 64 bits.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "hyper",
+          "purl": "pkg:cargo/hyper"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.14.10"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/hyper"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0079.html"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://github.com/hyperium/hyper/security/advisories/GHSA-5h46-h7hh-c6x9"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2021-0078",
+    "modified": "2021-10-19T22:14:35Z",
+    "published": "2021-07-07T12:00:00Z",
+    "aliases": [
+      "CVE-2021-32715",
+      "GHSA-f3pg-qwvg-p99c"
+    ],
+    "related": [],
+    "summary": "Lenient `hyper` header parsing of `Content-Length` could allow request smuggling",
+    "details": "`hyper`'s HTTP header parser accepted, according to RFC 7230, illegal contents inside `Content-Length` headers.\nDue to this, upstream HTTP proxies that ignore the header may still forward them along if it chooses to ignore the error.\n\nTo be vulnerable, `hyper` must be used as an HTTP/1 server and using an HTTP proxy upstream that ignores the header's contents\nbut still forwards it. Due to all the factors that must line up, an attack exploiting this vulnerability is unlikely.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "hyper",
+          "purl": "pkg:cargo/hyper"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.14.10"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/hyper"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0078.html"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://github.com/hyperium/hyper/security/advisories/GHSA-f3pg-qwvg-p99c"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2021-0020",
+    "modified": "2021-10-19T22:14:35Z",
+    "published": "2021-02-05T12:00:00Z",
+    "aliases": [
+      "CVE-2021-21299",
+      "GHSA-6hfq-h8hq-87mf"
+    ],
+    "related": [],
+    "summary": "Multiple Transfer-Encoding headers misinterprets request payload",
+    "details": "hyper's HTTP server code had a flaw that incorrectly understands some requests\nwith multiple transfer-encoding headers to have a chunked payload, when it\nshould have been rejected as illegal. This combined with an upstream HTTP proxy\nthat understands the request payload boundary differently can result in\n\"request smuggling\" or \"desync attacks\".",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "hyper",
+          "purl": "pkg:cargo/hyper"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "format-injection"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.12.0"
+              },
+              {
+                "fixed": "0.12.36"
+              },
+              {
+                "introduced": "0.13.0-0"
+              },
+              {
+                "fixed": "0.13.10"
+              },
+              {
+                "introduced": "0.14.0-0"
+              },
+              {
+                "fixed": "0.14.3"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/hyper"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0020.html"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://github.com/hyperium/hyper/security/advisories/GHSA-6hfq-h8hq-87mf"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2017-0002",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2017-01-23T12:00:00Z",
+    "aliases": [
+      "CVE-2017-18587",
+      "GHSA-q89x-f52w-6hj2"
+    ],
+    "related": [],
+    "summary": "headers containing newline characters can split messages",
+    "details": "Serializing of headers to the socket did not filter the values for newline bytes (`\\r` or `\\n`),\nwhich allowed for header values to split a request or response. People would not likely include\nnewlines in the headers in their own applications, so the way for most people to exploit this\nis if an application constructs headers based on unsanitized user input.\n\nThis issue was fixed by replacing all newline characters with a space during serialization of\na header value.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "hyper",
+          "purl": "pkg:cargo/hyper"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.9.18"
+              },
+              {
+                "introduced": "0.10.0"
+              },
+              {
+                "fixed": "0.10.2"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/hyper"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2017-0002.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/hyperium/hyper/wiki/Security-001"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2016-0002",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2016-05-09T12:00:00Z",
+    "aliases": [
+      "CVE-2016-10932",
+      "GHSA-9xjr-m6f3-v5wm"
+    ],
+    "related": [
+      "RUSTSEC-2016-0001"
+    ],
+    "summary": "HTTPS MitM vulnerability due to lack of hostname verification",
+    "details": "When used on Windows platforms, all versions of Hyper prior to 0.9.4 did not\nperform hostname verification when making HTTPS requests.\n\nThis allows an attacker to perform MitM attacks by preventing any valid\nCA-issued certificate, even if there's a hostname mismatch.\n\nThe problem was addressed by leveraging rust-openssl's built-in support for\nhostname verification.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "hyper",
+          "purl": "pkg:cargo/hyper"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [
+              "windows"
+            ],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "crypto-failure"
+          ],
+          "cvss": "CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.9.4"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/hyper"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2016-0002.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/hyperium/hyper/blob/master/CHANGELOG.md#v094-2016-05-09"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2020-0008",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2020-03-19T12:00:00Z",
+    "aliases": [
+      "CVE-2020-35863",
+      "GHSA-h3qr-rq2j-74w4"
+    ],
+    "related": [],
+    "summary": "Flaw in hyper allows request smuggling by sending a body in GET requests",
+    "details": "Vulnerable versions of hyper allow GET requests to have bodies, even if there is\nno Transfer-Encoding or Content-Length header.  As per the HTTP 1.1\nspecification, such requests do not have bodies, so the body will be interpreted\nas a separate HTTP request.\n\nThis allows an attacker who can control the body and method of an HTTP request\nmade by hyper to inject a request with headers that would not otherwise be\nallowed, as demonstrated by sending a malformed HTTP request from a Substrate\nruntime.  This allows bypassing CORS restrictions.  In combination with other\nvulnerabilities, such as an exploitable web server listening on loopback, it may\nallow remote code execution.\n\nThe flaw was corrected in hyper version 0.12.34.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "hyper",
+          "purl": "pkg:cargo/hyper"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "format-injection"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.11.0"
+              },
+              {
+                "fixed": "0.12.34"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/hyper"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2020-0008.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/hyperium/hyper/issues/1925"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

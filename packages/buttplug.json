@@ -1,0 +1,76 @@
+[
+  {
+    "id": "RUSTSEC-2020-0112",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2020-12-18T12:00:00Z",
+    "aliases": [
+      "CVE-2020-36218",
+      "GHSA-r7rv-2rph-hvhj"
+    ],
+    "related": [],
+    "summary": "ButtplugFutureStateShared allows data race to (!Send|!Sync) objects",
+    "details": "`ButtplugFutureStateShared<T>` implements `Send` & `Sync` regardless of `T`.\n\nIf `T: !Send` for `ButtplugFutureStateShared<T>`, it is possible to move non-Send types across thread boundaries (e.g. `T`=`Rc<T>`) and lead to undefined behavior.\nIf `T: !Sync` for `ButtplugFutureStateShared<T>`, it is possible to cause data race to `T` (e.g. `T`=`Arc<Cell<_>>`) and lead to undefined behavior.\n\nThe flaw was corrected in version 1.0.4 by removing manual implementations of `Send`/`Sync` for `ButtplugFutureStateShared<T>` to let rustc generate auto trait implementations with correct trait bounds on `T`.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "buttplug",
+          "purl": "pkg:cargo/buttplug"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption",
+            "thread-safety"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "1.0.4"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/buttplug"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2020-0112.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/buttplugio/buttplug-rs/issues/225"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

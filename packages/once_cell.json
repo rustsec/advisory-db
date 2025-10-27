@@ -1,0 +1,78 @@
+[
+  {
+    "id": "RUSTSEC-2019-0017",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2019-09-01T12:00:00Z",
+    "aliases": [
+      "CVE-2019-16141",
+      "GHSA-7j44-fv4x-79g9"
+    ],
+    "related": [],
+    "summary": "Panic during initialization of Lazy<T> might trigger undefined behavior",
+    "details": "If during the first dereference of Lazy<T> the initialization function panics,\nsubsequent dereferences will execute `std::hints::unreachable_unchecked`.\n\nApplications with `panic = \"abort\"` are not affected, as there will be no\nsubsequent dereferences.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "once_cell",
+          "purl": "pkg:cargo/once_cell"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "once_cell::sync::Lazy::deref",
+              "once_cell::sync::Lazy::force",
+              "once_cell::unsync::Lazy::deref",
+              "once_cell::unsync::Lazy::force"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.2.5"
+              },
+              {
+                "fixed": "1.0.1"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/once_cell"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2019-0017.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/matklad/once_cell/issues/46"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

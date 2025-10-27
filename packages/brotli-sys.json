@@ -1,0 +1,70 @@
+[
+  {
+    "id": "RUSTSEC-2021-0131",
+    "modified": "2021-12-21T20:51:30Z",
+    "published": "2021-12-20T12:00:00Z",
+    "aliases": [
+      "CVE-2020-8927"
+    ],
+    "related": [],
+    "summary": "Integer overflow in the bundled Brotli C library",
+    "details": "A buffer overflow exists in the Brotli library versions prior to 1.0.8 where an attacker controlling the input length of a \"one-shot\" decompression request to a script can trigger a crash, which happens when copying over chunks of data larger than 2 GiB.\n\nAn updated version of `brotli-sys` has not been released. If one cannot update the C library, its authors recommend to use the \"streaming\" API as opposed to the \"one-shot\" API, and impose chunk size limits.\n\nIn Rust the issue can be mitigated by migrating to the `brotli` crate, which provides a Rust implementation of Brotli compression and decompression that is not affected by this issue.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "brotli-sys",
+          "purl": "pkg:cargo/brotli-sys"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/brotli-sys"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0131.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/bitemyapp/brotli2-rs/issues/45"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/google/brotli/releases/tag/v1.0.9"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

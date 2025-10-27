@@ -1,0 +1,76 @@
+[
+  {
+    "id": "RUSTSEC-2020-0142",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2020-11-29T12:00:00Z",
+    "aliases": [
+      "CVE-2020-36462",
+      "GHSA-r88h-6987-g79f",
+      "GHSA-vp6r-mrq9-8f4h"
+    ],
+    "related": [],
+    "summary": "Send bound needed on T (for Send impl of `Bucket2`)",
+    "details": "Affected versions of this crate unconditionally implements `Send` for `Bucket2`. This allows sending non-Send types to other threads.\n\nThis can lead to data races when non Send types like `Cell<T>` or `Rc<T>` are contained inside `Bucket2` and sent across thread boundaries. The data races can potentially lead to memory corruption (as demonstrated in the PoC from the original report issue).\n\nThe flaw was corrected in commit 15b2828 by adding a `T: Send` bound to the `Send` impl of `Bucket2<T>`.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "syncpool",
+          "purl": "pkg:cargo/syncpool"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.1.6"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/syncpool"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2020-0142.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/Chopinsky/byte_buffer/issues/2"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

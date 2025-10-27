@@ -1,0 +1,71 @@
+[
+  {
+    "id": "RUSTSEC-2021-0100",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2021-09-08T12:00:00Z",
+    "aliases": [
+      "CVE-2021-45696",
+      "GHSA-fc7x-2cmc-8j2g",
+      "GHSA-xpww-g9jx-hp8r"
+    ],
+    "related": [],
+    "summary": "Miscomputed results when using AVX2 backend",
+    "details": "The v0.9.7 release of the `sha2` crate introduced a new AVX2-accelerated\nbackend which was automatically enabled for all x86/x86_64 CPUs where AVX2\nsupport was autodetected at runtime.\n\nThis backend was buggy and would miscompute results for long messages\n(i.e. messages spanning multiple SHA blocks).\n\nThe crate has since been yanked, but any users who upgraded to v0.9.7 should\nimmediately upgrade to v0.9.8 and recompute any hashes which were previously\ncomputed by v0.9.7.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "sha2",
+          "purl": "pkg:cargo/sha2"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "crypto-failure"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.9.7"
+              },
+              {
+                "fixed": "0.9.8"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/sha2"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0100.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/RustCrypto/hashes/pull/314"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

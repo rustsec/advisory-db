@@ -1,0 +1,70 @@
+[
+  {
+    "id": "RUSTSEC-2023-0004",
+    "modified": "2023-02-04T13:29:07Z",
+    "published": "2023-01-09T12:00:00Z",
+    "aliases": [
+      "CVE-2023-22895",
+      "GHSA-96jv-r488-c2rj"
+    ],
+    "related": [],
+    "summary": "bzip2 Denial of Service (DoS)",
+    "details": "Working with specific payloads can cause a Denial of Service (DoS) vector.\n\nBoth `Decompress` and `Compress` implementations can enter into infinite loops\ngiven specific payloads entered that trigger it.\n\nThe issue is described in great detail in the [bzip2 repository issue](https://github.com/alexcrichton/bzip2-rs/pull/86).\n\nThanks to bjrjk for finding and providing the patch for the issue and the\nmaintainer responsibly responding to release a fix quickly.\n\nUsers who use the crate with untrusted data should update the `bzip2` to 0.4.4.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "bzip2",
+          "purl": "pkg:cargo/bzip2"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.4.4"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/bzip2"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2023-0004.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/alexcrichton/bzip2-rs/pull/86"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

@@ -1,0 +1,69 @@
+[
+  {
+    "id": "RUSTSEC-2020-0099",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2020-12-10T12:00:00Z",
+    "aliases": [
+      "CVE-2020-36207",
+      "GHSA-g489-xrw3-3v8w"
+    ],
+    "related": [],
+    "summary": "Aovec<T> lacks bound on its Send and Sync traits allowing data races",
+    "details": "`aovec::Aovec<T>` is a vector type that implements `Send` and `Sync` for all\ntypes `T`.\n\nThis allows non-Send types such as `Rc` and non-Sync types such as `Cell` to\nbe used across thread boundaries which can trigger undefined behavior and\nmemory corruption.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "aovec",
+          "purl": "pkg:cargo/aovec"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption",
+            "thread-safety"
+          ],
+          "cvss": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/aovec"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2020-0099.html"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

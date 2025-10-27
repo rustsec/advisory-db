@@ -1,0 +1,277 @@
+[
+  {
+    "id": "RUSTSEC-2025-0020",
+    "modified": "2025-04-01T08:55:37Z",
+    "published": "2025-04-01T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Risk of buffer overflow in `PyString::from_object`",
+    "details": "`PyString::from_object` took `&str` arguments and forwarded them directly to the Python C API without checking for terminating nul bytes. This could lead the Python interpreter to read beyond the end of the `&str` data and potentially leak contents of the out-of-bounds read (by raising a Python exception containing a copy of the data including the overflow).\n\nIn PyO3 0.24.1 this function will now allocate a `CString` to guarantee a terminating nul bytes. PyO3 0.25 will likely offer an alternative API which takes `&CStr` arguments.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "pyo3",
+          "purl": "pkg:cargo/pyo3"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "pyo3::types::PyString::from_object",
+              "pyo3::types::PyString::from_object_bound"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-exposure"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.24.1"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/pyo3"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2025-0020.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/PyO3/pyo3/issues/5005"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2024-0409",
+    "modified": "2024-12-05T04:00:56Z",
+    "published": "2024-12-04T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Build corruption when using `PYO3_CONFIG_FILE` environment variable",
+    "details": "In PyO3 0.23.0 the `PYO3_CONFIG_FILE` environment variable used to configure builds regressed such that changing the environment variable would no longer trigger PyO3 to reconfigure and recompile. In combination with workflows using tools such as `maturin` to build for multiple versions in a single build, this leads to Python wheels being compiled against the wrong Python API version.\n\nAll users who distribute artefacts for multiple Python versions are encouraged to update and rebuild with PyO3 0.23.3. Affected wheels produced from PyO3 0.23.0 through 0.23.2 are highly unstable and will crash the Python interpreter in unpredictable ways.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "pyo3",
+          "purl": "pkg:cargo/pyo3"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.23.0"
+              },
+              {
+                "fixed": "0.23.3"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/pyo3"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2024-0409.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/PyO3/pyo3/issues/4757"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2024-0378",
+    "modified": "2024-10-14T19:18:55Z",
+    "published": "2024-10-12T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Risk of use-after-free in `borrowed` reads from Python weak references",
+    "details": "The family of functions to read \"borrowed\" values from Python weak references\nwere fundamentally unsound, because the weak reference does itself not have\nownership of the value. At any point the last strong reference could\nbe cleared and the borrowed value would become dangling.\n\nIn PyO3 0.22.4 these functions have all been deprecated and patched to leak a\nstrong reference as a mitigation. PyO3 0.23 will remove these functions entirely.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "pyo3",
+          "purl": "pkg:cargo/pyo3"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "pyo3::types::PyWeakrefMethods::get_object_borrowed",
+              "pyo3::types::PyWeakrefMethods::upgrade_borrowed",
+              "pyo3::types::PyWeakrefMethods::upgrade_borrowed_as",
+              "pyo3::types::PyWeakrefMethods::upgrade_borrowed_as_exact",
+              "pyo3::types::PyWeakrefMethods::upgrade_borrowed_as_unchecked"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.22.0"
+              },
+              {
+                "fixed": "0.22.4"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/pyo3"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2024-0378.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/PyO3/pyo3/pull/4590"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2020-0074",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2020-11-28T12:00:00Z",
+    "aliases": [
+      "CVE-2020-35917",
+      "GHSA-2vx6-fcw6-hpr6"
+    ],
+    "related": [],
+    "summary": "Reference counting error in `From<Py<T>>`",
+    "details": "A bug in `From<Py<T>>` would lead to an extra reference count decrement, often\nleading to use-after-free issues.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "pyo3",
+          "purl": "pkg:cargo/pyo3"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.12.0"
+              },
+              {
+                "fixed": "0.12.4"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/pyo3"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2020-0074.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/PyO3/pyo3/pull/1297"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

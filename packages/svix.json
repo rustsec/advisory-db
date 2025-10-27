@@ -1,0 +1,73 @@
+[
+  {
+    "id": "RUSTSEC-2024-0010",
+    "modified": "2024-02-15T01:22:49Z",
+    "published": "2024-02-06T12:00:00Z",
+    "aliases": [
+      "CVE-2024-21491",
+      "GHSA-747x-5m58-mq97",
+      "GHSA-w277-wpqf-rcfv"
+    ],
+    "related": [],
+    "summary": "Improper comparison of different-length signatures",
+    "details": "The `Webhook::verify` function incorrectly compared signatures of\ndifferent lengths - the two signatures would only be compared up to\nthe length of the shorter signature. This allowed an attacker to\npass in `v1,` as the signature, which would always pass verification.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "svix",
+          "purl": "pkg:cargo/svix"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "svix::webhooks::Webhook::verify"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "crypto-failure"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "1.17.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/svix"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2024-0010.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/svix/svix-webhooks/pull/1190"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

@@ -1,0 +1,69 @@
+[
+  {
+    "id": "RUSTSEC-2024-0374",
+    "modified": "2024-09-22T10:28:31Z",
+    "published": "2024-09-22T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Segmentation fault due to use of uninitialized memory",
+    "details": "When trying to decompress a file using \"ouch\", we can reach the function \"ouch::archive::zip::convert_zip_date_time\".\nIn the function, there is a unsafe function, \"transmute\". Once the \"transmute\" function is called to convert the type of \"month\" object,\nthe address of the object is changed to the uninitialized memory region. \nAfter that, when other function tries to dereference \"month\", segmentation fault occurs.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "ouch",
+          "purl": "pkg:cargo/ouch"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "ouch::archive::zip::convert_zip_date_time"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.3.2-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/ouch"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2024-0374.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/ouch-org/ouch/issues/707"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

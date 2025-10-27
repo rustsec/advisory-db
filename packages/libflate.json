@@ -1,0 +1,75 @@
+[
+  {
+    "id": "RUSTSEC-2019-0010",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2019-07-04T12:00:00Z",
+    "aliases": [
+      "CVE-2019-15552",
+      "GHSA-rpcm-whqc-jfw8"
+    ],
+    "related": [],
+    "summary": "MultiDecoder::read() drops uninitialized memory of arbitrary type on panic in client code",
+    "details": "Affected versions of libflate have set a field of an internal structure with a generic type to an uninitialized value in `MultiDecoder::read()` and reverted it to the original value after the function completed. However, execution of `MultiDecoder::read()` could be interrupted by a panic in caller-supplied `Read` implementation. This would cause `drop()` to be called on uninitialized memory of a generic type implementing `Read`.\n\nThis is equivalent to a use-after-free vulnerability and could allow an attacker to gain arbitrary code execution.\n\nThe flaw was corrected by aborting immediately instead of unwinding the stack in case of panic within `MultiDecoder::read()`. The issue was discovered and fixed by Shnatsel.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "libflate",
+          "purl": "pkg:cargo/libflate"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "libflate::gzip::MultiDecoder::read"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.1.14"
+              },
+              {
+                "fixed": "0.1.25"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/libflate"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2019-0010.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/sile/libflate/issues/35"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

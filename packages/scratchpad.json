@@ -1,0 +1,142 @@
+[
+  {
+    "id": "RUSTSEC-2025-0049",
+    "modified": "2025-08-14T20:48:29Z",
+    "published": "2025-08-14T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "User-defined implementations of the safe trait scratchpad::Tracking can cause heap buffer overflows",
+    "details": "The `get` and `set` methods of the public trait `scratchpad::Tracking` interact with unsafe code regions in the crate, and they influence the computation of addresses returned as raw pointers. However, the trait itself is not marked as unsafe, meaning users may provide custom implementations under the assumption that the crate upholds all safety guarantees.\n\nThis becomes problematic because even safe implementations of `get` and `set`-written without using any unsafe code-can still result in ill-formed raw pointers. These pointers may later be dereferenced within safe APIs of the crate (e.g., `marker::MarkerBack::allocate_slice_copy`), potentially leading to arbitrary memory access or heap buffer overflows.\n\nAccording to the [penultimate commit](https://github.com/okready/scratchpad/commit/957dee1a3902f48600b06910e8e0b1d5ee7dab83), the crate is in maintenance mode awaiting a cleanup that will reduce the area of unsafe code. Note that the last commits to the repository are from 4 years ago.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "scratchpad",
+          "purl": "pkg:cargo/scratchpad"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "scratchpad::Tracking::get",
+              "scratchpad::Tracking::set"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/scratchpad"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2025-0049.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/okready/scratchpad/issues/2"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2021-0030",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2021-02-18T12:00:00Z",
+    "aliases": [
+      "CVE-2021-28031",
+      "GHSA-3qm2-rfqw-fmrw"
+    ],
+    "related": [],
+    "summary": "move_elements can double-free objects on panic",
+    "details": "Affected versions of `scratchpad` used `ptr::read` to read elements while\ncalling a user provided function `f` on them.\n\nSince the pointer read duplicates ownership, a panic inside the user provided\n`f` function could cause a double free when unwinding.\n\nThe flaw was fixed in commit `891561bea` by removing the unsafe block and using\na plain iterator.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "scratchpad",
+          "purl": "pkg:cargo/scratchpad"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "scratchpad::SliceMoveSource::move_elements"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "1.3.1"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/scratchpad"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0030.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/okready/scratchpad/issues/1"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

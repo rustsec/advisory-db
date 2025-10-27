@@ -1,0 +1,62 @@
+[
+  {
+    "id": "RUSTSEC-2023-0081",
+    "modified": "2024-03-04T18:47:07Z",
+    "published": "2023-02-14T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "safemem is unmaintained",
+    "details": "The latest crates.io release was in 2019. The repository has been archived by the author.\n\n## Migration\n\n- `safemem::copy_over(slice, src_idx, dest_idx, len);` can be replaced with `slice.copy_within(src_idx..src_idx+len, dest_idx);` as of `rust 1.37.0`.\n- `safemem::write_bytes(slice, byte);` can be replaced with `slice.fill(byte);` as of `rust 1.50.0`\n- `safemem::prepend(slice, vec);` can be replaced with\n\n  ```rust\n  let old_len = vec.len();\n  vec.extend_from_slice(slice);\n  vec.rotate_left(old_len);\n  ```\n  \n  as of `rust 1.26.0`",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "safemem",
+          "purl": "pkg:cargo/safemem"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": "unmaintained"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/safemem"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2023-0081.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/abonander/safemem"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

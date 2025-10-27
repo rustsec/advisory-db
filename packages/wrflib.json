@@ -1,0 +1,85 @@
+[
+  {
+    "id": "RUSTSEC-2025-0072",
+    "modified": "2025-10-03T15:55:57Z",
+    "published": "2025-10-02T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "soundness issue and unmaintained",
+    "details": "All functions under `wrflib::byte_extract` are simply wrapper of unsafe pointer offset and lacks sufficient checks to it pointer and offset parameter.\n\n`wrflib` is unmaintained.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "wrflib",
+          "purl": "pkg:cargo/wrflib"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "wrflib::byte_extract::get_f32_le",
+              "wrflib::byte_extract::get_f32_le_as_f32",
+              "wrflib::byte_extract::get_f64_le",
+              "wrflib::byte_extract::get_f64_le_as_f32",
+              "wrflib::byte_extract::get_i16_le",
+              "wrflib::byte_extract::get_i16_le_as_f32",
+              "wrflib::byte_extract::get_i32_le",
+              "wrflib::byte_extract::get_i32_le_as_f32",
+              "wrflib::byte_extract::get_i64_le",
+              "wrflib::byte_extract::get_i64_le_as_f32",
+              "wrflib::byte_extract::get_i8_le",
+              "wrflib::byte_extract::get_i8_le_as_f32",
+              "wrflib::byte_extract::get_u16_le",
+              "wrflib::byte_extract::get_u16_le_as_f32",
+              "wrflib::byte_extract::get_u32_le",
+              "wrflib::byte_extract::get_u32_le_as_f32",
+              "wrflib::byte_extract::get_u64_le",
+              "wrflib::byte_extract::get_u64_le_as_f32",
+              "wrflib::byte_extract::get_u8_le",
+              "wrflib::byte_extract::get_u8_le_as_f32"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/wrflib"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2025-0072.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/cruise-automation/webviz-rust-framework"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

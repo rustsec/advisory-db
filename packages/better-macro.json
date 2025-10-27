@@ -1,0 +1,69 @@
+[
+  {
+    "id": "RUSTSEC-2021-0077",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2021-07-22T12:00:00Z",
+    "aliases": [
+      "CVE-2021-38196",
+      "GHSA-79wf-qcqv-r22r"
+    ],
+    "related": [],
+    "summary": "`better-macro` has deliberate RCE to prove a point",
+    "details": "[better-macro](https://crates.io/crates/better-macro) is a fake crate which is\n\"Proving A Point\" that proc-macros can run arbitrary code. This is not a particularly\nnovel or interesting observation.\n\nIt currently opens `https://github.com/raycar5/better-macro/blob/master/doc/hi.md`\nwhich doesn't appear to have any malicious content, but there's no guarantee that\nwill remain the case.\n\nThis crate has no useful functionality, and should not be used.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "better-macro",
+          "purl": "pkg:cargo/better-macro"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "better_macro::println"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "code-execution"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/better-macro"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0077.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/raycar5/better-macro/blob/24ff1702397b9c19bbfa4c660e2316cd77d3b900/src/lib.rs#L36-L38"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

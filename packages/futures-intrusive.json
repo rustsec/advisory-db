@@ -1,0 +1,76 @@
+[
+  {
+    "id": "RUSTSEC-2020-0072",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2020-10-31T12:00:00Z",
+    "aliases": [
+      "CVE-2020-35915",
+      "GHSA-4hjg-cx88-g9f9"
+    ],
+    "related": [],
+    "summary": "GenericMutexGuard allows data races of non-Sync types across threads",
+    "details": "`GenericMutexGuard<T>` was given the `Sync` auto trait as long as `T` is `Send`\ndue to its contained members. However, since the guard is supposed to represent\nan **acquired lock** and allows concurrent access to the underlying data from\ndifferent threads, it should only be `Sync` when the underlying data is.\n\nThis is a soundness issue and allows data races, potentially leading to crashes\nand segfaults from safe Rust code.\n\nThe flaw was corrected by adding a `T: Send + Sync` bound for\n`GenericMutexGuard`'s `Sync` trait.\n\nThis bug is [similar to one](https://github.com/rust-lang/rust/issues/41622) in\n`std::sync::Mutex`.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "futures-intrusive",
+          "purl": "pkg:cargo/futures-intrusive"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption",
+            "thread-safety"
+          ],
+          "cvss": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H",
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.4.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/futures-intrusive"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2020-0072.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/Matthias247/futures-intrusive/issues/53"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

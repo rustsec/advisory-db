@@ -1,0 +1,697 @@
+[
+  {
+    "id": "RUSTSEC-2025-0022",
+    "modified": "2025-04-04T13:49:29Z",
+    "published": "2025-04-04T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Use-After-Free in `Md::fetch` and `Cipher::fetch`",
+    "details": "When a `Some(...)` value was passed to the `properties` argument of either of these functions, a use-after-free would result.\n\nIn practice this would nearly always result in OpenSSL treating the properties as an empty string (due to `CString::drop`'s behavior).\n\nThe maintainers thank [quitbug](https://github.com/quitbug/) for reporting this vulnerability to us.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "openssl",
+          "purl": "pkg:cargo/openssl"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "openssl::cipher::Cipher::fetch",
+              "openssl::md::Md::fetch"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.10.39"
+              },
+              {
+                "fixed": "0.10.72"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/openssl"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2025-0022.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/sfackler/rust-openssl/pull/2390"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2025-0004",
+    "modified": "2025-02-02T23:37:03Z",
+    "published": "2025-02-02T12:00:00Z",
+    "aliases": [
+      "GHSA-rpmj-rpgj-qmpm"
+    ],
+    "related": [],
+    "summary": "ssl::select_next_proto use after free",
+    "details": "In `openssl` versions before `0.10.70`, `ssl::select_next_proto` can return a slice pointing into the `server` argument's buffer but with a lifetime bound to the `client` argument. In situations where the `server` buffer's lifetime is shorter than the `client` buffer's, this can cause a use after free. This could cause the server to crash or to return arbitrary memory contents to the client.\n\n`openssl` 0.10.70 fixes the signature of `ssl::select_next_proto` to properly constrain the output buffer's lifetime to that of both input buffers.\n\nIn standard usage of `ssl::select_next_proto` in the callback passed to `SslContextBuilder::set_alpn_select_callback`, code is only affected if the `server` buffer is constructed *within* the callback. For example:\n\nNot vulnerable - the server buffer has a `'static` lifetime:\n```rust\nbuilder.set_alpn_select_callback(|_, client_protos| {\n    ssl::select_next_proto(b\"\\x02h2\", client_protos).ok_or_else(AlpnError::NOACK)\n});\n```\n\nNot vulnerable - the server buffer outlives the handshake:\n```rust\nlet server_protos = b\"\\x02h2\".to_vec();\nbuilder.set_alpn_select_callback(|_, client_protos| {\n    ssl::select_next_proto(&server_protos, client_protos).ok_or_else(AlpnError::NOACK)\n});\n```\n\nVulnerable - the server buffer is freed when the callback returns:\n```rust\nbuilder.set_alpn_select_callback(|_, client_protos| {\n    let server_protos = b\"\\x02h2\".to_vec();\n    ssl::select_next_proto(&server_protos, client_protos).ok_or_else(AlpnError::NOACK)\n});\n```",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "openssl",
+          "purl": "pkg:cargo/openssl"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "openssl::ssl::select_next_proto"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-exposure"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.10.70"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/openssl"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2025-0004.html"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://github.com/sfackler/rust-openssl/security/advisories/GHSA-rpmj-rpgj-qmpm"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/sfackler/rust-openssl/pull/2360"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2024-0357",
+    "modified": "2024-07-21T17:28:48Z",
+    "published": "2024-07-21T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "`MemBio::get_buf` has undefined behavior with empty buffers",
+    "details": "Previously, `MemBio::get_buf` called `slice::from_raw_parts` with a null-pointer, which violates the functions invariants, leading to undefined behavior. In debug builds this would produce an assertion failure. This is now fixed.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "openssl",
+          "purl": "pkg:cargo/openssl"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "openssl::bio::MemBio::get_buf"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.10.66"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/openssl"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2024-0357.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/sfackler/rust-openssl/pull/2266"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2023-0072",
+    "modified": "2024-02-10T15:57:43Z",
+    "published": "2023-11-23T12:00:00Z",
+    "aliases": [
+      "GHSA-xphf-cx8h-7q9g"
+    ],
+    "related": [],
+    "summary": "`openssl` `X509StoreRef::objects` is unsound",
+    "details": "This function returned a shared reference into an OpenSSL datastructure but did not account for interior mutability. OpenSSL may modify the data behind this reference, meaning accesses can race and the reference is unsound.\n\nUse of this function should be replaced with `X509StoreRef::all_certificates`.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "openssl",
+          "purl": "pkg:cargo/openssl"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "openssl::x509::store::X509StoreRef::objects"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.10.60"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/openssl"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2023-0072.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/sfackler/rust-openssl/issues/2096"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2023-0044",
+    "modified": "2023-07-08T12:30:19Z",
+    "published": "2023-06-20T12:00:00Z",
+    "aliases": [
+      "GHSA-xcf7-rvmh-g6q4"
+    ],
+    "related": [],
+    "summary": "`openssl` `X509VerifyParamRef::set_host` buffer over-read",
+    "details": "When this function was passed an empty string, `openssl` would attempt to call `strlen` on it, reading arbitrary memory until it reached a NUL byte.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "openssl",
+          "purl": "pkg:cargo/openssl"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "openssl::x509::verify::X509VerifyParamRef::set_host"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-exposure"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.10.55"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/openssl"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2023-0044.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/sfackler/rust-openssl/issues/1965"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2023-0022",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2023-03-24T12:00:00Z",
+    "aliases": [
+      "GHSA-3gxf-9r58-2ghg"
+    ],
+    "related": [],
+    "summary": "`openssl` `X509NameBuilder::build` returned object is not thread safe",
+    "details": "OpenSSL has a `modified` bit that it can set on on `X509_NAME` objects. If this\nbit is set then the object is not thread-safe even when it appears the code is\nnot modifying the value.\n\nThanks to David Benjamin (Google) for reporting this issue.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "openssl",
+          "purl": "pkg:cargo/openssl"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "openssl::x509::X509NameBuilder::build"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "thread-safety"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.10.48"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/openssl"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2023-0022.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/sfackler/rust-openssl/pull/1854"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2023-0023",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2023-03-24T12:00:00Z",
+    "aliases": [
+      "GHSA-9qwg-crg9-m2vc"
+    ],
+    "related": [],
+    "summary": "`openssl` `SubjectAlternativeName` and `ExtendedKeyUsage::other` allow arbitrary file read",
+    "details": "`SubjectAlternativeName` and `ExtendedKeyUsage` arguments were parsed using the OpenSSL\nfunction `X509V3_EXT_nconf`. This function parses all input using an OpenSSL mini-language\nwhich can perform arbitrary file reads.\n\nThanks to David Benjamin (Google) for reporting this issue.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "openssl",
+          "purl": "pkg:cargo/openssl"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "openssl::x509::extension::ExtendedKeyUsage::other",
+              "openssl::x509::extension::SubjectAlternativeName::new"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "file-disclosure"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.10.48"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/openssl"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2023-0023.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/sfackler/rust-openssl/pull/1854"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2023-0024",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2023-03-24T12:00:00Z",
+    "aliases": [
+      "GHSA-6hcf-g6gr-hhcr"
+    ],
+    "related": [],
+    "summary": "`openssl` `X509Extension::new` and `X509Extension::new_nid` null pointer dereference",
+    "details": "These functions would crash when the context argument was None with certain extension types.\n\nThanks to David Benjamin (Google) for reporting this issue.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "openssl",
+          "purl": "pkg:cargo/openssl"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "openssl::x509::X509Extension::new",
+              "openssl::x509::X509Extension::new_nid"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.10.48"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/openssl"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2023-0024.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/sfackler/rust-openssl/pull/1854"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2018-0010",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2018-06-01T12:00:00Z",
+    "aliases": [
+      "CVE-2018-20997",
+      "GHSA-xjxc-vfw2-cg96"
+    ],
+    "related": [],
+    "summary": "Use after free in CMS Signing",
+    "details": "Affected versions of the OpenSSL crate used structures after they'd been freed.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "openssl",
+          "purl": "pkg:cargo/openssl"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.10.8"
+              },
+              {
+                "fixed": "0.10.9"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/openssl"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2018-0010.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/sfackler/rust-openssl/pull/942"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2016-0001",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2016-11-05T12:00:00Z",
+    "aliases": [
+      "CVE-2016-10931",
+      "GHSA-34p9-f4q3-c4r7"
+    ],
+    "related": [],
+    "summary": "SSL/TLS MitM vulnerability due to insecure defaults",
+    "details": "All versions of rust-openssl prior to 0.9.0 contained numerous insecure defaults\nincluding off-by-default certificate verification and no API to perform hostname\nverification.\n\nUnless configured correctly by a developer, these defaults could allow an attacker\nto perform man-in-the-middle attacks.\n\nThe problem was addressed in newer versions by enabling certificate verification\nby default and exposing APIs to perform hostname verification. Use the\n`SslConnector` and `SslAcceptor` types to take advantage of these new features\n(as opposed to the lower-level `SslContext` type).",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "openssl",
+          "purl": "pkg:cargo/openssl"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": "CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.9.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/openssl"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2016-0001.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/sfackler/rust-openssl/releases/tag/v0.9.0"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

@@ -1,0 +1,75 @@
+[
+  {
+    "id": "RUSTSEC-2020-0012",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2020-04-24T12:00:00Z",
+    "aliases": [
+      "CVE-2020-35865",
+      "GHSA-q948-x8rf-888m"
+    ],
+    "related": [],
+    "summary": "Relies on undefined behavior of `char::from_u32_unchecked`",
+    "details": "The Windows implementation of this crate relied on the behavior of\n`std::char::from_u32_unchecked` when its safety clause is violated.\nEven though this worked with Rust versions up to 1.42 (at least),\nthat behavior could change with any new Rust version, possibly leading\na security issue.\n\nThe flaw was corrected in version 2.0.0.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "os_str_bytes",
+          "purl": "pkg:cargo/os_str_bytes"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [
+              "windows"
+            ],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "2.0.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/os_str_bytes"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2020-0012.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/dylni/os_str_bytes/pull/1"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

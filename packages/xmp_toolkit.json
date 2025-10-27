@@ -1,0 +1,67 @@
+[
+  {
+    "id": "RUSTSEC-2024-0360",
+    "modified": "2024-07-26T18:09:25Z",
+    "published": "2024-07-26T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "`XmpFile::close` can trigger UB",
+    "details": "Affected versions of the crate failed to catch C++ exceptions raised within the `XmpFile::close` function. If such an exception occured, it would trigger undefined behavior, typically a process abort.\n\nThis is best demonstrated in [issue #230](https://github.com/adobe/xmp-toolkit-rs/issues/230), where a race condition causes the `close` call to fail due to file I/O errors.\n\nThis was fixed in [PR #232](https://github.com/adobe/xmp-toolkit-rs/pull/232) (released as crate version 1.9.0), which now safely handles the exception.\n\nFor backward compatibility, the existing API ignores the error. A new API `XmpFile::try_close` was added to allow callers to receive and process the error result.\n\nUsers of all prior versions of `xmp_toolkit` are encouraged to update to version 1.9.0 to avoid undefined behavior.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "xmp_toolkit",
+          "purl": "pkg:cargo/xmp_toolkit"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "xmp_toolkit::XmpFile::close"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "1.9.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/xmp_toolkit"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2024-0360.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/adobe/xmp-toolkit-rs/issues/233"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

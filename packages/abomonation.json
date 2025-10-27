@@ -1,0 +1,66 @@
+[
+  {
+    "id": "RUSTSEC-2021-0120",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2021-10-17T12:00:00Z",
+    "aliases": [
+      "CVE-2021-45708",
+      "GHSA-5vwc-r48g-wj6c",
+      "GHSA-hfxp-p695-629x"
+    ],
+    "related": [],
+    "summary": "abomonation transmutes &T to and from &[u8] without sufficient constraints",
+    "details": "This transmute is at the core of the abomonation crates. It's so easy to use it to violate alignment requirements that no test in the crate's test suite passes under miri.\nThe use of this transmute in serialization/deserialization also incorrectly assumes that the layout of a repr(Rust) type is stable.\nThis transmute can also disclose both the contents of padding bytes which may be an information leak and the contents of pointers, which may be used to defeat ASLR.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "abomonation",
+          "purl": "pkg:cargo/abomonation"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/abomonation"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0120.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/TimelyDataflow/abomonation/issues/23"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

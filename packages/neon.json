@@ -1,0 +1,73 @@
+[
+  {
+    "id": "RUSTSEC-2022-0028",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2022-05-22T12:00:00Z",
+    "aliases": [
+      "GHSA-8mj7-wxmc-f424"
+    ],
+    "related": [],
+    "summary": "Use after free in Neon external buffers",
+    "details": "Neon provides functionality for creating JavaScript `ArrayBuffer` (and the `Buffer` subtype) instances backed by bytes allocated outside of V8/Node. The [`JsArrayBuffer::external`](https://docs.rs/neon/0.10.0/neon/types/struct.JsArrayBuffer.html#method.external) and [`JsBuffer::external`](https://docs.rs/neon/0.10.0/neon/types/struct.JsBuffer.html#method.external) did not require `T: 'static` prior to Neon `0.10.1`. This allowed creating an externally backed buffer from types that may be freed while they are still referenced by a JavaScript `ArrayBuffer`.\n\nThe following example demonstrates use after free. It compiles on versions `<0.10.1` and fails to compile afterward.\n\n```rust\npub fn soundness_hole(mut cx: FunctionContext) -> JsResult<JsArrayBuffer> {\n    let mut data = vec![0u8, 1, 2, 3];\n    \n    // Creating an external from `&mut [u8]` instead of `Vec<u8>` since there is a blanket impl\n    // of `AsMut<T> for &mut T`\n    let buf = JsArrayBuffer::external(&mut cx, data.as_mut_slice());\n\n    // `buf` is still holding a reference to `data`!\n    drop(data);\n\n    Ok(buf)\n}\n```",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "neon",
+          "purl": "pkg:cargo/neon"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "neon::types::JsArrayBuffer::external",
+              "neon::types::JsBuffer::external"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption",
+            "memory-exposure"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.8.0"
+              },
+              {
+                "fixed": "0.10.1"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/neon"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2022-0028.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/neon-bindings/neon/issues/896"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

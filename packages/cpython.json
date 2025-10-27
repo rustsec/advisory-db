@@ -1,0 +1,70 @@
+[
+  {
+    "id": "RUSTSEC-2023-0076",
+    "modified": "2023-12-20T22:34:55Z",
+    "published": "2023-11-14T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "`cpython` is unmaintained",
+    "details": "The `cpython` crate and the underlying `python3-sys` and `python27-sys` crates have been marked as [no longer actively maintained] by the developer.\n\nThere are also open issues for unsound code that is currently in these crates:\n\n- [cpython#265]: Using some string functions causes segmentation faults on big-endian architectures. Due to incorrect bitfield manipulations, it is possible to create invalid Python objects that crash the Python interpreter.\n- [cpython#294]: Python 3.12 is not supported. Due to ABI changes in Python 3.12, calling some string functions will result in invalid Python objects and / or cause out-of-bounds memory accesses.\n\n## Recommended alternatives\n\n- [`pyo3`] (version 0.19.2 and newer)\n\nThe `pyo3` crate is actively maintained. Preliminary support for Python 3.12 was added in version 0.19.2, and version 0.20.0 was released with full support for Python 3.12.\n\nBoth versions implement string functions correctly on big-endian architectures. The endianness issue affecting the `cpython` crate was fixed in recent versions of `pyo3`.\n\n[no longer actively maintained]: https://github.com/dgrunwald/rust-cpython/commit/e815555\n[cpython#265]: https://github.com/dgrunwald/rust-cpython/issues/265\n[cpython#294]: https://github.com/dgrunwald/rust-cpython/issues/294\n[`pyo3`]: https://crates.io/crates/pyo3",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "cpython",
+          "purl": "pkg:cargo/cpython"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": "unmaintained"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/cpython"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2023-0076.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/dgrunwald/rust-cpython/commit/e815555"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/dgrunwald/rust-cpython/issues/265"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/dgrunwald/rust-cpython/issues/294"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

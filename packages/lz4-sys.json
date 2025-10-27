@@ -1,0 +1,76 @@
+[
+  {
+    "id": "RUSTSEC-2022-0051",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2022-08-25T12:00:00Z",
+    "aliases": [
+      "GHSA-9q5j-jm53-v7vr"
+    ],
+    "related": [
+      "CVE-2021-3520"
+    ],
+    "summary": "Memory corruption in liblz4",
+    "details": "lz4-sys up to v1.9.3 bundles a version of liblz4 that is vulnerable to\n[CVE-2021-3520](https://nvd.nist.gov/vuln/detail/CVE-2021-3520).\n\nAttackers could craft a payload that triggers an integer overflow upon\ndecompression, causing an out-of-bounds write.\n\nThe flaw has been corrected in version v1.9.4 of liblz4, which is included\nin lz4-sys 1.9.4.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "lz4-sys",
+          "purl": "pkg:cargo/lz4-sys"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "1.9.4"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/lz4-sys"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2022-0051.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/lz4/lz4/pull/972"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

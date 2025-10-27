@@ -1,0 +1,77 @@
+[
+  {
+    "id": "RUSTSEC-2022-0018",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2022-05-09T12:00:00Z",
+    "aliases": [
+      "CVE-2022-29185",
+      "GHSA-8vxv-2g8p-2249"
+    ],
+    "related": [],
+    "summary": "Timing attack",
+    "details": "Affecting versions did not compare tokens in constant time, which could make it possible for an attacker to guess the 2fa token of a user.\n\nThis has been fixed by using using the crate constant_time_eq for comparison.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:H/PR:H/UI:R/S:U/C:H/I:N/A:N"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "totp-rs",
+          "purl": "pkg:cargo/totp-rs"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "totp_rs::TOTP::check"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "crypto-failure"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:H/PR:H/UI:R/S:U/C:H/I:N/A:N",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "1.1.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/totp-rs"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2022-0018.html"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://github.com/constantoine/totp-rs/security/advisories/GHSA-8vxv-2g8p-2249"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

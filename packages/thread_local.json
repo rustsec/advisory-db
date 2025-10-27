@@ -1,0 +1,69 @@
+[
+  {
+    "id": "RUSTSEC-2022-0006",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2022-01-23T12:00:00Z",
+    "aliases": [
+      "GHSA-9hpw-r23r-xgm5"
+    ],
+    "related": [],
+    "summary": "Data race in `Iter` and `IterMut`",
+    "details": "In the affected version of this crate, `{Iter, IterMut}::next` used a weaker memory ordering when loading values than what was required, exposing a potential data race\nwhen iterating over a `ThreadLocal`'s values.\n\nCrates using `Iter::next`, or `IterMut::next` are affected by this issue.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "thread_local",
+          "purl": "pkg:cargo/thread_local"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "1.1.4"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/thread_local"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2022-0006.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/Amanieu/thread_local-rs/issues/33"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

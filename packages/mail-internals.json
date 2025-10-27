@@ -1,0 +1,68 @@
+[
+  {
+    "id": "RUSTSEC-2023-0054",
+    "modified": "2023-08-27T15:52:52Z",
+    "published": "2023-08-07T12:00:00Z",
+    "aliases": [
+      "GHSA-rcx8-48pc-v9q8"
+    ],
+    "related": [],
+    "summary": "Use-after-free in `vec_insert_bytes`",
+    "details": "Incorrect reallocation logic in the function [`vec_insert_bytes`](https://docs.rs/mail-internals/0.2.3/mail_internals/utils/fn.vec_insert_bytes.html) causes a use-after-free.\n\nThis function does not have to be called directly to trigger the vulnerability because many methods on [`EncodingWriter`](https://docs.rs/mail-internals/0.2.3/mail_internals/encoder/struct.EncodingWriter.html) call this function internally.\n\nThe mail-\\* suite is unmaintained and the upstream sources have been actively vandalised.\nA fixed `mail-internals-ng` (and `mail-headers-ng` and `mail-core-ng`) crate has been published which fixes this, and a dependency on another unsound crate.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "mail-internals",
+          "purl": "pkg:cargo/mail-internals"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "mail_internals::utils::vec_insert_bytes"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/mail-internals"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2023-0054.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://git.sr.ht/~nabijaczleweli/mail-internals.crate/commit/05443c864b204e7f1512caf2d53e8cce4dd340fc"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

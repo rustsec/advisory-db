@@ -1,0 +1,67 @@
+[
+  {
+    "id": "RUSTSEC-2022-0007",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2022-01-24T12:00:00Z",
+    "aliases": [
+      "GHSA-9c9f-7x9p-4wqp"
+    ],
+    "related": [],
+    "summary": "A malicious coder can get unsound access to TCell or TLCell memory",
+    "details": "This is impossible to do by accident, but by carefully constructing\nmarker types to be covariant, a malicious coder can cheat the\nsingleton check in `TCellOwner` and `TLCellOwner`, giving unsound\naccess to cell memory.  This could take the form of getting two\nmutable references to the same memory, or a mutable reference and an\nimmutable reference.\n\nThe fix is for the crate to internally force the marker type to be\ninvariant.  This blocks the conversion between covariant types which\nRust normally allows.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "qcell",
+          "purl": "pkg:cargo/qcell"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.4.3"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/qcell"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2022-0007.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/uazu/qcell/issues/20"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

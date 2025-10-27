@@ -1,0 +1,72 @@
+[
+  {
+    "id": "RUSTSEC-2020-0038",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2020-09-03T12:00:00Z",
+    "aliases": [
+      "CVE-2020-35890",
+      "CVE-2020-35891",
+      "GHSA-4wj3-p7hj-cvx8",
+      "GHSA-qrwc-jxf5-g8x6"
+    ],
+    "related": [],
+    "summary": "Memory safety issues in `compact::Vec`",
+    "details": "`compact::Vec` contains multiple memory safety issues.\n\n1. It mishandles large capacity and causes out-of-bound access in 32-bit / allocator layout mismatch in 64-bit.\n2. `remove()` is not panic-safe and causes double-free when an index larger than the length is provided.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "ordnung",
+          "purl": "pkg:cargo/ordnung"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/ordnung"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2020-0038.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/maciejhirsz/ordnung/issues/8"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

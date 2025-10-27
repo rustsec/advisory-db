@@ -1,0 +1,130 @@
+[
+  {
+    "id": "RUSTSEC-2023-0085",
+    "modified": "2024-04-11T16:16:20Z",
+    "published": "2023-09-15T12:00:00Z",
+    "aliases": [
+      "GHSA-w7hm-hmxv-pvhf"
+    ],
+    "related": [],
+    "summary": "HPACK decoder panics on invalid input",
+    "details": "Due to insufficient checking of input data, decoding certain data sequences can\nlead to _Decoder::decode_ panicking rather than returning an error.\n\nExample code that triggers this vulnerability looks like this:\n\n```rust\nuse hpack::Decoder;\n\npub fn main() {\n  let input = &[0x3f];\n  let mut decoder = Decoder::new();\n  let _ = decoder.decode(input);\n}\n```\n\nhpack is unmaintained. A crate with the panics fixed has been published as\n[hpack-patched](https://crates.io/crates/hpack-patched).\n\nAlso consider using [fluke-hpack](https://crates.io/crates/fluke-hpack) or\n[httlib-huffman](https://crates.io/crates/httlib-huffman) as an alternative.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "hpack",
+          "purl": "pkg:cargo/hpack"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/hpack"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2023-0085.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/mlalic/hpack-rs/issues/11"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/sno2/hpack-rs-patched/commit/d669282924a95311599e9e7dd53869ee96b3a2f5"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2023-0084",
+    "modified": "2024-03-06T14:01:14Z",
+    "published": "2023-09-15T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "`hpack` is unmaintained",
+    "details": "The `hpack` crate is no longer maintained.\n\nConsider using [fluke-hpack](https://crates.io/crates/fluke-hpack) or\n[httlib-huffman](https://crates.io/crates/httlib-huffman).",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "hpack",
+          "purl": "pkg:cargo/hpack"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": "unmaintained"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/hpack"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2023-0084.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/mlalic/hpack-rs/issues/8"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

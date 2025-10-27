@@ -1,0 +1,70 @@
+[
+  {
+    "id": "RUSTSEC-2025-0045",
+    "modified": "2025-07-17T14:38:11Z",
+    "published": "2025-07-17T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "ConstStaticCell could have been used to pass non-Send values to another thread",
+    "details": "`ConstStaticCell<T>` could have been used to pass non-`Send` values to another thread, because `T` was not required to be `Send` while `ConstStaticCell` is `Send`.\n\nThis was corrected by introducing a `T: Send` bound.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "static_cell",
+          "purl": "pkg:cargo/static_cell"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "static_cell::ConstStaticCell::new"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-exposure",
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "2.0.1-0"
+              },
+              {
+                "fixed": "2.1.1"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/static_cell"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2025-0045.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/embassy-rs/static-cell/issues/19"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

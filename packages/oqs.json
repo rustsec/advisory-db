@@ -1,0 +1,132 @@
+[
+  {
+    "id": "RUSTSEC-2022-0047",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2022-02-25T12:00:00Z",
+    "aliases": [
+      "GHSA-h864-m8vm-3xvj"
+    ],
+    "related": [],
+    "summary": "Post-Quantum Signature scheme Rainbow level I parametersets broken",
+    "details": "Ward Beullens found a practical key-recovery attack against Rainbow.\nThe level I parametersets are removed from liboqs starting from version `0.7.2`.\nFind the scientific details in [Breaking Rainbow Takes a Weekend on a Laptop](https://eprint.iacr.org/2022/214).\n\nThis means all the `oqs::sig::Algorithm::RainbowI*` variants are insecure.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "oqs",
+          "purl": "pkg:cargo/oqs"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "crypto-failure"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.7.2"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/oqs"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2022-0047.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://groups.google.com/a/list.nist.gov/g/pqc-forum/c/KFgw5_qCXiI?pli=1"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2022-0045",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2022-07-30T12:00:00Z",
+    "aliases": [
+      "GHSA-hrjv-pf36-jpmr"
+    ],
+    "related": [],
+    "summary": "Post-Quantum Key Encapsulation Mechanism SIKE broken",
+    "details": "Wouter Castryck and Thomas Decru presented an efficient key recovery attack on the SIDH protocol.\nAs a result, the secret key of SIKEp751 can be recovered in a matter of hours.\nThe SIKE and SIDH schemes will be removed from oqs 0.7.2.\n\nThe affected schemes are the `oqs::kem::Algorithm::Sike*` and `oqs::kem::Algorithm::Sidh*` enum variants.\n\n[An efficient key recovery attack on SIDH (preliminary version)](https://eprint.iacr.org/2022/975)",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "oqs",
+          "purl": "pkg:cargo/oqs"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "crypto-failure"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.7.2"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/oqs"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2022-0045.html"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

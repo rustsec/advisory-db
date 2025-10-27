@@ -1,0 +1,134 @@
+[
+  {
+    "id": "RUSTSEC-2025-0003",
+    "modified": "2025-01-29T19:29:35Z",
+    "published": "2025-01-13T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Segmentation fault due to lack of bound check",
+    "details": "In this case, the \"fast_float::common::AsciiStr::first\" method within the \"AsciiStr\" struct \nuses the unsafe keyword to reading from memory without performing bounds checking. \nSpecifically, it directly dereferences a pointer offset by \"self.ptr\".\nBecause of the above reason, the method accesses invalid memory address when it takes an empty string as its input.\nThis approach violates Rust’s memory safety guarantees, as it can lead to invalid memory access if empty buffer is provided.\n\nNo patched version for fast-float crate has been released, but a patch is available in the fast-float2 fork.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "fast-float",
+          "purl": "pkg:cargo/fast-float"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "fast_float::common::AsciiStr::first"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-exposure"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/fast-float"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2025-0003.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/aldanor/fast-float-rust/issues/38"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2024-0379",
+    "modified": "2024-11-09T15:12:54Z",
+    "published": "2024-10-31T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Multiple soundness issues",
+    "details": "`fast-float` contains multiple soundness issues:\n\n 1. [Undefined behavior when checking input length](https://github.com/aldanor/fast-float-rust/issues/28), which has been merged but no package [pubished](https://github.com/aldanor/fast-float-rust/issues/35).\n 1. [Many functions marked as safe with non-local safety guarantees](https://github.com/aldanor/fast-float-rust/issues/37)\n\nThe library is also unmaintained.\n\n## Alternatives\n\nFor quickly parsing floating-point numbers third-party crates are generally no longer needed. A fast float parsing algorithm by the author of `lexical` has been [merged](https://github.com/rust-lang/rust/pull/86761) into libcore. When requiring direct parsing from bytes and/or partial parsers, the [`fast-float2`](https://crates.io/crates/fast-float2) fork of `fast-float` containing these security patches and reduces overall usage of unsafe.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "fast-float",
+          "purl": "pkg:cargo/fast-float"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/fast-float"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2024-0379.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/aldanor/fast-float-rust/issues/35"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/aldanor/fast-float-rust/issues/28"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/aldanor/fast-float-rust/issues/37"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

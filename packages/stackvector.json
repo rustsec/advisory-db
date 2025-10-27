@@ -1,0 +1,75 @@
+[
+  {
+    "id": "RUSTSEC-2021-0048",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2021-02-19T12:00:00Z",
+    "aliases": [
+      "CVE-2021-29939",
+      "GHSA-9frf-r7c7-j2vg"
+    ],
+    "related": [],
+    "summary": "StackVec::extend can write out of bounds when size_hint is incorrect",
+    "details": "`StackVec::extend` used the lower and upper bounds from an Iterator's\n`size_hint` to determine how many items to push into the stack based vector.\n\nIf the `size_hint` implementation returned a lower bound that was larger than\nthe upper bound, `StackVec` would write out of bounds and overwrite memory\non the stack. As mentioned by the [size_hint](https://doc.rust-lang.org/std/iter/trait.Iterator.html#provided-methods)\ndocumentation, `size_hint` is mainly for optimization and incorrect\nimplementations should not lead to memory safety issues.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "stackvector",
+          "purl": "pkg:cargo/stackvector"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "1.0.9"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/stackvector"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0048.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/Alexhuszagh/rust-stackvector/issues/2"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "id": "RUSTSEC-2023-0075",
+    "modified": "2024-02-10T15:57:43Z",
+    "published": "2023-12-20T12:00:00Z",
+    "aliases": [
+      "GHSA-r24f-hg58-vfrw"
+    ],
+    "related": [],
+    "summary": "Unaligned write of u64 on 32-bit and 16-bit platforms",
+    "details": "Affected versions allocate memory using the alignment of `usize` and write data\nto it of type `u64`, without using `core::ptr::write_unaligned`. In platforms\nwith sub-64bit alignment for `usize` (including wasm32 and x86) these writes\nare insufficiently aligned some of the time.\n\nIf using an ordinary optimized standard library, the bug exhibits Undefined\nBehavior so may or may not behave in any sensible way, depending on\noptimization settings and hardware and other things. If using a Rust standard\nlibrary built with debug assertions enabled, the bug manifests deterministically\nin a crash (non-unwinding panic) saying _\"ptr::write requires that the pointer\nargument is aligned and non-null\"_.\n\nNo 64-bit platform is impacted by the bug.\n\nThe flaw was corrected by allocating with adequately high alignment on all\nplatforms.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "unsafe-libyaml",
+          "purl": "pkg:cargo/unsafe-libyaml"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.2.10"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/unsafe-libyaml"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2023-0075.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/dtolnay/unsafe-libyaml/issues/21"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

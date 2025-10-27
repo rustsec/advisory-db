@@ -1,0 +1,68 @@
+[
+  {
+    "id": "RUSTSEC-2020-0154",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2020-12-31T12:00:00Z",
+    "aliases": [
+      "CVE-2020-36512",
+      "GHSA-hmx9-jm3v-33hv",
+      "GHSA-v938-qcc9-rwv8"
+    ],
+    "related": [],
+    "summary": "InputStream::read_exact : `Read` on uninitialized buffer causes UB",
+    "details": "Affected versions of this crate passes an uninitialized buffer to a user-provided `Read` implementation.\n\nArbitrary `Read` implementations can read from the uninitialized buffer (memory exposure) and also can return incorrect number of bytes written to the buffer.\nReading from uninitialized memory produces undefined values that can quickly invoke undefined behavior.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "buffoon",
+          "purl": "pkg:cargo/buffoon"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-exposure"
+          ],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/buffoon"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2020-0154.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/carllerche/buffoon/issues/2"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

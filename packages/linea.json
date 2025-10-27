@@ -1,0 +1,75 @@
+[
+  {
+    "id": "RUSTSEC-2019-0021",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2019-09-14T12:00:00Z",
+    "aliases": [
+      "CVE-2019-16880",
+      "GHSA-j52m-489x-v634"
+    ],
+    "related": [],
+    "summary": "`Matrix::zip_elements` causes double free",
+    "details": "Affected versions of this crate did not properly implements the `Matrix::zip_elements` method, which causes an double free when the given trait implementation might panic.\n\nThis allows an attacker to corrupt or take control of the memory.\n \nThe flaw was corrected by Phosphorus15.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "linea",
+          "purl": "pkg:cargo/linea"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.9.5-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/linea"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2019-0021.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/strake/linea.rs/issues/2"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

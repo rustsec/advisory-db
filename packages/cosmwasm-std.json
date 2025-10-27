@@ -1,0 +1,79 @@
+[
+  {
+    "id": "RUSTSEC-2024-0338",
+    "modified": "2024-04-27T02:07:10Z",
+    "published": "2024-04-24T12:00:00Z",
+    "aliases": [
+      "GHSA-8724-5xmm-w5xq"
+    ],
+    "related": [],
+    "summary": "Arithmetic overflows in cosmwasm-std",
+    "details": "Some mathematical operations in `cosmwasm-std` use wrapping math instead of\npanicking on overflow for very big numbers. This can lead to wrong calculations in contracts\nthat use these operations.\n\nAffected functions:\n\n- `Uint{256,512}::pow` / `Int{256,512}::pow`\n- `Int{256,512}::neg`\n\nAffected if `overflow-checks = true` is not set:\n\n- `Uint{64,128}::pow` / `Int{64,128}::pow`\n- `Int{64,128}::neg`",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "cosmwasm-std",
+          "purl": "pkg:cargo/cosmwasm-std"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "1.3.0"
+              },
+              {
+                "fixed": "1.4.4"
+              },
+              {
+                "introduced": "1.5.0"
+              },
+              {
+                "fixed": "1.5.4"
+              },
+              {
+                "introduced": "2.0.0"
+              },
+              {
+                "fixed": "2.0.2"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/cosmwasm-std"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2024-0338.html"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://github.com/CosmWasm/advisories/blob/main/CWAs/CWA-2024-002.md"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

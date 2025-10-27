@@ -1,0 +1,76 @@
+[
+  {
+    "id": "RUSTSEC-2022-0054",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2022-05-11T12:00:00Z",
+    "aliases": [
+      "GHSA-rc23-xxgq-x27g"
+    ],
+    "related": [],
+    "summary": "wee_alloc is Unmaintained",
+    "details": "Two of the maintainers have indicated that the crate may not be maintained.\n\nThe crate has open issues including memory leaks and may not be suitable for production use.\n\nIt may be best to switch to the default Rust standard allocator on wasm32 targets.\n\nLast release seems to have been three years ago.\n\n## Possible Alternative(s)\n\n The below list has not been vetted in any way and may or may not contain alternatives;\n\n - Rust standard [default allocator] on wasm32-target\n\n## Honorable Mention(s)\n\n The below may serve to educate on potential future alternatives:\n\n - [lol_alloc](https://crates.io/crates/lol_alloc)\n\n[default allocator]: https://github.com/alexcrichton/dlmalloc-rs",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "wee_alloc",
+          "purl": "pkg:cargo/wee_alloc"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": "unmaintained"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/wee_alloc"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2022-0054.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/rustwasm/wee_alloc/issues/107"
+      },
+      {
+        "type": "WEB",
+        "url": "https://www.reddit.com/r/rust/comments/x1cle0/dont_use_wee_alloc_in_production_code_targeting/"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/rustwasm/wee_alloc/issues/85"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/rustwasm/wee_alloc/issues/106"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

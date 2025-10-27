@@ -1,0 +1,67 @@
+[
+  {
+    "id": "CVE-2019-16760",
+    "modified": "2020-10-02T01:29:11Z",
+    "published": "2019-09-30T12:00:00Z",
+    "aliases": [
+      "GHSA-phjm-8x66-qw4r"
+    ],
+    "related": [],
+    "summary": "Cargo prior to Rust 1.26.0 may download the wrong dependency",
+    "details": "The Rust team was recently notified of a security concern when using older\nversions of Cargo to build crates which use the package rename feature added in\nnewer versions of Cargo. If you're using Rust 1.26.0, released on 2018-05-10,\nor later you're not affected.\n\nThe CVE for this vulnerability is [CVE-2019-16760][0].\n\n## Overview\n\nCargo can be configured through `Cargo.toml` and the `[dependencies]` section\nto depend on different crates, such as those from crates.io. There are multiple\nways to configure how you depend on crates as well, for example if you depend\non `serde` and enable the `derive` feature it would look like:\n\n```toml\nserde = { version = \"1.0\", features = ['derive'] }\n```\n\nRust 1.31.0 [introduced a new feature of Cargo][1] where one of the optional\nkeys you can specify in this map is `package`, a way to [rename a crate\nlocally][2]. For example if you preferred to use `serde1` locally instead of\n`serde`, you could write:\n\n```toml\nserde1 = { version = \"1.0\", features = ['derive'], package = \"serde\" }\n```\n\nIt's the addition of the `package` key that causes Cargo to compile the crate\ndifferently. This feature was [first implemented][3] in Rust 1.26.0, but it was\nunstable at the time. For Rust 1.25.0 and prior, however, Cargo would ignore\nthe `package` key and and interpret the dependency line as if it were:\n\n```toml\nserde1 = { version = \"1.0\", features = ['derive'] }\n```\n\nThis means when compiled with Rust 1.25.0 and prior then it would attempt to\ndownload the `serde1` crate. A malicious user could squat the `serde1` name on\ncrates.io to look like `serde 1.0.0` but instead act maliciously when built.\n\nIn summary, usage of the `package` key to rename dependencies in `Cargo.toml`\nis ignored in Rust 1.25.0 and prior. When Rust 1.25.0 and prior is used Cargo\nwill ignore `package` and download the wrong dependency, which could be\nsquatted on crates.io to be a malicious package. This not only affects\nmanifests that you write locally yourself, but also manifests published to\ncrates.io. If you published a crate, for example, that depends on `serde1` to\ncrates.io then users who depend on you may also be vulnerable if they use Rust\n1.25.0 and prior.\n\n## Affected Versions\n\nRust 1.0.0 through Rust 1.25.0 is affected by this advisory because Cargo will\nignore the `package` key in manifests. Rust 1.26.0 through Rust 1.30.0 are not\naffected and typically will emit an error because the `package` key is\nunstable. Rust 1.31.0 and after are not affected because Cargo understands the\n`package` key.\n\nIn terms of Cargo versions, this affects Cargo up through Cargo 0.26.0. All\nfuture versions of Cargo are unaffected.\n\n## Mitigations\n\nWe strongly recommend that users of the affected versions update their compiler\nto the latest available one. Preventing this issue from happening requires\nupdating your compiler to either Rust 1.26.0 or newer.\n\nWe will not be issuing a patch release for Rust versions prior to 1.26.0. Users\nof Rust 1.19.0 to Rust 1.25.0 can instead apply [the provided patches][4] to\nmitigate the issue.\n\nAn audit of existing crates published to crates.io using the `package` key has\nbeen performed and there is no evidence that this vulnerability has been\nexploited in the wild. Our audit only covers the crates currently published on\ncrates.io: if you notice crates exploiting this vulnerability in the future\nplease don't hesitate to email secu...@rust-lang.org in accordance with [our\nsecurity policy][5].\n\n## Timeline of events\n\n* Wed, Sep 18, 2019 at 13:54 UTC - Bug reported to secu...@rust-lang.org\n* Wed, Sep 18, 2019 at 15:35 UTC - Response confirming the report\n* Wed, Sep 18, 2019 - Cargo, Core, and crates.io teams confer on how best to\nhandle this\n* Thu, Sep 19, 2019 - Confirmed with Elichai plan of action and continued to\naudit existing crates\n* Mon, Sep 23, 2019 - Advisory drafted, patches developed, audit completed\n* Mon, Sep 30, 2019 - Advisory published, security list informed of this issue\n\n## Acknowledgments\n\nThanks to Elichai Turkel, who found this bug and reported it to us in accordance\nwith our [security policy][5].\n\n## Links\n\n[0]: https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-16760\n[1]: https://blog.rust-lang.org/2018/12/06/Rust-1.31-and-rust-2018.html#cargo-features\n[2]: https://doc.rust-lang.org/cargo/reference/specifying-dependencies.html#renaming-dependencies-in-cargotoml\n[3]: https://github.com/rust-lang/cargo/pull/4953\n[4]: https://gist.github.com/pietroalbini/0d293b24a44babbeb6187e06eebd4992\n[5]: https://www.rust-lang.org/policies/security",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "cargo",
+          "purl": "pkg:cargo/cargo"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "1.26.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/cargo"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/CVE-2019-16760.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://groups.google.com/forum/#!topic/rustlang-security-announcements/rVQ5e3TDnpQ"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

@@ -1,0 +1,75 @@
+[
+  {
+    "id": "RUSTSEC-2021-0051",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2021-01-31T12:00:00Z",
+    "aliases": [
+      "CVE-2021-30454",
+      "GHSA-6vmq-jh76-hq43"
+    ],
+    "related": [],
+    "summary": "KeyValueReader passes uninitialized memory to Read instance",
+    "details": "The `KeyValueReader` type in affected versions of this crate set up an\nuninitialized memory buffer and passed them to be read in to a user-provided\n`Read` instance.\n\nThe `Read` instance could read uninitialized memory and cause undefined\nbehavior and miscompilations.\n\nThis issue was fixed in commit [dd59b30](https://github.com/SolraBizna/outer_cgi/commit/dd59b3066e616a08e756f72de8dc3ab11b7036c4)\nby zero-initializing the buffers before passing them.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "outer_cgi",
+          "purl": "pkg:cargo/outer_cgi"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-exposure"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.2.1"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/outer_cgi"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0051.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/SolraBizna/outer_cgi/issues/1"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

@@ -1,0 +1,74 @@
+[
+  {
+    "id": "RUSTSEC-2020-0167",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2020-06-19T12:00:00Z",
+    "aliases": [
+      "GHSA-cf4g-fcf8-3cr9"
+    ],
+    "related": [],
+    "summary": "`pnet_packet` buffer overrun in `set_payload` setters",
+    "details": "As indicated by this [issue](https://github.com/libpnet/libpnet/issues/449#issuecomment-663355987), a buffer overrun is possible in the `set_payload` setter of the various mutable \"Packet\" struct setters. The offending `set_payload` functions were defined within the struct `impl` blocks in earlier versions of the package, and later by the `packet` macro.\n\nFixed in the `packet` macro by [this](https://github.com/libpnet/libpnet/pull/455) PR.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.0/AV:L/AC:L/PR:H/UI:N/S:U/C:N/I:H/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "pnet_packet",
+          "purl": "pkg:cargo/pnet_packet"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": "CVSS:3.0/AV:L/AC:L/PR:H/UI:N/S:U/C:N/I:H/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.27.2"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/pnet_packet"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2020-0167.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/libpnet/libpnet/issues/449"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

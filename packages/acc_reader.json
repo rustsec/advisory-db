@@ -1,0 +1,70 @@
+[
+  {
+    "id": "RUSTSEC-2020-0155",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2020-12-27T12:00:00Z",
+    "aliases": [
+      "CVE-2020-36513",
+      "CVE-2020-36514",
+      "GHSA-799f-r78p-gq9c",
+      "GHSA-hv9v-7w3v-rj6f",
+      "GHSA-p4cr-64x4-f92f"
+    ],
+    "related": [],
+    "summary": "`Read` on uninitialized buffer in `fill_buf()` and `read_up_to()`",
+    "details": "Affected versions of this crate passes an uninitialized buffer to a user-provided `Read` implementation.\n\nArbitrary `Read` implementations can read from the uninitialized buffer (memory exposure) and also can return incorrect number of bytes written to the buffer.\nReading from uninitialized memory produces undefined values that can quickly invoke undefined behavior.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "acc_reader",
+          "purl": "pkg:cargo/acc_reader"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-exposure"
+          ],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/acc_reader"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2020-0155.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/netvl/acc_reader/issues/1"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

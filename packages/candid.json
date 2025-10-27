@@ -1,0 +1,77 @@
+[
+  {
+    "id": "RUSTSEC-2023-0073",
+    "modified": "2023-12-09T10:05:32Z",
+    "published": "2023-12-08T12:00:00Z",
+    "aliases": [
+      "CVE-2023-6245",
+      "GHSA-7787-p7x6-fq3j"
+    ],
+    "related": [],
+    "summary": "Infinite decoding loop through specially crafted payload",
+    "details": "The Candid library causes a Denial of Service while parsing a specially crafted payload with `empty` data type. For example, if the payload is `record { * ; empty }` and  the canister interface expects `record { * }` then the rust candid decoder treats `empty` as an extra field required by the type.  The problem with type `empty` is that the candid rust library wrongly categorizes `empty` as a recoverable error when skipping the field and thus causing an infinite decoding loop. \n\nCanisters using affected versions of candid are exposed to denial of service by causing the decoding to run indefinitely until the canister traps due to reaching maximum instruction limit per execution round. Repeated exposure to the payload will result in degraded performance of the canister.\n\nFor asset canister users, `dfx` versions `>= 0.14.4` to `<= 0.15.2-beta.0` ships asset canister with an affected version of candid.\n\n### Unaffected \n- Rust canisters using candid `< 0.9.0` or `>= 0.9.10` \n- Rust canister interfaces of type other than `record { * }`\n- Motoko based canisters\n- dfx (for asset canister) `<= 0.14.3` or `>= 0.15.2`\n\n### References\n-  [GitHub Security Advisory (GHSA-7787-p7x6-fq3j)](https://github.com/dfinity/candid/security/advisories/GHSA-7787-p7x6-fq3j)\n-  [dfinity/candid/pull/478](https://github.com/dfinity/candid/pull/478)\n-  [Candid Library Reference](https://internetcomputer.org/docs/current/references/candid-ref)\n-  [Candid Specification](https://github.com/dfinity/candid/blob/master/spec/Candid.md)\n-  [Internet Computer Specification](https://internetcomputer.org/docs/current/references/ic-interface-spec)",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "candid",
+          "purl": "pkg:cargo/candid"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "candid::Decode"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.9.0"
+              },
+              {
+                "fixed": "0.9.10"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/candid"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2023-0073.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/dfinity/candid/pull/478"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

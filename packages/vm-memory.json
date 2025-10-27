@@ -1,0 +1,164 @@
+[
+  {
+    "id": "RUSTSEC-2023-0056",
+    "modified": "2023-09-06T17:18:09Z",
+    "published": "2023-09-01T12:00:00Z",
+    "aliases": [
+      "CVE-2023-41051",
+      "GHSA-49hh-fprx-m68g"
+    ],
+    "related": [],
+    "summary": "Default functions in VolatileMemory trait lack bounds checks, potentially leading to out-of-bounds memory accesses",
+    "details": "An issue was discovered in the default implementations of the `VolatileMemory::{get_atomic_ref, aligned_as_ref, aligned_as_mut, get_ref, get_array_ref}` trait functions, which allows out-of-bounds memory access if the `VolatileMemory::get_slice` function returns a `VolatileSlice` whose length is less than the function’s `count` argument. No implementations of `get_slice` provided in `vm_memory` are affected. Users of custom `VolatileMemory` implementations may be impacted if the custom implementation does not adhere to `get_slice`'s documentation.\n\nThe issue started in version 0.1.0 but was fixed in version 0.12.2 by inserting a check that verifies that the `VolatileSlice` returned by `get_slice` is of the correct length.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:L/AC:H/PR:N/UI:R/S:U/C:N/I:N/A:L"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "vm-memory",
+          "purl": "pkg:cargo/vm-memory"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "vm_memory::volatile_memory::VolatileMemory::aligned_as_mut",
+              "vm_memory::volatile_memory::VolatileMemory::aligned_as_ref",
+              "vm_memory::volatile_memory::VolatileMemory::get_array_ref",
+              "vm_memory::volatile_memory::VolatileMemory::get_atomic_ref",
+              "vm_memory::volatile_memory::VolatileMemory::get_ref"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-exposure"
+          ],
+          "cvss": "CVSS:3.1/AV:L/AC:H/PR:N/UI:R/S:U/C:N/I:N/A:L",
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.12.2"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/vm-memory"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2023-0056.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/rust-vmm/vm-memory/issues/250"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/rust-vmm/vm-memory/commit/aff1dd4a5259f7deba56692840f7a2d9ca34c9c8"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2020-0157",
+    "modified": "2021-09-10T15:50:27Z",
+    "published": "2020-06-02T12:00:00Z",
+    "aliases": [
+      "CVE-2020-13759",
+      "GHSA-mm4m-qg48-f7wc"
+    ],
+    "related": [],
+    "summary": "Improper Synchronization and Race Condition in vm-memory",
+    "details": "rust-vmm vm-memory before 0.1.1 and 0.2.x before 0.2.1 allows attackers to cause a denial of service (loss of IP networking) because read_obj and write_obj do not properly access memory. This affects aarch64 (with musl or glibc) and x86_64 (with musl).",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "vm-memory",
+          "purl": "pkg:cargo/vm-memory"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.1.1"
+              },
+              {
+                "introduced": "0.2.0-0"
+              },
+              {
+                "fixed": "0.2.1"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/vm-memory"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2020-0157.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2020-13759"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

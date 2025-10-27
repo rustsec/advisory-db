@@ -1,0 +1,75 @@
+[
+  {
+    "id": "RUSTSEC-2021-0041",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2021-03-18T12:00:00Z",
+    "aliases": [
+      "CAN-2021-1000007",
+      "CVE-2021-29932",
+      "GHSA-qpgv-g792-wh6x"
+    ],
+    "related": [],
+    "summary": "Denial of service through parsing payloads with too big exponent",
+    "details": "The `parse_duration::parse` function allows for parsing duration strings with exponents like `5e5s` where under the hood, the [`BigInt` type along with the `pow` function are used for such payloads](https://github.com/zeta12ti/parse_duration/blob/26940ab5cd4e3a9d6bd97aa101f8d4bbfd18ee8c/src/parse.rs#L335). Passing an arbitrarily big exponent makes the `parse_duration::parse` function to process the payload for a very long time taking up CPU and memory.\n\nThis allows an attacker to cause a DoS if the `parse_duration::parse` function is used to process untrusted input.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "parse_duration",
+          "purl": "pkg:cargo/parse_duration"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "parse_duration::parse"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/parse_duration"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0041.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/zeta12ti/parse_duration/issues/21"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

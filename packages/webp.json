@@ -1,0 +1,67 @@
+[
+  {
+    "id": "RUSTSEC-2024-0443",
+    "modified": "2025-08-29T16:09:41Z",
+    "published": "2024-09-06T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "webp crate may expose memory contents when encoding an image",
+    "details": "Affected versions of this crate did not check that the input slice passed to `\"webp::Encoder::encode()` is large enough for the specified image dimensions.\n\nIf the input slice is too short, the library will read out of bounds of the buffer and encode other memory contents as an image, resulting in memory exposure or a segmentation fault.\n\nThe flaw was corrected in [pull request #44](https://github.com/jaredforth/webp/pull/44) by always validating the input buffer size when constructing the encoder.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "webp",
+          "purl": "pkg:cargo/webp"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-exposure"
+          ],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.3.1"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/webp"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2024-0443.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/jaredforth/webp/issues/40"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

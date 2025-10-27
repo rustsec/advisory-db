@@ -1,0 +1,176 @@
+[
+  {
+    "id": "RUSTSEC-2021-0069",
+    "modified": "2021-10-19T19:56:47Z",
+    "published": "2021-05-22T12:00:00Z",
+    "aliases": [
+      "GHSA-qc36-q22q-cjw3",
+      "CVE-2021-38189"
+    ],
+    "related": [],
+    "summary": "SMTP command injection in body",
+    "details": "Affected versions of lettre allowed SMTP command injection through an attacker's controlled message body. The module for escaping lines starting with a period wouldn't catch a period that was placed after a double CRLF sequence, allowing the attacker to end the current message and write arbitrary SMTP commands after it.\n\nThe flaw is fixed by correctly handling consecutive CRLF sequences.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "lettre",
+          "purl": "pkg:cargo/lettre"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "lettre::smtp::SmtpTransport::send",
+              "lettre::transport::smtp::SmtpTransport::send",
+              "lettre::transport::smtp::SmtpTransport::send_raw"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "format-injection"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.7.0"
+              },
+              {
+                "fixed": "0.9.6"
+              },
+              {
+                "introduced": "0.10.0-alpha.1"
+              },
+              {
+                "fixed": "0.10.0-rc.3"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/lettre"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0069.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/lettre/lettre/pull/627/commits/93458d01fed0ec81c0e7b4e98e6f35961356fae2"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2020-0069",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2020-11-11T12:00:00Z",
+    "aliases": [
+      "CVE-2020-28247",
+      "GHSA-vc2p-r46x-m3vx"
+    ],
+    "related": [],
+    "summary": "Argument injection in sendmail transport",
+    "details": "Affected versions of lettre allowed argument injection\nto the sendmail command. It was possible, using forged `to` addresses,\nto pass arbitrary arguments to the sendmail executable.\n\nDepending on the implementation (original sendmail, postfix, exim, etc.)\nit could be possible in some cases to write email data into arbitrary files (using sendmail's\nlogging features).\n \nThe flaw is corrected by modifying the executed command to stop parsing arguments\nbefore passing the destination addresses.\n\nNOTE: This vulnerability only affects the `sendmail` transport. Others, including `smtp`, are not\naffected.\n\nThis vulnerability was reported by vin01.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "lettre",
+          "purl": "pkg:cargo/lettre"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "lettre::sendmail::SendmailTransport::send",
+              "lettre::transport::sendmail::SendmailTransport::send",
+              "lettre::transport::sendmail::SendmailTransport::send_raw"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "code-execution",
+            "file-disclosure"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.7.0"
+              },
+              {
+                "fixed": "0.7.1"
+              },
+              {
+                "introduced": "0.8.0"
+              },
+              {
+                "fixed": "0.8.4"
+              },
+              {
+                "introduced": "0.9.0"
+              },
+              {
+                "fixed": "0.9.5"
+              },
+              {
+                "introduced": "0.10.0-alpha.1"
+              },
+              {
+                "fixed": "0.10.0-alpha.4"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/lettre"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2020-0069.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/lettre/lettre/pull/508/commits/bbe7cc5381c5380b54fb8bbb4f77a3725917ff0b"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

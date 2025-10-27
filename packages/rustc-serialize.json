@@ -1,0 +1,124 @@
+[
+  {
+    "id": "RUSTSEC-2025-0025",
+    "modified": "2025-04-28T13:38:14Z",
+    "published": "2025-04-28T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "rustc-serialize is unmaintained",
+    "details": "`rustc-serialize` will no longer be maintained as declared by the developer. By fuzzing the package, we can identify multiple vulnerabilities.\nThe project has been archived and cannot submit issues. The developer has recommended using the `serde` crate instead.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "rustc-serialize",
+          "purl": "pkg:cargo/rustc-serialize"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": "unmaintained"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/rustc-serialize"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2025-0025.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/rust-lang-deprecated/rustc-serialize/issues"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2022-0004",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2022-01-01T12:00:00Z",
+    "aliases": [
+      "GHSA-2226-4v3c-cff8"
+    ],
+    "related": [],
+    "summary": "Stack overflow in rustc_serialize when parsing deeply nested JSON",
+    "details": "When parsing JSON using `json::Json::from_str`, there is no limit to the depth of the stack, therefore deeply nested objects can cause a stack overflow, which aborts the process.\n\nExample code that triggers the vulnerability is\n\n```rust\nfn main() {\n    let _ = rustc_serialize::json::Json::from_str(&\"[0,[\".repeat(10000));\n}\n```\n\n[serde](https://crates.io/crates/serde) is recommended as a replacement to rustc_serialize.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "rustc-serialize",
+          "purl": "pkg:cargo/rustc-serialize"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "rustc_serialize::json::Json::from_str"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/rustc-serialize"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2022-0004.html"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

@@ -1,0 +1,71 @@
+[
+  {
+    "id": "RUSTSEC-2021-0082",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2021-08-14T12:00:00Z",
+    "aliases": [
+      "CVE-2021-45680",
+      "GHSA-jmwx-r3gq-qq3p",
+      "GHSA-x76r-966h-5qv9"
+    ],
+    "related": [],
+    "summary": "vec-const attempts to construct a Vec from a pointer to a const slice",
+    "details": "Affected versions of this crate claimed to construct a const `Vec` with nonzero length and capacity, but that cannot be done because such a `Vec` requires a pointer from an allocator.\n\nThe implementation was later changed to just construct a `std::borrow::Cow`.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "vec-const",
+          "purl": "pkg:cargo/vec-const"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "2.0.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/vec-const"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0082.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/Eolu/vec-const/issues/1#issuecomment-898908241"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

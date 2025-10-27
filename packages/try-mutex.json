@@ -1,0 +1,75 @@
+[
+  {
+    "id": "RUSTSEC-2020-0087",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2020-11-17T12:00:00Z",
+    "aliases": [
+      "CVE-2020-35924",
+      "GHSA-64j8-7gp2-xjx5"
+    ],
+    "related": [],
+    "summary": "TryMutex<T> allows sending non-Send type across threads",
+    "details": "Affected versions of this crate unconditionally implemented Sync trait for `TryMutex<T>` type.\n\nThis allows users to put non-Send `T` type in `TryMutex` and send it to another thread, which can cause a data race.\n\nThe flaw was corrected in the 0.3.0 release by adding `T: Send` bound for the Sync trait implementation.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "try-mutex",
+          "purl": "pkg:cargo/try-mutex"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "thread-safety"
+          ],
+          "cvss": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.3.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/try-mutex"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2020-0087.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/mpdn/try-mutex/issues/2"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

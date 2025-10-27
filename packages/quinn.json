@@ -1,0 +1,85 @@
+[
+  {
+    "id": "RUSTSEC-2021-0035",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2021-03-04T12:00:00Z",
+    "aliases": [
+      "CVE-2021-28036",
+      "GHSA-fhv4-fx3v-77w6"
+    ],
+    "related": [],
+    "summary": "`quinn` invalidly assumes the memory layout of std::net::SocketAddr",
+    "details": "The [`quinn`](https://crates.io/crates/quinn) crate has assumed `std::net::SocketAddrV4`\nand `std::net::SocketAddrV6` have the same memory layout as the system C representation\n`sockaddr`. It has simply casted the pointers to convert the socket addresses to the\nsystem representation. The standard library does not say anything about the memory\nlayout, and this will cause invalid memory access if the standard library\nchanges the implementation. No warnings or errors will be emitted once the\nchange happens.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "quinn",
+          "purl": "pkg:cargo/quinn"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.5.4"
+              },
+              {
+                "introduced": "0.6.0-0"
+              },
+              {
+                "fixed": "0.6.2"
+              },
+              {
+                "introduced": "0.7.0-0"
+              },
+              {
+                "fixed": "0.7.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/quinn"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0035.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/quinn-rs/quinn/issues/968"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

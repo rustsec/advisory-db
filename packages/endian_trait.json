@@ -1,0 +1,72 @@
+[
+  {
+    "id": "RUSTSEC-2021-0039",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2021-01-04T12:00:00Z",
+    "aliases": [
+      "CVE-2021-29929",
+      "GHSA-vpw8-43wm-rxw5"
+    ],
+    "related": [],
+    "summary": "panic in user-provided `Endian` impl triggers double drop of T",
+    "details": "Affected versions of the crate does not guard against panic from user-provided impl of `Endian` trait, which is a safe trait that users can implement.\nIf a user-provided implementation of the `Endian` trait panics, double-drop is triggered due to the duplicated ownership of `T` created by `ptr::read()`.\n\nDouble-drop (or double free) can cause memory corruption in the heap.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "endian_trait",
+          "purl": "pkg:cargo/endian_trait"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/endian_trait"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0039.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://gitlab.com/myrrlyn/endian_trait/-/issues/1"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

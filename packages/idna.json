@@ -1,0 +1,69 @@
+[
+  {
+    "id": "RUSTSEC-2024-0421",
+    "modified": "2024-12-09T12:29:25Z",
+    "published": "2024-12-09T12:00:00Z",
+    "aliases": [
+      "CVE-2024-12224"
+    ],
+    "related": [],
+    "summary": "`idna` accepts Punycode labels that do not produce any non-ASCII when decoded",
+    "details": "`idna` 0.5.0 and earlier accepts Punycode labels that do not produce any non-ASCII output, which means that either ASCII labels or the empty root label can be masked such that they appear unequal without IDNA processing or when processed with a different implementation and equal when processed with `idna` 0.5.0 or earlier.\n\nConcretely, `example.org` and `xn--example-.org` become equal after processing by `idna` 0.5.0 or earlier. Also, `example.org.xn--` and `example.org.` become equal after processing by `idna` 0.5.0 or earlier.\n\nIn applications using `idna` (but not in `idna` itself) this may be able to lead to privilege escalation when host name comparison is part of a privilege check and the behavior is combined with a client that resolves domains with such labels instead of treating them as errors that preclude DNS resolution / URL fetching and with the attacker managing to introduce a DNS entry (and TLS certificate) for an `xn--`-masked name that turns into the name of the target when processed by `idna` 0.5.0 or earlier.\n\n## Remedy\n\nUpgrade to `idna` 1.0.3 or later, if depending on `idna` directly, or to `url` 2.5.4 or later, if depending on `idna` via `url`. (This issue was fixed in `idna` 1.0.0, but versions earlier than 1.0.3 are not recommended for other reasons.)\n\nWhen upgrading, please take a moment to read about [alternative Unicode back ends for `idna`](https://docs.rs/crate/idna_adapter/latest).\n\nIf you are using Rust earlier than 1.81 in combination with SQLx 0.8.2 or earlier, please also read an [issue](https://github.com/servo/rust-url/issues/992) about combining them with `url` 2.5.4 and `idna` 1.0.3.\n\n## Additional information\n\nThis issue resulted from `idna` 0.5.0 and earlier implementing the UTS 46 specification literally on this point and the specification having this bug. The specification bug has been fixed in [revision 33 of UTS 46](https://www.unicode.org/reports/tr46/tr46-33.html#Modifications).\n\n## Acknowledgements\n\nThanks to kageshiron for recognizing the security implications of this behavior.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "idna",
+          "purl": "pkg:cargo/idna"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "privilege-escalation"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "1.0.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/idna"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2024-0421.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://bugzilla.mozilla.org/show_bug.cgi?id=1887898"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

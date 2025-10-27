@@ -1,0 +1,72 @@
+[
+  {
+    "id": "RUSTSEC-2020-0034",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2020-08-25T12:00:00Z",
+    "aliases": [
+      "CVE-2020-35886",
+      "CVE-2020-35887",
+      "CVE-2020-35888",
+      "GHSA-36xw-hgfv-jwm7",
+      "GHSA-c7fw-cr3w-wvfc",
+      "GHSA-fhvj-7f9p-w788"
+    ],
+    "related": [],
+    "summary": "Multiple security issues including data race, buffer overflow, and uninitialized memory drop",
+    "details": "`arr` crate contains multiple security issues. Specifically,\n\n1. It incorrectly implements Sync/Send bounds, which allows to smuggle non-Sync/Send types across the thread boundary.\n2. `Index` and `IndexMut` implementation does not check the array bound.\n3. `Array::new_from_template()` drops uninitialized memory.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "arr",
+          "purl": "pkg:cargo/arr"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption",
+            "thread-safety"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/arr"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2020-0034.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/sjep/array/issues/1"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

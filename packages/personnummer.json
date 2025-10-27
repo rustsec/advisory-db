@@ -1,0 +1,67 @@
+[
+  {
+    "id": "RUSTSEC-2020-0166",
+    "modified": "2023-02-02T10:57:52Z",
+    "published": "2020-09-04T12:00:00Z",
+    "aliases": [
+      "GHSA-28r9-pq4c-wp3c"
+    ],
+    "related": [],
+    "summary": "personnummer Input validation error",
+    "details": "Swedish personal identity is in the form of YYMMDD-XXXX\n\nAn issue arises from the regular expression allowing the first three digits in\nthe last four digits of the personnummer to be 000, which is invalid.\n\nTo mitigate this without upgrading, a check on the last four digits can be made\nto make sure it's not 000x.\n\nThe affected version should not be relied on without the mitigation to check\nthat the swedish personal identity number is valid.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "personnummer",
+          "purl": "pkg:cargo/personnummer"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": "notice"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "3.0.1"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/personnummer"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2020-0166.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/personnummer/rust/pull/4"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

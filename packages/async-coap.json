@@ -1,0 +1,73 @@
+[
+  {
+    "id": "RUSTSEC-2020-0124",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2020-12-08T12:00:00Z",
+    "aliases": [
+      "CVE-2020-36444",
+      "GHSA-9j8q-m9x5-9g6j"
+    ],
+    "related": [],
+    "summary": "ArcGuard's Send and Sync should have bounds on RC",
+    "details": "Affected versions of this crate implement Send/Sync for `ArcGuard<RC, T>` with no trait bounds on `RC`. This allows users to send `RC: !Send` to other threads and also allows users to concurrently access `Rc: !Sync` from multiple threads.\n\nThis can result in memory corruption from data race or other undefined behavior caused by sending `T: !Send` to other threads (e.g. dropping `MutexGuard<T>` in another thread that didn't lock its mutex).",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "async-coap",
+          "purl": "pkg:cargo/async-coap"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption",
+            "thread-safety"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/async-coap"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2020-0124.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/google/rust-async-coap/issues/33"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

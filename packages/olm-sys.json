@@ -1,0 +1,72 @@
+[
+  {
+    "id": "RUSTSEC-2024-0368",
+    "modified": "2024-09-02T19:42:55Z",
+    "published": "2024-09-02T12:00:00Z",
+    "aliases": [],
+    "related": [
+      "CVE-2024-45191",
+      "CVE-2024-45192",
+      "CVE-2024-45193"
+    ],
+    "summary": "olm-sys: wrapped library unmaintained, potentially vulnerable",
+    "details": "After several cryptographic vulnerabilities in `libolm` were disclosed publicly, the Matrix Foundation has [officially deprecated the library](https://matrix.org/blog/2024/08/libolm-deprecation/). `olm-sys` is a thin wrapper around `libolm` and is now deprecated and potentially vulnerable in kind.\n\nUsers of `olm-sys` and its higher-level abstraction, `olm-rs`, are highly encouraged to switch to [`vodozemac`](https://crates.io/crates/vodozemac) as soon as possible. It is the successor effort to `libolm` and is written in Rust.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "olm-sys",
+          "purl": "pkg:cargo/olm-sys"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "crypto-failure"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/olm-sys"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2024-0368.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://gitlab.gnome.org/BrainBlasted/olm-sys/-/issues/12"
+      },
+      {
+        "type": "WEB",
+        "url": "https://matrix.org/blog/2024/08/libolm-deprecation/"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

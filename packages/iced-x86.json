@@ -1,0 +1,70 @@
+[
+  {
+    "id": "RUSTSEC-2021-0068",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2021-05-19T12:00:00Z",
+    "aliases": [
+      "CVE-2021-38188",
+      "GHSA-jjx5-3f36-6927"
+    ],
+    "related": [],
+    "summary": "Soundness issue in `iced-x86` versions <= 1.10.3",
+    "details": "Versions of iced-x86 <= 1.10.3 invoke undefined behavior which may cause soundness\nissues in crates using the `iced_x86::Decoder` struct. The `Decoder::new()` function\nmade a call to `slice.get_unchecked(slice.length())` to get the end position of \nthe input buffer. The flaw was fixed with safe logic that does not invoke undefined\nbehavior.\n\nMore details can be found at <https://github.com/icedland/iced/issues/168>.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "iced-x86",
+          "purl": "pkg:cargo/iced-x86"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "iced_x86::Decoder::new"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "1.10.4-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/iced-x86"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0068.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/icedland/iced/issues/168"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

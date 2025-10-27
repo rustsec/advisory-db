@@ -1,0 +1,69 @@
+[
+  {
+    "id": "RUSTSEC-2018-0022",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2018-08-22T12:00:00Z",
+    "aliases": [
+      "GHSA-2jq9-6xx7-3h29"
+    ],
+    "related": [],
+    "summary": "Use of uninitialized memory in temporary",
+    "details": "Uninit memory is used as a RNG seed in temporary\n\nThe following function is used as a way to get entropy from the system, which does operations on and exposes uninit memory, which is UB.\n\n```rust\nfn random_seed(_: &Path, _: &str) -> [u64; 2] {\n    use std::mem::uninitialized as rand;\n    unsafe { [rand::<u64>() ^ 0x12345678, rand::<u64>() ^ 0x87654321] }\n}\n```\n\nThis has been resolved in the 0.6.4 release.\n\nThe crate is not intended to be used outside of a testing environment.\n\nFor a general purpose crate to create temporary directories, [`tempfile`](https://crates.io/crates/tempfile) is an alternative for this crate.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "temporary",
+          "purl": "pkg:cargo/temporary"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-exposure"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.3.0"
+              },
+              {
+                "fixed": "0.6.4"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/temporary"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2018-0022.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/stainless-steel/temporary/issues/2"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

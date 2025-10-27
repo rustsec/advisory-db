@@ -1,0 +1,74 @@
+[
+  {
+    "id": "RUSTSEC-2020-0134",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2020-11-14T12:00:00Z",
+    "aliases": [
+      "CVE-2020-36454",
+      "GHSA-29v7-3v4c-gf38",
+      "GHSA-xwxc-j97j-84gf"
+    ],
+    "related": [],
+    "summary": "`LockWeak<T>` allows to create data race to `T`.",
+    "details": "In the affected versions of this crate, `LockWeak<T>` unconditionally implemented `Send` with no trait bounds on `T`. `LockWeak<T>` doesn't own `T` and only provides `&T`.\n\nThis allows concurrent access to a non-Sync `T`, which can cause undefined behavior like data races.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "parc",
+          "purl": "pkg:cargo/parc"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption",
+            "thread-safety"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/parc"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2020-0134.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/hyyking/rustracts/pull/6"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

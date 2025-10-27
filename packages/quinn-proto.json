@@ -1,0 +1,154 @@
+[
+  {
+    "id": "RUSTSEC-2024-0373",
+    "modified": "2024-09-08T01:47:13Z",
+    "published": "2024-09-02T12:00:00Z",
+    "aliases": [
+      "GHSA-vr26-jcq5-fjj8",
+      "CVE-2024-45311"
+    ],
+    "related": [],
+    "summary": "`Endpoint::retry()` calls can lead to panicking",
+    "details": "In 0.11.0, we overhauled the server-side `Endpoint` implementation to enable\nmore careful handling of incoming connection attempts. However, some of the\ncode paths that cleaned up state after connection attempts were processed\nconfused the initial destination connection ID with the destination connection\nID of a substantial package. This resulted in the internal `Endpoint` state\nbecoming inconsistent, which could then lead to a panic.\n\nhttps://github.com/quinn-rs/quinn/commit/e01609ccd8738bd438d86fa7185a0f85598cb58f\n\nThanks to [@finbear](https://github.com/finnbear) for reporting and investingating,\nand to [@BiagoFesta](https://github.com/BiagoFesta) for coordinating.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "quinn-proto",
+          "purl": "pkg:cargo/quinn-proto"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.11.0"
+              },
+              {
+                "fixed": "0.11.7"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/quinn-proto"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2024-0373.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/quinn-rs/quinn"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2023-0063",
+    "modified": "2024-02-10T15:57:43Z",
+    "published": "2023-09-21T12:00:00Z",
+    "aliases": [
+      "CVE-2023-42805",
+      "GHSA-q8wc-j5m9-27w3"
+    ],
+    "related": [],
+    "summary": "Denial of service in Quinn servers",
+    "details": "Receiving QUIC frames containing a frame with unknown frame type could lead to a panic.\nUnfortunately this is issue was not found by our fuzzing infrastructure.\n\nThanks to the QUIC Tester research group for reporting this issue.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "quinn-proto",
+          "purl": "pkg:cargo/quinn-proto"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.9.5"
+              },
+              {
+                "introduced": "0.10.0-0"
+              },
+              {
+                "fixed": "0.10.5"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/quinn-proto"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2023-0063.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/quinn-rs/quinn/pull/1667"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

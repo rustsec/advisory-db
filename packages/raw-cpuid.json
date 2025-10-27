@@ -1,0 +1,146 @@
+[
+  {
+    "id": "RUSTSEC-2021-0089",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2021-01-20T12:00:00Z",
+    "aliases": [
+      "CVE-2021-45687",
+      "GHSA-jf5h-cf95-w759",
+      "GHSA-w428-f65r-h4q2"
+    ],
+    "related": [],
+    "summary": "Optional `Deserialize` implementations lacking validation",
+    "details": "When activating the non-default feature `serialize`, most structs implement\n`serde::Deserialize` without sufficient validation. This allows breaking\ninvariants in safe code, leading to:\n\n* Undefined behavior in `as_string()` methods (which use\n  `std::str::from_utf8_unchecked()` internally).\n* Panics due to failed assertions.\n\nSee https://github.com/gz/rust-cpuid/issues/43.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "raw-cpuid",
+          "purl": "pkg:cargo/raw-cpuid"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption",
+            "denial-of-service"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "3.1.1-0"
+              },
+              {
+                "fixed": "9.1.1"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/raw-cpuid"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0089.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/gz/rust-cpuid/issues/43"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2021-0013",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2021-01-20T12:00:00Z",
+    "aliases": [
+      "CVE-2021-26306",
+      "CVE-2021-26307",
+      "GHSA-hvqc-pc78-x9wh",
+      "GHSA-jrf8-cmgg-gv2m"
+    ],
+    "related": [],
+    "summary": "Soundness issues in `raw-cpuid`",
+    "details": "## Undefined behavior in `as_string()` methods\n\n`VendorInfo::as_string()`, `SoCVendorBrand::as_string()`,\nand `ExtendedFunctionInfo::processor_brand_string()` construct byte slices\nusing `std::slice::from_raw_parts()`, with data coming from\n`#[repr(Rust)]` structs. This is always undefined behavior.\n\nSee https://github.com/gz/rust-cpuid/issues/40.\n\nThis flaw has been fixed in v9.0.0, by making the relevant structs\n`#[repr(C)]`.\n\n## `native_cpuid::cpuid_count()` is unsound\n\n`native_cpuid::cpuid_count()` exposes the unsafe `__cpuid_count()` intrinsic\nfrom `core::arch::x86` or `core::arch::x86_64` as a safe function, and uses\nit internally, without checking the\n[safety requirement](https://doc.rust-lang.org/core/arch/index.html#overview):\n\n> The CPU the program is currently running on supports the function being\n> called.\n\nCPUID is available in most, but not all, x86/x86_64 environments. The crate\ncompiles only on these architectures, so others are unaffected.\n\nThis issue is mitigated by the fact that affected programs are expected\nto crash deterministically every time.\n\nSee https://github.com/gz/rust-cpuid/issues/41.\n\nThe flaw has been fixed in v9.0.0, by intentionally breaking compilation\nwhen targeting SGX or 32-bit x86 without SSE. This covers all affected CPUs.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "raw-cpuid",
+          "purl": "pkg:cargo/raw-cpuid"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [
+              "x86",
+              "x86_64"
+            ],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption",
+            "denial-of-service"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "9.0.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/raw-cpuid"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0013.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/RustSec/advisory-db/pull/614"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

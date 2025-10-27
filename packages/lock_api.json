@@ -1,0 +1,85 @@
+[
+  {
+    "id": "RUSTSEC-2020-0070",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2020-11-08T12:00:00Z",
+    "aliases": [
+      "CVE-2020-35910",
+      "CVE-2020-35911",
+      "CVE-2020-35912",
+      "CVE-2020-35913",
+      "CVE-2020-35914",
+      "GHSA-5wg8-7c9q-794v",
+      "GHSA-gmv4-vmx3-x9f3",
+      "GHSA-hj9h-wrgg-hgmx",
+      "GHSA-ppj3-7jw3-8vc4",
+      "GHSA-vh4p-6j7g-f4j9"
+    ],
+    "related": [],
+    "summary": "Some lock_api lock guard objects can cause data races",
+    "details": "Affected versions of lock_api had unsound implementations of the `Send` or\n`Sync` traits for some guard objects, namely:\n\n* MappedMutexGuard\n* MappedRwLockReadGuard\n* MappedRwLockWriteGuard\n* RwLockReadGuard\n* RwLockWriteGuard\n\nThese guards could allow data races through types that are not safe to `Send`\nacross thread boundaries in safe Rust code.\n\nThis issue was fixed by changing the trait bounds on the `Mapped` guard types\nand removing the `Sync` trait for the `RwLock` guards.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "lock_api",
+          "purl": "pkg:cargo/lock_api"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "lock_api::MappedMutexGuard",
+              "lock_api::MappedRwLockReadGuard",
+              "lock_api::MappedRwLockWriteGuard",
+              "lock_api::RwLockReadGuard",
+              "lock_api::RwLockWriteGuard"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption",
+            "thread-safety"
+          ],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.4.2"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/lock_api"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2020-0070.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/Amanieu/parking_lot/pull/262"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

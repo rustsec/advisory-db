@@ -1,0 +1,82 @@
+[
+  {
+    "id": "RUSTSEC-2024-0020",
+    "modified": "2024-04-11T16:16:20Z",
+    "published": "2024-02-28T12:00:00Z",
+    "aliases": [
+      "GHSA-w5w5-8vfh-xcjq"
+    ],
+    "related": [],
+    "summary": "Stack buffer overflow with whoami on several Unix platforms",
+    "details": "With versions of the whoami crate >= 0.5.3 and < 1.5.0, calling any of these functions leads to an\nimmediate stack buffer overflow on illumos and Solaris:\n\n- `whoami::username`\n- `whoami::realname`\n- `whoami::username_os`\n- `whoami::realname_os`\n\nWith versions of the whoami crate >= 0.5.3 and < 1.0.1, calling any of the above functions also\nleads to a stack buffer overflow on these platforms:\n\n- Bitrig\n- DragonFlyBSD\n- FreeBSD\n- NetBSD\n- OpenBSD\n\nThis occurs because of an incorrect definition of the `passwd` struct on those platforms.\n\nAs a result of this issue, denial of service and data corruption have both been observed in the\nwild. The issue is possibly exploitable as well.\n\nThis vulnerability also affects other Unix platforms that aren't Linux or macOS.\n\nThis issue has been addressed in whoami 1.5.0.\n\nFor more information, see [this GitHub issue](https://github.com/ardaku/whoami/issues/91).",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "whoami",
+          "purl": "pkg:cargo/whoami"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [
+              "illumos",
+              "solaris",
+              "dragonfly",
+              "freebsd",
+              "netbsd",
+              "openbsd"
+            ],
+            "functions": [
+              "whoami::realname",
+              "whoami::realname_os",
+              "whoami::username",
+              "whoami::username_os"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service",
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.5.3"
+              },
+              {
+                "fixed": "1.5.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/whoami"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2024-0020.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/ardaku/whoami/issues/91"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

@@ -1,0 +1,70 @@
+[
+  {
+    "id": "RUSTSEC-2025-0055",
+    "modified": "2025-09-02T11:05:02Z",
+    "published": "2025-08-29T12:00:00Z",
+    "aliases": [
+      "CVE-2025-58160",
+      "GHSA-xwfj-jgwm-7wp5"
+    ],
+    "related": [],
+    "summary": "Logging user input may result in poisoning logs with ANSI escape sequences",
+    "details": "Previous versions of tracing-subscriber were vulnerable to ANSI escape sequence injection attacks. Untrusted user input containing ANSI escape sequences could be injected into terminal output when logged, potentially allowing attackers to:\n\n- Manipulate terminal title bars\n- Clear screens or modify terminal display\n- Potentially mislead users through terminal manipulation\n\nIn isolation, impact is minimal, however security issues have been found in terminal emulators that enabled an attacker to use ANSI escape sequences via logs to exploit vulnerabilities in the terminal emulator.\n\nThis was patched in [PR #3368](https://github.com/tokio-rs/tracing/pull/3368) to escape ANSI control characters from user input.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "tracing-subscriber",
+          "purl": "pkg:cargo/tracing-subscriber"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "format-injection"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.3.20"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/tracing-subscriber"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2025-0055.html"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://github.com/advisories/GHSA-xwfj-jgwm-7wp5"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

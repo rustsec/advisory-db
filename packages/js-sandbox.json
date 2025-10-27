@@ -1,0 +1,64 @@
+[
+  {
+    "id": "RUSTSEC-2024-0403",
+    "modified": "2024-12-04T12:39:59Z",
+    "published": "2024-07-18T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "op_panic in the base runtime can force a panic in the runtime's containing thread",
+    "details": "Affected versions use deno_core releases that expose `Deno.core.ops.op_panic` to the JS runtime in the base core\n\nThis function when called triggers a manual panic in the thread containing the runtime, breaking sandboxing\n\nIt can be fixed by stubbing out the exposed op:\n```javascript\nDeno.core.ops.op_panic = (msg) => { throw new Error(msg) };\n```",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "js-sandbox",
+          "purl": "pkg:cargo/js-sandbox"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/js-sandbox"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2024-0403.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/Bromeon/js-sandbox/issues/31"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

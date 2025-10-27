@@ -1,0 +1,62 @@
+[
+  {
+    "id": "RUSTSEC-2023-0051",
+    "modified": "2023-08-19T10:29:52Z",
+    "published": "2023-07-30T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "`dlopen_derive` is unmaintained",
+    "details": "`dlopen_derive` hasn't been updated since June 9, 2019.\n\n`dlopen_derive` depends on [`quote = \"0.6.12\"`] and [`syn = \"0.15.34\"`]. Versions `1.0.0` of these dependencies were published on August 13, 2019. The `0.*` versions haven't received updates since.\n\nNote that `dlopen` is an unmaintained crate from the same repository as `dlopen_derive`. However, migrating away from `dlopen_derive` implies migrating away from `dlopen`, as well.\n\n## Recommended alternatives\n\n- [`dlopen2_derive`] (and `dlopen2`)\n\n[`dlopen2_derive`]: https://github.com/OpenByteDev/dlopen2\n[`quote = \"0.6.12\"`]: https://github.com/dtolnay/quote/releases/tag/0.6.12\n[`syn = \"0.15.34\"`]: https://github.com/dtolnay/syn/releases/tag/0.15.34",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "dlopen_derive",
+          "purl": "pkg:cargo/dlopen_derive"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": "unmaintained"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/dlopen_derive"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2023-0051.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/szymonwieloch/rust-dlopen/issues/47"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

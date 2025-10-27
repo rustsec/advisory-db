@@ -1,0 +1,76 @@
+[
+  {
+    "id": "RUSTSEC-2020-0121",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2020-11-10T12:00:00Z",
+    "aliases": [
+      "CVE-2020-36441",
+      "GHSA-r626-fc64-3q28"
+    ],
+    "related": [],
+    "summary": "AtomicBox<T> implements Send/Sync for any `T: Sized`",
+    "details": "Affected versions of this crate implements `Send`/`Sync` for `AtomicBox<T>` without requiring `T: Send`/`T: Sync`. This allows to create data races to `T: !Sync` and send `T: !Send` to another thread.\n\nSuch behavior breaks the compile-time thread safety guarantees of Rust, and allows users to incur undefined behavior using safe Rust (e.g. memory corruption from data race).\n\nThe flaw was corrected in commit 34c2b9e by adding trait bound `T: Send` to `Send` impl for `AtomicBox<T>` and trait bound `T: Sync` to `Sync` impl for `AtomicBox<T>`.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "abox",
+          "purl": "pkg:cargo/abox"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption",
+            "thread-safety"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.4.1"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/abox"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2020-0121.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/SonicFrog/abox/issues/1"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

@@ -1,0 +1,135 @@
+[
+  {
+    "id": "RUSTSEC-2021-0127",
+    "modified": "2021-12-01T14:04:55Z",
+    "published": "2021-08-15T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "serde_cbor is unmaintained",
+    "details": "The `serde_cbor` crate is unmaintained. The author has archived the github repository.\n\nAlternatives proposed by the author:\n\n * [`ciborium`](https://crates.io/crates/ciborium)\n * [`minicbor`](https://crates.io/crates/minicbor)",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "serde_cbor",
+          "purl": "pkg:cargo/serde_cbor"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": "unmaintained"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/serde_cbor"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0127.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/pyfisch/cbor"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2019-0025",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2019-10-03T12:00:00Z",
+    "aliases": [
+      "CVE-2019-25001",
+      "GHSA-xr7r-88qv-q7hm"
+    ],
+    "related": [],
+    "summary": "Flaw in CBOR deserializer allows stack overflow",
+    "details": "Affected versions of this crate did not properly check if semantic tags were nested excessively during deserialization.\n\nThis allows an attacker to craft small (< 1 kB) CBOR documents that cause a stack overflow.\n \nThe flaw was corrected by limiting the allowed number of nested tags.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "serde_cbor",
+          "purl": "pkg:cargo/serde_cbor"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "crypto-failure"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.10.2"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/serde_cbor"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2019-0025.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/pyfisch/cbor/releases/tag/v0.10.2"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

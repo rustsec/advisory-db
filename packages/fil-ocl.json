@@ -1,0 +1,72 @@
+[
+  {
+    "id": "RUSTSEC-2021-0011",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2021-01-04T12:00:00Z",
+    "aliases": [
+      "CVE-2021-25908",
+      "GHSA-x3v2-fgr6-3wmm"
+    ],
+    "related": [],
+    "summary": "EventList's From<EventList> conversions can double drop on panic.",
+    "details": "Affected versions of this crate read from a container using `ptr::read` in\n`From<EventList>`, and then call a user specified `Into<Event>` function.\n\nThis issue can result in a double-free if the user provided function panics.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "fil-ocl",
+          "purl": "pkg:cargo/fil-ocl"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.12.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/fil-ocl"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0011.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/cogciprocate/ocl/issues/194"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

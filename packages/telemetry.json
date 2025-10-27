@@ -1,0 +1,72 @@
+[
+  {
+    "id": "RUSTSEC-2021-0046",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2021-02-17T12:00:00Z",
+    "aliases": [
+      "CVE-2021-29937",
+      "GHSA-hpcx-3pw8-g3j2"
+    ],
+    "related": [],
+    "summary": "misc::vec_with_size() can drop uninitialized memory if clone panics",
+    "details": "`misc::vec_with_size` creates a vector of the provided `size` and immediately\ncalls `vec.set_len(size)` on it, initially filling it with uninitialized memory.\nIt then inserts elements using `vec[i] = value.clone()`.\n\nIf the `value.clone()` call panics, uninitialized items in the vector will be\ndropped leading to undefined behavior.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "telemetry",
+          "purl": "pkg:cargo/telemetry"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/telemetry"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0046.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/Yoric/telemetry.rs/issues/45"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

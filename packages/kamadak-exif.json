@@ -1,0 +1,77 @@
+[
+  {
+    "id": "RUSTSEC-2021-0143",
+    "modified": "2022-09-08T10:52:02Z",
+    "published": "2021-01-04T12:00:00Z",
+    "aliases": [
+      "CVE-2021-21235",
+      "GHSA-px9g-8hgv-jvg2"
+    ],
+    "related": [],
+    "summary": "kamadak-exif DoS with untrusted PNG data",
+    "details": "Attacker crafted data can cause a infinite loop leading to DoS if used with untrusted data.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "kamadak-exif",
+          "purl": "pkg:cargo/kamadak-exif"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "kamadak_exif::Reader::read_from_container"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.5.2"
+              },
+              {
+                "fixed": "0.5.3"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/kamadak-exif"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0143.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/kamadak/exif-rs/commit/1b05eab57e484cd7d576d4357b9cda7fdc57df8c"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

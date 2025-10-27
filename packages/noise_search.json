@@ -1,0 +1,73 @@
+[
+  {
+    "id": "RUSTSEC-2020-0141",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2020-12-10T12:00:00Z",
+    "aliases": [
+      "CVE-2020-36461",
+      "GHSA-wxjf-9f4g-3v44"
+    ],
+    "related": [],
+    "summary": "MvccRwLock allows data races & aliasing violations",
+    "details": "Affected versions of this crate unconditionally implement Send/Sync for `MvccRwLock`.\nThis can lead to data races when types that are either `!Send` or `!Sync` (e.g. `Rc<T>`, `Arc<Cell<_>>`) are contained inside `MvccRwLock` and sent across thread boundaries. The data races can potentially lead to memory corruption (as demonstrated in the PoC from the original report issue).\n\nAlso, safe APIs of `MvccRwLock` allow aliasing violations by allowing `&T` and `LockResult<MutexGuard<Box<T>>>` to co-exist in conflicting lifetime regions. The APIs of `MvccRwLock` should either be marked as `unsafe` or `MbccRwLock` should be changed to private or pub(crate).",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "noise_search",
+          "purl": "pkg:cargo/noise_search"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption",
+            "thread-safety"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/noise_search"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2020-0141.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/pipedown/noise/issues/72"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

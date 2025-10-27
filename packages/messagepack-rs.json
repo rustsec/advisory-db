@@ -1,0 +1,74 @@
+[
+  {
+    "id": "RUSTSEC-2021-0092",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2021-01-26T12:00:00Z",
+    "aliases": [
+      "CVE-2021-45690",
+      "CVE-2021-45691",
+      "CVE-2021-45692",
+      "CVE-2021-45693",
+      "GHSA-hr52-f9vp-582c",
+      "GHSA-jqjj-r4qp-x2gh",
+      "GHSA-jwfh-j623-m97h",
+      "GHSA-m325-rxjv-pwph",
+      "GHSA-vw5m-qw2r-m923"
+    ],
+    "related": [],
+    "summary": "Deserialization functions pass uninitialized memory to user-provided Read",
+    "details": "Affected versions of this crate passed an uninitialized buffer to a\nuser-provided `Read` instance in:\n\n* `deserialize_binary`\n* `deserialize_string`\n* `deserialize_extension_others`\n* `deserialize_string_primitive`\n\nThis can result in safe `Read` implementations reading from the uninitialized\nbuffer leading to undefined behavior.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "messagepack-rs",
+          "purl": "pkg:cargo/messagepack-rs"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-exposure"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/messagepack-rs"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0092.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/otake84/messagepack-rs/issues/2"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

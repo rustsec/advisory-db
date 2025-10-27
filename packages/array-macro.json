@@ -1,0 +1,138 @@
+[
+  {
+    "id": "RUSTSEC-2022-0017",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2022-04-27T12:00:00Z",
+    "aliases": [
+      "GHSA-7v4j-8wvr-v55r"
+    ],
+    "related": [],
+    "summary": "`array!` macro is unsound when its length is impure constant",
+    "details": "Affected versions of this crate did substitute the array length provided by an user at compile-time multiple times.\n\nWhen an impure constant expression is passed as an array length (such as a result of an impure procedural macro), this can result in the initialization of an array with uninitialized types, which in turn can allow an attacker to execute arbitrary code.\n\nThe flaw was corrected in commit [d5b63f72](https://gitlab.com/KonradBorowski/array-macro/-/commit/d5b63f72090f3809c21ac28f9cfd84f12559bf7d) by making sure that array length is substituted just once.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "array-macro",
+          "purl": "pkg:cargo/array-macro"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "code-execution",
+            "memory-corruption",
+            "memory-exposure"
+          ],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "2.1.0"
+              },
+              {
+                "fixed": "2.1.2"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/array-macro"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2022-0017.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://gitlab.com/KonradBorowski/array-macro/-/issues/5"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2020-0161",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2020-05-07T12:00:00Z",
+    "aliases": [
+      "GHSA-83gg-pwxf-jr89"
+    ],
+    "related": [],
+    "summary": "`array!` macro is unsound in presence of traits that implement methods it calls internally",
+    "details": "Affected versions of this crate called some methods using auto-ref. The affected code looked like this.\n\n```rust\nlet mut arr = $crate::__core::mem::MaybeUninit::uninit();\nlet mut vec = $crate::__ArrayVec::<T>::new(arr.as_mut_ptr() as *mut T);\n```\n\nIn this case, the problem is that `as_mut_ptr` is a method of `&mut MaybeUninit`, not `MaybeUninit`. This made it possible for traits to hijack the method calls in order to cause unsoundness.\n\n```rust\ntrait AsMutPtr<T> {\n    fn as_mut_ptr(&self) -> *mut T;\n}\nimpl<T> AsMutPtr<T> for std::mem::MaybeUninit<T> {\n    fn as_mut_ptr(&self) -> *mut T {\n        std::ptr::null_mut()\n    }\n}\narray![0; 1];\n```\n\nThe flaw was corrected by explicitly referencing variables in macro body in order to avoid auto-ref.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "array-macro",
+          "purl": "pkg:cargo/array-macro"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.1.2"
+              },
+              {
+                "fixed": "1.0.5"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/array-macro"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2020-0161.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://gitlab.com/KonradBorowski/array-macro/-/commit/01940637dd8f3bfeeee3faf9639fa9ae52f19f4d"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

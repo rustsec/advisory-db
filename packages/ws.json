@@ -1,0 +1,72 @@
+[
+  {
+    "id": "RUSTSEC-2020-0043",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2020-09-25T12:00:00Z",
+    "aliases": [
+      "CVE-2020-35896",
+      "GHSA-rh7x-ppxx-p34c"
+    ],
+    "related": [],
+    "summary": "Insufficient size checks in outgoing buffer in ws allows remote attacker to run the process out of memory",
+    "details": "Affected versions of this crate did not properly check and cap the growth of the outgoing buffer.\n\nThis allows a remote attacker to take down the process by growing the buffer of their (single) connection until the process runs out of memory it can allocate and is killed.\n\nThe flaw was corrected in the [`parity-ws` fork](https://crates.io/crates/parity-ws) (>=0.10.0) by [disconnecting a client when the buffer runs full](https://github.com/housleyjk/ws-rs/pull/328).",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "ws",
+          "purl": "pkg:cargo/ws"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/ws"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2020-0043.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/housleyjk/ws-rs/issues/291"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

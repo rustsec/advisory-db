@@ -1,0 +1,133 @@
+[
+  {
+    "id": "RUSTSEC-2020-0147",
+    "modified": "2021-03-04T13:58:02Z",
+    "published": "2020-02-11T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "rulinalg is unmaintained, use nalgebra instead",
+    "details": "The `rulinalg` crate is no longer maintained, use [nalgebra](https://crates.io/crates/nalgebra)\ninstead.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "rulinalg",
+          "purl": "pkg:cargo/rulinalg"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": "unmaintained"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/rulinalg"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2020-0147.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/AtheMathmo/rulinalg/issues/201#issuecomment-584749313"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2020-0023",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2020-02-11T12:00:00Z",
+    "aliases": [
+      "CVE-2020-35879",
+      "GHSA-q2gj-9r85-p832"
+    ],
+    "related": [],
+    "summary": "Lifetime boundary for `raw_slice` and `raw_slice_mut` are incorrect",
+    "details": "The affected version of `rulinalg` has incorrect lifetime boundary definitions\nfor `RowMut::raw_slice` and `RowMut::raw_slice_mut`. They do not conform with\nRust's borrowing rule and allows the user to create multiple mutable references\nto the same location. This may result in unexpected calculation result and data\nrace if both references are used at the same time.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "rulinalg",
+          "purl": "pkg:cargo/rulinalg"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "rulinalg::matrix::RowMut::raw_slice",
+              "rulinalg::matrix::RowMut::raw_slice_mut"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.4.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/rulinalg"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2020-0023.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/AtheMathmo/rulinalg/issues/201"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]
