@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2024-0357",
-  "modified": "2024-07-21T17:28:48Z",
+  "modified": "2025-10-28T06:02:18Z",
   "published": "2024-07-21T12:00:00Z",
-  "aliases": [],
+  "aliases": [
+    "GHSA-q445-7m23-qrmw"
+  ],
   "related": [],
   "summary": "`MemBio::get_buf` has undefined behavior with empty buffers",
   "details": "Previously, `MemBio::get_buf` called `slice::from_raw_parts` with a null-pointer, which violates the functions invariants, leading to undefined behavior. In debug builds this would produce an assertion failure. This is now fixed.",

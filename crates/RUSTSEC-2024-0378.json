@@ -1,8 +1,11 @@
 {
   "id": "RUSTSEC-2024-0378",
-  "modified": "2024-10-14T19:18:55Z",
+  "modified": "2025-10-28T06:02:18Z",
   "published": "2024-10-12T12:00:00Z",
-  "aliases": [],
+  "aliases": [
+    "CVE-2024-9979",
+    "GHSA-6jgw-rgmm-7cv6"
+  ],
   "related": [],
   "summary": "Risk of use-after-free in `borrowed` reads from Python weak references",
   "details": "The family of functions to read \"borrowed\" values from Python weak references\nwere fundamentally unsound, because the weak reference does itself not have\nownership of the value. At any point the last strong reference could\nbe cleared and the borrowed value would become dangling.\n\nIn PyO3 0.22.4 these functions have all been deprecated and patched to leak a\nstrong reference as a mitigation. PyO3 0.23 will remove these functions entirely.",

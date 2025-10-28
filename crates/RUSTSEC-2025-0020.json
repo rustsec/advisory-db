@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2025-0020",
-  "modified": "2025-04-01T08:55:37Z",
+  "modified": "2025-10-28T06:02:18Z",
   "published": "2025-04-01T12:00:00Z",
-  "aliases": [],
+  "aliases": [
+    "GHSA-pph8-gcv7-4qj5"
+  ],
   "related": [],
   "summary": "Risk of buffer overflow in `PyString::from_object`",
   "details": "`PyString::from_object` took `&str` arguments and forwarded them directly to the Python C API without checking for terminating nul bytes. This could lead the Python interpreter to read beyond the end of the `&str` data and potentially leak contents of the out-of-bounds read (by raising a Python exception containing a copy of the data including the overflow).\n\nIn PyO3 0.24.1 this function will now allocate a `CString` to guarantee a terminating nul bytes. PyO3 0.25 will likely offer an alternative API which takes `&CStr` arguments.",
