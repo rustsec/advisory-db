@@ -1,9 +1,11 @@
 [
   {
     "id": "RUSTSEC-2025-0018",
-    "modified": "2025-03-26T17:38:20Z",
+    "modified": "2025-10-28T06:02:18Z",
     "published": "2025-03-26T12:00:00Z",
-    "aliases": [],
+    "aliases": [
+      "GHSA-9cc5-2pq7-hfj8"
+    ],
     "related": [],
     "summary": "Potential out-of-bounds read with a malformed ELF file and the HashTable API.",
     "details": "Affected versions of this crate only validated the `index` argument of\n`HashTable::get_bucket` and `HashTable::get_chain` against the input-controlled\n`bucket_count` and `chain_count` fields, but not against the size of the ELF\nsection. As a result, a malformed ELF file could trigger out-of-bounds reads in\na consumer of the HashTable API by setting these fields to inappropriately large\nvalues that would fall outside the relevant hash table section, and by\nintroducing correspondingly out-of-bounds hash table indexes elsewhere in the ELF\nfile.",

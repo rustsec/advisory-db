@@ -1,9 +1,11 @@
 [
   {
     "id": "RUSTSEC-2024-0347",
-    "modified": "2024-07-08T14:45:30Z",
+    "modified": "2025-10-28T06:02:18Z",
     "published": "2024-07-01T12:00:00Z",
-    "aliases": [],
+    "aliases": [
+      "GHSA-xrv3-jmcp-374j"
+    ],
     "related": [],
     "summary": "Incorrect usage of `#[repr(packed)]`",
     "details": "The affected versions make unsafe memory accesses under the assumption that `#[repr(packed)]` has a guaranteed field order. \n\nThe Rust specification does not guarantee this, and https://github.com/rust-lang/rust/pull/125360 (1.80.0-beta) starts \nreordering fields of `#[repr(packed)]` structs, leading to illegal memory accesses.\n\nThe patched versions `0.9.7` and `0.10.4` use `#[repr(C, packed)]`, which guarantees field order.",

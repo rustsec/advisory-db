@@ -1,9 +1,11 @@
 [
   {
     "id": "RUSTSEC-2024-0424",
-    "modified": "2024-12-22T09:01:06Z",
+    "modified": "2025-10-28T06:02:18Z",
     "published": "2024-12-19T12:00:00Z",
-    "aliases": [],
+    "aliases": [
+      "GHSA-f7qj-v3vp-4856"
+    ],
     "related": [],
     "summary": "Unsound usages of `core::slice::from_raw_parts_mut`",
     "details": "The library breaks the safety assumptions when using unsafe API `slice::from_raw_parts_mut`. The pointer passed to `from_raw_parts_mut` is misaligned by casting `u8` to `u16` raw pointer directly, which is unsound. The bug is patched by using `align_offset`, which could make sure the memory address is aligned to 2 bytes for `u16`.  \n\nThis was patched in 0.11.2 in the [commit](https://github.com/AFLplusplus/LibAFL/pull/1530/commits/5a60cb31ef587d71d09d534bba39bd3973c4b35d).",

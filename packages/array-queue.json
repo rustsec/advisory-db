@@ -1,9 +1,11 @@
 [
   {
     "id": "RUSTSEC-2025-0054",
-    "modified": "2025-09-01T12:55:53Z",
+    "modified": "2025-10-28T06:02:18Z",
     "published": "2025-08-14T12:00:00Z",
-    "aliases": [],
+    "aliases": [
+      "GHSA-xqjr-wfx3-gmxv"
+    ],
     "related": [],
     "summary": "ArrayQueue::push_front is not panic-safe",
     "details": "The safe API `array_queue::ArrayQueue::push_front` can lead to deallocating uninitialized memory if a panic occurs while invoking the `clone` method on the passed argument.\n\nSpecifically, `push_front` receives an argument that is intended to be cloned and pushed, whose type implements the `Clone` trait. Furthermore, the method updates the queue's `start` index before initializing the slot for the newly pushed element. User-defined implementations of `Clone` may include a `clone` method that can panic. If such a panic occurs during initialization, the structure is left with an advanced `start` index pointing to an uninitialized slot. When `ArrayQueue` is later dropped, its destructor treats that slot as initialized and attempts to drop it, resulting in an attempt to free uninitialized memory.\n\nThe bug was fixed in commit `728fe1b`.",

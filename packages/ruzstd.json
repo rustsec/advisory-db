@@ -1,9 +1,11 @@
 [
   {
     "id": "RUSTSEC-2024-0400",
-    "modified": "2024-11-28T18:48:40Z",
+    "modified": "2025-10-28T06:02:18Z",
     "published": "2024-11-28T12:00:00Z",
-    "aliases": [],
+    "aliases": [
+      "GHSA-x3f4-45xf-rjm7"
+    ],
     "related": [],
     "summary": "`ruzstd` uninit and out-of-bounds memory reads",
     "details": "Affected versions of `ruzstd` miscalculate the length of the allocated\nand init section of its internal `RingBuffer`, leading to uninitialized\nor out-of-bounds reads in `copy_bytes_overshooting` of up to 15 bytes.\n\nThis may result in up to 15 bytes of memory contents being written\ninto the decoded data when decompressing a crafted archive.\nThis may occur multiple times per archive.",

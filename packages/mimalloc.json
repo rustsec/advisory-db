@@ -1,9 +1,11 @@
 [
   {
     "id": "RUSTSEC-2022-0094",
-    "modified": "2024-11-10T15:44:22Z",
+    "modified": "2025-10-28T06:02:18Z",
     "published": "2022-11-23T12:00:00Z",
-    "aliases": [],
+    "aliases": [
+      "GHSA-g23h-7vf9-xc25"
+    ],
     "related": [],
     "summary": "Mimalloc Can Allocate Memory with Bad Alignment",
     "details": "This crate depended on a promise regarding alignments made by the author of the mimalloc allocator to avoid using aligned allocation functions where possible for performance reasons.\nSince then, the mimalloc allocator's logic changed, making it break this promise.\nThis caused this crate to return memory with an incorrect alignment for some allocations, particularly those with large alignments.\nThe flaw was fixed by always using the aligned allocation functions.",

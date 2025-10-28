@@ -1,9 +1,11 @@
 [
   {
     "id": "RUSTSEC-2024-0403",
-    "modified": "2024-12-04T12:39:59Z",
+    "modified": "2025-10-28T06:02:18Z",
     "published": "2024-07-18T12:00:00Z",
-    "aliases": [],
+    "aliases": [
+      "GHSA-4mw5-2636-4535"
+    ],
     "related": [],
     "summary": "op_panic in the base runtime can force a panic in the runtime's containing thread",
     "details": "Affected versions use deno_core releases that expose `Deno.core.ops.op_panic` to the JS runtime in the base core\n\nThis function when called triggers a manual panic in the thread containing the runtime, breaking sandboxing\n\nIt can be fixed by stubbing out the exposed op:\n```javascript\nDeno.core.ops.op_panic = (msg) => { throw new Error(msg) };\n```",

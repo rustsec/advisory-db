@@ -64,9 +64,13 @@
   },
   {
     "id": "RUSTSEC-2025-0009",
-    "modified": "2025-03-06T21:44:11Z",
+    "modified": "2025-10-28T06:02:18Z",
     "published": "2025-03-06T12:00:00Z",
-    "aliases": [],
+    "aliases": [
+      "CVE-2025-4432",
+      "GHSA-4p46-pwfr-66x6",
+      "GHSA-c86p-w88r-qvqr"
+    ],
     "related": [],
     "summary": "Some AES functions may panic when overflow checking is enabled.",
     "details": "`ring::aead::quic::HeaderProtectionKey::new_mask()` may panic when overflow\nchecking is enabled. In the QUIC protocol, an attacker can induce this panic by\nsending a specially-crafted packet. Even unintentionally it is likely to occur\nin 1 out of every 2**32 packets sent and/or received.\n\nOn 64-bit targets operations using `ring::aead::{AES_128_GCM, AES_256_GCM}` may\npanic when overflow checking is enabled, when encrypting/decrypting approximately\n68,719,476,700 bytes (about 64 gigabytes) of data in a single chunk. Protocols\nlike TLS and SSH are not affected by this because those protocols break large\namounts of data into small chunks. Similarly, most applications will not\nattempt to encrypt/decrypt 64GB of data in one chunk.\n\nOverflow checking is not enabled in release mode by default, but\n`RUSTFLAGS=\"-C overflow-checks\"` or `overflow-checks = true` in the Cargo.toml\nprofile can override this. Overflow checking is usually enabled by default in\ndebug mode.",

@@ -1,9 +1,11 @@
 [
   {
     "id": "RUSTSEC-2025-0027",
-    "modified": "2025-05-06T19:24:32Z",
+    "modified": "2025-10-28T06:02:18Z",
     "published": "2025-04-28T12:00:00Z",
-    "aliases": [],
+    "aliases": [
+      "GHSA-927q-g9w9-pm54"
+    ],
     "related": [],
     "summary": "Panic in mp3-metadata due to the lack of bounds checking",
     "details": "The `get_id3()` methods used by `mp3_metadata::read_from_slice()` does not perform adequate bounds\nchecking when recreating the tag due to the use of desynchronization.\n\nFixed in [Fix index error](https://github.com/GuillaumeGomez/mp3-metadata/pull/37), released as\npart of 0.4.0.",

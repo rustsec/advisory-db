@@ -1,9 +1,11 @@
 [
   {
     "id": "RUSTSEC-2024-0431",
-    "modified": "2024-12-28T17:54:04Z",
+    "modified": "2025-10-28T06:02:18Z",
     "published": "2024-12-23T12:00:00Z",
-    "aliases": [],
+    "aliases": [
+      "GHSA-gv7f-5qqh-vxfx"
+    ],
     "related": [],
     "summary": "Unsound usages of `core::slice::from_raw_parts`",
     "details": "We consider `as_slice` and `as_slice_mut` unsound because: the pointer with any bit patterns could be cast to the slice of arbitrary types. The pointer could be created by unsafe new and deprecated `from_parts`. We consider that `from_parts` should be removed in latest version because it will help trigger unsoundness in `as_slice`. With new declared as unsafe, `as_slice` should also declared as unsafe.  \n\nThis was patched in by marking two functions as `unsafe`.",

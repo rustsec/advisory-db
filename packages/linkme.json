@@ -1,9 +1,11 @@
 [
   {
     "id": "RUSTSEC-2024-0407",
-    "modified": "2024-12-04T12:44:24Z",
+    "modified": "2025-10-28T06:02:18Z",
     "published": "2024-03-05T12:00:00Z",
-    "aliases": [],
+    "aliases": [
+      "GHSA-f95p-4cv5-8w8x"
+    ],
     "related": [],
     "summary": "Fails to ensure slice elements match the slice's declared type",
     "details": "Affected versions allow populating a DistributedSlice of T with elements of an\narbitrary other type that coerces to T. For example, elements of type `&&str`\ncould end up in a slice of type `[&str]`, since `&&str` coerces to `&str` via a\nderef coercion.\n\nThe flaw was corrected by implementing typechecking for distributed slice\nelements in such a way that coercion no longer occurs. The element's type must\nbe a subtype of the slice's declared element type.",

@@ -1,9 +1,11 @@
 [
   {
     "id": "RUSTSEC-2025-0005",
-    "modified": "2025-02-10T06:29:23Z",
+    "modified": "2025-10-28T06:02:18Z",
     "published": "2025-01-13T12:00:00Z",
-    "aliases": [],
+    "aliases": [
+      "GHSA-qm2p-4w45-v2vr"
+    ],
     "related": [],
     "summary": "Out of bounds write triggered by crafted coverage data",
     "details": "Function `grcov::covdir::get_coverage` uses the `unsafe` function `get_unchecked_mut`\nwithout validating that the index is in bounds.\n\nThis results in memory corruption, and could potentially allow arbitrary code execution\nprovided that an attacker can feed the tool crafted coverage data.",

@@ -1,9 +1,11 @@
 [
   {
     "id": "RUSTSEC-2025-0051",
-    "modified": "2025-09-30T10:04:17Z",
+    "modified": "2025-10-28T06:02:18Z",
     "published": "2025-08-05T12:00:00Z",
-    "aliases": [],
+    "aliases": [
+      "GHSA-655h-hg88-5qmf"
+    ],
     "related": [],
     "summary": "`xcb::Connection::connect_to_fd*` functions violate I/O safety",
     "details": "The API of `xcb::Connection` has constructors which allow an arbitrary `RawFd`\nto be used as a socket connection. On either failure of these constructors or\non the drop of `Connection`, it closes the associated file descriptor. Thus, a\nprogram which uses an `OwnedFd` (such as a `UnixStream`) as the file descriptor\ncan close the file descriptor and continue to attempt using it or close an\nalready-closed file descriptor, violating I/O safety.\n\nStarting in version 1.6.0, `xcb` provides `Connection::connect_with_fd` and\n`Connection::connect_with_fd_and_extensions` as safe alternatives and\ndeprecates the problematic functions.",

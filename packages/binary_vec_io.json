@@ -1,9 +1,11 @@
 [
   {
     "id": "RUSTSEC-2025-0109",
-    "modified": "2025-10-22T21:23:29Z",
+    "modified": "2025-10-28T06:02:18Z",
     "published": "2025-10-21T12:00:00Z",
-    "aliases": [],
+    "aliases": [
+      "GHSA-wwxp-hxh6-8gf8"
+    ],
     "related": [],
     "summary": "Out-of-bounds memory access in binary_read_to_ref and binary_write_from_ref",
     "details": "Safe functions accept a single `&T` or `&mut T` but multiply by `n` to create slices extending beyond allocated memory when `n > 1`.\n\nThese functions use `from_raw_parts` to create slices larger than the underlying allocation, violating memory safety.\n\nThe binary_vec_io repository is archived and unmaintained.",

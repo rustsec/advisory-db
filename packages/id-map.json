@@ -1,9 +1,11 @@
 [
   {
     "id": "RUSTSEC-2025-0050",
-    "modified": "2025-08-15T18:42:09Z",
+    "modified": "2025-10-28T06:02:18Z",
     "published": "2025-08-14T12:00:00Z",
-    "aliases": [],
+    "aliases": [
+      "GHSA-qq4c-hm99-979m"
+    ],
     "related": [],
     "summary": "IdMap::from_iter may lead to uninitialized memory being freed on drop",
     "details": "Due to a flaw in the constructor `id_map::IdMap::from_iter`, ill-formed objects may be created in which the amount of actually initialized memory is less than what is expected by the fields of `IdMap`. Specifically, the field `ids` is initialized based on the capacity of the vector `values`, which is constructed from the provided iterator. However, the length of this vector may be smaller than its capacity.\n\nIn such cases, when the resulting `IdMap` is dropped, its destructor incorrectly assumes that `values` contains `ids.len() == values.capacity()` initialized elements and attempts to iterate over and drop them. This leads to dereferencing and attempting to free uninitialized memory, resulting in undefined behavior and potential segmentation faults.\n\nThe bug was fixed in commit `fab6922`, and all unsafe code was removed from the crate.\n\nNote that the maintainer recommends using the following alternatives:\n- [slab](https://crates.io/crates/slab)\n- [slotmap](https://crates.io/crates/slotmap)",

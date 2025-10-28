@@ -1,9 +1,11 @@
 [
   {
     "id": "RUSTSEC-2024-0442",
-    "modified": "2025-06-17T09:04:25Z",
+    "modified": "2025-10-28T06:02:18Z",
     "published": "2024-07-06T12:00:00Z",
-    "aliases": [],
+    "aliases": [
+      "GHSA-9ghp-w2hm-vfpf"
+    ],
     "related": [],
     "summary": "Dump Undefined Memory by `JitDumpFile`",
     "details": "The unsound function `dump_code_load_record` uses `from_raw_parts` to directly convert \nthe pointer `addr` and `len` into a slice without any validation and that memory block \nwould be dumped.\n\nThus, the 'safe' function dump_code_load_record is actually 'unsafe' since it requires \nthe caller to guarantee that the addr is valid and len must not overflow.\nOtherwise, the function could dump the memory into file illegally, causing memory leak.\n\n> **Note**: this is an internal-only crate in the Wasmtime project not intended for\nexternal use and is more strongly signaled nowadays as of\n[bytecodealliance/wasmtime#10963](https://github.com/bytecodealliance/wasmtime/pull/10963).\nPlease open an issue in Wasmtime if you're using this crate directly.",

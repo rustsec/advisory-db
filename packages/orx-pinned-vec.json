@@ -1,9 +1,11 @@
 [
   {
     "id": "RUSTSEC-2025-0106",
-    "modified": "2025-10-21T20:30:05Z",
+    "modified": "2025-10-28T06:02:18Z",
     "published": "2025-10-21T12:00:00Z",
-    "aliases": [],
+    "aliases": [
+      "GHSA-h5j3-crg5-8jqm"
+    ],
     "related": [],
     "summary": "Undefined behavior in index_of_ptr with empty slices",
     "details": "The safe function `index_of_ptr` causes undefined behavior when called with an empty slice.\n\nThe issue occurs in the line `ptr.add(slice.len() - 1)` which underflows when `slice.len()` is 0, creating a pointer with a massive offset. According to Rust's safety rules, creating such a pointer causes immediate undefined behavior.",

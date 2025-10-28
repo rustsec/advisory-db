@@ -1,9 +1,11 @@
 [
   {
     "id": "RUSTSEC-2025-0049",
-    "modified": "2025-08-14T20:48:29Z",
+    "modified": "2025-10-28T06:02:18Z",
     "published": "2025-08-14T12:00:00Z",
-    "aliases": [],
+    "aliases": [
+      "GHSA-77h3-w9rx-hj3q"
+    ],
     "related": [],
     "summary": "User-defined implementations of the safe trait scratchpad::Tracking can cause heap buffer overflows",
     "details": "The `get` and `set` methods of the public trait `scratchpad::Tracking` interact with unsafe code regions in the crate, and they influence the computation of addresses returned as raw pointers. However, the trait itself is not marked as unsafe, meaning users may provide custom implementations under the assumption that the crate upholds all safety guarantees.\n\nThis becomes problematic because even safe implementations of `get` and `set`-written without using any unsafe code-can still result in ill-formed raw pointers. These pointers may later be dereferenced within safe APIs of the crate (e.g., `marker::MarkerBack::allocate_slice_copy`), potentially leading to arbitrary memory access or heap buffer overflows.\n\nAccording to the [penultimate commit](https://github.com/okready/scratchpad/commit/957dee1a3902f48600b06910e8e0b1d5ee7dab83), the crate is in maintenance mode awaiting a cleanup that will reduce the area of unsafe code. Note that the last commits to the repository are from 4 years ago.",

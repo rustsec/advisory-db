@@ -1,9 +1,12 @@
 [
   {
     "id": "RUSTSEC-2025-0040",
-    "modified": "2025-06-03T11:30:36Z",
+    "modified": "2025-10-28T06:02:18Z",
     "published": "2025-01-15T12:00:00Z",
-    "aliases": [],
+    "aliases": [
+      "CVE-2025-5791",
+      "GHSA-m65q-v92h-cm7q"
+    ],
     "related": [],
     "summary": "`root` appended to group listings",
     "details": "Affected versions append `root` to group listings, unless the correct listing\nhas exactly 1024 groups.\n\nThis affects both:\n\n- The supplementary groups of a user\n- The group access list of the current process\n\nIf the caller uses this information for access control, this may lead to\nprivilege escalation.\n\nThis crate is not currently maintained, so a patched version is not available.\n\nVersions older than 0.8.0 do not contain the affected functions, so downgrading\nto them is a workaround.\n\n## Recommended alternatives\n- [`uzers`](https://crates.io/crates/uzers) (an actively maintained fork of the `users` crate)\n- [`sysinfo`](https://crates.io/crates/sysinfo)",

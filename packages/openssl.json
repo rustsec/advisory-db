@@ -1,9 +1,11 @@
 [
   {
     "id": "RUSTSEC-2025-0022",
-    "modified": "2025-04-04T13:49:29Z",
+    "modified": "2025-10-28T06:02:18Z",
     "published": "2025-04-04T12:00:00Z",
-    "aliases": [],
+    "aliases": [
+      "GHSA-4fcv-w3qc-ppgg"
+    ],
     "related": [],
     "summary": "Use-After-Free in `Md::fetch` and `Cipher::fetch`",
     "details": "When a `Some(...)` value was passed to the `properties` argument of either of these functions, a use-after-free would result.\n\nIn practice this would nearly always result in OpenSSL treating the properties as an empty string (due to `CString::drop`'s behavior).\n\nThe maintainers thank [quitbug](https://github.com/quitbug/) for reporting this vulnerability to us.",
@@ -69,9 +71,10 @@
   },
   {
     "id": "RUSTSEC-2025-0004",
-    "modified": "2025-02-02T23:37:03Z",
+    "modified": "2025-10-28T06:02:18Z",
     "published": "2025-02-02T12:00:00Z",
     "aliases": [
+      "CVE-2025-24898",
       "GHSA-rpmj-rpgj-qmpm"
     ],
     "related": [],
@@ -142,9 +145,11 @@
   },
   {
     "id": "RUSTSEC-2024-0357",
-    "modified": "2024-07-21T17:28:48Z",
+    "modified": "2025-10-28T06:02:18Z",
     "published": "2024-07-21T12:00:00Z",
-    "aliases": [],
+    "aliases": [
+      "GHSA-q445-7m23-qrmw"
+    ],
     "related": [],
     "summary": "`MemBio::get_buf` has undefined behavior with empty buffers",
     "details": "Previously, `MemBio::get_buf` called `slice::from_raw_parts` with a null-pointer, which violates the functions invariants, leading to undefined behavior. In debug builds this would produce an assertion failure. This is now fixed.",
@@ -276,9 +281,10 @@
   },
   {
     "id": "RUSTSEC-2023-0044",
-    "modified": "2023-07-08T12:30:19Z",
+    "modified": "2025-10-28T06:02:18Z",
     "published": "2023-06-20T12:00:00Z",
     "aliases": [
+      "CVE-2023-53159",
       "GHSA-xcf7-rvmh-g6q4"
     ],
     "related": [],

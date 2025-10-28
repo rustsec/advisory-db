@@ -1,9 +1,11 @@
 [
   {
     "id": "RUSTSEC-2025-0023",
-    "modified": "2025-04-08T09:12:03Z",
+    "modified": "2025-10-28T06:02:18Z",
     "published": "2025-04-07T12:00:00Z",
-    "aliases": [],
+    "aliases": [
+      "GHSA-rr8g-9fpq-6wmg"
+    ],
     "related": [],
     "summary": "Broadcast channel calls clone in parallel, but does not require `Sync`",
     "details": "The broadcast channel internally calls `clone` on the stored value when\nreceiving it, and only requires `T:Send`. This means that using the broadcast\nchannel with values that are `Send` but not `Sync` can trigger unsoundness if\nthe `clone` implementation makes use of the value being `!Sync`.\n\nThank you to Austin Bonander for finding and reporting this issue.",

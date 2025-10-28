@@ -1,9 +1,11 @@
 [
   {
     "id": "RUSTSEC-2024-0402",
-    "modified": "2024-12-04T13:05:04Z",
+    "modified": "2025-10-28T06:02:18Z",
     "published": "2024-10-11T12:00:00Z",
-    "aliases": [],
+    "aliases": [
+      "GHSA-wwq9-3cpr-mm53"
+    ],
     "related": [],
     "summary": "Borsh serialization of HashMap is non-canonical",
     "details": "The borsh serialization of the HashMap did not follow the borsh specification.\nIt potentially produced non-canonical encodings dependent on insertion order.\nIt also did not perform canonicty checks on decoding.\n\nThis can result in consensus splits and cause equivalent objects to be\nconsidered distinct.\n\nThis was patched in 0.15.1.",

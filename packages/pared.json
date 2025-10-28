@@ -1,9 +1,11 @@
 [
   {
     "id": "RUSTSEC-2025-0016",
-    "modified": "2025-03-22T10:21:17Z",
+    "modified": "2025-10-28T06:02:18Z",
     "published": "2025-03-13T12:00:00Z",
-    "aliases": [],
+    "aliases": [
+      "GHSA-vgmh-mqm4-8j88"
+    ],
     "related": [],
     "summary": "Use after free in `Parc` and `Prc` due to missing lifetime constraints",
     "details": "Affected versions of this crate didn't provide sufficient lifetime constraints to conversion\nfunctions from `alloc::sync::Arc` and `alloc::rc::Rc`, which made it possible to create\nprojections of these reference counted pointers. Unlike the original reference counted pointers,\nthese projections could outlive original data's lifetimes.\n\nThis projected pointer could cause the original `Arc`'s or `Rc`'s `Drop::drop` to get called at\na point where the original data was no longer valid, leading to a potential use after free.\n\nThe affected functions were\n- `pared::prc::Prc::from_rc`\n- `pared::prc::Prc::project`\n- `pared::prc::Prc::try_from_rc`\n- `pared::sync::Parc::from_arc`\n- `pared::sync::Parc::project`\n- `pared::sync::Parc::try_from_arc`\n\nThis flaw was fixed in [108f540ea8acb6073751a1aa386085c1cdc4fd1e](https://github.com/radekvit/pared/commit/108f540ea8acb6073751a1aa386085c1cdc4fd1e)\nby requiring that the type stored in the `Arc`s and `Rc`s passed to these functions contain `T: 'static`.",
