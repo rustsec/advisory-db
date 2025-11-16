@@ -6,8 +6,11 @@ date = "2020-01-31"
 url = "https://example.com"
 # Valid categories: "code-execution", "crypto-failure", "denial-of-service", "file-disclosure"
 # "format-injection", "memory-corruption", "memory-exposure", "privilege-escalation"
+# They are described at https://github.com/rustsec/rustsec/blob/main/rustsec/src/advisory/category.rs
 categories = ["code-execution", "privilege-escalation"]
 keywords = ["example", "freeform", "keywords"]
+# Valid informational: notice, unmaintained, unsound
+informational = "unsound"
 #aliases = ["CVE-YYYY-NNNN"]
 #cvss = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H"
 
