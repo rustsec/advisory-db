@@ -1,7 +1,7 @@
 [
   {
     "id": "RUSTSEC-2025-0125",
-    "modified": "2025-11-22T09:03:20Z",
+    "modified": "2025-11-22T12:29:36Z",
     "published": "2025-11-22T12:00:00Z",
     "aliases": [
       "GHSA-jf9p-2fv9-2jp2",
@@ -12,8 +12,8 @@
     "details": "Affected versions of this crate contain resource leaks when querying thread counts on Windows and Apple platforms.\n\n### Windows\nThe `thread_amount` function calls `CreateToolhelp32Snapshot` but fails to close the returned `HANDLE` using `CloseHandle`. Repeated calls to this function will cause the handle count of the process to grow indefinitely, eventually leading to system instability or process termination when the handle limit is reached.\n\n### macOS / iOS\nThe `thread_amount` function calls `task_threads` (via Mach kernel APIs) which allocates memory for the thread list. The function fails to deallocate this memory using `vm_deallocate`. Repeated calls will result in a steady memory leak, eventually causing the process to be killed by the OOM (Out of Memory) killer.\n\n### Impact\nLong-running applications (such as servers, daemons, or monitoring tools) that use this crate to periodically check thread counts will eventually crash due to resource exhaustion.\n\n### Mitigation\nUpgrade to version `0.2.2` or later, which properly releases OS resources.",
     "severity": [
       {
-        "type": "CVSS_V4",
-        "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N/E:P/AU:Y/R:U/V:D/RE:L/U:Green"
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
       }
     ],
     "affected": [
@@ -42,7 +42,7 @@
           "categories": [
             "denial-of-service"
           ],
-          "cvss": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N/E:P/AU:Y/R:U/V:D/RE:L/U:Green",
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
           "informational": null
         },
         "ranges": [
