@@ -1,0 +1,82 @@
+[
+  {
+    "id": "RUSTSEC-2025-0125",
+    "modified": "2025-11-22T09:03:20Z",
+    "published": "2025-11-22T12:00:00Z",
+    "aliases": [
+      "GHSA-jf9p-2fv9-2jp2",
+      "CVE-2025-65947"
+    ],
+    "related": [],
+    "summary": "Resource Exhaustion (Memory and Handle Leaks) on Windows and macOS",
+    "details": "Affected versions of this crate contain resource leaks when querying thread counts on Windows and Apple platforms.\n\n### Windows\nThe `thread_amount` function calls `CreateToolhelp32Snapshot` but fails to close the returned `HANDLE` using `CloseHandle`. Repeated calls to this function will cause the handle count of the process to grow indefinitely, eventually leading to system instability or process termination when the handle limit is reached.\n\n### macOS / iOS\nThe `thread_amount` function calls `task_threads` (via Mach kernel APIs) which allocates memory for the thread list. The function fails to deallocate this memory using `vm_deallocate`. Repeated calls will result in a steady memory leak, eventually causing the process to be killed by the OOM (Out of Memory) killer.\n\n### Impact\nLong-running applications (such as servers, daemons, or monitoring tools) that use this crate to periodically check thread counts will eventually crash due to resource exhaustion.\n\n### Mitigation\nUpgrade to version `0.2.2` or later, which properly releases OS resources.",
+    "severity": [
+      {
+        "type": "CVSS_V4",
+        "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N/E:P/AU:Y/R:U/V:D/RE:L/U:Green"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "thread-amount",
+          "purl": "pkg:cargo/thread-amount"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [
+              "windows",
+              "macos",
+              "ios"
+            ],
+            "functions": [
+              "thread_amount::is_single_threaded",
+              "thread_amount::thread_amount"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N/E:P/AU:Y/R:U/V:D/RE:L/U:Green",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.2.2"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/thread-amount"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2025-0125.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/jzeuzs/thread-amount/pull/29"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]
