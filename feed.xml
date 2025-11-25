@@ -150,6 +150,152 @@ Previously, you could use &lt;a href=&quot;https://docs.rs/cggmp21/0.6.3/cggmp21
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2025-0129: Vulnerability in cggmp21</title><id>https://rustsec.org/advisories/RUSTSEC-2025-0129.html</id><updated>2025-11-25T12:00:00+00:00</updated><category term="crypto-failure"/><link href="https://rustsec.org/advisories/RUSTSEC-2025-0129.html" rel="alternate" type="text/html" title="RUSTSEC-2025-0129: Vulnerability in cggmp21"/><published>2025-11-25T12:00:00+00:00</published><summary xml:lang="en">Missing check in ZK proof in CGGMP21 Threshold Signing Protocol</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/cggmp21/RUSTSEC-2025-0129.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/cggmp21/RUSTSEC-2025-0129.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2025-0129&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2025-0129
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Missing check in ZK proof in CGGMP21 Threshold Signing Protocol&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2025-11-24&quot;&gt;
+          November 24, 2025
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2025-11-25&quot;&gt;
+          November 25, 2025
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/cggmp21.html&quot;&gt;cggmp21&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/cggmp21&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/crypto-failure.html&quot;&gt;crypto-failure&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/zk-proof.html&quot;&gt;#zk-proof&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-66016&quot;&gt;CVE-2025-66016&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://www.dfns.co/article/cggmp21-vulnerabilities-patched-and-explained&quot;&gt;
+              https://www.dfns.co/article/cggmp21-vulnerabilities-patched-and-explained
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.6.3&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Vulnerability concerns a missing check in the ZK proof that enables an attack in which single malicious signer can reconstruct full private key.&lt;/p&gt;
+&lt;h3&gt;Patches&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;cggmp21 v0.6.3&lt;/code&gt; is a patch release that contains a fix that introduces this specific missing check.&lt;/li&gt;
+&lt;li&gt;However, we recommend upgrading to &lt;code&gt;cggmp24 v0.7.0-alpha.2&lt;/code&gt; in which we&apos;ve introduced many other security checks as a precaution. Follow the &lt;a href=&quot;https://github.com/LFDT-Lockness/cggmp21/blob/v0.7.0-alpha.2/CGGMP21_MIGRATION.md&quot;&gt;migration guidelines&lt;/a&gt; to upgrade.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;References&lt;/h3&gt;
+&lt;p&gt;Read our &lt;a href=&quot;https://www.dfns.co/article/cggmp21-vulnerabilities-patched-and-explained&quot;&gt;blog post&lt;/a&gt; to learn more.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2025-0126: Vulnerability in nftnl</title><id>https://rustsec.org/advisories/RUSTSEC-2025-0126.html</id><updated>2025-11-25T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2025-0126.html" rel="alternate" type="text/html" title="RUSTSEC-2025-0126: Vulnerability in nftnl"/><published>2025-11-25T12:00:00+00:00</published><summary xml:lang="en">Heap-buffer-overflow in nftnl::Batch::with_page_size (nftnl-rs)</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -267,6 +413,152 @@ Previously, you could use &lt;a href=&quot;https://docs.rs/cggmp21/0.6.3/cggmp21
     .checked_add(crate::nft_nlmsg_maxsize())
     .expect(&amp;quot;batch_page_size is too large and would overflow&amp;quot;);
 &lt;/code&gt;&lt;/pre&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2025-0130: Vulnerability in cggmp24</title><id>https://rustsec.org/advisories/RUSTSEC-2025-0130.html</id><updated>2025-11-25T12:00:00+00:00</updated><category term="crypto-failure"/><link href="https://rustsec.org/advisories/RUSTSEC-2025-0130.html" rel="alternate" type="text/html" title="RUSTSEC-2025-0130: Vulnerability in cggmp24"/><published>2025-11-25T12:00:00+00:00</published><summary xml:lang="en">Missing check in ZK proof in CGGMP21 Threshold Signing Protocol</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/cggmp24/RUSTSEC-2025-0130.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/cggmp24/RUSTSEC-2025-0130.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2025-0130&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2025-0130
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Missing check in ZK proof in CGGMP21 Threshold Signing Protocol&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2025-11-24&quot;&gt;
+          November 24, 2025
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2025-11-25&quot;&gt;
+          November 25, 2025
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/cggmp24.html&quot;&gt;cggmp24&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/cggmp24&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/crypto-failure.html&quot;&gt;crypto-failure&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/zk-proof.html&quot;&gt;#zk-proof&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-66016&quot;&gt;CVE-2025-66016&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://www.dfns.co/article/cggmp21-vulnerabilities-patched-and-explained&quot;&gt;
+              https://www.dfns.co/article/cggmp21-vulnerabilities-patched-and-explained
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.7.0-alpha.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Vulnerability concerns a missing check in the ZK proof that enables an attack in which single malicious signer can reconstruct full private key.&lt;/p&gt;
+&lt;h3&gt;Patches&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;cggmp21 v0.6.3&lt;/code&gt; is a patch release that contains a fix that introduces this specific missing check.&lt;/li&gt;
+&lt;li&gt;However, we recommend upgrading to &lt;code&gt;cggmp24 v0.7.0-alpha.2&lt;/code&gt; in which we&apos;ve introduced many other security checks as a precaution. Follow the &lt;a href=&quot;https://github.com/LFDT-Lockness/cggmp21/blob/v0.7.0-alpha.2/CGGMP21_MIGRATION.md&quot;&gt;migration guidelines&lt;/a&gt; to upgrade.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;References&lt;/h3&gt;
+&lt;p&gt;Read our &lt;a href=&quot;https://www.dfns.co/article/cggmp21-vulnerabilities-patched-and-explained&quot;&gt;blog post&lt;/a&gt; to learn more.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
