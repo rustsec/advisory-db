@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package &#39;cggmp21&#39; › RustSec Advisory Database</title>
+<title>RUSTSEC-2025-0128: cggmp24: CGGMP21 presignatures can be used in the way that significantly reduces security › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,58 +52,161 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/cggmp24/RUSTSEC-2025-0128.md">History</a> ⋅
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/cggmp24/RUSTSEC-2025-0128.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2025-0128">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2025-0128
+        
+      </h1>
+      <span class="subtitle"><p>CGGMP21 presignatures can be used in the way that significantly reduces security</p>
 </span>
-      <h1>Advisories for package &#39;cggmp21&#39;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2025-11-25">
-    November 25, 2025
-  </time>
+    
 
-  
-  <h3>
-    
-        
-    
-    <a href="/advisories/RUSTSEC-2025-0127.html">
-      RUSTSEC-2025-0127: Vulnerability in cggmp21
-    </a>
-  </h3>
-  <span><p>CGGMP21 presignatures can be used in the way that significantly reduces security</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2024-11-10">
-    November 10, 2024
-  </time>
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2025-11-24">
+          November 24, 2025
+        </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2025-11-25">
+          November 25, 2025
+        </time>
         
-    
-    <a href="/advisories/RUSTSEC-2024-0393.html">
-      RUSTSEC-2024-0393: Vulnerability in cggmp21
-    </a>
-  </h3>
-  <span><p>Ambiguous challenge derivation</p>
-</span>
-  
-</li>
+      </dd>
+
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        <a href="/packages/cggmp24.html">cggmp24</a>
+          (<a href="https://crates.io/crates/cggmp24">crates.io</a>)
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        Vulnerability
+        
+      </dd>
+
       
-    </ul>
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/crypto-failure.html">crypto-failure</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/hd-wallet.html">#hd-wallet</a>
+        
+          <a href="/keywords/presignature.html">#presignature</a>
+        
+          <a href="/keywords/tss.html">#tss</a>
+        
+      </dd>
+      
+
+      
+      <dt id="aliases">Aliases</dt>
+      <dd>
+        <ul>
+          
+          <li>
+            
+            <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-66017">CVE-2025-66017</a>
+            
+          </li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://www.dfns.co/article/cggmp21-vulnerabilities-patched-and-explained">
+              https://www.dfns.co/article/cggmp21-vulnerabilities-patched-and-explained
+            </a>
+          </li>
+        
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&#62;=0.7.0-alpha.2</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+
+      
+      
+    </dl>
+
+    
+    
+
+    <h3 id="description">Description</h3>
+    <p>This attack is against presignatures used in very specific context:</p>
+<ul>
+<li>Presignatures + HD wallets derivation: security level reduces to 85 bits <br />
+Previously you could generate a presignature, and then choose a HD derivation path while issuing a partial signature via <a href="https://docs.rs/cggmp21/0.6.3/cggmp21/signing/struct.Presignature.html#method.set_derivation_path"><code>Presignature::set_derivation_path</code></a>, which is malleable to attack that reduces target security level. To mitigate, this method has been removed from API.</li>
+<li>Presignatures + &quot;raw signing&quot; (when signer signs a hash without knowing an original message): results into signature forgery attack <br />
+Previously, you could use <a href="https://docs.rs/cggmp21/0.6.3/cggmp21/signing/struct.Presignature.html#method.issue_partial_signature"><code>Presignature::issue_partial_signature</code></a> with hashed message without ever providing original mesage. In new API, this method only accepts digests for which original message has been observed.</li>
+</ul>
+<h3>Patches</h3>
+<p><code>cggmp24 v0.7.0-alpha.2</code> release contains API changes that make it impossible to use presignatures in contexts in which it reduces security. Follow the <a href="https://github.com/LFDT-Lockness/cggmp21/blob/v0.7.0-alpha.2/CGGMP21_MIGRATION.md">migration guidelines</a> to upgrade.</p>
+<h3>Workarounds</h3>
+<p>You can continue using un-patched versions of library as long as you don't use presignatures in said scenarios where it weakens system security. To be sure, migrate to patched version that excludes presignatures from being used in such scenarios.</p>
+<h3>References</h3>
+<p>Read our <a href="https://www.dfns.co/article/cggmp21-vulnerabilities-patched-and-explained">blog post</a> to learn more.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
