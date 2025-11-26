@@ -1,9 +1,11 @@
 [
   {
     "id": "RUSTSEC-2025-0126",
-    "modified": "2025-11-25T09:40:00Z",
+    "modified": "2025-11-26T06:00:45Z",
     "published": "2025-10-18T12:00:00Z",
-    "aliases": [],
+    "aliases": [
+      "GHSA-2fjw-whxm-9v4q"
+    ],
     "related": [],
     "summary": "Heap-buffer-overflow in nftnl::Batch::with_page_size (nftnl-rs)",
     "details": "A heap-buffer-overflow vulnerability exists in the Rust wrapper for libnftnl, triggered via the nftnl::Batch::with_page_size constructor. When a small or malformed page size is provided, the underlying C code allocates an insufficient buffer, leading to out-of-bounds writes during batch initialization.\n\nThe flaw was fixed in commit 94a286f by adding an overflow check:\n```Rust\nbatch_page_size\n    .checked_add(crate::nft_nlmsg_maxsize())\n    .expect(\"batch_page_size is too large and would overflow\");\n```",
