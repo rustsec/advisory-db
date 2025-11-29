@@ -1,0 +1,74 @@
+[
+  {
+    "id": "RUSTSEC-2025-0132",
+    "modified": "2025-11-29T08:52:04Z",
+    "published": "2025-11-28T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "`Reader::open_mmap` unsoundly marks unsafe memmap operation as safe",
+    "details": "maxminddb prior to version 0.27 declared `Reader::open_mmap` as safe \ndespite wrapping an inherently unsafe memmap2 operation with no\nextra step done to guarantee safety. This could have led to undefined\nbehaviour if the file were to be modified on disk while the memory map\nwas still active.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "maxminddb",
+          "purl": "pkg:cargo/maxminddb"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "maxminddb::Reader::open",
+              "maxminddb::Reader::open_mmap"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.11.0"
+              },
+              {
+                "fixed": "0.27.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/maxminddb"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2025-0132.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/oschwald/maxminddb-rust/issues/86"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/oschwald/maxminddb-rust/commit/98f0e4fff9678c841ed33f3b8a46322f6163c32a"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]
