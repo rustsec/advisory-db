@@ -1,9 +1,11 @@
 [
   {
     "id": "RUSTSEC-2025-0132",
-    "modified": "2025-11-29T08:52:04Z",
+    "modified": "2025-12-02T06:03:09Z",
     "published": "2025-11-28T12:00:00Z",
-    "aliases": [],
+    "aliases": [
+      "GHSA-mj73-j457-8x9q"
+    ],
     "related": [],
     "summary": "`Reader::open_mmap` unsoundly marks unsafe memmap operation as safe",
     "details": "maxminddb prior to version 0.27 declared `Reader::open_mmap` as safe \ndespite wrapping an inherently unsafe memmap2 operation with no\nextra step done to guarantee safety. This could have led to undefined\nbehaviour if the file were to be modified on disk while the memory map\nwas still active.",
