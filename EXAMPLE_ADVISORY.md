@@ -3,17 +3,18 @@
 id = "RUSTSEC-0000-0000"
 package = "crate-name"
 date = "2020-01-31"
+#withdrawn = "YYYY-MM-DD"
 url = "https://example.com"
+#references = ["https://github.com/mystuff/mycrate/discussions/1"]
+#informational = "unmaintained"
 # Valid categories: "code-execution", "crypto-failure", "denial-of-service", "file-disclosure"
 # "format-injection", "memory-corruption", "memory-exposure", "privilege-escalation"
 categories = ["code-execution", "privilege-escalation"]
+#cvss = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H"
 keywords = ["example", "freeform", "keywords"]
 #aliases = ["CVE-YYYY-NNNN"]
-#cvss = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H"
-
-[versions]
-patched = [">= 1.2.3, < 1.3.0", ">= 1.3.4"]
-unaffected = ["<= 0.1.2"]
+#related = []
+#license = "CC0-1.0"
 
 [affected]
 #arch = ["x86"]
@@ -21,6 +22,10 @@ unaffected = ["<= 0.1.2"]
 
 #[affected.functions]
 #"crate_name::MyStruct::vulnerable_fn" = [">= 1.3.0, < 1.3.4"]
+
+[versions]
+patched = [">= 1.2.3, < 1.3.0", ">= 1.3.4"]
+unaffected = ["<= 0.1.2"]
 ```
 
 # RustSec Advisory Template - Advisory Title Goes Here
