@@ -7,8 +7,7 @@ date = "2020-01-31"
 url = "https://example.com"
 #references = ["https://github.com/mystuff/mycrate/discussions/1"]
 #informational = "unmaintained"
-# Valid categories: "code-execution", "crypto-failure", "denial-of-service", "file-disclosure"
-# "format-injection", "memory-corruption", "memory-exposure", "privilege-escalation"
+# See https://docs.rs/rustsec/latest/rustsec/advisory/enum.Category.html
 categories = ["code-execution", "privilege-escalation"]
 #cvss = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H"
 keywords = ["example", "freeform", "keywords"]

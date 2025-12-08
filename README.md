@@ -75,9 +75,9 @@ url = "https://github.com/mystuff/mycrate/issues/123"
 #  - "notice" for other informational notices
 #informational = "unmaintained"
 
-# Optional: Categories this advisory falls under. Valid categories are:
-# "code-execution", "crypto-failure", "denial-of-service", "file-disclosure"
-# "format-injection", "memory-corruption", "memory-exposure", "privilege-escalation"
+# Optional: Categories this advisory falls under.
+#
+# See <https://docs.rs/rustsec/latest/rustsec/advisory/enum.Category.html>.
 categories = ["crypto-failure"]
 
 # Optional: a Common Vulnerability Scoring System score. More information
@@ -119,7 +119,7 @@ keywords = ["ssl", "mitm"]
 
 # Table of canonical paths to vulnerable functions (optional)
 # mapping to which versions impacted by this advisory used that particular
-# name (e.g. if the function was renamed between versions). 
+# name (e.g. if the function was renamed between versions).
 # The path syntax is `cratename::path::to::function`, without any
 # parameters or additional information, followed by a list of version reqs.
 [affected.functions]
