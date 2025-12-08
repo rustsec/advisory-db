@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package &#39;matrix-sdk-base&#39; › RustSec Advisory Database</title>
+<title>RUSTSEC-2025-0135: matrix-sdk-base: matrix-sdk-base: Denial of service due to custom `m.room.join_rules` events › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,58 +52,148 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/matrix-sdk-base/RUSTSEC-2025-0135.md">History</a> ⋅
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/matrix-sdk-base/RUSTSEC-2025-0135.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2025-0135">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2025-0135
+        
+      </h1>
+      <span class="subtitle"><p>matrix-sdk-base: Denial of service due to custom <code>m.room.join_rules</code> events</p>
 </span>
-      <h1>Advisories for package &#39;matrix-sdk-base&#39;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2025-12-08">
-    December  8, 2025
-  </time>
+    
 
-  
-  <h3>
-    
-        
-    
-    <a href="/advisories/RUSTSEC-2025-0135.html">
-      RUSTSEC-2025-0135: Vulnerability in matrix-sdk-base
-    </a>
-  </h3>
-  <span><p>matrix-sdk-base: Denial of service due to custom <code>m.room.join_rules</code> events</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2025-09-11">
-    September 11, 2025
-  </time>
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2025-12-08">
+          December  8, 2025
+        </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2025-12-08">
+          December  8, 2025
+        </time>
         
-    
-    <a href="/advisories/RUSTSEC-2025-0065.html">
-      RUSTSEC-2025-0065: Vulnerability in matrix-sdk-base
-    </a>
-  </h3>
-  <span><p>matrix-sdk-base: Panic in the <code>RoomMember::normalized_power_level()</code> method</p>
-</span>
-  
-</li>
+      </dd>
+
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        <a href="/packages/matrix-sdk-base.html">matrix-sdk-base</a>
+          (<a href="https://crates.io/crates/matrix-sdk-base">crates.io</a>)
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        Vulnerability
+        
+      </dd>
+
       
-    </ul>
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/denial-of-service.html">denial-of-service</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      <dt id="aliases">Aliases</dt>
+      <dd>
+        <ul>
+          
+          <li>
+            
+            <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-66622">CVE-2025-66622</a>
+            
+          </li>
+          
+          <li>
+            
+            <a href="https://github.com/advisories/GHSA-jj6p-3m75-g2p3">GHSA-jj6p-3m75-g2p3</a>
+            
+          </li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/matrix-org/matrix-rust-sdk/security/advisories/GHSA-jj6p-3m75-g2p3">
+              https://github.com/matrix-org/matrix-rust-sdk/security/advisories/GHSA-jj6p-3m75-g2p3
+            </a>
+          </li>
+        
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&#62;=0.16.0</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+
+      
+      
+    </dl>
+
+    
+    
+
+    <h3 id="description">Description</h3>
+    <p>The matrix-sdk-base crate is unable to handle responses that include custom
+m.room.join_rules values due to a serialization bug.</p>
+<p>This can be exploited to cause a denial-of-service condition, if a user is
+invited to a room with non-standard join rules, the crate's sync process will
+stall, preventing further processing for all rooms.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
