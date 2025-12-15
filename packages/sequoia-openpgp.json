@@ -1,5 +1,79 @@
 [
   {
+    "id": "RUSTSEC-2025-0136",
+    "modified": "2025-12-15T13:02:19Z",
+    "published": "2025-11-07T12:00:00Z",
+    "aliases": [
+      "CVE-2025-67897"
+    ],
+    "related": [],
+    "summary": "Underflow in aes_key_unwrap function",
+    "details": "The `aes_key_unwrap` function would panic if passed a ciphertext\nthat was too short.  In a debug build, it would panic due to a\nsubtraction underflow.  In a release build, it would use the\nsmall negative quantity to allocate a vector.  Since the\nallocator expects an unsigned quantity, the negative value would\nbe interpreted as a huge allocation.  The allocator would then\nfail to allocate the memory and panic.\n\nAn attacker could trigger this panic by sending a victim an\nencrypted message whose PKESK or SKESK packet has been specially\nmodified.  When the victim decrypts the message, the program\nwould crash.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:L"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "sequoia-openpgp",
+          "purl": "pkg:cargo/sequoia-openpgp"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "sequoia_openpgp::crypto::ecdh::aes_key_unwrap"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:L",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "2.1.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/sequoia-openpgp"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2025-0136.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://gitlab.com/sequoia-pgp/sequoia/-/blob/b59886e5e7bdf7169ed330f309a6633d131776e5/openpgp/NEWS#L7-L26"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
     "id": "RUSTSEC-2024-0345",
     "modified": "2025-10-28T06:02:18Z",
     "published": "2024-06-26T12:00:00Z",
