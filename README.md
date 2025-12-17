@@ -97,7 +97,7 @@ keywords = ["ssl", "mitm"]
 # Optional: the advisory license as an SPDX identifier. The default is "CC0-1.0".
 # Accepted values are "CC0-1.0" and "CC-BY-4.0".
 # When using "CC-BY-4.0", the `url` field must contain the link to the source
-# advisory. This should only be used for advisories imported for the GitHub
+# advisory. This should only be used for advisories imported from the GitHub
 # Advisory database ("GHSA").
 #license = "CC-BY-4.0"
 
