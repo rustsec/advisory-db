@@ -1,0 +1,83 @@
+[
+  {
+    "id": "RUSTSEC-2024-0445",
+    "modified": "2025-12-19T21:01:24Z",
+    "published": "2024-11-05T12:00:00Z",
+    "aliases": [
+      "CVE-2024-51756",
+      "GHSA-hxf5-99xg-86hw"
+    ],
+    "related": [],
+    "summary": "cap-primitives doesn't fully sandbox all the Windows device filenames",
+    "details": "## Impact\n\ncap-primitives's filesystem sandbox implementation on Windows blocks\naccess to special device filenames such as \"COM1\", \"COM2\",\n\"LPT0\", \"LPT1\", and so on, however it did not block access\nto the special device filenames which use superscript digits,\nsuch as \"COM¹\", \"COM²\", \"LPT⁰\", \"LPT¹\", and so on. Untrusted\nfilesystem paths could bypass the sandbox and access devices\nthrough those special device filenames with superscript\ndigits, and through them provide access peripheral devices\nconnected to the computer, or network resources mapped to\nthose devices. This can include modems, printers, network\nprinters, and any other device connected to a serial or\nparallel port, including emulated USB serial ports.\n\n## Patches\n\nThe bug is fixed in #371, which is published in\ncap-primitives 3.4.1, cap-std 3.4.1, and cap-async-std 3.4.1.\n\n## Workarounds\n\nThere are no known workarounds for this issue.\nAffected Windows users are recommended to upgrade.",
+    "severity": [
+      {
+        "type": "CVSS_V4",
+        "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:L/UI:N/VC:L/VI:L/VA:L/SC:N/SI:N/SA:N"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "cap-primitives",
+          "purl": "pkg:cargo/cap-primitives"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [
+              "windows"
+            ],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": "CVSS:4.0/AV:N/AC:L/AT:P/PR:L/UI:N/VC:L/VI:L/VA:L/SC:N/SI:N/SA:N",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "3.4.1"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/cap-primitives"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2024-0445.html"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://github.com/bytecodealliance/cap-std/security/advisories/GHSA-hxf5-99xg-86hw"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/bytecodealliance/cap-std/pull/371"
+      },
+      {
+        "type": "WEB",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-51756"
+      }
+    ],
+    "database_specific": {
+      "license": "CC-BY-4.0"
+    }
+  }
+]
