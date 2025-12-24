@@ -1,0 +1,66 @@
+[
+  {
+    "id": "RUSTSEC-2025-0137",
+    "modified": "2025-12-24T15:19:06Z",
+    "published": "2025-12-22T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Unsoundness of safe `reciprocal_mg10`",
+    "details": "The function `reciprocal_mg10` is marked as safe but can trigger undefined behavior (out-of-bounds access) because it relies on `debug_assert!` for safety checks instead of `assert!`.\n\nWhen compiled in release mode, the `debug_assert!` is optimized out, potentially allowing invalid inputs to cause memory corruption.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "ruint",
+          "purl": "pkg:cargo/ruint"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "ruint::algorithms::div::reciprocal_mg10"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/ruint"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2025-0137.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/recmo/uint/issues/550"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]
