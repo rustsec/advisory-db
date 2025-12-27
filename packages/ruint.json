@@ -1,9 +1,11 @@
 [
   {
     "id": "RUSTSEC-2025-0137",
-    "modified": "2025-12-24T15:19:06Z",
+    "modified": "2025-12-27T05:19:26Z",
     "published": "2025-12-22T12:00:00Z",
-    "aliases": [],
+    "aliases": [
+      "GHSA-9fjq-45qv-pcm7"
+    ],
     "related": [],
     "summary": "Unsoundness of safe `reciprocal_mg10`",
     "details": "The function `reciprocal_mg10` is marked as safe but can trigger undefined behavior (out-of-bounds access) because it relies on `debug_assert!` for safety checks instead of `assert!`.\n\nWhen compiled in release mode, the `debug_assert!` is optimized out, potentially allowing invalid inputs to cause memory corruption.",
