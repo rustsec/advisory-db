@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories with keyword &#39;undefined-behavior&#39; › RustSec Advisory Database</title>
+<title>RUSTSEC-2025-0140: gix-date: Non-utf8 String can be created with `TimeBuf::as_str` › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,102 +52,155 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/gix-date/RUSTSEC-2025-0140.md">History</a> ⋅
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/gix-date/RUSTSEC-2025-0140.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2025-0140">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2025-0140
+        
+      </h1>
+      <span class="subtitle"><p>Non-utf8 String can be created with <code>TimeBuf::as_str</code></p>
 </span>
-      <h1>Advisories with keyword &#39;undefined-behavior&#39;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2026-01-04">
-    January  4, 2026
-  </time>
+    
 
-  
-  <h3>
-    
-        
-    
-    <a href="/advisories/RUSTSEC-2025-0140.html">
-      RUSTSEC-2025-0140: Vulnerability in gix-date
-    </a>
-  </h3>
-  <span><p>Non-utf8 String can be created with <code>TimeBuf::as_str</code></p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2025-10-21">
-    October 21, 2025
-  </time>
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2025-12-29">
+          December 29, 2025
+        </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2026-01-04">
+          January  4, 2026
+        </time>
         
-          <span class="tag info">INFO</span>
-        
-    
-    <a href="/advisories/RUSTSEC-2025-0106.html">
-      RUSTSEC-2025-0106: Unsoundness in orx-pinned-vec
-    </a>
-  </h3>
-  <span><p>Undefined behavior in index_of_ptr with empty slices</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2025-05-14">
-    May 14, 2025
-  </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="package">Package</dt>
+      <dd>
         
-          <span class="tag info">INFO</span>
         
-    
-    <a href="/advisories/RUSTSEC-2025-0035.html">
-      RUSTSEC-2025-0035: Unsoundness in macroquad
-    </a>
-  </h3>
-  <span><p>Multiple soundness issues in <code>macroquad</code></p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2024-11-10">
-    November 10, 2024
-  </time>
+        <a href="/packages/gix-date.html">gix-date</a>
+          (<a href="https://crates.io/crates/gix-date">crates.io</a>)
+        
+        
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="type">Type</dt>
+      <dd>
         
-          <span class="tag info">INFO</span>
+        Vulnerability
         
-    
-    <a href="/advisories/RUSTSEC-2023-0087.html">
-      RUSTSEC-2023-0087: Unsoundness in simd-json-derive
-    </a>
-  </h3>
-  <span><p><code>MaybeUninit</code> misuse in <code>simd-json-derive</code></p>
-</span>
-  
-</li>
+      </dd>
+
       
-    </ul>
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/memory-corruption.html">memory-corruption</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/utf8.html">#utf8</a>
+        
+          <a href="/keywords/undefined-behavior.html">#undefined-behavior</a>
+        
+      </dd>
+      
+
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/GitoxideLabs/gitoxide/issues/2305">
+              https://github.com/GitoxideLabs/gitoxide/issues/2305
+            </a>
+          </li>
+        
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&#62;=0.12.0</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+
+      
+      
+
+      
+      
+    </dl>
+
+    
+    
+    <dl>
+      <dt>Affected Functions</dt>
+      <dd>Version</dd>
+      
+      <dt><code>gix_date::parse::TimeBuf::as_str</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;=0.11.1</code></li>
+          
+        </ul>
+      </dd>
+      
+    </dl>
+    
+
+    
+
+    <h3 id="description">Description</h3>
+    <p>The function <code>gix_date::parse::TimeBuf::as_str</code> can create an illegal string containing non-utf8 characters. This violates the safety invariant of <code>TimeBuf</code> and can lead to undefined behavior when consuming the string.</p>
+<p>The bug can be prevented by adding <code>str::from_utf8</code> to the function <code>TimeBuf::write</code>.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
