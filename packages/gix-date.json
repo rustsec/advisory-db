@@ -1,9 +1,11 @@
 [
   {
     "id": "RUSTSEC-2025-0140",
-    "modified": "2026-01-04T20:34:25Z",
+    "modified": "2026-01-06T05:40:48Z",
     "published": "2025-12-29T12:00:00Z",
-    "aliases": [],
+    "aliases": [
+      "GHSA-6mw6-mj76-grwc"
+    ],
     "related": [],
     "summary": "Non-utf8 String can be created with `TimeBuf::as_str`",
     "details": "The function `gix_date::parse::TimeBuf::as_str` can create an illegal string containing non-utf8 characters. This violates the safety invariant of `TimeBuf` and can lead to undefined behavior when consuming the string.\n\nThe bug can be prevented by adding `str::from_utf8` to the function `TimeBuf::write`.",
