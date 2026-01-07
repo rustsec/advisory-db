@@ -1,5 +1,70 @@
 [
   {
+    "id": "RUSTSEC-2026-0002",
+    "modified": "2026-01-07T17:36:26Z",
+    "published": "2026-01-07T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "`IterMut` violates Stacked Borrows by invalidating internal pointer",
+    "details": "Affected versions of this crate contain a soundness issue in the `IterMut`\niterator implementation. The `IterMut::next` and `IterMut::next_back`\nmethods temporarily create an exclusive reference to the key when\ndereferencing the internal node pointer.\n\nThis invalidates the shared pointer held by the internal `HashMap`,\nviolating Stacked Borrows rules.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "lru",
+          "purl": "pkg:cargo/lru"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.9.0"
+              },
+              {
+                "fixed": "0.16.3"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/lru"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0002.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/jeromefroe/lru-rs/pull/224"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
     "id": "RUSTSEC-2021-0130",
     "modified": "2023-06-13T13:10:24Z",
     "published": "2021-12-21T12:00:00Z",

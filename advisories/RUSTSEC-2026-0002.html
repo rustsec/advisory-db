@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package &#39;lru&#39; › RustSec Advisory Database</title>
+<title>RUSTSEC-2026-0002: lru: `IterMut` violates Stacked Borrows by invalidating internal pointer › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,60 +52,147 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/lru/RUSTSEC-2026-0002.md">History</a> ⋅
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/lru/RUSTSEC-2026-0002.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2026-0002">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2026-0002
+        
+      </h1>
+      <span class="subtitle"><p><code>IterMut</code> violates Stacked Borrows by invalidating internal pointer</p>
 </span>
-      <h1>Advisories for package &#39;lru&#39;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2026-01-07">
-    January  7, 2026
-  </time>
+    
 
-  
-  <h3>
-    
-        
-          <span class="tag info">INFO</span>
-        
-    
-    <a href="/advisories/RUSTSEC-2026-0002.html">
-      RUSTSEC-2026-0002: Unsoundness in lru
-    </a>
-  </h3>
-  <span><p><code>IterMut</code> violates Stacked Borrows by invalidating internal pointer</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2021-12-21">
-    December 21, 2021
-  </time>
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2026-01-07">
+          January  7, 2026
+        </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2026-01-07">
+          January  7, 2026
+        </time>
         
-    
-    <a href="/advisories/RUSTSEC-2021-0130.html">
-      RUSTSEC-2021-0130: Vulnerability in lru
-    </a>
-  </h3>
-  <span><p>Use after free in lru crate</p>
-</span>
-  
-</li>
+      </dd>
+
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        <a href="/packages/lru.html">lru</a>
+          (<a href="https://crates.io/crates/lru">crates.io</a>)
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        <span class="tag info">INFO</span>
+        Unsound
+        
+      </dd>
+
       
-    </ul>
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/memory-corruption.html">memory-corruption</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/stacked-borrows.html">#stacked-borrows</a>
+        
+      </dd>
+      
+
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/jeromefroe/lru-rs/pull/224">
+              https://github.com/jeromefroe/lru-rs/pull/224
+            </a>
+          </li>
+        
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&#62;=0.16.3</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+      <dt id="unaffected">Unaffected</dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;0.9.0</code></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      
+    </dl>
+
+    
+    
+
+    <h3 id="description">Description</h3>
+    <p>Affected versions of this crate contain a soundness issue in the <code>IterMut</code>
+iterator implementation. The <code>IterMut::next</code> and <code>IterMut::next_back</code>
+methods temporarily create an exclusive reference to the key when
+dereferencing the internal node pointer.</p>
+<p>This invalidates the shared pointer held by the internal <code>HashMap</code>,
+violating Stacked Borrows rules.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
