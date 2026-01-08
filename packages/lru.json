@@ -1,9 +1,11 @@
 [
   {
     "id": "RUSTSEC-2026-0002",
-    "modified": "2026-01-07T17:36:26Z",
+    "modified": "2026-01-08T05:46:06Z",
     "published": "2026-01-07T12:00:00Z",
-    "aliases": [],
+    "aliases": [
+      "GHSA-rhfx-m35p-ff5j"
+    ],
     "related": [],
     "summary": "`IterMut` violates Stacked Borrows by invalidating internal pointer",
     "details": "Affected versions of this crate contain a soundness issue in the `IterMut`\niterator implementation. The `IterMut::next` and `IterMut::next_back`\nmethods temporarily create an exclusive reference to the key when\ndereferencing the internal node pointer.\n\nThis invalidates the shared pointer held by the internal `HashMap`,\nviolating Stacked Borrows rules.",
