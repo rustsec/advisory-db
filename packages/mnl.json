@@ -1,0 +1,64 @@
+[
+  {
+    "id": "RUSTSEC-2025-0142",
+    "modified": "2026-01-09T09:49:19Z",
+    "published": "2025-10-18T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Segmentation fault and invalid memory read in `mnl::cb_run`",
+    "details": "The function `mnl::cb_run` is marked as safe but exhibits unsound behavior when processing malformed Netlink message buffers.\n\nPassing a crafted byte slice to `mnl::cb_run` can trigger memory violations. The function does not sufficiently validate the input buffer structure before processing, leading to out-of-bounds reads.\n\nThis vulnerability allows an attacker to cause a Denial of Service (segmentation fault) or potentially read unmapped memory by providing a malformed Netlink message.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "mnl",
+          "purl": "pkg:cargo/mnl"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/mnl"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2025-0142.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/mullvad/mnl-rs/issues/15"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

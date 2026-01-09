@@ -1,5 +1,122 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2026-01-07T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2025-0141: bincode is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2025-0141.html</id><updated>2026-01-07T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2025-0141.html" rel="alternate" type="text/html" title="RUSTSEC-2025-0141: bincode is unmaintained"/><published>2026-01-07T12:00:00+00:00</published><summary xml:lang="en">Bincode is unmaintained</summary><content xml:lang="en" type="html">  &lt;article&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2026-01-09T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2025-0142: Vulnerability in mnl</title><id>https://rustsec.org/advisories/RUSTSEC-2025-0142.html</id><updated>2026-01-09T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2025-0142.html" rel="alternate" type="text/html" title="RUSTSEC-2025-0142: Vulnerability in mnl"/><published>2026-01-09T12:00:00+00:00</published><summary xml:lang="en">Segmentation fault and invalid memory read in `mnl::cb_run`</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/mnl/RUSTSEC-2025-0142.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/mnl/RUSTSEC-2025-0142.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2025-0142&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2025-0142
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Segmentation fault and invalid memory read in &lt;code&gt;mnl::cb_run&lt;/code&gt;&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2025-10-18&quot;&gt;
+          October 18, 2025
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-01-09&quot;&gt;
+          January  9, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/mnl.html&quot;&gt;mnl&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/mnl&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/mullvad/mnl-rs/issues/15&quot;&gt;
+              https://github.com/mullvad/mnl-rs/issues/15
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;The function &lt;code&gt;mnl::cb_run&lt;/code&gt; is marked as safe but exhibits unsound behavior when processing malformed Netlink message buffers.&lt;/p&gt;
+&lt;p&gt;Passing a crafted byte slice to &lt;code&gt;mnl::cb_run&lt;/code&gt; can trigger memory violations. The function does not sufficiently validate the input buffer structure before processing, leading to out-of-bounds reads.&lt;/p&gt;
+&lt;p&gt;This vulnerability allows an attacker to cause a Denial of Service (segmentation fault) or potentially read unmapped memory by providing a malformed Netlink message.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2025-0141: bincode is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2025-0141.html</id><updated>2026-01-07T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2025-0141.html" rel="alternate" type="text/html" title="RUSTSEC-2025-0141: bincode is unmaintained"/><published>2026-01-07T12:00:00+00:00</published><summary xml:lang="en">Bincode is unmaintained</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
           &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/bincode/RUSTSEC-2025-0141.md&quot;&gt;History&lt;/a&gt; ⋅
@@ -1673,256 +1790,6 @@ NGI Zero Core grant program for rpgp.&lt;/p&gt;
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
     license.
 
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2024-0446: Vulnerability in starship</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0446.html</id><updated>2025-12-22T12:00:00+00:00</updated><category term="code-execution"/><link href="https://rustsec.org/advisories/RUSTSEC-2024-0446.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0446: Vulnerability in starship"/><published>2025-12-22T12:00:00+00:00</published><summary xml:lang="en">Shell expansion in custom commands</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/starship/RUSTSEC-2024-0446.md&quot;&gt;History&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/starship/RUSTSEC-2024-0446.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0446&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2024-0446
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Shell expansion in custom commands&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2024-07-26&quot;&gt;
-          July 26, 2024
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2025-12-22&quot;&gt;
-          December 22, 2025
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/starship.html&quot;&gt;starship&lt;/a&gt;
-          (&lt;a href=&quot;https://crates.io/crates/starship&quot;&gt;crates.io&lt;/a&gt;)
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/code-execution.html&quot;&gt;code-execution&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-41815&quot;&gt;CVE-2024-41815&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-vx24-x4mv-vwr5&quot;&gt;GHSA-vx24-x4mv-vwr5&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/starship/starship/security/advisories/GHSA-vx24-x4mv-vwr5&quot;&gt;
-              https://github.com/starship/starship/security/advisories/GHSA-vx24-x4mv-vwr5
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
-      &lt;dd&gt;7.4 &lt;span class=&quot;tag high&quot;&gt;
-        HIGH
-      &lt;/span&gt;&lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;dl&gt;
-          
-            &lt;dt&gt;Attack Vector&lt;/dt&gt;
-            &lt;dd&gt;Local&lt;/dd&gt;
-          
-            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
-            &lt;dd&gt;High&lt;/dd&gt;
-          
-            &lt;dt&gt;Privileges Required&lt;/dt&gt;
-            &lt;dd&gt;None&lt;/dd&gt;
-          
-            &lt;dt&gt;User Interaction&lt;/dt&gt;
-            &lt;dd&gt;None&lt;/dd&gt;
-          
-            &lt;dt&gt;Scope&lt;/dt&gt;
-            &lt;dd&gt;Unchanged&lt;/dd&gt;
-          
-            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
-            &lt;dd&gt;High&lt;/dd&gt;
-          
-            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
-            &lt;dd&gt;High&lt;/dd&gt;
-          
-            &lt;dt&gt;Availability Impact&lt;/dt&gt;
-            &lt;dd&gt;High&lt;/dd&gt;
-          
-        &lt;/dl&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
-
-      
-          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H&quot;&gt;CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H&lt;/a&gt;&lt;/dd&gt;
-        
-
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=1.20.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#60;=1.0.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;h2&gt;Summary&lt;/h2&gt;
-&lt;p&gt;Undocumented and unpredictable shell expansion and/or quoting
-rules make it easily to accidentally cause shell injection
-when using custom commands with starship in bash.&lt;/p&gt;
-&lt;h2&gt;Details&lt;/h2&gt;
-&lt;p&gt;I wanted to show the git commit name in my prompt (I use bash), so I added a command:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;[custom.git_commit_name]
-command = &apos;git show -s --format=&amp;quot;%&amp;lt;(25,mtrunc)%s&amp;quot;&apos;
-style = &amp;quot;italic&amp;quot;
-when = true
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;To my surprise, when I had a commit with backticks in it,
-the backticks were expanded. e.g.:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;touch foo
-git add foo
-git commit -m &apos;`ls`&apos;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Thankfully I noticed it on my own commit before checking out
-someone&apos;s code whose commit message was&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;rm -rf /important/stuff&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;The documentation says:&lt;/p&gt;
-&lt;p&gt;Command output is printed unescaped to the prompt&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;    Whatever output the command generates is printed unmodified in the prompt.
-    This means if the output contains special sequences that are interpreted
-    by your shell they will be expanded when displayed. These special
-    sequences are shell specific, e.g. you can write a command module that
-    writes bash sequences, e.g. \h, but this module will not work in a fish
-    or zsh shell.
-
-    Format strings can also contain shell specific prompt sequences, e.g. Bash, Zsh.
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;However, it doesn&apos;t specifically mention shell injection with $()
-and backticks; it just mentions the prompt escape sequences, and
-the link doesn&apos;t suggest any shell injection possibilities either.&lt;/p&gt;
-&lt;p&gt;Furthermore, I can&apos;t even figure out how to properly escape things,
-because simply changing the command to&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;command = &apos;printf %q &amp;quot;$(git show -s --format=&amp;quot;%&amp;lt;(25,mtrunc)%s&amp;quot;)&amp;quot;&apos;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;doesn&apos;t work, as it&apos;s also adding a backslash before spaces. I also
-tried &lt;code&gt;use_stdin=false&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;I&apos;m not 100% sure this qualifies as a vulnerability, but I feel it is not
-documented well enough to warn unsuspecting users, and it certainly is
-not documented how to properly quote things, because after 15-30 minutes
-of trying, I can&apos;t figure it out.&lt;/p&gt;
-&lt;p&gt;I see some past commits about fixing shell injection with $, and it does
-seem like the problem doesn&apos;t exist in build-in modules like git branch.&lt;/p&gt;
-&lt;h2&gt;PoC&lt;/h2&gt;
-&lt;p&gt;Have some custom command which prints out information from a potentially untrusted/unverified source.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;[custom.git_commit_name]
-command = &apos;git show -s --format=&amp;quot;%&amp;lt;(25,mtrunc)%s&amp;quot;&apos;
-style = &amp;quot;italic&amp;quot;
-when = true
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2&gt;Impact&lt;/h2&gt;
-&lt;p&gt;People with custom commands, so the scope is limited, and without knowledge
-of people&apos;s commands, it could be hard to target people. The only one I saw
-in the example custom commands that may be vulnerable is the playerctl one.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC-BY-4.0.html&quot;&gt;CC-BY-4.0&lt;/a&gt;
-    license.
-
-    
-      
-      
-          Source: &lt;a href=&quot;https://github.com/starship/starship/security/advisories/GHSA-vx24-x4mv-vwr5&quot;&gt;https://github.com/starship/starship/security/advisories/GHSA-vx24-x4mv-vwr5&lt;/a&gt;
-        
     
     &lt;/p&gt;
   &lt;/article&gt;</content></entry></feed>
