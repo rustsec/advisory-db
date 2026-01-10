@@ -154,7 +154,7 @@ They contain a `license` field explicitly indicating their license and a `url` f
 
 [build-image]: https://github.com/rustsec/advisory-db/workflows/Validate/badge.svg
 [build-link]: https://github.com/rustsec/advisory-db/actions
-[maintained-image]: https://img.shields.io/maintenance/yes/2025.svg
+[maintained-image]: https://img.shields.io/maintenance/yes/2026.svg
 [chat-image]: https://img.shields.io/badge/zulip-join_chat-blue.svg
 [chat-link]: https://rust-lang.zulipchat.com/#narrow/stream/146229-wg-secure-code/
 
