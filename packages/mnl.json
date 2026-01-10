@@ -1,9 +1,11 @@
 [
   {
     "id": "RUSTSEC-2025-0142",
-    "modified": "2026-01-09T09:49:19Z",
+    "modified": "2026-01-10T07:01:15Z",
     "published": "2025-10-18T12:00:00Z",
-    "aliases": [],
+    "aliases": [
+      "GHSA-585q-cm62-757j"
+    ],
     "related": [],
     "summary": "Segmentation fault and invalid memory read in `mnl::cb_run`",
     "details": "The function `mnl::cb_run` is marked as safe but exhibits unsound behavior when processing malformed Netlink message buffers.\n\nPassing a crafted byte slice to `mnl::cb_run` can trigger memory violations. The function does not sufficiently validate the input buffer structure before processing, leading to out-of-bounds reads.\n\nThis vulnerability allows an attacker to cause a Denial of Service (segmentation fault) or potentially read unmapped memory by providing a malformed Netlink message.",
