@@ -1,0 +1,65 @@
+[
+  {
+    "id": "RUSTSEC-2026-0004",
+    "modified": "2026-01-21T14:11:02Z",
+    "published": "2026-01-21T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Triton VM Soundness Vulnerability due to Improper Sampling of Randomness",
+    "details": "In affected versions of Triton VM, the verifier failed to correctly sample randomness in the FRI sub-protocol.\n\nMalicious provers can exploit this to craft proofs for arbitrary statements that this verifier accepts as valid, undermining soundness.\n\nProtocols that rely on proofs and the supplied verifier of the affected versions of Triton VM are completely broken. Protocols implementing their own verifier might be unaffected.\n\nThe flaw was corrected in commit 3a045d63, where the relevant randomness is sampled correctly.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "triton-vm",
+          "purl": "pkg:cargo/triton-vm"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "triton_vm::verify"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "crypto-failure"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.41.0"
+              },
+              {
+                "fixed": "2.0.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/triton-vm"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0004.html"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]
