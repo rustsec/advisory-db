@@ -1,0 +1,75 @@
+[
+  {
+    "id": "RUSTSEC-2025-0144",
+    "modified": "2026-01-27T22:28:37Z",
+    "published": "2025-12-12T12:00:00Z",
+    "aliases": [
+      "CVE-2026-22705",
+      "GHSA-hcp2-x6j4-29j7"
+    ],
+    "related": [],
+    "summary": "Timing side-channel in ML-DSA decomposition",
+    "details": "### Summary\n\nA timing side-channel was discovered in the Decompose algorithm which is used during ML-DSA signing to generate hints for the signature.\n\n### Details\n\nThe analysis was performed using a constant-time analyzer that examines compiled assembly code for instructions with data-dependent timing behavior. The analyzer flags:\n\n- **UDIV/SDIV instructions**: Hardware division instructions have early termination optimizations where execution time depends on operand values.\n\nThe `decompose` function used a hardware division instruction to compute `r1.0 / TwoGamma2::U32`. This function is called during signing through `high_bits()` and `low_bits()`, which process values derived from secret key components:\n\n- `(&w - &cs2).low_bits()` where `cs2` is derived from secret key component `s2`\n- `Hint::new()` calls `high_bits()` on values derived from secret key component `t0`\n\n**Original Code**:\n```rust\nfn decompose<TwoGamma2: Unsigned>(self) -> (Elem, Elem) {\n    // ...\n    let mut r1 = r_plus - r0;\n    r1.0 /= TwoGamma2::U32;  // Variable-time division on secret-derived data\n    (r1, r0)\n}\n```\n\n### Impact\n\nThe dividend (`r1.0`) is derived from secret key material. An attacker with precise timing measurements could extract information about the signing key by observing timing variations in the division operation.\n\n### Mitigation\n\nInteger division was replaced with a constant-time Barrett reduction.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:A/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:N"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "ml-dsa",
+          "purl": "pkg:cargo/ml-dsa"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "crypto-failure"
+          ],
+          "cvss": "CVSS:3.1/AV:A/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:N",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.1.0-rc.3"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/ml-dsa"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2025-0144.html"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://github.com/RustCrypto/signatures/security/advisories/GHSA-hcp2-x6j4-29j7"
+      }
+    ],
+    "database_specific": {
+      "license": "CC-BY-4.0"
+    }
+  }
+]
