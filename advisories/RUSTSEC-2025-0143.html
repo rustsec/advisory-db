@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package &#39;capnp&#39; › RustSec Advisory Database</title>
+<title>RUSTSEC-2025-0143: capnp: Unsound APIs of public `constant::Reader` and `StructSchema` › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,58 +52,177 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/capnp/RUSTSEC-2025-0143.md">History</a> ⋅
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/capnp/RUSTSEC-2025-0143.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2025-0143">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2025-0143
+        
+      </h1>
+      <span class="subtitle"><p>Unsound APIs of public <code>constant::Reader</code> and <code>StructSchema</code></p>
 </span>
-      <h1>Advisories for package &#39;capnp&#39;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2026-01-27">
-    January 27, 2026
-  </time>
+    
 
-  
-  <h3>
-    
-        
-    
-    <a href="/advisories/RUSTSEC-2025-0143.html">
-      RUSTSEC-2025-0143: Vulnerability in capnp
-    </a>
-  </h3>
-  <span><p>Unsound APIs of public <code>constant::Reader</code> and <code>StructSchema</code></p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2022-11-30">
-    November 30, 2022
-  </time>
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2025-12-24">
+          December 24, 2025
+        </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2026-01-27">
+          January 27, 2026
+        </time>
         
-    
-    <a href="/advisories/RUSTSEC-2022-0068.html">
-      RUSTSEC-2022-0068: Vulnerability in capnp
-    </a>
-  </h3>
-  <span><p>out-of-bounds read possible when setting list-of-pointers</p>
-</span>
-  
-</li>
+      </dd>
+
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        <a href="/packages/capnp.html">capnp</a>
+          (<a href="https://crates.io/crates/capnp">crates.io</a>)
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        Vulnerability
+        
+      </dd>
+
       
-    </ul>
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/memory-corruption.html">memory-corruption</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/unsoundness.html">#unsoundness</a>
+        
+          <a href="/keywords/undefined-behavior.html">#undefined-behavior</a>
+        
+      </dd>
+      
+
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/capnproto/capnproto-rust/issues/605">
+              https://github.com/capnproto/capnproto-rust/issues/605
+            </a>
+          </li>
+        
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&#62;=0.24.0</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+
+      
+      
+
+      
+      
+    </dl>
+
+    
+    
+    <dl>
+      <dt>Affected Functions</dt>
+      <dd>Version</dd>
+      
+      <dt><code>capnp::constant::Reader::get</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;0.24.0</code></li>
+          
+        </ul>
+      </dd>
+      
+      <dt><code>capnp::schema::StructSchema::new</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;0.24.0</code></li>
+          
+        </ul>
+      </dd>
+      
+    </dl>
+    
+
+    
+
+    <h3 id="description">Description</h3>
+    <p>The safe API functions <code>constant::Reader::get</code> and <code>StructSchema::new</code> rely on <code>PointerReader::get_root_unchecked</code>, which can cause undefined behavior (UB) by constructing arbitrary words or schemas.</p>
+<h2><code>Reader::get</code></h2>
+<pre><code class="language-rust">pub fn get(&amp;self) -&gt; Result&lt;&lt;T as Owned&gt;::Reader&lt;'static&gt;&gt; {
+    // ...
+    // UNSAFE: access `words` without validation
+}
+</code></pre>
+<h2><code>StructSchema::new</code></h2>
+<pre><code class="language-rust">pub fn new(builder: RawBrandedStructSchema) -&gt; StructSchema {
+    // ...
+    // UNSAFE: access encoded nodes without validation
+}
+</code></pre>
+<p>This vulnerability allows safe Rust code to trigger UB, which violates Rust's safety guarantees.</p>
+<p>The issue is resolved in version <code>0.24.0</code> by making constructor functions unsafe and mark the fields of struct as visible only in the crate.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>

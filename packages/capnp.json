@@ -1,5 +1,73 @@
 [
   {
+    "id": "RUSTSEC-2025-0143",
+    "modified": "2026-01-27T09:22:43Z",
+    "published": "2025-12-24T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Unsound APIs of public `constant::Reader` and `StructSchema`",
+    "details": "The safe API functions `constant::Reader::get` and `StructSchema::new` rely on `PointerReader::get_root_unchecked`, which can cause undefined behavior (UB) by constructing arbitrary words or schemas.\n\n## `Reader::get`\n\n```rust\npub fn get(&self) -> Result<<T as Owned>::Reader<'static>> {\n    // ...\n    // UNSAFE: access `words` without validation\n}\n```\n\n## `StructSchema::new`\n\n```rust\npub fn new(builder: RawBrandedStructSchema) -> StructSchema {\n    // ...\n    // UNSAFE: access encoded nodes without validation\n}\n```\n\nThis vulnerability allows safe Rust code to trigger UB, which violates Rust's safety guarantees.\n\nThe issue is resolved in version `0.24.0` by making constructor functions unsafe and mark the fields of struct as visible only in the crate.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "capnp",
+          "purl": "pkg:cargo/capnp"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "capnp::constant::Reader::get",
+              "capnp::schema::StructSchema::new"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.24.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/capnp"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2025-0143.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/capnproto/capnproto-rust/issues/605"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
     "id": "RUSTSEC-2022-0068",
     "modified": "2022-11-30T22:16:39Z",
     "published": "2022-11-30T12:00:00Z",
