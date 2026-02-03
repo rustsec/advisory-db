@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories with keyword &#39;integer-overflow&#39; › RustSec Advisory Database</title>
+<title>RUSTSEC-2026-0007: bytes: Integer overflow in `BytesMut::reserve` › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,134 +52,182 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/bytes/RUSTSEC-2026-0007.md">History</a> ⋅
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/bytes/RUSTSEC-2026-0007.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2026-0007">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2026-0007
+        
+      </h1>
+      <span class="subtitle"><p>Integer overflow in <code>BytesMut::reserve</code></p>
 </span>
-      <h1>Advisories with keyword &#39;integer-overflow&#39;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2026-02-03">
-    February  3, 2026
-  </time>
-
-  
-  <h3>
     
+
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2026-02-03">
+          February  3, 2026
+        </time>
+      </dd>
+
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2026-02-03">
+          February  3, 2026
+        </time>
+        
+      </dd>
+
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        <a href="/packages/bytes.html">bytes</a>
+          (<a href="https://crates.io/crates/bytes">crates.io</a>)
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        Vulnerability
+        
+      </dd>
+
+      
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/memory-corruption.html">memory-corruption</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/integer-overflow.html">#integer-overflow</a>
+        
+      </dd>
+      
+
+      
+      <dt id="aliases">Aliases</dt>
+      <dd>
+        <ul>
+          
+          <li>
+            
+            <a href="https://github.com/advisories/GHSA-434x-w66g-qw3r">GHSA-434x-w66g-qw3r</a>
+            
+          </li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/advisories/GHSA-434x-w66g-qw3r">
+              https://github.com/advisories/GHSA-434x-w66g-qw3r
+            </a>
+          </li>
+        
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&#62;=1.11.1</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+      <dt id="unaffected">Unaffected</dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;1.2.1</code></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      
+    </dl>
+
+    
+    
+
+    <h3 id="description">Description</h3>
+    <p>In the unique reclaim path of <code>BytesMut::reserve</code>, the condition</p>
+<pre><code class="language-rs">if v_capacity &gt;= new_cap + offset
+</code></pre>
+<p>uses an unchecked addition. When <code>new_cap + offset</code> overflows <code>usize</code> in release builds, this condition may incorrectly pass, causing <code>self.cap</code> to be set to a value that exceeds the actual allocated capacity. Subsequent APIs such as <code>spare_capacity_mut()</code> then trust this corrupted <code>cap</code> value and may create out-of-bounds slices, leading to UB.</p>
+<p>This behavior is observable in release builds (integer overflow wraps), whereas debug builds panic due to overflow checks.</p>
+<h2>PoC</h2>
+<pre><code class="language-rs">use bytes::*;
+
+fn main() {
+    let mut a = BytesMut::from(&amp;b&quot;hello world&quot;[..]);
+    let mut b = a.split_off(5);
+
+    // Ensure b becomes the unique owner of the backing storage
+    drop(a);
+
+    // Trigger overflow in new_cap + offset inside reserve
+    b.reserve(usize::MAX - 6);
+
+    // This call relies on the corrupted cap and may cause UB &amp; HBO
+    b.put_u8(b'h');
+}
+</code></pre>
+<h1>Workarounds</h1>
+<p>Users of <code>BytesMut::reserve</code> are only affected if integer overflow checks are configured to wrap. When integer overflow is configured to panic, this issue does not apply.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC-BY-4.0.html">CC-BY-4.0</a>
+    license.
+
+    
+      
+      
+          Source: <a href="https://github.com/advisories/GHSA-434x-w66g-qw3r">https://github.com/advisories/GHSA-434x-w66g-qw3r</a>
         
     
-    <a href="/advisories/RUSTSEC-2026-0007.html">
-      RUSTSEC-2026-0007: Vulnerability in bytes
-    </a>
-  </h3>
-  <span><p>Integer overflow in <code>BytesMut::reserve</code></p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2024-02-19">
-    February 19, 2024
-  </time>
-
-  
-  <h3>
-    
-        
-    
-    <a href="/advisories/RUSTSEC-2024-0016.html">
-      RUSTSEC-2024-0016: Vulnerability in libdav1d-sys
-    </a>
-  </h3>
-  <span><p>dav1d AV1 decoder integer overflow</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2022-08-26">
-    August 26, 2022
-  </time>
-
-  
-  <h3>
-    
-      <span class="tag critical">CRITICAL</span>
-      
-    <a href="/advisories/RUSTSEC-2022-0051.html">
-      RUSTSEC-2022-0051: Vulnerability in lz4-sys
-    </a>
-  </h3>
-  <span><p>Memory corruption in liblz4</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2021-12-21">
-    December 21, 2021
-  </time>
-
-  
-  <h3>
-    
-        
-    
-    <a href="/advisories/RUSTSEC-2021-0132.html">
-      RUSTSEC-2021-0132: Vulnerability in compu-brotli-sys
-    </a>
-  </h3>
-  <span><p>Integer overflow in the bundled Brotli C library</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2021-12-21">
-    December 21, 2021
-  </time>
-
-  
-  <h3>
-    
-        
-    
-    <a href="/advisories/RUSTSEC-2021-0131.html">
-      RUSTSEC-2021-0131: Vulnerability in brotli-sys
-    </a>
-  </h3>
-  <span><p>Integer overflow in the bundled Brotli C library</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2020-10-01">
-    October  1, 2020
-  </time>
-
-  
-  <h3>
-    
-      <span class="tag high">HIGH</span>
-      
-    <a href="/advisories/RUSTSEC-2019-0033.html">
-      RUSTSEC-2019-0033: Vulnerability in http
-    </a>
-  </h3>
-  <span><p>Integer Overflow in HeaderMap::reserve() can cause Denial of Service</p>
-</span>
-  
-</li>
-      
-    </ul>
+    </p>
   </article>
 </main>
