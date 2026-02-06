@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2026-02-06T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2026-0009: Vulnerability in time</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0009.html</id><updated>2026-02-06T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0009.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0009: Vulnerability in time"/><published>2026-02-06T12:00:00+00:00</published><summary xml:lang="en">Impact</summary><content xml:lang="en" type="html">  &lt;article&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2026-02-06T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2026-0009: Vulnerability in time</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0009.html</id><updated>2026-02-06T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0009.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0009: Vulnerability in time"/><published>2026-02-06T12:00:00+00:00</published><summary xml:lang="en">Denial of Service via Stack Exhaustion</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
           &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/time/RUSTSEC-2026-0009.md&quot;&gt;History&lt;/a&gt; ⋅
@@ -14,7 +14,7 @@
         RUSTSEC-2026-0009
         
       &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Impact&lt;/p&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Denial of Service via Stack Exhaustion&lt;/p&gt;
 &lt;/span&gt;
     &lt;/header&gt;
 
@@ -272,14 +272,15 @@
     
 
     &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;When user-provided input is provided to any type that parses with the RFC 2822 format, a denial of
+    &lt;h2&gt;Impact&lt;/h2&gt;
+&lt;p&gt;When user-provided input is provided to any type that parses with the RFC 2822 format, a denial of
 service attack via stack exhaustion is possible. The attack relies on formally deprecated and
 rarely-used features that are part of the RFC 2822 format used in a malicious manner. Ordinary,
 non-malicious input will never encounter this scenario.&lt;/p&gt;
-&lt;h1&gt;Patches&lt;/h1&gt;
+&lt;h2&gt;Patches&lt;/h2&gt;
 &lt;p&gt;A limit to the depth of recursion was added in v0.3.47. From this version, an error will be returned
 rather than exhausting the stack.&lt;/p&gt;
-&lt;h1&gt;Workarounds&lt;/h1&gt;
+&lt;h2&gt;Workarounds&lt;/h2&gt;
 &lt;p&gt;Limiting the length of user input is the simplest way to avoid stack exhaustion, as the amount of
 the stack consumed would be at most a factor of the length of the input.&lt;/p&gt;
 

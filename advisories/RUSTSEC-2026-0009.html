@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>RUSTSEC-2026-0009: time: Impact › RustSec Advisory Database</title>
+<title>RUSTSEC-2026-0009: time: Denial of Service via Stack Exhaustion › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -68,7 +68,7 @@
         RUSTSEC-2026-0009
         
       </h1>
-      <span class="subtitle"><p>Impact</p>
+      <span class="subtitle"><p>Denial of Service via Stack Exhaustion</p>
 </span>
     </header>
 
@@ -326,14 +326,15 @@
     
 
     <h3 id="description">Description</h3>
-    <p>When user-provided input is provided to any type that parses with the RFC 2822 format, a denial of
+    <h2>Impact</h2>
+<p>When user-provided input is provided to any type that parses with the RFC 2822 format, a denial of
 service attack via stack exhaustion is possible. The attack relies on formally deprecated and
 rarely-used features that are part of the RFC 2822 format used in a malicious manner. Ordinary,
 non-malicious input will never encounter this scenario.</p>
-<h1>Patches</h1>
+<h2>Patches</h2>
 <p>A limit to the depth of recursion was added in v0.3.47. From this version, an error will be returned
 rather than exhausting the stack.</p>
-<h1>Workarounds</h1>
+<h2>Workarounds</h2>
 <p>Limiting the length of user input is the simplest way to avoid stack exhaustion, as the amount of
 the stack consumed would be at most a factor of the length of the input.</p>
 

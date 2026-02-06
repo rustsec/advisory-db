@@ -1,15 +1,15 @@
 [
   {
     "id": "RUSTSEC-2026-0009",
-    "modified": "2026-02-06T06:56:46Z",
+    "modified": "2026-02-06T09:12:16Z",
     "published": "2026-02-05T12:00:00Z",
     "aliases": [
       "CVE-2026-25727",
       "GHSA-r6v5-fh4h-64xc"
     ],
     "related": [],
-    "summary": "Impact",
-    "details": "When user-provided input is provided to any type that parses with the RFC 2822 format, a denial of\nservice attack via stack exhaustion is possible. The attack relies on formally deprecated and\nrarely-used features that are part of the RFC 2822 format used in a malicious manner. Ordinary,\nnon-malicious input will never encounter this scenario.\n\n# Patches\n\nA limit to the depth of recursion was added in v0.3.47. From this version, an error will be returned\nrather than exhausting the stack.\n\n# Workarounds\n\nLimiting the length of user input is the simplest way to avoid stack exhaustion, as the amount of\nthe stack consumed would be at most a factor of the length of the input.",
+    "summary": "Denial of Service via Stack Exhaustion",
+    "details": "## Impact\n\nWhen user-provided input is provided to any type that parses with the RFC 2822 format, a denial of\nservice attack via stack exhaustion is possible. The attack relies on formally deprecated and\nrarely-used features that are part of the RFC 2822 format used in a malicious manner. Ordinary,\nnon-malicious input will never encounter this scenario.\n\n## Patches\n\nA limit to the depth of recursion was added in v0.3.47. From this version, an error will be returned\nrather than exhausting the stack.\n\n## Workarounds\n\nLimiting the length of user input is the simplest way to avoid stack exhaustion, as the amount of\nthe stack consumed would be at most a factor of the length of the input.",
     "severity": [
       {
         "type": "CVSS_V4",
