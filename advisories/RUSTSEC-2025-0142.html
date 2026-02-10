@@ -88,8 +88,8 @@
           January  9, 2026
         </time>
         
-        <time datetime="2026-01-10">
-          (last modified: January 10, 2026)
+        <time datetime="2026-02-10">
+          (last modified: February 10, 2026)
         </time>
         
       </dd>
@@ -163,7 +163,11 @@
       <dt id="patched">Patched</dt>
       <dd>
         
-        no patched versions
+        <ul>
+          
+          <li><code>&#62;=0.3.1</code></li>
+          
+        </ul>
         
       </dd>
 
@@ -180,6 +184,8 @@
     <p>The function <code>mnl::cb_run</code> is marked as safe but exhibits unsound behavior when processing malformed Netlink message buffers.</p>
 <p>Passing a crafted byte slice to <code>mnl::cb_run</code> can trigger memory violations. The function does not sufficiently validate the input buffer structure before processing, leading to out-of-bounds reads.</p>
 <p>This vulnerability allows an attacker to cause a Denial of Service (segmentation fault) or potentially read unmapped memory by providing a malformed Netlink message.</p>
+<p>The underlying issue is a bug in <code>libmnl</code> where during validation <code>nlh-&gt;nlmsg_len</code> is cast to an <code>int</code> and becomes negative if <code>nlmsg_len</code> is greater than <code>INT_MAX</code>. This causes the validation to succeed even if the buffer is too small for the message. This has been fixed in <code>libmnl</code> but still affects version 1.0.5.</p>
+<p>The issue in <code>mnl</code> was fixed in commit <code>cd51bdc</code> by checking the validity of netlink messages passed to <code>mnl::cb_run</code>.</p>
 
 
     <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
