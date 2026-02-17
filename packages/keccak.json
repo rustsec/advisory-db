@@ -1,0 +1,67 @@
+[
+  {
+    "id": "RUSTSEC-2026-0012",
+    "modified": "2026-02-17T22:02:59Z",
+    "published": "2026-02-12T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Unsoundness in opt-in ARMv8 assembly backend for `keccak`",
+    "details": "### Summary\n\nThe `asm!` block enabled by the off-by-default `asm` feature, when enabled on ARMv8 targets, misspecified the operand\ntype for all of its operands, using `in` for pointers and values which were subsequently mutated by operations performed\nwithin the assembly block.\n\n### Impact\n\nIt's unclear what practical impact, if any, this actually had. Incorrect operand types are technically undefined\nbehavior, however changing them had no actual impact on the generated assembly for these targets. The possibility still\nexists that it may lead to potential memory safety or other issues on hypothetical future versions of rustc.\n\n### Mitigation\n\nThe operand types were changed from `in` to `inout`, and the impacted versions of the `keccak` crate were yanked.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "keccak",
+          "purl": "pkg:cargo/keccak"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "crypto-failure"
+          ],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.1.6"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/keccak"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0012.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/RustCrypto/sponges/pull/101"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]
