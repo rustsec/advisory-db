@@ -65,77 +65,6 @@
     }
   },
   {
-    "id": "RUSTSEC-2021-0078",
-    "modified": "2021-10-19T22:14:35Z",
-    "published": "2021-07-07T12:00:00Z",
-    "aliases": [
-      "CVE-2021-32715",
-      "GHSA-f3pg-qwvg-p99c"
-    ],
-    "related": [],
-    "summary": "Lenient `hyper` header parsing of `Content-Length` could allow request smuggling",
-    "details": "`hyper`'s HTTP header parser accepted, according to RFC 7230, illegal contents inside `Content-Length` headers.\nDue to this, upstream HTTP proxies that ignore the header may still forward them along if it chooses to ignore the error.\n\nTo be vulnerable, `hyper` must be used as an HTTP/1 server and using an HTTP proxy upstream that ignores the header's contents\nbut still forwards it. Due to all the factors that must line up, an attack exploiting this vulnerability is unlikely.",
-    "severity": [
-      {
-        "type": "CVSS_V3",
-        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N"
-      }
-    ],
-    "affected": [
-      {
-        "package": {
-          "ecosystem": "crates.io",
-          "name": "hyper",
-          "purl": "pkg:cargo/hyper"
-        },
-        "ecosystem_specific": {
-          "affects": {
-            "arch": [],
-            "os": [],
-            "functions": []
-          },
-          "affected_functions": null
-        },
-        "database_specific": {
-          "categories": [],
-          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
-          "informational": null
-        },
-        "ranges": [
-          {
-            "type": "SEMVER",
-            "events": [
-              {
-                "introduced": "0.0.0-0"
-              },
-              {
-                "fixed": "0.14.10"
-              }
-            ]
-          }
-        ],
-        "versions": []
-      }
-    ],
-    "references": [
-      {
-        "type": "PACKAGE",
-        "url": "https://crates.io/crates/hyper"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0078.html"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://github.com/hyperium/hyper/security/advisories/GHSA-f3pg-qwvg-p99c"
-      }
-    ],
-    "database_specific": {
-      "license": "CC0-1.0"
-    }
-  },
-  {
     "id": "RUSTSEC-2021-0079",
     "modified": "2021-10-19T22:14:35Z",
     "published": "2021-07-07T12:00:00Z",
@@ -200,6 +129,77 @@
       {
         "type": "ADVISORY",
         "url": "https://github.com/hyperium/hyper/security/advisories/GHSA-5h46-h7hh-c6x9"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2021-0078",
+    "modified": "2021-10-19T22:14:35Z",
+    "published": "2021-07-07T12:00:00Z",
+    "aliases": [
+      "CVE-2021-32715",
+      "GHSA-f3pg-qwvg-p99c"
+    ],
+    "related": [],
+    "summary": "Lenient `hyper` header parsing of `Content-Length` could allow request smuggling",
+    "details": "`hyper`'s HTTP header parser accepted, according to RFC 7230, illegal contents inside `Content-Length` headers.\nDue to this, upstream HTTP proxies that ignore the header may still forward them along if it chooses to ignore the error.\n\nTo be vulnerable, `hyper` must be used as an HTTP/1 server and using an HTTP proxy upstream that ignores the header's contents\nbut still forwards it. Due to all the factors that must line up, an attack exploiting this vulnerability is unlikely.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "hyper",
+          "purl": "pkg:cargo/hyper"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.14.10"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/hyper"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0078.html"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://github.com/hyperium/hyper/security/advisories/GHSA-f3pg-qwvg-p99c"
       }
     ],
     "database_specific": {
@@ -292,83 +292,6 @@
     }
   },
   {
-    "id": "RUSTSEC-2016-0002",
-    "modified": "2023-06-13T13:10:24Z",
-    "published": "2016-05-09T12:00:00Z",
-    "aliases": [
-      "CVE-2016-10932",
-      "GHSA-9xjr-m6f3-v5wm"
-    ],
-    "related": [
-      "RUSTSEC-2016-0001"
-    ],
-    "summary": "HTTPS MitM vulnerability due to lack of hostname verification",
-    "details": "When used on Windows platforms, all versions of Hyper prior to 0.9.4 did not\nperform hostname verification when making HTTPS requests.\n\nThis allows an attacker to perform MitM attacks by preventing any valid\nCA-issued certificate, even if there's a hostname mismatch.\n\nThe problem was addressed by leveraging rust-openssl's built-in support for\nhostname verification.",
-    "severity": [
-      {
-        "type": "CVSS_V3",
-        "score": "CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N"
-      }
-    ],
-    "affected": [
-      {
-        "package": {
-          "ecosystem": "crates.io",
-          "name": "hyper",
-          "purl": "pkg:cargo/hyper"
-        },
-        "ecosystem_specific": {
-          "affects": {
-            "arch": [],
-            "os": [
-              "windows"
-            ],
-            "functions": []
-          },
-          "affected_functions": null
-        },
-        "database_specific": {
-          "categories": [
-            "crypto-failure"
-          ],
-          "cvss": "CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N",
-          "informational": null
-        },
-        "ranges": [
-          {
-            "type": "SEMVER",
-            "events": [
-              {
-                "introduced": "0.0.0-0"
-              },
-              {
-                "fixed": "0.9.4"
-              }
-            ]
-          }
-        ],
-        "versions": []
-      }
-    ],
-    "references": [
-      {
-        "type": "PACKAGE",
-        "url": "https://crates.io/crates/hyper"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/RUSTSEC-2016-0002.html"
-      },
-      {
-        "type": "WEB",
-        "url": "https://github.com/hyperium/hyper/blob/master/CHANGELOG.md#v094-2016-05-09"
-      }
-    ],
-    "database_specific": {
-      "license": "CC0-1.0"
-    }
-  },
-  {
     "id": "RUSTSEC-2017-0002",
     "modified": "2023-06-13T13:10:24Z",
     "published": "2017-01-23T12:00:00Z",
@@ -439,6 +362,83 @@
       {
         "type": "WEB",
         "url": "https://github.com/hyperium/hyper/wiki/Security-001"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2016-0002",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2016-05-09T12:00:00Z",
+    "aliases": [
+      "CVE-2016-10932",
+      "GHSA-9xjr-m6f3-v5wm"
+    ],
+    "related": [
+      "RUSTSEC-2016-0001"
+    ],
+    "summary": "HTTPS MitM vulnerability due to lack of hostname verification",
+    "details": "When used on Windows platforms, all versions of Hyper prior to 0.9.4 did not\nperform hostname verification when making HTTPS requests.\n\nThis allows an attacker to perform MitM attacks by preventing any valid\nCA-issued certificate, even if there's a hostname mismatch.\n\nThe problem was addressed by leveraging rust-openssl's built-in support for\nhostname verification.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "hyper",
+          "purl": "pkg:cargo/hyper"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [
+              "windows"
+            ],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "crypto-failure"
+          ],
+          "cvss": "CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.9.4"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/hyper"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2016-0002.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/hyperium/hyper/blob/master/CHANGELOG.md#v094-2016-05-09"
       }
     ],
     "database_specific": {

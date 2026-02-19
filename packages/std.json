@@ -139,6 +139,71 @@
     }
   },
   {
+    "id": "CVE-2017-20004",
+    "modified": "2021-07-06T18:36:13Z",
+    "published": "2017-04-29T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "MutexGuard\\<Cell\\<i32\\>\\> must not be Sync",
+    "details": "In the standard library in Rust before 1.19.0, there is a synchronization problem in the MutexGuard object. MutexGuards can be used across threads with any types, allowing for memory safety issues through race conditions.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "std",
+          "purl": "pkg:cargo/std"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "thread-safety"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "1.0.0"
+              },
+              {
+                "fixed": "1.19.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/std"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/CVE-2017-20004.html"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-20004"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
     "id": "CVE-2019-1010299",
     "modified": "2021-07-06T18:36:13Z",
     "published": "2018-08-21T12:00:00Z",
@@ -399,78 +464,13 @@
     }
   },
   {
-    "id": "CVE-2017-20004",
-    "modified": "2021-07-06T18:36:13Z",
-    "published": "2017-04-29T12:00:00Z",
-    "aliases": [],
-    "related": [],
-    "summary": "MutexGuard\\<Cell\\<i32\\>\\> must not be Sync",
-    "details": "In the standard library in Rust before 1.19.0, there is a synchronization problem in the MutexGuard object. MutexGuards can be used across threads with any types, allowing for memory safety issues through race conditions.",
-    "severity": [],
-    "affected": [
-      {
-        "package": {
-          "ecosystem": "crates.io",
-          "name": "std",
-          "purl": "pkg:cargo/std"
-        },
-        "ecosystem_specific": {
-          "affects": {
-            "arch": [],
-            "os": [],
-            "functions": []
-          },
-          "affected_functions": null
-        },
-        "database_specific": {
-          "categories": [
-            "thread-safety"
-          ],
-          "cvss": null,
-          "informational": null
-        },
-        "ranges": [
-          {
-            "type": "SEMVER",
-            "events": [
-              {
-                "introduced": "1.0.0"
-              },
-              {
-                "fixed": "1.19.0"
-              }
-            ]
-          }
-        ],
-        "versions": []
-      }
-    ],
-    "references": [
-      {
-        "type": "PACKAGE",
-        "url": "https://crates.io/crates/std"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/CVE-2017-20004.html"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-20004"
-      }
-    ],
-    "database_specific": {
-      "license": "CC0-1.0"
-    }
-  },
-  {
-    "id": "CVE-2020-36317",
+    "id": "CVE-2021-28878",
     "modified": "2021-04-13T21:22:28Z",
-    "published": "2020-10-28T12:00:00Z",
+    "published": "2021-02-19T12:00:00Z",
     "aliases": [],
     "related": [],
-    "summary": "String::retain allows safely creating invalid strings when abusing panic",
-    "details": "In the standard library in Rust before 1.49.0, String::retain() function has a panic safety problem. It allows creation of a non-UTF-8 Rust string when the provided closure panics. This bug could result in a memory safety violation when other string APIs assume that UTF-8 encoding is used on the same string.",
+    "summary": "Zip may call __iterator_get_unchecked twice with the same index",
+    "details": "In the standard library in Rust before 1.52.0, the Zip implementation calls __iterator_get_unchecked() more than once for the same index (under certain conditions) when next_back() and next() are used together. This bug could lead to a memory safety violation due to an unmet safety requirement for the TrustedRandomAccess trait.",
     "severity": [],
     "affected": [
       {
@@ -499,10 +499,10 @@
             "type": "SEMVER",
             "events": [
               {
-                "introduced": "1.26.0"
+                "introduced": "1.14.0"
               },
               {
-                "fixed": "1.49.0"
+                "fixed": "1.52.0"
               }
             ]
           }
@@ -517,11 +517,11 @@
       },
       {
         "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/CVE-2020-36317.html"
+        "url": "https://rustsec.org/advisories/CVE-2021-28878.html"
       },
       {
         "type": "ADVISORY",
-        "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-36317"
+        "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-28878"
       }
     ],
     "database_specific": {
@@ -594,201 +594,6 @@
     }
   },
   {
-    "id": "CVE-2021-28876",
-    "modified": "2021-04-13T21:22:28Z",
-    "published": "2021-02-04T12:00:00Z",
-    "aliases": [],
-    "related": [],
-    "summary": "Panic safety issue in Zip specialization",
-    "details": "In the standard library in Rust before 1.52.0, the Zip implementation has a panic safety issue. It calls __iterator_get_unchecked() more than once for the same index when the underlying iterator panics (in certain conditions). This bug could lead to a memory safety violation due to an unmet safety requirement for the TrustedRandomAccess trait.",
-    "severity": [],
-    "affected": [
-      {
-        "package": {
-          "ecosystem": "crates.io",
-          "name": "std",
-          "purl": "pkg:cargo/std"
-        },
-        "ecosystem_specific": {
-          "affects": {
-            "arch": [],
-            "os": [],
-            "functions": []
-          },
-          "affected_functions": null
-        },
-        "database_specific": {
-          "categories": [
-            "memory-corruption"
-          ],
-          "cvss": null,
-          "informational": null
-        },
-        "ranges": [
-          {
-            "type": "SEMVER",
-            "events": [
-              {
-                "introduced": "1.14.0"
-              },
-              {
-                "fixed": "1.52.0"
-              }
-            ]
-          }
-        ],
-        "versions": []
-      }
-    ],
-    "references": [
-      {
-        "type": "PACKAGE",
-        "url": "https://crates.io/crates/std"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/CVE-2021-28876.html"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-28876"
-      }
-    ],
-    "database_specific": {
-      "license": "CC0-1.0"
-    }
-  },
-  {
-    "id": "CVE-2021-28878",
-    "modified": "2021-04-13T21:22:28Z",
-    "published": "2021-02-19T12:00:00Z",
-    "aliases": [],
-    "related": [],
-    "summary": "Zip may call __iterator_get_unchecked twice with the same index",
-    "details": "In the standard library in Rust before 1.52.0, the Zip implementation calls __iterator_get_unchecked() more than once for the same index (under certain conditions) when next_back() and next() are used together. This bug could lead to a memory safety violation due to an unmet safety requirement for the TrustedRandomAccess trait.",
-    "severity": [],
-    "affected": [
-      {
-        "package": {
-          "ecosystem": "crates.io",
-          "name": "std",
-          "purl": "pkg:cargo/std"
-        },
-        "ecosystem_specific": {
-          "affects": {
-            "arch": [],
-            "os": [],
-            "functions": []
-          },
-          "affected_functions": null
-        },
-        "database_specific": {
-          "categories": [
-            "memory-corruption"
-          ],
-          "cvss": null,
-          "informational": null
-        },
-        "ranges": [
-          {
-            "type": "SEMVER",
-            "events": [
-              {
-                "introduced": "1.14.0"
-              },
-              {
-                "fixed": "1.52.0"
-              }
-            ]
-          }
-        ],
-        "versions": []
-      }
-    ],
-    "references": [
-      {
-        "type": "PACKAGE",
-        "url": "https://crates.io/crates/std"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/CVE-2021-28878.html"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-28878"
-      }
-    ],
-    "database_specific": {
-      "license": "CC0-1.0"
-    }
-  },
-  {
-    "id": "CVE-2021-28879",
-    "modified": "2021-04-13T21:22:28Z",
-    "published": "2021-02-18T12:00:00Z",
-    "aliases": [],
-    "related": [],
-    "summary": "Zip can cause buffer overflow when a consumed Zip iterator is used again",
-    "details": "In the standard library in Rust before 1.52.0, the Zip implementation can report an incorrect size due to an integer overflow. This bug can lead to a buffer overflow when a consumed Zip iterator is used again.",
-    "severity": [],
-    "affected": [
-      {
-        "package": {
-          "ecosystem": "crates.io",
-          "name": "std",
-          "purl": "pkg:cargo/std"
-        },
-        "ecosystem_specific": {
-          "affects": {
-            "arch": [],
-            "os": [],
-            "functions": []
-          },
-          "affected_functions": null
-        },
-        "database_specific": {
-          "categories": [
-            "memory-corruption"
-          ],
-          "cvss": null,
-          "informational": null
-        },
-        "ranges": [
-          {
-            "type": "SEMVER",
-            "events": [
-              {
-                "introduced": "1.14.0"
-              },
-              {
-                "fixed": "1.52.0"
-              }
-            ]
-          }
-        ],
-        "versions": []
-      }
-    ],
-    "references": [
-      {
-        "type": "PACKAGE",
-        "url": "https://crates.io/crates/std"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/CVE-2021-28879.html"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-28879"
-      }
-    ],
-    "database_specific": {
-      "license": "CC0-1.0"
-    }
-  },
-  {
     "id": "CVE-2021-28875",
     "modified": "2021-04-13T21:22:28Z",
     "published": "2021-01-10T12:00:00Z",
@@ -847,6 +652,71 @@
       {
         "type": "ADVISORY",
         "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-28875"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "CVE-2015-20001",
+    "modified": "2021-04-13T21:22:28Z",
+    "published": "2015-05-27T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Panic safety violation in BinaryHeap",
+    "details": "In the standard library in Rust before 1.2.0, BinaryHeap is not panic-safe. The binary heap is left in an inconsistent state when the comparison of generic elements inside sift_up or sift_down_range panics. This bug leads to a drop of zeroed memory as an arbitrary type, which can result in a memory safety violation.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "std",
+          "purl": "pkg:cargo/std"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "1.0.0"
+              },
+              {
+                "fixed": "1.2.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/std"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/CVE-2015-20001.html"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-20001"
       }
     ],
     "database_specific": {
@@ -919,13 +789,13 @@
     }
   },
   {
-    "id": "CVE-2015-20001",
+    "id": "CVE-2021-28876",
     "modified": "2021-04-13T21:22:28Z",
-    "published": "2015-05-27T12:00:00Z",
+    "published": "2021-02-04T12:00:00Z",
     "aliases": [],
     "related": [],
-    "summary": "Panic safety violation in BinaryHeap",
-    "details": "In the standard library in Rust before 1.2.0, BinaryHeap is not panic-safe. The binary heap is left in an inconsistent state when the comparison of generic elements inside sift_up or sift_down_range panics. This bug leads to a drop of zeroed memory as an arbitrary type, which can result in a memory safety violation.",
+    "summary": "Panic safety issue in Zip specialization",
+    "details": "In the standard library in Rust before 1.52.0, the Zip implementation has a panic safety issue. It calls __iterator_get_unchecked() more than once for the same index when the underlying iterator panics (in certain conditions). This bug could lead to a memory safety violation due to an unmet safety requirement for the TrustedRandomAccess trait.",
     "severity": [],
     "affected": [
       {
@@ -954,10 +824,10 @@
             "type": "SEMVER",
             "events": [
               {
-                "introduced": "1.0.0"
+                "introduced": "1.14.0"
               },
               {
-                "fixed": "1.2.0"
+                "fixed": "1.52.0"
               }
             ]
           }
@@ -972,11 +842,141 @@
       },
       {
         "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/CVE-2015-20001.html"
+        "url": "https://rustsec.org/advisories/CVE-2021-28876.html"
       },
       {
         "type": "ADVISORY",
-        "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-20001"
+        "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-28876"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "CVE-2020-36317",
+    "modified": "2021-04-13T21:22:28Z",
+    "published": "2020-10-28T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "String::retain allows safely creating invalid strings when abusing panic",
+    "details": "In the standard library in Rust before 1.49.0, String::retain() function has a panic safety problem. It allows creation of a non-UTF-8 Rust string when the provided closure panics. This bug could result in a memory safety violation when other string APIs assume that UTF-8 encoding is used on the same string.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "std",
+          "purl": "pkg:cargo/std"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "1.26.0"
+              },
+              {
+                "fixed": "1.49.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/std"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/CVE-2020-36317.html"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-36317"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "CVE-2021-28879",
+    "modified": "2021-04-13T21:22:28Z",
+    "published": "2021-02-18T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Zip can cause buffer overflow when a consumed Zip iterator is used again",
+    "details": "In the standard library in Rust before 1.52.0, the Zip implementation can report an incorrect size due to an integer overflow. This bug can lead to a buffer overflow when a consumed Zip iterator is used again.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "std",
+          "purl": "pkg:cargo/std"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "1.14.0"
+              },
+              {
+                "fixed": "1.52.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/std"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/CVE-2021-28879.html"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-28879"
       }
     ],
     "database_specific": {
@@ -1057,6 +1057,71 @@
     }
   },
   {
+    "id": "CVE-2019-12083",
+    "modified": "2020-10-02T01:29:11Z",
+    "published": "2019-05-13T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Memory safety vulnerabilities arising from `Error::type_id`",
+    "details": "The Rust team was recently notified of a security vulnerability affecting\nmanual implementations of `Error::type_id` and their interaction with the\n`Error::downcast` family of functions in the standard library. If your code\ndoes not manually implement `Error::type_id` your code is not affected.\n\n## Overview\n\nThe `Error::type_id` function in the standard library was stabilized in the\n1.34.0 release on 2019-04-11. This function allows acquiring the concrete\n`TypeId` for the underlying error type to downcast back to the original type.\nThis function has a default implementation in the standard library, but it can\nalso be overridden by downstream crates. For example, the following is\ncurrently allowed on Rust 1.34.0 and Rust 1.34.1:\n\n```\nstruct MyType;\n\nimpl Error for MyType {\n    fn type_id(&self) -> TypeId {\n        // Enable safe casting to `String` by accident.\n        TypeId::of::<String>()\n    }\n}\n```\n\nWhen combined with the `Error::downcast*` family of methods this can enable\nsafe casting of a type to the wrong type, causing security issues such as out\nof bounds reads/writes/etc.\n\nPrior to the 1.34.0 release this function was not stable and could not be\neither implemented or called in stable Rust.\n\n## Affected Versions\n\nThe `Error::type_id` function was first stabilized in Rust 1.34.0, released on\n2019-04-11. The Rust 1.34.1 release, published 2019-04-25, is also affected.\nThe `Error::type_id` function has been present, unstable, for all releases of\nRust since 1.0.0 meaning code compiled with nightly may have been affected at\nany time.\n\n## Mitigations\n\nImmediate mitigation of this bug requires removing manual implementations of\n`Error::type_id`, instead inheriting the default implementation which is\ncorrect from a safety perspective. It is not the intention to have\n`Error::type_id` return `TypeId` instances for other types.\n\nFor long term mitigation we are going to destabilize this function. This is\nunfortunately a breaking change for users calling `Error::type_id` and for\nusers overriding `Error::type_id`. For users overriding it's likely memory\nunsafe, but users calling `Error::type_id` have only been able to do so on\nstable for a few weeks since the last 1.34.0 release, so it's thought that the\nimpact will not be too great to overcome.\n\nWe will be releasing a 1.34.2 point release on 2019-05-14 (tomorrow) which\nreverts [#58048][1] and destabilizes the `Error::type_id` function. The\nupcoming 1.35.0 release along with the beta/nightly channels will also all be\nupdated with a destabilization.\n\nThe final fate of the `Error::type_id` API isn't decided upon just yet and is\nthe subject of [#60784][2]. No action beyond destabilization is currently\nplanned so nightly code may continue to exhibit this issue. We hope to fully\nresolve this in the standard library soon.\n\n## Timeline of events\n\n* Thu, May  9, 2019 at 14:07 PM - Bug reported to security@rust-lang.org\n* Thu, May  9, 2019 at 15:10 PM - Alex reponds, confirming the bug\n* Fri, May 10, 2019 - Plan for mitigation developed and implemented\n* Mon, May 13, 2019 - PRs posted to GitHub for\n  [stable][3]/[beta][4]/[master][5] branches\n* Mon, May 13, 2019 - Security list informed of this issue\n* (planned) Tue, May 14, 2019 - Rust 1.34.2 is released with a fix for\nthis issue\n\n## Acknowledgements\n\nThanks to Sean McArthur, who found this bug and reported it to us in accordance\nwith our security policy https://www.rust-lang.org/policies/security.\n\n[1]: https://github.com/rust-lang/rust/pull/58048\n[2]: https://github.com/rust-lang/rust/issues/60784\n[3]: https://github.com/rust-lang/rust/pull/60785\n[4]: https://github.com/rust-lang/rust/pull/60786\n[5]: https://github.com/rust-lang/rust/pull/60787",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "std",
+          "purl": "pkg:cargo/std"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "1.34.0"
+              },
+              {
+                "fixed": "1.34.2-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/std"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/CVE-2019-12083.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://groups.google.com/forum/#!topic/rustlang-security-announcements/aZabeCMUv70"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
     "id": "CVE-2018-1000657",
     "modified": "2020-10-02T01:29:11Z",
     "published": "2018-08-20T12:00:00Z",
@@ -1118,71 +1183,6 @@
       {
         "type": "REPORT",
         "url": "https://github.com/rust-lang/rust/issues/44800"
-      }
-    ],
-    "database_specific": {
-      "license": "CC0-1.0"
-    }
-  },
-  {
-    "id": "CVE-2019-12083",
-    "modified": "2020-10-02T01:29:11Z",
-    "published": "2019-05-13T12:00:00Z",
-    "aliases": [],
-    "related": [],
-    "summary": "Memory safety vulnerabilities arising from `Error::type_id`",
-    "details": "The Rust team was recently notified of a security vulnerability affecting\nmanual implementations of `Error::type_id` and their interaction with the\n`Error::downcast` family of functions in the standard library. If your code\ndoes not manually implement `Error::type_id` your code is not affected.\n\n## Overview\n\nThe `Error::type_id` function in the standard library was stabilized in the\n1.34.0 release on 2019-04-11. This function allows acquiring the concrete\n`TypeId` for the underlying error type to downcast back to the original type.\nThis function has a default implementation in the standard library, but it can\nalso be overridden by downstream crates. For example, the following is\ncurrently allowed on Rust 1.34.0 and Rust 1.34.1:\n\n```\nstruct MyType;\n\nimpl Error for MyType {\n    fn type_id(&self) -> TypeId {\n        // Enable safe casting to `String` by accident.\n        TypeId::of::<String>()\n    }\n}\n```\n\nWhen combined with the `Error::downcast*` family of methods this can enable\nsafe casting of a type to the wrong type, causing security issues such as out\nof bounds reads/writes/etc.\n\nPrior to the 1.34.0 release this function was not stable and could not be\neither implemented or called in stable Rust.\n\n## Affected Versions\n\nThe `Error::type_id` function was first stabilized in Rust 1.34.0, released on\n2019-04-11. The Rust 1.34.1 release, published 2019-04-25, is also affected.\nThe `Error::type_id` function has been present, unstable, for all releases of\nRust since 1.0.0 meaning code compiled with nightly may have been affected at\nany time.\n\n## Mitigations\n\nImmediate mitigation of this bug requires removing manual implementations of\n`Error::type_id`, instead inheriting the default implementation which is\ncorrect from a safety perspective. It is not the intention to have\n`Error::type_id` return `TypeId` instances for other types.\n\nFor long term mitigation we are going to destabilize this function. This is\nunfortunately a breaking change for users calling `Error::type_id` and for\nusers overriding `Error::type_id`. For users overriding it's likely memory\nunsafe, but users calling `Error::type_id` have only been able to do so on\nstable for a few weeks since the last 1.34.0 release, so it's thought that the\nimpact will not be too great to overcome.\n\nWe will be releasing a 1.34.2 point release on 2019-05-14 (tomorrow) which\nreverts [#58048][1] and destabilizes the `Error::type_id` function. The\nupcoming 1.35.0 release along with the beta/nightly channels will also all be\nupdated with a destabilization.\n\nThe final fate of the `Error::type_id` API isn't decided upon just yet and is\nthe subject of [#60784][2]. No action beyond destabilization is currently\nplanned so nightly code may continue to exhibit this issue. We hope to fully\nresolve this in the standard library soon.\n\n## Timeline of events\n\n* Thu, May  9, 2019 at 14:07 PM - Bug reported to security@rust-lang.org\n* Thu, May  9, 2019 at 15:10 PM - Alex reponds, confirming the bug\n* Fri, May 10, 2019 - Plan for mitigation developed and implemented\n* Mon, May 13, 2019 - PRs posted to GitHub for\n  [stable][3]/[beta][4]/[master][5] branches\n* Mon, May 13, 2019 - Security list informed of this issue\n* (planned) Tue, May 14, 2019 - Rust 1.34.2 is released with a fix for\nthis issue\n\n## Acknowledgements\n\nThanks to Sean McArthur, who found this bug and reported it to us in accordance\nwith our security policy https://www.rust-lang.org/policies/security.\n\n[1]: https://github.com/rust-lang/rust/pull/58048\n[2]: https://github.com/rust-lang/rust/issues/60784\n[3]: https://github.com/rust-lang/rust/pull/60785\n[4]: https://github.com/rust-lang/rust/pull/60786\n[5]: https://github.com/rust-lang/rust/pull/60787",
-    "severity": [],
-    "affected": [
-      {
-        "package": {
-          "ecosystem": "crates.io",
-          "name": "std",
-          "purl": "pkg:cargo/std"
-        },
-        "ecosystem_specific": {
-          "affects": {
-            "arch": [],
-            "os": [],
-            "functions": []
-          },
-          "affected_functions": null
-        },
-        "database_specific": {
-          "categories": [
-            "memory-corruption"
-          ],
-          "cvss": null,
-          "informational": null
-        },
-        "ranges": [
-          {
-            "type": "SEMVER",
-            "events": [
-              {
-                "introduced": "1.34.0"
-              },
-              {
-                "fixed": "1.34.2-0"
-              }
-            ]
-          }
-        ],
-        "versions": []
-      }
-    ],
-    "references": [
-      {
-        "type": "PACKAGE",
-        "url": "https://crates.io/crates/std"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/CVE-2019-12083.html"
-      },
-      {
-        "type": "WEB",
-        "url": "https://groups.google.com/forum/#!topic/rustlang-security-announcements/aZabeCMUv70"
       }
     ],
     "database_specific": {

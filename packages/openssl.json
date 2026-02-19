@@ -350,76 +350,6 @@
     }
   },
   {
-    "id": "RUSTSEC-2023-0024",
-    "modified": "2023-06-13T13:10:24Z",
-    "published": "2023-03-24T12:00:00Z",
-    "aliases": [
-      "GHSA-6hcf-g6gr-hhcr"
-    ],
-    "related": [],
-    "summary": "`openssl` `X509Extension::new` and `X509Extension::new_nid` null pointer dereference",
-    "details": "These functions would crash when the context argument was None with certain extension types.\n\nThanks to David Benjamin (Google) for reporting this issue.",
-    "severity": [],
-    "affected": [
-      {
-        "package": {
-          "ecosystem": "crates.io",
-          "name": "openssl",
-          "purl": "pkg:cargo/openssl"
-        },
-        "ecosystem_specific": {
-          "affects": {
-            "arch": [],
-            "os": [],
-            "functions": [
-              "openssl::x509::X509Extension::new",
-              "openssl::x509::X509Extension::new_nid"
-            ]
-          },
-          "affected_functions": null
-        },
-        "database_specific": {
-          "categories": [
-            "denial-of-service"
-          ],
-          "cvss": null,
-          "informational": null
-        },
-        "ranges": [
-          {
-            "type": "SEMVER",
-            "events": [
-              {
-                "introduced": "0.0.0-0"
-              },
-              {
-                "fixed": "0.10.48"
-              }
-            ]
-          }
-        ],
-        "versions": []
-      }
-    ],
-    "references": [
-      {
-        "type": "PACKAGE",
-        "url": "https://crates.io/crates/openssl"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/RUSTSEC-2023-0024.html"
-      },
-      {
-        "type": "WEB",
-        "url": "https://github.com/sfackler/rust-openssl/pull/1854"
-      }
-    ],
-    "database_specific": {
-      "license": "CC0-1.0"
-    }
-  },
-  {
     "id": "RUSTSEC-2023-0022",
     "modified": "2023-06-13T13:10:24Z",
     "published": "2023-03-24T12:00:00Z",
@@ -559,22 +489,16 @@
     }
   },
   {
-    "id": "RUSTSEC-2016-0001",
+    "id": "RUSTSEC-2023-0024",
     "modified": "2023-06-13T13:10:24Z",
-    "published": "2016-11-05T12:00:00Z",
+    "published": "2023-03-24T12:00:00Z",
     "aliases": [
-      "CVE-2016-10931",
-      "GHSA-34p9-f4q3-c4r7"
+      "GHSA-6hcf-g6gr-hhcr"
     ],
     "related": [],
-    "summary": "SSL/TLS MitM vulnerability due to insecure defaults",
-    "details": "All versions of rust-openssl prior to 0.9.0 contained numerous insecure defaults\nincluding off-by-default certificate verification and no API to perform hostname\nverification.\n\nUnless configured correctly by a developer, these defaults could allow an attacker\nto perform man-in-the-middle attacks.\n\nThe problem was addressed in newer versions by enabling certificate verification\nby default and exposing APIs to perform hostname verification. Use the\n`SslConnector` and `SslAcceptor` types to take advantage of these new features\n(as opposed to the lower-level `SslContext` type).",
-    "severity": [
-      {
-        "type": "CVSS_V3",
-        "score": "CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H"
-      }
-    ],
+    "summary": "`openssl` `X509Extension::new` and `X509Extension::new_nid` null pointer dereference",
+    "details": "These functions would crash when the context argument was None with certain extension types.\n\nThanks to David Benjamin (Google) for reporting this issue.",
+    "severity": [],
     "affected": [
       {
         "package": {
@@ -586,13 +510,18 @@
           "affects": {
             "arch": [],
             "os": [],
-            "functions": []
+            "functions": [
+              "openssl::x509::X509Extension::new",
+              "openssl::x509::X509Extension::new_nid"
+            ]
           },
           "affected_functions": null
         },
         "database_specific": {
-          "categories": [],
-          "cvss": "CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": null,
           "informational": null
         },
         "ranges": [
@@ -603,7 +532,7 @@
                 "introduced": "0.0.0-0"
               },
               {
-                "fixed": "0.9.0"
+                "fixed": "0.10.48"
               }
             ]
           }
@@ -618,11 +547,11 @@
       },
       {
         "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/RUSTSEC-2016-0001.html"
+        "url": "https://rustsec.org/advisories/RUSTSEC-2023-0024.html"
       },
       {
         "type": "WEB",
-        "url": "https://github.com/sfackler/rust-openssl/releases/tag/v0.9.0"
+        "url": "https://github.com/sfackler/rust-openssl/pull/1854"
       }
     ],
     "database_specific": {
@@ -694,6 +623,77 @@
       {
         "type": "WEB",
         "url": "https://github.com/sfackler/rust-openssl/pull/942"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2016-0001",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2016-11-05T12:00:00Z",
+    "aliases": [
+      "CVE-2016-10931",
+      "GHSA-34p9-f4q3-c4r7"
+    ],
+    "related": [],
+    "summary": "SSL/TLS MitM vulnerability due to insecure defaults",
+    "details": "All versions of rust-openssl prior to 0.9.0 contained numerous insecure defaults\nincluding off-by-default certificate verification and no API to perform hostname\nverification.\n\nUnless configured correctly by a developer, these defaults could allow an attacker\nto perform man-in-the-middle attacks.\n\nThe problem was addressed in newer versions by enabling certificate verification\nby default and exposing APIs to perform hostname verification. Use the\n`SslConnector` and `SslAcceptor` types to take advantage of these new features\n(as opposed to the lower-level `SslContext` type).",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "openssl",
+          "purl": "pkg:cargo/openssl"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": "CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.9.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/openssl"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2016-0001.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/sfackler/rust-openssl/releases/tag/v0.9.0"
       }
     ],
     "database_specific": {
