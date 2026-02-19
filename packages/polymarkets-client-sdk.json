@@ -1,0 +1,58 @@
+[
+  {
+    "id": "RUSTSEC-2026-0015",
+    "modified": "2026-02-19T22:41:14Z",
+    "published": "2026-02-19T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "`polymarkets-client-sdk` was removed from crates.io for malicious code",
+    "details": "It appeared to be typosquatting existing crate\n[`polymarket-client-sdk`](https://crates.io/crates/polymarket-client-sdk) (`polymarkets` vs\n`polymarket`) and attempting to steal credentials from local files.\n\nThe malicious crate had 1 version published on 2026-02-19 an hour before removal and hadn't been\ndownloaded. There were no crates depending on this crate on crates.io.\n\nThanks to Carol Nichols, who is thanking herself for spotting this in the docs.rs build queue and\nremoving it quickly!\n\nThe crates.io team advises anyone developing with Polymarket to review dependencies carefully. We\nare investigating ways to mitigate this attacker who appears to be very motivated to steal\nPolymarket credentials.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "polymarkets-client-sdk",
+          "purl": "pkg:cargo/polymarkets-client-sdk"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/polymarkets-client-sdk"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0015.html"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]
