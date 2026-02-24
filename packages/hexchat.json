@@ -1,0 +1,65 @@
+[
+  {
+    "id": "RUSTSEC-2025-0153",
+    "modified": "2026-02-24T10:32:45Z",
+    "published": "2025-11-17T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "hexchat crate is unsound and unmaintained",
+    "details": "All versions of this crate have function `deregister_command` which can result in use after free.\nThis is unsound.\n\nIn addition, all versions since 0.3.0 have \"safe\" macros, which are documented as unsafe to use in threads.\n\nIn addition, the `hexchat` crate is no longer actively maintained.  If you rely on this crate, consider switching\nto an alternative.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "hexchat",
+          "purl": "pkg:cargo/hexchat"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption",
+            "memory-exposure"
+          ],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/hexchat"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2025-0153.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/pie-flavor/hexchat-rs/issues/3"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]
