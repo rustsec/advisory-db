@@ -1,0 +1,58 @@
+[
+  {
+    "id": "RUSTSEC-2026-0028",
+    "modified": "2026-02-26T21:11:05Z",
+    "published": "2026-02-26T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "`tracing_checks` was removed from crates.io for transitively including malicious code",
+    "details": "This is part of an ongoing campaign to attempt to typosquat crates in an\nattempt to exfiltrate Polymarket credentials.\n\nThe malicious crate had 1 version published on 2026-02-26 approximately 9 hours\nbefore removal and had no evidence of actual usage, both in terms of downloads\nand dependents. It did not include the malware payload itself; this was instead\ndelivered via the `tracings` crate, which has received a separate advisory.\n\nThanks to Marko Ćupić for finding and reporting this to the Rust security\nresponse working group, and to Emily Albini for co-ordinating with the\ncrates.io team.\n\nThe crates.io team advises anyone developing with Polymarket to review\ndependencies carefully. We are investigating ways to mitigate this attacker who\nappears to be very motivated to steal Polymarket credentials.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "tracing_checks",
+          "purl": "pkg:cargo/tracing_checks"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/tracing_checks"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0028.html"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

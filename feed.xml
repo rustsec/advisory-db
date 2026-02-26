@@ -1,5 +1,211 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2026-02-25T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2026-0023: Vulnerability in libcrux-ecdh</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0023.html</id><updated>2026-02-25T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0023.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0023: Vulnerability in libcrux-ecdh"/><published>2026-02-25T12:00:00+00:00</published><summary xml:lang="en">X25519 secret validation did not check buffer length or clamping</summary><content xml:lang="en" type="html">  &lt;article&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2026-02-26T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2026-0027: Vulnerability in tracings</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0027.html</id><updated>2026-02-26T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0027.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0027: Vulnerability in tracings"/><published>2026-02-26T12:00:00+00:00</published><summary xml:lang="en">`tracings` was removed from crates.io for malicious code</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/tracings/RUSTSEC-2026-0027.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/tracings/RUSTSEC-2026-0027.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0027&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0027
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;tracings&lt;/code&gt; was removed from crates.io for malicious code&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-02-26&quot;&gt;
+          February 26, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-02-26&quot;&gt;
+          February 26, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/tracings.html&quot;&gt;tracings&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/tracings&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;This is part of an ongoing campaign to attempt to typosquat crates in an
+attempt to exfiltrate Polymarket credentials.&lt;/p&gt;
+&lt;p&gt;The malicious crate had 1 version published on 2026-02-26 approximately 9 hours
+before removal and had no evidence of actual usage. The only crate depending on
+this crate was the &lt;code&gt;tracing_checks&lt;/code&gt; crate, which was also part of this campaign
+and has received a separate advisory.&lt;/p&gt;
+&lt;p&gt;Thanks to Marko Ćupić for finding and reporting this to the Rust security
+response working group, and to Emily Albini for co-ordinating with the
+crates.io team.&lt;/p&gt;
+&lt;p&gt;The crates.io team advises anyone developing with Polymarket to review
+dependencies carefully. We are investigating ways to mitigate this attacker who
+appears to be very motivated to steal Polymarket credentials.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0028: Vulnerability in tracing_checks</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0028.html</id><updated>2026-02-26T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0028.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0028: Vulnerability in tracing_checks"/><published>2026-02-26T12:00:00+00:00</published><summary xml:lang="en">`tracing_checks` was removed from crates.io for transitively including malicious code</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/tracing_checks/RUSTSEC-2026-0028.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/tracing_checks/RUSTSEC-2026-0028.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0028&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0028
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;tracing_checks&lt;/code&gt; was removed from crates.io for transitively including malicious code&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-02-26&quot;&gt;
+          February 26, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-02-26&quot;&gt;
+          February 26, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/tracing_checks.html&quot;&gt;tracing_checks&lt;/a&gt;
+          (&lt;a href=&quot;https://crates.io/crates/tracing_checks&quot;&gt;crates.io&lt;/a&gt;)
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;This is part of an ongoing campaign to attempt to typosquat crates in an
+attempt to exfiltrate Polymarket credentials.&lt;/p&gt;
+&lt;p&gt;The malicious crate had 1 version published on 2026-02-26 approximately 9 hours
+before removal and had no evidence of actual usage, both in terms of downloads
+and dependents. It did not include the malware payload itself; this was instead
+delivered via the &lt;code&gt;tracings&lt;/code&gt; crate, which has received a separate advisory.&lt;/p&gt;
+&lt;p&gt;Thanks to Marko Ćupić for finding and reporting this to the Rust security
+response working group, and to Emily Albini for co-ordinating with the
+crates.io team.&lt;/p&gt;
+&lt;p&gt;The crates.io team advises anyone developing with Polymarket to review
+dependencies carefully. We are investigating ways to mitigate this attacker who
+appears to be very motivated to steal Polymarket credentials.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0023: Vulnerability in libcrux-ecdh</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0023.html</id><updated>2026-02-25T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0023.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0023: Vulnerability in libcrux-ecdh"/><published>2026-02-25T12:00:00+00:00</published><summary xml:lang="en">X25519 secret validation did not check buffer length or clamping</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
           &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/libcrux-ecdh/RUSTSEC-2026-0023.md&quot;&gt;History&lt;/a&gt; ⋅
