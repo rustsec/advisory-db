@@ -5,12 +5,12 @@ Reviewing a pull request, step by step:
 ## See if CI passes
 
 This is something first-time submitters may struggle with.
- 
+
 You can usually make changes directly to the submitter's branch. It's a great way to make CI pass and help out first-timers, but avoid making substantial changes to content this way without consulting the submitter.
 
 ## Make sure the developers of the crate in question are aware of the issue
 
-If no upstream issue has been filed, ask the reporter to file one first. (This does not apply for malicious crate takedowns.)
+If no upstream issue has been filed, remind the reporter that they need to follow the upstream security policy before creating an advisory. (This does not apply for malicious crate takedowns.)
 
 ## Check if there are any fixed versions
 We don't want to carry a non-actionable advisory if a fix is forthcoming. It's alright to delay by a day or two and then publish it once the fix ships. If a fix has been applied in git but not released to crates.io, ask the upstream for a new point release.
