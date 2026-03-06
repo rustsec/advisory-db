@@ -24,9 +24,10 @@ and reporting (send PRs to add yours):
 * [trivy]: A simple and comprehensive vulnerability/misconfiguration/secret scanner for containers and other artifacts. Trivy detects vulnerabilities of OS packages and language-specific packages. Works via [OSV](https://osv.dev).
 * [dependabot]: Dependabot can fix vulnerable dependencies for you by raising pull requests with security updates. Works via [GHSA](https://github.com/advisories).
 
-## Reporting Vulnerabilities
+## Create an Advisory
 
-To report a new vulnerability, open a pull request using the template below.
+If you discover a vulnerability, report it upstream according to their security policy.
+Afterwards, you can create and advisory by opening a pull request using the template below.
 See [CONTRIBUTING.md] for more information.
 
 See [HOWTO_UNMAINTAINED.md] before filing an advisory for an unmaintained crate.
