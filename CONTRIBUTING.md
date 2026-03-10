@@ -7,10 +7,18 @@ To add an advisory to the RustSec database, open a [Pull Request] against
 
 1. Report the vulnerability upstream according to their security policy. RustSec
    maintainers do not have expertise in every crate's internals and so a crate
-   maintainer can much more efficiently respond.
+   maintainer can much more efficiently respond. Suspected malicous crates
+   should instead be [reported to crates.io](https://crates.io/policies/security).
 2. Wait for the maintainers to confirm the vulnerability exists.
 3. Engage in coordinated disclosure (as applicable) so the vulnerability isn't revealed
    publicly before responsible parties are ready to respond.
+
+The above steps can be skipped for advisories filed by crate authors, or if the
+upstream repository no longer exists and the authors are unreachable.
+
+Historically, RustSec has also accepted advisories if they received no response
+two weeks after public disclosure on the repository issue tracker, however
+coordinated (private) disclosure is always preferred as a first step.
 
 ### Required Steps
 
