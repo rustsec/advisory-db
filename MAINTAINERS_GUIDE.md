@@ -10,7 +10,7 @@ You can usually make changes directly to the submitter's branch. It's a great wa
 
 ## Make sure the developers of the crate in question are aware of the issue
 
-If no upstream issue has been filed, ask the reporter to file one first.
+If no upstream issue has been filed, ask the reporter to file one first. (This does not apply for malicious crate takedowns.)
 
 ## Check if there are any fixed versions
 We don't want to carry a non-actionable advisory if a fix is forthcoming. It's alright to delay by a day or two and then publish it once the fix ships. If a fix has been applied in git but not released to crates.io, ask the upstream for a new point release.
@@ -28,6 +28,8 @@ The date should be set to the original disclosure of the issue, not the date of 
 `informational = "unsound"` is used for [soundness issues](https://rust-lang.github.io/unsafe-code-guidelines/glossary.html#soundness-of-code--of-a-library) that can only be triggered by a programmer (as opposed to e.g. a malicious input), and/or require very contrived code to trigger. They will be surfaced as warnings instead of hard errors by `cargo audit`.
 
 `informational = "unmaintained"` has a [policy](https://github.com/rustsec/advisory-db/blob/main/HOWTO_UNMAINTAINED.md) associated with it; make sure it is followed. If any items are missing, advise the submitter how to proceed.
+
+`categories = ["malicious"]` must be applied for malicious crate takedown notices.
 
 ## Check if the advisory came from GHSA
 
