@@ -21,11 +21,11 @@ jobs:
         uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
         with:
           path: ~/.cargo/bin
-          key: rustsec-admin-fd0658040d06dff9569dd7b2df60439db93403ec
+          key: rustsec-admin-d93f5de04eee4690027a561579120a6be64f2871
 
       - name: Install rustsec-admin
         if: steps.admin-cache.outputs.cache-hit != 'true'
-        run: cargo install --git https://github.com/rustsec/rustsec rustsec-admin --rev fd0658040d06dff9569dd7b2df60439db93403ec
+        run: cargo install --git https://github.com/rustsec/rustsec rustsec-admin --rev d93f5de04eee4690027a561579120a6be64f2871
 
       - name: Lint advisories
         run: rustsec-admin lint
