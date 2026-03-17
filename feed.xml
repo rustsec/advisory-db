@@ -186,6 +186,17 @@
       &lt;dt&gt;Affected Functions&lt;/dt&gt;
       &lt;dd&gt;Version&lt;/dd&gt;
       
+      &lt;dt&gt;&lt;code&gt;lz4_flex::block::decompress&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;=0.11.5&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;=0.12.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
       &lt;dt&gt;&lt;code&gt;lz4_flex::block::decompress_into&lt;/code&gt;&lt;/dt&gt;
       &lt;dd&gt;
         &lt;ul&gt;
@@ -198,6 +209,39 @@
       &lt;/dd&gt;
       
       &lt;dt&gt;&lt;code&gt;lz4_flex::block::decompress_into_with_dict&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;=0.11.5&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;=0.12.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;lz4_flex::block::decompress_size_prepended&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;=0.11.5&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;=0.12.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;lz4_flex::block::decompress_size_prepended_with_dict&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;=0.11.5&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;=0.12.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;lz4_flex::block::decompress_with_dict&lt;/code&gt;&lt;/dt&gt;
       &lt;dd&gt;
         &lt;ul&gt;
           
@@ -227,8 +271,7 @@ is the default): can leak content of uninitialized memory as part of the decompr
 &lt;li&gt;Decompressing into a reused, user-supplied output buffer (also affects &lt;code&gt;safe-decode&lt;/code&gt;): can
 leak the previous contents of the output buffer as part of the decompressed result.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Only the block-based API is affected: &lt;code&gt;lz4_flex::block::decompress_into&lt;/code&gt; and
-&lt;code&gt;lz4_flex::block::decompress_into_with_dict&lt;/code&gt;. All frame APIs are unaffected.&lt;/p&gt;
+&lt;p&gt;Only the block-based APIs are affected. All frame APIs are unaffected.&lt;/p&gt;
 &lt;p&gt;The flaw was corrected in versions 0.11.6 and 0.12.1 by properly validating offset values
 during decompression.&lt;/p&gt;
 &lt;p&gt;If upgrading is not possible, the issue can be mitigated by zeroing the output buffer before

@@ -240,6 +240,17 @@
       <dt>Affected Functions</dt>
       <dd>Version</dd>
       
+      <dt><code>lz4_flex::block::decompress</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;=0.11.5</code></li>
+          
+          <li><code>=0.12.0</code></li>
+          
+        </ul>
+      </dd>
+      
       <dt><code>lz4_flex::block::decompress_into</code></dt>
       <dd>
         <ul>
@@ -252,6 +263,39 @@
       </dd>
       
       <dt><code>lz4_flex::block::decompress_into_with_dict</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;=0.11.5</code></li>
+          
+          <li><code>=0.12.0</code></li>
+          
+        </ul>
+      </dd>
+      
+      <dt><code>lz4_flex::block::decompress_size_prepended</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;=0.11.5</code></li>
+          
+          <li><code>=0.12.0</code></li>
+          
+        </ul>
+      </dd>
+      
+      <dt><code>lz4_flex::block::decompress_size_prepended_with_dict</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;=0.11.5</code></li>
+          
+          <li><code>=0.12.0</code></li>
+          
+        </ul>
+      </dd>
+      
+      <dt><code>lz4_flex::block::decompress_with_dict</code></dt>
       <dd>
         <ul>
           
@@ -281,8 +325,7 @@ is the default): can leak content of uninitialized memory as part of the decompr
 <li>Decompressing into a reused, user-supplied output buffer (also affects <code>safe-decode</code>): can
 leak the previous contents of the output buffer as part of the decompressed result.</li>
 </ul>
-<p>Only the block-based API is affected: <code>lz4_flex::block::decompress_into</code> and
-<code>lz4_flex::block::decompress_into_with_dict</code>. All frame APIs are unaffected.</p>
+<p>Only the block-based APIs are affected. All frame APIs are unaffected.</p>
 <p>The flaw was corrected in versions 0.11.6 and 0.12.1 by properly validating offset values
 during decompression.</p>
 <p>If upgrading is not possible, the issue can be mitigated by zeroing the output buffer before
