@@ -1,0 +1,63 @@
+{
+  "id": "RUSTSEC-2026-0049",
+  "modified": "2026-03-20T21:50:00Z",
+  "published": "2026-03-20T12:00:00Z",
+  "aliases": [
+    "GHSA-pwjx-qhcg-rvj4"
+  ],
+  "related": [],
+  "summary": "CRLs not considered authorative by Distribution Point due to faulty matching logic",
+  "details": "If a certificate had more than one `distributionPoint`, then only the first `distributionPoint` would be considered against each CRL's `IssuingDistributionPoint` `distributionPoint`, and then the certificate's subsequent `distributionPoint`s would be ignored.\n\nThe impact was that correct provided CRLs would not be consulted to check revocation. With `UnknownStatusPolicy::Deny` (the default) this would lead to incorrect but safe `Error::UnknownRevocationStatus`. With `UnknownStatusPolicy::Allow` this would lead to inappropriate acceptance of revoked certificates.\n\nThis vulnerability is thought to be of limited impact. This is because both the certificate and CRL are signed -- an attacker would need to compromise a trusted issuing authority to trigger this bug.  An attacker with such capabilities could likely bypass revocation checking through other more impactful means (such as publishing a valid, empty CRL.)\n\nMore likely, this bug would be latent in normal use, and an attacker could leverage faulty revocation checking to continue using a revoked credential.\n\nThis vulnerability is identified by [GHSA-pwjx-qhcg-rvj4](https://github.com/rustls/webpki/security/advisories/GHSA-pwjx-qhcg-rvj4). Thank you to @1seal for the report.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "rustls-webpki",
+        "purl": "pkg:cargo/rustls-webpki"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "privilege-escalation"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "0.103.10"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/rustls-webpki"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0049.html"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
