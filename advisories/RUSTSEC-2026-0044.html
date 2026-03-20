@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories with keyword &#39;side-channel&#39; › RustSec Advisory Database</title>
+<title>RUSTSEC-2026-0044: aws-lc-sys: AWS-LC X.509 Name Constraints Bypass via Wildcard/Unicode CN › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,77 +52,174 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/aws-lc-sys/RUSTSEC-2026-0044.md">History</a> ⋅
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/aws-lc-sys/RUSTSEC-2026-0044.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2026-0044">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2026-0044
+        
+      </h1>
+      <span class="subtitle"><p>AWS-LC X.509 Name Constraints Bypass via Wildcard/Unicode CN</p>
 </span>
-      <h1>Advisories with keyword &#39;side-channel&#39;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2026-03-20">
-    March 20, 2026
-  </time>
-
-  
-  <h3>
     
-      <span class="tag medium">MEDIUM</span>
-      
-    <a href="/advisories/RUSTSEC-2026-0043.html">
-      RUSTSEC-2026-0043: Vulnerability in aws-lc-fips-sys
-    </a>
-  </h3>
-  <span><p>Timing Side-Channel in AES-CCM Tag Verification in AWS-LC</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2026-03-20">
-    March 20, 2026
-  </time>
 
-  
-  <h3>
-    
-      <span class="tag medium">MEDIUM</span>
-      
-    <a href="/advisories/RUSTSEC-2026-0045.html">
-      RUSTSEC-2026-0045: Vulnerability in aws-lc-sys
-    </a>
-  </h3>
-  <span><p>Timing Side-Channel in AES-CCM Tag Verification in AWS-LC</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2022-05-09">
-    May  9, 2022
-  </time>
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2026-03-19">
+          March 19, 2026
+        </time>
+      </dd>
 
-  
-  <h3>
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2026-03-20">
+          March 20, 2026
+        </time>
+        
+      </dd>
+
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        <a href="/packages/aws-lc-sys.html">aws-lc-sys</a>
+           
+          (<a href="https://crates.io/crates/aws-lc-sys">crates.io</a>)
+          
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        Vulnerability
+        
+      </dd>
+
+      
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/crypto-failure.html">crypto-failure</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/x509.html">#x509</a>
+        
+          <a href="/keywords/name-constraints.html">#name-constraints</a>
+        
+          <a href="/keywords/bypass.html">#bypass</a>
+        
+      </dd>
+      
+
+      
+      <dt id="aliases">Aliases</dt>
+      <dd>
+        <ul>
+          
+          <li>
+            
+            <a href="https://github.com/advisories/GHSA-394x-vwmw-crm3">GHSA-394x-vwmw-crm3</a>
+            
+          </li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+        
+          <li>
+            <a href="https://github.com/aws/aws-lc-rs/security/advisories/GHSA-394x-vwmw-crm3">
+              https://github.com/aws/aws-lc-rs/security/advisories/GHSA-394x-vwmw-crm3
+            </a>
+          </li>
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&#62;=0.39.0</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+      <dt id="unaffected">Unaffected</dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;0.32.0</code></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      
+    </dl>
+
     
-      <span class="tag medium">MEDIUM</span>
-      
-    <a href="/advisories/RUSTSEC-2022-0018.html">
-      RUSTSEC-2022-0018: Vulnerability in totp-rs
-    </a>
-  </h3>
-  <span><p>Timing attack</p>
-</span>
-  
-</li>
-      
-    </ul>
+    
+
+    <h3 id="description">Description</h3>
+    <p>A logic error in CN (Common Name) validation allows certificates with
+wildcard or raw UTF-8 Unicode CN values to bypass name constraints
+enforcement. The <code>cn2dnsid</code> function does not recognize these CN patterns
+as valid DNS identifiers, causing <code>NAME_CONSTRAINTS_check_CN</code> to skip
+validation. However, <code>X509_check_host</code> accepts these CN values when no
+dNSName SAN is present, allowing certificates to bypass name constraints
+while still being used for hostname verification.</p>
+<p>Customers of AWS services do not need to take action. Applications using
+<code>aws-lc-sys</code> should upgrade to the most recent release of <code>aws-lc-sys</code>.</p>
+<h2>Workarounds</h2>
+<p>Applications that set <code>X509_CHECK_FLAG_NEVER_CHECK_SUBJECT</code> to disable CN
+fallback are not affected. Applications that only encounter certificates
+with dNSName SANs (standard for public WebPKI) are also not affected.</p>
+<p>Otherwise, there is no workaround and applications using <code>aws-lc-sys</code> should
+upgrade to the most recent releases of <code>aws-lc-sys</code>.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
