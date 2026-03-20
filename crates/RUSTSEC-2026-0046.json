@@ -1,0 +1,77 @@
+{
+  "id": "RUSTSEC-2026-0046",
+  "modified": "2026-03-20T17:11:58Z",
+  "published": "2026-03-02T12:00:00Z",
+  "aliases": [
+    "CVE-2026-3336",
+    "GHSA-vw5v-4f2q-w9xf"
+  ],
+  "related": [],
+  "summary": "PKCS7_verify Certificate Chain Validation Bypass in AWS-LC",
+  "details": "Improper certificate validation in `PKCS7_verify()` in AWS-LC allows an\nunauthenticated user to bypass certificate chain verification when processing\nPKCS7 objects with multiple signers, except the final signer.\n\nCustomers of AWS services do not need to take action. `aws-lc-sys` contains\ncode from AWS-LC. Applications using `aws-lc-sys` should upgrade to the most\nrecent release of `aws-lc-sys`.\n\nThere is no workaround; applications using `aws-lc-sys` should upgrade to the \nmost recent release of aws-lc-sys.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N"
+    }
+  ],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "aws-lc-sys",
+        "purl": "pkg:cargo/aws-lc-sys"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "crypto-failure"
+        ],
+        "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.24.0"
+            },
+            {
+              "fixed": "0.38.0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/aws-lc-sys"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0046.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://aws.amazon.com/security/security-bulletins/2026-005-AWS"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://github.com/aws/aws-lc-rs/security/advisories/GHSA-vw5v-4f2q-w9xf"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}

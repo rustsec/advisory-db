@@ -1,0 +1,77 @@
+{
+  "id": "RUSTSEC-2026-0045",
+  "modified": "2026-03-20T17:11:58Z",
+  "published": "2026-03-02T12:00:00Z",
+  "aliases": [
+    "CVE-2026-3337",
+    "GHSA-65p9-r9h6-22vj"
+  ],
+  "related": [],
+  "summary": "Timing Side-Channel in AES-CCM Tag Verification in AWS-LC",
+  "details": "Observable timing discrepancy in AES-CCM decryption in AWS-LC allows an\nunauthenticated user to potentially determine authentication tag validity\nvia timing analysis.\n\nThe impacted implementations are through the EVP CIPHER API:\n`EVP_aes_128_ccm`, `EVP_aes_192_ccm`, and `EVP_aes_256_ccm`.\n\nCustomers of AWS services do not need to take action. `aws-lc-sys` contains\ncode from AWS-LC. Applications using `aws-lc-sys` should upgrade to the most\nrecent release of `aws-lc-sys`.\n\n## Workarounds\n\nIn the special cases of using AES-CCM with (M=4, L=2), (M=8, L=2), or\n(M=16, L=2), applications can workaround this issue by using AES-CCM through\nthe EVP AEAD API using implementations `EVP_aead_aes_128_ccm_bluetooth`,\n`EVP_aead_aes_128_ccm_bluetooth_8`, and `EVP_aead_aes_128_ccm_matter`\nrespectively.\n\nOtherwise, there is no workaround and applications using `aws-lc-sys` should\nupgrade to the most recent release.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N"
+    }
+  ],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "aws-lc-sys",
+        "purl": "pkg:cargo/aws-lc-sys"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "crypto-failure"
+        ],
+        "cvss": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N",
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.14.0"
+            },
+            {
+              "fixed": "0.38.0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/aws-lc-sys"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0045.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://aws.amazon.com/security/security-bulletins/2026-005-AWS"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://github.com/aws/aws-lc-rs/security/advisories/GHSA-65p9-r9h6-22vj"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
