@@ -696,7 +696,7 @@ It was part of the Tokio 0.1 ecosystem and has been superseded by the main &lt;a
 
     
     &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0049: Vulnerability in rustls-webpki</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0049.html</id><updated>2026-03-20T12:00:00+00:00</updated><category term="privilege-escalation"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0049.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0049: Vulnerability in rustls-webpki"/><published>2026-03-20T12:00:00+00:00</published><summary xml:lang="en">CRLs not considered authorative by Distribution Point due to faulty matching logic</summary><content xml:lang="en" type="html">  &lt;article&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0049: Vulnerability in rustls-webpki</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0049.html</id><updated>2026-03-23T12:00:00+00:00</updated><category term="privilege-escalation"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0049.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0049: Vulnerability in rustls-webpki"/><published>2026-03-20T12:00:00+00:00</published><summary xml:lang="en">CRLs not considered authoritative by Distribution Point due to faulty matching logic</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
           &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/rustls-webpki/RUSTSEC-2026-0049.md&quot;&gt;History&lt;/a&gt; ⋅
@@ -711,7 +711,7 @@ It was part of the Tokio 0.1 ecosystem and has been superseded by the main &lt;a
         RUSTSEC-2026-0049
         
       &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;CRLs not considered authorative by Distribution Point due to faulty matching logic&lt;/p&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;CRLs not considered authoritative by Distribution Point due to faulty matching logic&lt;/p&gt;
 &lt;/span&gt;
     &lt;/header&gt;
 
@@ -729,6 +729,10 @@ It was part of the Tokio 0.1 ecosystem and has been superseded by the main &lt;a
       &lt;dd&gt;
         &lt;time datetime=&quot;2026-03-20&quot;&gt;
           March 20, 2026
+        &lt;/time&gt;
+        
+        &lt;time datetime=&quot;2026-03-23&quot;&gt;
+          (last modified: March 23, 2026)
         &lt;/time&gt;
         
       &lt;/dd&gt;
@@ -818,10 +822,10 @@ It was part of the Tokio 0.1 ecosystem and has been superseded by the main &lt;a
 
     &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
     &lt;p&gt;If a certificate had more than one &lt;code&gt;distributionPoint&lt;/code&gt;, then only the first &lt;code&gt;distributionPoint&lt;/code&gt; would be considered against each CRL&apos;s &lt;code&gt;IssuingDistributionPoint&lt;/code&gt; &lt;code&gt;distributionPoint&lt;/code&gt;, and then the certificate&apos;s subsequent &lt;code&gt;distributionPoint&lt;/code&gt;s would be ignored.&lt;/p&gt;
-&lt;p&gt;The impact was that correct provided CRLs would not be consulted to check revocation. With &lt;code&gt;UnknownStatusPolicy::Deny&lt;/code&gt; (the default) this would lead to incorrect but safe &lt;code&gt;Error::UnknownRevocationStatus&lt;/code&gt;. With &lt;code&gt;UnknownStatusPolicy::Allow&lt;/code&gt; this would lead to inappropriate acceptance of revoked certificates.&lt;/p&gt;
+&lt;p&gt;The impact was that correctly provided CRLs would not be consulted to check revocation. With &lt;code&gt;UnknownStatusPolicy::Deny&lt;/code&gt; (the default) this would lead to incorrect but safe &lt;code&gt;Error::UnknownRevocationStatus&lt;/code&gt;. With &lt;code&gt;UnknownStatusPolicy::Allow&lt;/code&gt; this would lead to inappropriate acceptance of revoked certificates.&lt;/p&gt;
 &lt;p&gt;This vulnerability is thought to be of limited impact. This is because both the certificate and CRL are signed -- an attacker would need to compromise a trusted issuing authority to trigger this bug.  An attacker with such capabilities could likely bypass revocation checking through other more impactful means (such as publishing a valid, empty CRL.)&lt;/p&gt;
 &lt;p&gt;More likely, this bug would be latent in normal use, and an attacker could leverage faulty revocation checking to continue using a revoked credential.&lt;/p&gt;
-&lt;p&gt;This vulnerability is identified by &lt;a href=&quot;https://github.com/rustls/webpki/security/advisories/GHSA-pwjx-qhcg-rvj4&quot;&gt;GHSA-pwjx-qhcg-rvj4&lt;/a&gt;. Thank you to @1seal for the report.&lt;/p&gt;
+&lt;p&gt;This vulnerability is identified as &lt;a href=&quot;https://github.com/rustls/webpki/security/advisories/GHSA-pwjx-qhcg-rvj4&quot;&gt;GHSA-pwjx-qhcg-rvj4&lt;/a&gt;. Thank you to @1seal for the report.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;

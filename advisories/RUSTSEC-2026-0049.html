@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>RUSTSEC-2026-0049: rustls-webpki: CRLs not considered authorative by Distribution Point due to faulty matching logic › RustSec Advisory Database</title>
+<title>RUSTSEC-2026-0049: rustls-webpki: CRLs not considered authoritative by Distribution Point due to faulty matching logic › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -68,7 +68,7 @@
         RUSTSEC-2026-0049
         
       </h1>
-      <span class="subtitle"><p>CRLs not considered authorative by Distribution Point due to faulty matching logic</p>
+      <span class="subtitle"><p>CRLs not considered authoritative by Distribution Point due to faulty matching logic</p>
 </span>
     </header>
 
@@ -86,6 +86,10 @@
       <dd>
         <time datetime="2026-03-20">
           March 20, 2026
+        </time>
+        
+        <time datetime="2026-03-23">
+          (last modified: March 23, 2026)
         </time>
         
       </dd>
@@ -175,10 +179,10 @@
 
     <h3 id="description">Description</h3>
     <p>If a certificate had more than one <code>distributionPoint</code>, then only the first <code>distributionPoint</code> would be considered against each CRL's <code>IssuingDistributionPoint</code> <code>distributionPoint</code>, and then the certificate's subsequent <code>distributionPoint</code>s would be ignored.</p>
-<p>The impact was that correct provided CRLs would not be consulted to check revocation. With <code>UnknownStatusPolicy::Deny</code> (the default) this would lead to incorrect but safe <code>Error::UnknownRevocationStatus</code>. With <code>UnknownStatusPolicy::Allow</code> this would lead to inappropriate acceptance of revoked certificates.</p>
+<p>The impact was that correctly provided CRLs would not be consulted to check revocation. With <code>UnknownStatusPolicy::Deny</code> (the default) this would lead to incorrect but safe <code>Error::UnknownRevocationStatus</code>. With <code>UnknownStatusPolicy::Allow</code> this would lead to inappropriate acceptance of revoked certificates.</p>
 <p>This vulnerability is thought to be of limited impact. This is because both the certificate and CRL are signed -- an attacker would need to compromise a trusted issuing authority to trigger this bug.  An attacker with such capabilities could likely bypass revocation checking through other more impactful means (such as publishing a valid, empty CRL.)</p>
 <p>More likely, this bug would be latent in normal use, and an attacker could leverage faulty revocation checking to continue using a revoked credential.</p>
-<p>This vulnerability is identified by <a href="https://github.com/rustls/webpki/security/advisories/GHSA-pwjx-qhcg-rvj4">GHSA-pwjx-qhcg-rvj4</a>. Thank you to @1seal for the report.</p>
+<p>This vulnerability is identified as <a href="https://github.com/rustls/webpki/security/advisories/GHSA-pwjx-qhcg-rvj4">GHSA-pwjx-qhcg-rvj4</a>. Thank you to @1seal for the report.</p>
 
 
     <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
