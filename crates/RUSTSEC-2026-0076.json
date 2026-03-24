@@ -1,0 +1,72 @@
+{
+  "id": "RUSTSEC-2026-0076",
+  "modified": "2026-03-24T08:21:09Z",
+  "published": "2026-03-04T12:00:00Z",
+  "aliases": [],
+  "related": [],
+  "summary": "Panic in Signature Hint Decoding During Verification",
+  "details": "During ML-DSA verification the serialized hint values are decoded as\nspecified in algorithm 22 `HintBitUnpack` of [FIPS 204, subsection\n7.1](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf#%5B%7B%22num%22%3A120%2C%22gen%22%3A0%7D%2C%7B%22name%22%3A%22FitH%22%7D%2C657%5D). The\nalgorithm requires that the cumulative hint counters per row of the\nhint vector are strictly increasing and below a maximum value which\ndepends on the choice of ML-DSA parameter set (line 4).\n\nIn libcrux-ml-dsa, hint decoding did not check the boundedness of the\ncumulative hint counter of the last row of the hint vector.\n\n## Impact\nA manipulated invalid hint can cause an out-of-bounds memory access\nsince the hint decoding logic may attempt to read outside the bounds\nof the serialized signature, causing a runtime panic.\n\n## Mitigation\nStarting from version `0.0.8`, hint decoding will check the cumulative\nhint counter of the last row as well.",
+  "severity": [
+    {
+      "type": "CVSS_V4",
+      "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N"
+    }
+  ],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "libcrux-ml-dsa",
+        "purl": "pkg:cargo/libcrux-ml-dsa"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": [
+            "libcrux_ml_dsa::ml_dsa_44::verify",
+            "libcrux_ml_dsa::ml_dsa_65::verify",
+            "libcrux_ml_dsa::ml_dsa_87::verify"
+          ]
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [],
+        "cvss": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N",
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "0.0.8"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/libcrux-ml-dsa"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0076.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/cryspen/libcrux/pull/1348"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}

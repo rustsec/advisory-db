@@ -1,0 +1,70 @@
+{
+  "id": "RUSTSEC-2026-0073",
+  "modified": "2026-03-24T08:21:09Z",
+  "published": "2026-03-04T12:00:00Z",
+  "aliases": [],
+  "related": [],
+  "summary": "Panic in Standalone MAC Operations",
+  "details": "An incorrect constant for the key length in libcrux-poly1305 caused\nthe standalone MAC function `libcrux_poly1305::mac` to always panic\nwith an out-of-bounds memory access.\n\n## Impact\nApplications wishing to use libcrux-poly1305 as a standalone MAC would\nexperience panics. The use of libcrux-poly1305 in\nlibcrux-chacha20poly1305 is unaffected.\n\n## Mitigation\nStarting from version `0.0.5`, the correct value is used for the key\nlength constant.",
+  "severity": [
+    {
+      "type": "CVSS_V4",
+      "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N"
+    }
+  ],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "libcrux-poly1305",
+        "purl": "pkg:cargo/libcrux-poly1305"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": [
+            "libcrux_poly1305::mac"
+          ]
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [],
+        "cvss": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N",
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "0.0.5"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/libcrux-poly1305"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0073.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/cryspen/libcrux/pull/1351"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "id": "RUSTSEC-2026-0074",
+  "modified": "2026-03-24T08:21:09Z",
+  "published": "2026-03-04T12:00:00Z",
+  "aliases": [],
+  "related": [],
+  "summary": "Incorrect Output of Incremental Portable SHAKE API",
+  "details": "The incremental squeeze functions in the portable SHAKE XOF API, when\n attempting to squeeze more than `RATE` (168 for SHAKE128, 136 for\n SHAKE256) bytes, performed an additional permutation of the state\n before producing the first output block, thus discarding the first\n block of `RATE` bytes of valid XOF output.\n\n## Impact\nThis bug impacts users that rely on this XOF API to squeeze more than\n`RATE` bytes. It does not impact the use of libcrux-sha3 in\nlibcrux-ml-kem or libcrux-ml-dsa.\n\n## Mitigation\nStarting from version `0.0.8` the squeeze functions correctly output\nall blocks including the first block.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "libcrux-sha3",
+        "purl": "pkg:cargo/libcrux-sha3"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": [
+            "libcrux_sha3::portable::incremental::Shake128Xof::squeeze",
+            "libcrux_sha3::portable::incremental::Shake256Xof::squeeze"
+          ]
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "0.0.8"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/libcrux-sha3"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0074.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/cryspen/libcrux/pull/1352"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
