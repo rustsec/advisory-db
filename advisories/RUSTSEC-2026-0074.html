@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package &#39;libcrux-ed25519&#39; › RustSec Advisory Database</title>
+<title>RUSTSEC-2026-0074: libcrux-sha3: Incorrect Output of Incremental Portable SHAKE API › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,58 +52,158 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/libcrux-sha3/RUSTSEC-2026-0074.md">History</a> ⋅
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/libcrux-sha3/RUSTSEC-2026-0074.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2026-0074">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2026-0074
+        
+      </h1>
+      <span class="subtitle"><p>Incorrect Output of Incremental Portable SHAKE API</p>
 </span>
-      <h1>Advisories for package &#39;libcrux-ed25519&#39;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2026-03-24">
-    March 24, 2026
-  </time>
-
-  
-  <h3>
     
-      <span class="tag high">HIGH</span>
-      
-    <a href="/advisories/RUSTSEC-2026-0075.html">
-      RUSTSEC-2026-0075: Vulnerability in libcrux-ed25519
-    </a>
-  </h3>
-  <span><p>All-Zero Key Generation on Catastrophic RNG Failure</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2026-02-25">
-    February 25, 2026
-  </time>
 
-  
-  <h3>
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2026-03-04">
+          March  4, 2026
+        </time>
+      </dd>
+
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2026-03-24">
+          March 24, 2026
+        </time>
+        
+      </dd>
+
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        <a href="/packages/libcrux-sha3.html">libcrux-sha3</a>
+           
+          (<a href="https://crates.io/crates/libcrux-sha3">crates.io</a>)
+          
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        Vulnerability
+        
+      </dd>
+
+      
+
+      
+
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/cryspen/libcrux/pull/1352">
+              https://github.com/cryspen/libcrux/pull/1352
+            </a>
+          </li>
+        
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&#62;=0.0.8</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+
+      
+      
+
+      
+      
+    </dl>
+
     
-      <span class="tag none">NONE</span>
+    
+    <dl>
+      <dt>Affected Functions</dt>
+      <dd>Version</dd>
       
-    <a href="/advisories/RUSTSEC-2026-0026.html">
-      RUSTSEC-2026-0026: Vulnerability in libcrux-ed25519
-    </a>
-  </h3>
-  <span><p>Unnecessary clamping of seed reduces seed entropy to 251 bits</p>
-</span>
-  
-</li>
+      <dt><code>libcrux_sha3::portable::incremental::Shake128Xof::squeeze</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;=0.0.7</code></li>
+          
+        </ul>
+      </dd>
       
-    </ul>
+      <dt><code>libcrux_sha3::portable::incremental::Shake256Xof::squeeze</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;=0.0.7</code></li>
+          
+        </ul>
+      </dd>
+      
+    </dl>
+    
+
+    
+
+    <h3 id="description">Description</h3>
+    <p>The incremental squeeze functions in the portable SHAKE XOF API, when
+attempting to squeeze more than <code>RATE</code> (168 for SHAKE128, 136 for
+SHAKE256) bytes, performed an additional permutation of the state
+before producing the first output block, thus discarding the first
+block of <code>RATE</code> bytes of valid XOF output.</p>
+<h2>Impact</h2>
+<p>This bug impacts users that rely on this XOF API to squeeze more than
+<code>RATE</code> bytes. It does not impact the use of libcrux-sha3 in
+libcrux-ml-kem or libcrux-ml-dsa.</p>
+<h2>Mitigation</h2>
+<p>Starting from version <code>0.0.8</code> the squeeze functions correctly output
+all blocks including the first block.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
