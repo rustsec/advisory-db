@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2026-0077",
-  "modified": "2026-03-24T08:21:09Z",
+  "modified": "2026-03-27T05:55:06Z",
   "published": "2026-03-04T12:00:00Z",
-  "aliases": [],
+  "aliases": [
+    "GHSA-cp57-fq8g-qh6v"
+  ],
   "related": [],
   "summary": "Incorrect Check of Signer Response Norm During Verification",
   "details": "The ML-DSA verification algorithm as specified in [FIPS 204,\nsubsection\n6.3](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf#subsection.6.3)\nrequires verifiers to check that the infinity norm of the deserialized\nsigner response $z$ does not exceed $\\gamma_1 - \\beta$ (line 13 of\nAlgorithm 8).\nThe same check is required to be performed during signature generation.\n\nlibcrux-ml-dsa did not perform this check correctly during signature\nverification, accepting signatures with signer response norm above the\nallowed maximum value.  The check is correctly performed during\nsigning.\n\n## Impact\nApplications using libcrux-ml-dsa for signature verification would\nhave accepted signatures that would be rejected by a conforming\nimplementation.\n\n## Mitigation\nStarting from version `0.0.8`, signature verification uses the correct\nvalue for $\\gamma_1$ in the signer response norm check.",

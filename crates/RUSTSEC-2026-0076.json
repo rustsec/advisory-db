@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2026-0076",
-  "modified": "2026-03-24T08:21:09Z",
+  "modified": "2026-03-27T05:55:06Z",
   "published": "2026-03-04T12:00:00Z",
-  "aliases": [],
+  "aliases": [
+    "GHSA-xrf2-5r3p-5wgj"
+  ],
   "related": [],
   "summary": "Panic in Signature Hint Decoding During Verification",
   "details": "During ML-DSA verification the serialized hint values are decoded as\nspecified in algorithm 22 `HintBitUnpack` of [FIPS 204, subsection\n7.1](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf#%5B%7B%22num%22%3A120%2C%22gen%22%3A0%7D%2C%7B%22name%22%3A%22FitH%22%7D%2C657%5D). The\nalgorithm requires that the cumulative hint counters per row of the\nhint vector are strictly increasing and below a maximum value which\ndepends on the choice of ML-DSA parameter set (line 4).\n\nIn libcrux-ml-dsa, hint decoding did not check the boundedness of the\ncumulative hint counter of the last row of the hint vector.\n\n## Impact\nA manipulated invalid hint can cause an out-of-bounds memory access\nsince the hint decoding logic may attempt to read outside the bounds\nof the serialized signature, causing a runtime panic.\n\n## Mitigation\nStarting from version `0.0.8`, hint decoding will check the cumulative\nhint counter of the last row as well.",
