@@ -1,0 +1,203 @@
+{
+  "id": "RUSTSEC-2023-0125",
+  "modified": "2026-04-02T14:44:59Z",
+  "published": "2023-04-19T12:00:00Z",
+  "aliases": [
+    "CVE-2023-30610",
+    "GHSA-mjv9-vp6w-3rc9"
+  ],
+  "related": [],
+  "summary": "Logs AWS credentials when TRACE-level logging is enabled",
+  "details": "aws-sigv4 is a rust library for low level request signing in the aws cloud platform.\n\nThe `aws_sigv4::SigningParams` struct had a derived `Debug` implementation.\nWhen debug-formatted, it would include a user's AWS access key, AWS secret key,\nand security token in plaintext. When TRACE-level logging is enabled for an SDK,\n`SigningParams` is printed, thereby revealing those credentials to anyone\nwith access to logs.\n\nAll users of the AWS SDK for Rust who enabled TRACE-level logging,\neither globally (e.g. `RUST_LOG=trace`), or for the `aws-sigv4`\ncrate specifically are affected.\n\nThis issue has been addressed in a set of new releases.\n\nUsers are advised to upgrade.\n\nUsers unable to upgrade should disable TRACE-level logging for AWS Rust SDK crates.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N"
+    }
+  ],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "aws-sigv4",
+        "purl": "pkg:cargo/aws-sigv4"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [],
+        "cvss": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "0.2.1"
+            },
+            {
+              "introduced": "0.3.0-0"
+            },
+            {
+              "fixed": "0.3.1"
+            },
+            {
+              "introduced": "0.4.0-0"
+            },
+            {
+              "fixed": "0.5.3"
+            },
+            {
+              "introduced": "0.6.0-0"
+            },
+            {
+              "fixed": "0.6.1"
+            },
+            {
+              "introduced": "0.7.0-0"
+            },
+            {
+              "fixed": "0.7.1"
+            },
+            {
+              "introduced": "0.8.0-0"
+            },
+            {
+              "fixed": "0.8.1"
+            },
+            {
+              "introduced": "0.9.0-0"
+            },
+            {
+              "fixed": "0.9.1"
+            },
+            {
+              "introduced": "0.10.0-0"
+            },
+            {
+              "fixed": "0.10.2"
+            },
+            {
+              "introduced": "0.11.0-0"
+            },
+            {
+              "fixed": "0.11.1"
+            },
+            {
+              "introduced": "0.12.0-0"
+            },
+            {
+              "fixed": "0.12.1"
+            },
+            {
+              "introduced": "0.13.0-0"
+            },
+            {
+              "fixed": "0.13.1"
+            },
+            {
+              "introduced": "0.14.0-0"
+            },
+            {
+              "fixed": "0.14.1"
+            },
+            {
+              "introduced": "0.15.0-0"
+            },
+            {
+              "fixed": "0.15.1"
+            },
+            {
+              "introduced": "0.16.0-0"
+            },
+            {
+              "fixed": "0.46.1"
+            },
+            {
+              "introduced": "0.47.0-0"
+            },
+            {
+              "fixed": "0.47.1"
+            },
+            {
+              "introduced": "0.48.0-0"
+            },
+            {
+              "fixed": "0.48.1"
+            },
+            {
+              "introduced": "0.49.0-0"
+            },
+            {
+              "fixed": "0.49.1"
+            },
+            {
+              "introduced": "0.50.0-0"
+            },
+            {
+              "fixed": "0.50.1"
+            },
+            {
+              "introduced": "0.51.0-0"
+            },
+            {
+              "fixed": "0.51.1"
+            },
+            {
+              "introduced": "0.52.0-0"
+            },
+            {
+              "fixed": "0.52.1"
+            },
+            {
+              "introduced": "0.53.0-0"
+            },
+            {
+              "fixed": "0.53.2"
+            },
+            {
+              "introduced": "0.54.0-0"
+            },
+            {
+              "fixed": "0.54.2"
+            },
+            {
+              "introduced": "0.55.0-0"
+            },
+            {
+              "fixed": "0.55.1"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/aws-sigv4"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2023-0125.html"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://github.com/awslabs/aws-sdk-rust/security/advisories/GHSA-mjv9-vp6w-3rc9"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
