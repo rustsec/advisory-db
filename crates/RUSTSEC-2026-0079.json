@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2026-0079",
-  "modified": "2026-04-02T12:03:57Z",
+  "modified": "2026-04-05T05:30:42Z",
   "published": "2026-01-21T12:00:00Z",
-  "aliases": [],
+  "aliases": [
+    "GHSA-j3w3-p6mr-3hrh"
+  ],
   "related": [],
   "summary": "`DynFuture` drop can construct a dangling reference",
   "details": "DynFuture is unsound because its Drop implementation transmutes a trait-object reference into unrelated reference types, which constructs an invalid reference from trait object metadata.\n\nThis issue was reproduced against `dyn-future` 3.0.4 under Miri. And the crate is unmaintained.",

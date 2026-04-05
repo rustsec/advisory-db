@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2026-0080",
-  "modified": "2026-04-02T12:03:57Z",
+  "modified": "2026-04-05T05:30:42Z",
   "published": "2026-01-19T12:00:00Z",
-  "aliases": [],
+  "aliases": [
+    "GHSA-2c6h-4899-wjxr"
+  ],
   "related": [],
   "summary": "Multiple soundness issues in `scaly` safe APIs",
   "details": "Affected versions contain multiple safe APIs that can trigger undefined\nbehavior:\n\n- `Array<T>::index` can perform an out-of-bounds read.\n- `String::get_length` can perform an out-of-bounds read.\n- `String::append_character` can perform an invalid write.\n- `String::to_c_string` can perform an out-of-bounds write.\n\nThese issues were reproduced against `scaly` 0.0.37 under Miri. And the crate is unmaintained.",
