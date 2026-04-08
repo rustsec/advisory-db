@@ -54,11 +54,26 @@
 
 <main class="static-page">
     <article>
-        <h1>Reporting Vulnerabilities</h1>
+        <h1>Create an Advisory</h1>
 <p>To add an advisory to the RustSec database, open a <a href="https://github.com/RustSec/advisory-db/pulls">Pull Request</a> against
 <a href="https://github.com/RustSec/advisory-db">this</a> repository containing the new advisory:</p>
-<h3>Required Steps</h3>
+<h3>Prerequisites</h3>
 <ol>
+<li>Report the vulnerability upstream according to their security policy. RustSec
+maintainers do not have expertise in every crate's internals and so a crate
+maintainer can much more efficiently respond. Suspected malicous crates
+should instead be <a href="https://crates.io/policies/security">reported to crates.io</a>.</li>
+<li>Wait for the maintainers to confirm the vulnerability exists.</li>
+<li>Engage in coordinated disclosure (as applicable) so the vulnerability isn't revealed
+publicly before responsible parties are ready to respond.</li>
+</ol>
+<p>The above steps can be skipped for advisories filed by crate authors, or if the
+upstream repository no longer exists and the authors are unreachable.</p>
+<p>Historically, RustSec has also accepted advisories if they received no response
+two weeks after public disclosure on the repository issue tracker, however
+coordinated (private) disclosure is always preferred as a first step.</p>
+<h3>Required Steps</h3>
+<ol start="4">
 <li>Create a file named <code>RUSTSEC-0000-0000.md</code> in the <code>crates/&lt;yourcratename&gt;</code>
 subdirectory of the repository (you may need to create it if it doesn't exist)</li>
 <li>Copy and paste the <a href="https://github.com/RustSec/advisory-db#advisory-format">TOML advisory template</a> from the README.md file in this repo.
@@ -70,7 +85,7 @@ a <code>RUSTSEC-*</code> advisory identifier and be published to the database.</
 </ol>
 <h3>Optional Steps</h3>
 <p>Feel free to do either or both of these as you see fit (we recommend you do both):</p>
-<ol start="4">
+<ol start="8">
 <li><a href="https://doc.rust-lang.org/cargo/commands/cargo-yank.html">Yank</a> the affected versions of the crate.</li>
 <li>Request a CVE for your vulnerability. See for details:
 https://cve.mitre.org/cve/request_id.html and https://cveform.mitre.org .
@@ -97,14 +112,14 @@ A soundness issue arises when using a crate from safe code can cause <a href="ht
 <p>When in doubt, please open a PR.</p>
 <h2>FAQ</h2>
 <p><strong>Q: Do I need to be owner of a crate to file an advisory?</strong></p>
-<p>A: No, anyone can file an advisory against any crate. The legitimacy of
-vulnerabilities will be determined prior to merging. If a vulnerability
-turns out to be fake, it will be removed from the database.</p>
+<p>A: No, anyone can file an advisory against any crate. However, this should only be
+done after the mainainters have confirmed the legitimacy of the vulnerability.
+If a vulnerability later turns out to be fake, it can be removed from the database.</p>
 <p><strong>Q: Can I file an advisory without creating a pull request?</strong></p>
 <p>A: Yes, instead of creating a full advisory yourself, you can also
 <a href="https://github.com/RustSec/advisory-db/issues">open an issue on the advisory-db repo</a>.</p>
 <p><strong>Q: Does this project have a GPG key or other means of handling embargoed vulnerabilities?</strong></p>
-<p>A: We do not presently handle embargoed vulnerabilities. Please ensure embargoes
+<p>A: We do not handle embargoed vulnerabilities. Please ensure embargoes
 have been lifted and details have been disclosed to the public prior to filing
 them against RustSec.</p>
 <p><strong>Q: Is this where I report a vulnerability in <code>rustc</code>?</strong></p>
