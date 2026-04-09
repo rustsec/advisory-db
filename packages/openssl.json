@@ -420,6 +420,75 @@
     }
   },
   {
+    "id": "RUSTSEC-2023-0022",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2023-03-24T12:00:00Z",
+    "aliases": [
+      "GHSA-3gxf-9r58-2ghg"
+    ],
+    "related": [],
+    "summary": "`openssl` `X509NameBuilder::build` returned object is not thread safe",
+    "details": "OpenSSL has a `modified` bit that it can set on on `X509_NAME` objects. If this\nbit is set then the object is not thread-safe even when it appears the code is\nnot modifying the value.\n\nThanks to David Benjamin (Google) for reporting this issue.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "openssl",
+          "purl": "pkg:cargo/openssl"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "openssl::x509::X509NameBuilder::build"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "thread-safety"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.10.48"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/openssl"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2023-0022.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/sfackler/rust-openssl/pull/1854"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
     "id": "RUSTSEC-2023-0024",
     "modified": "2023-06-13T13:10:24Z",
     "published": "2023-03-24T12:00:00Z",
@@ -479,75 +548,6 @@
       {
         "type": "ADVISORY",
         "url": "https://rustsec.org/advisories/RUSTSEC-2023-0024.html"
-      },
-      {
-        "type": "WEB",
-        "url": "https://github.com/sfackler/rust-openssl/pull/1854"
-      }
-    ],
-    "database_specific": {
-      "license": "CC0-1.0"
-    }
-  },
-  {
-    "id": "RUSTSEC-2023-0022",
-    "modified": "2023-06-13T13:10:24Z",
-    "published": "2023-03-24T12:00:00Z",
-    "aliases": [
-      "GHSA-3gxf-9r58-2ghg"
-    ],
-    "related": [],
-    "summary": "`openssl` `X509NameBuilder::build` returned object is not thread safe",
-    "details": "OpenSSL has a `modified` bit that it can set on on `X509_NAME` objects. If this\nbit is set then the object is not thread-safe even when it appears the code is\nnot modifying the value.\n\nThanks to David Benjamin (Google) for reporting this issue.",
-    "severity": [],
-    "affected": [
-      {
-        "package": {
-          "ecosystem": "crates.io",
-          "name": "openssl",
-          "purl": "pkg:cargo/openssl"
-        },
-        "ecosystem_specific": {
-          "affects": {
-            "arch": [],
-            "os": [],
-            "functions": [
-              "openssl::x509::X509NameBuilder::build"
-            ]
-          },
-          "affected_functions": null
-        },
-        "database_specific": {
-          "categories": [
-            "thread-safety"
-          ],
-          "cvss": null,
-          "informational": null
-        },
-        "ranges": [
-          {
-            "type": "SEMVER",
-            "events": [
-              {
-                "introduced": "0.0.0-0"
-              },
-              {
-                "fixed": "0.10.48"
-              }
-            ]
-          }
-        ],
-        "versions": []
-      }
-    ],
-    "references": [
-      {
-        "type": "PACKAGE",
-        "url": "https://crates.io/crates/openssl"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/RUSTSEC-2023-0022.html"
       },
       {
         "type": "WEB",
