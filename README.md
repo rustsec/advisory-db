@@ -53,8 +53,11 @@ Below is the schema of the [TOML] "front matter" section of an advisory:
 # identifier e.g. RUSTSEC-2018-0001. Please use "RUSTSEC-0000-0000" in PRs.
 id = "RUSTSEC-0000-0000"
 
-# Name of the affected crate (mandatory)
+# Name of the affected crates.io package (mandatory)
 package = "mycrate"
+
+# Override crate name if it differs from normalized package name (optional)
+#crate_name = "mycrate"
 
 # Disclosure date of the advisory as an RFC 3339 date (mandatory)
 date = "2021-01-31"
