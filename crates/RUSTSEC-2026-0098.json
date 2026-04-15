@@ -1,0 +1,67 @@
+{
+  "id": "RUSTSEC-2026-0098",
+  "modified": "2026-04-15T07:36:20Z",
+  "published": "2026-04-14T12:00:00Z",
+  "aliases": [
+    "GHSA-965h-392x-2mh5"
+  ],
+  "related": [],
+  "summary": "Name constraints for URI names were incorrectly accepted",
+  "details": "Name constraints for URI names were ignored and therefore accepted.\n\nNote this library does not provide an API for asserting URI names, and URI name constraints are otherwise not implemented.  URI name constraints are now rejected unconditionally.\n\nSince name constraints are restrictions on otherwise properly-issued certificates, this bug is reachable only after signature verification and requires misissuance to exploit.\n\nThis vulnerability is identified as [GHSA-965h-392x-2mh5](https://github.com/rustls/webpki/security/advisories/GHSA-965h-392x-2mh5). Thank you to @1seal for the report.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "rustls-webpki",
+        "purl": "pkg:cargo/rustls-webpki"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "0.103.12"
+            },
+            {
+              "introduced": "0.104.0-alpha.1"
+            },
+            {
+              "fixed": "0.104.0-alpha.6"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/rustls-webpki"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0098.html"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
