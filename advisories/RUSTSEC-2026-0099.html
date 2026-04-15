@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package &#39;rustls-webpki&#39; › RustSec Advisory Database</title>
+<title>RUSTSEC-2026-0099: rustls-webpki: Name constraints were accepted for certificates asserting a wildcard name › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,96 +52,132 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/rustls-webpki/RUSTSEC-2026-0099.md">History</a> ⋅
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/rustls-webpki/RUSTSEC-2026-0099.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2026-0099">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2026-0099
+        
+      </h1>
+      <span class="subtitle"><p>Name constraints were accepted for certificates asserting a wildcard name</p>
 </span>
-      <h1>Advisories for package &#39;rustls-webpki&#39;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2026-04-15">
-    April 15, 2026
-  </time>
-
-  
-  <h3>
     
+
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2026-04-14">
+          April 14, 2026
+        </time>
+      </dd>
+
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2026-04-15">
+          April 15, 2026
+        </time>
         
-    
-    <a href="/advisories/RUSTSEC-2026-0098.html">
-      RUSTSEC-2026-0098: Vulnerability in rustls-webpki
-    </a>
-  </h3>
-  <span><p>Name constraints for URI names were incorrectly accepted</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2026-04-15">
-    April 15, 2026
-  </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="package">Package</dt>
+      <dd>
         
-    
-    <a href="/advisories/RUSTSEC-2026-0099.html">
-      RUSTSEC-2026-0099: Vulnerability in rustls-webpki
-    </a>
-  </h3>
-  <span><p>Name constraints were accepted for certificates asserting a wildcard name</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2026-03-20">
-    March 20, 2026
-  </time>
-
-  
-  <h3>
-    
         
-    
-    <a href="/advisories/RUSTSEC-2026-0049.html">
-      RUSTSEC-2026-0049: Vulnerability in rustls-webpki
-    </a>
-  </h3>
-  <span><p>CRLs not considered authoritative by Distribution Point due to faulty matching logic</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2023-08-22">
-    August 22, 2023
-  </time>
+        <a href="/packages/rustls-webpki.html">rustls-webpki</a>
+           
+          (<a href="https://crates.io/crates/rustls-webpki">crates.io</a>)
+          
+        
+        
+      </dd>
 
-  
-  <h3>
+      <dt id="type">Type</dt>
+      <dd>
+        
+        Vulnerability
+        
+      </dd>
+
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/name-constraints.html">#name-constraints</a>
+        
+          <a href="/keywords/x509.html">#x509</a>
+        
+      </dd>
+      
+
+      
+      <dt id="aliases">Aliases</dt>
+      <dd>
+        <ul>
+          
+          <li>
+            
+            <a href="https://github.com/advisories/GHSA-xgp8-3hg3-c2mh">GHSA-xgp8-3hg3-c2mh</a>
+            
+          </li>
+          
+        </ul>
+      </dd>
+      
+
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&#62;=0.103.12, &#60;0.104.0-alpha.1</code></li>
+          
+          <li><code>&#62;=0.104.0-alpha.6</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+
+      
+      
+    </dl>
+
     
-      <span class="tag high">HIGH</span>
-      
-    <a href="/advisories/RUSTSEC-2023-0053.html">
-      RUSTSEC-2023-0053: Vulnerability in rustls-webpki
-    </a>
-  </h3>
-  <span><p>rustls-webpki: CPU denial of service in certificate path building</p>
-</span>
-  
-</li>
-      
-    </ul>
+    
+
+    <h3 id="description">Description</h3>
+    <p>Permitted subtree name constraints for DNS names were accepted for certificates asserting a wildcard name.</p>
+<p>This was incorrect because, given a name constraint of <code>accept.example.com</code>, <code>*.example.com</code> could feasibly allow a name of <code>reject.example.com</code> which is outside the constraint.
+This is very similar to <a href="https://go.dev/issue/76442">CVE-2025-61727</a>.</p>
+<p>Since name constraints are restrictions on otherwise properly-issued certificates, this bug is reachable only after signature verification and requires misissuance to exploit.</p>
+<p>This vulnerability is identified as <a href="https://github.com/rustls/webpki/security/advisories/GHSA-xgp8-3hg3-c2mh">GHSA-xgp8-3hg3-c2mh</a>. Thank you to @1seal for the report.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
