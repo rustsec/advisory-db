@@ -226,7 +226,7 @@
 <li>Trace-level logging is enabled or warn-level logging is enabled and the random source (the <code>getrandom</code> crate) is unable to provide a new seed</li>
 </ul>
 <p><code>TryRng</code> (previously <code>RngCore</code>) methods for <code>ThreadRng</code> use <code>unsafe</code> code to cast <code>*mut BlockRng&lt;ReseedingCore&gt;</code> to <code>&amp;mut BlockRng&lt;ReseedingCore&gt;</code>. When all the above conditions are met this results in an aliased mutable reference, violating the Stacked Borrows rules. Miri is able to detect this violation in sample code. Since construction of <a href="https://doc.rust-lang.org/stable/nomicon/references.html">aliased mutable references is Undefined Behaviour</a>, the behaviour of optimized builds is hard to predict.</p>
-<p>Affected versions of <code>rand</code> are <code>&gt;= 0.7, &lt; 0.9.3</code> and <code>0.10.0</code>.</p>
+<p>Affected versions of <code>rand</code> are <code>&gt;= 0.7, &lt; 0.8.6</code>, &gt;= <code>0.9.0, &lt; 0.9.3</code>, and <code>0.10.0</code>.</p>
 
 
     <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
