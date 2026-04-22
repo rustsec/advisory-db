@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories with keyword &#39;tls&#39; › RustSec Advisory Database</title>
+<title>RUSTSEC-2026-0106: hickory-recursor: Record cache accepts AUTHORITY section NS from sibling zone via parent-pool zone-context elevation › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,96 +52,162 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/hickory-recursor/RUSTSEC-2026-0106.md">History</a> ⋅
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/hickory-recursor/RUSTSEC-2026-0106.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2026-0106">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2026-0106
+        
+      </h1>
+      <span class="subtitle"><p>Record cache accepts AUTHORITY section NS from sibling zone via parent-pool zone-context elevation</p>
 </span>
-      <h1>Advisories with keyword &#39;tls&#39;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2025-02-02">
-    February  2, 2025
-  </time>
-
-  
-  <h3>
     
+
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2026-04-22">
+          April 22, 2026
+        </time>
+      </dd>
+
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2026-04-22">
+          April 22, 2026
+        </time>
+        
+      </dd>
+
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        <a href="/packages/hickory-recursor.html">hickory-recursor</a>
+           
+          (<a href="https://crates.io/crates/hickory-recursor">crates.io</a>)
+          
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        Vulnerability
+        
+      </dd>
+
+      
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/privilege-escalation.html">privilege-escalation</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/dns.html">#dns</a>
+        
+          <a href="/keywords/cache-poisoning.html">#cache-poisoning</a>
+        
+      </dd>
+      
+
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/hickory-dns/hickory-dns/security/advisories/GHSA-83hf-93m4-rgwq">
+              https://github.com/hickory-dns/hickory-dns/security/advisories/GHSA-83hf-93m4-rgwq
+            </a>
+          </li>
+        
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        no patched versions
+        
+      </dd>
+
+      
+
+      
+      
+    </dl>
+
+    
+    
+
+    <h3 id="description">Description</h3>
+    <p>The Hickory DNS project's experimental <code>hickory-recursor</code> crate's record cache
+(<code>DnsLru</code>) stores records from DNS responses keyed by each record's own (name,
+type), not by the query that triggered the response. <code>cache_response()</code> in
+<code>crates/recursor/src/lib.rs</code> chains <code>ANSWER</code>, <code>AUTHORITY</code>, and <code>ADDITIONAL</code>
+sections into one record iterator before insertion. The bailiwick filter it
+applies uses the zone context of the NS pool that serviced the lookup, not the
+zone being queried.</p>
+<p>This creates a cross-zone poisoning path. When Hickory builds the NS pool for
+<code>attacker.poc.</code> it uses the parent <code>poc.</code> <code>NS</code> pool (<code>ns.zone() = &quot;poc.&quot;</code>). If
+the <code>poc.</code> nameserver under the attacker's control includes in its response's
+<code>AUTHORITY</code> section a record for a sibling zone like <code>victim.poc. NS ns.evil.poc.</code>, the bailiwick check <code>is_subzone(&quot;poc.&quot;, &quot;victim.poc.&quot;)</code> passes
+(<code>victim.poc.</code> is a subdomain of <code>poc.</code>). The record is stored under
+<code>(victim.poc., NS)</code> in the shared cache.</p>
+<p>Subsequently, any client querying a name in <code>victim.poc</code>. causes Hickory to
+build its NS pool from the poisoned cache entry, routing queries to the
+attacker's nameserver (<code>ns.evil.poc.</code>) rather than to the legitimate nameserver
+for <code>victim.poc.</code>. The legitimate <code>NS</code> for that zone receives zero queries.</p>
+<p>This issue is fixed in <code>hickory-resolver</code> 0.26.0 with the <code>recursor</code> feature
+through an architectural change to response-level caching: responses are stored
+keyed by the originating query <code>(name, type)</code>. A response to <code>(attacker.poc. NS)</code> is stored only under that key and cannot affect the <code>(victim.poc., NS)</code>
+cache entry.</p>
+<p>We believe this issue has been present in all published versions of the
+experimental <code>hickory-recursor</code> crate, which has now been folded into the
+<code>hickory-resolver</code> crate under the non-default <code>recursor</code> feature flag. The
+<code>hickory-recursor</code> crate will not receive any updates going forward and all
+users should migrate to <code>hickory-resolver</code> with the <code>recursor</code> feature.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC-BY-4.0.html">CC-BY-4.0</a>
+    license.
+
+    
+      
+      
+          Source: <a href="https://github.com/hickory-dns/hickory-dns/security/advisories/GHSA-83hf-93m4-rgwq">https://github.com/hickory-dns/hickory-dns/security/advisories/GHSA-83hf-93m4-rgwq</a>
         
     
-    <a href="/advisories/RUSTSEC-2025-0004.html">
-      RUSTSEC-2025-0004: Vulnerability in openssl
-    </a>
-  </h3>
-  <span><p>ssl::select_next_proto use after free</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2023-03-25">
-    March 25, 2023
-  </time>
-
-  
-  <h3>
-    
-        
-    
-    <a href="/advisories/RUSTSEC-2023-0027.html">
-      RUSTSEC-2023-0027: Vulnerability in async-nats
-    </a>
-  </h3>
-  <span><p>TLS certificate common name validation bypass</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2023-03-25">
-    March 25, 2023
-  </time>
-
-  
-  <h3>
-    
-        
-    
-    <a href="/advisories/RUSTSEC-2023-0029.html">
-      RUSTSEC-2023-0029: Vulnerability in nats
-    </a>
-  </h3>
-  <span><p>TLS certificate common name validation bypass</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2020-10-01">
-    October  1, 2020
-  </time>
-
-  
-  <h3>
-    
-      <span class="tag high">HIGH</span>
-      
-    <a href="/advisories/RUSTSEC-2020-0019.html">
-      RUSTSEC-2020-0019: Vulnerability in tokio-rustls
-    </a>
-  </h3>
-  <span><p>tokio-rustls reads may cause excessive memory usage</p>
-</span>
-  
-</li>
-      
-    </ul>
+    </p>
   </article>
 </main>

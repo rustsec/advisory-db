@@ -1,20 +1,15 @@
 [
   {
-    "id": "RUSTSEC-2026-0071",
+    "id": "RUSTSEC-2026-0069",
     "modified": "2026-03-24T08:16:07Z",
-    "published": "2026-02-05T12:00:00Z",
+    "published": "2026-02-11T12:00:00Z",
     "aliases": [
       "GHSA-g433-pq76-6cmf"
     ],
     "related": [],
-    "summary": "Nonce Reuse in HPKE Context",
-    "details": "The sequence number that is used to compute the AEAD nonce when using\na re-usable HPKE context is incremented after each seal or open\noperation. This sequence number was stored as a `u32` and used regular\naddition on `u32` for the increment, meaning in release mode it would\nsilently wrap around to 0 after 2^32 seal or open operations.\n\n## Impact\nNonce reuse causes catastrophic breakage of AEAD ciphers, enabling\nplaintext recovery attacks and authentication tag forgeries, depending\non the concrete AEAD.\n\nThis bug impacts applications that use hpke-rs to encrypt a large\nnumber of messages using the same context. Applications using the\none-shot APIs are unaffected.\n\n## Mitigation\nStarting with version `0.6.0`, `checked_add` is used to increment the\nsequence number, which avoids a silent wraparound in release\nmode. Additionally, the sequence number is now stored as a `u64`,\nincreasing the maximally allowed number of seal and open operations on\na given HPKE context.",
-    "severity": [
-      {
-        "type": "CVSS_V4",
-        "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:N/SC:N/SI:N/SA:N"
-      }
-    ],
+    "summary": "Incorrect Length Encoding on KDF Export",
+    "details": "Passing values `length > 65535` to `Context::export` produces output\nthat disagrees with the RFC 9180 label encoding. In particular the\nlength value is cast to `u16` truncating any value exceeding\n65535.\n\n## Impact\nApplications that use hpke-rs to export very large secrets would\nexperience interoperability issues with other applications that use a\ncorrect implementation to export very large secrets.\n\n## Mitigation\nStarting with version `0.6.0`, an error will be returned when\nattempting to call `Context::export` with an output length > 65535.",
+    "severity": [],
     "affected": [
       {
         "package": {
@@ -27,15 +22,14 @@
             "arch": [],
             "os": [],
             "functions": [
-              "hpke_rs::Context::open",
-              "hpke_rs::Context::seal"
+              "hpke_rs::Context::export"
             ]
           },
           "affected_functions": null
         },
         "database_specific": {
           "categories": [],
-          "cvss": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:N/SC:N/SI:N/SA:N",
+          "cvss": null,
           "informational": null
         },
         "ranges": [
@@ -61,11 +55,11 @@
       },
       {
         "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0071.html"
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0069.html"
       },
       {
         "type": "WEB",
-        "url": "https://github.com/cryspen/hpke-rs/pull/123"
+        "url": "https://github.com/cryspen/hpke-rs/pull/128"
       }
     ],
     "database_specific": {
@@ -146,16 +140,21 @@
     }
   },
   {
-    "id": "RUSTSEC-2026-0069",
+    "id": "RUSTSEC-2026-0071",
     "modified": "2026-03-24T08:16:07Z",
-    "published": "2026-02-11T12:00:00Z",
+    "published": "2026-02-05T12:00:00Z",
     "aliases": [
       "GHSA-g433-pq76-6cmf"
     ],
     "related": [],
-    "summary": "Incorrect Length Encoding on KDF Export",
-    "details": "Passing values `length > 65535` to `Context::export` produces output\nthat disagrees with the RFC 9180 label encoding. In particular the\nlength value is cast to `u16` truncating any value exceeding\n65535.\n\n## Impact\nApplications that use hpke-rs to export very large secrets would\nexperience interoperability issues with other applications that use a\ncorrect implementation to export very large secrets.\n\n## Mitigation\nStarting with version `0.6.0`, an error will be returned when\nattempting to call `Context::export` with an output length > 65535.",
-    "severity": [],
+    "summary": "Nonce Reuse in HPKE Context",
+    "details": "The sequence number that is used to compute the AEAD nonce when using\na re-usable HPKE context is incremented after each seal or open\noperation. This sequence number was stored as a `u32` and used regular\naddition on `u32` for the increment, meaning in release mode it would\nsilently wrap around to 0 after 2^32 seal or open operations.\n\n## Impact\nNonce reuse causes catastrophic breakage of AEAD ciphers, enabling\nplaintext recovery attacks and authentication tag forgeries, depending\non the concrete AEAD.\n\nThis bug impacts applications that use hpke-rs to encrypt a large\nnumber of messages using the same context. Applications using the\none-shot APIs are unaffected.\n\n## Mitigation\nStarting with version `0.6.0`, `checked_add` is used to increment the\nsequence number, which avoids a silent wraparound in release\nmode. Additionally, the sequence number is now stored as a `u64`,\nincreasing the maximally allowed number of seal and open operations on\na given HPKE context.",
+    "severity": [
+      {
+        "type": "CVSS_V4",
+        "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:N/SC:N/SI:N/SA:N"
+      }
+    ],
     "affected": [
       {
         "package": {
@@ -168,14 +167,15 @@
             "arch": [],
             "os": [],
             "functions": [
-              "hpke_rs::Context::export"
+              "hpke_rs::Context::open",
+              "hpke_rs::Context::seal"
             ]
           },
           "affected_functions": null
         },
         "database_specific": {
           "categories": [],
-          "cvss": null,
+          "cvss": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:N/SC:N/SI:N/SA:N",
           "informational": null
         },
         "ranges": [
@@ -201,11 +201,11 @@
       },
       {
         "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0069.html"
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0071.html"
       },
       {
         "type": "WEB",
-        "url": "https://github.com/cryspen/hpke-rs/pull/128"
+        "url": "https://github.com/cryspen/hpke-rs/pull/123"
       }
     ],
     "database_specific": {

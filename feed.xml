@@ -137,6 +137,162 @@ or [&lt;code&gt;OwnedCertRevocationList::from_der&lt;/code&gt;].  This was the r
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0106: Vulnerability in hickory-recursor</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0106.html</id><updated>2026-04-22T12:00:00+00:00</updated><category term="privilege-escalation"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0106.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0106: Vulnerability in hickory-recursor"/><published>2026-04-22T12:00:00+00:00</published><summary xml:lang="en">Record cache accepts AUTHORITY section NS from sibling zone via parent-pool zone-context elevation</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/hickory-recursor/RUSTSEC-2026-0106.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/hickory-recursor/RUSTSEC-2026-0106.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0106&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0106
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Record cache accepts AUTHORITY section NS from sibling zone via parent-pool zone-context elevation&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-04-22&quot;&gt;
+          April 22, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-04-22&quot;&gt;
+          April 22, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/hickory-recursor.html&quot;&gt;hickory-recursor&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/hickory-recursor&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/privilege-escalation.html&quot;&gt;privilege-escalation&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/dns.html&quot;&gt;#dns&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/cache-poisoning.html&quot;&gt;#cache-poisoning&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/hickory-dns/hickory-dns/security/advisories/GHSA-83hf-93m4-rgwq&quot;&gt;
+              https://github.com/hickory-dns/hickory-dns/security/advisories/GHSA-83hf-93m4-rgwq
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;The Hickory DNS project&apos;s experimental &lt;code&gt;hickory-recursor&lt;/code&gt; crate&apos;s record cache
+(&lt;code&gt;DnsLru&lt;/code&gt;) stores records from DNS responses keyed by each record&apos;s own (name,
+type), not by the query that triggered the response. &lt;code&gt;cache_response()&lt;/code&gt; in
+&lt;code&gt;crates/recursor/src/lib.rs&lt;/code&gt; chains &lt;code&gt;ANSWER&lt;/code&gt;, &lt;code&gt;AUTHORITY&lt;/code&gt;, and &lt;code&gt;ADDITIONAL&lt;/code&gt;
+sections into one record iterator before insertion. The bailiwick filter it
+applies uses the zone context of the NS pool that serviced the lookup, not the
+zone being queried.&lt;/p&gt;
+&lt;p&gt;This creates a cross-zone poisoning path. When Hickory builds the NS pool for
+&lt;code&gt;attacker.poc.&lt;/code&gt; it uses the parent &lt;code&gt;poc.&lt;/code&gt; &lt;code&gt;NS&lt;/code&gt; pool (&lt;code&gt;ns.zone() = &amp;quot;poc.&amp;quot;&lt;/code&gt;). If
+the &lt;code&gt;poc.&lt;/code&gt; nameserver under the attacker&apos;s control includes in its response&apos;s
+&lt;code&gt;AUTHORITY&lt;/code&gt; section a record for a sibling zone like &lt;code&gt;victim.poc. NS ns.evil.poc.&lt;/code&gt;, the bailiwick check &lt;code&gt;is_subzone(&amp;quot;poc.&amp;quot;, &amp;quot;victim.poc.&amp;quot;)&lt;/code&gt; passes
+(&lt;code&gt;victim.poc.&lt;/code&gt; is a subdomain of &lt;code&gt;poc.&lt;/code&gt;). The record is stored under
+&lt;code&gt;(victim.poc., NS)&lt;/code&gt; in the shared cache.&lt;/p&gt;
+&lt;p&gt;Subsequently, any client querying a name in &lt;code&gt;victim.poc&lt;/code&gt;. causes Hickory to
+build its NS pool from the poisoned cache entry, routing queries to the
+attacker&apos;s nameserver (&lt;code&gt;ns.evil.poc.&lt;/code&gt;) rather than to the legitimate nameserver
+for &lt;code&gt;victim.poc.&lt;/code&gt;. The legitimate &lt;code&gt;NS&lt;/code&gt; for that zone receives zero queries.&lt;/p&gt;
+&lt;p&gt;This issue is fixed in &lt;code&gt;hickory-resolver&lt;/code&gt; 0.26.0 with the &lt;code&gt;recursor&lt;/code&gt; feature
+through an architectural change to response-level caching: responses are stored
+keyed by the originating query &lt;code&gt;(name, type)&lt;/code&gt;. A response to &lt;code&gt;(attacker.poc. NS)&lt;/code&gt; is stored only under that key and cannot affect the &lt;code&gt;(victim.poc., NS)&lt;/code&gt;
+cache entry.&lt;/p&gt;
+&lt;p&gt;We believe this issue has been present in all published versions of the
+experimental &lt;code&gt;hickory-recursor&lt;/code&gt; crate, which has now been folded into the
+&lt;code&gt;hickory-resolver&lt;/code&gt; crate under the non-default &lt;code&gt;recursor&lt;/code&gt; feature flag. The
+&lt;code&gt;hickory-recursor&lt;/code&gt; crate will not receive any updates going forward and all
+users should migrate to &lt;code&gt;hickory-resolver&lt;/code&gt; with the &lt;code&gt;recursor&lt;/code&gt; feature.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC-BY-4.0.html&quot;&gt;CC-BY-4.0&lt;/a&gt;
+    license.
+
+    
+      
+      
+          Source: &lt;a href=&quot;https://github.com/hickory-dns/hickory-dns/security/advisories/GHSA-83hf-93m4-rgwq&quot;&gt;https://github.com/hickory-dns/hickory-dns/security/advisories/GHSA-83hf-93m4-rgwq&lt;/a&gt;
+        
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0105: core2 is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0105.html</id><updated>2026-04-22T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0105.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0105: core2 is unmaintained"/><published>2026-04-22T12:00:00+00:00</published><summary xml:lang="en">core2 is unmaintained, all versions yanked</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -536,6 +692,110 @@ be redirected to attacker-controlled code.&lt;/p&gt;
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0101: safe-agent-rs contained malicious code</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0101.html</id><updated>2026-04-15T12:00:00+00:00</updated><category term="malicious"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0101.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0101: safe-agent-rs contained malicious code"/><published>2026-04-15T12:00:00+00:00</published><summary xml:lang="en">`safe-agent-rs` was removed from crates.io for being affiliated with malicious code</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/safe-agent-rs/RUSTSEC-2026-0101.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/safe-agent-rs/RUSTSEC-2026-0101.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0101&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0101
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;safe-agent-rs&lt;/code&gt; was removed from crates.io for being affiliated with malicious code&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-04-13&quot;&gt;
+          April 13, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-04-15&quot;&gt;
+          April 15, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/safe-agent-rs.html&quot;&gt;safe-agent-rs&lt;/a&gt;
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/malicious.html&quot;&gt;malicious&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;While &lt;code&gt;safe-agent-rs&lt;/code&gt; did not directly contain malicious code, it was owned by the same user as
+&lt;code&gt;pretty-changelog-logger&lt;/code&gt; and &lt;code&gt;microsoftsystem64&lt;/code&gt;. &lt;code&gt;safe-agent-rs&lt;/code&gt; also appeared to be imitating a
+different websocket library. We decided to remove it out of an abundance of caution.&lt;/p&gt;
+&lt;p&gt;This crate had 2 versions published on 2026-03-24 that had a total of 4138 downloads. There were no crates depending on this crate on crates.io.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0098: Vulnerability in rustls-webpki</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0098.html</id><updated>2026-04-15T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0098.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0098: Vulnerability in rustls-webpki"/><published>2026-04-15T12:00:00+00:00</published><summary xml:lang="en">Name constraints for URI names were incorrectly accepted</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -787,213 +1047,6 @@ This is very similar to &lt;a href=&quot;https://go.dev/issue/76442&quot;&gt;CVE
 
     
     &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0100: pretty-changelog-logger contained malicious code</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0100.html</id><updated>2026-04-15T12:00:00+00:00</updated><category term="malicious"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0100.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0100: pretty-changelog-logger contained malicious code"/><published>2026-04-15T12:00:00+00:00</published><summary xml:lang="en">`pretty-changelog-logger` was removed from crates.io for malicious code</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/pretty-changelog-logger/RUSTSEC-2026-0100.md&quot;&gt;History&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/pretty-changelog-logger/RUSTSEC-2026-0100.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0100&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2026-0100
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;pretty-changelog-logger&lt;/code&gt; was removed from crates.io for malicious code&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-04-13&quot;&gt;
-          April 13, 2026
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-04-15&quot;&gt;
-          April 15, 2026
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/pretty-changelog-logger.html&quot;&gt;pretty-changelog-logger&lt;/a&gt;
-          
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/malicious.html&quot;&gt;malicious&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;&lt;code&gt;pretty-changelog-logger&lt;/code&gt; contains a build script (build.rs) that acts as a loader/dropper for malicious payloads.&lt;/p&gt;
-&lt;p&gt;The malicious crate had 3 versions published on 2026-04-08 that had a total of 2239 downloads. There were no crates depending on this crate on crates.io.&lt;/p&gt;
-&lt;p&gt;Thanks to &lt;a href=&quot;https://socket.dev/&quot;&gt;Socket.dev&lt;/a&gt; for detecting and reporting this to the crates.io team!&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0101: safe-agent-rs contained malicious code</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0101.html</id><updated>2026-04-15T12:00:00+00:00</updated><category term="malicious"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0101.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0101: safe-agent-rs contained malicious code"/><published>2026-04-15T12:00:00+00:00</published><summary xml:lang="en">`safe-agent-rs` was removed from crates.io for being affiliated with malicious code</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/safe-agent-rs/RUSTSEC-2026-0101.md&quot;&gt;History&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/safe-agent-rs/RUSTSEC-2026-0101.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0101&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2026-0101
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;safe-agent-rs&lt;/code&gt; was removed from crates.io for being affiliated with malicious code&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-04-13&quot;&gt;
-          April 13, 2026
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-04-15&quot;&gt;
-          April 15, 2026
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/safe-agent-rs.html&quot;&gt;safe-agent-rs&lt;/a&gt;
-          
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/malicious.html&quot;&gt;malicious&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;While &lt;code&gt;safe-agent-rs&lt;/code&gt; did not directly contain malicious code, it was owned by the same user as
-&lt;code&gt;pretty-changelog-logger&lt;/code&gt; and &lt;code&gt;microsoftsystem64&lt;/code&gt;. &lt;code&gt;safe-agent-rs&lt;/code&gt; also appeared to be imitating a
-different websocket library. We decided to remove it out of an abundance of caution.&lt;/p&gt;
-&lt;p&gt;This crate had 2 versions published on 2026-03-24 that had a total of 4138 downloads. There were no crates depending on this crate on crates.io.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0102: microsoftsystem64 contained malicious code</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0102.html</id><updated>2026-04-15T12:00:00+00:00</updated><category term="malicious"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0102.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0102: microsoftsystem64 contained malicious code"/><published>2026-04-15T12:00:00+00:00</published><summary xml:lang="en">`microsoftsystem64` was removed from crates.io for malicious code</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -1090,6 +1143,109 @@ different websocket library. We decided to remove it out of an abundance of caut
     &lt;p&gt;&lt;code&gt;microsoftsystem64&lt;/code&gt; installs a hardcoded SSH authorized_keys entry (persistence/backdoor) and scans for sensitive files (.env, credential-like JSON names, keyword-matching docs), reads their contents, base64-encodes where needed, and exfiltrates everything to a remote server via HTTP. It also packages and uploads Telegram Desktop tdata, indicating targeted credential/session/data harvesting.&lt;/p&gt;
 &lt;p&gt;The malicious crate had 9 versions published on 2026-04-09 that had a total of 6346 downloads. There were no crates depending on this crate on crates.io.&lt;/p&gt;
 &lt;p&gt;Thanks to &lt;a href=&quot;https://socket.dev/&quot;&gt;Socket.dev&lt;/a&gt; and &lt;a href=&quot;https://sit.sh/&quot;&gt;sitsh&lt;/a&gt; for detecting and reporting this to the crates.io team!&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0100: pretty-changelog-logger contained malicious code</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0100.html</id><updated>2026-04-15T12:00:00+00:00</updated><category term="malicious"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0100.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0100: pretty-changelog-logger contained malicious code"/><published>2026-04-15T12:00:00+00:00</published><summary xml:lang="en">`pretty-changelog-logger` was removed from crates.io for malicious code</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/pretty-changelog-logger/RUSTSEC-2026-0100.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/pretty-changelog-logger/RUSTSEC-2026-0100.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0100&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0100
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;pretty-changelog-logger&lt;/code&gt; was removed from crates.io for malicious code&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-04-13&quot;&gt;
+          April 13, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-04-15&quot;&gt;
+          April 15, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/pretty-changelog-logger.html&quot;&gt;pretty-changelog-logger&lt;/a&gt;
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/malicious.html&quot;&gt;malicious&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;&lt;code&gt;pretty-changelog-logger&lt;/code&gt; contains a build script (build.rs) that acts as a loader/dropper for malicious payloads.&lt;/p&gt;
+&lt;p&gt;The malicious crate had 3 versions published on 2026-04-08 that had a total of 2239 downloads. There were no crates depending on this crate on crates.io.&lt;/p&gt;
+&lt;p&gt;Thanks to &lt;a href=&quot;https://socket.dev/&quot;&gt;Socket.dev&lt;/a&gt; for detecting and reporting this to the crates.io team!&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
@@ -1199,186 +1355,6 @@ different websocket library. We decided to remove it out of an abundance of caut
 
     &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
     &lt;p&gt;The maintainers recommend using &lt;a href=&quot;https://crates.io/crates/k256&quot;&gt;k256&lt;/a&gt; instead.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0097: Unsoundness in rand</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0097.html</id><updated>2026-04-17T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0097.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0097: Unsoundness in rand"/><published>2026-04-11T12:00:00+00:00</published><summary xml:lang="en">Rand is unsound with a custom logger using `rand::rng()`</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/rand/RUSTSEC-2026-0097.md&quot;&gt;History&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/rand/RUSTSEC-2026-0097.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0097&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2026-0097
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Rand is unsound with a custom logger using &lt;code&gt;rand::rng()&lt;/code&gt;&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-04-09&quot;&gt;
-          April  9, 2026
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-04-11&quot;&gt;
-          April 11, 2026
-        &lt;/time&gt;
-        
-        &lt;time datetime=&quot;2026-04-17&quot;&gt;
-          (last modified: April 17, 2026)
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/rand.html&quot;&gt;rand&lt;/a&gt;
-           
-          (&lt;a href=&quot;https://crates.io/crates/rand&quot;&gt;crates.io&lt;/a&gt;)
-          
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unsound
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-cq8v-f236-94qc&quot;&gt;GHSA-cq8v-f236-94qc&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/rust-random/rand/pull/1763&quot;&gt;
-              https://github.com/rust-random/rand/pull/1763
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=0.10.1&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#60;0.10.0, &amp;#62;=0.9.3&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#60;0.9.0, &amp;#62;=0.8.6&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#60;0.7.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-    &lt;dl&gt;
-      &lt;dt&gt;Affected Functions&lt;/dt&gt;
-      &lt;dd&gt;Version&lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;rand::rng&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=0.9.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;rand::thread_rng&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#60;0.10.0, &amp;#62;=0.7.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-    &lt;/dl&gt;
-    
-
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;It has been reported (by @lopopolo) that the &lt;code&gt;rand&lt;/code&gt; library is &lt;a href=&quot;https://rust-lang.github.io/unsafe-code-guidelines/glossary.html#soundness-of-code--of-a-library&quot;&gt;unsound&lt;/a&gt; (i.e. that safe code using the public API can cause Undefined Behaviour) when all the following conditions are met:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The &lt;code&gt;log&lt;/code&gt; and &lt;code&gt;thread_rng&lt;/code&gt; features are enabled&lt;/li&gt;
-&lt;li&gt;A &lt;a href=&quot;https://docs.rs/log/latest/log/#implementing-a-logger&quot;&gt;custom logger&lt;/a&gt; is defined&lt;/li&gt;
-&lt;li&gt;The custom logger accesses &lt;code&gt;rand::rng()&lt;/code&gt; (previously &lt;code&gt;rand::thread_rng()&lt;/code&gt;) and calls any &lt;code&gt;TryRng&lt;/code&gt; (previously &lt;code&gt;RngCore&lt;/code&gt;) methods on &lt;code&gt;ThreadRng&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;The &lt;code&gt;ThreadRng&lt;/code&gt; (attempts to) reseed while called from the custom logger (this happens every 64 kB of generated data)&lt;/li&gt;
-&lt;li&gt;Trace-level logging is enabled or warn-level logging is enabled and the random source (the &lt;code&gt;getrandom&lt;/code&gt; crate) is unable to provide a new seed&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;code&gt;TryRng&lt;/code&gt; (previously &lt;code&gt;RngCore&lt;/code&gt;) methods for &lt;code&gt;ThreadRng&lt;/code&gt; use &lt;code&gt;unsafe&lt;/code&gt; code to cast &lt;code&gt;*mut BlockRng&amp;lt;ReseedingCore&amp;gt;&lt;/code&gt; to &lt;code&gt;&amp;amp;mut BlockRng&amp;lt;ReseedingCore&amp;gt;&lt;/code&gt;. When all the above conditions are met this results in an aliased mutable reference, violating the Stacked Borrows rules. Miri is able to detect this violation in sample code. Since construction of &lt;a href=&quot;https://doc.rust-lang.org/stable/nomicon/references.html&quot;&gt;aliased mutable references is Undefined Behaviour&lt;/a&gt;, the behaviour of optimized builds is hard to predict.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
