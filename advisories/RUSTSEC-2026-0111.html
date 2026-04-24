@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package &#39;diesel&#39; › RustSec Advisory Database</title>
+<title>RUSTSEC-2026-0111: diesel: Possible UTF-8 corruption in Diesels SQLite backend › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,79 +52,152 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/diesel/RUSTSEC-2026-0111.md">History</a> ⋅
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/diesel/RUSTSEC-2026-0111.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2026-0111">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2026-0111
+        
+      </h1>
+      <span class="subtitle"><p>Possible UTF-8 corruption in Diesels SQLite backend</p>
 </span>
-      <h1>Advisories for package &#39;diesel&#39;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2026-04-24">
-    April 24, 2026
-  </time>
+    
 
-  
-  <h3>
-    
-        
-          <span class="tag info">INFO</span>
-        
-    
-    <a href="/advisories/RUSTSEC-2026-0111.html">
-      RUSTSEC-2026-0111: Unsoundness in diesel
-    </a>
-  </h3>
-  <span><p>Possible UTF-8 corruption in Diesels SQLite backend</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2024-08-23">
-    August 23, 2024
-  </time>
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2026-04-24">
+          April 24, 2026
+        </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2026-04-24">
+          April 24, 2026
+        </time>
         
-    
-    <a href="/advisories/RUSTSEC-2024-0365.html">
-      RUSTSEC-2024-0365: Vulnerability in diesel
-    </a>
-  </h3>
-  <span><p>Binary Protocol Misinterpretation caused by Truncating or Overflowing Casts</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2021-03-05">
-    March  5, 2021
-  </time>
+      </dd>
 
-  
-  <h3>
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        <a href="/packages/diesel.html">diesel</a>
+           
+          (<a href="https://crates.io/crates/diesel">crates.io</a>)
+          
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        <span class="tag info">INFO</span>
+        Unsound
+        
+      </dd>
+
+      
+
+      
+
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/diesel-rs/diesel/pull/5042">
+              https://github.com/diesel-rs/diesel/pull/5042
+            </a>
+          </li>
+        
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&#62;=2.3.8</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+
+      
+      
+
+      
+      
+    </dl>
+
     
-      <span class="tag critical">CRITICAL</span>
+    
+    <dl>
+      <dt>Affected Functions</dt>
+      <dd>Version</dd>
       
-    <a href="/advisories/RUSTSEC-2021-0037.html">
-      RUSTSEC-2021-0037: Vulnerability in diesel
-    </a>
-  </h3>
-  <span><p>Fix a use-after-free bug in diesels Sqlite backend</p>
-</span>
-  
-</li>
+      <dt><code>diesel::deserialize::FromSql::&#60;Text,Sqlite&#62;::from_sql</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;2.3.8</code></li>
+          
+        </ul>
+      </dd>
       
-    </ul>
+      <dt><code>diesel::sqlite::SqliteValue::read_str</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;2.3.8</code></li>
+          
+        </ul>
+      </dd>
+      
+    </dl>
+    
+
+    
+
+    <h3 id="description">Description</h3>
+    <p>Diesel uses the <code>sqlite3_value_text</code> function to receive strings from SQLite while deserializing query results. We misinterpreted the corresponding <a href="https://sqlite.org/c3ref/value_blob.html">SQLite</a> documentation that this function always returns a UTF-8 encoded string values as <code>*const c_char</code>. Based on that we used <code>str::from_utf8_unchecked</code> to construct a Rust string slice without any additional UTF-8 checks in place. It turned out that this function doesn't always return correct UTF-8 strings. For field of the SQLite side storage type <code>BLOB</code> this pointer can contain arbitrary bytes, which makes the usage of <code>str::from_utf8_unchecked</code> unsound as this violates the safety contract of <code>str</code> to only contain valid UTF-8 encoded Strings.</p>
+<h2>Mitigation</h2>
+<p>The preferred mitigation to the outlined problem is to update to a Diesel version 2.3.8 or newer, which includes fixes for the problem.</p>
+<h2>Resolution</h2>
+<p>Diesel now correctly checks whether the provides byte buffer is actually valid UTF-8, instead of relying on SQLite's documentation. This fix is included in the <code>2.3.8</code> release.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
