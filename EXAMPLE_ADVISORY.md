@@ -2,6 +2,7 @@
 [advisory]
 id = "RUSTSEC-0000-0000"
 package = "crate-name"
+#crate_name = "crate_name"
 date = "2020-01-31"
 #withdrawn = "YYYY-MM-DD"
 url = "https://example.com"
