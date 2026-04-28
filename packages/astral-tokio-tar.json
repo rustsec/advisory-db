@@ -1,5 +1,139 @@
 [
   {
+    "id": "RUSTSEC-2026-0113",
+    "modified": "2026-04-28T13:17:23Z",
+    "published": "2026-04-27T12:00:00Z",
+    "aliases": [
+      "GHSA-xx64-wwv2-hcqq"
+    ],
+    "related": [],
+    "summary": "`unpack_in` can chmod arbitrary directories by following symlinks",
+    "details": "In versions 0.6.0 and earlier of astral-tokio-tar, the unpack_in API could\ninadvertently modify the permissions of external (i.e. non-archive) directories\noutside of the archive. An attacker could use this to contrite a tar archive\nthat maliciously changes directory permissions outside of its intended\nhierarchy. This flaw only affects directories; individual file permissions\ncannot be modified via it.\n\nSee GHSA-j4xf-2g29-59ph for the equivalent flaw in the tar crate.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "astral-tokio-tar",
+          "purl": "pkg:cargo/astral-tokio-tar"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "file-disclosure"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.6.1"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/astral-tokio-tar"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0113.html"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://github.com/advisories/GHSA-xx64-wwv2-hcqq"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2026-0112",
+    "modified": "2026-04-28T13:17:23Z",
+    "published": "2026-04-27T12:00:00Z",
+    "aliases": [
+      "GHSA-fp55-jw48-c537"
+    ],
+    "related": [],
+    "summary": "PAX Header Desynchronization in astral-tokio-tar",
+    "details": "Versions of astral-tokio-tar prior to 0.6.1 contain a PAX header interpretation\nbug that allows manipulated entries to be made selectively visible or invisible\nduring extraction with astral-tokio-tar versus other tar implementations.\nAn attacker could use this differential to smuggle unexpected files onto a\nvictim's filesystem.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "astral-tokio-tar",
+          "purl": "pkg:cargo/astral-tokio-tar"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "format-injection"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.6.1"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/astral-tokio-tar"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0112.html"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://github.com/advisories/GHSA-fp55-jw48-c537"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
     "id": "RUSTSEC-2026-0066",
     "modified": "2026-03-23T09:31:59Z",
     "published": "2026-03-17T12:00:00Z",
