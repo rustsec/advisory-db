@@ -1,0 +1,242 @@
+[
+  {
+    "id": "RUSTSEC-2026-0115",
+    "modified": "2026-05-01T13:54:12Z",
+    "published": "2026-05-01T12:00:00Z",
+    "aliases": [],
+    "related": [
+      "https://github.com/image-rs/imageproc/pull/778"
+    ],
+    "summary": "Fragile bounds check when sampling from image",
+    "details": "A read of pixels was coded as modifying coordinates to lie within the image\nbounds. It would calculate a coordinate by adding a constant to an input and\ntaking the minimum of the resulting coordinate and 'dimension - 1'. This would\nnot protect against malicious inputs that could overflow the addition. .\nSubsequently to the tricked bounds check the image could then be sampled at\nmultiple, differently calculated coordinates exceeding the bounds.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "imageproc",
+          "purl": "pkg:cargo/imageproc"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "imageproc::binary_descriptors::brief"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-exposure"
+          ],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.24.0"
+              },
+              {
+                "fixed": "0.24.1"
+              },
+              {
+                "introduced": "0.25.0"
+              },
+              {
+                "fixed": "0.25.1"
+              },
+              {
+                "introduced": "0.26.0"
+              },
+              {
+                "fixed": "0.26.2"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/imageproc"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0115.html"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2026-0116",
+    "modified": "2026-05-01T13:54:12Z",
+    "published": "2026-05-01T12:00:00Z",
+    "aliases": [],
+    "related": [
+      "https://github.com/image-rs/imageproc/pull/777"
+    ],
+    "summary": "Improper check of an invariant resulting in incorrect bounds checks",
+    "details": "A bounds verification of a slice storage of a 2-dimensional matrix's\ncoefficients (a kernel) would compare the total size against the product of\nindividual dimensions. This would erroneously cast *after* the multiplication\nand consequently fail to detect possible violations when overflow occurs.\n\nAfterwards, the individual sizes were trusted to properly constrain coordinates\nwithin the matrix to indices valid for the underlying storage. With a crafted\n`Kernel` object, certain combinations of coordinates could then cause an\nout-of-bounds access in an `unsafe` function while fulfilling its documented\npreconditions. The kernel value could be passed to library functions that\ntrusted the preconditions and then performed such reads.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "imageproc",
+          "purl": "pkg:cargo/imageproc"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-exposure"
+          ],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.23.1"
+              },
+              {
+                "introduced": "0.24.0"
+              },
+              {
+                "fixed": "0.24.1"
+              },
+              {
+                "introduced": "0.25.0"
+              },
+              {
+                "fixed": "0.25.1"
+              },
+              {
+                "introduced": "0.26.0"
+              },
+              {
+                "fixed": "0.26.2"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/imageproc"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0116.html"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2026-0117",
+    "modified": "2026-05-01T13:54:12Z",
+    "published": "2026-05-01T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Fragile bounds check when sampling from image",
+    "details": "A bounds check was performed in floating points before a cast to the index\npassed to an unchecked access function. This checked considered `NaN` cases\nimproperly, causing them to succeed the check instead of failing it. The\nfloating point coordinate is under caller control by passing a selected\nprojection matrix.\n\nCarefully controlling the coordinates of an image with no data and one non-zero\ndimension provides an arbitrary read primitive in the first 32-bits of address\nspace with a Bilinear sampling method.\n\nUsing bicubic sampling can result in a read of a few bytes beyond an allocation.\n\nOther out-of-bounds reads may be possible.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "imageproc",
+          "purl": "pkg:cargo/imageproc"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "imageproc::geometric_transformations::warp_into",
+              "imageproc::geometric_transformations::warp_into_with"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-exposure"
+          ],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.23.1"
+              },
+              {
+                "introduced": "0.24.0"
+              },
+              {
+                "fixed": "0.24.1"
+              },
+              {
+                "introduced": "0.25.0"
+              },
+              {
+                "fixed": "0.25.1"
+              },
+              {
+                "introduced": "0.26.0"
+              },
+              {
+                "fixed": "0.26.2"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/imageproc"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0117.html"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

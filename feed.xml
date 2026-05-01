@@ -1,5 +1,484 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2026-04-30T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2026-0114: Vulnerability in wasmtime</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0114.html</id><updated>2026-04-30T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0114.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0114: Vulnerability in wasmtime"/><published>2026-04-30T12:00:00+00:00</published><summary xml:lang="en">Panic when allocating a table exceeding the size of the host&amp;apos;s address space</summary><content xml:lang="en" type="html">  &lt;article&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2026-05-01T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2026-0115: Unsoundness in imageproc</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0115.html</id><updated>2026-05-01T12:00:00+00:00</updated><category term="memory-exposure"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0115.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0115: Unsoundness in imageproc"/><published>2026-05-01T12:00:00+00:00</published><summary xml:lang="en">Fragile bounds check when sampling from image</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/imageproc/RUSTSEC-2026-0115.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/imageproc/RUSTSEC-2026-0115.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0115&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0115
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Fragile bounds check when sampling from image&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-05-01&quot;&gt;
+          May  1, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-05-01&quot;&gt;
+          May  1, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/imageproc.html&quot;&gt;imageproc&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/imageproc&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-exposure.html&quot;&gt;memory-exposure&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/out-of-bounds-read.html&quot;&gt;#out-of-bounds-read&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/memory-safety.html&quot;&gt;#memory-safety&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;related&quot;&gt;Related&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            https://github.com/image-rs/imageproc/pull/778
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.24.1, &amp;#60;0.25.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.25.1, &amp;#60;0.26.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.26.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.24&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;imageproc::binary_descriptors::brief&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.24.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;A read of pixels was coded as modifying coordinates to lie within the image
+bounds. It would calculate a coordinate by adding a constant to an input and
+taking the minimum of the resulting coordinate and &apos;dimension - 1&apos;. This would
+not protect against malicious inputs that could overflow the addition. .
+Subsequently to the tricked bounds check the image could then be sampled at
+multiple, differently calculated coordinates exceeding the bounds.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0116: Unsoundness in imageproc</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0116.html</id><updated>2026-05-01T12:00:00+00:00</updated><category term="memory-exposure"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0116.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0116: Unsoundness in imageproc"/><published>2026-05-01T12:00:00+00:00</published><summary xml:lang="en">Improper check of an invariant resulting in incorrect bounds checks</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/imageproc/RUSTSEC-2026-0116.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/imageproc/RUSTSEC-2026-0116.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0116&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0116
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Improper check of an invariant resulting in incorrect bounds checks&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-05-01&quot;&gt;
+          May  1, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-05-01&quot;&gt;
+          May  1, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/imageproc.html&quot;&gt;imageproc&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/imageproc&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-exposure.html&quot;&gt;memory-exposure&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/out-of-bounds-read.html&quot;&gt;#out-of-bounds-read&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/memory-safety.html&quot;&gt;#memory-safety&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;related&quot;&gt;Related&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            https://github.com/image-rs/imageproc/pull/777
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.23.1, &amp;#60;0.24.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.24.1, &amp;#60;0.25.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.25.1, &amp;#60;0.26.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.26.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;A bounds verification of a slice storage of a 2-dimensional matrix&apos;s
+coefficients (a kernel) would compare the total size against the product of
+individual dimensions. This would erroneously cast &lt;em&gt;after&lt;/em&gt; the multiplication
+and consequently fail to detect possible violations when overflow occurs.&lt;/p&gt;
+&lt;p&gt;Afterwards, the individual sizes were trusted to properly constrain coordinates
+within the matrix to indices valid for the underlying storage. With a crafted
+&lt;code&gt;Kernel&lt;/code&gt; object, certain combinations of coordinates could then cause an
+out-of-bounds access in an &lt;code&gt;unsafe&lt;/code&gt; function while fulfilling its documented
+preconditions. The kernel value could be passed to library functions that
+trusted the preconditions and then performed such reads.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0117: Unsoundness in imageproc</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0117.html</id><updated>2026-05-01T12:00:00+00:00</updated><category term="memory-exposure"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0117.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0117: Unsoundness in imageproc"/><published>2026-05-01T12:00:00+00:00</published><summary xml:lang="en">Fragile bounds check when sampling from image</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/imageproc/RUSTSEC-2026-0117.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/imageproc/RUSTSEC-2026-0117.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0117&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0117
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Fragile bounds check when sampling from image&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-05-01&quot;&gt;
+          May  1, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-05-01&quot;&gt;
+          May  1, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/imageproc.html&quot;&gt;imageproc&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/imageproc&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-exposure.html&quot;&gt;memory-exposure&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/out-of-bounds-read.html&quot;&gt;#out-of-bounds-read&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/memory-safety.html&quot;&gt;#memory-safety&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.23.1, &amp;#60;0.24.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.24.1, &amp;#60;0.25.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.25.1, &amp;#60;0.26.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.26.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;imageproc::geometric_transformations::warp_into&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.23.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;imageproc::geometric_transformations::warp_into_with&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.23.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;A bounds check was performed in floating points before a cast to the index
+passed to an unchecked access function. This checked considered &lt;code&gt;NaN&lt;/code&gt; cases
+improperly, causing them to succeed the check instead of failing it. The
+floating point coordinate is under caller control by passing a selected
+projection matrix.&lt;/p&gt;
+&lt;p&gt;Carefully controlling the coordinates of an image with no data and one non-zero
+dimension provides an arbitrary read primitive in the first 32-bits of address
+space with a Bilinear sampling method.&lt;/p&gt;
+&lt;p&gt;Using bicubic sampling can result in a read of a few bytes beyond an allocation.&lt;/p&gt;
+&lt;p&gt;Other out-of-bounds reads may be possible.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0114: Vulnerability in wasmtime</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0114.html</id><updated>2026-04-30T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0114.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0114: Vulnerability in wasmtime"/><published>2026-04-30T12:00:00+00:00</published><summary xml:lang="en">Panic when allocating a table exceeding the size of the host&amp;apos;s address space</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
           &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/wasmtime/RUSTSEC-2026-0114.md&quot;&gt;History&lt;/a&gt; ⋅
@@ -1134,300 +1613,6 @@ she is likely to notice changes to the signing policy.&lt;/p&gt;
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
     license.
 
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0104: Vulnerability in rustls-webpki</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0104.html</id><updated>2026-04-22T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0104.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0104: Vulnerability in rustls-webpki"/><published>2026-04-22T12:00:00+00:00</published><summary xml:lang="en">Reachable panic in certificate revocation list parsing</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/rustls-webpki/RUSTSEC-2026-0104.md&quot;&gt;History&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/rustls-webpki/RUSTSEC-2026-0104.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0104&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2026-0104
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Reachable panic in certificate revocation list parsing&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-04-22&quot;&gt;
-          April 22, 2026
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-04-22&quot;&gt;
-          April 22, 2026
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/rustls-webpki.html&quot;&gt;rustls-webpki&lt;/a&gt;
-           
-          (&lt;a href=&quot;https://crates.io/crates/rustls-webpki&quot;&gt;crates.io&lt;/a&gt;)
-          
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/crl.html&quot;&gt;#crl&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/certificate-revocation-list.html&quot;&gt;#certificate-revocation-list&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/x509.html&quot;&gt;#x509&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-82j2-j2ch-gfr8&quot;&gt;GHSA-82j2-j2ch-gfr8&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=0.103.13, &amp;#60;0.104.0-alpha.1&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=0.104.0-alpha.7&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;A panic was reachable when parsing certificate revocation lists via [&lt;code&gt;BorrowedCertRevocationList::from_der&lt;/code&gt;]
-or [&lt;code&gt;OwnedCertRevocationList::from_der&lt;/code&gt;].  This was the result of mishandling a syntactically valid empty
-&lt;code&gt;BIT STRING&lt;/code&gt; appearing in the &lt;code&gt;onlySomeReasons&lt;/code&gt; element of a &lt;code&gt;IssuingDistributionPoint&lt;/code&gt; CRL extension.&lt;/p&gt;
-&lt;p&gt;This panic is reachable prior to a CRL&apos;s signature being verified.&lt;/p&gt;
-&lt;p&gt;Applications that do not use CRLs are not affected.&lt;/p&gt;
-&lt;p&gt;Thank you to @tynus3 for the report.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0106: Vulnerability in hickory-recursor</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0106.html</id><updated>2026-04-22T12:00:00+00:00</updated><category term="privilege-escalation"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0106.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0106: Vulnerability in hickory-recursor"/><published>2026-04-22T12:00:00+00:00</published><summary xml:lang="en">Record cache accepts AUTHORITY section NS from sibling zone via parent-pool zone-context elevation</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/hickory-recursor/RUSTSEC-2026-0106.md&quot;&gt;History&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/hickory-recursor/RUSTSEC-2026-0106.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0106&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2026-0106
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Record cache accepts AUTHORITY section NS from sibling zone via parent-pool zone-context elevation&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-04-22&quot;&gt;
-          April 22, 2026
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-04-22&quot;&gt;
-          April 22, 2026
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/hickory-recursor.html&quot;&gt;hickory-recursor&lt;/a&gt;
-           
-          (&lt;a href=&quot;https://crates.io/crates/hickory-recursor&quot;&gt;crates.io&lt;/a&gt;)
-          
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/privilege-escalation.html&quot;&gt;privilege-escalation&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/dns.html&quot;&gt;#dns&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/cache-poisoning.html&quot;&gt;#cache-poisoning&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/hickory-dns/hickory-dns/security/advisories/GHSA-83hf-93m4-rgwq&quot;&gt;
-              https://github.com/hickory-dns/hickory-dns/security/advisories/GHSA-83hf-93m4-rgwq
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;The Hickory DNS project&apos;s experimental &lt;code&gt;hickory-recursor&lt;/code&gt; crate&apos;s record cache
-(&lt;code&gt;DnsLru&lt;/code&gt;) stores records from DNS responses keyed by each record&apos;s own (name,
-type), not by the query that triggered the response. &lt;code&gt;cache_response()&lt;/code&gt; in
-&lt;code&gt;crates/recursor/src/lib.rs&lt;/code&gt; chains &lt;code&gt;ANSWER&lt;/code&gt;, &lt;code&gt;AUTHORITY&lt;/code&gt;, and &lt;code&gt;ADDITIONAL&lt;/code&gt;
-sections into one record iterator before insertion. The bailiwick filter it
-applies uses the zone context of the NS pool that serviced the lookup, not the
-zone being queried.&lt;/p&gt;
-&lt;p&gt;This creates a cross-zone poisoning path. When Hickory builds the NS pool for
-&lt;code&gt;attacker.poc.&lt;/code&gt; it uses the parent &lt;code&gt;poc.&lt;/code&gt; &lt;code&gt;NS&lt;/code&gt; pool (&lt;code&gt;ns.zone() = &amp;quot;poc.&amp;quot;&lt;/code&gt;). If
-the &lt;code&gt;poc.&lt;/code&gt; nameserver under the attacker&apos;s control includes in its response&apos;s
-&lt;code&gt;AUTHORITY&lt;/code&gt; section a record for a sibling zone like &lt;code&gt;victim.poc. NS ns.evil.poc.&lt;/code&gt;, the bailiwick check &lt;code&gt;is_subzone(&amp;quot;poc.&amp;quot;, &amp;quot;victim.poc.&amp;quot;)&lt;/code&gt; passes
-(&lt;code&gt;victim.poc.&lt;/code&gt; is a subdomain of &lt;code&gt;poc.&lt;/code&gt;). The record is stored under
-&lt;code&gt;(victim.poc., NS)&lt;/code&gt; in the shared cache.&lt;/p&gt;
-&lt;p&gt;Subsequently, any client querying a name in &lt;code&gt;victim.poc&lt;/code&gt;. causes Hickory to
-build its NS pool from the poisoned cache entry, routing queries to the
-attacker&apos;s nameserver (&lt;code&gt;ns.evil.poc.&lt;/code&gt;) rather than to the legitimate nameserver
-for &lt;code&gt;victim.poc.&lt;/code&gt;. The legitimate &lt;code&gt;NS&lt;/code&gt; for that zone receives zero queries.&lt;/p&gt;
-&lt;p&gt;This issue is fixed in &lt;code&gt;hickory-resolver&lt;/code&gt; 0.26.0 with the &lt;code&gt;recursor&lt;/code&gt; feature
-through an architectural change to response-level caching: responses are stored
-keyed by the originating query &lt;code&gt;(name, type)&lt;/code&gt;. A response to &lt;code&gt;(attacker.poc. NS)&lt;/code&gt; is stored only under that key and cannot affect the &lt;code&gt;(victim.poc., NS)&lt;/code&gt;
-cache entry.&lt;/p&gt;
-&lt;p&gt;We believe this issue has been present in all published versions of the
-experimental &lt;code&gt;hickory-recursor&lt;/code&gt; crate, which has now been folded into the
-&lt;code&gt;hickory-resolver&lt;/code&gt; crate under the non-default &lt;code&gt;recursor&lt;/code&gt; feature flag. The
-&lt;code&gt;hickory-recursor&lt;/code&gt; crate will not receive any updates going forward and all
-users should migrate to &lt;code&gt;hickory-resolver&lt;/code&gt; with the &lt;code&gt;recursor&lt;/code&gt; feature.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC-BY-4.0.html&quot;&gt;CC-BY-4.0&lt;/a&gt;
-    license.
-
-    
-      
-      
-          Source: &lt;a href=&quot;https://github.com/hickory-dns/hickory-dns/security/advisories/GHSA-83hf-93m4-rgwq&quot;&gt;https://github.com/hickory-dns/hickory-dns/security/advisories/GHSA-83hf-93m4-rgwq&lt;/a&gt;
-        
     
     &lt;/p&gt;
   &lt;/article&gt;</content></entry></feed>
