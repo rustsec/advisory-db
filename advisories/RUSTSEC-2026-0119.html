@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories with keyword &#39;dns&#39; › RustSec Advisory Database</title>
+<title>RUSTSEC-2026-0119: hickory-proto: CPU exhaustion during message encoding due to O(n²) name compression › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,96 +52,169 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/hickory-proto/RUSTSEC-2026-0119.md">History</a> ⋅
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/hickory-proto/RUSTSEC-2026-0119.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2026-0119">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2026-0119
+        
+      </h1>
+      <span class="subtitle"><p>CPU exhaustion during message encoding due to O(n²) name compression</p>
 </span>
-      <h1>Advisories with keyword &#39;dns&#39;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2026-05-01">
-    May  1, 2026
-  </time>
-
-  
-  <h3>
     
+
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2026-05-01">
+          May  1, 2026
+        </time>
+      </dd>
+
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2026-05-01">
+          May  1, 2026
+        </time>
+        
+      </dd>
+
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        <a href="/packages/hickory-proto.html">hickory-proto</a>
+           
+          (<a href="https://crates.io/crates/hickory-proto">crates.io</a>)
+          
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        Vulnerability
+        
+      </dd>
+
+      
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/denial-of-service.html">denial-of-service</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/dns.html">#dns</a>
+        
+      </dd>
+      
+
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/hickory-dns/hickory-dns/security/advisories/GHSA-q2qq-hmj6-3wpp">
+              https://github.com/hickory-dns/hickory-dns/security/advisories/GHSA-q2qq-hmj6-3wpp
+            </a>
+          </li>
+        
+        
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="related">Related</dt>
+      <dd>
+        <ul>
+          
+          <li>
+            
+            <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-8508">CVE-2024-8508</a>
+            
+          </li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&#62;=0.26.1</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+      <dt id="unaffected">Unaffected</dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;0.3.1</code></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      
+    </dl>
+
+    
+    
+
+    <h3 id="description">Description</h3>
+    <p>During message encoding, <code>hickory-proto</code>'s <code>BinEncoder</code> stores pointers to
+labels that are candidates for name compression in a <code>Vec&lt;(usize, Vec&lt;u8&gt;)&gt;</code>.
+The name compression logic then searches for matches with a linear scan.</p>
+<p>A malicious message with many records can both introduce many candidate labels,
+and invoke this linear scan many times. This can amplify CPU exhaustion in DoS
+attacks.</p>
+<p>This is similar to
+<a href="https://www.nlnetlabs.nl/downloads/unbound/CVE-2024-8508.txt">CVE-2024-8508</a>.</p>
+<p>We recommend all affected users update to <code>hickory-proto</code> 0.26.1 for the fix.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC-BY-4.0.html">CC-BY-4.0</a>
+    license.
+
+    
+      
+      
+          Source: <a href="https://github.com/hickory-dns/hickory-dns/security/advisories/GHSA-q2qq-hmj6-3wpp">https://github.com/hickory-dns/hickory-dns/security/advisories/GHSA-q2qq-hmj6-3wpp</a>
         
     
-    <a href="/advisories/RUSTSEC-2026-0119.html">
-      RUSTSEC-2026-0119: Vulnerability in hickory-proto
-    </a>
-  </h3>
-  <span><p>CPU exhaustion during message encoding due to O(n²) name compression</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2026-05-01">
-    May  1, 2026
-  </time>
-
-  
-  <h3>
-    
-        
-    
-    <a href="/advisories/RUSTSEC-2026-0118.html">
-      RUSTSEC-2026-0118: Vulnerability in hickory-proto
-    </a>
-  </h3>
-  <span><p>NSEC3 closest-encloser proof validation enters unbounded loop on cross-zone responses</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2026-05-01">
-    May  1, 2026
-  </time>
-
-  
-  <h3>
-    
-        
-    
-    <a href="/advisories/RUSTSEC-2026-0120.html">
-      RUSTSEC-2026-0120: Vulnerability in hickory-net
-    </a>
-  </h3>
-  <span><p>NSEC3 closest-encloser proof validation enters unbounded loop on cross-zone responses</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2026-04-22">
-    April 22, 2026
-  </time>
-
-  
-  <h3>
-    
-        
-    
-    <a href="/advisories/RUSTSEC-2026-0106.html">
-      RUSTSEC-2026-0106: Vulnerability in hickory-recursor
-    </a>
-  </h3>
-  <span><p>Record cache accepts AUTHORITY section NS from sibling zone via parent-pool zone-context elevation</p>
-</span>
-  
-</li>
-      
-    </ul>
+    </p>
   </article>
 </main>

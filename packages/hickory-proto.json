@@ -1,5 +1,134 @@
 [
   {
+    "id": "RUSTSEC-2026-0119",
+    "modified": "2026-05-01T14:31:54Z",
+    "published": "2026-05-01T12:00:00Z",
+    "aliases": [],
+    "related": [
+      "CVE-2024-8508"
+    ],
+    "summary": "CPU exhaustion during message encoding due to O(n²) name compression",
+    "details": "During message encoding, `hickory-proto`'s `BinEncoder` stores pointers to\nlabels that are candidates for name compression in a `Vec<(usize, Vec<u8>)>`.\nThe name compression logic then searches for matches with a linear scan.\n\nA malicious message with many records can both introduce many candidate labels,\nand invoke this linear scan many times. This can amplify CPU exhaustion in DoS\nattacks.\n\nThis is similar to\n[CVE-2024-8508](https://www.nlnetlabs.nl/downloads/unbound/CVE-2024-8508.txt).\n\nWe recommend all affected users update to `hickory-proto` 0.26.1 for the fix.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "hickory-proto",
+          "purl": "pkg:cargo/hickory-proto"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.3.1"
+              },
+              {
+                "fixed": "0.26.1"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/hickory-proto"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0119.html"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://github.com/hickory-dns/hickory-dns/security/advisories/GHSA-q2qq-hmj6-3wpp"
+      }
+    ],
+    "database_specific": {
+      "license": "CC-BY-4.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2026-0118",
+    "modified": "2026-05-01T14:31:54Z",
+    "published": "2026-05-01T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "NSEC3 closest-encloser proof validation enters unbounded loop on cross-zone responses",
+    "details": "The NSEC3 closest-encloser proof validation in `hickory-proto`'s\n`DnssecDnsHandle` walks from the QNAME up to the SOA owner name, building a\nlist of candidate encloser names. The iterator used assumes the\nQNAME is a descendant of the SOA owner, terminating only when the current\ncandidate equals the SOA name. When the SOA in a response's authority section\nis not an ancestor of the QNAME, the loop stalls at the DNS root and never\nterminates, repeatedly calling `Name::base_name()` and pushing newly allocated\n`Name` and hashed-name entries into the candidate `Vec`.\n\nThe bug is reachable by any caller of `DnssecDnsHandle` — including the\nresolver, recursor, and client — when built with the `dnssec-ring` or\n`dnssec-aws-lc-rs` feature and configured to perform DNSSEC validation. It is\ntriggered while validating a NoData or NXDomain response whose authority\nsection contains an SOA record from a zone other than an ancestor of the\nQNAME, on a code path that requires NSEC3 closest-encloser proof. In practice\nthis can be reached through an insecure CNAME chain that crosses zone\nboundaries into a DNSSEC-signed zone returning NoData, but the minimum\ncondition is just a mismatched SOA owner on a response requiring NSEC3\nvalidation.\n\nA `debug_assert_ne!(name, Name::root())` guards the loop body, so debug builds\nabort with a panic on the first iteration past the root. Release builds\ncompile the assertion out and run the loop unbounded, allocating until the\nprocess exhausts available memory (OOM). A reachable upstream attacker who\ncan return such a response can therefore crash a debug-built validator or\nexhaust memory on a release-built one.\n\nThe affected code was migrated from `hickory-proto` to `hickory-net` as part of\nthe 0.26.0 release. We recommend all affected users update to `hickory-net`\n0.26.1 for the fix.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "hickory-proto",
+          "purl": "pkg:cargo/hickory-proto"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.25.0-alpha.3"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/hickory-proto"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0118.html"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://github.com/hickory-dns/hickory-dns/security/advisories/GHSA-3v94-mw7p-v465"
+      }
+    ],
+    "database_specific": {
+      "license": "CC-BY-4.0"
+    }
+  },
+  {
     "id": "RUSTSEC-2025-0006",
     "modified": "2025-10-28T06:02:18Z",
     "published": "2025-02-07T12:00:00Z",
