@@ -1,9 +1,11 @@
 [
   {
     "id": "RUSTSEC-2026-0111",
-    "modified": "2026-04-24T13:03:21Z",
+    "modified": "2026-05-06T06:32:50Z",
     "published": "2026-04-24T12:00:00Z",
-    "aliases": [],
+    "aliases": [
+      "GHSA-h5x4-m2qf-r4f2"
+    ],
     "related": [],
     "summary": "Possible UTF-8 corruption in Diesels SQLite backend",
     "details": "Diesel uses the `sqlite3_value_text` function to receive strings from SQLite while deserializing query results. We misinterpreted the corresponding [SQLite](https://sqlite.org/c3ref/value_blob.html) documentation that this function always returns a UTF-8 encoded string values as `*const c_char`. Based on that we used `str::from_utf8_unchecked` to construct a Rust string slice without any additional UTF-8 checks in place. It turned out that this function doesn't always return correct UTF-8 strings. For field of the SQLite side storage type `BLOB` this pointer can contain arbitrary bytes, which makes the usage of `str::from_utf8_unchecked` unsound as this violates the safety contract of `str` to only contain valid UTF-8 encoded Strings.\n\n## Mitigation\n\nThe preferred mitigation to the outlined problem is to update to a Diesel version 2.3.8 or newer, which includes fixes for the problem.\n\n## Resolution\n\nDiesel now correctly checks whether the provides byte buffer is actually valid UTF-8, instead of relying on SQLite's documentation. This fix is included in the `2.3.8` release.",
