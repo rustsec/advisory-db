@@ -1,9 +1,11 @@
 [
   {
     "id": "RUSTSEC-2026-0115",
-    "modified": "2026-05-01T13:54:12Z",
+    "modified": "2026-05-07T08:56:41Z",
     "published": "2026-05-01T12:00:00Z",
-    "aliases": [],
+    "aliases": [
+      "GHSA-5qv7-j6w5-fr4m"
+    ],
     "related": [
       "https://github.com/image-rs/imageproc/pull/778"
     ],
@@ -78,9 +80,11 @@
   },
   {
     "id": "RUSTSEC-2026-0116",
-    "modified": "2026-05-01T13:54:12Z",
+    "modified": "2026-05-07T08:56:41Z",
     "published": "2026-05-01T12:00:00Z",
-    "aliases": [],
+    "aliases": [
+      "GHSA-w5p8-4jcx-2j6r"
+    ],
     "related": [
       "https://github.com/image-rs/imageproc/pull/777"
     ],
@@ -159,9 +163,11 @@
   },
   {
     "id": "RUSTSEC-2026-0117",
-    "modified": "2026-05-01T13:54:12Z",
+    "modified": "2026-05-07T08:56:41Z",
     "published": "2026-05-01T12:00:00Z",
-    "aliases": [],
+    "aliases": [
+      "GHSA-qg8r-f7x3-25f7"
+    ],
     "related": [],
     "summary": "Fragile bounds check when sampling from image",
     "details": "A bounds check was performed in floating points before a cast to the index\npassed to an unchecked access function. This checked considered `NaN` cases\nimproperly, causing them to succeed the check instead of failing it. The\nfloating point coordinate is under caller control by passing a selected\nprojection matrix.\n\nCarefully controlling the coordinates of an image with no data and one non-zero\ndimension provides an arbitrary read primitive in the first 32-bits of address\nspace with a Bilinear sampling method.\n\nUsing bicubic sampling can result in a read of a few bytes beyond an allocation.\n\nOther out-of-bounds reads may be possible.",
