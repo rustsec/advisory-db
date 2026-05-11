@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>RUSTSEC-2026-0122: rkyv: Panic safety bugs in `InlineVec::clear` and `SerVec::clear` enable arbitrary code execution › RustSec Advisory Database</title>
+<title>RUSTSEC-2026-0122: rkyv: Potential use-after-free due to lack of panic safety in `InlineVec::clear` and `SerVec::clear` › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -68,7 +68,7 @@
         RUSTSEC-2026-0122
         
       </h1>
-      <span class="subtitle"><p>Panic safety bugs in <code>InlineVec::clear</code> and <code>SerVec::clear</code> enable arbitrary code execution</p>
+      <span class="subtitle"><p>Potential use-after-free due to lack of panic safety in <code>InlineVec::clear</code> and <code>SerVec::clear</code></p>
 </span>
     </header>
 
@@ -118,8 +118,6 @@
           <li><a href="/categories/code-execution.html">code-execution</a></li>
           
           <li><a href="/categories/memory-corruption.html">memory-corruption</a></li>
-          
-          <li><a href="/categories/denial-of-service.html">denial-of-service</a></li>
           
         </ul>
       </dd>
@@ -205,13 +203,15 @@ implementation when the value is later dropped.</li>
 <li><code>SerVec::clear()</code> is called again by <code>SerVec::with_capacity()</code> after the
 user closure returns.</li>
 </ul>
-<h2>Technical Impact</h2>
+<h2>Impact</h2>
 <ul>
-<li><strong>CWE-415 (Double Free):</strong> Heap corruption when element type holds <code>Box&lt;T&gt;</code></li>
-<li><strong>CWE-416 (Use-After-Free):</strong> Memory corruption when element reads from heap during <code>Drop</code></li>
+<li><strong>CWE-415 (Double Free):</strong> heap corruption when the element type is one that
+owns memory, such as <code>Box&lt;T&gt;</code> or <code>Vec&lt;T&gt;</code></li>
+<li><strong>CWE-416 (Use-After-Free):</strong> memory corruption when an element is accessed
+following a caught panic</li>
 </ul>
-<p>Both vulnerabilities are triggerable entirely from safe Rust via <code>std::panic::catch_unwind</code>
-and require no special privileges.</p>
+<p>Both types of undefined behavior can be invoked in safe Rust, but only if
+unwinding panics are enabled and <code>std::panic::catch_unwind</code> is used.</p>
 
 
     <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2026-05-11T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2026-0122: Unsoundness in rkyv</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0122.html</id><updated>2026-05-11T12:00:00+00:00</updated><category term="code-execution"/><category term="memory-corruption"/><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0122.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0122: Unsoundness in rkyv"/><published>2026-05-11T12:00:00+00:00</published><summary xml:lang="en">Panic safety bugs in `InlineVec::clear` and `SerVec::clear` enable arbitrary code execution</summary><content xml:lang="en" type="html">  &lt;article&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2026-05-11T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2026-0122: Unsoundness in rkyv</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0122.html</id><updated>2026-05-11T12:00:00+00:00</updated><category term="code-execution"/><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0122.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0122: Unsoundness in rkyv"/><published>2026-05-11T12:00:00+00:00</published><summary xml:lang="en">Potential use-after-free due to lack of panic safety in `InlineVec::clear` and `SerVec::clear`</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
           &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/rkyv/RUSTSEC-2026-0122.md&quot;&gt;History&lt;/a&gt; ⋅
@@ -14,7 +14,7 @@
         RUSTSEC-2026-0122
         
       &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Panic safety bugs in &lt;code&gt;InlineVec::clear&lt;/code&gt; and &lt;code&gt;SerVec::clear&lt;/code&gt; enable arbitrary code execution&lt;/p&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Potential use-after-free due to lack of panic safety in &lt;code&gt;InlineVec::clear&lt;/code&gt; and &lt;code&gt;SerVec::clear&lt;/code&gt;&lt;/p&gt;
 &lt;/span&gt;
     &lt;/header&gt;
 
@@ -64,8 +64,6 @@
           &lt;li&gt;&lt;a href=&quot;/categories/code-execution.html&quot;&gt;code-execution&lt;/a&gt;&lt;/li&gt;
           
           &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
           
         &lt;/ul&gt;
       &lt;/dd&gt;
@@ -151,13 +149,15 @@ implementation when the value is later dropped.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;SerVec::clear()&lt;/code&gt; is called again by &lt;code&gt;SerVec::with_capacity()&lt;/code&gt; after the
 user closure returns.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2&gt;Technical Impact&lt;/h2&gt;
+&lt;h2&gt;Impact&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;CWE-415 (Double Free):&lt;/strong&gt; Heap corruption when element type holds &lt;code&gt;Box&amp;lt;T&amp;gt;&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;CWE-416 (Use-After-Free):&lt;/strong&gt; Memory corruption when element reads from heap during &lt;code&gt;Drop&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CWE-415 (Double Free):&lt;/strong&gt; heap corruption when the element type is one that
+owns memory, such as &lt;code&gt;Box&amp;lt;T&amp;gt;&lt;/code&gt; or &lt;code&gt;Vec&amp;lt;T&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CWE-416 (Use-After-Free):&lt;/strong&gt; memory corruption when an element is accessed
+following a caught panic&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Both vulnerabilities are triggerable entirely from safe Rust via &lt;code&gt;std::panic::catch_unwind&lt;/code&gt;
-and require no special privileges.&lt;/p&gt;
+&lt;p&gt;Both types of undefined behavior can be invoked in safe Rust, but only if
+unwinding panics are enabled and &lt;code&gt;std::panic::catch_unwind&lt;/code&gt; is used.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
