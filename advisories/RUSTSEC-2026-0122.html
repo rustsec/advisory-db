@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories with keyword &#39;panic-safety&#39; › RustSec Advisory Database</title>
+<title>RUSTSEC-2026-0122: rkyv: Panic safety bugs in `InlineVec::clear` and `SerVec::clear` enable arbitrary code execution › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,60 +52,172 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/rkyv/RUSTSEC-2026-0122.md">History</a> ⋅
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/rkyv/RUSTSEC-2026-0122.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2026-0122">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2026-0122
+        
+      </h1>
+      <span class="subtitle"><p>Panic safety bugs in <code>InlineVec::clear</code> and <code>SerVec::clear</code> enable arbitrary code execution</p>
 </span>
-      <h1>Advisories with keyword &#39;panic-safety&#39;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2026-05-11">
-    May 11, 2026
-  </time>
+    
 
-  
-  <h3>
-    
-        
-          <span class="tag info">INFO</span>
-        
-    
-    <a href="/advisories/RUSTSEC-2026-0122.html">
-      RUSTSEC-2026-0122: Unsoundness in rkyv
-    </a>
-  </h3>
-  <span><p>Panic safety bugs in <code>InlineVec::clear</code> and <code>SerVec::clear</code> enable arbitrary code execution</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2025-09-01">
-    September  1, 2025
-  </time>
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2026-04-23">
+          April 23, 2026
+        </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2026-05-11">
+          May 11, 2026
+        </time>
         
-    
-    <a href="/advisories/RUSTSEC-2025-0054.html">
-      RUSTSEC-2025-0054: Vulnerability in array-queue
-    </a>
-  </h3>
-  <span><p>ArrayQueue::push_front is not panic-safe</p>
-</span>
-  
-</li>
+      </dd>
+
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        <a href="/packages/rkyv.html">rkyv</a>
+           
+          (<a href="https://crates.io/crates/rkyv">crates.io</a>)
+          
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        <span class="tag info">INFO</span>
+        Unsound
+        
+      </dd>
+
       
-    </ul>
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/code-execution.html">code-execution</a></li>
+          
+          <li><a href="/categories/memory-corruption.html">memory-corruption</a></li>
+          
+          <li><a href="/categories/denial-of-service.html">denial-of-service</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/panic-safety.html">#panic-safety</a>
+        
+          <a href="/keywords/memory-safety.html">#memory-safety</a>
+        
+          <a href="/keywords/use-after-free.html">#use-after-free</a>
+        
+          <a href="/keywords/double-free.html">#double-free</a>
+        
+      </dd>
+      
+
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/rkyv/rkyv/commit/5828cf5c27b664eb4432c4a93d4769e12e5e42fb">
+              https://github.com/rkyv/rkyv/commit/5828cf5c27b664eb4432c4a93d4769e12e5e42fb
+            </a>
+          </li>
+        
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&#62;=0.8.16</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+      <dt id="unaffected">Unaffected</dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;0.8.0</code></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      
+    </dl>
+
+    
+    
+
+    <h3 id="description">Description</h3>
+    <p><code>InlineVec::clear()</code> and <code>SerVec::clear()</code> in <code>rkyv</code> were not panic-safe.
+Both functions iterate over their elements and call <code>drop_in_place</code> on each,
+updating <code>self.len</code> only <em>after</em> the loop. If an element's <code>Drop</code> implementation
+panics during the loop, <code>self.len</code> is left at its original value.</p>
+<p>A subsequent invocation of <code>clear()</code> on the same container then re-visits the
+already-freed elements:</p>
+<ul>
+<li><code>InlineVec::clear()</code> is called again from <code>InlineVec</code>'s own <code>Drop</code>
+implementation when the value is later dropped.</li>
+<li><code>SerVec::clear()</code> is called again by <code>SerVec::with_capacity()</code> after the
+user closure returns.</li>
+</ul>
+<h2>Technical Impact</h2>
+<ul>
+<li><strong>CWE-415 (Double Free):</strong> Heap corruption when element type holds <code>Box&lt;T&gt;</code></li>
+<li><strong>CWE-416 (Use-After-Free):</strong> Memory corruption when element reads from heap during <code>Drop</code></li>
+</ul>
+<p>Both vulnerabilities are triggerable entirely from safe Rust via <code>std::panic::catch_unwind</code>
+and require no special privileges.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
