@@ -1,0 +1,62 @@
+{
+  "id": "RUSTSEC-2026-0139",
+  "modified": "2026-05-13T14:54:08Z",
+  "published": "2026-05-02T12:00:00Z",
+  "aliases": [],
+  "related": [],
+  "summary": "Null-pointer dereference and double-free via safe APIs",
+  "details": "Two soundness violations exist in the Rust bindings for MetaCall:\n\n**Null-pointer dereference:** `MetaCallFuture::new_raw()` accepts a raw\npointer without validation. The `Debug` impl calls `Box::from_raw(self.data)`\non it. Passing a null pointer causes the `Debug` impl to construct a\n`NonNull` from null, producing undefined behavior.\n\n**Double-free:** `MetaCallPointer::clone()` shares the same `rust_value` raw\npointer between the clone and the original. Calling `get_value_untyped()` on\nboth clones calls `Box::from_raw` on the same pointer twice, resulting in a\ndouble-free.\n\nBoth issues can be triggered through safe public APIs —\n`MetaCallFuture::new_raw()`, `MetaCallPointer::new()`, `clone()`, and\n`get_value_untyped()` — with no `unsafe` required from the caller.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "metacall",
+        "purl": "pkg:cargo/metacall"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "memory-corruption"
+        ],
+        "cvss": null,
+        "informational": "unsound"
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/metacall"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0139.html"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/metacall/core/issues/618"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
