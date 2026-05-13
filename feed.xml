@@ -537,6 +537,141 @@ signatures are rejected.&lt;/p&gt;
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0127: Unsoundness in accessor</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0127.html</id><updated>2026-05-13T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0127.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0127: Unsoundness in accessor"/><published>2026-05-13T12:00:00+00:00</published><summary xml:lang="en">Integer overflow in `array::ReadWrite::new()` leading to potential memory corruption</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/accessor/RUSTSEC-2026-0127.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/accessor/RUSTSEC-2026-0127.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0127&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0127
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Integer overflow in &lt;code&gt;array::ReadWrite::new()&lt;/code&gt; leading to potential memory corruption&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-05-02&quot;&gt;
+          May  2, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-05-13&quot;&gt;
+          May 13, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/accessor.html&quot;&gt;accessor&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/accessor&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/integer-overflow.html&quot;&gt;#integer-overflow&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/out-of-bounds.html&quot;&gt;#out-of-bounds&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/toku-sa-n/accessor/issues/49&quot;&gt;
+              https://github.com/toku-sa-n/accessor/issues/49
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;In &lt;code&gt;array::ReadWrite::new()&lt;/code&gt; (line 83 of &lt;code&gt;accessor/src/array.rs&lt;/code&gt;),
+&lt;code&gt;let bytes = mem::size_of::&amp;lt;T&amp;gt;() * len&lt;/code&gt; can overflow &lt;code&gt;usize&lt;/code&gt; when &lt;code&gt;len&lt;/code&gt; is
+very large. In release mode, this silently wraps, potentially making
+&lt;code&gt;bytes = 0&lt;/code&gt;. The mapper then maps with 0 bytes, and subsequent accesses
+(e.g. &lt;code&gt;read_volatile_at&lt;/code&gt;) lead to undefined behavior or memory corruption.&lt;/p&gt;
+&lt;p&gt;Note: &lt;code&gt;array::ReadWrite::new()&lt;/code&gt; itself is &lt;code&gt;unsafe&lt;/code&gt;, so direct triggering
+requires an &lt;code&gt;unsafe&lt;/code&gt; block. However, the integer overflow violates the
+implicit safety contract expected by callers and can lead to memory
+corruption downstream.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0123: Unsoundness in rustdx</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0123.html</id><updated>2026-05-12T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0123.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0123: Unsoundness in rustdx"/><published>2026-05-12T12:00:00+00:00</published><summary xml:lang="en">Out-of-bounds read in `bytes_helper` public safe functions</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -1585,191 +1720,6 @@ exhaust memory on a release-built one.&lt;/p&gt;
       
           Source: &lt;a href=&quot;https://github.com/hickory-dns/hickory-dns/security/advisories/GHSA-3v94-mw7p-v465&quot;&gt;https://github.com/hickory-dns/hickory-dns/security/advisories/GHSA-3v94-mw7p-v465&lt;/a&gt;
         
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0115: Unsoundness in imageproc</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0115.html</id><updated>2026-05-07T12:00:00+00:00</updated><category term="memory-exposure"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0115.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0115: Unsoundness in imageproc"/><published>2026-05-01T12:00:00+00:00</published><summary xml:lang="en">Fragile bounds check when sampling from image</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/imageproc/RUSTSEC-2026-0115.md&quot;&gt;History&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/imageproc/RUSTSEC-2026-0115.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0115&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2026-0115
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Fragile bounds check when sampling from image&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-05-01&quot;&gt;
-          May  1, 2026
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-05-01&quot;&gt;
-          May  1, 2026
-        &lt;/time&gt;
-        
-        &lt;time datetime=&quot;2026-05-07&quot;&gt;
-          (last modified: May  7, 2026)
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/imageproc.html&quot;&gt;imageproc&lt;/a&gt;
-           
-          (&lt;a href=&quot;https://crates.io/crates/imageproc&quot;&gt;crates.io&lt;/a&gt;)
-          
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unsound
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/memory-exposure.html&quot;&gt;memory-exposure&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/out-of-bounds-read.html&quot;&gt;#out-of-bounds-read&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/memory-safety.html&quot;&gt;#memory-safety&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-5qv7-j6w5-fr4m&quot;&gt;GHSA-5qv7-j6w5-fr4m&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;related&quot;&gt;Related&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            https://github.com/image-rs/imageproc/pull/778
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=0.24.1, &amp;#60;0.25.0&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=0.25.1, &amp;#60;0.26.0&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=0.26.2&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#60;0.24&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-    &lt;dl&gt;
-      &lt;dt&gt;Affected Functions&lt;/dt&gt;
-      &lt;dd&gt;Version&lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;imageproc::binary_descriptors::brief&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=0.24.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-    &lt;/dl&gt;
-    
-
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;A read of pixels was coded as modifying coordinates to lie within the image
-bounds. It would calculate a coordinate by adding a constant to an input and
-taking the minimum of the resulting coordinate and &apos;dimension - 1&apos;. This would
-not protect against malicious inputs that could overflow the addition. .
-Subsequently to the tricked bounds check the image could then be sampled at
-multiple, differently calculated coordinates exceeding the bounds.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
     
     &lt;/p&gt;
   &lt;/article&gt;</content></entry></feed>
