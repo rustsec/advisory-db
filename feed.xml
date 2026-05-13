@@ -2131,6 +2131,146 @@ signatures are rejected.&lt;/p&gt;
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0139: Unsoundness in metacall</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0139.html</id><updated>2026-05-13T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0139.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0139: Unsoundness in metacall"/><published>2026-05-13T12:00:00+00:00</published><summary xml:lang="en">Null-pointer dereference and double-free via safe APIs</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/metacall/RUSTSEC-2026-0139.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/metacall/RUSTSEC-2026-0139.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0139&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0139
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Null-pointer dereference and double-free via safe APIs&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-05-02&quot;&gt;
+          May  2, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-05-13&quot;&gt;
+          May 13, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/metacall.html&quot;&gt;metacall&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/metacall&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/double-free.html&quot;&gt;#double-free&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/null-pointer.html&quot;&gt;#null-pointer&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/undefined-behavior.html&quot;&gt;#undefined-behavior&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/metacall/core/issues/618&quot;&gt;
+              https://github.com/metacall/core/issues/618
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Two soundness violations exist in the Rust bindings for MetaCall:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Null-pointer dereference:&lt;/strong&gt; &lt;code&gt;MetaCallFuture::new_raw()&lt;/code&gt; accepts a raw
+pointer without validation. The &lt;code&gt;Debug&lt;/code&gt; impl calls &lt;code&gt;Box::from_raw(self.data)&lt;/code&gt;
+on it. Passing a null pointer causes the &lt;code&gt;Debug&lt;/code&gt; impl to construct a
+&lt;code&gt;NonNull&lt;/code&gt; from null, producing undefined behavior.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Double-free:&lt;/strong&gt; &lt;code&gt;MetaCallPointer::clone()&lt;/code&gt; shares the same &lt;code&gt;rust_value&lt;/code&gt; raw
+pointer between the clone and the original. Calling &lt;code&gt;get_value_untyped()&lt;/code&gt; on
+both clones calls &lt;code&gt;Box::from_raw&lt;/code&gt; on the same pointer twice, resulting in a
+double-free.&lt;/p&gt;
+&lt;p&gt;Both issues can be triggered through safe public APIs —
+&lt;code&gt;MetaCallFuture::new_raw()&lt;/code&gt;, &lt;code&gt;MetaCallPointer::new()&lt;/code&gt;, &lt;code&gt;clone()&lt;/code&gt;, and
+&lt;code&gt;get_value_untyped()&lt;/code&gt; — with no &lt;code&gt;unsafe&lt;/code&gt; required from the caller.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0127: Unsoundness in accessor</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0127.html</id><updated>2026-05-13T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0127.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0127: Unsoundness in accessor"/><published>2026-05-13T12:00:00+00:00</published><summary xml:lang="en">Integer overflow in `array::ReadWrite::new()` leading to potential memory corruption</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
