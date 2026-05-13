@@ -1,0 +1,64 @@
+[
+  {
+    "id": "RUSTSEC-2026-0128",
+    "modified": "2026-05-13T12:19:05Z",
+    "published": "2026-05-02T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Double-free and use-after-free in `Keys::next()`",
+    "details": "`Keys::next()` uses `ptr::read` to move out the `Option<V>` by value, which\ndrops the contained `V` when `V` is non-Copy (e.g. `String`). This leaves a\ndangling value in the map's storage slot. Subsequent `get()` operations on\nthat key return a dangling reference to already-freed memory.\n\nThis can be triggered through safe public APIs — `Map::keys()`,\n`Keys::next()`, and `Map::get()` — with no `unsafe` required from the\ncaller. Under Miri, accessing the freed slot produces \"Undefined Behavior:\npointer not dereferenceable: alloc has been freed, so this pointer is\ndangling\".",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "emap",
+          "purl": "pkg:cargo/emap"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/emap"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0128.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/yegor256/emap/issues/168"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]
