@@ -1,0 +1,79 @@
+[
+  {
+    "id": "RUSTSEC-2026-0140",
+    "modified": "2026-05-13T15:15:09Z",
+    "published": "2026-05-12T12:00:00Z",
+    "aliases": [
+      "CVE-2026-42559",
+      "GHSA-fvh2-gm75-j4j7"
+    ],
+    "related": [
+      "GHSA-89vp-x53w-74fx"
+    ],
+    "summary": "DNS rebinding and cross-origin CSRF in dynoxide's MCP HTTP transport",
+    "details": "dynoxide's MCP HTTP transport was vulnerable to DNS rebinding via its transitive `rmcp` dependency, plus a related cross-origin CSRF gap.\n\nA malicious web page could make the user's browser send requests to a local `dynoxide mcp --http` or `dynoxide serve --mcp` server with a non-loopback `Host` header, which the server would then process. The Host check alone did not close a related cross-origin CSRF vector: a page could `fetch` the loopback endpoint with `mode: 'no-cors'`, and the Host header would match while the Origin header went unchecked.\n\nAffected MCP write tools include `put_item`, `update_item`, `delete_item`, `create_table`, and `batch_write_item`.\n\nThe stdio transport (`dynoxide mcp` without `--http`) is not affected.\n\n## Patches\n\ndynoxide 0.9.13 closes both vectors:\n\n- Upgrades `rmcp` from 1.1.1 to 1.6.0 (which ships a default Host-header allowlist).\n- Sets explicit `allowed_hosts` and `allowed_origins` on `StreamableHttpServerConfig`.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "dynoxide-rs",
+          "purl": "pkg:cargo/dynoxide-rs"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.9.3"
+              },
+              {
+                "fixed": "0.9.13"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/dynoxide-rs"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0140.html"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://github.com/nubo-db/dynoxide/security/advisories/GHSA-fvh2-gm75-j4j7"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nubo-db/dynoxide/releases/tag/v0.9.13"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]
