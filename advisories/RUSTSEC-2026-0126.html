@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package &#39;libcrux-ml-dsa&#39; › RustSec Advisory Database</title>
+<title>RUSTSEC-2026-0126: libcrux-ml-dsa: AVX2 Implementation Did Not Fully Reduce Intermediate Values › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,98 +52,143 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/libcrux-ml-dsa/RUSTSEC-2026-0126.md">History</a> ⋅
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/libcrux-ml-dsa/RUSTSEC-2026-0126.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2026-0126">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2026-0126
+        
+      </h1>
+      <span class="subtitle"><p>AVX2 Implementation Did Not Fully Reduce Intermediate Values</p>
 </span>
-      <h1>Advisories for package &#39;libcrux-ml-dsa&#39;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2026-05-13">
-    May 13, 2026
-  </time>
-
-  
-  <h3>
     
+
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2026-04-27">
+          April 27, 2026
+        </time>
+      </dd>
+
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2026-05-13">
+          May 13, 2026
+        </time>
         
-          <span class="tag info">INFO</span>
+      </dd>
+
+      <dt id="package">Package</dt>
+      <dd>
         
-    
-    <a href="/advisories/RUSTSEC-2026-0126.html">
-      RUSTSEC-2026-0126: Security notice about libcrux-ml-dsa
-    </a>
-  </h3>
-  <span><p>AVX2 Implementation Did Not Fully Reduce Intermediate Values</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2026-05-13">
-    May 13, 2026
-  </time>
-
-  
-  <h3>
-    
-      <span class="tag high">HIGH</span>
-      
-    <a href="/advisories/RUSTSEC-2026-0125.html">
-      RUSTSEC-2026-0125: Vulnerability in libcrux-ml-dsa
-    </a>
-  </h3>
-  <span><p>Signature Verification on AVX2 Platforms Mishandles Edge Case</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2026-03-24">
-    March 24, 2026
-  </time>
-
-  
-  <h3>
-    
         
-    
-    <a href="/advisories/RUSTSEC-2026-0077.html">
-      RUSTSEC-2026-0077: Vulnerability in libcrux-ml-dsa
-    </a>
-  </h3>
-  <span><p>Incorrect Check of Signer Response Norm During Verification</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2026-03-24">
-    March 24, 2026
-  </time>
+        <a href="/packages/libcrux-ml-dsa.html">libcrux-ml-dsa</a>
+           
+          (<a href="https://crates.io/crates/libcrux-ml-dsa">crates.io</a>)
+          
+        
+        
+      </dd>
 
-  
-  <h3>
+      <dt id="type">Type</dt>
+      <dd>
+        
+        <span class="tag info">INFO</span>
+        Notice
+        
+      </dd>
+
+      
+
+      
+
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/cryspen/libcrux/pull/1395">
+              https://github.com/cryspen/libcrux/pull/1395
+            </a>
+          </li>
+        
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&#62;=0.0.9</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+
+      
+      
+      <dt>Affected Architectures</dt>
+      <dd>
+        <ul>
+          
+          <li><code>x86_64</code></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      
+    </dl>
+
     
-      <span class="tag high">HIGH</span>
-      
-    <a href="/advisories/RUSTSEC-2026-0076.html">
-      RUSTSEC-2026-0076: Vulnerability in libcrux-ml-dsa
-    </a>
-  </h3>
-  <span><p>Panic in Signature Hint Decoding During Verification</p>
-</span>
-  
-</li>
-      
-    </ul>
+    
+
+    
+
+    <h3 id="description">Description</h3>
+    <p>The AVX2 implementation of ML-DSA did not fully reduce intermediate
+inputs to the inverse NTT, which leads to a testable difference in
+panic behaviour of internal functions compared to the portable
+implementation.</p>
+<h2>Impact</h2>
+<p>We are not aware of inputs to the public key generation, signing or
+verification APIs that trigger a panic in the AVX2 implementation
+because the intermediate values were not fully reduced.</p>
+<h2>Mitigation</h2>
+<p>From version <code>0.0.9</code> intermediate values on AVX2 platforms are fully
+reduced in alignment with the portable implementation.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
