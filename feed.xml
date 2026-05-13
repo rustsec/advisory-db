@@ -478,6 +478,270 @@ dangling&amp;quot;.&lt;/p&gt;
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0131: Unsoundness in bitchomp</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0131.html</id><updated>2026-05-13T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0131.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0131: Unsoundness in bitchomp"/><published>2026-05-13T12:00:00+00:00</published><summary xml:lang="en">Double-free in `Chomp::inner()`</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/bitchomp/RUSTSEC-2026-0131.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/bitchomp/RUSTSEC-2026-0131.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0131&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0131
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Double-free in &lt;code&gt;Chomp::inner()&lt;/code&gt;&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-05-02&quot;&gt;
+          May  2, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-05-13&quot;&gt;
+          May 13, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/bitchomp.html&quot;&gt;bitchomp&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/bitchomp&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/double-free.html&quot;&gt;#double-free&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/KingPEPSALT/bitchomp/issues/5&quot;&gt;
+              https://github.com/KingPEPSALT/bitchomp/issues/5
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;&lt;code&gt;Chomp::inner()&lt;/code&gt; uses &lt;code&gt;std::ptr::read_unaligned&lt;/code&gt; to move out the value from a
+raw pointer. If the original value is an owned type (e.g. &lt;code&gt;Box&lt;/code&gt;), calling
+&lt;code&gt;inner()&lt;/code&gt; moves out the ownership, but the original variable will still be
+dropped at the end of its scope. This causes the same heap memory to be freed
+twice, resulting in a double-free and undefined behavior.&lt;/p&gt;
+&lt;p&gt;This can be triggered through safe public APIs — &lt;code&gt;Chomp::new()&lt;/code&gt; and
+&lt;code&gt;Chomp::inner()&lt;/code&gt; — with no &lt;code&gt;unsafe&lt;/code&gt; required from the caller.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0132: Unsoundness in ssdeep</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0132.html</id><updated>2026-05-13T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0132.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0132: Unsoundness in ssdeep"/><published>2026-05-13T12:00:00+00:00</published><summary xml:lang="en">Potential out-of-bounds write via public `Context` fields</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/ssdeep/RUSTSEC-2026-0132.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/ssdeep/RUSTSEC-2026-0132.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0132&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0132
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Potential out-of-bounds write via public &lt;code&gt;Context&lt;/code&gt; fields&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-05-02&quot;&gt;
+          May  2, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-05-13&quot;&gt;
+          May 13, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/ssdeep.html&quot;&gt;ssdeep&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/ssdeep&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/out-of-bounds.html&quot;&gt;#out-of-bounds&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/encapsulation.html&quot;&gt;#encapsulation&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/rustysec/fuzzyhash-rs/issues/14&quot;&gt;
+              https://github.com/rustysec/fuzzyhash-rs/issues/14
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;The &lt;code&gt;Context&lt;/code&gt; struct has all fields public (&lt;code&gt;pub d_len&lt;/code&gt;, &lt;code&gt;pub digest&lt;/code&gt;, etc.).
+External code can directly modify &lt;code&gt;d_len&lt;/code&gt; to a value exceeding the &lt;code&gt;digest&lt;/code&gt;
+vector length. When &lt;code&gt;reset()&lt;/code&gt; is subsequently called,
+&lt;code&gt;self.digest[self.d_len as usize] = 0&lt;/code&gt; indexes out of bounds, causing an
+out-of-bounds write.&lt;/p&gt;
+&lt;p&gt;This can be triggered through safe code — modifying public &lt;code&gt;Context&lt;/code&gt; fields
+and then calling &lt;code&gt;reset()&lt;/code&gt; — with no &lt;code&gt;unsafe&lt;/code&gt; required.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0130: Unsoundness in caja</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0130.html</id><updated>2026-05-13T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0130.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0130: Unsoundness in caja"/><published>2026-05-13T12:00:00+00:00</published><summary xml:lang="en">Out-of-bounds read/write in `Index` and `IndexMut` implementations</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -606,6 +870,138 @@ beyond the allocated memory.&lt;/p&gt;
 &lt;p&gt;This can be triggered through safe public APIs — the &lt;code&gt;[]&lt;/code&gt; indexing operator
 on a &lt;code&gt;Caja&lt;/code&gt; with an out-of-range index — with no &lt;code&gt;unsafe&lt;/code&gt; required from the
 caller.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0133: Unsoundness in auto_vec</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0133.html</id><updated>2026-05-13T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0133.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0133: Unsoundness in auto_vec"/><published>2026-05-13T12:00:00+00:00</published><summary xml:lang="en">Invalid pointer arithmetic in `iter()` and `iter_mut()`</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/auto_vec/RUSTSEC-2026-0133.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/auto_vec/RUSTSEC-2026-0133.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0133&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0133
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Invalid pointer arithmetic in &lt;code&gt;iter()&lt;/code&gt; and &lt;code&gt;iter_mut()&lt;/code&gt;&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-05-02&quot;&gt;
+          May  2, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-05-13&quot;&gt;
+          May 13, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/auto_vec.html&quot;&gt;auto_vec&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/auto_vec&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/out-of-bounds.html&quot;&gt;#out-of-bounds&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/pointer-arithmetic.html&quot;&gt;#pointer-arithmetic&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/lluvz/AutoVec/issues/1&quot;&gt;
+              https://github.com/lluvz/AutoVec/issues/1
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;The &lt;code&gt;iter()&lt;/code&gt; and &lt;code&gt;iter_mut()&lt;/code&gt; APIs compute
+&lt;code&gt;current = (&amp;amp;children[0] as *const *const RawAutoChild).sub(1)&lt;/code&gt;, which
+performs pointer subtraction going before the start of the allocation. This
+is undefined behavior per Rust&apos;s pointer arithmetic rules.&lt;/p&gt;
+&lt;p&gt;This can be triggered through safe public APIs — &lt;code&gt;iter()&lt;/code&gt; and &lt;code&gt;iter_mut()&lt;/code&gt;
+— with no &lt;code&gt;unsafe&lt;/code&gt; required from the caller.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;

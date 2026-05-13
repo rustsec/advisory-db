@@ -1,0 +1,64 @@
+[
+  {
+    "id": "RUSTSEC-2026-0133",
+    "modified": "2026-05-13T12:38:12Z",
+    "published": "2026-05-02T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Invalid pointer arithmetic in `iter()` and `iter_mut()`",
+    "details": "The `iter()` and `iter_mut()` APIs compute\n`current = (&children[0] as *const *const RawAutoChild).sub(1)`, which\nperforms pointer subtraction going before the start of the allocation. This\nis undefined behavior per Rust's pointer arithmetic rules.\n\nThis can be triggered through safe public APIs — `iter()` and `iter_mut()`\n— with no `unsafe` required from the caller.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "auto_vec",
+          "purl": "pkg:cargo/auto_vec"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/auto_vec"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0133.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/lluvz/AutoVec/issues/1"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]
