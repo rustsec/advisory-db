@@ -23,11 +23,11 @@ jobs:
         uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
         with:
           path: ~/.cargo/bin
-          key: rustsec-admin-9909babfe97ac580d59bb48ff8f26308afcd486e
+          key: rustsec-admin-0ca9edd637bced72d435a282199af47e727276d3
 
       - name: Install rustsec-admin
         if: steps.admin-cache.outputs.cache-hit != 'true'
-        run: cargo install --git https://github.com/rustsec/rustsec rustsec-admin --rev 9909babfe97ac580d59bb48ff8f26308afcd486e
+        run: cargo install --git https://github.com/rustsec/rustsec rustsec-admin --rev 0ca9edd637bced72d435a282199af47e727276d3
 
       - name: Assign IDs
         id: assign
