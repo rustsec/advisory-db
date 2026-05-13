@@ -1,0 +1,62 @@
+{
+  "id": "RUSTSEC-2026-0127",
+  "modified": "2026-05-13T12:16:15Z",
+  "published": "2026-05-02T12:00:00Z",
+  "aliases": [],
+  "related": [],
+  "summary": "Integer overflow in `array::ReadWrite::new()` leading to potential memory corruption",
+  "details": "In `array::ReadWrite::new()` (line 83 of `accessor/src/array.rs`),\n`let bytes = mem::size_of::<T>() * len` can overflow `usize` when `len` is\nvery large. In release mode, this silently wraps, potentially making\n`bytes = 0`. The mapper then maps with 0 bytes, and subsequent accesses\n(e.g. `read_volatile_at`) lead to undefined behavior or memory corruption.\n\nNote: `array::ReadWrite::new()` itself is `unsafe`, so direct triggering\nrequires an `unsafe` block. However, the integer overflow violates the\nimplicit safety contract expected by callers and can lead to memory\ncorruption downstream.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "accessor",
+        "purl": "pkg:cargo/accessor"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "memory-corruption"
+        ],
+        "cvss": null,
+        "informational": "unsound"
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/accessor"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0127.html"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/toku-sa-n/accessor/issues/49"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
