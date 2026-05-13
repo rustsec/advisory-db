@@ -1,0 +1,62 @@
+{
+  "id": "RUSTSEC-2026-0132",
+  "modified": "2026-05-13T12:38:12Z",
+  "published": "2026-05-02T12:00:00Z",
+  "aliases": [],
+  "related": [],
+  "summary": "Potential out-of-bounds write via public `Context` fields",
+  "details": "The `Context` struct has all fields public (`pub d_len`, `pub digest`, etc.).\nExternal code can directly modify `d_len` to a value exceeding the `digest`\nvector length. When `reset()` is subsequently called,\n`self.digest[self.d_len as usize] = 0` indexes out of bounds, causing an\nout-of-bounds write.\n\nThis can be triggered through safe code — modifying public `Context` fields\nand then calling `reset()` — with no `unsafe` required.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "ssdeep",
+        "purl": "pkg:cargo/ssdeep"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "memory-corruption"
+        ],
+        "cvss": null,
+        "informational": "unsound"
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/ssdeep"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0132.html"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/rustysec/fuzzyhash-rs/issues/14"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "id": "RUSTSEC-2026-0131",
+  "modified": "2026-05-13T12:38:12Z",
+  "published": "2026-05-02T12:00:00Z",
+  "aliases": [],
+  "related": [],
+  "summary": "Double-free in `Chomp::inner()`",
+  "details": "`Chomp::inner()` uses `std::ptr::read_unaligned` to move out the value from a\nraw pointer. If the original value is an owned type (e.g. `Box`), calling\n`inner()` moves out the ownership, but the original variable will still be\ndropped at the end of its scope. This causes the same heap memory to be freed\ntwice, resulting in a double-free and undefined behavior.\n\nThis can be triggered through safe public APIs — `Chomp::new()` and\n`Chomp::inner()` — with no `unsafe` required from the caller.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "bitchomp",
+        "purl": "pkg:cargo/bitchomp"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "memory-corruption"
+        ],
+        "cvss": null,
+        "informational": "unsound"
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/bitchomp"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0131.html"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/KingPEPSALT/bitchomp/issues/5"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
