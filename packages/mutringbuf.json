@@ -1,0 +1,70 @@
+[
+  {
+    "id": "RUSTSEC-2026-0142",
+    "modified": "2026-05-14T21:26:19Z",
+    "published": "2026-05-14T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Double-free in `vmem` storage reachable from safe Rust (predecessor of `oneringbuf`)",
+    "details": "`mutringbuf` is the archived predecessor of [`oneringbuf`](https://crates.io/crates/oneringbuf) — the crate was renamed and the GitHub repository was archived on 2025-11-20. All released versions up to `1.0.0` carry the same `vmem`-feature double-free bug that affects `oneringbuf`, with the same code paths and the same reproduction shape.\n\nWhen the `vmem` feature is enabled, `VmemStorage<T>::new(Box<[UnsafeSyncCell<T>]>)` (and every public constructor that funnels through it) bit-copies the input buffer into a freshly `mmap`'d region with `ptr::copy_nonoverlapping`, then lets the source `Box<[UnsafeSyncCell<T>]>` drop normally. Because `UnsafeSyncCell<T>` has a `Drop` impl that runs `assume_init_drop` on its inner `MaybeUninit<T>`, the source-side `T` values are dropped at the end of `new`, while bitwise duplicates remain inside the mmap region. The ring-buffer destructor then runs `UnsafeSyncCell::drop` a second time on every cell — a deterministic double-free of every heap-owning element. Reachable from 100% safe Rust.\n\n## Trigger\n\n```rust\nlet v: Vec<Vec<u32>> = (0..1024).map(|i| vec![i, i+1, i+2]).collect();\nlet rb: mutringbuf::SharedVmemRB<Vec<u32>> = mutringbuf::SharedVmemRB::from(v);\ndrop(rb);\n// glibc: free(): double free detected in tcache 2 -> abort\n```\n\n## Fix\n\n`mutringbuf` is no longer maintained. The author renamed the crate to [`oneringbuf`](https://crates.io/crates/oneringbuf) and shipped the fix as `oneringbuf 0.7.1` (upstream PR [skilvingr/rust-oneringbuf#3](https://github.com/skilvingr/rust-oneringbuf/pull/3)). All `mutringbuf` versions have been yanked from crates.io. Users should migrate to `oneringbuf >= 0.7.1`.\n\nSee the parallel advisory for the `oneringbuf` crate for the full technical write-up of the bug.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "mutringbuf",
+          "purl": "pkg:cargo/mutringbuf"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "mutringbuf::VmemStorage::new"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/mutringbuf"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0142.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/Skilvingr/rust-mutringbuf"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/skilvingr/rust-oneringbuf/pull/3"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]
