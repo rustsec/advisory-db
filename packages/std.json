@@ -204,136 +204,6 @@
     }
   },
   {
-    "id": "CVE-2017-20004",
-    "modified": "2021-07-06T18:36:13Z",
-    "published": "2017-04-29T12:00:00Z",
-    "aliases": [],
-    "related": [],
-    "summary": "MutexGuard\\<Cell\\<i32\\>\\> must not be Sync",
-    "details": "In the standard library in Rust before 1.19.0, there is a synchronization problem in the MutexGuard object. MutexGuards can be used across threads with any types, allowing for memory safety issues through race conditions.",
-    "severity": [],
-    "affected": [
-      {
-        "package": {
-          "ecosystem": "crates.io",
-          "name": "std",
-          "purl": "pkg:cargo/std"
-        },
-        "ecosystem_specific": {
-          "affects": {
-            "arch": [],
-            "os": [],
-            "functions": []
-          },
-          "affected_functions": null
-        },
-        "database_specific": {
-          "categories": [
-            "thread-safety"
-          ],
-          "cvss": null,
-          "informational": null
-        },
-        "ranges": [
-          {
-            "type": "SEMVER",
-            "events": [
-              {
-                "introduced": "1.0.0"
-              },
-              {
-                "fixed": "1.19.0"
-              }
-            ]
-          }
-        ],
-        "versions": []
-      }
-    ],
-    "references": [
-      {
-        "type": "PACKAGE",
-        "url": "https://crates.io/crates/std"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/CVE-2017-20004.html"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-20004"
-      }
-    ],
-    "database_specific": {
-      "license": "CC0-1.0"
-    }
-  },
-  {
-    "id": "CVE-2021-31162",
-    "modified": "2021-07-06T18:36:13Z",
-    "published": "2021-03-28T12:00:00Z",
-    "aliases": [],
-    "related": [],
-    "summary": "Double free in Vec::from_iter specialization when drop panics",
-    "details": "In the standard library in Rust before 1.52.0, a double free can occur in the Vec::from_iter function if freeing the element panics.",
-    "severity": [],
-    "affected": [
-      {
-        "package": {
-          "ecosystem": "crates.io",
-          "name": "std",
-          "purl": "pkg:cargo/std"
-        },
-        "ecosystem_specific": {
-          "affects": {
-            "arch": [],
-            "os": [],
-            "functions": []
-          },
-          "affected_functions": null
-        },
-        "database_specific": {
-          "categories": [
-            "memory-corruption"
-          ],
-          "cvss": null,
-          "informational": null
-        },
-        "ranges": [
-          {
-            "type": "SEMVER",
-            "events": [
-              {
-                "introduced": "1.48.0"
-              },
-              {
-                "fixed": "1.52.0"
-              }
-            ]
-          }
-        ],
-        "versions": []
-      }
-    ],
-    "references": [
-      {
-        "type": "PACKAGE",
-        "url": "https://crates.io/crates/std"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/CVE-2021-31162.html"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-31162"
-      }
-    ],
-    "database_specific": {
-      "license": "CC0-1.0"
-    }
-  },
-  {
     "id": "CVE-2018-25008",
     "modified": "2021-07-06T18:36:13Z",
     "published": "2018-06-25T12:00:00Z",
@@ -464,6 +334,136 @@
     }
   },
   {
+    "id": "CVE-2021-31162",
+    "modified": "2021-07-06T18:36:13Z",
+    "published": "2021-03-28T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Double free in Vec::from_iter specialization when drop panics",
+    "details": "In the standard library in Rust before 1.52.0, a double free can occur in the Vec::from_iter function if freeing the element panics.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "std",
+          "purl": "pkg:cargo/std"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "1.48.0"
+              },
+              {
+                "fixed": "1.52.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/std"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/CVE-2021-31162.html"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-31162"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "CVE-2017-20004",
+    "modified": "2021-07-06T18:36:13Z",
+    "published": "2017-04-29T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "MutexGuard\\<Cell\\<i32\\>\\> must not be Sync",
+    "details": "In the standard library in Rust before 1.19.0, there is a synchronization problem in the MutexGuard object. MutexGuards can be used across threads with any types, allowing for memory safety issues through race conditions.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "std",
+          "purl": "pkg:cargo/std"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "thread-safety"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "1.0.0"
+              },
+              {
+                "fixed": "1.19.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/std"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/CVE-2017-20004.html"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-20004"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
     "id": "CVE-2021-28879",
     "modified": "2021-04-13T21:22:28Z",
     "published": "2021-02-18T12:00:00Z",
@@ -522,201 +522,6 @@
       {
         "type": "ADVISORY",
         "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-28879"
-      }
-    ],
-    "database_specific": {
-      "license": "CC0-1.0"
-    }
-  },
-  {
-    "id": "CVE-2021-28875",
-    "modified": "2021-04-13T21:22:28Z",
-    "published": "2021-01-10T12:00:00Z",
-    "aliases": [],
-    "related": [],
-    "summary": "Logic bug in Read can cause buffer overflow in read_to_end()",
-    "details": "In the standard library in Rust before 1.50.0, read_to_end() does not validate the return value from Read in an unsafe context. This bug could lead to a buffer overflow.",
-    "severity": [],
-    "affected": [
-      {
-        "package": {
-          "ecosystem": "crates.io",
-          "name": "std",
-          "purl": "pkg:cargo/std"
-        },
-        "ecosystem_specific": {
-          "affects": {
-            "arch": [],
-            "os": [],
-            "functions": []
-          },
-          "affected_functions": null
-        },
-        "database_specific": {
-          "categories": [
-            "memory-corruption"
-          ],
-          "cvss": null,
-          "informational": null
-        },
-        "ranges": [
-          {
-            "type": "SEMVER",
-            "events": [
-              {
-                "introduced": "1.20.0"
-              },
-              {
-                "fixed": "1.50.0"
-              }
-            ]
-          }
-        ],
-        "versions": []
-      }
-    ],
-    "references": [
-      {
-        "type": "PACKAGE",
-        "url": "https://crates.io/crates/std"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/CVE-2021-28875.html"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-28875"
-      }
-    ],
-    "database_specific": {
-      "license": "CC0-1.0"
-    }
-  },
-  {
-    "id": "CVE-2020-36318",
-    "modified": "2021-04-13T21:22:28Z",
-    "published": "2020-12-07T12:00:00Z",
-    "aliases": [],
-    "related": [],
-    "summary": "VecDeque::make_contiguous may duplicate the contained elements",
-    "details": "In the standard library in Rust before 1.49.0, VecDeque::make_contiguous has a bug that pops the same element more than once under certain condition. This bug could result in a use-after-free or double free.",
-    "severity": [],
-    "affected": [
-      {
-        "package": {
-          "ecosystem": "crates.io",
-          "name": "std",
-          "purl": "pkg:cargo/std"
-        },
-        "ecosystem_specific": {
-          "affects": {
-            "arch": [],
-            "os": [],
-            "functions": []
-          },
-          "affected_functions": null
-        },
-        "database_specific": {
-          "categories": [
-            "memory-corruption"
-          ],
-          "cvss": null,
-          "informational": null
-        },
-        "ranges": [
-          {
-            "type": "SEMVER",
-            "events": [
-              {
-                "introduced": "1.48.0"
-              },
-              {
-                "fixed": "1.49.0"
-              }
-            ]
-          }
-        ],
-        "versions": []
-      }
-    ],
-    "references": [
-      {
-        "type": "PACKAGE",
-        "url": "https://crates.io/crates/std"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/CVE-2020-36318.html"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-36318"
-      }
-    ],
-    "database_specific": {
-      "license": "CC0-1.0"
-    }
-  },
-  {
-    "id": "CVE-2020-36317",
-    "modified": "2021-04-13T21:22:28Z",
-    "published": "2020-10-28T12:00:00Z",
-    "aliases": [],
-    "related": [],
-    "summary": "String::retain allows safely creating invalid strings when abusing panic",
-    "details": "In the standard library in Rust before 1.49.0, String::retain() function has a panic safety problem. It allows creation of a non-UTF-8 Rust string when the provided closure panics. This bug could result in a memory safety violation when other string APIs assume that UTF-8 encoding is used on the same string.",
-    "severity": [],
-    "affected": [
-      {
-        "package": {
-          "ecosystem": "crates.io",
-          "name": "std",
-          "purl": "pkg:cargo/std"
-        },
-        "ecosystem_specific": {
-          "affects": {
-            "arch": [],
-            "os": [],
-            "functions": []
-          },
-          "affected_functions": null
-        },
-        "database_specific": {
-          "categories": [
-            "memory-corruption"
-          ],
-          "cvss": null,
-          "informational": null
-        },
-        "ranges": [
-          {
-            "type": "SEMVER",
-            "events": [
-              {
-                "introduced": "1.26.0"
-              },
-              {
-                "fixed": "1.49.0"
-              }
-            ]
-          }
-        ],
-        "versions": []
-      }
-    ],
-    "references": [
-      {
-        "type": "PACKAGE",
-        "url": "https://crates.io/crates/std"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/CVE-2020-36317.html"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-36317"
       }
     ],
     "database_specific": {
@@ -789,6 +594,136 @@
     }
   },
   {
+    "id": "CVE-2015-20001",
+    "modified": "2021-04-13T21:22:28Z",
+    "published": "2015-05-27T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Panic safety violation in BinaryHeap",
+    "details": "In the standard library in Rust before 1.2.0, BinaryHeap is not panic-safe. The binary heap is left in an inconsistent state when the comparison of generic elements inside sift_up or sift_down_range panics. This bug leads to a drop of zeroed memory as an arbitrary type, which can result in a memory safety violation.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "std",
+          "purl": "pkg:cargo/std"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "1.0.0"
+              },
+              {
+                "fixed": "1.2.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/std"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/CVE-2015-20001.html"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-20001"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "CVE-2021-28875",
+    "modified": "2021-04-13T21:22:28Z",
+    "published": "2021-01-10T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Logic bug in Read can cause buffer overflow in read_to_end()",
+    "details": "In the standard library in Rust before 1.50.0, read_to_end() does not validate the return value from Read in an unsafe context. This bug could lead to a buffer overflow.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "std",
+          "purl": "pkg:cargo/std"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "1.20.0"
+              },
+              {
+                "fixed": "1.50.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/std"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/CVE-2021-28875.html"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-28875"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
     "id": "CVE-2021-28877",
     "modified": "2023-07-15T15:07:13Z",
     "published": "2021-01-03T12:00:00Z",
@@ -854,6 +789,136 @@
     }
   },
   {
+    "id": "CVE-2020-36317",
+    "modified": "2021-04-13T21:22:28Z",
+    "published": "2020-10-28T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "String::retain allows safely creating invalid strings when abusing panic",
+    "details": "In the standard library in Rust before 1.49.0, String::retain() function has a panic safety problem. It allows creation of a non-UTF-8 Rust string when the provided closure panics. This bug could result in a memory safety violation when other string APIs assume that UTF-8 encoding is used on the same string.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "std",
+          "purl": "pkg:cargo/std"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "1.26.0"
+              },
+              {
+                "fixed": "1.49.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/std"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/CVE-2020-36317.html"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-36317"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "CVE-2020-36318",
+    "modified": "2021-04-13T21:22:28Z",
+    "published": "2020-12-07T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "VecDeque::make_contiguous may duplicate the contained elements",
+    "details": "In the standard library in Rust before 1.49.0, VecDeque::make_contiguous has a bug that pops the same element more than once under certain condition. This bug could result in a use-after-free or double free.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "std",
+          "purl": "pkg:cargo/std"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "1.48.0"
+              },
+              {
+                "fixed": "1.49.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/std"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/CVE-2020-36318.html"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-36318"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
     "id": "CVE-2021-28876",
     "modified": "2021-04-13T21:22:28Z",
     "published": "2021-02-04T12:00:00Z",
@@ -912,71 +977,6 @@
       {
         "type": "ADVISORY",
         "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-28876"
-      }
-    ],
-    "database_specific": {
-      "license": "CC0-1.0"
-    }
-  },
-  {
-    "id": "CVE-2015-20001",
-    "modified": "2021-04-13T21:22:28Z",
-    "published": "2015-05-27T12:00:00Z",
-    "aliases": [],
-    "related": [],
-    "summary": "Panic safety violation in BinaryHeap",
-    "details": "In the standard library in Rust before 1.2.0, BinaryHeap is not panic-safe. The binary heap is left in an inconsistent state when the comparison of generic elements inside sift_up or sift_down_range panics. This bug leads to a drop of zeroed memory as an arbitrary type, which can result in a memory safety violation.",
-    "severity": [],
-    "affected": [
-      {
-        "package": {
-          "ecosystem": "crates.io",
-          "name": "std",
-          "purl": "pkg:cargo/std"
-        },
-        "ecosystem_specific": {
-          "affects": {
-            "arch": [],
-            "os": [],
-            "functions": []
-          },
-          "affected_functions": null
-        },
-        "database_specific": {
-          "categories": [
-            "memory-corruption"
-          ],
-          "cvss": null,
-          "informational": null
-        },
-        "ranges": [
-          {
-            "type": "SEMVER",
-            "events": [
-              {
-                "introduced": "1.0.0"
-              },
-              {
-                "fixed": "1.2.0"
-              }
-            ]
-          }
-        ],
-        "versions": []
-      }
-    ],
-    "references": [
-      {
-        "type": "PACKAGE",
-        "url": "https://crates.io/crates/std"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/CVE-2015-20001.html"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-20001"
       }
     ],
     "database_specific": {
