@@ -1372,7 +1372,7 @@ dangling&amp;quot;.&lt;/p&gt;
 
     
     &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0132: Unsoundness in ssdeep</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0132.html</id><updated>2026-05-13T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0132.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0132: Unsoundness in ssdeep"/><published>2026-05-13T12:00:00+00:00</published><summary xml:lang="en">Potential out-of-bounds write via public `Context` fields</summary><content xml:lang="en" type="html">  &lt;article&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0132: Unsoundness in ssdeep</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0132.html</id><updated>2026-05-17T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0132.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0132: Unsoundness in ssdeep"/><published>2026-05-13T12:00:00+00:00</published><summary xml:lang="en">Potential out-of-bounds write via public `Context` fields</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
           &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/ssdeep/RUSTSEC-2026-0132.md&quot;&gt;History&lt;/a&gt; ⋅
@@ -1384,13 +1384,17 @@ dangling&amp;quot;.&lt;/p&gt;
     &lt;header&gt;
       &lt;h1&gt;
         
-        RUSTSEC-2026-0132
+        &lt;span class=&quot;withdrawn&quot;&gt;RUSTSEC-2026-0132&lt;/span&gt;
         
       &lt;/h1&gt;
       &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Potential out-of-bounds write via public &lt;code&gt;Context&lt;/code&gt; fields&lt;/p&gt;
 &lt;/span&gt;
     &lt;/header&gt;
 
+    
+    &lt;hr&gt;
+    &lt;p class=&quot;warning&quot;&gt;This advisory has been withdrawn and should be ignored. It is kept only for reference.&lt;/p&gt;
+    &lt;hr&gt;
     
 
     &lt;dl&gt;
@@ -1405,6 +1409,10 @@ dangling&amp;quot;.&lt;/p&gt;
       &lt;dd&gt;
         &lt;time datetime=&quot;2026-05-13&quot;&gt;
           May 13, 2026
+        &lt;/time&gt;
+        
+        &lt;time datetime=&quot;2026-05-17&quot;&gt;
+          (last modified: May 17, 2026)
         &lt;/time&gt;
         
       &lt;/dd&gt;
@@ -1492,12 +1500,14 @@ dangling&amp;quot;.&lt;/p&gt;
 
     &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
     &lt;p&gt;The &lt;code&gt;Context&lt;/code&gt; struct has all fields public (&lt;code&gt;pub d_len&lt;/code&gt;, &lt;code&gt;pub digest&lt;/code&gt;, etc.).
-External code can directly modify &lt;code&gt;d_len&lt;/code&gt; to a value exceeding the &lt;code&gt;digest&lt;/code&gt;
-vector length. When &lt;code&gt;reset()&lt;/code&gt; is subsequently called,
-&lt;code&gt;self.digest[self.d_len as usize] = 0&lt;/code&gt; indexes out of bounds, causing an
-out-of-bounds write.&lt;/p&gt;
-&lt;p&gt;This can be triggered through safe code — modifying public &lt;code&gt;Context&lt;/code&gt; fields
-and then calling &lt;code&gt;reset()&lt;/code&gt; — with no &lt;code&gt;unsafe&lt;/code&gt; required.&lt;/p&gt;
+Code from other modules within the same crate can directly modify &lt;code&gt;d_len&lt;/code&gt; to a
+value exceeding the &lt;code&gt;digest&lt;/code&gt; vector length. When &lt;code&gt;reset()&lt;/code&gt; is subsequently
+called, &lt;code&gt;self.digest[self.d_len as usize] = 0&lt;/code&gt; becomes an out-of-bounds write.&lt;/p&gt;
+&lt;h2&gt;Withdrawal&lt;/h2&gt;
+&lt;p&gt;This advisory has been withdrawn because the above unsoundness cannot be
+triggered in safe code by dependents of the crate, as the &lt;code&gt;Context&lt;/code&gt; struct
+is not public. It merely represents an opportunity for improvement for the
+crate&apos;s internals.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;

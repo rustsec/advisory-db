@@ -1,12 +1,13 @@
 [
   {
     "id": "RUSTSEC-2026-0132",
-    "modified": "2026-05-13T12:38:12Z",
+    "modified": "2026-05-17T20:07:58Z",
     "published": "2026-05-02T12:00:00Z",
+    "withdrawn": "2026-05-17T12:00:00Z",
     "aliases": [],
     "related": [],
     "summary": "Potential out-of-bounds write via public `Context` fields",
-    "details": "The `Context` struct has all fields public (`pub d_len`, `pub digest`, etc.).\nExternal code can directly modify `d_len` to a value exceeding the `digest`\nvector length. When `reset()` is subsequently called,\n`self.digest[self.d_len as usize] = 0` indexes out of bounds, causing an\nout-of-bounds write.\n\nThis can be triggered through safe code — modifying public `Context` fields\nand then calling `reset()` — with no `unsafe` required.",
+    "details": "The `Context` struct has all fields public (`pub d_len`, `pub digest`, etc.).\nCode from other modules within the same crate can directly modify `d_len` to a\nvalue exceeding the `digest` vector length. When `reset()` is subsequently\ncalled, `self.digest[self.d_len as usize] = 0` becomes an out-of-bounds write.\n\n## Withdrawal\nThis advisory has been withdrawn because the above unsoundness cannot be\ntriggered in safe code by dependents of the crate, as the `Context` struct\nis not public. It merely represents an opportunity for improvement for the\ncrate's internals.",
     "severity": [],
     "affected": [
       {

@@ -65,13 +65,17 @@
     <header>
       <h1>
         
-        RUSTSEC-2026-0132
+        <span class="withdrawn">RUSTSEC-2026-0132</span>
         
       </h1>
       <span class="subtitle"><p>Potential out-of-bounds write via public <code>Context</code> fields</p>
 </span>
     </header>
 
+    
+    <hr>
+    <p class="warning">This advisory has been withdrawn and should be ignored. It is kept only for reference.</p>
+    <hr>
     
 
     <dl>
@@ -86,6 +90,10 @@
       <dd>
         <time datetime="2026-05-13">
           May 13, 2026
+        </time>
+        
+        <time datetime="2026-05-17">
+          (last modified: May 17, 2026)
         </time>
         
       </dd>
@@ -173,12 +181,14 @@
 
     <h3 id="description">Description</h3>
     <p>The <code>Context</code> struct has all fields public (<code>pub d_len</code>, <code>pub digest</code>, etc.).
-External code can directly modify <code>d_len</code> to a value exceeding the <code>digest</code>
-vector length. When <code>reset()</code> is subsequently called,
-<code>self.digest[self.d_len as usize] = 0</code> indexes out of bounds, causing an
-out-of-bounds write.</p>
-<p>This can be triggered through safe code — modifying public <code>Context</code> fields
-and then calling <code>reset()</code> — with no <code>unsafe</code> required.</p>
+Code from other modules within the same crate can directly modify <code>d_len</code> to a
+value exceeding the <code>digest</code> vector length. When <code>reset()</code> is subsequently
+called, <code>self.digest[self.d_len as usize] = 0</code> becomes an out-of-bounds write.</p>
+<h2>Withdrawal</h2>
+<p>This advisory has been withdrawn because the above unsoundness cannot be
+triggered in safe code by dependents of the crate, as the <code>Context</code> struct
+is not public. It merely represents an opportunity for improvement for the
+crate's internals.</p>
 
 
     <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
