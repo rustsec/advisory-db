@@ -1,0 +1,77 @@
+[
+  {
+    "id": "RUSTSEC-2026-0144",
+    "modified": "2026-05-18T19:28:44Z",
+    "published": "2026-05-07T12:00:00Z",
+    "aliases": [
+      "CVE-2026-45137",
+      "GHSA-c6rc-8jpp-2fgc"
+    ],
+    "related": [],
+    "summary": "`Program<System>` accepts arbitrary executable programs",
+    "details": "Affected versions of `anchor-lang` did not properly validate accounts declared\nas `Program<'info, System>`. The generic `Program<T>` validation path used\n`Pubkey::default()` as a sentinel to decide whether any executable program\nshould be accepted. Since the system program id is also the default pubkey,\n`Program<'info, System>` was treated like the untyped `Program<'info>` case and\naccepted any executable program account.\n\nPrograms commonly rely on `Program<'info, System>` to ensure that CPI calls and\ninstruction builders target the real Solana system program. With the faulty\nvalidation, an attacker could supply another executable program where the system\nprogram was expected, causing downstream logic to make false assumptions about\npayments, account creation, or other system-program CPIs.\n\nThe issue was fixed in `anchor-lang` 1.0.2 by separating the typed\n`Program<T>` validation path from the untyped `Program<()>` path, so\n`Program<'info, System>` now checks the provided account key against the system\nprogram id. Users should upgrade to `anchor-lang` 1.0.2 or later.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:H/A:N"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "anchor-lang",
+          "purl": "pkg:cargo/anchor-lang"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:H/A:N",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "1.0.0"
+              },
+              {
+                "fixed": "1.0.2"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/anchor-lang"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0144.html"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://github.com/otter-sec/anchor/security/advisories/GHSA-c6rc-8jpp-2fgc"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/solana-foundation/anchor/releases/tag/v1.0.2"
+      }
+    ],
+    "database_specific": {
+      "license": "CC-BY-4.0"
+    }
+  }
+]
