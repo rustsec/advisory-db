@@ -1,0 +1,82 @@
+{
+  "id": "RUSTSEC-2026-0146",
+  "modified": "2026-05-19T04:53:18Z",
+  "published": "2026-05-08T12:00:00Z",
+  "aliases": [
+    "GHSA-429q-fhh4-r6hj"
+  ],
+  "related": [],
+  "summary": "`InterfaceAccount` allows account substitution between unexpected types",
+  "details": "Affected versions of `anchor-lang` allowed `InterfaceAccount` to accept accounts\nwith an unexpected Anchor discriminator. A change to `InterfaceAccount` caused\nchecked deserialization to be bypassed for this account wrapper, so validation\nproved only that the account owner matched one of the accepted interface owners.\nIt did not prove that the account data belonged to the expected account type.\n\nPrograms using `InterfaceAccount` rely on Anchor to enforce both owner and\naccount-type validation before the handler runs. With discriminator checking\ndisabled, an attacker could pass another account type owned by an accepted\nprogram and have it deserialized through the expected interface wrapper. This\ncould bypass account-type assumptions made by the program and lead to incorrect\nauthorization or state handling.\n\nThe issue was fixed in `anchor-lang` 1.0.0-rc.2 by restoring checked\ndeserialization for `InterfaceAccount::try_from`, while keeping explicitly\nunchecked behavior available only through the unchecked API. Users should\nupgrade to `anchor-lang` 1.0.0-rc.2 or later.",
+  "severity": [
+    {
+      "type": "CVSS_V4",
+      "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:H/VA:N/SC:N/SI:N/SA:N"
+    }
+  ],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "anchor-lang",
+        "purl": "pkg:cargo/anchor-lang"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [],
+        "cvss": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:H/VA:N/SC:N/SI:N/SA:N",
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "1.0.0-rc.1"
+            },
+            {
+              "fixed": "1.0.0-rc.2"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/anchor-lang"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0146.html"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://github.com/otter-sec/anchor/security/advisories/GHSA-429q-fhh4-r6hj"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/otter-sec/anchor/pull/3837"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/otter-sec/anchor/pull/4139"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/otter-sec/anchor/commit/26ef36968a62e28a1f028e7adae4806af30c747d"
+    }
+  ],
+  "database_specific": {
+    "license": "CC-BY-4.0"
+  }
+}
