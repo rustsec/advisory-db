@@ -69,9 +69,11 @@
   },
   {
     "id": "RUSTSEC-2026-0136",
-    "modified": "2026-05-13T14:16:31Z",
+    "modified": "2026-05-20T07:14:04Z",
     "published": "2026-04-24T12:00:00Z",
-    "aliases": [],
+    "aliases": [
+      "GHSA-m9p2-fxp5-v3fp"
+    ],
     "related": [],
     "summary": "Command injection in Diesel's implementation of `COPY FROM`/`COPY TO`",
     "details": "Diesel allows users to configure various options for PostgreSQL's `COPY FROM` and `COPY TO` statements. These configurations are partially provided as strings or characters. \n\nDiesel did not check if any these user-provided options contain a quote character `'`, which can lead to the injection of additional options in the current `COPY FROM`/`COPY TO` statement. \n\nThis vulnerability affects any user of `COPY FROM`/`COPY TO` that passes user-provided input to any of the affected functions. It can result in modifications of options in the current statement, but it is not possible inject additional statements.\n\n## Mitigation\n\nThe preferred mitigation to the outlined problem is to update to Diesel version 2.3.8 or newer, which includes fixes for the problem.\n\n## Resolution\n\nDiesel now correctly escapes any quotes contained in the provided arguments.",
@@ -209,9 +211,11 @@
   },
   {
     "id": "RUSTSEC-2026-0137",
-    "modified": "2026-05-13T14:16:31Z",
+    "modified": "2026-05-20T07:14:04Z",
     "published": "2026-04-24T12:00:00Z",
-    "aliases": [],
+    "aliases": [
+      "GHSA-q8x8-jrhj-fh9p"
+    ],
     "related": [],
     "summary": "Possible unaligned data access for implementations of `SqliteAggregate`",
     "details": "Diesel allows to register custom aggregate SQL functions for SQLite via the `SqliteAggregate` interface.\n\nTo store an instance of the custom aggregate processor Diesel relied on the `sqlite3_aggregate_context` function provided by sqlite. This function doesn't provide any guarantees about alignment of the returned allocation, which in turn can lead to problems if the type implementing requires a special alignment, e.g. via a custom `#[align(x)]` attribute on the type implementing this trait. This affects any user of `SqliteAggregate` that registers the custom aggregate function with an SQLite connection, while using a non-standard alignment on the type implementing this trait.\n\n## Mitigation\n\nThe preferred mitigation to the outlined problem is to update to a Diesel version 2.3.8 or newer, which includes fixes for the problem.\n\n## Resolution\n\nDiesel now allocates the corresponding memory on Rust side to get a correctly aligned allocation.",
