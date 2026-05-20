@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2026-0125",
-  "modified": "2026-05-13T10:05:44Z",
+  "modified": "2026-05-20T07:14:04Z",
   "published": "2026-05-05T12:00:00Z",
-  "aliases": [],
+  "aliases": [
+    "GHSA-fhvh-vw7h-9xf3"
+  ],
   "related": [],
   "summary": "Signature Verification on AVX2 Platforms Mishandles Edge Case",
   "details": "The AVX2 implementation of ML-DSA verification incorrectly implemented\nthe `use_hint` function, mishandling an edge case that should lead to\nsignature rejection.\n\n## Impact\nAn attacker could make the ML-DSA verifier accept a crafted invalid\nsignature under a maliciously generated verification key, if the AVX2\nimplementation is used.\n\n## Mitigation\nFrom version `0.0.9` the edge case is handled correctly and invalid\nsignatures are rejected.",

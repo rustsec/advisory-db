@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2026-0137",
-  "modified": "2026-05-13T14:16:31Z",
+  "modified": "2026-05-20T07:14:04Z",
   "published": "2026-04-24T12:00:00Z",
-  "aliases": [],
+  "aliases": [
+    "GHSA-q8x8-jrhj-fh9p"
+  ],
   "related": [],
   "summary": "Possible unaligned data access for implementations of `SqliteAggregate`",
   "details": "Diesel allows to register custom aggregate SQL functions for SQLite via the `SqliteAggregate` interface.\n\nTo store an instance of the custom aggregate processor Diesel relied on the `sqlite3_aggregate_context` function provided by sqlite. This function doesn't provide any guarantees about alignment of the returned allocation, which in turn can lead to problems if the type implementing requires a special alignment, e.g. via a custom `#[align(x)]` attribute on the type implementing this trait. This affects any user of `SqliteAggregate` that registers the custom aggregate function with an SQLite connection, while using a non-standard alignment on the type implementing this trait.\n\n## Mitigation\n\nThe preferred mitigation to the outlined problem is to update to a Diesel version 2.3.8 or newer, which includes fixes for the problem.\n\n## Resolution\n\nDiesel now allocates the corresponding memory on Rust side to get a correctly aligned allocation.",
