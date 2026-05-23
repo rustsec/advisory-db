@@ -7,7 +7,7 @@ To add an advisory to the RustSec database, open a [Pull Request] against
 
 1. Report the vulnerability upstream according to their security policy. RustSec
    maintainers do not have expertise in every crate's internals and so a crate
-   maintainer can much more efficiently respond. Suspected malicous crates
+   maintainer can much more efficiently respond. Suspected malicious crates
    should instead be [reported to crates.io](https://crates.io/policies/security).
 2. Wait for the maintainers to confirm the vulnerability exists.
 3. Engage in coordinated disclosure (as applicable) so the vulnerability isn't revealed
