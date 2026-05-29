@@ -139,8 +139,8 @@
     #[test]
     fn aligned_grid_dimension_product_overflows() {
         let width = usize::MAX / 2 + 1;
-id = &amp;quot;RUSTSEC-2026-0151&amp;quot;
-id = &amp;quot;RUSTSEC-2026-0151&amp;quot;
+        let mut grid = AlignedGrid::&amp;lt;u8&amp;gt;::with_alloc_tracker(width, 2, None).unwrap();
+        let mut subgrid = grid.as_subgrid_mut();
         *subgrid.get_mut(0, 1) = 1;
         std::hint::black_box(grid);
     }
