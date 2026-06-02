@@ -1,5 +1,425 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2026-06-01T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2026-0152: Vulnerability in oneringbuf</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0152.html</id><updated>2026-06-01T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0152.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0152: Vulnerability in oneringbuf"/><published>2026-06-01T12:00:00+00:00</published><summary xml:lang="en">Use-after-free</summary><content xml:lang="en" type="html">  &lt;article&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2026-06-02T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2026-0153: Vulnerability in russh-cryptovec</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0153.html</id><updated>2026-06-02T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0153.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0153: Vulnerability in russh-cryptovec"/><published>2026-06-02T12:00:00+00:00</published><summary xml:lang="en">Unchecked `CryptoVec` allocation and growth handling</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/russh-cryptovec/RUSTSEC-2026-0153.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/russh-cryptovec/RUSTSEC-2026-0153.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0153&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0153
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Unchecked &lt;code&gt;CryptoVec&lt;/code&gt; allocation and growth handling&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-05-15&quot;&gt;
+          May 15, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-06-02&quot;&gt;
+          June  2, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/russh-cryptovec.html&quot;&gt;russh-cryptovec&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/russh-cryptovec&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-46673&quot;&gt;CVE-2026-46673&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-g9f8-wqj9-fjw5&quot;&gt;GHSA-g9f8-wqj9-fjw5&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/Eugeny/russh/security/advisories/GHSA-g9f8-wqj9-fjw5&quot;&gt;
+              https://github.com/Eugeny/russh/security/advisories/GHSA-g9f8-wqj9-fjw5
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/Eugeny/russh/commit/a2d48a71fe93d18cbd666c8d53d0882f5ce110c4&quot;&gt;
+              https://github.com/Eugeny/russh/commit/a2d48a71fe93d18cbd666c8d53d0882f5ce110c4
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;7.5 &lt;span class=&quot;tag high&quot;&gt;
+        HIGH
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Network&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.60.3&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;&lt;code&gt;CryptoVec&lt;/code&gt; used unchecked capacity growth, unchecked length arithmetic, and
+unsafe allocation and locking paths. In affected &lt;code&gt;russh&lt;/code&gt; releases,
+attacker-controlled input could reach these code paths through buffer resizing
+operations.&lt;/p&gt;
+&lt;p&gt;Two affected reachability paths were identified:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Current &lt;code&gt;russh&lt;/code&gt; releases (&lt;code&gt;0.60.x&lt;/code&gt; before the fix)&lt;/strong&gt;
+Local SSH agent peers could provide attacker-controlled frame lengths that
+were used to resize internal buffers before validation in:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;AgentClient::read_response&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;agent::server::Connection::run&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Historical &lt;code&gt;russh&lt;/code&gt; releases before &lt;code&gt;0.58.0&lt;/code&gt;&lt;/strong&gt;
+&lt;code&gt;CryptoVec&lt;/code&gt; was also used for non-secret transport and compression buffers,
+allowing remote SSH traffic to trigger &lt;code&gt;CryptoVec&lt;/code&gt; growth through:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;transport packet reads&lt;/li&gt;
+&lt;li&gt;zlib decompression output&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These remote paths were removed in &lt;code&gt;0.58.0&lt;/code&gt; when &lt;code&gt;CryptoVec&lt;/code&gt; stopped being used
+for those buffers.&lt;/p&gt;
+&lt;p&gt;Under constrained memory conditions, historical &lt;code&gt;russh&lt;/code&gt; versions prior to
+&lt;code&gt;0.58.0&lt;/code&gt; can abort the process when remote compressed payload expansion causes
+allocation failure in &lt;code&gt;CryptoVec&lt;/code&gt;. This was reproduced through the compression
+path and resulted in process termination in the Unix allocation/locking
+implementation after null pointer allocation failure.&lt;/p&gt;
+&lt;p&gt;For current affected releases, oversized local SSH agent frame lengths could
+trigger untrusted-input-driven buffer growth prior to validation.&lt;/p&gt;
+&lt;p&gt;No practical remote code execution, integrity or confidentiality impact has
+been demonstrated.&lt;/p&gt;
+&lt;p&gt;Fixed by validating CryptoVec growth operations and rejecting oversized SSH
+agent frame lengths before buffer allocation.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0154: Vulnerability in russh</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0154.html</id><updated>2026-06-02T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0154.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0154: Vulnerability in russh"/><published>2026-06-02T12:00:00+00:00</published><summary xml:lang="en">Unbounded 32-bit allocation</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/russh/RUSTSEC-2026-0154.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/russh/RUSTSEC-2026-0154.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0154&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0154
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Unbounded 32-bit allocation&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-05-15&quot;&gt;
+          May 15, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-06-02&quot;&gt;
+          June  2, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/russh.html&quot;&gt;russh&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/russh&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-46673&quot;&gt;CVE-2026-46673&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-g9f8-wqj9-fjw5&quot;&gt;GHSA-g9f8-wqj9-fjw5&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/Eugeny/russh/security/advisories/GHSA-g9f8-wqj9-fjw5&quot;&gt;
+              https://github.com/Eugeny/russh/security/advisories/GHSA-g9f8-wqj9-fjw5
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/Eugeny/russh/commit/a2d48a71fe93d18cbd666c8d53d0882f5ce110c4&quot;&gt;
+              https://github.com/Eugeny/russh/commit/a2d48a71fe93d18cbd666c8d53d0882f5ce110c4
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;7.5 &lt;span class=&quot;tag high&quot;&gt;
+        HIGH
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Network&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.60.3&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Both the SSH agent server and client accepted peer-controlled frame lengths
+without enforcing a maximum frame size. This could cause large memory
+allocations while parsing a maliciously crafted agent frame.&lt;/p&gt;
+&lt;p&gt;A malicious peer could advertise an oversized frame length, causing the client
+or server to attempt a large memory allocation before validating the frame,
+potentially leading to memory exhaustion or process termination.&lt;/p&gt;
+&lt;p&gt;This is fixed by enforcing a maximum agent frame size of 256 KiB and
+rejecting oversized frames before buffer allocation.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0152: Vulnerability in oneringbuf</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0152.html</id><updated>2026-06-01T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0152.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0152: Vulnerability in oneringbuf"/><published>2026-06-01T12:00:00+00:00</published><summary xml:lang="en">Use-after-free</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
           &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/oneringbuf/RUSTSEC-2026-0152.md&quot;&gt;History&lt;/a&gt; ⋅
@@ -1369,461 +1789,6 @@ the upstream advisory.&lt;/p&gt;
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
     license.
 
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0146: Vulnerability in anchor-lang</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0146.html</id><updated>2026-05-19T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0146.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0146: Vulnerability in anchor-lang"/><published>2026-05-19T12:00:00+00:00</published><summary xml:lang="en">`InterfaceAccount` allows account substitution between unexpected types</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/anchor-lang/RUSTSEC-2026-0146.md&quot;&gt;History&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/anchor-lang/RUSTSEC-2026-0146.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0146&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2026-0146
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;InterfaceAccount&lt;/code&gt; allows account substitution between unexpected types&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-05-08&quot;&gt;
-          May  8, 2026
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-05-19&quot;&gt;
-          May 19, 2026
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/anchor-lang.html&quot;&gt;anchor-lang&lt;/a&gt;
-           
-          (&lt;a href=&quot;https://crates.io/crates/anchor-lang&quot;&gt;crates.io&lt;/a&gt;)
-          
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/solana.html&quot;&gt;#solana&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/anchor.html&quot;&gt;#anchor&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/account-validation.html&quot;&gt;#account-validation&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/interface-account.html&quot;&gt;#interface-account&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-429q-fhh4-r6hj&quot;&gt;GHSA-429q-fhh4-r6hj&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/otter-sec/anchor/security/advisories/GHSA-429q-fhh4-r6hj&quot;&gt;
-              https://github.com/otter-sec/anchor/security/advisories/GHSA-429q-fhh4-r6hj
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/otter-sec/anchor/pull/3837&quot;&gt;
-              https://github.com/otter-sec/anchor/pull/3837
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/otter-sec/anchor/pull/4139&quot;&gt;
-              https://github.com/otter-sec/anchor/pull/4139
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/otter-sec/anchor/commit/26ef36968a62e28a1f028e7adae4806af30c747d&quot;&gt;
-              https://github.com/otter-sec/anchor/commit/26ef36968a62e28a1f028e7adae4806af30c747d
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
-      &lt;dd&gt;8.7 &lt;span class=&quot;tag high&quot;&gt;
-        HIGH
-      &lt;/span&gt;&lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;dl&gt;
-          
-            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
-            &lt;dd&gt;Low&lt;/dd&gt;
-          
-            &lt;dt&gt;Attack Requirements&lt;/dt&gt;
-            &lt;dd&gt;None&lt;/dd&gt;
-          
-            &lt;dt&gt;Attack Vector&lt;/dt&gt;
-            &lt;dd&gt;Network&lt;/dd&gt;
-          
-            &lt;dt&gt;Privileges Required&lt;/dt&gt;
-            &lt;dd&gt;None&lt;/dd&gt;
-          
-            &lt;dt&gt;Availability Impact to the Subsequent System&lt;/dt&gt;
-            &lt;dd&gt;None&lt;/dd&gt;
-          
-            &lt;dt&gt;Confidentiality Impact to the Subsequent System&lt;/dt&gt;
-            &lt;dd&gt;None&lt;/dd&gt;
-          
-            &lt;dt&gt;Integrity Impact to the Subsequent System&lt;/dt&gt;
-            &lt;dd&gt;None&lt;/dd&gt;
-          
-            &lt;dt&gt;User Interaction&lt;/dt&gt;
-            &lt;dd&gt;None&lt;/dd&gt;
-          
-            &lt;dt&gt;Availability Impact to the Vulnerable System&lt;/dt&gt;
-            &lt;dd&gt;None&lt;/dd&gt;
-          
-            &lt;dt&gt;Confidentiality Impact to the Vulnerable System&lt;/dt&gt;
-            &lt;dd&gt;None&lt;/dd&gt;
-          
-            &lt;dt&gt;Integrity Impact to the Vulnerable System&lt;/dt&gt;
-            &lt;dd&gt;High&lt;/dd&gt;
-          
-        &lt;/dl&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
-
-      
-          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:H/VA:N/SC:N/SI:N/SA:N&quot;&gt;CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:H/VA:N/SC:N/SI:N/SA:N&lt;/a&gt;&lt;/dd&gt;
-        
-
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=1.0.0-rc.2&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#60;1.0.0-rc.1&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;Affected versions of &lt;code&gt;anchor-lang&lt;/code&gt; allowed &lt;code&gt;InterfaceAccount&lt;/code&gt; to accept accounts
-with an unexpected Anchor discriminator. A change to &lt;code&gt;InterfaceAccount&lt;/code&gt; caused
-checked deserialization to be bypassed for this account wrapper, so validation
-proved only that the account owner matched one of the accepted interface owners.
-It did not prove that the account data belonged to the expected account type.&lt;/p&gt;
-&lt;p&gt;Programs using &lt;code&gt;InterfaceAccount&lt;/code&gt; rely on Anchor to enforce both owner and
-account-type validation before the handler runs. With discriminator checking
-disabled, an attacker could pass another account type owned by an accepted
-program and have it deserialized through the expected interface wrapper. This
-could bypass account-type assumptions made by the program and lead to incorrect
-authorization or state handling.&lt;/p&gt;
-&lt;p&gt;The issue was fixed in &lt;code&gt;anchor-lang&lt;/code&gt; 1.0.0-rc.2 by restoring checked
-deserialization for &lt;code&gt;InterfaceAccount::try_from&lt;/code&gt;, while keeping explicitly
-unchecked behavior available only through the unchecked API. Users should
-upgrade to &lt;code&gt;anchor-lang&lt;/code&gt; 1.0.0-rc.2 or later.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC-BY-4.0.html&quot;&gt;CC-BY-4.0&lt;/a&gt;
-    license.
-
-    
-      
-      
-          Source: &lt;a href=&quot;https://github.com/otter-sec/anchor/security/advisories/GHSA-429q-fhh4-r6hj&quot;&gt;https://github.com/otter-sec/anchor/security/advisories/GHSA-429q-fhh4-r6hj&lt;/a&gt;
-        
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0144: Vulnerability in anchor-lang</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0144.html</id><updated>2026-05-18T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0144.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0144: Vulnerability in anchor-lang"/><published>2026-05-18T12:00:00+00:00</published><summary xml:lang="en">`Program&amp;lt;System&amp;gt;` accepts arbitrary executable programs</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/anchor-lang/RUSTSEC-2026-0144.md&quot;&gt;History&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/anchor-lang/RUSTSEC-2026-0144.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0144&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2026-0144
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;Program&amp;lt;System&amp;gt;&lt;/code&gt; accepts arbitrary executable programs&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-05-07&quot;&gt;
-          May  7, 2026
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-05-18&quot;&gt;
-          May 18, 2026
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/anchor-lang.html&quot;&gt;anchor-lang&lt;/a&gt;
-           
-          (&lt;a href=&quot;https://crates.io/crates/anchor-lang&quot;&gt;crates.io&lt;/a&gt;)
-          
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/solana.html&quot;&gt;#solana&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/anchor.html&quot;&gt;#anchor&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/account-validation.html&quot;&gt;#account-validation&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/system-program.html&quot;&gt;#system-program&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45137&quot;&gt;CVE-2026-45137&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-c6rc-8jpp-2fgc&quot;&gt;GHSA-c6rc-8jpp-2fgc&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/otter-sec/anchor/security/advisories/GHSA-c6rc-8jpp-2fgc&quot;&gt;
-              https://github.com/otter-sec/anchor/security/advisories/GHSA-c6rc-8jpp-2fgc
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/solana-foundation/anchor/releases/tag/v1.0.2&quot;&gt;
-              https://github.com/solana-foundation/anchor/releases/tag/v1.0.2
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
-      &lt;dd&gt;8.2 &lt;span class=&quot;tag high&quot;&gt;
-        HIGH
-      &lt;/span&gt;&lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;dl&gt;
-          
-            &lt;dt&gt;Attack Vector&lt;/dt&gt;
-            &lt;dd&gt;Network&lt;/dd&gt;
-          
-            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
-            &lt;dd&gt;Low&lt;/dd&gt;
-          
-            &lt;dt&gt;Privileges Required&lt;/dt&gt;
-            &lt;dd&gt;None&lt;/dd&gt;
-          
-            &lt;dt&gt;User Interaction&lt;/dt&gt;
-            &lt;dd&gt;None&lt;/dd&gt;
-          
-            &lt;dt&gt;Scope&lt;/dt&gt;
-            &lt;dd&gt;Unchanged&lt;/dd&gt;
-          
-            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
-            &lt;dd&gt;Low&lt;/dd&gt;
-          
-            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
-            &lt;dd&gt;High&lt;/dd&gt;
-          
-            &lt;dt&gt;Availability Impact&lt;/dt&gt;
-            &lt;dd&gt;None&lt;/dd&gt;
-          
-        &lt;/dl&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
-
-      
-          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:H/A:N&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:H/A:N&lt;/a&gt;&lt;/dd&gt;
-        
-
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=1.0.2&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#60;1.0.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;Affected versions of &lt;code&gt;anchor-lang&lt;/code&gt; did not properly validate accounts declared
-as &lt;code&gt;Program&amp;lt;&apos;info, System&amp;gt;&lt;/code&gt;. The generic &lt;code&gt;Program&amp;lt;T&amp;gt;&lt;/code&gt; validation path used
-&lt;code&gt;Pubkey::default()&lt;/code&gt; as a sentinel to decide whether any executable program
-should be accepted. Since the system program id is also the default pubkey,
-&lt;code&gt;Program&amp;lt;&apos;info, System&amp;gt;&lt;/code&gt; was treated like the untyped &lt;code&gt;Program&amp;lt;&apos;info&amp;gt;&lt;/code&gt; case and
-accepted any executable program account.&lt;/p&gt;
-&lt;p&gt;Programs commonly rely on &lt;code&gt;Program&amp;lt;&apos;info, System&amp;gt;&lt;/code&gt; to ensure that CPI calls and
-instruction builders target the real Solana system program. With the faulty
-validation, an attacker could supply another executable program where the system
-program was expected, causing downstream logic to make false assumptions about
-payments, account creation, or other system-program CPIs.&lt;/p&gt;
-&lt;p&gt;The issue was fixed in &lt;code&gt;anchor-lang&lt;/code&gt; 1.0.2 by separating the typed
-&lt;code&gt;Program&amp;lt;T&amp;gt;&lt;/code&gt; validation path from the untyped &lt;code&gt;Program&amp;lt;()&amp;gt;&lt;/code&gt; path, so
-&lt;code&gt;Program&amp;lt;&apos;info, System&amp;gt;&lt;/code&gt; now checks the provided account key against the system
-program id. Users should upgrade to &lt;code&gt;anchor-lang&lt;/code&gt; 1.0.2 or later.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC-BY-4.0.html&quot;&gt;CC-BY-4.0&lt;/a&gt;
-    license.
-
-    
-      
-      
-          Source: &lt;a href=&quot;https://github.com/otter-sec/anchor/security/advisories/GHSA-c6rc-8jpp-2fgc&quot;&gt;https://github.com/otter-sec/anchor/security/advisories/GHSA-c6rc-8jpp-2fgc&lt;/a&gt;
-        
     
     &lt;/p&gt;
   &lt;/article&gt;</content></entry></feed>
