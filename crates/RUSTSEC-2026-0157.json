@@ -1,0 +1,62 @@
+{
+  "id": "RUSTSEC-2026-0157",
+  "modified": "2026-06-03T10:42:03Z",
+  "published": "2026-06-01T12:00:00Z",
+  "aliases": [],
+  "related": [],
+  "summary": "Several memory corruption issues via safe APIs",
+  "details": "Several soundness violations exist in the Rust bindings for `MetaCall`, indicatively:\n\n**`MetaCallException::Clone`**: `Clone` is dangerous because it creates a second Rust object that still points to the same foreign `MetaCall` value, but does not actually own or keep that value alive. `value` is shallow copied and `leak=true` does not guarantee safety; `Clone` does not free the `MetaCall` value, but it still stores the same raw pointer. If the original is dropped, the `Clone` can retain a dangling pointer.\n\n**`MetaCallException::new_raw`**: is a safe function that accepts arbitrary raw pointer and dereferences C memory. This function is only correct if the caller gives it a valid, owned `MetaCall` value that must be destroyed by this wrapper. The method should be internal and not exposed to the public API or be declared as unsafe and be correctly documented.\n\nSame issues exist in `MetaCallThrowable::Clone`, `MetaCallThrowable::new_raw`, `MetaCallClass::Clone`, `MetaCallClass::new_raw`, `MetaCallFuture::Clone`, `MetaCallFuture::new_raw`, `MetaCallPointer::Clone`, `MetaCallPointer::new_raw`, `MetaCallFunction::Clone`, `MetaCallFunction::new_raw`, `MetaCallObject::Clone`, and `MetaCallObject::new_raw`. \n\nAll issues can be triggered through safe public APIs.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "metacall",
+        "purl": "pkg:cargo/metacall"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "memory-corruption"
+        ],
+        "cvss": null,
+        "informational": "unsound"
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/metacall"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0157.html"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/metacall/core/issues/809"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
