@@ -1,5 +1,129 @@
 [
   {
+    "id": "RUSTSEC-2026-0156",
+    "modified": "2026-06-03T10:42:03Z",
+    "published": "2026-06-01T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Bad-free in `MetaCallException::new`",
+    "details": "`exception_struct` is a local stack variable, but the code passes its address to the C language as `&mut exception_struct as *mut _ as *mut c_void`. Then, the returned `MetaCallException` value is stored here:\n```rust\nOk(Self {\n    exception_struct: Arc::new(exception_struct),\n    value: exception_ptr,\n    leak: false,\n})\n```\nBecause leak is false, the destructor will run later. But the original exception pointer points to Rust stack memory.\n\n## Trigger\n\n```rust\n#[test]\nfn exception_bad_free_safe_api() {\n    let original = metacall::MetaCallException::new(\n        \"test\",\n        \"test\",\n        \"test\",\n        1,\n    );\n\n    drop(original); // AddressSanitizer: bad-free\n}\n```\n\n## Impact\n\nEvery time the `MetaCallException` is created, when it is dropped, it leads to a bad-free. This can be triggered through the safe public API `MetaCallException::new()`, with no `unsafe` required from the caller.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "metacall",
+          "purl": "pkg:cargo/metacall"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/metacall"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0156.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/metacall/core/issues/809"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2026-0157",
+    "modified": "2026-06-03T10:42:03Z",
+    "published": "2026-06-01T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Several memory corruption issues via safe APIs",
+    "details": "Several soundness violations exist in the Rust bindings for `MetaCall`, indicatively:\n\n**`MetaCallException::Clone`**: `Clone` is dangerous because it creates a second Rust object that still points to the same foreign `MetaCall` value, but does not actually own or keep that value alive. `value` is shallow copied and `leak=true` does not guarantee safety; `Clone` does not free the `MetaCall` value, but it still stores the same raw pointer. If the original is dropped, the `Clone` can retain a dangling pointer.\n\n**`MetaCallException::new_raw`**: is a safe function that accepts arbitrary raw pointer and dereferences C memory. This function is only correct if the caller gives it a valid, owned `MetaCall` value that must be destroyed by this wrapper. The method should be internal and not exposed to the public API or be declared as unsafe and be correctly documented.\n\nSame issues exist in `MetaCallThrowable::Clone`, `MetaCallThrowable::new_raw`, `MetaCallClass::Clone`, `MetaCallClass::new_raw`, `MetaCallFuture::Clone`, `MetaCallFuture::new_raw`, `MetaCallPointer::Clone`, `MetaCallPointer::new_raw`, `MetaCallFunction::Clone`, `MetaCallFunction::new_raw`, `MetaCallObject::Clone`, and `MetaCallObject::new_raw`. \n\nAll issues can be triggered through safe public APIs.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "metacall",
+          "purl": "pkg:cargo/metacall"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/metacall"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0157.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/metacall/core/issues/809"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
     "id": "RUSTSEC-2026-0139",
     "modified": "2026-05-13T14:54:08Z",
     "published": "2026-05-02T12:00:00Z",
