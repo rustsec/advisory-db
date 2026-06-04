@@ -1,0 +1,62 @@
+[
+  {
+    "id": "RUSTSEC-2026-0164",
+    "modified": "2026-06-04T14:53:59Z",
+    "published": "2026-06-04T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "`pqcrypto` is unmaintained: upstream PQClean project being archived",
+    "details": "The `pqcrypto` crate and the entire `pqcrypto-*` ecosystem wrap C implementations\nfrom [PQClean](https://github.com/PQClean/PQClean). The PQClean project is being\narchived in or after July 2026 (see [PQClean/PQClean#604](https://github.com/PQClean/PQClean/issues/604)),\nafter which no further security patches, algorithm updates, or bug fixes will\nbe applied to the upstream implementations.\n\nAs a result, this crate and all dependent crates in the `pqcrypto-*` ecosystem\nwill no longer receive updates. Users should migrate to actively maintained\nalternatives. Pure-Rust replacements are available for several algorithms:\n\n- ML-KEM (FIPS 203): [`ml-kem`](https://crates.io/crates/ml-kem)\n- ML-DSA (FIPS 204): [`ml-dsa`](https://crates.io/crates/ml-dsa)\n- SLH-DSA (FIPS 205): [`slh-dsa`](https://crates.io/crates/slh-dsa)\n- FN-DSA (FIPS 206): [`fn-dsa`](https://crates.io/crates/fn-dsa)",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "pqcrypto",
+          "purl": "pkg:cargo/pqcrypto"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": "unmaintained"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/pqcrypto"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0164.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/rustpq/pqcrypto/issues/97"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]
