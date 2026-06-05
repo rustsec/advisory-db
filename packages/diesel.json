@@ -1,5 +1,70 @@
 [
   {
+    "id": "RUSTSEC-2026-0172",
+    "modified": "2026-06-05T08:35:31Z",
+    "published": "2026-06-05T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Possible use after free when deserializing a SQLite database via `SqliteConnection::deserialize_readonly_database`",
+    "details": "Diesel allows loading a SQLite database from a byte buffer, represented as `&[u8]`, at runtime via the `SqliteConnection::deserialize_readonly_database` function. In previous versions of Diesel, this buffer was passed directly to libsqlite3. Since libsqlite3 requires the buffer to remain alive for as long as the database connection is open and Diesel did not ensure this as part of its safe API, callers of `SqliteConnection::deserialize_readonly_database` could drop the buffer prematurely. This prematurely drop caused libsqlite3 to operate on freed memory.\n\nThis vulnerability affects users of `SqliteConnection::deserialize_readonly_database` who drop the buffer passed to the function before they drop the database connection.\n\n## Mitigation\n\nThe preferred mitigation to the outlined problem is to update to Diesel version 2.3.10 or newer, which includes a fix for the problem. Alternatively users need to take to keep the buffer alive until the connection is dropped.\n\n## Resolution\n\nDiesel now stores a copy of the buffer inside of the `SqliteConnection` object itself to keep it alive as long as the underlying libsqlite3 connection exists.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "diesel",
+          "purl": "pkg:cargo/diesel"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "diesel::sqlite::SqliteConnection::deserialize_readonly_database"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "2.3.10"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/diesel"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0172.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/diesel-rs/diesel/commit/1bc2ea46d9840e8d9af844239d3c84f37fe7d84b"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
     "id": "RUSTSEC-2026-0134",
     "modified": "2026-05-13T14:16:31Z",
     "published": "2026-04-24T12:00:00Z",
