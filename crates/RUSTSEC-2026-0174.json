@@ -1,0 +1,60 @@
+{
+  "id": "RUSTSEC-2026-0174",
+  "modified": "2026-06-08T16:24:35Z",
+  "published": "2026-03-11T12:00:00Z",
+  "aliases": [],
+  "related": [],
+  "summary": "`Authorization::value` and `WwwAuthenticate::value` can violate ASCII invariants",
+  "details": "`Authorization::value` uses `HeaderValue::value` with the claim\nthat the internal string is ASCII, but `Authorization::new` and\n`Authorization::set_credentials` accept arbitrary `String` credentials without\nvalidation. As a result, safe code can construct a header value containing\nnon-ASCII UTF-8 while the implementation assumes ASCII.\n\n`WwwAuthenticate::new` and `WwwAuthenticate::set_realm` similarly accepts arbitrary `String` input, so `WwwAuthenticate::value` can also produce a header value that violates the crate’s documented ASCII invariants. \n\nThis issue has not been confirmed as Undefined Behavior, but the unsafe\njustification in `Authorization::value` and `WwwAuthenticate::value` appears incorrect and can produce values outside the expected ASCII-only constraints.\n\nThe http-types crate is unmaintained and the issue is unlikely to be fixed.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "http-types",
+        "purl": "pkg:cargo/http-types"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [],
+        "cvss": null,
+        "informational": "notice"
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/http-types"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0174.html"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/http-rs/http-types/issues/534"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
