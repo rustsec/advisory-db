@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories with keyword &#39;ascii&#39; › RustSec Advisory Database</title>
+<title>RUSTSEC-2026-0174: http-types: `Authorization::value` and `WwwAuthenticate::value` can violate ASCII invariants › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,62 +52,134 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/http-types/RUSTSEC-2026-0174.md">History</a> ⋅
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/http-types/RUSTSEC-2026-0174.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2026-0174">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2026-0174
+        
+      </h1>
+      <span class="subtitle"><p><code>Authorization::value</code> and <code>WwwAuthenticate::value</code> can violate ASCII invariants</p>
 </span>
-      <h1>Advisories with keyword &#39;ascii&#39;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2026-06-08">
-    June  8, 2026
-  </time>
+    
 
-  
-  <h3>
-    
-        
-          <span class="tag info">INFO</span>
-        
-    
-    <a href="/advisories/RUSTSEC-2026-0174.html">
-      RUSTSEC-2026-0174: Security notice about http-types
-    </a>
-  </h3>
-  <span><p><code>Authorization::value</code> and <code>WwwAuthenticate::value</code> can violate ASCII invariants</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2023-02-25">
-    February 25, 2023
-  </time>
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2026-03-11">
+          March 11, 2026
+        </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2026-06-08">
+          June  8, 2026
+        </time>
         
-          <span class="tag info">INFO</span>
+      </dd>
+
+      <dt id="package">Package</dt>
+      <dd>
         
-    
-    <a href="/advisories/RUSTSEC-2023-0015.html">
-      RUSTSEC-2023-0015: Unsoundness in ascii
-    </a>
-  </h3>
-  <span><p>Ascii allows out-of-bounds array indexing in safe code</p>
-</span>
-  
-</li>
+        
+        <a href="/packages/http-types.html">http-types</a>
+           
+          (<a href="https://crates.io/crates/http-types">crates.io</a>)
+          
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        <span class="tag info">INFO</span>
+        Notice
+        
+      </dd>
+
       
-    </ul>
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/header.html">#header</a>
+        
+          <a href="/keywords/ascii.html">#ascii</a>
+        
+          <a href="/keywords/invalid-utf-8.html">#invalid-utf-8</a>
+        
+      </dd>
+      
+
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/http-rs/http-types/issues/534">
+              https://github.com/http-rs/http-types/issues/534
+            </a>
+          </li>
+        
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        no patched versions
+        
+      </dd>
+
+      
+
+      
+      
+    </dl>
+
+    
+    
+
+    <h3 id="description">Description</h3>
+    <p><code>Authorization::value</code> uses <code>HeaderValue::value</code> with the claim
+that the internal string is ASCII, but <code>Authorization::new</code> and
+<code>Authorization::set_credentials</code> accept arbitrary <code>String</code> credentials without
+validation. As a result, safe code can construct a header value containing
+non-ASCII UTF-8 while the implementation assumes ASCII.</p>
+<p><code>WwwAuthenticate::new</code> and <code>WwwAuthenticate::set_realm</code> similarly accepts arbitrary <code>String</code> input, so <code>WwwAuthenticate::value</code> can also produce a header value that violates the crate’s documented ASCII invariants.</p>
+<p>This issue has not been confirmed as Undefined Behavior, but the unsafe
+justification in <code>Authorization::value</code> and <code>WwwAuthenticate::value</code> appears incorrect and can produce values outside the expected ASCII-only constraints.</p>
+<p>The http-types crate is unmaintained and the issue is unlikely to be fixed.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
