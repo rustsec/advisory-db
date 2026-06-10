@@ -65,6 +65,138 @@
     }
   },
   {
+    "id": "RUSTSEC-2026-0137",
+    "modified": "2026-05-20T07:14:04Z",
+    "published": "2026-04-24T12:00:00Z",
+    "aliases": [
+      "GHSA-q8x8-jrhj-fh9p"
+    ],
+    "related": [],
+    "summary": "Possible unaligned data access for implementations of `SqliteAggregate`",
+    "details": "Diesel allows to register custom aggregate SQL functions for SQLite via the `SqliteAggregate` interface.\n\nTo store an instance of the custom aggregate processor Diesel relied on the `sqlite3_aggregate_context` function provided by sqlite. This function doesn't provide any guarantees about alignment of the returned allocation, which in turn can lead to problems if the type implementing requires a special alignment, e.g. via a custom `#[align(x)]` attribute on the type implementing this trait. This affects any user of `SqliteAggregate` that registers the custom aggregate function with an SQLite connection, while using a non-standard alignment on the type implementing this trait.\n\n## Mitigation\n\nThe preferred mitigation to the outlined problem is to update to a Diesel version 2.3.8 or newer, which includes fixes for the problem.\n\n## Resolution\n\nDiesel now allocates the corresponding memory on Rust side to get a correctly aligned allocation.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "diesel",
+          "purl": "pkg:cargo/diesel"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "diesel::sqlite::SqliteAggregate"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "2.3.8"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/diesel"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0137.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/diesel-rs/diesel/pull/5042"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2026-0135",
+    "modified": "2026-05-13T14:16:31Z",
+    "published": "2026-04-24T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Unsound transmute while debug/display printing batch Insert statements in Diesel's SQLite backend",
+    "details": "Diesel allows users to output the generated SQL for any query DSL construct via th `diesel::debug_query` function as `Display` and `Debug` output.\n\nFor the particular implementation used by batch Insert statements in the SQLite backend Diesel relied on an unspecified transmute between types with a `#[repr(rust)]` layout. This is formally undefined behaviour as the compiler is free to change the layout of these types at any time. \n\nThis vulnerability affects users that print out batch insert statements constructed using an array/vector of values without default values using `diesel::debug_query` on the SQLite backend.\n\n## Mitigation\n\nThe preferred mitigation to the outlined problem is to update to Diesel version 2.3.8 or newer, which includes fixes for the problem.\n\n## Resolution\n\nDiesel now uses a sound cast instead.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "diesel",
+          "purl": "pkg:cargo/diesel"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "diesel::debug_query"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "2.3.8"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/diesel"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0135.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/diesel-rs/diesel/pull/5042"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
     "id": "RUSTSEC-2026-0134",
     "modified": "2026-05-13T14:16:31Z",
     "published": "2026-04-24T12:00:00Z",
@@ -199,138 +331,6 @@
       {
         "type": "ADVISORY",
         "url": "https://rustsec.org/advisories/RUSTSEC-2026-0136.html"
-      },
-      {
-        "type": "WEB",
-        "url": "https://github.com/diesel-rs/diesel/pull/5042"
-      }
-    ],
-    "database_specific": {
-      "license": "CC0-1.0"
-    }
-  },
-  {
-    "id": "RUSTSEC-2026-0135",
-    "modified": "2026-05-13T14:16:31Z",
-    "published": "2026-04-24T12:00:00Z",
-    "aliases": [],
-    "related": [],
-    "summary": "Unsound transmute while debug/display printing batch Insert statements in Diesel's SQLite backend",
-    "details": "Diesel allows users to output the generated SQL for any query DSL construct via th `diesel::debug_query` function as `Display` and `Debug` output.\n\nFor the particular implementation used by batch Insert statements in the SQLite backend Diesel relied on an unspecified transmute between types with a `#[repr(rust)]` layout. This is formally undefined behaviour as the compiler is free to change the layout of these types at any time. \n\nThis vulnerability affects users that print out batch insert statements constructed using an array/vector of values without default values using `diesel::debug_query` on the SQLite backend.\n\n## Mitigation\n\nThe preferred mitigation to the outlined problem is to update to Diesel version 2.3.8 or newer, which includes fixes for the problem.\n\n## Resolution\n\nDiesel now uses a sound cast instead.",
-    "severity": [],
-    "affected": [
-      {
-        "package": {
-          "ecosystem": "crates.io",
-          "name": "diesel",
-          "purl": "pkg:cargo/diesel"
-        },
-        "ecosystem_specific": {
-          "affects": {
-            "arch": [],
-            "os": [],
-            "functions": [
-              "diesel::debug_query"
-            ]
-          },
-          "affected_functions": null
-        },
-        "database_specific": {
-          "categories": [],
-          "cvss": null,
-          "informational": "unsound"
-        },
-        "ranges": [
-          {
-            "type": "SEMVER",
-            "events": [
-              {
-                "introduced": "0.0.0-0"
-              },
-              {
-                "fixed": "2.3.8"
-              }
-            ]
-          }
-        ],
-        "versions": []
-      }
-    ],
-    "references": [
-      {
-        "type": "PACKAGE",
-        "url": "https://crates.io/crates/diesel"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0135.html"
-      },
-      {
-        "type": "WEB",
-        "url": "https://github.com/diesel-rs/diesel/pull/5042"
-      }
-    ],
-    "database_specific": {
-      "license": "CC0-1.0"
-    }
-  },
-  {
-    "id": "RUSTSEC-2026-0137",
-    "modified": "2026-05-20T07:14:04Z",
-    "published": "2026-04-24T12:00:00Z",
-    "aliases": [
-      "GHSA-q8x8-jrhj-fh9p"
-    ],
-    "related": [],
-    "summary": "Possible unaligned data access for implementations of `SqliteAggregate`",
-    "details": "Diesel allows to register custom aggregate SQL functions for SQLite via the `SqliteAggregate` interface.\n\nTo store an instance of the custom aggregate processor Diesel relied on the `sqlite3_aggregate_context` function provided by sqlite. This function doesn't provide any guarantees about alignment of the returned allocation, which in turn can lead to problems if the type implementing requires a special alignment, e.g. via a custom `#[align(x)]` attribute on the type implementing this trait. This affects any user of `SqliteAggregate` that registers the custom aggregate function with an SQLite connection, while using a non-standard alignment on the type implementing this trait.\n\n## Mitigation\n\nThe preferred mitigation to the outlined problem is to update to a Diesel version 2.3.8 or newer, which includes fixes for the problem.\n\n## Resolution\n\nDiesel now allocates the corresponding memory on Rust side to get a correctly aligned allocation.",
-    "severity": [],
-    "affected": [
-      {
-        "package": {
-          "ecosystem": "crates.io",
-          "name": "diesel",
-          "purl": "pkg:cargo/diesel"
-        },
-        "ecosystem_specific": {
-          "affects": {
-            "arch": [],
-            "os": [],
-            "functions": [
-              "diesel::sqlite::SqliteAggregate"
-            ]
-          },
-          "affected_functions": null
-        },
-        "database_specific": {
-          "categories": [],
-          "cvss": null,
-          "informational": null
-        },
-        "ranges": [
-          {
-            "type": "SEMVER",
-            "events": [
-              {
-                "introduced": "0.0.0-0"
-              },
-              {
-                "fixed": "2.3.8"
-              }
-            ]
-          }
-        ],
-        "versions": []
-      }
-    ],
-    "references": [
-      {
-        "type": "PACKAGE",
-        "url": "https://crates.io/crates/diesel"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0137.html"
       },
       {
         "type": "WEB",

@@ -1,222 +1,5 @@
 [
   {
-    "id": "RUSTSEC-2023-0011",
-    "modified": "2023-06-13T13:10:24Z",
-    "published": "2023-02-07T12:00:00Z",
-    "aliases": [
-      "CVE-2023-0216",
-      "GHSA-29xx-hcv2-c4cp"
-    ],
-    "related": [],
-    "summary": "Invalid pointer dereference in `d2i_PKCS7` functions",
-    "details": "An invalid pointer dereference on read can be triggered when an\napplication tries to load malformed PKCS7 data with the\n`d2i_PKCS7()`, `d2i_PKCS7_bio()` or `d2i_PKCS7_fp()` functions.\n\nThe result of the dereference is an application crash which could\nlead to a denial of service attack. The TLS implementation in OpenSSL\ndoes not call this function however third party applications might\ncall these functions on untrusted data.",
-    "severity": [],
-    "affected": [
-      {
-        "package": {
-          "ecosystem": "crates.io",
-          "name": "openssl-src",
-          "purl": "pkg:cargo/openssl-src"
-        },
-        "ecosystem_specific": {
-          "affects": {
-            "arch": [],
-            "os": [],
-            "functions": []
-          },
-          "affected_functions": null
-        },
-        "database_specific": {
-          "categories": [
-            "denial-of-service"
-          ],
-          "cvss": null,
-          "informational": null
-        },
-        "ranges": [
-          {
-            "type": "SEMVER",
-            "events": [
-              {
-                "introduced": "300.0.0"
-              },
-              {
-                "fixed": "300.0.12"
-              }
-            ]
-          }
-        ],
-        "versions": []
-      }
-    ],
-    "references": [
-      {
-        "type": "PACKAGE",
-        "url": "https://crates.io/crates/openssl-src"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/RUSTSEC-2023-0011.html"
-      },
-      {
-        "type": "WEB",
-        "url": "https://www.openssl.org/news/secadv/20230207.txt"
-      }
-    ],
-    "database_specific": {
-      "license": "CC0-1.0"
-    }
-  },
-  {
-    "id": "RUSTSEC-2023-0009",
-    "modified": "2023-06-13T13:10:24Z",
-    "published": "2023-02-07T12:00:00Z",
-    "aliases": [
-      "CVE-2023-0215",
-      "GHSA-r7jw-wp68-3xch"
-    ],
-    "related": [],
-    "summary": "Use-after-free following `BIO_new_NDEF`",
-    "details": "The public API function `BIO_new_NDEF` is a helper function used for streaming\nASN.1 data via a `BIO`. It is primarily used internally to OpenSSL to support the\nSMIME, CMS and PKCS7 streaming capabilities, but may also be called directly by\nend user applications.\n\nThe function receives a `BIO` from the caller, prepends a new `BIO_f_asn1` filter\n`BIO` onto the front of it to form a `BIO` chain, and then returns the new head of\nthe `BIO` chain to the caller. Under certain conditions, for example if a CMS\nrecipient public key is invalid, the new filter `BIO` is freed and the function\nreturns a `NULL` result indicating a failure. However, in this case, the `BIO` chain\nis not properly cleaned up and the `BIO` passed by the caller still retains\ninternal pointers to the previously freed filter `BIO`. If the caller then goes on\nto call `BIO_pop()` on the `BIO` then a use-after-free will occur. This will most\nlikely result in a crash.\n\nThis scenario occurs directly in the internal function `B64_write_ASN1()` which\nmay cause `BIO_new_NDEF()` to be called and will subsequently call `BIO_pop()` on\nthe `BIO`. This internal function is in turn called by the public API functions\n`PEM_write_bio_ASN1_stream`, `PEM_write_bio_CMS_stream`, `PEM_write_bio_PKCS7_stream`,\n`SMIME_write_ASN1`, `SMIME_write_CMS` and `SMIME_write_PKCS7`.\n\nOther public API functions that may be impacted by this include\n`i2d_ASN1_bio_stream`, `BIO_new_CMS`, `BIO_new_PKCS7`, `i2d_CMS_bio_stream` and\n`i2d_PKCS7_bio_stream`.",
-    "severity": [],
-    "affected": [
-      {
-        "package": {
-          "ecosystem": "crates.io",
-          "name": "openssl-src",
-          "purl": "pkg:cargo/openssl-src"
-        },
-        "ecosystem_specific": {
-          "affects": {
-            "arch": [],
-            "os": [],
-            "functions": []
-          },
-          "affected_functions": null
-        },
-        "database_specific": {
-          "categories": [
-            "denial-of-service"
-          ],
-          "cvss": null,
-          "informational": null
-        },
-        "ranges": [
-          {
-            "type": "SEMVER",
-            "events": [
-              {
-                "introduced": "0.0.0-0"
-              },
-              {
-                "fixed": "111.25.0"
-              },
-              {
-                "introduced": "300.0.0"
-              },
-              {
-                "fixed": "300.0.12"
-              }
-            ]
-          }
-        ],
-        "versions": []
-      }
-    ],
-    "references": [
-      {
-        "type": "PACKAGE",
-        "url": "https://crates.io/crates/openssl-src"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/RUSTSEC-2023-0009.html"
-      },
-      {
-        "type": "WEB",
-        "url": "https://www.openssl.org/news/secadv/20230207.txt"
-      }
-    ],
-    "database_specific": {
-      "license": "CC0-1.0"
-    }
-  },
-  {
-    "id": "RUSTSEC-2023-0006",
-    "modified": "2023-06-13T13:10:24Z",
-    "published": "2023-02-07T12:00:00Z",
-    "aliases": [
-      "CVE-2023-0286",
-      "GHSA-x4qr-2fvf-3mr5"
-    ],
-    "related": [],
-    "summary": "X.400 address type confusion in X.509 `GeneralName`",
-    "details": "There is a type confusion vulnerability relating to X.400 address processing\ninside an X.509 `GeneralName`. X.400 addresses were parsed as an `ASN1_STRING` but\nthe public structure definition for `GENERAL_NAME` incorrectly specified the type\nof the `x400Address` field as `ASN1_TYPE`. This field is subsequently interpreted by\nthe OpenSSL function `GENERAL_NAME_cmp` as an `ASN1_TYPE` rather than an\n`ASN1_STRING`.\n\nWhen CRL checking is enabled (i.e. the application sets the\n`X509_V_FLAG_CRL_CHECK` flag), this vulnerability may allow an attacker to pass\narbitrary pointers to a `memcmp` call, enabling them to read memory contents or\nenact a denial of service. In most cases, the attack requires the attacker to\nprovide both the certificate chain and CRL, neither of which need to have a\nvalid signature. If the attacker only controls one of these inputs, the other\ninput must already contain an X.400 address as a CRL distribution point, which\nis uncommon. As such, this vulnerability is most likely to only affect\napplications which have implemented their own functionality for retrieving CRLs\nover a network.",
-    "severity": [],
-    "affected": [
-      {
-        "package": {
-          "ecosystem": "crates.io",
-          "name": "openssl-src",
-          "purl": "pkg:cargo/openssl-src"
-        },
-        "ecosystem_specific": {
-          "affects": {
-            "arch": [],
-            "os": [],
-            "functions": []
-          },
-          "affected_functions": null
-        },
-        "database_specific": {
-          "categories": [
-            "denial-of-service",
-            "memory-exposure"
-          ],
-          "cvss": null,
-          "informational": null
-        },
-        "ranges": [
-          {
-            "type": "SEMVER",
-            "events": [
-              {
-                "introduced": "0.0.0-0"
-              },
-              {
-                "fixed": "111.25.0"
-              },
-              {
-                "introduced": "300.0.0"
-              },
-              {
-                "fixed": "300.0.12"
-              }
-            ]
-          }
-        ],
-        "versions": []
-      }
-    ],
-    "references": [
-      {
-        "type": "PACKAGE",
-        "url": "https://crates.io/crates/openssl-src"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/RUSTSEC-2023-0006.html"
-      },
-      {
-        "type": "WEB",
-        "url": "https://www.openssl.org/news/secadv/20230207.txt"
-      }
-    ],
-    "database_specific": {
-      "license": "CC0-1.0"
-    }
-  },
-  {
     "id": "RUSTSEC-2023-0010",
     "modified": "2023-06-13T13:10:24Z",
     "published": "2023-02-07T12:00:00Z",
@@ -280,75 +63,6 @@
       {
         "type": "ADVISORY",
         "url": "https://rustsec.org/advisories/RUSTSEC-2023-0010.html"
-      },
-      {
-        "type": "WEB",
-        "url": "https://www.openssl.org/news/secadv/20230207.txt"
-      }
-    ],
-    "database_specific": {
-      "license": "CC0-1.0"
-    }
-  },
-  {
-    "id": "RUSTSEC-2023-0008",
-    "modified": "2023-06-13T13:10:24Z",
-    "published": "2023-02-07T12:00:00Z",
-    "aliases": [
-      "CVE-2022-4203",
-      "GHSA-w67w-mw4j-8qrv"
-    ],
-    "related": [],
-    "summary": "X.509 Name Constraints Read Buffer Overflow",
-    "details": "A read buffer overrun can be triggered in X.509 certificate verification,\nspecifically in name constraint checking. Note that this occurs\nafter certificate chain signature verification and requires either a\nCA to have signed the malicious certificate or for the application to\ncontinue certificate verification despite failure to construct a path\nto a trusted issuer.\n\nThe read buffer overrun might result in a crash which could lead to\na denial of service attack. In theory it could also result in the disclosure\nof private memory contents (such as private keys, or sensitive plaintext)\nalthough we are not aware of any working exploit leading to memory\ncontents disclosure as of the time of release of this advisory.\n\nIn a TLS client, this can be triggered by connecting to a malicious\nserver. In a TLS server, this can be triggered if the server requests\nclient authentication and a malicious client connects.",
-    "severity": [],
-    "affected": [
-      {
-        "package": {
-          "ecosystem": "crates.io",
-          "name": "openssl-src",
-          "purl": "pkg:cargo/openssl-src"
-        },
-        "ecosystem_specific": {
-          "affects": {
-            "arch": [],
-            "os": [],
-            "functions": []
-          },
-          "affected_functions": null
-        },
-        "database_specific": {
-          "categories": [
-            "denial-of-service",
-            "memory-exposure"
-          ],
-          "cvss": null,
-          "informational": null
-        },
-        "ranges": [
-          {
-            "type": "SEMVER",
-            "events": [
-              {
-                "introduced": "300.0.0"
-              },
-              {
-                "fixed": "300.0.12"
-              }
-            ]
-          }
-        ],
-        "versions": []
-      }
-    ],
-    "references": [
-      {
-        "type": "PACKAGE",
-        "url": "https://crates.io/crates/openssl-src"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/RUSTSEC-2023-0008.html"
       },
       {
         "type": "WEB",
@@ -502,6 +216,150 @@
     }
   },
   {
+    "id": "RUSTSEC-2023-0008",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2023-02-07T12:00:00Z",
+    "aliases": [
+      "CVE-2022-4203",
+      "GHSA-w67w-mw4j-8qrv"
+    ],
+    "related": [],
+    "summary": "X.509 Name Constraints Read Buffer Overflow",
+    "details": "A read buffer overrun can be triggered in X.509 certificate verification,\nspecifically in name constraint checking. Note that this occurs\nafter certificate chain signature verification and requires either a\nCA to have signed the malicious certificate or for the application to\ncontinue certificate verification despite failure to construct a path\nto a trusted issuer.\n\nThe read buffer overrun might result in a crash which could lead to\na denial of service attack. In theory it could also result in the disclosure\nof private memory contents (such as private keys, or sensitive plaintext)\nalthough we are not aware of any working exploit leading to memory\ncontents disclosure as of the time of release of this advisory.\n\nIn a TLS client, this can be triggered by connecting to a malicious\nserver. In a TLS server, this can be triggered if the server requests\nclient authentication and a malicious client connects.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "openssl-src",
+          "purl": "pkg:cargo/openssl-src"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service",
+            "memory-exposure"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "300.0.0"
+              },
+              {
+                "fixed": "300.0.12"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/openssl-src"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2023-0008.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://www.openssl.org/news/secadv/20230207.txt"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2023-0006",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2023-02-07T12:00:00Z",
+    "aliases": [
+      "CVE-2023-0286",
+      "GHSA-x4qr-2fvf-3mr5"
+    ],
+    "related": [],
+    "summary": "X.400 address type confusion in X.509 `GeneralName`",
+    "details": "There is a type confusion vulnerability relating to X.400 address processing\ninside an X.509 `GeneralName`. X.400 addresses were parsed as an `ASN1_STRING` but\nthe public structure definition for `GENERAL_NAME` incorrectly specified the type\nof the `x400Address` field as `ASN1_TYPE`. This field is subsequently interpreted by\nthe OpenSSL function `GENERAL_NAME_cmp` as an `ASN1_TYPE` rather than an\n`ASN1_STRING`.\n\nWhen CRL checking is enabled (i.e. the application sets the\n`X509_V_FLAG_CRL_CHECK` flag), this vulnerability may allow an attacker to pass\narbitrary pointers to a `memcmp` call, enabling them to read memory contents or\nenact a denial of service. In most cases, the attack requires the attacker to\nprovide both the certificate chain and CRL, neither of which need to have a\nvalid signature. If the attacker only controls one of these inputs, the other\ninput must already contain an X.400 address as a CRL distribution point, which\nis uncommon. As such, this vulnerability is most likely to only affect\napplications which have implemented their own functionality for retrieving CRLs\nover a network.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "openssl-src",
+          "purl": "pkg:cargo/openssl-src"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service",
+            "memory-exposure"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "111.25.0"
+              },
+              {
+                "introduced": "300.0.0"
+              },
+              {
+                "fixed": "300.0.12"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/openssl-src"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2023-0006.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://www.openssl.org/news/secadv/20230207.txt"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
     "id": "RUSTSEC-2023-0013",
     "modified": "2023-06-13T13:10:24Z",
     "published": "2023-02-07T12:00:00Z",
@@ -559,6 +417,148 @@
       {
         "type": "ADVISORY",
         "url": "https://rustsec.org/advisories/RUSTSEC-2023-0013.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://www.openssl.org/news/secadv/20230207.txt"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2023-0011",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2023-02-07T12:00:00Z",
+    "aliases": [
+      "CVE-2023-0216",
+      "GHSA-29xx-hcv2-c4cp"
+    ],
+    "related": [],
+    "summary": "Invalid pointer dereference in `d2i_PKCS7` functions",
+    "details": "An invalid pointer dereference on read can be triggered when an\napplication tries to load malformed PKCS7 data with the\n`d2i_PKCS7()`, `d2i_PKCS7_bio()` or `d2i_PKCS7_fp()` functions.\n\nThe result of the dereference is an application crash which could\nlead to a denial of service attack. The TLS implementation in OpenSSL\ndoes not call this function however third party applications might\ncall these functions on untrusted data.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "openssl-src",
+          "purl": "pkg:cargo/openssl-src"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "300.0.0"
+              },
+              {
+                "fixed": "300.0.12"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/openssl-src"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2023-0011.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://www.openssl.org/news/secadv/20230207.txt"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2023-0009",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2023-02-07T12:00:00Z",
+    "aliases": [
+      "CVE-2023-0215",
+      "GHSA-r7jw-wp68-3xch"
+    ],
+    "related": [],
+    "summary": "Use-after-free following `BIO_new_NDEF`",
+    "details": "The public API function `BIO_new_NDEF` is a helper function used for streaming\nASN.1 data via a `BIO`. It is primarily used internally to OpenSSL to support the\nSMIME, CMS and PKCS7 streaming capabilities, but may also be called directly by\nend user applications.\n\nThe function receives a `BIO` from the caller, prepends a new `BIO_f_asn1` filter\n`BIO` onto the front of it to form a `BIO` chain, and then returns the new head of\nthe `BIO` chain to the caller. Under certain conditions, for example if a CMS\nrecipient public key is invalid, the new filter `BIO` is freed and the function\nreturns a `NULL` result indicating a failure. However, in this case, the `BIO` chain\nis not properly cleaned up and the `BIO` passed by the caller still retains\ninternal pointers to the previously freed filter `BIO`. If the caller then goes on\nto call `BIO_pop()` on the `BIO` then a use-after-free will occur. This will most\nlikely result in a crash.\n\nThis scenario occurs directly in the internal function `B64_write_ASN1()` which\nmay cause `BIO_new_NDEF()` to be called and will subsequently call `BIO_pop()` on\nthe `BIO`. This internal function is in turn called by the public API functions\n`PEM_write_bio_ASN1_stream`, `PEM_write_bio_CMS_stream`, `PEM_write_bio_PKCS7_stream`,\n`SMIME_write_ASN1`, `SMIME_write_CMS` and `SMIME_write_PKCS7`.\n\nOther public API functions that may be impacted by this include\n`i2d_ASN1_bio_stream`, `BIO_new_CMS`, `BIO_new_PKCS7`, `i2d_CMS_bio_stream` and\n`i2d_PKCS7_bio_stream`.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "openssl-src",
+          "purl": "pkg:cargo/openssl-src"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "111.25.0"
+              },
+              {
+                "introduced": "300.0.0"
+              },
+              {
+                "fixed": "300.0.12"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/openssl-src"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2023-0009.html"
       },
       {
         "type": "WEB",
@@ -775,74 +775,6 @@
     }
   },
   {
-    "id": "RUSTSEC-2022-0033",
-    "modified": "2023-06-13T13:10:24Z",
-    "published": "2022-07-05T12:00:00Z",
-    "aliases": [
-      "CVE-2022-2274",
-      "GHSA-735f-pg76-fxc4"
-    ],
-    "related": [],
-    "summary": "Heap memory corruption with RSA private key operation",
-    "details": "The OpenSSL 3.0.4 release introduced a serious bug in the RSA\nimplementation for X86_64 CPUs supporting the AVX512IFMA instructions.\nThis issue makes the RSA implementation with 2048 bit private keys\nincorrect on such machines and memory corruption will happen during\nthe computation. As a consequence of the memory corruption an attacker\nmay be able to trigger a remote code execution on the machine performing\nthe computation.\n\nSSL/TLS servers or other servers using 2048 bit RSA private keys running\non machines supporting AVX512IFMA instructions of the X86_64 architecture\nare affected by this issue.\n\nNote that on a vulnerable machine, proper testing of OpenSSL would fail and\nshould be noticed before deployment.",
-    "severity": [],
-    "affected": [
-      {
-        "package": {
-          "ecosystem": "crates.io",
-          "name": "openssl-src",
-          "purl": "pkg:cargo/openssl-src"
-        },
-        "ecosystem_specific": {
-          "affects": {
-            "arch": [],
-            "os": [],
-            "functions": []
-          },
-          "affected_functions": null
-        },
-        "database_specific": {
-          "categories": [
-            "crypto-failure"
-          ],
-          "cvss": null,
-          "informational": null
-        },
-        "ranges": [
-          {
-            "type": "SEMVER",
-            "events": [
-              {
-                "introduced": "300.0.8"
-              },
-              {
-                "fixed": "300.0.9"
-              }
-            ]
-          }
-        ],
-        "versions": []
-      }
-    ],
-    "references": [
-      {
-        "type": "PACKAGE",
-        "url": "https://crates.io/crates/openssl-src"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/RUSTSEC-2022-0033.html"
-      },
-      {
-        "type": "WEB",
-        "url": "https://www.openssl.org/news/secadv/20220705.txt"
-      }
-    ],
-    "database_specific": {
-      "license": "CC0-1.0"
-    }
-  },
-  {
     "id": "RUSTSEC-2022-0032",
     "modified": "2023-06-13T13:10:24Z",
     "published": "2022-07-05T12:00:00Z",
@@ -917,22 +849,17 @@
     }
   },
   {
-    "id": "RUSTSEC-2022-0026",
+    "id": "RUSTSEC-2022-0033",
     "modified": "2023-06-13T13:10:24Z",
-    "published": "2022-05-03T12:00:00Z",
+    "published": "2022-07-05T12:00:00Z",
     "aliases": [
-      "CVE-2022-1434",
-      "GHSA-638m-m8mh-7gw2"
+      "CVE-2022-2274",
+      "GHSA-735f-pg76-fxc4"
     ],
     "related": [],
-    "summary": "Incorrect MAC key used in the RC4-MD5 ciphersuite",
-    "details": "The OpenSSL 3.0 implementation of the RC4-MD5 ciphersuite incorrectly uses the\nAAD data as the MAC key. This makes the MAC key trivially predictable.\n\nAn attacker could exploit this issue by performing a man-in-the-middle attack to\nmodify data being sent from one endpoint to an OpenSSL 3.0 recipient such that\nthe modified data would still pass the MAC integrity check.\n\nNote that data sent from an OpenSSL 3.0 endpoint to a non-OpenSSL 3.0 endpoint\nwill always be rejected by the recipient and the connection will fail at that\npoint. Many application protocols require data to be sent from the client to the\nserver first. Therefore, in such a case, only an OpenSSL 3.0 server would be\nimpacted when talking to a non-OpenSSL 3.0 client.\n\nIf both endpoints are OpenSSL 3.0 then the attacker could modify data being\nsent in both directions. In this case both clients and servers could be\naffected, regardless of the application protocol.\n\nNote that in the absence of an attacker this bug means that an OpenSSL 3.0\nendpoint communicating with a non-OpenSSL 3.0 endpoint will fail to complete the\nhandshake when using this ciphersuite.\n\nThe confidentiality of data is not impacted by this issue, i.e. an attacker\ncannot decrypt data that has been encrypted using this ciphersuite - they can\nonly modify it.\n\nIn order for this attack to work both endpoints must legitimately negotiate the\nRC4-MD5 ciphersuite. This ciphersuite is not compiled by default in OpenSSL 3.0,\nand is not available within the default provider or the default ciphersuite\nlist. This ciphersuite will never be used if TLSv1.3 has been negotiated. In\norder for an OpenSSL 3.0 endpoint to use this ciphersuite the following must\nhave occurred:\n\n1. OpenSSL must have been compiled with the (non-default) compile time option\n   enable-weak-ssl-ciphers\n2. OpenSSL must have had the legacy provider explicitly loaded (either through\n   application code or via configuration)\n3. The ciphersuite must have been explicitly added to the ciphersuite list\n4. The libssl security level must have been set to 0 (default is 1)\n5. A version of SSL/TLS below TLSv1.3 must have been negotiated\n6. Both endpoints must negotiate the RC4-MD5 ciphersuite in preference to any\n   others that both endpoints have in common",
-    "severity": [
-      {
-        "type": "CVSS_V3",
-        "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N"
-      }
-    ],
+    "summary": "Heap memory corruption with RSA private key operation",
+    "details": "The OpenSSL 3.0.4 release introduced a serious bug in the RSA\nimplementation for X86_64 CPUs supporting the AVX512IFMA instructions.\nThis issue makes the RSA implementation with 2048 bit private keys\nincorrect on such machines and memory corruption will happen during\nthe computation. As a consequence of the memory corruption an attacker\nmay be able to trigger a remote code execution on the machine performing\nthe computation.\n\nSSL/TLS servers or other servers using 2048 bit RSA private keys running\non machines supporting AVX512IFMA instructions of the X86_64 architecture\nare affected by this issue.\n\nNote that on a vulnerable machine, proper testing of OpenSSL would fail and\nshould be noticed before deployment.",
+    "severity": [],
     "affected": [
       {
         "package": {
@@ -952,7 +879,7 @@
           "categories": [
             "crypto-failure"
           ],
-          "cvss": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N",
+          "cvss": null,
           "informational": null
         },
         "ranges": [
@@ -960,10 +887,10 @@
             "type": "SEMVER",
             "events": [
               {
-                "introduced": "300.0.0"
+                "introduced": "300.0.8"
               },
               {
-                "fixed": "300.0.6"
+                "fixed": "300.0.9"
               }
             ]
           }
@@ -978,11 +905,11 @@
       },
       {
         "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/RUSTSEC-2022-0026.html"
+        "url": "https://rustsec.org/advisories/RUSTSEC-2022-0033.html"
       },
       {
         "type": "WEB",
-        "url": "https://www.openssl.org/news/secadv/20220503.txt"
+        "url": "https://www.openssl.org/news/secadv/20220705.txt"
       }
     ],
     "database_specific": {
@@ -1136,6 +1063,79 @@
     }
   },
   {
+    "id": "RUSTSEC-2022-0026",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2022-05-03T12:00:00Z",
+    "aliases": [
+      "CVE-2022-1434",
+      "GHSA-638m-m8mh-7gw2"
+    ],
+    "related": [],
+    "summary": "Incorrect MAC key used in the RC4-MD5 ciphersuite",
+    "details": "The OpenSSL 3.0 implementation of the RC4-MD5 ciphersuite incorrectly uses the\nAAD data as the MAC key. This makes the MAC key trivially predictable.\n\nAn attacker could exploit this issue by performing a man-in-the-middle attack to\nmodify data being sent from one endpoint to an OpenSSL 3.0 recipient such that\nthe modified data would still pass the MAC integrity check.\n\nNote that data sent from an OpenSSL 3.0 endpoint to a non-OpenSSL 3.0 endpoint\nwill always be rejected by the recipient and the connection will fail at that\npoint. Many application protocols require data to be sent from the client to the\nserver first. Therefore, in such a case, only an OpenSSL 3.0 server would be\nimpacted when talking to a non-OpenSSL 3.0 client.\n\nIf both endpoints are OpenSSL 3.0 then the attacker could modify data being\nsent in both directions. In this case both clients and servers could be\naffected, regardless of the application protocol.\n\nNote that in the absence of an attacker this bug means that an OpenSSL 3.0\nendpoint communicating with a non-OpenSSL 3.0 endpoint will fail to complete the\nhandshake when using this ciphersuite.\n\nThe confidentiality of data is not impacted by this issue, i.e. an attacker\ncannot decrypt data that has been encrypted using this ciphersuite - they can\nonly modify it.\n\nIn order for this attack to work both endpoints must legitimately negotiate the\nRC4-MD5 ciphersuite. This ciphersuite is not compiled by default in OpenSSL 3.0,\nand is not available within the default provider or the default ciphersuite\nlist. This ciphersuite will never be used if TLSv1.3 has been negotiated. In\norder for an OpenSSL 3.0 endpoint to use this ciphersuite the following must\nhave occurred:\n\n1. OpenSSL must have been compiled with the (non-default) compile time option\n   enable-weak-ssl-ciphers\n2. OpenSSL must have had the legacy provider explicitly loaded (either through\n   application code or via configuration)\n3. The ciphersuite must have been explicitly added to the ciphersuite list\n4. The libssl security level must have been set to 0 (default is 1)\n5. A version of SSL/TLS below TLSv1.3 must have been negotiated\n6. Both endpoints must negotiate the RC4-MD5 ciphersuite in preference to any\n   others that both endpoints have in common",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "openssl-src",
+          "purl": "pkg:cargo/openssl-src"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "crypto-failure"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "300.0.0"
+              },
+              {
+                "fixed": "300.0.6"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/openssl-src"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2022-0026.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://www.openssl.org/news/secadv/20220503.txt"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
     "id": "RUSTSEC-2022-0014",
     "modified": "2023-06-13T13:10:24Z",
     "published": "2022-03-15T12:00:00Z",
@@ -1278,79 +1278,6 @@
     }
   },
   {
-    "id": "RUSTSEC-2021-0097",
-    "modified": "2023-06-13T13:10:24Z",
-    "published": "2021-08-24T12:00:00Z",
-    "aliases": [
-      "CVE-2021-3711",
-      "GHSA-5ww6-px42-wc85"
-    ],
-    "related": [],
-    "summary": "SM2 Decryption Buffer Overflow",
-    "details": "In order to decrypt SM2 encrypted data an application is expected to call the\nAPI function `EVP_PKEY_decrypt()`. Typically an application will call this\nfunction twice. The first time, on entry, the \"out\" parameter can be NULL and,\non exit, the \"outlen\" parameter is populated with the buffer size required to\nhold the decrypted plaintext. The application can then allocate a sufficiently\nsized buffer and call `EVP_PKEY_decrypt()` again, but this time passing a non-NULL\nvalue for the \"out\" parameter.\n\nA bug in the implementation of the SM2 decryption code means that the\ncalculation of the buffer size required to hold the plaintext returned by the\nfirst call to `EVP_PKEY_decrypt()` can be smaller than the actual size required by\nthe second call. This can lead to a buffer overflow when `EVP_PKEY_decrypt()` is\ncalled by the application a second time with a buffer that is too small.\n\nA malicious attacker who is able present SM2 content for decryption to an\napplication could cause attacker chosen data to overflow the buffer by up to a\nmaximum of 62 bytes altering the contents of other data held after the\nbuffer, possibly changing application behaviour or causing the application to\ncrash. The location of the buffer is application dependent but is typically\nheap allocated.",
-    "severity": [
-      {
-        "type": "CVSS_V3",
-        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
-      }
-    ],
-    "affected": [
-      {
-        "package": {
-          "ecosystem": "crates.io",
-          "name": "openssl-src",
-          "purl": "pkg:cargo/openssl-src"
-        },
-        "ecosystem_specific": {
-          "affects": {
-            "arch": [],
-            "os": [],
-            "functions": []
-          },
-          "affected_functions": null
-        },
-        "database_specific": {
-          "categories": [
-            "crypto-failure"
-          ],
-          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
-          "informational": null
-        },
-        "ranges": [
-          {
-            "type": "SEMVER",
-            "events": [
-              {
-                "introduced": "0.0.0-0"
-              },
-              {
-                "fixed": "111.16.0"
-              }
-            ]
-          }
-        ],
-        "versions": []
-      }
-    ],
-    "references": [
-      {
-        "type": "PACKAGE",
-        "url": "https://crates.io/crates/openssl-src"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0097.html"
-      },
-      {
-        "type": "WEB",
-        "url": "https://www.openssl.org/news/secadv/20210824.txt"
-      }
-    ],
-    "database_specific": {
-      "license": "CC0-1.0"
-    }
-  },
-  {
     "id": "RUSTSEC-2021-0098",
     "modified": "2023-06-13T13:10:24Z",
     "published": "2021-08-24T12:00:00Z",
@@ -1425,20 +1352,20 @@
     }
   },
   {
-    "id": "RUSTSEC-2021-0055",
+    "id": "RUSTSEC-2021-0097",
     "modified": "2023-06-13T13:10:24Z",
-    "published": "2021-05-01T12:00:00Z",
+    "published": "2021-08-24T12:00:00Z",
     "aliases": [
-      "CVE-2021-3449",
-      "GHSA-83mx-573x-5rw9"
+      "CVE-2021-3711",
+      "GHSA-5ww6-px42-wc85"
     ],
     "related": [],
-    "summary": "NULL pointer deref in signature_algorithms processing",
-    "details": "An OpenSSL TLS server may crash if sent a maliciously crafted renegotiation\nClientHello message from a client. If a TLSv1.2 renegotiation ClientHello omits\nthe signature_algorithms extension (where it was present in the initial\nClientHello), but includes a signature_algorithms_cert extension then a NULL\npointer dereference will result, leading to a crash and a denial of service\nattack.\n\nA server is only vulnerable if it has TLSv1.2 and renegotiation enabled (which\nis the default configuration). OpenSSL TLS clients are not impacted by this\nissue.",
+    "summary": "SM2 Decryption Buffer Overflow",
+    "details": "In order to decrypt SM2 encrypted data an application is expected to call the\nAPI function `EVP_PKEY_decrypt()`. Typically an application will call this\nfunction twice. The first time, on entry, the \"out\" parameter can be NULL and,\non exit, the \"outlen\" parameter is populated with the buffer size required to\nhold the decrypted plaintext. The application can then allocate a sufficiently\nsized buffer and call `EVP_PKEY_decrypt()` again, but this time passing a non-NULL\nvalue for the \"out\" parameter.\n\nA bug in the implementation of the SM2 decryption code means that the\ncalculation of the buffer size required to hold the plaintext returned by the\nfirst call to `EVP_PKEY_decrypt()` can be smaller than the actual size required by\nthe second call. This can lead to a buffer overflow when `EVP_PKEY_decrypt()` is\ncalled by the application a second time with a buffer that is too small.\n\nA malicious attacker who is able present SM2 content for decryption to an\napplication could cause attacker chosen data to overflow the buffer by up to a\nmaximum of 62 bytes altering the contents of other data held after the\nbuffer, possibly changing application behaviour or causing the application to\ncrash. The location of the buffer is application dependent but is typically\nheap allocated.",
     "severity": [
       {
         "type": "CVSS_V3",
-        "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
       }
     ],
     "affected": [
@@ -1458,9 +1385,9 @@
         },
         "database_specific": {
           "categories": [
-            "denial-of-service"
+            "crypto-failure"
           ],
-          "cvss": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
           "informational": null
         },
         "ranges": [
@@ -1471,7 +1398,7 @@
                 "introduced": "0.0.0-0"
               },
               {
-                "fixed": "111.15.0"
+                "fixed": "111.16.0"
               }
             ]
           }
@@ -1486,11 +1413,11 @@
       },
       {
         "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0055.html"
+        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0097.html"
       },
       {
         "type": "WEB",
-        "url": "https://www.openssl.org/news/secadv/20210325.txt"
+        "url": "https://www.openssl.org/news/secadv/20210824.txt"
       }
     ],
     "database_specific": {
@@ -1560,6 +1487,79 @@
       {
         "type": "ADVISORY",
         "url": "https://rustsec.org/advisories/RUSTSEC-2021-0057.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://www.openssl.org/news/secadv/20210216.txt"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2021-0058",
+    "modified": "2023-06-13T13:10:24Z",
+    "published": "2021-05-01T12:00:00Z",
+    "aliases": [
+      "CVE-2021-23841",
+      "GHSA-84rm-qf37-fgc2"
+    ],
+    "related": [],
+    "summary": "Null pointer deref in `X509_issuer_and_serial_hash()`",
+    "details": "The OpenSSL public API function `X509_issuer_and_serial_hash()` attempts to\ncreate a unique hash value based on the issuer and serial number data contained\nwithin an X509 certificate. However it fails to correctly handle any errors\nthat may occur while parsing the issuer field (which might occur if the issuer\nfield is maliciously constructed). This may subsequently result in a NULL\npointer deref and a crash leading to a potential denial of service attack.\n\nThe function `X509_issuer_and_serial_hash()` is never directly called by OpenSSL\nitself so applications are only vulnerable if they use this function directly\nand they use it on certificates that may have been obtained from untrusted\nsources.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "openssl-src",
+          "purl": "pkg:cargo/openssl-src"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "111.14.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/openssl-src"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0058.html"
       },
       {
         "type": "WEB",
@@ -1644,16 +1644,16 @@
     }
   },
   {
-    "id": "RUSTSEC-2021-0058",
+    "id": "RUSTSEC-2021-0055",
     "modified": "2023-06-13T13:10:24Z",
     "published": "2021-05-01T12:00:00Z",
     "aliases": [
-      "CVE-2021-23841",
-      "GHSA-84rm-qf37-fgc2"
+      "CVE-2021-3449",
+      "GHSA-83mx-573x-5rw9"
     ],
     "related": [],
-    "summary": "Null pointer deref in `X509_issuer_and_serial_hash()`",
-    "details": "The OpenSSL public API function `X509_issuer_and_serial_hash()` attempts to\ncreate a unique hash value based on the issuer and serial number data contained\nwithin an X509 certificate. However it fails to correctly handle any errors\nthat may occur while parsing the issuer field (which might occur if the issuer\nfield is maliciously constructed). This may subsequently result in a NULL\npointer deref and a crash leading to a potential denial of service attack.\n\nThe function `X509_issuer_and_serial_hash()` is never directly called by OpenSSL\nitself so applications are only vulnerable if they use this function directly\nand they use it on certificates that may have been obtained from untrusted\nsources.",
+    "summary": "NULL pointer deref in signature_algorithms processing",
+    "details": "An OpenSSL TLS server may crash if sent a maliciously crafted renegotiation\nClientHello message from a client. If a TLSv1.2 renegotiation ClientHello omits\nthe signature_algorithms extension (where it was present in the initial\nClientHello), but includes a signature_algorithms_cert extension then a NULL\npointer dereference will result, leading to a crash and a denial of service\nattack.\n\nA server is only vulnerable if it has TLSv1.2 and renegotiation enabled (which\nis the default configuration). OpenSSL TLS clients are not impacted by this\nissue.",
     "severity": [
       {
         "type": "CVSS_V3",
@@ -1690,7 +1690,7 @@
                 "introduced": "0.0.0-0"
               },
               {
-                "fixed": "111.14.0"
+                "fixed": "111.15.0"
               }
             ]
           }
@@ -1705,11 +1705,11 @@
       },
       {
         "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0058.html"
+        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0055.html"
       },
       {
         "type": "WEB",
-        "url": "https://www.openssl.org/news/secadv/20210216.txt"
+        "url": "https://www.openssl.org/news/secadv/20210325.txt"
       }
     ],
     "database_specific": {
