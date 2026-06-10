@@ -1,0 +1,63 @@
+[
+  {
+    "id": "RUSTSEC-2026-0175",
+    "modified": "2026-06-10T19:02:16Z",
+    "published": "2026-06-10T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "`onering` 1.4.1 was removed from crates.io for malicious code",
+    "details": "A new version of the `onering` crate was published with code that attempted to\nexfiltrate both metadata and code from the project it was included within.\n\nOne malicious version was published on 2026-06-10, approximately six hours\nbefore removal. This crate has no dependencies on crates.io, and there is no\nevidence of actual usage of the compromised version.\n\nThanks to Charlie Eriksen for the report.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "onering",
+          "purl": "pkg:cargo/onering"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "malicious"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "1.4.1"
+              },
+              {
+                "fixed": "1.4.2-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/onering"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0175.html"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]
