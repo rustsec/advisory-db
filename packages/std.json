@@ -139,13 +139,13 @@
     }
   },
   {
-    "id": "CVE-2018-25008",
+    "id": "CVE-2017-20004",
     "modified": "2021-07-06T18:36:13Z",
-    "published": "2018-06-25T12:00:00Z",
+    "published": "2017-04-29T12:00:00Z",
     "aliases": [],
     "related": [],
-    "summary": "Insufficient synchronization in `Arc::get_mut`",
-    "details": "In the standard library in Rust before 1.29.0, there is weak synchronization in the Arc::get_mut method. This synchronization issue can be lead to memory safety issues through race conditions.",
+    "summary": "MutexGuard\\<Cell\\<i32\\>\\> must not be Sync",
+    "details": "In the standard library in Rust before 1.19.0, there is a synchronization problem in the MutexGuard object. MutexGuards can be used across threads with any types, allowing for memory safety issues through race conditions.",
     "severity": [],
     "affected": [
       {
@@ -174,10 +174,10 @@
             "type": "SEMVER",
             "events": [
               {
-                "introduced": "1.3.0"
+                "introduced": "1.0.0"
               },
               {
-                "fixed": "1.29.0"
+                "fixed": "1.19.0"
               }
             ]
           }
@@ -192,141 +192,11 @@
       },
       {
         "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/CVE-2018-25008.html"
+        "url": "https://rustsec.org/advisories/CVE-2017-20004.html"
       },
       {
         "type": "ADVISORY",
-        "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-25008"
-      }
-    ],
-    "database_specific": {
-      "license": "CC0-1.0"
-    }
-  },
-  {
-    "id": "CVE-2021-31162",
-    "modified": "2021-07-06T18:36:13Z",
-    "published": "2021-03-28T12:00:00Z",
-    "aliases": [],
-    "related": [],
-    "summary": "Double free in Vec::from_iter specialization when drop panics",
-    "details": "In the standard library in Rust before 1.52.0, a double free can occur in the Vec::from_iter function if freeing the element panics.",
-    "severity": [],
-    "affected": [
-      {
-        "package": {
-          "ecosystem": "crates.io",
-          "name": "std",
-          "purl": "pkg:cargo/std"
-        },
-        "ecosystem_specific": {
-          "affects": {
-            "arch": [],
-            "os": [],
-            "functions": []
-          },
-          "affected_functions": null
-        },
-        "database_specific": {
-          "categories": [
-            "memory-corruption"
-          ],
-          "cvss": null,
-          "informational": null
-        },
-        "ranges": [
-          {
-            "type": "SEMVER",
-            "events": [
-              {
-                "introduced": "1.48.0"
-              },
-              {
-                "fixed": "1.52.0"
-              }
-            ]
-          }
-        ],
-        "versions": []
-      }
-    ],
-    "references": [
-      {
-        "type": "PACKAGE",
-        "url": "https://crates.io/crates/std"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/CVE-2021-31162.html"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-31162"
-      }
-    ],
-    "database_specific": {
-      "license": "CC0-1.0"
-    }
-  },
-  {
-    "id": "CVE-2019-1010299",
-    "modified": "2021-07-06T18:36:13Z",
-    "published": "2018-08-21T12:00:00Z",
-    "aliases": [],
-    "related": [],
-    "summary": "vec_deque::Iter has unsound Debug implementation",
-    "details": "The Rust Programming Language Standard Library 1.18.0 and later is affected by: CWE-200: Information Exposure. The impact is: Contents of uninitialized memory could be printed to string or to log file. The component is: Debug trait implementation for std::collections::vec_deque::Iter. The attack vector is: The program needs to invoke debug printing for iterator over an empty VecDeque. The fixed version is: 1.30.0, nightly versions after commit b85e4cc8fadaabd41da5b9645c08c68b8f89908d.",
-    "severity": [],
-    "affected": [
-      {
-        "package": {
-          "ecosystem": "crates.io",
-          "name": "std",
-          "purl": "pkg:cargo/std"
-        },
-        "ecosystem_specific": {
-          "affects": {
-            "arch": [],
-            "os": [],
-            "functions": []
-          },
-          "affected_functions": null
-        },
-        "database_specific": {
-          "categories": [
-            "memory-exposure"
-          ],
-          "cvss": null,
-          "informational": null
-        },
-        "ranges": [
-          {
-            "type": "SEMVER",
-            "events": [
-              {
-                "introduced": "1.18.0"
-              },
-              {
-                "fixed": "1.30.0"
-              }
-            ]
-          }
-        ],
-        "versions": []
-      }
-    ],
-    "references": [
-      {
-        "type": "PACKAGE",
-        "url": "https://crates.io/crates/std"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/CVE-2019-1010299.html"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-1010299"
+        "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-20004"
       }
     ],
     "database_specific": {
@@ -399,13 +269,143 @@
     }
   },
   {
-    "id": "CVE-2017-20004",
+    "id": "CVE-2019-1010299",
     "modified": "2021-07-06T18:36:13Z",
-    "published": "2017-04-29T12:00:00Z",
+    "published": "2018-08-21T12:00:00Z",
     "aliases": [],
     "related": [],
-    "summary": "MutexGuard\\<Cell\\<i32\\>\\> must not be Sync",
-    "details": "In the standard library in Rust before 1.19.0, there is a synchronization problem in the MutexGuard object. MutexGuards can be used across threads with any types, allowing for memory safety issues through race conditions.",
+    "summary": "vec_deque::Iter has unsound Debug implementation",
+    "details": "The Rust Programming Language Standard Library 1.18.0 and later is affected by: CWE-200: Information Exposure. The impact is: Contents of uninitialized memory could be printed to string or to log file. The component is: Debug trait implementation for std::collections::vec_deque::Iter. The attack vector is: The program needs to invoke debug printing for iterator over an empty VecDeque. The fixed version is: 1.30.0, nightly versions after commit b85e4cc8fadaabd41da5b9645c08c68b8f89908d.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "std",
+          "purl": "pkg:cargo/std"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-exposure"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "1.18.0"
+              },
+              {
+                "fixed": "1.30.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/std"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/CVE-2019-1010299.html"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-1010299"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "CVE-2021-31162",
+    "modified": "2021-07-06T18:36:13Z",
+    "published": "2021-03-28T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Double free in Vec::from_iter specialization when drop panics",
+    "details": "In the standard library in Rust before 1.52.0, a double free can occur in the Vec::from_iter function if freeing the element panics.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "std",
+          "purl": "pkg:cargo/std"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "1.48.0"
+              },
+              {
+                "fixed": "1.52.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/std"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/CVE-2021-31162.html"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-31162"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "CVE-2018-25008",
+    "modified": "2021-07-06T18:36:13Z",
+    "published": "2018-06-25T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Insufficient synchronization in `Arc::get_mut`",
+    "details": "In the standard library in Rust before 1.29.0, there is weak synchronization in the Arc::get_mut method. This synchronization issue can be lead to memory safety issues through race conditions.",
     "severity": [],
     "affected": [
       {
@@ -434,10 +434,10 @@
             "type": "SEMVER",
             "events": [
               {
-                "introduced": "1.0.0"
+                "introduced": "1.3.0"
               },
               {
-                "fixed": "1.19.0"
+                "fixed": "1.29.0"
               }
             ]
           }
@@ -452,11 +452,11 @@
       },
       {
         "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/CVE-2017-20004.html"
+        "url": "https://rustsec.org/advisories/CVE-2018-25008.html"
       },
       {
         "type": "ADVISORY",
-        "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-20004"
+        "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-25008"
       }
     ],
     "database_specific": {
@@ -464,13 +464,13 @@
     }
   },
   {
-    "id": "CVE-2021-28879",
-    "modified": "2021-04-13T21:22:28Z",
-    "published": "2021-02-18T12:00:00Z",
+    "id": "CVE-2021-28877",
+    "modified": "2023-07-15T15:07:13Z",
+    "published": "2021-01-03T12:00:00Z",
     "aliases": [],
     "related": [],
-    "summary": "Zip can cause buffer overflow when a consumed Zip iterator is used again",
-    "details": "In the standard library in Rust before 1.52.0, the Zip implementation can report an incorrect size due to an integer overflow. This bug can lead to a buffer overflow when a consumed Zip iterator is used again.",
+    "summary": "TrustedRandomAccess specialization composes incorrectly for nested iter::Zips",
+    "details": "In the standard library in Rust before 1.51.0, the Zip implementation calls `__iterator_get_unchecked()` for the same index more than once when nested. This bug can lead to a memory safety violation due to an unmet safety requirement for the `TrustedRandomAccess` trait.",
     "severity": [],
     "affected": [
       {
@@ -499,10 +499,10 @@
             "type": "SEMVER",
             "events": [
               {
-                "introduced": "1.14.0"
+                "introduced": "1.11.0"
               },
               {
-                "fixed": "1.52.0"
+                "fixed": "1.51.0"
               }
             ]
           }
@@ -517,76 +517,11 @@
       },
       {
         "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/CVE-2021-28879.html"
+        "url": "https://rustsec.org/advisories/CVE-2021-28877.html"
       },
       {
         "type": "ADVISORY",
-        "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-28879"
-      }
-    ],
-    "database_specific": {
-      "license": "CC0-1.0"
-    }
-  },
-  {
-    "id": "CVE-2021-28876",
-    "modified": "2021-04-13T21:22:28Z",
-    "published": "2021-02-04T12:00:00Z",
-    "aliases": [],
-    "related": [],
-    "summary": "Panic safety issue in Zip specialization",
-    "details": "In the standard library in Rust before 1.52.0, the Zip implementation has a panic safety issue. It calls __iterator_get_unchecked() more than once for the same index when the underlying iterator panics (in certain conditions). This bug could lead to a memory safety violation due to an unmet safety requirement for the TrustedRandomAccess trait.",
-    "severity": [],
-    "affected": [
-      {
-        "package": {
-          "ecosystem": "crates.io",
-          "name": "std",
-          "purl": "pkg:cargo/std"
-        },
-        "ecosystem_specific": {
-          "affects": {
-            "arch": [],
-            "os": [],
-            "functions": []
-          },
-          "affected_functions": null
-        },
-        "database_specific": {
-          "categories": [
-            "memory-corruption"
-          ],
-          "cvss": null,
-          "informational": null
-        },
-        "ranges": [
-          {
-            "type": "SEMVER",
-            "events": [
-              {
-                "introduced": "1.14.0"
-              },
-              {
-                "fixed": "1.52.0"
-              }
-            ]
-          }
-        ],
-        "versions": []
-      }
-    ],
-    "references": [
-      {
-        "type": "PACKAGE",
-        "url": "https://crates.io/crates/std"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/CVE-2021-28876.html"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-28876"
+        "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-28877"
       }
     ],
     "database_specific": {
@@ -659,13 +594,13 @@
     }
   },
   {
-    "id": "CVE-2015-20001",
+    "id": "CVE-2021-28876",
     "modified": "2021-04-13T21:22:28Z",
-    "published": "2015-05-27T12:00:00Z",
+    "published": "2021-02-04T12:00:00Z",
     "aliases": [],
     "related": [],
-    "summary": "Panic safety violation in BinaryHeap",
-    "details": "In the standard library in Rust before 1.2.0, BinaryHeap is not panic-safe. The binary heap is left in an inconsistent state when the comparison of generic elements inside sift_up or sift_down_range panics. This bug leads to a drop of zeroed memory as an arbitrary type, which can result in a memory safety violation.",
+    "summary": "Panic safety issue in Zip specialization",
+    "details": "In the standard library in Rust before 1.52.0, the Zip implementation has a panic safety issue. It calls __iterator_get_unchecked() more than once for the same index when the underlying iterator panics (in certain conditions). This bug could lead to a memory safety violation due to an unmet safety requirement for the TrustedRandomAccess trait.",
     "severity": [],
     "affected": [
       {
@@ -694,10 +629,10 @@
             "type": "SEMVER",
             "events": [
               {
-                "introduced": "1.0.0"
+                "introduced": "1.14.0"
               },
               {
-                "fixed": "1.2.0"
+                "fixed": "1.52.0"
               }
             ]
           }
@@ -712,11 +647,11 @@
       },
       {
         "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/CVE-2015-20001.html"
+        "url": "https://rustsec.org/advisories/CVE-2021-28876.html"
       },
       {
         "type": "ADVISORY",
-        "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-20001"
+        "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-28876"
       }
     ],
     "database_specific": {
@@ -789,13 +724,13 @@
     }
   },
   {
-    "id": "CVE-2021-28875",
+    "id": "CVE-2015-20001",
     "modified": "2021-04-13T21:22:28Z",
-    "published": "2021-01-10T12:00:00Z",
+    "published": "2015-05-27T12:00:00Z",
     "aliases": [],
     "related": [],
-    "summary": "Logic bug in Read can cause buffer overflow in read_to_end()",
-    "details": "In the standard library in Rust before 1.50.0, read_to_end() does not validate the return value from Read in an unsafe context. This bug could lead to a buffer overflow.",
+    "summary": "Panic safety violation in BinaryHeap",
+    "details": "In the standard library in Rust before 1.2.0, BinaryHeap is not panic-safe. The binary heap is left in an inconsistent state when the comparison of generic elements inside sift_up or sift_down_range panics. This bug leads to a drop of zeroed memory as an arbitrary type, which can result in a memory safety violation.",
     "severity": [],
     "affected": [
       {
@@ -824,10 +759,10 @@
             "type": "SEMVER",
             "events": [
               {
-                "introduced": "1.20.0"
+                "introduced": "1.0.0"
               },
               {
-                "fixed": "1.50.0"
+                "fixed": "1.2.0"
               }
             ]
           }
@@ -842,11 +777,76 @@
       },
       {
         "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/CVE-2021-28875.html"
+        "url": "https://rustsec.org/advisories/CVE-2015-20001.html"
       },
       {
         "type": "ADVISORY",
-        "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-28875"
+        "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-20001"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "CVE-2021-28879",
+    "modified": "2021-04-13T21:22:28Z",
+    "published": "2021-02-18T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Zip can cause buffer overflow when a consumed Zip iterator is used again",
+    "details": "In the standard library in Rust before 1.52.0, the Zip implementation can report an incorrect size due to an integer overflow. This bug can lead to a buffer overflow when a consumed Zip iterator is used again.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "std",
+          "purl": "pkg:cargo/std"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "1.14.0"
+              },
+              {
+                "fixed": "1.52.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/std"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/CVE-2021-28879.html"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-28879"
       }
     ],
     "database_specific": {
@@ -919,13 +919,13 @@
     }
   },
   {
-    "id": "CVE-2021-28877",
-    "modified": "2023-07-15T15:07:13Z",
-    "published": "2021-01-03T12:00:00Z",
+    "id": "CVE-2021-28875",
+    "modified": "2021-04-13T21:22:28Z",
+    "published": "2021-01-10T12:00:00Z",
     "aliases": [],
     "related": [],
-    "summary": "TrustedRandomAccess specialization composes incorrectly for nested iter::Zips",
-    "details": "In the standard library in Rust before 1.51.0, the Zip implementation calls `__iterator_get_unchecked()` for the same index more than once when nested. This bug can lead to a memory safety violation due to an unmet safety requirement for the `TrustedRandomAccess` trait.",
+    "summary": "Logic bug in Read can cause buffer overflow in read_to_end()",
+    "details": "In the standard library in Rust before 1.50.0, read_to_end() does not validate the return value from Read in an unsafe context. This bug could lead to a buffer overflow.",
     "severity": [],
     "affected": [
       {
@@ -954,10 +954,10 @@
             "type": "SEMVER",
             "events": [
               {
-                "introduced": "1.11.0"
+                "introduced": "1.20.0"
               },
               {
-                "fixed": "1.51.0"
+                "fixed": "1.50.0"
               }
             ]
           }
@@ -972,11 +972,79 @@
       },
       {
         "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/CVE-2021-28877.html"
+        "url": "https://rustsec.org/advisories/CVE-2021-28875.html"
       },
       {
         "type": "ADVISORY",
-        "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-28877"
+        "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-28875"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "CVE-2018-1000657",
+    "modified": "2020-10-02T01:29:11Z",
+    "published": "2018-08-20T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Buffer overflow vulnerability in VecDeque::reserve()",
+    "details": "The `std::collections::vec_deque::VecDeque::reserve()` function contains a\nbuffer overflow vulnerability that can potentially result in arbitrary code\nexecution.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "std",
+          "purl": "pkg:cargo/std"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "std::collections::vec_deque::VecDeque::reserve"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "code-execution",
+            "denial-of-service"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "1.3.0"
+              },
+              {
+                "fixed": "1.22.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/std"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/CVE-2018-1000657.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/rust-lang/rust/issues/44800"
       }
     ],
     "database_specific": {
@@ -1115,74 +1183,6 @@
       {
         "type": "WEB",
         "url": "https://groups.google.com/forum/#!topic/rustlang-security-announcements/aZabeCMUv70"
-      }
-    ],
-    "database_specific": {
-      "license": "CC0-1.0"
-    }
-  },
-  {
-    "id": "CVE-2018-1000657",
-    "modified": "2020-10-02T01:29:11Z",
-    "published": "2018-08-20T12:00:00Z",
-    "aliases": [],
-    "related": [],
-    "summary": "Buffer overflow vulnerability in VecDeque::reserve()",
-    "details": "The `std::collections::vec_deque::VecDeque::reserve()` function contains a\nbuffer overflow vulnerability that can potentially result in arbitrary code\nexecution.",
-    "severity": [],
-    "affected": [
-      {
-        "package": {
-          "ecosystem": "crates.io",
-          "name": "std",
-          "purl": "pkg:cargo/std"
-        },
-        "ecosystem_specific": {
-          "affects": {
-            "arch": [],
-            "os": [],
-            "functions": [
-              "std::collections::vec_deque::VecDeque::reserve"
-            ]
-          },
-          "affected_functions": null
-        },
-        "database_specific": {
-          "categories": [
-            "code-execution",
-            "denial-of-service"
-          ],
-          "cvss": null,
-          "informational": null
-        },
-        "ranges": [
-          {
-            "type": "SEMVER",
-            "events": [
-              {
-                "introduced": "1.3.0"
-              },
-              {
-                "fixed": "1.22.0"
-              }
-            ]
-          }
-        ],
-        "versions": []
-      }
-    ],
-    "references": [
-      {
-        "type": "PACKAGE",
-        "url": "https://crates.io/crates/std"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/CVE-2018-1000657.html"
-      },
-      {
-        "type": "REPORT",
-        "url": "https://github.com/rust-lang/rust/issues/44800"
       }
     ],
     "database_specific": {
