@@ -1,12 +1,12 @@
 [
   {
     "id": "RUSTSEC-2026-0176",
-    "modified": "2026-06-11T21:22:54Z",
+    "modified": "2026-06-11T22:44:55Z",
     "published": "2026-06-11T12:00:00Z",
     "aliases": [],
     "related": [],
     "summary": "Out-of-bounds read in `nth` / `nth_back` for `PyList` and `PyTuple` iterators",
-    "details": "PyO3 0.24.0 added optimized implementations of `Iterator::nth` and\n`DoubleEndedIterator::nth_back` for the `BoundListIterator` and\n`BoundTupleIterator` types. These implementations computed the target index\nusing unchecked `usize` addition (`index + n`) before bounds-checking against\nthe sequence length, then read the element via `get_item_unchecked`.\n\nIn `nth` methods, a sufficiently large `n` (combined with a non-zero internal\nindex) could cause the addition to overflow and wrap around, producing a small\n\"target index\" that passed the bounds check and enabling reads at the front\nof the `list` or `tuple` of elements previously yielded by the iterator.\n\nIn `nth_back` methods, a sufficiently large `n` could cause underflow in a\nsimilar fashion, however would instead allow reads of arbitrary memory past\nthe end of the `list` or `tuple` storage.",
+    "details": "PyO3 0.24.0 added optimized implementations of `Iterator::nth` and\n`DoubleEndedIterator::nth_back` for the `BoundListIterator` and\n`BoundTupleIterator` types. These implementations computed the target index\nusing unchecked `usize` addition (`index + n`) before bounds-checking against\nthe sequence length, then read the element via `get_item_unchecked`.\n\nIn `nth` methods, a sufficiently large `n` (combined with a non-zero internal\nindex) could cause the addition to overflow and wrap around, producing a small\n\"target index\" that passed the bounds check and enabling reads at the front\nof the `list` or `tuple` of elements previously yielded by the iterator.\n\nIn `nth_back` methods, a sufficiently large `n` could cause underflow in a\nsimilar fashion, however would instead allow reads of arbitrary memory past\nthe end of the `list` or `tuple` storage.\n\nPyO3 0.29.0 has corrected these methods to use checked arithmetic at the\npositions which could be at risk of overflow.",
     "severity": [],
     "affected": [
       {
