@@ -1,5 +1,75 @@
 [
   {
+    "id": "RUSTSEC-2026-0176",
+    "modified": "2026-06-11T21:22:54Z",
+    "published": "2026-06-11T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Out-of-bounds read in `nth` / `nth_back` for `PyList` and `PyTuple` iterators",
+    "details": "PyO3 0.24.0 added optimized implementations of `Iterator::nth` and\n`DoubleEndedIterator::nth_back` for the `BoundListIterator` and\n`BoundTupleIterator` types. These implementations computed the target index\nusing unchecked `usize` addition (`index + n`) before bounds-checking against\nthe sequence length, then read the element via `get_item_unchecked`.\n\nIn `nth` methods, a sufficiently large `n` (combined with a non-zero internal\nindex) could cause the addition to overflow and wrap around, producing a small\n\"target index\" that passed the bounds check and enabling reads at the front\nof the `list` or `tuple` of elements previously yielded by the iterator.\n\nIn `nth_back` methods, a sufficiently large `n` could cause underflow in a\nsimilar fashion, however would instead allow reads of arbitrary memory past\nthe end of the `list` or `tuple` storage.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "pyo3",
+          "purl": "pkg:cargo/pyo3"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "pyo3::types::list::BoundListIterator::nth",
+              "pyo3::types::list::BoundListIterator::nth_back",
+              "pyo3::types::tuple::BoundTupleIterator::nth",
+              "pyo3::types::tuple::BoundTupleIterator::nth_back"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-exposure"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.24.0"
+              },
+              {
+                "fixed": "0.29.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/pyo3"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0176.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/PyO3/pyo3/pull/6086"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
     "id": "RUSTSEC-2026-0013",
     "modified": "2026-02-23T07:15:28Z",
     "published": "2026-02-18T12:00:00Z",
