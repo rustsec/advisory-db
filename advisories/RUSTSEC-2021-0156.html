@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories with keyword &#39;dnssec&#39; › RustSec Advisory Database</title>
+<title>RUSTSEC-2021-0156: triton-vm: Triton VM Soundness Vulnerability due to Missing Constraint › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,77 +52,153 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/triton-vm/RUSTSEC-2021-0156.md">History</a> ⋅
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/triton-vm/RUSTSEC-2021-0156.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2021-0156">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2021-0156
+        
+      </h1>
+      <span class="subtitle"><p>Triton VM Soundness Vulnerability due to Missing Constraint</p>
 </span>
-      <h1>Advisories with keyword &#39;dnssec&#39;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2026-05-01">
-    May  1, 2026
-  </time>
+    
 
-  
-  <h3>
-    
-        
-    
-    <a href="/advisories/RUSTSEC-2026-0120.html">
-      RUSTSEC-2026-0120: Vulnerability in hickory-net
-    </a>
-  </h3>
-  <span><p>NSEC3 closest-encloser proof validation enters unbounded loop on cross-zone responses</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2026-05-01">
-    May  1, 2026
-  </time>
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2021-06-11">
+          June 11, 2021
+        </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2026-06-11">
+          June 11, 2026
+        </time>
         
-    
-    <a href="/advisories/RUSTSEC-2026-0118.html">
-      RUSTSEC-2026-0118: Vulnerability in hickory-proto
-    </a>
-  </h3>
-  <span><p>NSEC3 closest-encloser proof validation enters unbounded loop on cross-zone responses</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2025-02-10">
-    February 10, 2025
-  </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="package">Package</dt>
+      <dd>
         
-    
-    <a href="/advisories/RUSTSEC-2025-0006.html">
-      RUSTSEC-2025-0006: Vulnerability in hickory-proto
-    </a>
-  </h3>
-  <span><p>Hickory DNS failure to verify self-signed RRSIG for DNSKEYs</p>
-</span>
-  
-</li>
+        
+        <a href="/packages/triton-vm.html">triton-vm</a>
+           
+          (<a href="https://crates.io/crates/triton-vm">crates.io</a>)
+          
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        Vulnerability
+        
+      </dd>
+
       
-    </ul>
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/crypto-failure.html">crypto-failure</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/proof-system.html">#proof-system</a>
+        
+          <a href="/keywords/unsound.html">#unsound</a>
+        
+      </dd>
+      
+
+      
+
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&#62;=4.0.0</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+      <dt id="unaffected">Unaffected</dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;0.42.0-alpha.4</code></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      
+
+      
+      
+    </dl>
+
+    
+    
+    <dl>
+      <dt>Affected Functions</dt>
+      <dd>Version</dd>
+      
+      <dt><code>triton_vm::verify</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;4.0.0, &#62;=0.42.0-alpha.4</code></li>
+          
+        </ul>
+      </dd>
+      
+    </dl>
+    
+
+    
+
+    <h3 id="description">Description</h3>
+    <p>The instruction <code>sponge_absorb_mem</code> Triton VM fails to verify that hashed values come from the claimed memory location. Malicious provers can substitute arbitrary data instead of actual memory contents.</p>
+<p>Any application using instruction <code>sponge_absorb_mem</code> to hash memory data can be given a proof for a forged hash that doesn't correspond to the actual memory. This breaks the security of memory-based commitments.</p>
+<p>The flaw was corrected in commits <code>17c7ba0a</code> and <code>ef9d9e72</code> by including the appropriate constraints.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
