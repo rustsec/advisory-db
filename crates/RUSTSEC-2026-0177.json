@@ -1,0 +1,68 @@
+{
+  "id": "RUSTSEC-2026-0177",
+  "modified": "2026-06-12T00:21:36Z",
+  "published": "2026-06-11T12:00:00Z",
+  "aliases": [],
+  "related": [],
+  "summary": "Missing `Sync` bound on `PyCFunction::new_closure` closures",
+  "details": "`PyCFunction::new_closure` (and the temporary `new_closure_bound` complement in\nthe 0.21–0.22 series) required the supplied closure to be `Send + 'static` but\nnot `Sync`. The resulting `PyCFunction` is a Python callable that can be\ninvoked from any Python thread, which means the closure may be called\nconcurrently from multiple threads, and needs a `Sync` bound to prevent\npossible data races.\n\nThe problem exists under all Python versions but is particularly vulnerable under\nthe newer free-threaded Python variant, which do not have serial execution\nimposed by the Global Interpreter Lock. Under releases protected by the GIL,\nthe ability to \"detach\" from the Python interpreter temporarily inside the closure\n(e.g. by `Python::detach`) makes it possible for interleaved and/or concurrent\nexecution of various portions of the closure.\n\nPyO3 0.29.0 added a `Sync` bound to close this thread-safety bug.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "pyo3",
+        "purl": "pkg:cargo/pyo3"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": [
+            "pyo3::types::PyCFunction::new_closure",
+            "pyo3::types::PyCFunction::new_closure_bound"
+          ]
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "thread-safety"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "0.29.0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/pyo3"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0177.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/PyO3/pyo3/pull/6096"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
