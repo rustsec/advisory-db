@@ -1,0 +1,76 @@
+{
+  "id": "RUSTSEC-2026-0179",
+  "modified": "2026-06-12T17:27:58Z",
+  "published": "2026-06-12T12:00:00Z",
+  "aliases": [],
+  "related": [],
+  "summary": "Unbounded SCRAM iteration count allows a malicious server to cause CPU-exhaustion denial of service",
+  "details": "A malicious, compromised, or man-in-the-middle server can supply an arbitrarily\nlarge SCRAM-SHA-256 PBKDF2 iteration count during authentication. The client\nruns it inline with no upper bound, pinning a `tokio` worker thread for minutes\nper connection, possibly stalling the whole async runtime.\n\nApplications that connect only to a trusted database are not exposed; the risk\napplies to clients that may connect to untrusted or user-supplied servers, or\nwhose connection can be intercepted by a man-in-the-middle.",
+  "severity": [
+    {
+      "type": "CVSS_V4",
+      "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N"
+    }
+  ],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "postgres-protocol",
+        "purl": "pkg:cargo/postgres-protocol"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": [
+            "postgres_protocol::authentication::sasl::ScramSha256::update"
+          ]
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "denial-of-service"
+        ],
+        "cvss": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N",
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.3.0"
+            },
+            {
+              "fixed": "0.6.12"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/postgres-protocol"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0179.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/rust-postgres/rust-postgres/commit/d40097a36a85068ea50a3afbf0ce154ba439e7f0"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://github.com/pgjdbc/pgjdbc/security/advisories/GHSA-98qh-xjc8-98pq"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}

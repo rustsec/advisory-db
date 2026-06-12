@@ -1,0 +1,75 @@
+{
+  "id": "RUSTSEC-2026-0178",
+  "modified": "2026-06-12T17:27:58Z",
+  "published": "2026-06-12T12:00:00Z",
+  "aliases": [],
+  "related": [],
+  "summary": "Panic on a `DataRow` with fewer fields than columns allows denial of service",
+  "details": "A malicious or compromised server can send a row containing fewer fields than\nits row description declares columns. Reading one of the missing columns then\npanics with an out-of-bounds index, aborting the calling task. This affects even\nthe otherwise non-panicking `try_get`, and both `Row` and `SimpleQueryRow`.\n\nApplications that connect only to a trusted database are not exposed; the risk\napplies to clients that may connect to untrusted or user-supplied servers, or\nwhose connection can be intercepted by a man-in-the-middle.",
+  "severity": [
+    {
+      "type": "CVSS_V4",
+      "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N"
+    }
+  ],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "tokio-postgres",
+        "purl": "pkg:cargo/tokio-postgres"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": [
+            "tokio_postgres::Row::get",
+            "tokio_postgres::Row::try_get",
+            "tokio_postgres::SimpleQueryRow::get",
+            "tokio_postgres::SimpleQueryRow::try_get"
+          ]
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "denial-of-service"
+        ],
+        "cvss": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N",
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.4.0"
+            },
+            {
+              "fixed": "0.7.18"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/tokio-postgres"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0178.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/rust-postgres/rust-postgres/commit/7a00ffa9ad4d951ec0a4564b52f1780fa9d353c1"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
