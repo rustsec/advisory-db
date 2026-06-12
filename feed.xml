@@ -198,6 +198,177 @@ positions which could be at risk of overflow.&lt;/p&gt;
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0177: Vulnerability in pyo3</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0177.html</id><updated>2026-06-11T12:00:00+00:00</updated><category term="thread-safety"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0177.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0177: Vulnerability in pyo3"/><published>2026-06-11T12:00:00+00:00</published><summary xml:lang="en">Missing `Sync` bound on `PyCFunction::new_closure` closures</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/pyo3/RUSTSEC-2026-0177.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/pyo3/RUSTSEC-2026-0177.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0177&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0177
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Missing &lt;code&gt;Sync&lt;/code&gt; bound on &lt;code&gt;PyCFunction::new_closure&lt;/code&gt; closures&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-06-11&quot;&gt;
+          June 11, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-06-11&quot;&gt;
+          June 11, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/pyo3.html&quot;&gt;pyo3&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/pyo3&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/thread-safety.html&quot;&gt;thread-safety&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/thread-safety.html&quot;&gt;#thread-safety&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/unsound.html&quot;&gt;#unsound&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/PyO3/pyo3/pull/6096&quot;&gt;
+              https://github.com/PyO3/pyo3/pull/6096
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.29.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;pyo3::types::PyCFunction::new_closure&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.15.0, &amp;#60;0.29.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;pyo3::types::PyCFunction::new_closure_bound&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.21.0, &amp;#60;0.23.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;&lt;code&gt;PyCFunction::new_closure&lt;/code&gt; (and the temporary &lt;code&gt;new_closure_bound&lt;/code&gt; complement in
+the 0.21–0.22 series) required the supplied closure to be &lt;code&gt;Send + &apos;static&lt;/code&gt; but
+not &lt;code&gt;Sync&lt;/code&gt;. The resulting &lt;code&gt;PyCFunction&lt;/code&gt; is a Python callable that can be
+invoked from any Python thread, which means the closure may be called
+concurrently from multiple threads, and needs a &lt;code&gt;Sync&lt;/code&gt; bound to prevent
+possible data races.&lt;/p&gt;
+&lt;p&gt;The problem exists under all Python versions but is particularly vulnerable under
+the newer free-threaded Python variant, which do not have serial execution
+imposed by the Global Interpreter Lock. Under releases protected by the GIL,
+the ability to &amp;quot;detach&amp;quot; from the Python interpreter temporarily inside the closure
+(e.g. by &lt;code&gt;Python::detach&lt;/code&gt;) makes it possible for interleaved and/or concurrent
+execution of various portions of the closure.&lt;/p&gt;
+&lt;p&gt;PyO3 0.29.0 added a &lt;code&gt;Sync&lt;/code&gt; bound to close this thread-safety bug.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2021-0156: Vulnerability in triton-vm</title><id>https://rustsec.org/advisories/RUSTSEC-2021-0156.html</id><updated>2026-06-11T12:00:00+00:00</updated><category term="crypto-failure"/><link href="https://rustsec.org/advisories/RUSTSEC-2021-0156.html" rel="alternate" type="text/html" title="RUSTSEC-2021-0156: Vulnerability in triton-vm"/><published>2026-06-11T12:00:00+00:00</published><summary xml:lang="en">Triton VM Soundness Vulnerability due to Missing Constraint</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -1336,1416 +1507,6 @@ missing a check: when replacing an encrypted event, the replacement event itself
 is not required to be encrypted. This enables a malicious homeserver
 administrator (or an actor with equivalent power) to impersonate or spoof
 messages as if they were sent by a victim user.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0171: logflux contained malicious code</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0171.html</id><updated>2026-06-04T12:00:00+00:00</updated><category term="malicious"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0171.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0171: logflux contained malicious code"/><published>2026-06-04T12:00:00+00:00</published><summary xml:lang="en">`logflux` was removed from crates.io for malicious code</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/logflux/RUSTSEC-2026-0171.md&quot;&gt;History&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/logflux/RUSTSEC-2026-0171.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0171&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2026-0171
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;logflux&lt;/code&gt; was removed from crates.io for malicious code&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-06-03&quot;&gt;
-          June  3, 2026
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-06-04&quot;&gt;
-          June  4, 2026
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/logflux.html&quot;&gt;logflux&lt;/a&gt;
-          
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/malicious.html&quot;&gt;malicious&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;The &lt;code&gt;logflux&lt;/code&gt; crate attempted to download and run a malicious payload on the
-user&apos;s machine.&lt;/p&gt;
-&lt;p&gt;The malicious crate had 1 version published on 2026-04-26, approximately 1
-month before removal, and had no evidence of actual usage. This crate had no
-dependencies on crates.io.&lt;/p&gt;
-&lt;p&gt;Thanks to Paweł Bis for discovering and reporting this crate!&lt;/p&gt;
-&lt;p&gt;This appears to have been part of a campaign targeting people applying for Rust
-jobs. Please be careful with take-home assignments, especially if they ask you
-to use specific dependencies.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0163: pqcrypto-internals is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0163.html</id><updated>2026-06-04T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0163.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0163: pqcrypto-internals is unmaintained"/><published>2026-06-04T12:00:00+00:00</published><summary xml:lang="en">`pqcrypto-internals` is unmaintained: upstream PQClean project being archived</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/pqcrypto-internals/RUSTSEC-2026-0163.md&quot;&gt;History&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/pqcrypto-internals/RUSTSEC-2026-0163.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0163&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2026-0163
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;pqcrypto-internals&lt;/code&gt; is unmaintained: upstream PQClean project being archived&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-06-04&quot;&gt;
-          June  4, 2026
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-06-04&quot;&gt;
-          June  4, 2026
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/pqcrypto-internals.html&quot;&gt;pqcrypto-internals&lt;/a&gt;
-           
-          (&lt;a href=&quot;https://crates.io/crates/pqcrypto-internals&quot;&gt;crates.io&lt;/a&gt;)
-          
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unmaintained
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/rustpq/pqcrypto/issues/97&quot;&gt;
-              https://github.com/rustpq/pqcrypto/issues/97
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;This crate provides internal FFI utilities for the &lt;code&gt;pqcrypto-*&lt;/code&gt; ecosystem,
-directly wrapping C implementations from
-&lt;a href=&quot;https://github.com/PQClean/PQClean&quot;&gt;PQClean&lt;/a&gt;. The PQClean project is being
-archived in or after July 2026 (see &lt;a href=&quot;https://github.com/PQClean/PQClean/issues/604&quot;&gt;PQClean/PQClean#604&lt;/a&gt;),
-after which no further security patches or bug fixes will be applied to the
-upstream implementations.&lt;/p&gt;
-&lt;p&gt;As a result, this crate and the broader &lt;code&gt;pqcrypto-*&lt;/code&gt; ecosystem will no longer
-receive updates.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0169: surf is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0169.html</id><updated>2026-06-04T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0169.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0169: surf is unmaintained"/><published>2026-06-04T12:00:00+00:00</published><summary xml:lang="en">surf is unmaintained</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/surf/RUSTSEC-2026-0169.md&quot;&gt;History&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/surf/RUSTSEC-2026-0169.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0169&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2026-0169
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;surf is unmaintained&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-06-04&quot;&gt;
-          June  4, 2026
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-06-04&quot;&gt;
-          June  4, 2026
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/surf.html&quot;&gt;surf&lt;/a&gt;
-           
-          (&lt;a href=&quot;https://crates.io/crates/surf&quot;&gt;crates.io&lt;/a&gt;)
-          
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unmaintained
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/http-rs/surf/issues/352&quot;&gt;
-              https://github.com/http-rs/surf/issues/352
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;The surf crate is unmaintained, and all versions are affected.&lt;/p&gt;
-&lt;p&gt;For alternatives, consider using &lt;a href=&quot;https://crates.io/crates/reqwest&quot;&gt;reqwest&lt;/a&gt;
-or &lt;a href=&quot;https://crates.io/crates/ureq&quot;&gt;ureq&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;See &lt;a href=&quot;https://github.com/http-rs/surf/issues/352&quot;&gt;this issue&lt;/a&gt; for more context.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0161: pqcrypto-mlkem is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0161.html</id><updated>2026-06-04T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0161.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0161: pqcrypto-mlkem is unmaintained"/><published>2026-06-04T12:00:00+00:00</published><summary xml:lang="en">`pqcrypto-mlkem` is unmaintained: upstream PQClean project being archived</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/pqcrypto-mlkem/RUSTSEC-2026-0161.md&quot;&gt;History&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/pqcrypto-mlkem/RUSTSEC-2026-0161.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0161&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2026-0161
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;pqcrypto-mlkem&lt;/code&gt; is unmaintained: upstream PQClean project being archived&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-06-04&quot;&gt;
-          June  4, 2026
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-06-04&quot;&gt;
-          June  4, 2026
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/pqcrypto-mlkem.html&quot;&gt;pqcrypto-mlkem&lt;/a&gt;
-           
-          (&lt;a href=&quot;https://crates.io/crates/pqcrypto-mlkem&quot;&gt;crates.io&lt;/a&gt;)
-          
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unmaintained
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/rustpq/pqcrypto/issues/97&quot;&gt;
-              https://github.com/rustpq/pqcrypto/issues/97
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;This crate provides Rust bindings to ML-KEM (FIPS 203) via C implementations
-from &lt;a href=&quot;https://github.com/PQClean/PQClean&quot;&gt;PQClean&lt;/a&gt;. The PQClean project is
-being archived in or after July 2026 (see &lt;a href=&quot;https://github.com/PQClean/PQClean/issues/604&quot;&gt;PQClean/PQClean#604&lt;/a&gt;),
-after which no further security patches or bug fixes will be applied to the
-upstream implementations.&lt;/p&gt;
-&lt;p&gt;As a result, this crate will no longer receive updates. Users should migrate
-to the &lt;a href=&quot;https://crates.io/crates/ml-kem&quot;&gt;&lt;code&gt;ml-kem&lt;/code&gt;&lt;/a&gt; crate, which provides a
-pure-Rust implementation of ML-KEM (FIPS 203).&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0170: tide is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0170.html</id><updated>2026-06-04T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0170.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0170: tide is unmaintained"/><published>2026-06-04T12:00:00+00:00</published><summary xml:lang="en">tide is unmaintained</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/tide/RUSTSEC-2026-0170.md&quot;&gt;History&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/tide/RUSTSEC-2026-0170.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0170&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2026-0170
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;tide is unmaintained&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-06-04&quot;&gt;
-          June  4, 2026
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-06-04&quot;&gt;
-          June  4, 2026
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/tide.html&quot;&gt;tide&lt;/a&gt;
-           
-          (&lt;a href=&quot;https://crates.io/crates/tide&quot;&gt;crates.io&lt;/a&gt;)
-          
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unmaintained
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/http-rs/tide/issues/922&quot;&gt;
-              https://github.com/http-rs/tide/issues/922
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;The tide crate is unmaintained, and all versions are affected.&lt;/p&gt;
-&lt;p&gt;The closest maintained alternative might be &lt;a href=&quot;https://crates.io/crates/trillium&quot;&gt;trillium&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;See &lt;a href=&quot;https://github.com/http-rs/tide/issues/922&quot;&gt;this issue&lt;/a&gt; for more context.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0160: pqcrypto-sphincsplus is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0160.html</id><updated>2026-06-04T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0160.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0160: pqcrypto-sphincsplus is unmaintained"/><published>2026-06-04T12:00:00+00:00</published><summary xml:lang="en">`pqcrypto-sphincsplus` is unmaintained: upstream PQClean project being archived</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/pqcrypto-sphincsplus/RUSTSEC-2026-0160.md&quot;&gt;History&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/pqcrypto-sphincsplus/RUSTSEC-2026-0160.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0160&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2026-0160
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;pqcrypto-sphincsplus&lt;/code&gt; is unmaintained: upstream PQClean project being archived&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-06-04&quot;&gt;
-          June  4, 2026
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-06-04&quot;&gt;
-          June  4, 2026
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/pqcrypto-sphincsplus.html&quot;&gt;pqcrypto-sphincsplus&lt;/a&gt;
-           
-          (&lt;a href=&quot;https://crates.io/crates/pqcrypto-sphincsplus&quot;&gt;crates.io&lt;/a&gt;)
-          
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unmaintained
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/rustpq/pqcrypto/issues/97&quot;&gt;
-              https://github.com/rustpq/pqcrypto/issues/97
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;This crate provides Rust bindings to SPHINCS+/SLH-DSA (FIPS 205) via C
-implementations from &lt;a href=&quot;https://github.com/PQClean/PQClean&quot;&gt;PQClean&lt;/a&gt;. The
-PQClean project is being archived in or after July 2026 (see
-&lt;a href=&quot;https://github.com/PQClean/PQClean/issues/604&quot;&gt;PQClean/PQClean#604&lt;/a&gt;),
-after which no further security patches or bug fixes will be applied to the
-upstream implementations.&lt;/p&gt;
-&lt;p&gt;As a result, this crate will no longer receive updates. Users should migrate
-to the &lt;a href=&quot;https://crates.io/crates/slh-dsa&quot;&gt;&lt;code&gt;slh-dsa&lt;/code&gt;&lt;/a&gt; crate, which provides a
-pure-Rust implementation of SLH-DSA (FIPS 205).&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0166: pqcrypto-mldsa is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0166.html</id><updated>2026-06-04T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0166.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0166: pqcrypto-mldsa is unmaintained"/><published>2026-06-04T12:00:00+00:00</published><summary xml:lang="en">`pqcrypto-mldsa` is unmaintained: upstream PQClean project being archived</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/pqcrypto-mldsa/RUSTSEC-2026-0166.md&quot;&gt;History&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/pqcrypto-mldsa/RUSTSEC-2026-0166.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0166&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2026-0166
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;pqcrypto-mldsa&lt;/code&gt; is unmaintained: upstream PQClean project being archived&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-06-04&quot;&gt;
-          June  4, 2026
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-06-04&quot;&gt;
-          June  4, 2026
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/pqcrypto-mldsa.html&quot;&gt;pqcrypto-mldsa&lt;/a&gt;
-           
-          (&lt;a href=&quot;https://crates.io/crates/pqcrypto-mldsa&quot;&gt;crates.io&lt;/a&gt;)
-          
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unmaintained
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/rustpq/pqcrypto/issues/97&quot;&gt;
-              https://github.com/rustpq/pqcrypto/issues/97
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;This crate provides Rust bindings to ML-DSA (FIPS 204) via C implementations
-from &lt;a href=&quot;https://github.com/PQClean/PQClean&quot;&gt;PQClean&lt;/a&gt;. The PQClean project is
-being archived in or after July 2026 (see &lt;a href=&quot;https://github.com/PQClean/PQClean/issues/604&quot;&gt;PQClean/PQClean#604&lt;/a&gt;),
-after which no further security patches or bug fixes will be applied to the
-upstream implementations.&lt;/p&gt;
-&lt;p&gt;As a result, this crate will no longer receive updates. Users should migrate
-to the &lt;a href=&quot;https://crates.io/crates/ml-dsa&quot;&gt;&lt;code&gt;ml-dsa&lt;/code&gt;&lt;/a&gt; crate, which provides a
-pure-Rust implementation of ML-DSA (FIPS 204).&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0164: pqcrypto is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0164.html</id><updated>2026-06-04T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0164.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0164: pqcrypto is unmaintained"/><published>2026-06-04T12:00:00+00:00</published><summary xml:lang="en">`pqcrypto` is unmaintained: upstream PQClean project being archived</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/pqcrypto/RUSTSEC-2026-0164.md&quot;&gt;History&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/pqcrypto/RUSTSEC-2026-0164.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0164&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2026-0164
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;pqcrypto&lt;/code&gt; is unmaintained: upstream PQClean project being archived&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-06-04&quot;&gt;
-          June  4, 2026
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-06-04&quot;&gt;
-          June  4, 2026
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/pqcrypto.html&quot;&gt;pqcrypto&lt;/a&gt;
-           
-          (&lt;a href=&quot;https://crates.io/crates/pqcrypto&quot;&gt;crates.io&lt;/a&gt;)
-          
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unmaintained
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/rustpq/pqcrypto/issues/97&quot;&gt;
-              https://github.com/rustpq/pqcrypto/issues/97
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;The &lt;code&gt;pqcrypto&lt;/code&gt; crate and the entire &lt;code&gt;pqcrypto-*&lt;/code&gt; ecosystem wrap C implementations
-from &lt;a href=&quot;https://github.com/PQClean/PQClean&quot;&gt;PQClean&lt;/a&gt;. The PQClean project is being
-archived in or after July 2026 (see &lt;a href=&quot;https://github.com/PQClean/PQClean/issues/604&quot;&gt;PQClean/PQClean#604&lt;/a&gt;),
-after which no further security patches, algorithm updates, or bug fixes will
-be applied to the upstream implementations.&lt;/p&gt;
-&lt;p&gt;As a result, this crate and all dependent crates in the &lt;code&gt;pqcrypto-*&lt;/code&gt; ecosystem
-will no longer receive updates. Users should migrate to actively maintained
-alternatives. Pure-Rust replacements are available for several algorithms:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;ML-KEM (FIPS 203): &lt;a href=&quot;https://crates.io/crates/ml-kem&quot;&gt;&lt;code&gt;ml-kem&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;ML-DSA (FIPS 204): &lt;a href=&quot;https://crates.io/crates/ml-dsa&quot;&gt;&lt;code&gt;ml-dsa&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;SLH-DSA (FIPS 205): &lt;a href=&quot;https://crates.io/crates/slh-dsa&quot;&gt;&lt;code&gt;slh-dsa&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;FN-DSA (FIPS 206): &lt;a href=&quot;https://crates.io/crates/fn-dsa&quot;&gt;&lt;code&gt;fn-dsa&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0165: pqcrypto-falcon is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0165.html</id><updated>2026-06-04T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0165.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0165: pqcrypto-falcon is unmaintained"/><published>2026-06-04T12:00:00+00:00</published><summary xml:lang="en">`pqcrypto-falcon` is unmaintained: upstream PQClean project being archived</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/pqcrypto-falcon/RUSTSEC-2026-0165.md&quot;&gt;History&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/pqcrypto-falcon/RUSTSEC-2026-0165.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0165&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2026-0165
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;pqcrypto-falcon&lt;/code&gt; is unmaintained: upstream PQClean project being archived&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-06-04&quot;&gt;
-          June  4, 2026
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-06-04&quot;&gt;
-          June  4, 2026
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/pqcrypto-falcon.html&quot;&gt;pqcrypto-falcon&lt;/a&gt;
-           
-          (&lt;a href=&quot;https://crates.io/crates/pqcrypto-falcon&quot;&gt;crates.io&lt;/a&gt;)
-          
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unmaintained
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/rustpq/pqcrypto/issues/97&quot;&gt;
-              https://github.com/rustpq/pqcrypto/issues/97
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;This crate provides Rust bindings to the Falcon (FN-DSA) signature scheme
-via C implementations from
-&lt;a href=&quot;https://github.com/PQClean/PQClean&quot;&gt;PQClean&lt;/a&gt;. The PQClean project is being
-archived in or after July 2026 (see &lt;a href=&quot;https://github.com/PQClean/PQClean/issues/604&quot;&gt;PQClean/PQClean#604&lt;/a&gt;),
-after which no further security patches or bug fixes will be applied to the
-upstream implementations.&lt;/p&gt;
-&lt;p&gt;As a result, this crate will no longer receive updates. Users should migrate
-to the &lt;a href=&quot;https://crates.io/crates/fn-dsa&quot;&gt;&lt;code&gt;fn-dsa&lt;/code&gt;&lt;/a&gt; crate, which provides a
-pure-Rust implementation of FN-DSA (FIPS 206).&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0159: Vulnerability in matrix-sdk-crypto</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0159.html</id><updated>2026-06-04T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0159.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0159: Vulnerability in matrix-sdk-crypto"/><published>2026-06-04T12:00:00+00:00</published><summary xml:lang="en">Sender-binding gaps in to-device messages</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/matrix-sdk-crypto/RUSTSEC-2026-0159.md&quot;&gt;History&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/matrix-sdk-crypto/RUSTSEC-2026-0159.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0159&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2026-0159
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Sender-binding gaps in to-device messages&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-06-03&quot;&gt;
-          June  3, 2026
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-06-04&quot;&gt;
-          June  4, 2026
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/matrix-sdk-crypto.html&quot;&gt;matrix-sdk-crypto&lt;/a&gt;
-           
-          (&lt;a href=&quot;https://crates.io/crates/matrix-sdk-crypto&quot;&gt;crates.io&lt;/a&gt;)
-          
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45056&quot;&gt;CVE-2026-45056&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-wfq4-36m3-9g42&quot;&gt;GHSA-wfq4-36m3-9g42&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/matrix-org/matrix-rust-sdk/security/advisories/GHSA-wfq4-36m3-9g42&quot;&gt;
-              https://github.com/matrix-org/matrix-rust-sdk/security/advisories/GHSA-wfq4-36m3-9g42
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=0.16.1&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#60;0.12.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;The matrix-sdk-crypto crate before 0.16.1 is missing a check for the sender&apos;s
-user ID when decrypting an Olm-encrypted to-device message containing the
-sender_device_keys property.&lt;/p&gt;
-&lt;p&gt;This could be exploited to spoof the sender of an encrypted to-device message,
-but only if the attacker colludes with (or is) the homeserver operator.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0167: pqcrypto-classicmceliece is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0167.html</id><updated>2026-06-04T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0167.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0167: pqcrypto-classicmceliece is unmaintained"/><published>2026-06-04T12:00:00+00:00</published><summary xml:lang="en">`pqcrypto-classicmceliece` is unmaintained: upstream PQClean project being archived</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/pqcrypto-classicmceliece/RUSTSEC-2026-0167.md&quot;&gt;History&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/pqcrypto-classicmceliece/RUSTSEC-2026-0167.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0167&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2026-0167
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;pqcrypto-classicmceliece&lt;/code&gt; is unmaintained: upstream PQClean project being archived&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-06-04&quot;&gt;
-          June  4, 2026
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-06-04&quot;&gt;
-          June  4, 2026
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/pqcrypto-classicmceliece.html&quot;&gt;pqcrypto-classicmceliece&lt;/a&gt;
-           
-          (&lt;a href=&quot;https://crates.io/crates/pqcrypto-classicmceliece&quot;&gt;crates.io&lt;/a&gt;)
-          
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unmaintained
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/rustpq/pqcrypto/issues/97&quot;&gt;
-              https://github.com/rustpq/pqcrypto/issues/97
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;This crate provides Rust bindings to the Classic McEliece key encapsulation
-mechanism via C implementations from
-&lt;a href=&quot;https://github.com/PQClean/PQClean&quot;&gt;PQClean&lt;/a&gt;. The PQClean project is being
-archived in or after July 2026 (see &lt;a href=&quot;https://github.com/PQClean/PQClean/issues/604&quot;&gt;PQClean/PQClean#604&lt;/a&gt;),
-after which no further security patches or bug fixes will be applied to the
-upstream implementations.&lt;/p&gt;
-&lt;p&gt;As a result, this crate will no longer receive updates. Users should migrate
-to actively maintained alternatives.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0162: pqcrypto-traits is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0162.html</id><updated>2026-06-04T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0162.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0162: pqcrypto-traits is unmaintained"/><published>2026-06-04T12:00:00+00:00</published><summary xml:lang="en">`pqcrypto-traits` is unmaintained: upstream PQClean project being archived</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/pqcrypto-traits/RUSTSEC-2026-0162.md&quot;&gt;History&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/pqcrypto-traits/RUSTSEC-2026-0162.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0162&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2026-0162
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;pqcrypto-traits&lt;/code&gt; is unmaintained: upstream PQClean project being archived&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-06-04&quot;&gt;
-          June  4, 2026
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-06-04&quot;&gt;
-          June  4, 2026
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/pqcrypto-traits.html&quot;&gt;pqcrypto-traits&lt;/a&gt;
-           
-          (&lt;a href=&quot;https://crates.io/crates/pqcrypto-traits&quot;&gt;crates.io&lt;/a&gt;)
-          
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unmaintained
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/rustpq/pqcrypto/issues/97&quot;&gt;
-              https://github.com/rustpq/pqcrypto/issues/97
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;This crate provides shared trait definitions for the &lt;code&gt;pqcrypto-*&lt;/code&gt; ecosystem,
-which wraps C implementations from
-&lt;a href=&quot;https://github.com/PQClean/PQClean&quot;&gt;PQClean&lt;/a&gt;. The PQClean project is being
-archived in or after July 2026 (see &lt;a href=&quot;https://github.com/PQClean/PQClean/issues/604&quot;&gt;PQClean/PQClean#604&lt;/a&gt;).&lt;/p&gt;
-&lt;p&gt;As a result, this crate and the broader &lt;code&gt;pqcrypto-*&lt;/code&gt; ecosystem will no longer
-receive updates. Users should migrate to actively maintained alternatives.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
