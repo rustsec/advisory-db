@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories with keyword &#39;DoS&#39; › RustSec Advisory Database</title>
+<title>RUSTSEC-2026-0181: vibeio-http: DoS vulnerability in HTTP/1.x chunked encoding parser triggered by maliciously crafted chunk lengths › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,77 +52,137 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/vibeio-http/RUSTSEC-2026-0181.md">History</a> ⋅
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/vibeio-http/RUSTSEC-2026-0181.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2026-0181">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2026-0181
+        
+      </h1>
+      <span class="subtitle"><p>DoS vulnerability in HTTP/1.x chunked encoding parser triggered by maliciously crafted chunk lengths</p>
 </span>
-      <h1>Advisories with keyword &#39;DoS&#39;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2026-06-13">
-    June 13, 2026
-  </time>
-
-  
-  <h3>
     
+
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2026-06-06">
+          June  6, 2026
+        </time>
+      </dd>
+
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2026-06-13">
+          June 13, 2026
+        </time>
         
-    
-    <a href="/advisories/RUSTSEC-2026-0181.html">
-      RUSTSEC-2026-0181: Vulnerability in vibeio-http
-    </a>
-  </h3>
-  <span><p>DoS vulnerability in HTTP/1.x chunked encoding parser triggered by maliciously crafted chunk lengths</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2020-10-01">
-    October  1, 2020
-  </time>
+      </dd>
 
-  
-  <h3>
-    
-      <span class="tag high">HIGH</span>
-      
-    <a href="/advisories/RUSTSEC-2019-0033.html">
-      RUSTSEC-2019-0033: Vulnerability in http
-    </a>
-  </h3>
-  <span><p>Integer Overflow in HeaderMap::reserve() can cause Denial of Service</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2020-10-01">
-    October  1, 2020
-  </time>
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        <a href="/packages/vibeio-http.html">vibeio-http</a>
+           
+          (<a href="https://crates.io/crates/vibeio-http">crates.io</a>)
+          
+        
+        
+      </dd>
 
-  
-  <h3>
+      <dt id="type">Type</dt>
+      <dd>
+        
+        Vulnerability
+        
+      </dd>
+
+      
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/denial-of-service.html">denial-of-service</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/http.html">#http</a>
+        
+          <a href="/keywords/DoS.html">#DoS</a>
+        
+      </dd>
+      
+
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/ferronweb/vibeio-http/blob/main/CHANGELOG.md#vibeio-http-032">
+              https://github.com/ferronweb/vibeio-http/blob/main/CHANGELOG.md#vibeio-http-032
+            </a>
+          </li>
+        
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&#62;=0.3.2</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+
+      
+      
+    </dl>
+
     
-      <span class="tag high">HIGH</span>
-      
-    <a href="/advisories/RUSTSEC-2020-0019.html">
-      RUSTSEC-2020-0019: Vulnerability in tokio-rustls
-    </a>
-  </h3>
-  <span><p>tokio-rustls reads may cause excessive memory usage</p>
-</span>
-  
-</li>
-      
-    </ul>
+    
+
+    <h3 id="description">Description</h3>
+    <p>When using the affected versions of the <code>vibeio-http</code> crate, an attacker could craft a malicious HTTP/1.x request with a large chunk length (between <code>usize::MAX - 1</code> and <code>usize::MAX</code> inclusive) and send it, causing the server to crash (integer overflow panic in debug builds, split_to out of bounds panic in release builds).</p>
+<p>This was fixed in <code>vibeio-http</code> 0.3.2 by erroring on the chunk length if it exceeds <code>usize::MAX - 2</code> (using <code>checked_add()</code> instead of <code>+</code> operator), preventing integer overflow.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
