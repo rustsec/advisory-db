@@ -1,0 +1,25 @@
+```toml
+[advisory]
+id = "RUSTSEC-0000-0000"
+package = "ptr_hash"
+date = "2025-04-24"
+url = "https://github.com/RagnarGrootKoerkamp/PtrHash/issues/22"
+references = ["https://github.com/RagnarGrootKoerkamp/PtrHash/commit/68f19ebd6a1f78f248eceb08565fdf3d4779753a"]
+informational = "unsound"
+categories = ["memory-corruption"]
+
+[affected.functions]
+"ptr_hash::util::prefetch_index" = ["<= 0.1.1"]
+
+
+[versions]
+patched = [">= 2.0.0-alpha.1"]
+```
+
+# `prefetch_index` may create out-of-bounds pointers from safe code
+
+In affected versions, `ptr_hash::util::prefetch_index` was a publicly accessible safe function. It accepted an arbitrary `index` and used it in `s.as_ptr().add(index)` without checking whether the index was in bounds.
+
+Although prefetching an out-of-bounds address is not intended to dereference the pointer, Rust's `ptr.add` requires the resulting pointer to stay within the same allocation or one byte past it. Passing an out-of-bounds index could therefore trigger undefined behavior through safe code.
+
+The public API exposure was removed in `1.0.0`, and the remaining internal pointer calculation was later fixed in `2.0.0-alpha.1` by replacing `ptr.add()` with `ptr.wrapping_add()`.
