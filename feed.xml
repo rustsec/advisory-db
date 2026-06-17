@@ -1,5 +1,125 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2026-06-15T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2026-0182: Vulnerability in wasmtime-wasi</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0182.html</id><updated>2026-06-15T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0182.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0182: Vulnerability in wasmtime-wasi"/><published>2026-06-15T12:00:00+00:00</published><summary xml:lang="en">Leak in WASIp1 `fd_renumber` implementation</summary><content xml:lang="en" type="html">  &lt;article&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2026-06-17T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2026-0183: Unsoundness in git2</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0183.html</id><updated>2026-06-17T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0183.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0183: Unsoundness in git2"/><published>2026-06-17T12:00:00+00:00</published><summary xml:lang="en">Potential undefined behavior when calling Remote::list()</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/git2/RUSTSEC-2026-0183.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/git2/RUSTSEC-2026-0183.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0183&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0183
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Potential undefined behavior when calling Remote::list()&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-05-12&quot;&gt;
+          May 12, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-06-17&quot;&gt;
+          June 17, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/git2.html&quot;&gt;git2&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/git2&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/git2.html&quot;&gt;#git2&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/rust-lang/git2-rs/pull/1250&quot;&gt;
+              https://github.com/rust-lang/git2-rs/pull/1250
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.21.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;When calling &lt;code&gt;Remote::list()&lt;/code&gt; for a remote of a git repository, when that remote does not advertise any references, git2 passes a null pointer to the unsafe function &lt;code&gt;slice::from_raw_parts()&lt;/code&gt;. Based on the safety section documentation of function, data must be non-null even for slices of length zero. Thus, the use of a null pointer leads to undefined behavior.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0182: Vulnerability in wasmtime-wasi</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0182.html</id><updated>2026-06-15T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0182.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0182: Vulnerability in wasmtime-wasi"/><published>2026-06-15T12:00:00+00:00</published><summary xml:lang="en">Leak in WASIp1 `fd_renumber` implementation</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
           &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/wasmtime-wasi/RUSTSEC-2026-0182.md&quot;&gt;History&lt;/a&gt; ⋅
@@ -1644,134 +1764,6 @@ exfiltrate both metadata and code from the project it was included within.&lt;/p
 before removal. This crate has no dependencies on crates.io, and there is no
 evidence of actual usage of the compromised version.&lt;/p&gt;
 &lt;p&gt;Thanks to Charlie Eriksen for the report.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0174: Security notice about http-types</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0174.html</id><updated>2026-06-08T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0174.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0174: Security notice about http-types"/><published>2026-06-08T12:00:00+00:00</published><summary xml:lang="en">`Authorization::value` and `WwwAuthenticate::value` can violate ASCII invariants</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/http-types/RUSTSEC-2026-0174.md&quot;&gt;History&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/http-types/RUSTSEC-2026-0174.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0174&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2026-0174
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;Authorization::value&lt;/code&gt; and &lt;code&gt;WwwAuthenticate::value&lt;/code&gt; can violate ASCII invariants&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-03-11&quot;&gt;
-          March 11, 2026
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-06-08&quot;&gt;
-          June  8, 2026
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/http-types.html&quot;&gt;http-types&lt;/a&gt;
-           
-          (&lt;a href=&quot;https://crates.io/crates/http-types&quot;&gt;crates.io&lt;/a&gt;)
-          
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Notice
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/header.html&quot;&gt;#header&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/ascii.html&quot;&gt;#ascii&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/invalid-utf-8.html&quot;&gt;#invalid-utf-8&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/http-rs/http-types/issues/534&quot;&gt;
-              https://github.com/http-rs/http-types/issues/534
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;&lt;code&gt;Authorization::value&lt;/code&gt; uses &lt;code&gt;HeaderValue::value&lt;/code&gt; with the claim
-that the internal string is ASCII, but &lt;code&gt;Authorization::new&lt;/code&gt; and
-&lt;code&gt;Authorization::set_credentials&lt;/code&gt; accept arbitrary &lt;code&gt;String&lt;/code&gt; credentials without
-validation. As a result, safe code can construct a header value containing
-non-ASCII UTF-8 while the implementation assumes ASCII.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;WwwAuthenticate::new&lt;/code&gt; and &lt;code&gt;WwwAuthenticate::set_realm&lt;/code&gt; similarly accepts arbitrary &lt;code&gt;String&lt;/code&gt; input, so &lt;code&gt;WwwAuthenticate::value&lt;/code&gt; can also produce a header value that violates the crate’s documented ASCII invariants.&lt;/p&gt;
-&lt;p&gt;This issue has not been confirmed as Undefined Behavior, but the unsafe
-justification in &lt;code&gt;Authorization::value&lt;/code&gt; and &lt;code&gt;WwwAuthenticate::value&lt;/code&gt; appears incorrect and can produce values outside the expected ASCII-only constraints.&lt;/p&gt;
-&lt;p&gt;The http-types crate is unmaintained and the issue is unlikely to be fixed.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
