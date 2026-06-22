@@ -1,0 +1,76 @@
+[
+  {
+    "id": "RUSTSEC-2026-0186",
+    "modified": "2026-06-22T18:11:20Z",
+    "published": "2026-06-20T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Unchecked pointer offset in crate `memmap2`",
+    "details": "Affected versionf of `memmap2` did not perform enough validation on the `offset` and `len` parameters of\n`Mmap::[unchecked_]advise_range()`,\n`MmapMut::[unchecked_]advise_ranage()`\nand `MmapMut::flush[_async]_range()`.\n\nThis can cause undefined behavior due to invalid values being passed to [`pointer::offset()`] and [`pointer::add()`]\nwhen passing an out-of-bounds range to any of the affected functions.\n\nThe flaw was corrected in commit [`cee7cf0`] and released in version `0.9.11`.\n\nThe invalid pointer is not dereferenced,\nbut it is passed to the `madvise` and `msync` syscalls and their Windows equivalents.\n\n[`pointer::offset()`]: https://doc.rust-lang.org/stable/std/primitive.pointer.html#method.offset-1\n[`pointer::add()`]: https://doc.rust-lang.org/stable/std/primitive.pointer.html#method.add-1\n[`cee7cf0`] https://github.com/RazrFalcon/memmap2-rs/pull/170/changes/cee7cf03a9ee095982a3c37b7aac8e3f68f1a00c",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "memmap2",
+          "purl": "pkg:cargo/memmap2"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "memmap2::Mmap::advise_range",
+              "memmap2::Mmap::unchecked_advise_range",
+              "memmap2::MmapMut::advise_range",
+              "memmap2::MmapMut::flush_async_range",
+              "memmap2::MmapMut::flush_range",
+              "memmap2::MmapMut::unchecked_advise_range"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.9.11"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/memmap2"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0186.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/RazrFalcon/memmap2-rs/issues/169"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/RazrFalcon/memmap2-rs/pull/170"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]
