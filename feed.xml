@@ -615,6 +615,162 @@ help: &amp;lt;1538&amp;gt; was created by a SharedReadOnly retag at offsets [0x3
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2025-0165: Unsoundness in i_tree</title><id>https://rustsec.org/advisories/RUSTSEC-2025-0165.html</id><updated>2026-06-29T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2025-0165.html" rel="alternate" type="text/html" title="RUSTSEC-2025-0165: Unsoundness in i_tree"/><published>2026-06-29T12:00:00+00:00</published><summary xml:lang="en">i_tree allowed out-of-bounds access through safe public node accessors</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/i_tree/RUSTSEC-2025-0165.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/i_tree/RUSTSEC-2025-0165.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2025-0165&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2025-0165
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;i_tree allowed out-of-bounds access through safe public node accessors&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2025-07-04&quot;&gt;
+          July  4, 2025
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-06-29&quot;&gt;
+          June 29, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/i_tree.html&quot;&gt;i_tree&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/i_tree&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/iShape-Rust/iTree/issues/1&quot;&gt;
+              https://github.com/iShape-Rust/iTree/issues/1
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/iShape-Rust/iTree/commit/a948b891cf159233bfed5b16bf185268fd9e1985&quot;&gt;
+              https://github.com/iShape-Rust/iTree/commit/a948b891cf159233bfed5b16bf185268fd9e1985
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/iShape-Rust/iTree/compare/0.9.0...0.10.0&quot;&gt;
+              https://github.com/iShape-Rust/iTree/compare/0.9.0...0.10.0
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.10.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;i_tree::tree::Tree::mut_node&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.10.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;i_tree::tree::Tree::node&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.10.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Affected versions of &lt;code&gt;i_tree&lt;/code&gt; exposed safe public &lt;code&gt;Tree::node&lt;/code&gt; and &lt;code&gt;Tree::mut_node&lt;/code&gt; methods in the public &lt;code&gt;tree&lt;/code&gt; module. These methods accepted an arbitrary &lt;code&gt;u32&lt;/code&gt; index and passed it directly to &lt;code&gt;Vec::get_unchecked&lt;/code&gt; / &lt;code&gt;get_unchecked_mut&lt;/code&gt; on the internal node buffer, without validating that the index was in bounds.&lt;/p&gt;
+&lt;p&gt;Because these methods were safe and public, a caller could pass an out-of-bounds index without writing any &lt;code&gt;unsafe&lt;/code&gt; code, producing an out-of-bounds shared or mutable reference and triggering undefined behavior.&lt;/p&gt;
+&lt;p&gt;Starting with &lt;code&gt;0.10.0&lt;/code&gt; the crate was restructured and these accessors are no longer reachable from outside the crate.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0191: Unsoundness in solana_rbpf</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0191.html</id><updated>2026-06-29T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0191.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0191: Unsoundness in solana_rbpf"/><published>2026-06-29T12:00:00+00:00</published><summary xml:lang="en">`EbpfVm::invoke_function` performs out-of-bounds pointer arithmetic</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -1663,126 +1819,6 @@ but it is passed to the &lt;code&gt;madvise&lt;/code&gt; and &lt;code&gt;msync&l
 &lt;p&gt;The status of &lt;code&gt;structopt&lt;/code&gt; is discussed in a &lt;a href=&quot;https://github.com/TeXitoi/structopt/issues/525&quot;&gt;pinned issue&lt;/a&gt;.&lt;/p&gt;
 &lt;h2&gt;Recommended alternative&lt;/h2&gt;
 &lt;p&gt;The &lt;code&gt;structopt&lt;/code&gt; derive wrapper was incorporated into &lt;code&gt;clap&lt;/code&gt; v3. There is &lt;a href=&quot;https://github.com/clap-rs/clap/blob/v4.6.0/CHANGELOG.md#migrating-1&quot;&gt;a migration guide&lt;/a&gt; for switching from &lt;code&gt;structopt&lt;/code&gt; to &lt;code&gt;clap&lt;/code&gt;.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0183: Unsoundness in git2</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0183.html</id><updated>2026-06-17T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0183.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0183: Unsoundness in git2"/><published>2026-06-17T12:00:00+00:00</published><summary xml:lang="en">Potential undefined behavior when calling Remote::list()</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/git2/RUSTSEC-2026-0183.md&quot;&gt;History&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/git2/RUSTSEC-2026-0183.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0183&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2026-0183
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Potential undefined behavior when calling Remote::list()&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-05-12&quot;&gt;
-          May 12, 2026
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-06-17&quot;&gt;
-          June 17, 2026
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/git2.html&quot;&gt;git2&lt;/a&gt;
-           
-          (&lt;a href=&quot;https://crates.io/crates/git2&quot;&gt;crates.io&lt;/a&gt;)
-          
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unsound
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/git2.html&quot;&gt;#git2&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/rust-lang/git2-rs/pull/1250&quot;&gt;
-              https://github.com/rust-lang/git2-rs/pull/1250
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=0.21.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;When calling &lt;code&gt;Remote::list()&lt;/code&gt; for a remote of a git repository, when that remote does not advertise any references, git2 passes a null pointer to the unsafe function &lt;code&gt;slice::from_raw_parts()&lt;/code&gt;. Based on the safety section documentation of function, data must be non-null even for slices of length zero. Thus, the use of a null pointer leads to undefined behavior.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
