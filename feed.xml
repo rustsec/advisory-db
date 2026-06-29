@@ -421,6 +421,200 @@ hostnames. Do not bind the MCP server to &lt;code&gt;0.0.0.0&lt;/code&gt; withou
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0190: Unsoundness in anyhow</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0190.html</id><updated>2026-06-29T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0190.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0190: Unsoundness in anyhow"/><published>2026-06-29T12:00:00+00:00</published><summary xml:lang="en">Unsoundness in `Error::downcast_mut()`</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/anyhow/RUSTSEC-2026-0190.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/anyhow/RUSTSEC-2026-0190.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0190&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0190
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Unsoundness in &lt;code&gt;Error::downcast_mut()&lt;/code&gt;&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-06-25&quot;&gt;
+          June 25, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-06-29&quot;&gt;
+          June 29, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/anyhow.html&quot;&gt;anyhow&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/anyhow&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/unsound.html&quot;&gt;#unsound&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/downcast_mut.html&quot;&gt;#downcast_mut&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/dtolnay/anyhow/issues/451&quot;&gt;
+              https://github.com/dtolnay/anyhow/issues/451
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=1.0.103&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;anyhow::Error::downcast_mut&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.0.103&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Affected versions of this crate violate borrow rules, resulting in undefined behavior, when the user adds context to an error via &lt;code&gt;Error::context&lt;/code&gt; and then later calls &lt;code&gt;Error::downcast_mut&lt;/code&gt; on the returned &lt;code&gt;Error&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The flaw was corrected in commit &lt;code&gt;6e8c000&lt;/code&gt; by revising how the mutable reference is constructed, avoiding inclusion of a shared reference in the resulting borrow chain.&lt;/p&gt;
+&lt;h2&gt;Example&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&quot;language-rust&quot;&gt;use anyhow::Error;
+use std::fmt;
+
+#[derive(Debug)]
+struct ErrorContext(&amp;amp;&apos;static str);
+
+impl fmt::Display for ErrorContext {
+    fn fmt(&amp;amp;self, f: &amp;amp;mut fmt::Formatter&amp;lt;&apos;_&amp;gt;) -&amp;gt; fmt::Result {
+        fmt::Display::fmt(&amp;amp;self.0, f)
+    }
+}
+
+fn main() {
+    let mut error = Error::msg(&amp;quot;inner error&amp;quot;).context(ErrorContext(&amp;quot;old context&amp;quot;));
+    let context: &amp;amp;mut ErrorContext = error.downcast_mut().unwrap();
+    context.0 = &amp;quot;new context&amp;quot;;
+    println!(&amp;quot;{:?}&amp;quot;, error);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Miri output&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;error: Undefined Behavior: trying to retag from &amp;lt;1538&amp;gt; for Unique permission at alloc602[0x38], but that tag only grants SharedReadOnly permission for this location
+   --&amp;gt; src/ptr.rs:170:18
+    |
+170 |         unsafe { &amp;amp;mut *self.ptr.as_ptr() }
+    |                  ^^^^^^^^^^^^^^^^^^^^^^^ this error occurs as part of retag at alloc602[0x38..0x48]
+    |
+    = help: this indicates a potential bug in the program: it performed an invalid operation, but the Stacked Borrows rules it violated are still experimental
+    = help: see https://github.com/rust-lang/unsafe-code-guidelines/blob/master/wip/stacked-borrows.md for further information
+help: &amp;lt;1538&amp;gt; was created by a SharedReadOnly retag at offsets [0x38..0x48]
+   --&amp;gt; src/ptr.rs:89:18
+    |
+ 89 |             ptr: NonNull::from(ptr),
+    |                  ^^^^^^^^^^^^^^^^^^
+    = note: stack backtrace:
+            0: anyhow::ptr::Mut::&amp;lt;&apos;_, ErrorContext&amp;gt;::deref_mut
+                at src/ptr.rs:170:18: 170:41
+            1: anyhow::error::&amp;lt;impl anyhow::Error&amp;gt;::downcast_mut::&amp;lt;ErrorContext&amp;gt;
+                at src/error.rs:560:18: 560:46
+            2: main
+                at examples/downcast_mut.rs:15:38: 15:58
+&lt;/code&gt;&lt;/pre&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0187: Vulnerability in lopdf</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0187.html</id><updated>2026-06-26T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0187.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0187: Vulnerability in lopdf"/><published>2026-06-26T12:00:00+00:00</published><summary xml:lang="en">Stack overflow in lopdf via deeply nested PDF objects</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -1525,191 +1719,6 @@ but it is passed to the &lt;code&gt;madvise&lt;/code&gt; and &lt;code&gt;msync&l
 
     &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
     &lt;p&gt;When a &lt;code&gt;Blame&lt;/code&gt; is created via &lt;code&gt;Blame::blame_buffer()&lt;/code&gt;, and a &lt;code&gt;BlameHunk&lt;/code&gt; is retrieved, the pointers to the original author, original committer, final author, and final committer may be null if unavailable. The corresponding &lt;code&gt;BlameHunk&lt;/code&gt; methods then create &lt;code&gt;Signature&lt;/code&gt;s based on null pointers; attempting to access the data of the &lt;code&gt;Signature&lt;/code&gt;s leads to dereferencing null pointers.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0182: Vulnerability in wasmtime-wasi</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0182.html</id><updated>2026-06-15T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0182.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0182: Vulnerability in wasmtime-wasi"/><published>2026-06-15T12:00:00+00:00</published><summary xml:lang="en">Leak in WASIp1 `fd_renumber` implementation</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/wasmtime-wasi/RUSTSEC-2026-0182.md&quot;&gt;History&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/wasmtime-wasi/RUSTSEC-2026-0182.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0182&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2026-0182
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Leak in WASIp1 &lt;code&gt;fd_renumber&lt;/code&gt; implementation&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-06-15&quot;&gt;
-          June 15, 2026
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-06-15&quot;&gt;
-          June 15, 2026
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/wasmtime-wasi.html&quot;&gt;wasmtime-wasi&lt;/a&gt;
-           
-          (&lt;a href=&quot;https://crates.io/crates/wasmtime-wasi&quot;&gt;crates.io&lt;/a&gt;)
-          
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-3p27-qvp9-27qf&quot;&gt;GHSA-3p27-qvp9-27qf&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-3p27-qvp9-27qf&quot;&gt;
-              https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-3p27-qvp9-27qf
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
-      &lt;dd&gt;2.3 &lt;span class=&quot;tag low&quot;&gt;
-        LOW
-      &lt;/span&gt;&lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;dl&gt;
-          
-            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
-            &lt;dd&gt;Low&lt;/dd&gt;
-          
-            &lt;dt&gt;Attack Requirements&lt;/dt&gt;
-            &lt;dd&gt;Present&lt;/dd&gt;
-          
-            &lt;dt&gt;Attack Vector&lt;/dt&gt;
-            &lt;dd&gt;Network&lt;/dd&gt;
-          
-            &lt;dt&gt;Privileges Required&lt;/dt&gt;
-            &lt;dd&gt;Low&lt;/dd&gt;
-          
-            &lt;dt&gt;Availability Impact to the Subsequent System&lt;/dt&gt;
-            &lt;dd&gt;Low&lt;/dd&gt;
-          
-            &lt;dt&gt;Confidentiality Impact to the Subsequent System&lt;/dt&gt;
-            &lt;dd&gt;None&lt;/dd&gt;
-          
-            &lt;dt&gt;Integrity Impact to the Subsequent System&lt;/dt&gt;
-            &lt;dd&gt;None&lt;/dd&gt;
-          
-            &lt;dt&gt;User Interaction&lt;/dt&gt;
-            &lt;dd&gt;None&lt;/dd&gt;
-          
-            &lt;dt&gt;Availability Impact to the Vulnerable System&lt;/dt&gt;
-            &lt;dd&gt;Low&lt;/dd&gt;
-          
-            &lt;dt&gt;Confidentiality Impact to the Vulnerable System&lt;/dt&gt;
-            &lt;dd&gt;None&lt;/dd&gt;
-          
-            &lt;dt&gt;Integrity Impact to the Vulnerable System&lt;/dt&gt;
-            &lt;dd&gt;None&lt;/dd&gt;
-          
-        &lt;/dl&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
-
-      
-          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:4.0/AV:N/AC:L/AT:P/PR:L/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:L&quot;&gt;CVSS:4.0/AV:N/AC:L/AT:P/PR:L/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:L&lt;/a&gt;&lt;/dd&gt;
-        
-
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=45.0.2&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=44.0.3, &amp;#60;45.0.0&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=36.0.11, &amp;#60;37.0.0&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=24.0.10, &amp;#60;25.0.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;This is an entry in the RustSec database for the Wasmtime security advisory
-located at
-https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-3p27-qvp9-27qf
-For more information see the GitHub-hosted security advisory.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
