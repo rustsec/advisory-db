@@ -1,0 +1,72 @@
+{
+  "id": "RUSTSEC-2026-0191",
+  "modified": "2026-06-29T14:39:58Z",
+  "published": "2026-05-28T12:00:00Z",
+  "aliases": [],
+  "related": [],
+  "summary": "`EbpfVm::invoke_function` performs out-of-bounds pointer arithmetic",
+  "details": "Affected versions of `solana_rbpf` expose the safe method\n`EbpfVm::invoke_function`. This method computes an obfuscated VM pointer by\ncasting `self` to `*mut u64` and applying a randomized offset derived from\n`get_runtime_environment_key()`.\n\nThe resulting pointer arithmetic is performed with `ptr::offset`, which\nrequires the computed pointer to remain within the same allocation. In practice,\nthe randomized offset can move the pointer far outside the allocation\ncontaining the `EbpfVm`, causing undefined behavior before the supplied builtin\nfunction is invoked.\n\n## Unmaintained\n\nThe upstream `solana_rbpf` repository is archived, and no patched version of\nthis crate is currently available.\n\nUsers should migrate to the maintained [`solana-sbpf`](https://crates.io/crates/solana-sbpf)\ncrate. The issue has been fixed there in\n[`anza-xyz/sbpf#151`](https://github.com/anza-xyz/sbpf/pull/151).",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "solana_rbpf",
+        "purl": "pkg:cargo/solana_rbpf"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": [
+            "solana_rbpf::vm::EbpfVm::invoke_function"
+          ]
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "memory-corruption"
+        ],
+        "cvss": null,
+        "informational": "unsound"
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.8.0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/solana_rbpf"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0191.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/solana-labs/rbpf"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/anza-xyz/sbpf/pull/151"
+    },
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/solana-sbpf"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
