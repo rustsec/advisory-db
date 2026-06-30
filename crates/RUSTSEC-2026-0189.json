@@ -1,14 +1,15 @@
 {
   "id": "RUSTSEC-2026-0189",
-  "modified": "2026-06-29T12:57:11Z",
+  "modified": "2026-06-30T07:16:56Z",
   "published": "2026-04-29T12:00:00Z",
   "aliases": [
     "CVE-2026-42559",
-    "GHSA-89vp-x53w-74fx"
+    "GHSA-89vp-x53w-74fx",
+    "GHSA-fvh2-gm75-j4j7"
   ],
   "related": [
-    "RUSTSEC-2026-0140",
-    "GHSA-fvh2-gm75-j4j7"
+    "GHSA-fvh2-gm75-j4j7",
+    "RUSTSEC-2026-0140"
   ],
   "summary": "DNS rebinding vulnerability in rmcp Streamable HTTP server transport",
   "details": "Prior to version 1.4.0, the `rmcp` crate's Streamable HTTP server transport did\nnot validate the incoming `Host` header.\n\nThis allowed a malicious public website, via a DNS rebinding attack, to send\nrequests to an MCP server running on the victim's loopback or private-network\ninterface.\n\nAn attacker who convinced a victim to visit a malicious page could enumerate and\ninvoke tools exposed by a locally running rmcp-based MCP server, read resources\nand prompts, and trigger side effects limited by the tools exposed by that\nserver.\n\nNon-HTTP transports such as stdio and child-process transports are not affected.\n\n## Patches\n\nThe issue was fixed in `rmcp` 1.4.0 by adding default loopback-only host\nallowlist validation for the Streamable HTTP server transport. Incoming HTTP\nrequests now validate the `Host` header and return HTTP 403 when the host is not\nallowed.\n\nUsers should upgrade to `rmcp >= 1.4.0`.\n\n## Workarounds\n\nIf upgrading is not possible, place the MCP server behind a reverse proxy\nconfigured to reject requests whose `Host` header is not one of the expected\nhostnames. Do not bind the MCP server to `0.0.0.0` without such validation.",
