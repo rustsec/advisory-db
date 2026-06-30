@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package &#39;ammonia&#39; › RustSec Advisory Database</title>
+<title>RUSTSEC-2026-0193: ammonia: mXSS in ammonia via MathML `annotation-xml` encoding strip › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,115 +52,155 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/ammonia/RUSTSEC-2026-0193.md">History</a> ⋅
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/ammonia/RUSTSEC-2026-0193.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2026-0193">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2026-0193
+        
+      </h1>
+      <span class="subtitle"><p>mXSS in ammonia via MathML <code>annotation-xml</code> encoding strip</p>
 </span>
-      <h1>Advisories for package &#39;ammonia&#39;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2026-06-30">
-    June 30, 2026
-  </time>
-
-  
-  <h3>
     
+
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2026-06-30">
+          June 30, 2026
+        </time>
+      </dd>
+
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2026-06-30">
+          June 30, 2026
+        </time>
         
-    
-    <a href="/advisories/RUSTSEC-2026-0193.html">
-      RUSTSEC-2026-0193: Vulnerability in ammonia
-    </a>
-  </h3>
-  <span><p>mXSS in ammonia via MathML <code>annotation-xml</code> encoding strip</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2025-09-22">
-    September 22, 2025
-  </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="package">Package</dt>
+      <dd>
         
-    
-    <a href="/advisories/RUSTSEC-2025-0071.html">
-      RUSTSEC-2025-0071: Vulnerability in ammonia
-    </a>
-  </h3>
-  <span><p>Incorrect handling of embedded SVG and MathML leads to mutation XSS after removal</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2022-01-19">
-    January 19, 2022
-  </time>
-
-  
-  <h3>
-    
         
-    
-    <a href="/advisories/RUSTSEC-2022-0003.html">
-      RUSTSEC-2022-0003: Vulnerability in ammonia
-    </a>
-  </h3>
-  <span><p>Space bug in <code>clean_text</code></p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2021-07-08">
-    July  8, 2021
-  </time>
-
-  
-  <h3>
-    
+        <a href="/packages/ammonia.html">ammonia</a>
+           
+          (<a href="https://crates.io/crates/ammonia">crates.io</a>)
+          
         
-    
-    <a href="/advisories/RUSTSEC-2021-0074.html">
-      RUSTSEC-2021-0074: Vulnerability in ammonia
-    </a>
-  </h3>
-  <span><p>Incorrect handling of embedded SVG and MathML leads to mutation XSS</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2020-10-01">
-    October  1, 2020
-  </time>
+        
+      </dd>
 
-  
-  <h3>
+      <dt id="type">Type</dt>
+      <dd>
+        
+        Vulnerability
+        
+      </dd>
+
+      
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/format-injection.html">format-injection</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/html.html">#html</a>
+        
+          <a href="/keywords/xss.html">#xss</a>
+        
+      </dd>
+      
+
+      
+
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&#62;=4.1.3</code></li>
+          
+          <li><code>&#62;=4.0.2, &#60;4.1.0</code></li>
+          
+          <li><code>&#62;=3.3.2, &#60;4.0.0</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+
+      
+      
+    </dl>
+
     
-      <span class="tag high">HIGH</span>
-      
-    <a href="/advisories/RUSTSEC-2019-0001.html">
-      RUSTSEC-2019-0001: Vulnerability in ammonia
-    </a>
-  </h3>
-  <span><p>Uncontrolled recursion leads to abort in HTML serialization</p>
-</span>
-  
-</li>
-      
-    </ul>
+    
+
+    <h3 id="description">Description</h3>
+    <p>If a certain set of MathML tags are enabled, an attacker can inject arbitrary JavaScript code into the user's browser.</p>
+<p>The <code>annotation-xml</code> tag has slightly different behavior than the other &quot;integration point&quot;
+tags in MathML and SVG, but ammonia didn't handle it, so it didn't correctly
+strip the namespace-incompatible tags.</p>
+<p>This vulnerability only has an effect when the <code>math</code> and <code>annotation-xml</code> tags
+are both enabled, but the <code>encoding</code> attribute is disabled, because it relies
+on the following sequence of steps:</p>
+<ol>
+<li>User writes code like <code>&lt;math&gt;&lt;annotation-xml encoding=&quot;text/html&quot;&gt;&lt;gadget&gt;&lt;/annotation-xml&gt;&lt;/math&gt;</code>.</li>
+<li>Namespace filtering checks the DOM, and it passes. <code>&lt;gadget&gt;</code> is parsed as HTML.</li>
+<li>Attribute filter strips it down to <code>&lt;math&gt;&lt;annotation-xml&gt;&lt;gadget&gt;&lt;/annotation-xml&gt;&lt;/math&gt;</code>. Because the encoding attribute is gone, <code>&lt;gadget&gt;</code> is now parsed as MathML.</li>
+<li>The gadget is written in such a way that it exploits the parsing differences between HTML and MathML.</li>
+</ol>
+<p>Additionally, the gadget can only be written using a tag that is parsed as raw text in HTML.
+These <a href="https://github.com/servo/html5ever/blob/045a0378f2b0f8d4a350793899cf722a2a9b3d11/html5ever/src/tree_builder/rules.rs">elements</a> are:</p>
+<ul>
+<li>title</li>
+<li>textarea</li>
+<li>xmp</li>
+<li>iframe</li>
+<li>noembed</li>
+<li>noframes</li>
+<li>plaintext</li>
+<li>noscript</li>
+<li>style</li>
+<li>script</li>
+</ul>
+<p>Applications that do not explicitly allow any of these tags should not be affected, since none are allowed by default.</p>
+<hr />
+<p><strong>Discovered by:</strong> ivan0912 (YesWeHack) · <strong>Date:</strong> 2026-06-29 · Found via local differential analysis and source review of ammonia's sanitisation pipeline; no third-party systems were tested.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
