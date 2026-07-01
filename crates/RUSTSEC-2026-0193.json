@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2026-0193",
-  "modified": "2026-06-30T14:05:13Z",
+  "modified": "2026-07-01T05:03:44Z",
   "published": "2026-06-30T12:00:00Z",
-  "aliases": [],
+  "aliases": [
+    "GHSA-9jh8-v38h-cvhr"
+  ],
   "related": [],
   "summary": "mXSS in ammonia via MathML `annotation-xml` encoding strip",
   "details": "If a certain set of MathML tags are enabled, an attacker can inject arbitrary JavaScript code into the user's browser.\n\nThe `annotation-xml` tag has slightly different behavior than the other \"integration point\"\ntags in MathML and SVG, but ammonia didn't handle it, so it didn't correctly\nstrip the namespace-incompatible tags.\n\nThis vulnerability only has an effect when the `math` and `annotation-xml` tags\nare both enabled, but the `encoding` attribute is disabled, because it relies\non the following sequence of steps:\n\n1. User writes code like `<math><annotation-xml encoding=\"text/html\"><gadget></annotation-xml></math>`.\n2. Namespace filtering checks the DOM, and it passes. `<gadget>` is parsed as HTML.\n3. Attribute filter strips it down to `<math><annotation-xml><gadget></annotation-xml></math>`. Because the encoding attribute is gone, `<gadget>` is now parsed as MathML.\n4. The gadget is written in such a way that it exploits the parsing differences between HTML and MathML.\n\nAdditionally, the gadget can only be written using a tag that is parsed as raw text in HTML.\nThese [elements] are:\n\n* title\n* textarea\n* xmp\n* iframe\n* noembed\n* noframes\n* plaintext\n* noscript\n* style\n* script\n\nApplications that do not explicitly allow any of these tags should not be affected, since none are allowed by default.\n\n[elements]: https://github.com/servo/html5ever/blob/045a0378f2b0f8d4a350793899cf722a2a9b3d11/html5ever/src/tree_builder/rules.rs\n\n---\n\n**Discovered by:** ivan0912 (YesWeHack) · **Date:** 2026-06-29 · Found via local differential analysis and source review of ammonia's sanitisation pipeline; no third-party systems were tested.",
