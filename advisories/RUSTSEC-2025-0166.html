@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package &#39;stackvector&#39; › RustSec Advisory Database</title>
+<title>RUSTSEC-2025-0166: stackvector: Multiple soundness issues in `stackvector` › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,60 +52,140 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/stackvector/RUSTSEC-2025-0166.md">History</a> ⋅
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/stackvector/RUSTSEC-2025-0166.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2025-0166">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2025-0166
+        
+      </h1>
+      <span class="subtitle"><p>Multiple soundness issues in <code>stackvector</code></p>
 </span>
-      <h1>Advisories for package &#39;stackvector&#39;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2026-07-02">
-    July  2, 2026
-  </time>
+    
 
-  
-  <h3>
-    
-        
-          <span class="tag info">INFO</span>
-        
-    
-    <a href="/advisories/RUSTSEC-2025-0166.html">
-      RUSTSEC-2025-0166: Unsoundness in stackvector
-    </a>
-  </h3>
-  <span><p>Multiple soundness issues in <code>stackvector</code></p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2021-03-30">
-    March 30, 2021
-  </time>
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2025-10-23">
+          October 23, 2025
+        </time>
+      </dd>
 
-  
-  <h3>
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2026-07-02">
+          July  2, 2026
+        </time>
+        
+      </dd>
+
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        <a href="/packages/stackvector.html">stackvector</a>
+           
+          (<a href="https://crates.io/crates/stackvector">crates.io</a>)
+          
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        <span class="tag info">INFO</span>
+        Unsound
+        
+      </dd>
+
+      
+
+      
+
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/Alexhuszagh/rust-stackvector/issues/3">
+              https://github.com/Alexhuszagh/rust-stackvector/issues/3
+            </a>
+          </li>
+        
+        
+          <li>
+            <a href="https://github.com/Alexhuszagh/rust-stackvector/pull/6">
+              https://github.com/Alexhuszagh/rust-stackvector/pull/6
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://github.com/Alexhuszagh/rust-stackvector/commit/02b947afdeeb1be95ec0888354aa76afdd9d0357">
+              https://github.com/Alexhuszagh/rust-stackvector/commit/02b947afdeeb1be95ec0888354aa76afdd9d0357
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://github.com/Alexhuszagh/rust-stackvector/issues/5">
+              https://github.com/Alexhuszagh/rust-stackvector/issues/5
+            </a>
+          </li>
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&#62;=2.0.0</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+
+      
+      
+    </dl>
+
     
-      <span class="tag high">HIGH</span>
-      
-    <a href="/advisories/RUSTSEC-2021-0048.html">
-      RUSTSEC-2021-0048: Vulnerability in stackvector
-    </a>
-  </h3>
-  <span><p>StackVec::extend can write out of bounds when size_hint is incorrect</p>
-</span>
-  
-</li>
-      
-    </ul>
+    
+
+    <h3 id="description">Description</h3>
+    <p>Affected versions of <code>stackvector</code> contained multiple soundness issues that could allow safe Rust code to trigger undefined behavior.</p>
+<p>One issue was that <code>StackVec::length</code> was exposed as a public field. Safe Rust code could set <code>length</code> to a value larger than the backing array capacity. Other safe methods, including <code>remove</code>, <code>pop</code>, and <code>truncate</code>, relied on <code>length</code> before performing unsafe pointer operations (<code>ptr::read</code>, <code>ptr::copy</code>, <code>offset</code>/<code>add</code>). If <code>length</code> was corrupted by safe code, these methods could perform out-of-bounds pointer arithmetic, reads, writes, or copies.</p>
+<p>The upstream maintainer also identified additional soundness issues, including the use of <code>mem::uninitialized</code> in <code>StackVec::from_vec_unchecked</code>, which was reachable through <code>from_vec</code>, and Miri violations related to <code>MaybeUninit</code> usage.</p>
+<p>Version <code>2.0.0</code> was released to fix the known soundness issues.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
