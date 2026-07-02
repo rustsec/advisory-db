@@ -1,0 +1,75 @@
+{
+  "id": "RUSTSEC-2025-0166",
+  "modified": "2026-07-02T07:59:25Z",
+  "published": "2025-10-23T12:00:00Z",
+  "aliases": [],
+  "related": [],
+  "summary": "Multiple soundness issues in `stackvector`",
+  "details": "Affected versions of `stackvector` contained multiple soundness issues that could allow safe Rust code to trigger undefined behavior.\n\nOne issue was that `StackVec::length` was exposed as a public field. Safe Rust code could set `length` to a value larger than the backing array capacity. Other safe methods, including `remove`, `pop`, and `truncate`, relied on `length` before performing unsafe pointer operations (`ptr::read`, `ptr::copy`, `offset`/`add`). If `length` was corrupted by safe code, these methods could perform out-of-bounds pointer arithmetic, reads, writes, or copies.\n\nThe upstream maintainer also identified additional soundness issues, including the use of `mem::uninitialized` in `StackVec::from_vec_unchecked`, which was reachable through `from_vec`, and Miri violations related to `MaybeUninit` usage.\n\nVersion `2.0.0` was released to fix the known soundness issues.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "stackvector",
+        "purl": "pkg:cargo/stackvector"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [],
+        "cvss": null,
+        "informational": "unsound"
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "2.0.0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/stackvector"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2025-0166.html"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/Alexhuszagh/rust-stackvector/issues/3"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/Alexhuszagh/rust-stackvector/pull/6"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/Alexhuszagh/rust-stackvector/commit/02b947afdeeb1be95ec0888354aa76afdd9d0357"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/Alexhuszagh/rust-stackvector/issues/5"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
