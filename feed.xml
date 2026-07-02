@@ -366,6 +366,223 @@ disable it with &lt;code&gt;.attributes().with_checks(false)&lt;/code&gt; (this 
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0195: Vulnerability in quick-xml</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0195.html</id><updated>2026-07-02T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0195.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0195: Vulnerability in quick-xml"/><published>2026-07-02T12:00:00+00:00</published><summary xml:lang="en">Unbounded namespace-declaration allocation in `NsReader` enables memory-exhaustion denial of service</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/quick-xml/RUSTSEC-2026-0195.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/quick-xml/RUSTSEC-2026-0195.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0195&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0195
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Unbounded namespace-declaration allocation in &lt;code&gt;NsReader&lt;/code&gt; enables memory-exhaustion denial of service&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-06-29&quot;&gt;
+          June 29, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-07-02&quot;&gt;
+          July  2, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/quick-xml.html&quot;&gt;quick-xml&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/quick-xml&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/xml.html&quot;&gt;#xml&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/parser.html&quot;&gt;#parser&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/dos.html&quot;&gt;#dos&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/memory.html&quot;&gt;#memory&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/namespace.html&quot;&gt;#namespace&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/tafia/quick-xml/issues/970&quot;&gt;
+              https://github.com/tafia/quick-xml/issues/970
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/tafia/quick-xml/commit/7ca25266e94987210daa864889ab15c9332c8a2a&quot;&gt;
+              https://github.com/tafia/quick-xml/commit/7ca25266e94987210daa864889ab15c9332c8a2a
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;7.5 &lt;span class=&quot;tag high&quot;&gt;
+        HIGH
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Network&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.41.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;&lt;code&gt;NsReader&lt;/code&gt; resolves namespaces by calling &lt;code&gt;NamespaceResolver::push&lt;/code&gt; for every
+&lt;code&gt;Start&lt;/code&gt;/&lt;code&gt;Empty&lt;/code&gt; event &lt;em&gt;before&lt;/em&gt; the event is returned to the caller. &lt;code&gt;push&lt;/code&gt;
+iterated all &lt;code&gt;xmlns&lt;/code&gt; / &lt;code&gt;xmlns:*&lt;/code&gt; attributes on the start tag and, for each one,
+appended the prefix bytes to an internal buffer and pushed a &lt;code&gt;NamespaceBinding&lt;/code&gt;
+(32 bytes on 64-bit) to an internal &lt;code&gt;Vec&lt;/code&gt;, with no upper bound on the number of
+declarations.&lt;/p&gt;
+&lt;h2&gt;Impact&lt;/h2&gt;
+&lt;p&gt;A start tag with &lt;code&gt;N&lt;/code&gt; namespace declarations drove roughly &lt;code&gt;3×&lt;/code&gt; the tag&apos;s byte
+size in &lt;code&gt;NamespaceResolver&lt;/code&gt; heap, allocated &lt;em&gt;inside&lt;/em&gt; &lt;code&gt;quick-xml&lt;/code&gt; before the
+&lt;code&gt;NsReader&lt;/code&gt; consumer ever received the event and could inspect or reject it. A
+consumer that bounds its &lt;em&gt;input&lt;/em&gt; size therefore still cannot bound this
+allocation: an &lt;code&gt;M&lt;/code&gt;-byte start tag yields on the order of &lt;code&gt;3 × M&lt;/code&gt; bytes of
+resolver heap the caller never sees.&lt;/p&gt;
+&lt;p&gt;On untrusted XML this lets a remote, unauthenticated attacker force large heap
+allocations with a single start tag. With several &lt;code&gt;NsReader&lt;/code&gt;s running
+concurrently on independent inputs (a common server pattern), the allocations
+stack and can exhaust process memory, causing the operating system to kill the
+process (OOM). This was confirmed against a real-world RPKI relying party (NLnet
+Labs Routinator), where concurrent RRDP validation workers parsing a crafted
+&lt;code&gt;snapshot.xml&lt;/code&gt; exceeded the memory limit and the process was OOM-killed.&lt;/p&gt;
+&lt;h2&gt;Affected code paths&lt;/h2&gt;
+&lt;p&gt;Consumers using &lt;code&gt;NsReader&lt;/code&gt; (which always calls &lt;code&gt;NamespaceResolver::push&lt;/code&gt; before
+yielding &lt;code&gt;Start&lt;/code&gt;/&lt;code&gt;Empty&lt;/code&gt;), or calling &lt;code&gt;NamespaceResolver::push&lt;/code&gt; directly. A plain
+&lt;code&gt;Reader&lt;/code&gt; that does not perform namespace resolution is not affected.&lt;/p&gt;
+&lt;h2&gt;Remediation&lt;/h2&gt;
+&lt;p&gt;Upgrade to &lt;code&gt;quick-xml &amp;gt;= 0.41.0&lt;/code&gt;. &lt;code&gt;NamespaceResolver::push&lt;/code&gt; now rejects a start
+tag that declares more than &lt;code&gt;DEFAULT_MAX_DECLARATIONS_PER_ELEMENT&lt;/code&gt; (256)
+namespace bindings, returning the new &lt;code&gt;NamespaceError::TooManyDeclarations&lt;/code&gt;
+instead of allocating without limit. The limit is configurable via
+&lt;code&gt;NamespaceResolver::set_max_declarations_per_element&lt;/code&gt; (use &lt;code&gt;usize::MAX&lt;/code&gt; to
+restore the previous unbounded behavior), and &lt;code&gt;NsReader::resolver_mut()&lt;/code&gt; is
+provided to reach it.&lt;/p&gt;
+&lt;p&gt;There is no clean workaround for &lt;code&gt;NsReader&lt;/code&gt; consumers before 0.41.0, as the
+allocation happens inside the reader with no configuration knob to cap it.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0193: Vulnerability in ammonia</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0193.html</id><updated>2026-07-01T12:00:00+00:00</updated><category term="format-injection"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0193.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0193: Vulnerability in ammonia"/><published>2026-06-30T12:00:00+00:00</published><summary xml:lang="en">mXSS in ammonia via MathML `annotation-xml` encoding strip</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
