@@ -240,6 +240,222 @@ in &lt;code&gt;split_hash&lt;/code&gt; or &lt;code&gt;verify&lt;/code&gt;.&lt;/p
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0201: Vulnerability in fulgur</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0201.html</id><updated>2026-07-04T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0201.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0201: Vulnerability in fulgur"/><published>2026-07-04T12:00:00+00:00</published><summary xml:lang="en">Non-painting replaced elements amplify to thousands of blank PDF pages (denial of service)</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/fulgur/RUSTSEC-2026-0201.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/fulgur/RUSTSEC-2026-0201.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0201&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0201
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Non-painting replaced elements amplify to thousands of blank PDF pages (denial of service)&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-07-05&quot;&gt;
+          July  5, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-07-04&quot;&gt;
+          July  4, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/fulgur.html&quot;&gt;fulgur&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/fulgur&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/dos.html&quot;&gt;#dos&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/pagination.html&quot;&gt;#pagination&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/pdf.html&quot;&gt;#pdf&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-4rf6-qx84-q9fv&quot;&gt;GHSA-4rf6-qx84-q9fv&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/fulgur-rs/fulgur/security/advisories/GHSA-4rf6-qx84-q9fv&quot;&gt;
+              https://github.com/fulgur-rs/fulgur/security/advisories/GHSA-4rf6-qx84-q9fv
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;7.5 &lt;span class=&quot;tag high&quot;&gt;
+        HIGH
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Network&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.26.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;&lt;code&gt;fulgur&lt;/code&gt; converts untrusted HTML/CSS into PDF, commonly on a server that
+processes input supplied by many tenants. In versions prior to 0.26.0, a
+childless box that resolves to a pathologically tall height was amplified into
+thousands of blank PDF pages, even when it produces no visible output.&lt;/p&gt;
+&lt;p&gt;The childless-collapse defense that would normally collapse such a box was gated
+by a tag-only &amp;quot;replaced content&amp;quot; check, so any non-painting replaced element
+bypassed it, including an unresolved &lt;code&gt;src&lt;/code&gt; (the common offline-first case), a
+&lt;code&gt;visibility:hidden&lt;/code&gt; image, an undecodable image format, and an empty &lt;code&gt;&amp;lt;svg&amp;gt;&lt;/code&gt;. A
+trailing-sibling variant of the same gap was also open.&lt;/p&gt;
+&lt;p&gt;A few bytes of HTML therefore amplified into roughly &lt;code&gt;MAX_PAGES&lt;/code&gt; (10,000) blank
+pages; the renderer allocates and runs a per-page loop over them, producing CPU
+and memory exhaustion. An attacker able to submit HTML to a fulgur-based
+conversion service can trigger this with a trivially small payload, denying
+service to the host and any co-tenants.&lt;/p&gt;
+&lt;p&gt;Fixed in 0.26.0: the tag-only gate was removed so that any pathologically tall
+childless box collapses regardless of whether it is a replaced element, closing
+the missing-&lt;code&gt;src&lt;/code&gt;, &lt;code&gt;visibility:hidden&lt;/code&gt;, undecodable-format, and empty-&lt;code&gt;&amp;lt;svg&amp;gt;&lt;/code&gt;
+vectors along with the trailing-sibling variant.&lt;/p&gt;
+&lt;p&gt;Versions prior to 0.19.0 additionally lacked any page-count cap, allowing an
+unbounded (rather than 10,000-page) variant of this amplification; that earlier
+variant is tracked separately as GHSA-j5cx-ph8g-95v3.&lt;/p&gt;
+&lt;h2&gt;Attack Vector rationale&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;fulgur&lt;/code&gt; performs no network I/O of its own; it renders HTML/CSS handed to it by
+the embedding application. This advisory scores the crate independent of any
+specific adopting program, so per the CVSS v3.1 User Guide §3.7 the Attack
+Vector is assessed as Network for the reasonable worst-case deployment — a
+network-facing service that renders untrusted HTML without user interaction. A
+concrete system that receives the HTML in one component and passes it to fulgur
+in a separate component may assess a lower environmental Attack Vector (Local,
+per §3.10).&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0200: Vulnerability in fulgur</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0200.html</id><updated>2026-07-04T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0200.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0200: Vulnerability in fulgur"/><published>2026-07-04T12:00:00+00:00</published><summary xml:lang="en">Unbounded page slicing from attacker-controlled CSS height causes denial of service</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
