@@ -240,6 +240,218 @@ in &lt;code&gt;split_hash&lt;/code&gt; or &lt;code&gt;verify&lt;/code&gt;.&lt;/p
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0200: Vulnerability in fulgur</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0200.html</id><updated>2026-07-04T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0200.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0200: Vulnerability in fulgur"/><published>2026-07-04T12:00:00+00:00</published><summary xml:lang="en">Unbounded page slicing from attacker-controlled CSS height causes denial of service</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/fulgur/RUSTSEC-2026-0200.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/fulgur/RUSTSEC-2026-0200.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0200&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0200
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Unbounded page slicing from attacker-controlled CSS height causes denial of service&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-07-05&quot;&gt;
+          July  5, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-07-04&quot;&gt;
+          July  4, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/fulgur.html&quot;&gt;fulgur&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/fulgur&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/dos.html&quot;&gt;#dos&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/pagination.html&quot;&gt;#pagination&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/pdf.html&quot;&gt;#pdf&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-j5cx-ph8g-95v3&quot;&gt;GHSA-j5cx-ph8g-95v3&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/fulgur-rs/fulgur/security/advisories/GHSA-j5cx-ph8g-95v3&quot;&gt;
+              https://github.com/fulgur-rs/fulgur/security/advisories/GHSA-j5cx-ph8g-95v3
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;7.5 &lt;span class=&quot;tag high&quot;&gt;
+        HIGH
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Network&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.19.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;&lt;code&gt;fulgur&lt;/code&gt; converts untrusted HTML/CSS into PDF, commonly on a server that
+processes input supplied by many tenants. In versions prior to 0.19.0, a
+body-direct child whose CSS-resolved height greatly exceeds the page height was
+sliced into one fragment per page with no upper bound.&lt;/p&gt;
+&lt;p&gt;The height is taken directly from attacker-controlled HTML/CSS (&lt;code&gt;height&lt;/code&gt;, &lt;code&gt;vh&lt;/code&gt;
+units), so a few bytes such as &lt;code&gt;&amp;lt;div style=&amp;quot;height:99999999px&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;&lt;/code&gt; forced on
+the order of 125,000 page fragments. The pagination code then allocates
+&lt;code&gt;vec![Vec::new(); page_count]&lt;/code&gt; and runs a per-page render loop, resulting in CPU
+and memory exhaustion. A non-finite height (one that resolves to &lt;code&gt;+inf&lt;/code&gt;)
+additionally made the slicing loop&apos;s &lt;code&gt;remaining -= last_slice_h&lt;/code&gt; decrement never
+terminate, causing an infinite loop.&lt;/p&gt;
+&lt;p&gt;An attacker able to submit HTML/CSS to a fulgur-based conversion service can
+trigger this with a trivially small payload, denying service to the host and any
+co-tenants.&lt;/p&gt;
+&lt;p&gt;Fixed in 0.19.0: a &lt;code&gt;MAX_PAGES&lt;/code&gt; cap bounds the slice loop — halting it even for a
+&lt;code&gt;+inf&lt;/code&gt; height — and non-finite layout heights are sanitized so they can no
+longer drive the loop.&lt;/p&gt;
+&lt;h2&gt;Attack Vector rationale&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;fulgur&lt;/code&gt; performs no network I/O of its own; it renders HTML/CSS handed to it by
+the embedding application. This advisory scores the crate independent of any
+specific adopting program, so per the CVSS v3.1 User Guide §3.7 the Attack
+Vector is assessed as Network for the reasonable worst-case deployment — a
+network-facing service that renders untrusted HTML without user interaction. A
+concrete system that receives the HTML in one component and passes it to fulgur
+in a separate component may assess a lower environmental Attack Vector (Local,
+per §3.10).&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0198: Unsoundness in error-stack</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0198.html</id><updated>2026-07-03T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0198.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0198: Unsoundness in error-stack"/><published>2026-07-03T12:00:00+00:00</published><summary xml:lang="en">`Report::frames_mut` allows aliased mutable references</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
