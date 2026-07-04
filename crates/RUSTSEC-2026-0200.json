@@ -1,0 +1,72 @@
+{
+  "id": "RUSTSEC-2026-0200",
+  "modified": "2026-07-04T19:39:58Z",
+  "published": "2026-07-05T12:00:00Z",
+  "aliases": [
+    "GHSA-j5cx-ph8g-95v3"
+  ],
+  "related": [],
+  "summary": "Unbounded page slicing from attacker-controlled CSS height causes denial of service",
+  "details": "`fulgur` converts untrusted HTML/CSS into PDF, commonly on a server that\nprocesses input supplied by many tenants. In versions prior to 0.19.0, a\nbody-direct child whose CSS-resolved height greatly exceeds the page height was\nsliced into one fragment per page with no upper bound.\n\nThe height is taken directly from attacker-controlled HTML/CSS (`height`, `vh`\nunits), so a few bytes such as `<div style=\"height:99999999px\"></div>` forced on\nthe order of 125,000 page fragments. The pagination code then allocates\n`vec![Vec::new(); page_count]` and runs a per-page render loop, resulting in CPU\nand memory exhaustion. A non-finite height (one that resolves to `+inf`)\nadditionally made the slicing loop's `remaining -= last_slice_h` decrement never\nterminate, causing an infinite loop.\n\nAn attacker able to submit HTML/CSS to a fulgur-based conversion service can\ntrigger this with a trivially small payload, denying service to the host and any\nco-tenants.\n\nFixed in 0.19.0: a `MAX_PAGES` cap bounds the slice loop — halting it even for a\n`+inf` height — and non-finite layout heights are sanitized so they can no\nlonger drive the loop.\n\n## Attack Vector rationale\n\n`fulgur` performs no network I/O of its own; it renders HTML/CSS handed to it by\nthe embedding application. This advisory scores the crate independent of any\nspecific adopting program, so per the CVSS v3.1 User Guide §3.7 the Attack\nVector is assessed as Network for the reasonable worst-case deployment — a\nnetwork-facing service that renders untrusted HTML without user interaction. A\nconcrete system that receives the HTML in one component and passes it to fulgur\nin a separate component may assess a lower environmental Attack Vector (Local,\nper §3.10).",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+    }
+  ],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "fulgur",
+        "purl": "pkg:cargo/fulgur"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "denial-of-service"
+        ],
+        "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "0.19.0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/fulgur"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0200.html"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://github.com/fulgur-rs/fulgur/security/advisories/GHSA-j5cx-ph8g-95v3"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
