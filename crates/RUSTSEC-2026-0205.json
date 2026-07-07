@@ -1,0 +1,63 @@
+{
+  "id": "RUSTSEC-2026-0205",
+  "modified": "2026-07-07T09:15:02Z",
+  "published": "2026-07-06T12:00:00Z",
+  "aliases": [],
+  "related": [],
+  "summary": "`Array::insert` violates exception safety if compare function panics, leading to potential Double-Free",
+  "details": "In affected versions of this crate, `Array::insert` is not exception safe. In the `UPSERT` path, `key` and `value`'s snapshot is written to `self.data_block`, and after the insertion is completed, `key` and `value` are `mem::forget` in order to prevent double free. However, during the insertion, `K::compare` is invoked, which is a user-provided method. If user deliberately call panic in this function, during unwinding, the destructors of `key`, `value`, and `self` will all be called (since the `mem::forget` has not been called yet), leading to Double Free. Similar issues happens in the `!UPSERT` path.\n\nThe soundness issue was fixed in version `3.8.4` by using `ManuallyDrop` instead of `mem::forget`, and separating fallible code from infallible code during a node split - insert = insert_try -> insert_unchecked.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "scc",
+        "purl": "pkg:cargo/scc"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [],
+        "cvss": null,
+        "informational": "unsound"
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "3.8.4"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/scc"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0205.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://codeberg.org/wvwwvwwv/scalable-concurrent-containers/issues/232"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
