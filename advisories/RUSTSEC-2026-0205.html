@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories with keyword &#39;unwind&#39; › RustSec Advisory Database</title>
+<title>RUSTSEC-2026-0205: scc: `Array::insert` violates exception safety if compare function panics, leading to potential Double-Free › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,81 +52,134 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/scc/RUSTSEC-2026-0205.md">History</a> ⋅
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/scc/RUSTSEC-2026-0205.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2026-0205">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2026-0205
+        
+      </h1>
+      <span class="subtitle"><p><code>Array::insert</code> violates exception safety if compare function panics, leading to potential Double-Free</p>
 </span>
-      <h1>Advisories with keyword &#39;unwind&#39;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2026-07-07">
-    July  7, 2026
-  </time>
+    
 
-  
-  <h3>
-    
-        
-          <span class="tag info">INFO</span>
-        
-    
-    <a href="/advisories/RUSTSEC-2026-0205.html">
-      RUSTSEC-2026-0205: Unsoundness in scc
-    </a>
-  </h3>
-  <span><p><code>Array::insert</code> violates exception safety if compare function panics, leading to potential Double-Free</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2026-07-05">
-    July  5, 2026
-  </time>
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2026-07-06">
+          July  6, 2026
+        </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2026-07-07">
+          July  7, 2026
+        </time>
         
-          <span class="tag info">INFO</span>
-        
-    
-    <a href="/advisories/RUSTSEC-2026-0202.html">
-      RUSTSEC-2026-0202: Unsoundness in cxx
-    </a>
-  </h3>
-  <span><p><code>let_cxx_string!</code> uses uninitialized value due to exception safety violations</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2020-12-06">
-    December  6, 2020
-  </time>
+      </dd>
 
-  
-  <h3>
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        <a href="/packages/scc.html">scc</a>
+           
+          (<a href="https://crates.io/crates/scc">crates.io</a>)
+          
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        <span class="tag info">INFO</span>
+        Unsound
+        
+      </dd>
+
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/exception.html">#exception</a>
+        
+          <a href="/keywords/unwind.html">#unwind</a>
+        
+      </dd>
+      
+
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://codeberg.org/wvwwvwwv/scalable-concurrent-containers/issues/232">
+              https://codeberg.org/wvwwvwwv/scalable-concurrent-containers/issues/232
+            </a>
+          </li>
+        
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&#62;=3.8.4</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+
+      
+      
+
+      
+      
+    </dl>
+
     
-      <span class="tag medium">MEDIUM</span>
-      
-    <a href="/advisories/RUSTSEC-2020-0082.html">
-      RUSTSEC-2020-0082: Vulnerability in ordered-float
-    </a>
-  </h3>
-  <span><p>ordered_float:NotNan may contain NaN after panic in assignment operators</p>
-</span>
-  
-</li>
-      
-    </ul>
+    
+
+    
+
+    <h3 id="description">Description</h3>
+    <p>In affected versions of this crate, <code>Array::insert</code> is not exception safe. In the <code>UPSERT</code> path, <code>key</code> and <code>value</code>'s snapshot is written to <code>self.data_block</code>, and after the insertion is completed, <code>key</code> and <code>value</code> are <code>mem::forget</code> in order to prevent double free. However, during the insertion, <code>K::compare</code> is invoked, which is a user-provided method. If user deliberately call panic in this function, during unwinding, the destructors of <code>key</code>, <code>value</code>, and <code>self</code> will all be called (since the <code>mem::forget</code> has not been called yet), leading to Double Free. Similar issues happens in the <code>!UPSERT</code> path.</p>
+<p>The soundness issue was fixed in version <code>3.8.4</code> by using <code>ManuallyDrop</code> instead of <code>mem::forget</code>, and separating fallible code from infallible code during a node split - insert = insert_try -&gt; insert_unchecked.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
