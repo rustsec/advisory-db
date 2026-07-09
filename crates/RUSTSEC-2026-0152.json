@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2026-0152",
-  "modified": "2026-06-01T13:19:35Z",
+  "modified": "2026-07-09T06:36:22Z",
   "published": "2026-05-27T12:00:00Z",
-  "aliases": [],
+  "aliases": [
+    "GHSA-q95x-7g78-rccv"
+  ],
   "related": [],
   "summary": "Use-after-free",
   "details": "Affected versions of `oneringbuf` exposed the obsolete `IntoRef::into_ref` method through the public `IntoRef` trait. For heap-backed ring buffers, this method returned a `DroppableRef` handle.\n\n`DroppableRef` stored an owning raw pointer created from `Box::into_raw`. Its `Clone` implementation copied this raw pointer without incrementing the internal `alive_iters` counter. Internally, this clone pattern appears to rely on a fixed number of handles being created to match the initial `alive_iters` value. However, exposing `DroppableRef` through the public `IntoRef::TargetRef` associated type allows safe external code to create additional clones beyond that fixed count, breaking the lifetime protocol. `Drop` later dereferenced the pointer and could free the backing allocation with `Box::from_raw`.\n\nSafe code could call `IntoRef::into_ref` to obtain a `DroppableRef` and then clone it. Each clone pointed to the same allocation, but the internal `alive_iters` counter was not increased. As a result, one clone could free the allocation while another clone still existed. Dropping the remaining clone then accessed freed memory, causing a heap-use-after-free.\n\nThe issue was fixed in version 0.8.0 by removing the obsolete `into_ref` method.\n\n## Trigger\n\n```rust\nuse oneringbuf::{IntoRef, LocalHeapRB};\n\nfn main() {\n    let rb = LocalHeapRB::<usize>::from(vec![1, 2, 3]);\n\n    let r = <LocalHeapRB<usize> as IntoRef>::into_ref(rb);\n    let r2 = r.clone();\n    let r3 = r.clone();\n\n    drop(r);\n    drop(r2);\n    drop(r3); // AddressSanitizer: heap-use-after-free\n}\n```",
