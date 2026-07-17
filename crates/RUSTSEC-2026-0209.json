@@ -1,0 +1,120 @@
+{
+  "id": "RUSTSEC-2026-0209",
+  "modified": "2026-07-17T11:34:24Z",
+  "published": "2026-06-09T12:00:00Z",
+  "aliases": [],
+  "related": [],
+  "summary": "AES-GCM did not enforce limits on AAD length",
+  "details": "NIST Special Publication 800-38D specifies that the bit length of the\nAAD shall not exceed `2^64 - 1` bits. The implementation of AES-GCM in\n`libcrux-aesgcm` neither enforced this limit for encryption nor for\ndecryption.\n\n## Impact\nUse of AES-GCM with AAD of length exceeding the prescribed maximum\nlength degrades the authentication security of the GCM tag.\n\n## Mitigation\nStarting from version `0.0.9` (published as `libcrux-aes@v0.0.9`),\nlimits on the length of the AAD input are enforced, so overlong AAD\ninputs result in an error on encryption and decryption.",
+  "severity": [
+    {
+      "type": "CVSS_V4",
+      "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N"
+    }
+  ],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "libcrux-aesgcm",
+        "purl": "pkg:cargo/libcrux-aesgcm"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": [
+            "libcrux_aesgcm::AesGcm128Key::decrypt",
+            "libcrux_aesgcm::AesGcm128Key::encrypt",
+            "libcrux_aesgcm::AesGcm256Key::decrypt",
+            "libcrux_aesgcm::AesGcm256Key::encrypt",
+            "libcrux_aesgcm::aes_gcm_128::AesGcm128::decrypt",
+            "libcrux_aesgcm::aes_gcm_128::AesGcm128::encrypt",
+            "libcrux_aesgcm::aes_gcm_128::Key::decrypt",
+            "libcrux_aesgcm::aes_gcm_128::Key::encrypt",
+            "libcrux_aesgcm::aes_gcm_128::KeyRef::decrypt",
+            "libcrux_aesgcm::aes_gcm_128::KeyRef::encrypt",
+            "libcrux_aesgcm::aes_gcm_128::neon::Key::decrypt",
+            "libcrux_aesgcm::aes_gcm_128::neon::Key::encrypt",
+            "libcrux_aesgcm::aes_gcm_128::neon::KeyRef::decrypt",
+            "libcrux_aesgcm::aes_gcm_128::neon::KeyRef::encrypt",
+            "libcrux_aesgcm::aes_gcm_128::neon::NeonAesGcm128::decrypt",
+            "libcrux_aesgcm::aes_gcm_128::neon::NeonAesGcm128::encrypt",
+            "libcrux_aesgcm::aes_gcm_128::portable::Key::decrypt",
+            "libcrux_aesgcm::aes_gcm_128::portable::Key::encrypt",
+            "libcrux_aesgcm::aes_gcm_128::portable::KeyRef::decrypt",
+            "libcrux_aesgcm::aes_gcm_128::portable::KeyRef::encrypt",
+            "libcrux_aesgcm::aes_gcm_128::portable::PortableAesGcm128::decrypt",
+            "libcrux_aesgcm::aes_gcm_128::portable::PortableAesGcm128::encrypt",
+            "libcrux_aesgcm::aes_gcm_128::x64::Key::decrypt",
+            "libcrux_aesgcm::aes_gcm_128::x64::Key::encrypt",
+            "libcrux_aesgcm::aes_gcm_128::x64::KeyRef::decrypt",
+            "libcrux_aesgcm::aes_gcm_128::x64::KeyRef::encrypt",
+            "libcrux_aesgcm::aes_gcm_128::x64::X64AesGcm128::decrypt",
+            "libcrux_aesgcm::aes_gcm_128::x64::X64AesGcm128::encrypt",
+            "libcrux_aesgcm::aes_gcm_256::AesGcm256::decrypt",
+            "libcrux_aesgcm::aes_gcm_256::AesGcm256::encrypt",
+            "libcrux_aesgcm::aes_gcm_256::Key::decrypt",
+            "libcrux_aesgcm::aes_gcm_256::Key::encrypt",
+            "libcrux_aesgcm::aes_gcm_256::KeyRef::decrypt",
+            "libcrux_aesgcm::aes_gcm_256::KeyRef::encrypt",
+            "libcrux_aesgcm::aes_gcm_256::neon::Key::decrypt",
+            "libcrux_aesgcm::aes_gcm_256::neon::Key::encrypt",
+            "libcrux_aesgcm::aes_gcm_256::neon::KeyRef::decrypt",
+            "libcrux_aesgcm::aes_gcm_256::neon::KeyRef::encrypt",
+            "libcrux_aesgcm::aes_gcm_256::neon::NeonAesGcm256::decrypt",
+            "libcrux_aesgcm::aes_gcm_256::neon::NeonAesGcm256::encrypt",
+            "libcrux_aesgcm::aes_gcm_256::portable::Key::decrypt",
+            "libcrux_aesgcm::aes_gcm_256::portable::Key::encrypt",
+            "libcrux_aesgcm::aes_gcm_256::portable::KeyRef::decrypt",
+            "libcrux_aesgcm::aes_gcm_256::portable::KeyRef::encrypt",
+            "libcrux_aesgcm::aes_gcm_256::portable::PortableAesGcm256::decrypt",
+            "libcrux_aesgcm::aes_gcm_256::portable::PortableAesGcm256::encrypt",
+            "libcrux_aesgcm::aes_gcm_256::x64::Key::decrypt",
+            "libcrux_aesgcm::aes_gcm_256::x64::Key::encrypt",
+            "libcrux_aesgcm::aes_gcm_256::x64::KeyRef::decrypt",
+            "libcrux_aesgcm::aes_gcm_256::x64::KeyRef::encrypt",
+            "libcrux_aesgcm::aes_gcm_256::x64::X64AesGcm256::decrypt",
+            "libcrux_aesgcm::aes_gcm_256::x64::X64AesGcm256::encrypt"
+          ]
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "crypto-failure"
+        ],
+        "cvss": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N",
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/libcrux-aesgcm"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0209.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/celabshq/libcrux/pull/1474"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
