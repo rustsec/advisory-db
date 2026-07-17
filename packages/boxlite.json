@@ -1,5 +1,82 @@
 [
   {
+    "id": "RUSTSEC-2026-0147",
+    "modified": "2026-05-20T09:41:31Z",
+    "published": "2026-05-16T12:00:00Z",
+    "aliases": [
+      "CVE-2026-46695",
+      "GHSA-g6ww-w5j2-r7x3"
+    ],
+    "related": [],
+    "summary": "Read-only volume remount bypass via guest CAP_SYS_ADMIN",
+    "details": "Affected versions of `boxlite` mount host directories shared via virtiofs\nas guest-side read-only by setting `MS_RDONLY` from the guest. Because the\ndefault guest capability set included `CAP_SYS_ADMIN`, untrusted code\nrunning inside a sandbox could execute `mount -o remount,rw <path>` to\nre-flag the share as read-write and then write through to the host\nfilesystem — fully escaping the read-only contract `boxlite` advertised\nto callers.\n\nThe fix in v0.9.0 enforces read-only at the hypervisor level via\n`krun_add_virtiofs3` (so the guest's `MS_RDONLY` is no longer the\nauthoritative gate) and drops `CAP_SYS_ADMIN` from the default guest\ncapability set (matching Docker's defaults).\n\nThis is a sandbox-escape bug: `boxlite` is a sandboxing runtime, so the\nread-only invariant is part of its security contract. CVSS rated 10.0 by\nthe upstream advisory.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "boxlite",
+          "purl": "pkg:cargo/boxlite"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "privilege-escalation"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.9.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/boxlite"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0147.html"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://github.com/boxlite-ai/boxlite/security/advisories/GHSA-g6ww-w5j2-r7x3"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/boxlite-ai/boxlite/pull/454"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
     "id": "RUSTSEC-2026-0148",
     "modified": "2026-05-20T10:00:58Z",
     "published": "2026-05-16T12:00:00Z",
@@ -79,83 +156,6 @@
       {
         "type": "WEB",
         "url": "https://github.com/boxlite-ai/boxlite/pull/461"
-      }
-    ],
-    "database_specific": {
-      "license": "CC0-1.0"
-    }
-  },
-  {
-    "id": "RUSTSEC-2026-0147",
-    "modified": "2026-05-20T09:41:31Z",
-    "published": "2026-05-16T12:00:00Z",
-    "aliases": [
-      "CVE-2026-46695",
-      "GHSA-g6ww-w5j2-r7x3"
-    ],
-    "related": [],
-    "summary": "Read-only volume remount bypass via guest CAP_SYS_ADMIN",
-    "details": "Affected versions of `boxlite` mount host directories shared via virtiofs\nas guest-side read-only by setting `MS_RDONLY` from the guest. Because the\ndefault guest capability set included `CAP_SYS_ADMIN`, untrusted code\nrunning inside a sandbox could execute `mount -o remount,rw <path>` to\nre-flag the share as read-write and then write through to the host\nfilesystem — fully escaping the read-only contract `boxlite` advertised\nto callers.\n\nThe fix in v0.9.0 enforces read-only at the hypervisor level via\n`krun_add_virtiofs3` (so the guest's `MS_RDONLY` is no longer the\nauthoritative gate) and drops `CAP_SYS_ADMIN` from the default guest\ncapability set (matching Docker's defaults).\n\nThis is a sandbox-escape bug: `boxlite` is a sandboxing runtime, so the\nread-only invariant is part of its security contract. CVSS rated 10.0 by\nthe upstream advisory.",
-    "severity": [
-      {
-        "type": "CVSS_V3",
-        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H"
-      }
-    ],
-    "affected": [
-      {
-        "package": {
-          "ecosystem": "crates.io",
-          "name": "boxlite",
-          "purl": "pkg:cargo/boxlite"
-        },
-        "ecosystem_specific": {
-          "affects": {
-            "arch": [],
-            "os": [],
-            "functions": []
-          },
-          "affected_functions": null
-        },
-        "database_specific": {
-          "categories": [
-            "privilege-escalation"
-          ],
-          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
-          "informational": null
-        },
-        "ranges": [
-          {
-            "type": "SEMVER",
-            "events": [
-              {
-                "introduced": "0.0.0-0"
-              },
-              {
-                "fixed": "0.9.0"
-              }
-            ]
-          }
-        ],
-        "versions": []
-      }
-    ],
-    "references": [
-      {
-        "type": "PACKAGE",
-        "url": "https://crates.io/crates/boxlite"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0147.html"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://github.com/boxlite-ai/boxlite/security/advisories/GHSA-g6ww-w5j2-r7x3"
-      },
-      {
-        "type": "WEB",
-        "url": "https://github.com/boxlite-ai/boxlite/pull/454"
       }
     ],
     "database_specific": {
