@@ -1,9 +1,11 @@
 [
   {
     "id": "RUSTSEC-2026-0172",
-    "modified": "2026-06-05T08:35:31Z",
+    "modified": "2026-07-17T08:34:50Z",
     "published": "2026-06-05T12:00:00Z",
-    "aliases": [],
+    "aliases": [
+      "GHSA-ggxf-9f6j-w742"
+    ],
     "related": [],
     "summary": "Possible use after free when deserializing a SQLite database via `SqliteConnection::deserialize_readonly_database`",
     "details": "Diesel allows loading a SQLite database from a byte buffer, represented as `&[u8]`, at runtime via the `SqliteConnection::deserialize_readonly_database` function. In previous versions of Diesel, this buffer was passed directly to libsqlite3. Since libsqlite3 requires the buffer to remain alive for as long as the database connection is open and Diesel did not ensure this as part of its safe API, callers of `SqliteConnection::deserialize_readonly_database` could drop the buffer prematurely. This prematurely drop caused libsqlite3 to operate on freed memory.\n\nThis vulnerability affects users of `SqliteConnection::deserialize_readonly_database` who drop the buffer passed to the function before they drop the database connection.\n\n## Mitigation\n\nThe preferred mitigation to the outlined problem is to update to Diesel version 2.3.10 or newer, which includes a fix for the problem. Alternatively users need to take to keep the buffer alive until the connection is dropped.\n\n## Resolution\n\nDiesel now stores a copy of the buffer inside of the `SqliteConnection` object itself to keep it alive as long as the underlying libsqlite3 connection exists.",
