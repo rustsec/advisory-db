@@ -88,6 +88,10 @@
           December  4, 2024
         </time>
         
+        <time datetime="2026-07-17">
+          (last modified: July 17, 2026)
+        </time>
+        
       </dd>
 
       <dt id="package">Package</dt>
@@ -251,7 +255,7 @@
     <p>A denial of service vulnerability was found in zlib-rs, triggered by specially constructed input. This input causes a stack overflow, resulting in the process using zlib-rs to crash.</p>
 <h3>Impact</h3>
 <p>Due to the way LLVM handles the zlib-rs codebase, tail calls were not guaranteed. This caused certain input patterns to result in a large number of stack frames being required, quickly resulting in a stack overflow. These are unlikely to occur in practice, but a dedicated attacker can construct malicious input files.</p>
-<p>After stack overflows were found by @inahga with a fuzzer, we dove into the assembly, and found some cases where the stack grew</p>
+<p>After stack overflows were found by <a href="https://github.com/inahga">@inahga</a> with a fuzzer, we dove into the assembly, and found some cases where the stack grew</p>
 <pre><code class="language-asm">.LBB109_326:
     mov rdi, rbx
     call zlib_rs::inflate::State::type_do

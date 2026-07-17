@@ -1,7 +1,7 @@
 [
   {
     "id": "RUSTSEC-2021-0003",
-    "modified": "2023-06-13T13:10:24Z",
+    "modified": "2026-07-17T15:52:38Z",
     "published": "2021-01-08T12:00:00Z",
     "aliases": [
       "CVE-2021-25900",
@@ -9,7 +9,7 @@
     ],
     "related": [],
     "summary": "Buffer overflow in SmallVec::insert_many",
-    "details": "A bug in the `SmallVec::insert_many` method caused it to allocate a buffer that was smaller than needed.  It then wrote past the end of the buffer, causing a buffer overflow and memory corruption on the heap.\n\nThis bug was only triggered if the iterator passed to `insert_many` yielded more items than the lower bound returned from its `size_hint` method.\n \nThe flaw was corrected in smallvec 0.6.14 and 1.6.1, by ensuring that additional space is always reserved for each item inserted.  The fix also simplified the implementation of `insert_many` to use less unsafe code, so it is easier to verify its correctness.\n\nThank you to Yechan Bae (@Qwaz) and the Rust group at Georgia Tech’s SSLab for finding and reporting this bug.",
+    "details": "A bug in the `SmallVec::insert_many` method caused it to allocate a buffer that was smaller than needed.  It then wrote past the end of the buffer, causing a buffer overflow and memory corruption on the heap.\n\nThis bug was only triggered if the iterator passed to `insert_many` yielded more items than the lower bound returned from its `size_hint` method.\n \nThe flaw was corrected in smallvec 0.6.14 and 1.6.1, by ensuring that additional space is always reserved for each item inserted.  The fix also simplified the implementation of `insert_many` to use less unsafe code, so it is easier to verify its correctness.\n\nThank you to Yechan Bae ([@Qwaz](https://github.com/Qwaz)) and the Rust group at Georgia Tech’s SSLab for finding and reporting this bug.",
     "severity": [
       {
         "type": "CVSS_V3",
@@ -82,7 +82,7 @@
   },
   {
     "id": "RUSTSEC-2019-0012",
-    "modified": "2023-06-13T13:10:24Z",
+    "modified": "2026-07-17T15:52:38Z",
     "published": "2019-07-19T12:00:00Z",
     "aliases": [
       "CVE-2019-15554",
@@ -90,7 +90,7 @@
     ],
     "related": [],
     "summary": "Memory corruption in SmallVec::grow()",
-    "details": "Attempting to call `grow` on a spilled SmallVec with a value less than the current capacity causes corruption of memory allocator data structures.\n\nAn attacker that controls the value passed to `grow` may exploit this flaw to obtain memory contents or gain remote code execution.\n\nCredits to @ehuss for discovering, reporting and fixing the bug.",
+    "details": "Attempting to call `grow` on a spilled SmallVec with a value less than the current capacity causes corruption of memory allocator data structures.\n\nAn attacker that controls the value passed to `grow` may exploit this flaw to obtain memory contents or gain remote code execution.\n\nCredits to [@ehuss](https://github.com/ehuss) for discovering, reporting and fixing the bug.",
     "severity": [
       {
         "type": "CVSS_V3",
@@ -158,7 +158,7 @@
   },
   {
     "id": "RUSTSEC-2018-0003",
-    "modified": "2023-06-13T13:10:24Z",
+    "modified": "2026-07-17T15:52:38Z",
     "published": "2018-07-19T12:00:00Z",
     "aliases": [
       "CVE-2018-20991",
@@ -166,7 +166,7 @@
     ],
     "related": [],
     "summary": "Possible double free during unwinding in SmallVec::insert_many",
-    "details": "If an iterator passed to `SmallVec::insert_many` panicked in `Iterator::next`,\ndestructors were run during unwinding while the vector was in an inconsistent\nstate, possibly causing a double free (a destructor running on two copies of\nthe same value).\n\nThis is fixed in smallvec 0.6.3 by ensuring that the vector's length is not\nupdated to include moved items until they have been removed from their\noriginal positions.  Items may now be leaked if `Iterator::next` panics, but\nthey will not be dropped more than once.\n\nThank you to @Vurich for reporting this bug.",
+    "details": "If an iterator passed to `SmallVec::insert_many` panicked in `Iterator::next`,\ndestructors were run during unwinding while the vector was in an inconsistent\nstate, possibly causing a double free (a destructor running on two copies of\nthe same value).\n\nThis is fixed in smallvec 0.6.3 by ensuring that the vector's length is not\nupdated to include moved items until they have been removed from their\noriginal positions.  Items may now be leaked if `Iterator::next` panics, but\nthey will not be dropped more than once.\n\nThank you to [@Vurich](https://github.com/Vurich) for reporting this bug.",
     "severity": [
       {
         "type": "CVSS_V3",
@@ -247,7 +247,7 @@
   },
   {
     "id": "RUSTSEC-2019-0009",
-    "modified": "2023-06-13T13:10:24Z",
+    "modified": "2026-07-17T15:52:38Z",
     "published": "2019-06-06T12:00:00Z",
     "aliases": [
       "CVE-2019-15551",
@@ -255,7 +255,7 @@
     ],
     "related": [],
     "summary": "Double-free and use-after-free in SmallVec::grow()",
-    "details": "Attempting to call `grow` on a spilled SmallVec with a value equal to the current capacity causes it to free the existing data. This performs a double free immediately and may lead to use-after-free on subsequent accesses to the SmallVec contents.\n\nAn attacker that controls the value passed to `grow` may exploit this flaw to obtain memory contents or gain remote code execution.\n\nCredits to @ehuss for discovering, reporting and fixing the bug.",
+    "details": "Attempting to call `grow` on a spilled SmallVec with a value equal to the current capacity causes it to free the existing data. This performs a double free immediately and may lead to use-after-free on subsequent accesses to the SmallVec contents.\n\nAn attacker that controls the value passed to `grow` may exploit this flaw to obtain memory contents or gain remote code execution.\n\nCredits to [@ehuss](https://github.com/ehuss) for discovering, reporting and fixing the bug.",
     "severity": [
       {
         "type": "CVSS_V3",

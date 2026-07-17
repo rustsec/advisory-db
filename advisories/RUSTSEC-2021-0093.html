@@ -88,8 +88,8 @@
           August 21, 2021
         </time>
         
-        <time datetime="2021-10-19">
-          (last modified: October 19, 2021)
+        <time datetime="2026-07-17">
+          (last modified: July 17, 2026)
         </time>
         
       </dd>
@@ -235,7 +235,7 @@
     <h3 id="description">Description</h3>
     <p>In the affected version of this crate, the result of the race condition is that one or more tasks in the worker queue can be popped twice instead of other tasks that are forgotten and never popped. If tasks are allocated on the heap, this can cause double free and a memory leak. If not, this still can cause a logical bug.</p>
 <p>Crates using <code>Stealer::steal</code>, <code>Stealer::steal_batch</code>, or <code>Stealer::steal_batch_and_pop</code> are affected by this issue.</p>
-<p>Credits to @kmaork for discovering, reporting and fixing the bug.</p>
+<p>Credits to <a href="https://github.com/kmaork">@kmaork</a> for discovering, reporting and fixing the bug.</p>
 
 
     <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>

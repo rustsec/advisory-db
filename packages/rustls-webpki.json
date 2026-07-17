@@ -1,14 +1,14 @@
 [
   {
     "id": "RUSTSEC-2026-0104",
-    "modified": "2026-04-22T08:56:10Z",
+    "modified": "2026-07-17T15:52:38Z",
     "published": "2026-04-22T12:00:00Z",
     "aliases": [
       "GHSA-82j2-j2ch-gfr8"
     ],
     "related": [],
     "summary": "Reachable panic in certificate revocation list parsing",
-    "details": "A panic was reachable when parsing certificate revocation lists via [`BorrowedCertRevocationList::from_der`]\nor [`OwnedCertRevocationList::from_der`].  This was the result of mishandling a syntactically valid empty\n`BIT STRING` appearing in the `onlySomeReasons` element of a `IssuingDistributionPoint` CRL extension.\n\nThis panic is reachable prior to a CRL's signature being verified.\n\nApplications that do not use CRLs are not affected.\n\nThank you to @tynus3 for the report.",
+    "details": "A panic was reachable when parsing certificate revocation lists via [`BorrowedCertRevocationList::from_der`]\nor [`OwnedCertRevocationList::from_der`].  This was the result of mishandling a syntactically valid empty\n`BIT STRING` appearing in the `onlySomeReasons` element of a `IssuingDistributionPoint` CRL extension.\n\nThis panic is reachable prior to a CRL's signature being verified.\n\nApplications that do not use CRLs are not affected.\n\nThank you to [@tynus3](https://github.com/tynus3) for the report.",
     "severity": [],
     "affected": [
       {
@@ -70,14 +70,14 @@
   },
   {
     "id": "RUSTSEC-2026-0099",
-    "modified": "2026-04-15T09:57:12Z",
+    "modified": "2026-07-17T15:52:38Z",
     "published": "2026-04-14T12:00:00Z",
     "aliases": [
       "GHSA-xgp8-3hg3-c2mh"
     ],
     "related": [],
     "summary": "Name constraints were accepted for certificates asserting a wildcard name",
-    "details": "Permitted subtree name constraints for DNS names were accepted for certificates asserting a wildcard name.\n\nThis was incorrect because, given a name constraint of `accept.example.com`, `*.example.com` could feasibly allow a name of `reject.example.com` which is outside the constraint.\nThis is very similar to [CVE-2025-61727](https://go.dev/issue/76442).\n\nSince name constraints are restrictions on otherwise properly-issued certificates, this bug is reachable only after signature verification and requires misissuance to exploit.\n\nThis vulnerability is identified as [GHSA-xgp8-3hg3-c2mh](https://github.com/rustls/webpki/security/advisories/GHSA-xgp8-3hg3-c2mh). Thank you to @1seal for the report.",
+    "details": "Permitted subtree name constraints for DNS names were accepted for certificates asserting a wildcard name.\n\nThis was incorrect because, given a name constraint of `accept.example.com`, `*.example.com` could feasibly allow a name of `reject.example.com` which is outside the constraint.\nThis is very similar to [CVE-2025-61727](https://go.dev/issue/76442).\n\nSince name constraints are restrictions on otherwise properly-issued certificates, this bug is reachable only after signature verification and requires misissuance to exploit.\n\nThis vulnerability is identified as [GHSA-xgp8-3hg3-c2mh](https://github.com/rustls/webpki/security/advisories/GHSA-xgp8-3hg3-c2mh). Thank you to [@1seal](https://github.com/1seal) for the report.",
     "severity": [],
     "affected": [
       {
@@ -137,14 +137,14 @@
   },
   {
     "id": "RUSTSEC-2026-0098",
-    "modified": "2026-04-15T07:36:20Z",
+    "modified": "2026-07-17T15:52:38Z",
     "published": "2026-04-14T12:00:00Z",
     "aliases": [
       "GHSA-965h-392x-2mh5"
     ],
     "related": [],
     "summary": "Name constraints for URI names were incorrectly accepted",
-    "details": "Name constraints for URI names were ignored and therefore accepted.\n\nNote this library does not provide an API for asserting URI names, and URI name constraints are otherwise not implemented.  URI name constraints are now rejected unconditionally.\n\nSince name constraints are restrictions on otherwise properly-issued certificates, this bug is reachable only after signature verification and requires misissuance to exploit.\n\nThis vulnerability is identified as [GHSA-965h-392x-2mh5](https://github.com/rustls/webpki/security/advisories/GHSA-965h-392x-2mh5). Thank you to @1seal for the report.",
+    "details": "Name constraints for URI names were ignored and therefore accepted.\n\nNote this library does not provide an API for asserting URI names, and URI name constraints are otherwise not implemented.  URI name constraints are now rejected unconditionally.\n\nSince name constraints are restrictions on otherwise properly-issued certificates, this bug is reachable only after signature verification and requires misissuance to exploit.\n\nThis vulnerability is identified as [GHSA-965h-392x-2mh5](https://github.com/rustls/webpki/security/advisories/GHSA-965h-392x-2mh5). Thank you to [@1seal](https://github.com/1seal) for the report.",
     "severity": [],
     "affected": [
       {
@@ -204,14 +204,14 @@
   },
   {
     "id": "RUSTSEC-2026-0049",
-    "modified": "2026-03-24T08:22:29Z",
+    "modified": "2026-07-17T15:52:38Z",
     "published": "2026-03-20T12:00:00Z",
     "aliases": [
       "GHSA-pwjx-qhcg-rvj4"
     ],
     "related": [],
     "summary": "CRLs not considered authoritative by Distribution Point due to faulty matching logic",
-    "details": "If a certificate had more than one `distributionPoint`, then only the first `distributionPoint` would be considered against each CRL's `IssuingDistributionPoint` `distributionPoint`, and then the certificate's subsequent `distributionPoint`s would be ignored.\n\nThe impact was that correctly provided CRLs would not be consulted to check revocation. With `UnknownStatusPolicy::Deny` (the default) this would lead to incorrect but safe `Error::UnknownRevocationStatus`. With `UnknownStatusPolicy::Allow` this would lead to inappropriate acceptance of revoked certificates.\n\nThis vulnerability is thought to be of limited impact. This is because both the certificate and CRL are signed -- an attacker would need to compromise a trusted issuing authority to trigger this bug.  An attacker with such capabilities could likely bypass revocation checking through other more impactful means (such as publishing a valid, empty CRL.)\n\nMore likely, this bug would be latent in normal use, and an attacker could leverage faulty revocation checking to continue using a revoked credential.\n\nThis vulnerability is identified as [GHSA-pwjx-qhcg-rvj4](https://github.com/rustls/webpki/security/advisories/GHSA-pwjx-qhcg-rvj4). Thank you to @1seal for the report.",
+    "details": "If a certificate had more than one `distributionPoint`, then only the first `distributionPoint` would be considered against each CRL's `IssuingDistributionPoint` `distributionPoint`, and then the certificate's subsequent `distributionPoint`s would be ignored.\n\nThe impact was that correctly provided CRLs would not be consulted to check revocation. With `UnknownStatusPolicy::Deny` (the default) this would lead to incorrect but safe `Error::UnknownRevocationStatus`. With `UnknownStatusPolicy::Allow` this would lead to inappropriate acceptance of revoked certificates.\n\nThis vulnerability is thought to be of limited impact. This is because both the certificate and CRL are signed -- an attacker would need to compromise a trusted issuing authority to trigger this bug.  An attacker with such capabilities could likely bypass revocation checking through other more impactful means (such as publishing a valid, empty CRL.)\n\nMore likely, this bug would be latent in normal use, and an attacker could leverage faulty revocation checking to continue using a revoked credential.\n\nThis vulnerability is identified as [GHSA-pwjx-qhcg-rvj4](https://github.com/rustls/webpki/security/advisories/GHSA-pwjx-qhcg-rvj4). Thank you to [@1seal](https://github.com/1seal) for the report.",
     "severity": [],
     "affected": [
       {
