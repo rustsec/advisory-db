@@ -1,13 +1,13 @@
 {
   "id": "RUSTSEC-2026-0104",
-  "modified": "2026-04-22T08:56:10Z",
+  "modified": "2026-07-17T15:52:38Z",
   "published": "2026-04-22T12:00:00Z",
   "aliases": [
     "GHSA-82j2-j2ch-gfr8"
   ],
   "related": [],
   "summary": "Reachable panic in certificate revocation list parsing",
-  "details": "A panic was reachable when parsing certificate revocation lists via [`BorrowedCertRevocationList::from_der`]\nor [`OwnedCertRevocationList::from_der`].  This was the result of mishandling a syntactically valid empty\n`BIT STRING` appearing in the `onlySomeReasons` element of a `IssuingDistributionPoint` CRL extension.\n\nThis panic is reachable prior to a CRL's signature being verified.\n\nApplications that do not use CRLs are not affected.\n\nThank you to @tynus3 for the report.",
+  "details": "A panic was reachable when parsing certificate revocation lists via [`BorrowedCertRevocationList::from_der`]\nor [`OwnedCertRevocationList::from_der`].  This was the result of mishandling a syntactically valid empty\n`BIT STRING` appearing in the `onlySomeReasons` element of a `IssuingDistributionPoint` CRL extension.\n\nThis panic is reachable prior to a CRL's signature being verified.\n\nApplications that do not use CRLs are not affected.\n\nThank you to [@tynus3](https://github.com/tynus3) for the report.",
   "severity": [],
   "affected": [
     {
