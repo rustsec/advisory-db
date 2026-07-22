@@ -21,11 +21,11 @@ jobs:
         id: admin-cache
         with:
           path: ~/.cargo/bin
-          key: rustsec-admin-5a1737650d9b27d38941a23ccca1cfaecf568b63
+          key: rustsec-admin-04cc3a7e0e0a81370a08c6f4aea3192255b19275
 
       - name: Install rustsec-admin
         if: steps.admin-cache.outputs.cache-hit != 'true'
-        run: cargo install --git https://github.com/rustsec/rustsec rustsec-admin --rev 5a1737650d9b27d38941a23ccca1cfaecf568b63
+        run: cargo install --git https://github.com/rustsec/rustsec rustsec-admin --rev 04cc3a7e0e0a81370a08c6f4aea3192255b19275
 
       - run: |
           mkdir -p crates
