@@ -1,0 +1,23 @@
+name: Install rustsec-admin
+description: Install the rustsec-admin tool, with caching
+
+inputs:
+  rev:
+    description: Git revision of rustsec/rustsec to build rustsec-admin from
+    required: false
+    default: 9296b796c38ff8e64c4278d3ae9fd18e42cab1ad
+
+runs:
+  using: composite
+  steps:
+    - name: Cache cargo bin
+      id: admin-cache
+      uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+      with:
+        path: ~/.cargo/bin
+        key: rustsec-admin-${{ inputs.rev }}
+
+    - name: Install rustsec-admin
+      if: steps.admin-cache.outputs.cache-hit != 'true'
+      shell: bash
+      run: cargo install --git https://github.com/rustsec/rustsec rustsec-admin --rev ${{ inputs.rev }}

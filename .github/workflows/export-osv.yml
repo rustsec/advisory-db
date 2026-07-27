@@ -12,20 +12,19 @@ jobs:
     permissions:
       contents: write # needed for pushing back to the repo
     steps:
+      # Checkout main first so the local install-rustsec-admin action is
+      # available; the osv checkout below replaces the workspace.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install rustsec-admin
+        uses: ./.github/actions/install-rustsec-admin
+
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: osv
           persist-credentials: true # persists the token for git push below
-
-      - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
-        id: admin-cache
-        with:
-          path: ~/.cargo/bin
-          key: rustsec-admin-9296b796c38ff8e64c4278d3ae9fd18e42cab1ad
-
-      - name: Install rustsec-admin
-        if: steps.admin-cache.outputs.cache-hit != 'true'
-        run: cargo install --git https://github.com/rustsec/rustsec rustsec-admin --rev 9296b796c38ff8e64c4278d3ae9fd18e42cab1ad
 
       - run: |
           mkdir -p crates

@@ -20,16 +20,8 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Cache cargo bin
-        id: admin-cache
-        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
-        with:
-          path: ~/.cargo/bin
-          key: rustsec-admin-9296b796c38ff8e64c4278d3ae9fd18e42cab1ad
-
       - name: Install rustsec-admin
-        if: steps.admin-cache.outputs.cache-hit != 'true'
-        run: cargo install --git https://github.com/rustsec/rustsec rustsec-admin --rev 9296b796c38ff8e64c4278d3ae9fd18e42cab1ad
+        uses: ./.github/actions/install-rustsec-admin
 
       - name: Synchronize IDs
         id: sync_ids
