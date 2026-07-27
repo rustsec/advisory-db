@@ -10,9 +10,13 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Cache cargo bin
+    # restore/save are used instead of the combined cache action because the
+    # latter saves in a post step, which re-resolves this action.yml from the
+    # workspace at job end — and fails in jobs that later check out a branch
+    # (gh-pages, osv) where this file doesn't exist.
+    - name: Restore cached cargo bin
       id: admin-cache
-      uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+      uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
       with:
         path: ~/.cargo/bin
         key: rustsec-admin-${{ inputs.rev }}
@@ -21,3 +25,10 @@ runs:
       if: steps.admin-cache.outputs.cache-hit != 'true'
       shell: bash
       run: cargo install --git https://github.com/rustsec/rustsec rustsec-admin --rev ${{ inputs.rev }}
+
+    - name: Save cached cargo bin
+      if: steps.admin-cache.outputs.cache-hit != 'true'
+      uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+      with:
+        path: ~/.cargo/bin
+        key: rustsec-admin-${{ inputs.rev }}
