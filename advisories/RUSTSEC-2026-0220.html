@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories with keyword &#39;overflow&#39; › RustSec Advisory Database</title>
+<title>RUSTSEC-2026-0220: ruint: Uint shift operations: incorrect overflow flags and truncated shift amounts › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,96 +52,239 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/ruint/RUSTSEC-2026-0220.md">History</a> ⋅
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/ruint/RUSTSEC-2026-0220.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2026-0220">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2026-0220
+        
+      </h1>
+      <span class="subtitle"><p>Uint shift operations: incorrect overflow flags and truncated shift amounts</p>
 </span>
-      <h1>Advisories with keyword &#39;overflow&#39;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2026-07-30">
-    July 30, 2026
-  </time>
+    
 
-  
-  <h3>
-    
-        
-    
-    <a href="/advisories/RUSTSEC-2026-0220.html">
-      RUSTSEC-2026-0220: Vulnerability in ruint
-    </a>
-  </h3>
-  <span><p>Uint shift operations: incorrect overflow flags and truncated shift amounts</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2024-08-23">
-    August 23, 2024
-  </time>
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2026-07-08">
+          July  8, 2026
+        </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2026-07-30">
+          July 30, 2026
+        </time>
         
-    
-    <a href="/advisories/RUSTSEC-2024-0365.html">
-      RUSTSEC-2024-0365: Vulnerability in diesel
-    </a>
-  </h3>
-  <span><p>Binary Protocol Misinterpretation caused by Truncating or Overflowing Casts</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2024-08-16">
-    August 16, 2024
-  </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="package">Package</dt>
+      <dd>
         
-    
-    <a href="/advisories/RUSTSEC-2024-0363.html">
-      RUSTSEC-2024-0363: Vulnerability in sqlx
-    </a>
-  </h3>
-  <span><p>Binary Protocol Misinterpretation caused by Truncating or Overflowing Casts</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2024-04-24">
-    April 24, 2024
-  </time>
+        
+        <a href="/packages/ruint.html">ruint</a>
+           
+          (<a href="https://crates.io/crates/ruint">crates.io</a>)
+          
+        
+        
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="type">Type</dt>
+      <dd>
         
-    
-    <a href="/advisories/RUSTSEC-2024-0338.html">
-      RUSTSEC-2024-0338: Vulnerability in cosmwasm-std
-    </a>
-  </h3>
-  <span><p>Arithmetic overflows in cosmwasm-std</p>
-</span>
-  
-</li>
+        Vulnerability
+        
+      </dd>
+
       
-    </ul>
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/denial-of-service.html">denial-of-service</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/shift.html">#shift</a>
+        
+          <a href="/keywords/overflow.html">#overflow</a>
+        
+          <a href="/keywords/arithmetic.html">#arithmetic</a>
+        
+          <a href="/keywords/infinite-loop.html">#infinite-loop</a>
+        
+      </dd>
+      
+
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/alloy-rs/ruint/pull/603">
+              https://github.com/alloy-rs/ruint/pull/603
+            </a>
+          </li>
+        
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&#62;=1.20.0</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+
+      
+      
+
+      
+      
+    </dl>
+
+    
+    
+    <dl>
+      <dt>Affected Functions</dt>
+      <dd>Version</dd>
+      
+      <dt><code>ruint::Uint::checked_shl</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;1.20.0</code></li>
+          
+        </ul>
+      </dd>
+      
+      <dt><code>ruint::Uint::checked_shr</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;1.20.0</code></li>
+          
+        </ul>
+      </dd>
+      
+      <dt><code>ruint::Uint::overflowing_shl</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;1.20.0</code></li>
+          
+        </ul>
+      </dd>
+      
+      <dt><code>ruint::Uint::overflowing_shr</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;1.20.0</code></li>
+          
+        </ul>
+      </dd>
+      
+      <dt><code>ruint::Uint::saturating_shl</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;1.20.0</code></li>
+          
+        </ul>
+      </dd>
+      
+      <dt><code>ruint::Uint::saturating_shr</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;1.20.0</code></li>
+          
+        </ul>
+      </dd>
+      
+      <dt><code>ruint::Uint::wrapping_shl</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;1.20.0</code></li>
+          
+        </ul>
+      </dd>
+      
+      <dt><code>ruint::Uint::wrapping_shr</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;1.20.0</code></li>
+          
+        </ul>
+      </dd>
+      
+    </dl>
+    
+
+    
+
+    <h3 id="description">Description</h3>
+    <p><code>Uint::overflowing_shl</code>/<code>overflowing_shr</code> returned false-negative overflow
+flags. <code>overflowing_shl</code> missed bits shifted above <code>BITS</code> but within the top
+limb (non-limb-aligned widths such as <code>U160</code>), and limbs wholly discarded by
+shifts &gt;= 64; <code>overflowing_shr</code> missed wholly discarded low limbs. Shifted
+values were correct; only the flag was wrong.</p>
+<p>The wrong flag propagates: <code>checked_shl</code>/<code>checked_shr</code> return <code>Some</code> instead
+of <code>None</code>, <code>strict_*</code> fail to panic, and <code>saturating_*</code> return a wrapped
+value instead of saturating. The incorrect <code>checked_shl</code> result causes
+<code>to_base_be</code> (and string formatting) to loop forever on no-alloc builds for
+non-limb-aligned widths — a denial of service if formatting is reachable
+from untrusted input.</p>
+<p>Separately, <code>wrapping_shl</code>/<code>wrapping_shr</code> on 64/128/256-bit types truncated
+the shift amount modulo 2^32, so shifts &gt;= 2^32 returned an incorrectly
+wrapped value instead of zero; on 32-bit targets the generic path also
+truncated 64-bit shift amounts.</p>
+<p>Callers using checked or saturating shift semantics on untrusted shift
+amounts may compute incorrect results.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
