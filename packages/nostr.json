@@ -1,9 +1,11 @@
 [
   {
     "id": "RUSTSEC-2026-0219",
-    "modified": "2026-07-29T08:07:47Z",
+    "modified": "2026-08-01T11:36:43Z",
     "published": "2026-07-26T12:00:00Z",
-    "aliases": [],
+    "aliases": [
+      "GHSA-xg7c-246g-6qpv"
+    ],
     "related": [],
     "summary": "Remote Denial of Service via malformed NIP-04 IV",
     "details": "The `nostr` crate did not validate the length of the initialization vector\ndecoded from the `?iv=` portion of a NIP-04 encrypted message.\n\nThe decoded IV was converted from a byte slice to the 16-byte AES-CBC IV type\nusing a conversion that asserts the slice length. As a result, an IV whose\ndecoded length was not exactly 16 bytes caused a panic before ciphertext\ndecryption. For example, `?iv=AAAA` decodes to a three-byte IV and triggers the\npanic.\n\nApplications that decrypt untrusted NIP-04 content are affected. The issue is\nalso reachable through NIP-47 (Nostr Wallet Connect), where response and\nnotification events from a malicious or compromised wallet service are passed\nto NIP-04 decryption. If the panic is not isolated, a crafted event can terminate\nthe application or disrupt message processing, causing a denial of service.\n\nThe issue does not affect confidentiality or integrity.\n\nThe flaw was corrected by converting the decoded IV to `[u8; 16]` using a\nchecked conversion. Invalid IV lengths now return a `Malformed` error instead of\npanicking.\n\n## Credit\n\nDiscovered and responsibly disclosed by **Muhammed Shekho** ([mhd-shekho.com](https://mhd-shekho.com)).",
@@ -80,9 +82,11 @@
   },
   {
     "id": "RUSTSEC-2026-0216",
-    "modified": "2026-07-29T15:17:10Z",
+    "modified": "2026-08-01T11:36:43Z",
     "published": "2026-07-25T12:00:00Z",
-    "aliases": [],
+    "aliases": [
+      "GHSA-hrqp-8w79-gwgw"
+    ],
     "related": [],
     "summary": "Remote Denial of Service via malformed NIP‑44 v2 payload",
     "details": "The NIP-44 v2 decryption path in the `nostr` crate contains a reachable panic\nwhen processing a short or empty ciphertext. After the HMAC check passes and the\nciphertext is decrypted via ChaCha20, the code reads a 2‑byte unpadded‑length\nprefix via `buffer[0..2]` without first verifying that the decrypted buffer\ncontains at least 2 bytes. A malicious sender who holds the symmetric\nconversation key (e.g., a direct‑message sender) can craft a payload that\nproduces a 0 or 1‑byte decrypted buffer, causing an index‑out‑of‑bounds panic.\nThis can be triggered remotely through any relay that delivers the crafted\nevent to the victim's client, resulting in a denial of service. No key material,\nplaintext, or memory corruption occurs.\n\nThe vulnerability is present in all versions from `0.26.0` up to `0.44.4`\n(inclusive) and in the alpha releases `0.45.0‑alpha.1` through `0.45.0‑alpha.4`.\nVersions `0.44.5` and `0.45.0‑alpha.5` contain the fix.\n\n## Credit\n\nDiscovered and responsibly disclosed by **Muhammed Shekho** ([mhd-shekho.com](https://mhd-shekho.com)).",
