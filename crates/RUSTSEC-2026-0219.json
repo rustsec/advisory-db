@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2026-0219",
-  "modified": "2026-07-29T08:07:47Z",
+  "modified": "2026-08-01T11:36:43Z",
   "published": "2026-07-26T12:00:00Z",
-  "aliases": [],
+  "aliases": [
+    "GHSA-xg7c-246g-6qpv"
+  ],
   "related": [],
   "summary": "Remote Denial of Service via malformed NIP-04 IV",
   "details": "The `nostr` crate did not validate the length of the initialization vector\ndecoded from the `?iv=` portion of a NIP-04 encrypted message.\n\nThe decoded IV was converted from a byte slice to the 16-byte AES-CBC IV type\nusing a conversion that asserts the slice length. As a result, an IV whose\ndecoded length was not exactly 16 bytes caused a panic before ciphertext\ndecryption. For example, `?iv=AAAA` decodes to a three-byte IV and triggers the\npanic.\n\nApplications that decrypt untrusted NIP-04 content are affected. The issue is\nalso reachable through NIP-47 (Nostr Wallet Connect), where response and\nnotification events from a malicious or compromised wallet service are passed\nto NIP-04 decryption. If the panic is not isolated, a crafted event can terminate\nthe application or disrupt message processing, causing a denial of service.\n\nThe issue does not affect confidentiality or integrity.\n\nThe flaw was corrected by converting the decoded IV to `[u8; 16]` using a\nchecked conversion. Invalid IV lengths now return a `Malformed` error instead of\npanicking.\n\n## Credit\n\nDiscovered and responsibly disclosed by **Muhammed Shekho** ([mhd-shekho.com](https://mhd-shekho.com)).",
