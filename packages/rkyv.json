@@ -1,5 +1,233 @@
 [
   {
+    "id": "RUSTSEC-2026-0233",
+    "modified": "2026-08-04T09:27:20Z",
+    "published": "2026-05-11T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Crafted archives can cause a use-after-free during deserialization",
+    "details": "Insufficient archive range validation could allow a crafted archive to reach\n`ArchivedString::deserialize` with an invalid pointer. A reported reproducer\nused `rkyv::from_bytes` to deserialize a struct containing strings, a vector,\na box, and an optional hash map. AddressSanitizer detected a heap use-after-free\nduring string deserialization.\n\nThe flaw could be triggered through the safe checked deserialization API when\nprocessing malicious archive bytes. Version 0.8.17 rejects the malformed\narchive during validation. Users who process untrusted archives should upgrade\nto 0.8.17 or later.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "rkyv",
+          "purl": "pkg:cargo/rkyv"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.8.0-rc.1"
+              },
+              {
+                "fixed": "0.8.17"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/rkyv"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0233.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/rkyv/rkyv/issues/666"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/rkyv/rkyv/commit/3c9d07fbff5949261bef38d00ab160b129bd9d3a"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/rkyv/rkyv/commit/107772907c4e839fa67900385f0d4814e7d15e42"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2026-0235",
+    "modified": "2026-08-04T09:27:20Z",
+    "published": "2026-05-13T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Insufficient archive validation can cause out-of-bounds reads in archives containing Rc/Arc",
+    "details": "Shared pointer validation keyed already-validated pointees by their address and\ntype, but did not include pointer metadata. For unsized pointees, an archive\ncould therefore contain multiple `Rc`, `Arc`, or weak pointers that shared a\ndata address but used different metadata, such as different slice lengths.\n\nOnce the first pointer had been validated, later pointers to the same address\nskipped pointee validation. The safe checked `rkyv::access` API could\nconsequently return a slice with a forged length, allowing safe indexing to\nread out of bounds. The same validation bypass was reachable through checked\ndeserialization with `rkyv::from_bytes`.\n\nVersion 0.8.17 includes pointer metadata in shared pointer validation and\nrejects conflicting metadata. The 0.7 series is also affected but is no\nlonger supported by upstream. Users who process untrusted archives should upgrade\nto 0.8.17 or later.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "rkyv",
+          "purl": "pkg:cargo/rkyv"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-exposure"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.7.0-pre.2"
+              },
+              {
+                "fixed": "0.8.17"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/rkyv"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0235.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/rkyv/rkyv/issues/670"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/rkyv/rkyv/commit/3c9d07fbff5949261bef38d00ab160b129bd9d3a"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2026-0234",
+    "modified": "2026-08-04T09:27:20Z",
+    "published": "2026-05-11T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Insufficient archive validation can cause out-of-bounds reads in archives containing hash tables",
+    "details": "The archive validator could accept certain malformed relative pointers and\ninvalid `ArchivedHashTable` states. In particular, the hash table verifier did\nnot ensure that the number of occupied buckets matched the table's declared\nlength.\n\nA crafted archive could pass the checks performed by the safe `rkyv::access`\nand `rkyv::from_bytes` APIs and then cause an out-of-bounds read in later\nvalidation, lookup, or deserialization. Depending on the input, this could\nperform scalar or SIMD reads outside the archive buffer or crash the process.\n\nVersion 0.8.17 strengthens archive range validation and rejects hash tables\nwhose number of occupied buckets does not match their declared length. Users\nwho process untrusted archives should upgrade to 0.8.17 or later.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "rkyv",
+          "purl": "pkg:cargo/rkyv"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-exposure",
+            "denial-of-service"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.8.0-rc.1"
+              },
+              {
+                "fixed": "0.8.17"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/rkyv"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0234.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/rkyv/rkyv/issues/663"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/rkyv/rkyv/issues/664"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/rkyv/rkyv/issues/665"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/rkyv/rkyv/issues/669"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/rkyv/rkyv/commit/3c9d07fbff5949261bef38d00ab160b129bd9d3a"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/rkyv/rkyv/commit/57086e1c7f417d0360c7045905db3b3d8e30f866"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
     "id": "RUSTSEC-2026-0122",
     "modified": "2026-05-16T07:08:02Z",
     "published": "2026-04-23T12:00:00Z",

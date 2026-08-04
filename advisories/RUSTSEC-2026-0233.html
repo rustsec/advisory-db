@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories with keyword &#39;deserialization&#39; › RustSec Advisory Database</title>
+<title>RUSTSEC-2026-0233: rkyv: Crafted archives can cause a use-after-free during deserialization › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,58 +52,167 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/rkyv/RUSTSEC-2026-0233.md">History</a> ⋅
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/rkyv/RUSTSEC-2026-0233.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2026-0233">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2026-0233
+        
+      </h1>
+      <span class="subtitle"><p>Crafted archives can cause a use-after-free during deserialization</p>
 </span>
-      <h1>Advisories with keyword &#39;deserialization&#39;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2026-08-04">
-    August  4, 2026
-  </time>
+    
 
-  
-  <h3>
-    
-        
-    
-    <a href="/advisories/RUSTSEC-2026-0233.html">
-      RUSTSEC-2026-0233: Vulnerability in rkyv
-    </a>
-  </h3>
-  <span><p>Crafted archives can cause a use-after-free during deserialization</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2020-10-01">
-    October  1, 2020
-  </time>
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2026-05-11">
+          May 11, 2026
+        </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2026-08-04">
+          August  4, 2026
+        </time>
         
-    
-    <a href="/advisories/RUSTSEC-2017-0006.html">
-      RUSTSEC-2017-0006: Vulnerability in rmpv
-    </a>
-  </h3>
-  <span><p>Unchecked vector pre-allocation</p>
-</span>
-  
-</li>
+      </dd>
+
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        <a href="/packages/rkyv.html">rkyv</a>
+           
+          (<a href="https://crates.io/crates/rkyv">crates.io</a>)
+          
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        Vulnerability
+        
+      </dd>
+
       
-    </ul>
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/memory-corruption.html">memory-corruption</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/use-after-free.html">#use-after-free</a>
+        
+          <a href="/keywords/validation.html">#validation</a>
+        
+          <a href="/keywords/deserialization.html">#deserialization</a>
+        
+      </dd>
+      
+
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/rkyv/rkyv/issues/666">
+              https://github.com/rkyv/rkyv/issues/666
+            </a>
+          </li>
+        
+        
+          <li>
+            <a href="https://github.com/rkyv/rkyv/commit/3c9d07fbff5949261bef38d00ab160b129bd9d3a">
+              https://github.com/rkyv/rkyv/commit/3c9d07fbff5949261bef38d00ab160b129bd9d3a
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://github.com/rkyv/rkyv/commit/107772907c4e839fa67900385f0d4814e7d15e42">
+              https://github.com/rkyv/rkyv/commit/107772907c4e839fa67900385f0d4814e7d15e42
+            </a>
+          </li>
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&#62;=0.8.17</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+      <dt id="unaffected">Unaffected</dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;0.8.0-rc.1</code></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      
+    </dl>
+
+    
+    
+
+    <h3 id="description">Description</h3>
+    <p>Insufficient archive range validation could allow a crafted archive to reach
+<code>ArchivedString::deserialize</code> with an invalid pointer. A reported reproducer
+used <code>rkyv::from_bytes</code> to deserialize a struct containing strings, a vector,
+a box, and an optional hash map. AddressSanitizer detected a heap use-after-free
+during string deserialization.</p>
+<p>The flaw could be triggered through the safe checked deserialization API when
+processing malicious archive bytes. Version 0.8.17 rejects the malformed
+archive during validation. Users who process untrusted archives should upgrade
+to 0.8.17 or later.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>

@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories with keyword &#39;deserialization&#39; › RustSec Advisory Database</title>
+<title>RUSTSEC-2026-0235: rkyv: Insufficient archive validation can cause out-of-bounds reads in archives containing Rc/Arc › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,58 +52,165 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/rkyv/RUSTSEC-2026-0235.md">History</a> ⋅
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/rkyv/RUSTSEC-2026-0235.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2026-0235">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2026-0235
+        
+      </h1>
+      <span class="subtitle"><p>Insufficient archive validation can cause out-of-bounds reads in archives containing Rc/Arc</p>
 </span>
-      <h1>Advisories with keyword &#39;deserialization&#39;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2026-08-04">
-    August  4, 2026
-  </time>
+    
 
-  
-  <h3>
-    
-        
-    
-    <a href="/advisories/RUSTSEC-2026-0233.html">
-      RUSTSEC-2026-0233: Vulnerability in rkyv
-    </a>
-  </h3>
-  <span><p>Crafted archives can cause a use-after-free during deserialization</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2020-10-01">
-    October  1, 2020
-  </time>
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2026-05-13">
+          May 13, 2026
+        </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2026-08-04">
+          August  4, 2026
+        </time>
         
-    
-    <a href="/advisories/RUSTSEC-2017-0006.html">
-      RUSTSEC-2017-0006: Vulnerability in rmpv
-    </a>
-  </h3>
-  <span><p>Unchecked vector pre-allocation</p>
-</span>
-  
-</li>
+      </dd>
+
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        <a href="/packages/rkyv.html">rkyv</a>
+           
+          (<a href="https://crates.io/crates/rkyv">crates.io</a>)
+          
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        Vulnerability
+        
+      </dd>
+
       
-    </ul>
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/memory-exposure.html">memory-exposure</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/out-of-bounds-read.html">#out-of-bounds-read</a>
+        
+          <a href="/keywords/validation.html">#validation</a>
+        
+          <a href="/keywords/shared-pointer.html">#shared-pointer</a>
+        
+      </dd>
+      
+
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/rkyv/rkyv/issues/670">
+              https://github.com/rkyv/rkyv/issues/670
+            </a>
+          </li>
+        
+        
+          <li>
+            <a href="https://github.com/rkyv/rkyv/commit/3c9d07fbff5949261bef38d00ab160b129bd9d3a">
+              https://github.com/rkyv/rkyv/commit/3c9d07fbff5949261bef38d00ab160b129bd9d3a
+            </a>
+          </li>
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&#62;=0.8.17</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+      <dt id="unaffected">Unaffected</dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;0.7.0-pre.2</code></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      
+    </dl>
+
+    
+    
+
+    <h3 id="description">Description</h3>
+    <p>Shared pointer validation keyed already-validated pointees by their address and
+type, but did not include pointer metadata. For unsized pointees, an archive
+could therefore contain multiple <code>Rc</code>, <code>Arc</code>, or weak pointers that shared a
+data address but used different metadata, such as different slice lengths.</p>
+<p>Once the first pointer had been validated, later pointers to the same address
+skipped pointee validation. The safe checked <code>rkyv::access</code> API could
+consequently return a slice with a forged length, allowing safe indexing to
+read out of bounds. The same validation bypass was reachable through checked
+deserialization with <code>rkyv::from_bytes</code>.</p>
+<p>Version 0.8.17 includes pointer metadata in shared pointer validation and
+rejects conflicting metadata. The 0.7 series is also affected but is no
+longer supported by upstream. Users who process untrusted archives should upgrade
+to 0.8.17 or later.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
