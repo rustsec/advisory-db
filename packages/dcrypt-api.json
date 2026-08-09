@@ -1,0 +1,78 @@
+[
+  {
+    "id": "RUSTSEC-2026-0242",
+    "modified": "2026-08-09T12:34:06Z",
+    "published": "2026-08-09T12:00:00Z",
+    "aliases": [
+      "GHSA-7hc7-h3f2-r4j6"
+    ],
+    "related": [],
+    "summary": "Safe ErrorRegistry APIs can cause undefined behavior",
+    "details": "All published versions of `dcrypt-api` before 2.0.0 exposed safe\n`ErrorRegistry` operations that could trigger undefined behavior when the\ndefault `std` feature was enabled.\n\nStored `Box<E>` values were erased to raw pointers and later deallocated as\n`Box<()>`. The `get_error<E>` operation also performed an unchecked cast to a\ncaller-selected type. Finally, concurrent replacement or clearing could free a\nvalue while another thread cloned it. Ordinary safe Rust could therefore cause\nmismatched deallocation, type confusion, and use-after-free. Crates that\nre-exported this API are affected transitively.\n\nVersion 2.0.0 replaces the raw pointers with owned `Box<dyn Any + Send>` values\nbehind a mutex, performs checked downcasts, and uses a mutation generation so\nconcurrent stores and clears win safely. There is no reliable workaround while\ncalling the affected registry API. Upgrade to 2.0.0 or later and avoid\nprocess-global error state where possible.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "dcrypt-api",
+          "purl": "pkg:cargo/dcrypt-api"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption",
+            "thread-safety"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "2.0.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/dcrypt-api"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0242.html"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://github.com/ioi-foundation/dcrypt/security/advisories/GHSA-7hc7-h3f2-r4j6"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/ioi-foundation/dcrypt/commit/c99cc86f0ee353010cd202cbcd2c310371b0bbb8"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/ioi-foundation/dcrypt/releases/tag/v2.0.0"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]
