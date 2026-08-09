@@ -1,0 +1,75 @@
+{
+  "id": "RUSTSEC-2026-0240",
+  "modified": "2026-08-09T12:34:06Z",
+  "published": "2026-08-09T12:00:00Z",
+  "aliases": [
+    "GHSA-7j32-2mpw-c784"
+  ],
+  "related": [],
+  "summary": "Ed25519 identity public keys permit universal signature forgery",
+  "details": "All published versions of `dcrypt-sign` before 2.0.0 accepted the Edwards\nidentity as an Ed25519 public key. A signature with `R = B` and `S = 1` then\nverified for every message because the challenge term multiplied the identity.\nThe implementation also admitted other noncanonical or small-order inputs.\nConsumers that accepted externally supplied dcrypt Ed25519 keys may therefore\nhave accepted forged authorizations.\n\nVersion 2.0.0 replaces the custom arithmetic with `ed25519-dalek`, uses strict\nverification, and rejects noncanonical, small-order, and non-torsion-free public\nkeys and `R` values, as well as noncanonical `S >= L`. No wrapper around the\naffected verifier is recommended as a complete workaround. Upgrade to 2.0.0 or\nlater, audit registered keys and trust stores, and review historical actions\nauthorized with externally supplied keys.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "dcrypt-sign",
+        "purl": "pkg:cargo/dcrypt-sign"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "crypto-failure"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "2.0.0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/dcrypt-sign"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0240.html"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://github.com/ioi-foundation/dcrypt/security/advisories/GHSA-7j32-2mpw-c784"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/ioi-foundation/dcrypt/commit/c99cc86f0ee353010cd202cbcd2c310371b0bbb8"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/ioi-foundation/dcrypt/releases/tag/v2.0.0"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}

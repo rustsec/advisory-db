@@ -1,0 +1,76 @@
+{
+  "id": "RUSTSEC-2026-0239",
+  "modified": "2026-08-09T12:34:06Z",
+  "published": "2026-08-09T12:00:00Z",
+  "aliases": [
+    "GHSA-8cwp-4826-jg9f"
+  ],
+  "related": [],
+  "summary": "Streaming AEAD does not authenticate stream structure",
+  "details": "In all published versions of `dcrypt-symmetric` before 2.0.0, version-1 GCM and\nChaCha20-Poly1305 streams used unauthenticated terminator, counter, and length\nfields. Decryptors trusted transmitted counters, allocated from unbounded\nlengths, and discarded plaintext that did not fit a caller's single read\nbuffer. An attacker could obtain successful truncated EOF, omit, replay, or\nreorder frames within a stream, or request an allocation approaching 4 GiB.\n\nVersion 2.0.0 introduces the `DCRSTRM2` format, which authenticates its version,\nalgorithm, random stream identifier, base nonce, strict sequence, bounded\nlengths, final flag, and caller AAD. It enforces authenticated finality and\nphysical EOF, bounds frames to 16 KiB before allocation, retains partial-read\nplaintext, and rejects legacy version-1 input. Existing version-1 ciphertext\ncannot retrospectively prove completeness or ordering and must be migrated only\nthrough an application-specific, explicitly trusted process.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "dcrypt-symmetric",
+        "purl": "pkg:cargo/dcrypt-symmetric"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "crypto-failure",
+          "denial-of-service"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "2.0.0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/dcrypt-symmetric"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0239.html"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://github.com/ioi-foundation/dcrypt/security/advisories/GHSA-8cwp-4826-jg9f"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/ioi-foundation/dcrypt/commit/c99cc86f0ee353010cd202cbcd2c310371b0bbb8"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/ioi-foundation/dcrypt/releases/tag/v2.0.0"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "id": "RUSTSEC-2026-0238",
+  "modified": "2026-08-09T12:34:06Z",
+  "published": "2026-08-09T12:00:00Z",
+  "aliases": [
+    "GHSA-h9f2-fgp8-vc4h"
+  ],
+  "related": [],
+  "summary": "Low-level GCM ignores the operation nonce",
+  "details": "In all published versions of `dcrypt-algorithms` before 2.0.0, the low-level\n`Gcm` builder required an operation nonce but derived `J0` from the nonce\ncaptured by the original `Gcm` constructor. Multiple operations could therefore\nsilently reuse a nonce even when callers supplied distinct values, compromising\nconfidentiality and authenticity under an affected key.\n\nVersion 2.0.0 makes `Gcm` key-only and passes the operation nonce through IV\nderivation, encryption, and decryption. It also corrects non-96-bit IV\nprocessing, rejects tags shorter than 96 bits, and enforces counter limits.\nApplications must upgrade, identify affected keys, rotate them, and re-encrypt\naffected data; updating the implementation cannot restore security after nonce\nreuse.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "dcrypt-algorithms",
+        "purl": "pkg:cargo/dcrypt-algorithms"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "crypto-failure"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "2.0.0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/dcrypt-algorithms"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0238.html"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://github.com/ioi-foundation/dcrypt/security/advisories/GHSA-h9f2-fgp8-vc4h"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/ioi-foundation/dcrypt/commit/c99cc86f0ee353010cd202cbcd2c310371b0bbb8"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/ioi-foundation/dcrypt/releases/tag/v2.0.0"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
