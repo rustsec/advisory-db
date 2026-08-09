@@ -20,6 +20,7 @@ keywords = ["example", "freeform", "keywords"]
 #os = ["windows"]
 
 #[affected.functions]
+# NB: change hyphens in the crate name to underscores, i.e. "crate-name" -> "crate_name"
 #"crate_name::MyStruct::vulnerable_fn" = [">= 1.3.0, < 1.3.4"]
 
 [versions]
