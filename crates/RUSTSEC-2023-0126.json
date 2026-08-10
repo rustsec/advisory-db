@@ -1,0 +1,62 @@
+{
+  "id": "RUSTSEC-2023-0126",
+  "modified": "2026-08-10T19:33:56Z",
+  "published": "2023-02-04T12:00:00Z",
+  "aliases": [],
+  "related": [],
+  "summary": "Aliasing violation in `OrdSet` insertion",
+  "details": "Inserting into an `im::OrdSet` (for example by collecting an iterator into one) can violate\nRust's aliasing rules: Miri reports a stacked borrows violation in\n`sized_chunks::Chunk::force_copy()`, which is called during insertion, where a shared borrow\nis invalidated by a unique borrow before the read through it completes.\nThis is undefined behavior, reachable from safe code.\n\nNo fixed version is available, as the crate is unmaintained; its GitHub\nrepository was archived by the owner on 2026-05-03.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "im",
+        "purl": "pkg:cargo/im"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "memory-corruption"
+        ],
+        "cvss": null,
+        "informational": "unsound"
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/im"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2023-0126.html"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/bodil/im-rs/issues/207"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
