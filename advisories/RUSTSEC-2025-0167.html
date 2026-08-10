@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package &#39;im&#39; › RustSec Advisory Database</title>
+<title>RUSTSEC-2025-0167: bitmaps: `Bitmap::try_from(&#38;[u8])` can create invalid values › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,81 +52,141 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/bitmaps/RUSTSEC-2025-0167.md">History</a> ⋅
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/bitmaps/RUSTSEC-2025-0167.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2025-0167">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2025-0167
+        
+      </h1>
+      <span class="subtitle"><p><code>Bitmap::try_from(&amp;[u8])</code> can create invalid values</p>
 </span>
-      <h1>Advisories for package &#39;im&#39;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2026-08-10">
-    August 10, 2026
-  </time>
+    
 
-  
-  <h3>
-    
-        
-          <span class="tag info">INFO</span>
-        
-    
-    <a href="/advisories/RUSTSEC-2023-0126.html">
-      RUSTSEC-2023-0126: Unsoundness in im
-    </a>
-  </h3>
-  <span><p>Aliasing violation in <code>OrdSet</code> insertion</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2026-08-10">
-    August 10, 2026
-  </time>
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2025-12-25">
+          December 25, 2025
+        </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2026-08-10">
+          August 10, 2026
+        </time>
         
-          <span class="tag info">INFO</span>
-        
-    
-    <a href="/advisories/RUSTSEC-2026-0248.html">
-      RUSTSEC-2026-0248: im is unmaintained
-    </a>
-  </h3>
-  <span><p>im is unmaintained</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2021-01-18">
-    January 18, 2021
-  </time>
+      </dd>
 
-  
-  <h3>
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        <a href="/packages/bitmaps.html">bitmaps</a>
+           
+          (<a href="https://crates.io/crates/bitmaps">crates.io</a>)
+          
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        <span class="tag info">INFO</span>
+        Unsound
+        
+      </dd>
+
+      
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/memory-corruption.html">memory-corruption</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/bodil/bitmaps/issues/35">
+              https://github.com/bodil/bitmaps/issues/35
+            </a>
+          </li>
+        
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        no patched versions
+        
+      </dd>
+
+      
+      <dt id="unaffected">Unaffected</dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;3.2.0</code></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      
+    </dl>
+
     
-      <span class="tag medium">MEDIUM</span>
-      
-    <a href="/advisories/RUSTSEC-2020-0096.html">
-      RUSTSEC-2020-0096: Unsoundness in im
-    </a>
-  </h3>
-  <span><p>TreeFocus lacks bounds on its Send and Sync traits</p>
-</span>
-  
-</li>
-      
-    </ul>
+    
+
+    <h3 id="description">Description</h3>
+    <p>The <code>TryFrom&lt;&amp;[u8]&gt;</code> implementation for <code>Bitmap&lt;SIZE&gt;</code> copies the input bytes
+into an uninitialized backing store and calls <code>assume_init()</code> without
+validating that the bytes form a valid value of the backing store type. For
+<code>SIZE = 1</code> the backing store is a <code>bool</code>, so any input byte other than <code>0x00</code>
+or <code>0x01</code> produces an invalid value, which is immediate undefined behavior.</p>
+<p>The <code>AsMut&lt;[u8]&gt;</code> implementation has the same problem, as it allows safe code
+to write invalid bit patterns into the backing store through the returned slice.</p>
+<p>No fixed version is available, as the crate is unmaintained; its GitHub
+repository was archived by the owner on 2026-05-03.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
