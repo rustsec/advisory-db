@@ -375,6 +375,155 @@
         
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0253: Unsoundness in lru</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0253.html</id><updated>2026-08-11T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0253.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0253: Unsoundness in lru"/><published>2026-08-11T12:00:00+00:00</published><summary xml:lang="en">Potential use-after-free due to lack of panic safety in `LruCache::pop()`</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/lru/RUSTSEC-2026-0253.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/lru/RUSTSEC-2026-0253.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0253&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0253
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Potential use-after-free due to lack of panic safety in &lt;code&gt;LruCache::pop()&lt;/code&gt;&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-05-12&quot;&gt;
+          May 12, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-08-11&quot;&gt;
+          August 11, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/lru.html&quot;&gt;lru&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/lru&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/panic-safety.html&quot;&gt;#panic-safety&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/memory-safety.html&quot;&gt;#memory-safety&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/use-after-free.html&quot;&gt;#use-after-free&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/double-free.html&quot;&gt;#double-free&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/jeromefroe/lru-rs/pull/238&quot;&gt;
+              https://github.com/jeromefroe/lru-rs/pull/238
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.18.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;&lt;code&gt;LruCache::pop()&lt;/code&gt; in &lt;code&gt;lru&lt;/code&gt; was not panic-safe. If the &lt;code&gt;Drop&lt;/code&gt; implementation of a stored key panics during &lt;code&gt;pop()&lt;/code&gt;, &lt;code&gt;self.detach()&lt;/code&gt; is never called, leaving dangling pointers in the internal doubly-linked list.&lt;/p&gt;
+&lt;p&gt;A subsequent cache operation that triggers eviction can then dereference these dangling pointers:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The node is freed from the map, but remains linked in the LRU list due to the skipped &lt;code&gt;detach()&lt;/code&gt; call&lt;/li&gt;
+&lt;li&gt;When a new insertion causes eviction, the LRU traversal encounters the dangling pointer&lt;/li&gt;
+&lt;li&gt;This results in a write to already-freed memory during the eviction process&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Impact&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;CWE-416 (Use-After-Free):&lt;/strong&gt; memory corruption when subsequent cache operations access freed node pointers in the linked list&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CWE-415 (Double Free):&lt;/strong&gt; potential heap corruption when the same memory is freed multiple times&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Both types of undefined behavior can be invoked in safe Rust, but only if unwinding panics are enabled and &lt;code&gt;std::panic::catch_unwind&lt;/code&gt; is used with key types that have potentially-panicking &lt;code&gt;Drop&lt;/code&gt; implementations.&lt;/p&gt;
+&lt;h2&gt;Fix&lt;/h2&gt;
+&lt;p&gt;Fixed in &lt;code&gt;lru&lt;/code&gt; 0.18.2 by detaching the node from the linked list before freeing it and dropping the key (&lt;a href=&quot;https://github.com/jeromefroe/lru-rs/pull/238&quot;&gt;lru-rs#238&lt;/a&gt;).&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2025-0169: Unsoundness in stainless_ffmpeg</title><id>https://rustsec.org/advisories/RUSTSEC-2025-0169.html</id><updated>2026-08-11T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2025-0169.html" rel="alternate" type="text/html" title="RUSTSEC-2025-0169: Unsoundness in stainless_ffmpeg"/><published>2026-08-11T12:00:00+00:00</published><summary xml:lang="en">`FormatContext` stream accessors can cause undefined behavior from safe code</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
