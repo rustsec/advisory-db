@@ -1,0 +1,74 @@
+{
+  "id": "RUSTSEC-2025-0168",
+  "modified": "2026-08-11T10:24:59Z",
+  "published": "2025-03-16T12:00:00Z",
+  "aliases": [
+    "CVE-2025-29787",
+    "GHSA-94vh-gphv-8pm8"
+  ],
+  "related": [],
+  "summary": "Incorrect path canonicalization during Archive Extraction Leading to Arbitrary File Write",
+  "details": "In the archive extraction routine of affected versions of the zip crate, symbolic links earlier in the archive are allowed to be used for later files in the archive without validation of the final canonicalized path, allowing maliciously crafted archives to overwrite arbitrary files in the file system when extracted.\n\nFor more details, see the GitHub-hosted security advisory: <https://github.com/zip-rs/zip2/security/advisories/GHSA-94vh-gphv-8pm8>",
+  "severity": [
+    {
+      "type": "CVSS_V4",
+      "score": "CVSS:4.0/AV:N/AC:H/AT:N/PR:L/UI:N/VC:L/VI:H/VA:N/SC:H/SI:H/SA:H"
+    }
+  ],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "zip",
+        "purl": "pkg:cargo/zip"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": [
+            "zip::read::ZipArchive::extract",
+            "zip::unstable::stream::ZipStreamReader::extract"
+          ]
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [],
+        "cvss": "CVSS:4.0/AV:N/AC:H/AT:N/PR:L/UI:N/VC:L/VI:H/VA:N/SC:H/SI:H/SA:H",
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "1.3.0"
+            },
+            {
+              "fixed": "2.3.0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/zip"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2025-0168.html"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://github.com/zip-rs/zip2/security/advisories/GHSA-94vh-gphv-8pm8"
+    }
+  ],
+  "database_specific": {
+    "license": "CC-BY-4.0"
+  }
+}
