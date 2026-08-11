@@ -1,0 +1,65 @@
+{
+  "id": "RUSTSEC-2026-0252",
+  "modified": "2026-08-11T10:40:01Z",
+  "published": "2026-08-11T12:00:00Z",
+  "aliases": [],
+  "related": [],
+  "summary": "Panic-safety unsoundness in `SplitVec::extend_from_slice` (uninitialized read)",
+  "details": "`SplitVec::extend_from_slice` increments the logical length `self.len` before cloning the incoming elements into the reserved slots. If an element's `Clone` panics mid-fill, unwinding leaves `self.len` counting slots that were never initialized. A later safe read (`get`, indexing, `iter`) then reads one of those uninitialized slots.\n\nThis is reachable from safe Rust — a read of uninitialized memory (CWE-908). It is not a double-free: `SplitVec` has no manual `Drop` and its elements live in a standard `Vec`, so the defect is a read, not a free.\n\n## Impact\n\nA safe read after the panic returns a value built from uninitialized bytes. For a heap-owning element type such as `String`, the resulting value has garbage length/pointer fields.\n\nConfirmed under Miri. AddressSanitizer stays silent for this class, since the uninitialized bytes are consumed as a non-dereferenced field rather than an invalid load or free.\n\n## Fix\n\nFixed in `orx-split-vec` 4.0.0, which no longer commits the length before the elements are cloned.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "orx-split-vec",
+        "purl": "pkg:cargo/orx-split-vec"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "memory-corruption"
+        ],
+        "cvss": null,
+        "informational": "unsound"
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "4.0.0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/orx-split-vec"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0252.html"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/orxfun/orx-split-vec/issues/95"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
