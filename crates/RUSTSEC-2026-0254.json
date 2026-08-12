@@ -1,0 +1,63 @@
+{
+  "id": "RUSTSEC-2026-0254",
+  "modified": "2026-08-12T10:22:26Z",
+  "published": "2026-08-11T12:00:00Z",
+  "aliases": [],
+  "related": [],
+  "summary": "Panic-safety unsoundness in `Chunk` and `InlineArray` (use-after-free / double-free)",
+  "details": "Several methods in `sp-sized-chunks` drop elements before updating the container's length/boundary metadata. If an element's `Drop` panics during the drop, the metadata update is skipped, so the container still treats the already-dropped elements as live. When the container is later dropped, its own `Drop` re-visits those slots and drops the freed elements again — a use-after-free / double-free reachable from safe Rust.\n\n`sp-sized-chunks` is a fork of `sized-chunks` (companion advisory filed separately) and carries the same bug. The repository is archived and the crate is still on 0.1.0 with no fix available.\n\n## Impact\n\n- **CWE-415 (Double Free):** the same allocation is freed twice (e.g. an element holding `Box<T>`).\n- **CWE-416 (Use-After-Free):** an element reads its own freed allocation during `Drop` (e.g. `String`) — confirmed under AddressSanitizer.\n\nAll are reachable from safe Rust via `catch_unwind` with element types whose `Drop` can panic.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "sp-sized-chunks",
+        "purl": "pkg:cargo/sp-sized-chunks"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": [
+            "sp_sized_chunks::Chunk::clear",
+            "sp_sized_chunks::Chunk::drop_left",
+            "sp_sized_chunks::Chunk::drop_right",
+            "sp_sized_chunks::InlineArray::clear"
+          ]
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "memory-corruption"
+        ],
+        "cvss": null,
+        "informational": "unsound"
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/sp-sized-chunks"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0254.html"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
