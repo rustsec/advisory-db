@@ -1,5 +1,203 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2026-08-12T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2025-0170: Unsoundness in hugepage-rs</title><id>https://rustsec.org/advisories/RUSTSEC-2025-0170.html</id><updated>2026-08-12T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2025-0170.html" rel="alternate" type="text/html" title="RUSTSEC-2025-0170: Unsoundness in hugepage-rs"/><published>2026-08-12T12:00:00+00:00</published><summary xml:lang="en">`hugepage_rs::dealloc` may allow invalid memory deallocation from safe code</summary><content xml:lang="en" type="html">  &lt;article&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2026-08-12T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2026-0255: Unsoundness in sized-chunks</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0255.html</id><updated>2026-08-12T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0255.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0255: Unsoundness in sized-chunks"/><published>2026-08-12T12:00:00+00:00</published><summary xml:lang="en">Panic-safety unsoundness in `Chunk`, `RingBuffer`, and `InlineArray` (use-after-free / double-free)</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/sized-chunks/RUSTSEC-2026-0255.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/sized-chunks/RUSTSEC-2026-0255.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0255&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0255
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Panic-safety unsoundness in &lt;code&gt;Chunk&lt;/code&gt;, &lt;code&gt;RingBuffer&lt;/code&gt;, and &lt;code&gt;InlineArray&lt;/code&gt; (use-after-free / double-free)&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-08-11&quot;&gt;
+          August 11, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-08-12&quot;&gt;
+          August 12, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/sized-chunks.html&quot;&gt;sized-chunks&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/sized-chunks&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/panic-safety.html&quot;&gt;#panic-safety&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/memory-safety.html&quot;&gt;#memory-safety&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/use-after-free.html&quot;&gt;#use-after-free&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/double-free.html&quot;&gt;#double-free&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;sized_chunks::Chunk::clear&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;=0.7.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;sized_chunks::Chunk::drop_left&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;=0.7.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;sized_chunks::Chunk::drop_right&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;=0.7.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;sized_chunks::InlineArray::clear&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;=0.7.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;sized_chunks::RingBuffer::clear&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;=0.7.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;sized_chunks::RingBuffer::drop_left&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;=0.7.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;sized_chunks::RingBuffer::drop_right&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;=0.7.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Several methods in &lt;code&gt;sized-chunks&lt;/code&gt; drop elements before updating the length/boundary metadata. If an element&apos;s &lt;code&gt;Drop&lt;/code&gt; panics during the drop, the metadata update is skipped, so the container still treats the already-dropped elements as live. When the container&apos;s own &lt;code&gt;Drop&lt;/code&gt; runs, those elements are visited again — a use-after-free / double-free reachable from safe Rust.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;RingBuffer&lt;/code&gt; methods require the &lt;code&gt;ringbuffer&lt;/code&gt; feature. This is distinct from RUSTSEC-2020-0041 (&lt;code&gt;Chunk::clone&lt;/code&gt; / &lt;code&gt;insert_from&lt;/code&gt;, fixed in 0.6.3); the methods here are still affected in 0.7.0. The repository is archived with issues/PRs disabled and no fix available.&lt;/p&gt;
+&lt;h2&gt;Impact&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;CWE-415 (Double Free):&lt;/strong&gt; the same allocation is freed twice.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CWE-416 (Use-After-Free):&lt;/strong&gt; a freed allocation is accessed during a repeated &lt;code&gt;Drop&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Reachable entirely from safe Rust via &lt;code&gt;catch_unwind&lt;/code&gt; with element types whose &lt;code&gt;Drop&lt;/code&gt; can panic.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2025-0170: Unsoundness in hugepage-rs</title><id>https://rustsec.org/advisories/RUSTSEC-2025-0170.html</id><updated>2026-08-12T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2025-0170.html" rel="alternate" type="text/html" title="RUSTSEC-2025-0170: Unsoundness in hugepage-rs"/><published>2026-08-12T12:00:00+00:00</published><summary xml:lang="en">`hugepage_rs::dealloc` may allow invalid memory deallocation from safe code</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
           &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/hugepage-rs/RUSTSEC-2025-0170.md&quot;&gt;History&lt;/a&gt; ⋅
@@ -150,6 +348,367 @@
 unsafe preconditions for callers.&lt;/p&gt;
 &lt;p&gt;Affected versions therefore allowed safe Rust code to call &lt;code&gt;dealloc&lt;/code&gt; with an invalid pointer, a pointer not allocated by the hugepage allocator, or an incorrect layout, which could cause undefined behavior.&lt;/p&gt;
 &lt;p&gt;The upstream repository fixed this in version &lt;code&gt;0.1.1&lt;/code&gt; by marking &lt;code&gt;dealloc&lt;/code&gt; as unsafe and documenting the caller&apos;s safety requirements.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0254: Unsoundness in sp-sized-chunks</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0254.html</id><updated>2026-08-12T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0254.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0254: Unsoundness in sp-sized-chunks"/><published>2026-08-12T12:00:00+00:00</published><summary xml:lang="en">Panic-safety unsoundness in `Chunk` and `InlineArray` (use-after-free / double-free)</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/sp-sized-chunks/RUSTSEC-2026-0254.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/sp-sized-chunks/RUSTSEC-2026-0254.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0254&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0254
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Panic-safety unsoundness in &lt;code&gt;Chunk&lt;/code&gt; and &lt;code&gt;InlineArray&lt;/code&gt; (use-after-free / double-free)&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-08-11&quot;&gt;
+          August 11, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-08-12&quot;&gt;
+          August 12, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/sp-sized-chunks.html&quot;&gt;sp-sized-chunks&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/sp-sized-chunks&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/panic-safety.html&quot;&gt;#panic-safety&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/memory-safety.html&quot;&gt;#memory-safety&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/use-after-free.html&quot;&gt;#use-after-free&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/double-free.html&quot;&gt;#double-free&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;sp_sized_chunks::Chunk::clear&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;=0.1.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;sp_sized_chunks::Chunk::drop_left&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;=0.1.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;sp_sized_chunks::Chunk::drop_right&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;=0.1.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;sp_sized_chunks::InlineArray::clear&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;=0.1.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Several methods in &lt;code&gt;sp-sized-chunks&lt;/code&gt; drop elements before updating the container&apos;s length/boundary metadata. If an element&apos;s &lt;code&gt;Drop&lt;/code&gt; panics during the drop, the metadata update is skipped, so the container still treats the already-dropped elements as live. When the container is later dropped, its own &lt;code&gt;Drop&lt;/code&gt; re-visits those slots and drops the freed elements again — a use-after-free / double-free reachable from safe Rust.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;sp-sized-chunks&lt;/code&gt; is a fork of &lt;code&gt;sized-chunks&lt;/code&gt; (companion advisory filed separately) and carries the same bug. The repository is archived and the crate is still on 0.1.0 with no fix available.&lt;/p&gt;
+&lt;h2&gt;Impact&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;CWE-415 (Double Free):&lt;/strong&gt; the same allocation is freed twice (e.g. an element holding &lt;code&gt;Box&amp;lt;T&amp;gt;&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CWE-416 (Use-After-Free):&lt;/strong&gt; an element reads its own freed allocation during &lt;code&gt;Drop&lt;/code&gt; (e.g. &lt;code&gt;String&lt;/code&gt;) — confirmed under AddressSanitizer.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;All are reachable from safe Rust via &lt;code&gt;catch_unwind&lt;/code&gt; with element types whose &lt;code&gt;Drop&lt;/code&gt; can panic.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0256: Unsoundness in circular-buffer</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0256.html</id><updated>2026-08-12T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0256.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0256: Unsoundness in circular-buffer"/><published>2026-08-12T12:00:00+00:00</published><summary xml:lang="en">Panic-safety unsoundness in `truncate_back`, `truncate_front`, `clear`, and `extend_from_slice` (use-after-free / double-free)</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/circular-buffer/RUSTSEC-2026-0256.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/circular-buffer/RUSTSEC-2026-0256.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0256&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0256
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Panic-safety unsoundness in &lt;code&gt;truncate_back&lt;/code&gt;, &lt;code&gt;truncate_front&lt;/code&gt;, &lt;code&gt;clear&lt;/code&gt;, and &lt;code&gt;extend_from_slice&lt;/code&gt; (use-after-free / double-free)&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-08-11&quot;&gt;
+          August 11, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-08-12&quot;&gt;
+          August 12, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/circular-buffer.html&quot;&gt;circular-buffer&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/circular-buffer&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/panic-safety.html&quot;&gt;#panic-safety&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/memory-safety.html&quot;&gt;#memory-safety&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/use-after-free.html&quot;&gt;#use-after-free&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/double-free.html&quot;&gt;#double-free&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/andreacorbellini/rust-circular-buffer/blob/master/CHANGELOG.md&quot;&gt;
+              https://github.com/andreacorbellini/rust-circular-buffer/blob/master/CHANGELOG.md
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=2.0.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;circular_buffer::CircularBuffer::clear&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;2.0.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;circular_buffer::CircularBuffer::extend_from_slice&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;2.0.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;circular_buffer::CircularBuffer::truncate_back&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;2.0.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;circular_buffer::CircularBuffer::truncate_front&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;2.0.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Several methods in &lt;code&gt;circular-buffer&lt;/code&gt; drop elements before updating the buffer&apos;s start/end metadata. If an element&apos;s &lt;code&gt;Drop&lt;/code&gt; panics during the drop, the metadata update is skipped, so the buffer still treats the already-dropped elements as live. When the buffer is later dropped (or used after the panic is caught), those elements are visited again — a use-after-free / double-free reachable from safe Rust.&lt;/p&gt;
+&lt;h2&gt;Impact&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;CWE-415 (Double Free):&lt;/strong&gt; the same allocation is freed twice.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CWE-416 (Use-After-Free):&lt;/strong&gt; a freed allocation is accessed during a repeated &lt;code&gt;Drop&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Reachable entirely from safe Rust via &lt;code&gt;catch_unwind&lt;/code&gt; with element types whose &lt;code&gt;Drop&lt;/code&gt; can panic.&lt;/p&gt;
+&lt;h2&gt;Fix&lt;/h2&gt;
+&lt;p&gt;Fixed in &lt;code&gt;circular-buffer&lt;/code&gt; 2.0.1 by adjusting the buffer&apos;s start/end metadata before the elements are dropped.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;

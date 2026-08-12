@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package &#39;sized-chunks&#39; › RustSec Advisory Database</title>
+<title>RUSTSEC-2026-0256: circular-buffer: Panic-safety unsoundness in `truncate_back`, `truncate_front`, `clear`, and `extend_from_slice` (use-after-free / double-free) › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,81 +52,196 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/circular-buffer/RUSTSEC-2026-0256.md">History</a> ⋅
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/circular-buffer/RUSTSEC-2026-0256.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2026-0256">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2026-0256
+        
+      </h1>
+      <span class="subtitle"><p>Panic-safety unsoundness in <code>truncate_back</code>, <code>truncate_front</code>, <code>clear</code>, and <code>extend_from_slice</code> (use-after-free / double-free)</p>
 </span>
-      <h1>Advisories for package &#39;sized-chunks&#39;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2026-08-12">
-    August 12, 2026
-  </time>
+    
 
-  
-  <h3>
-    
-        
-          <span class="tag info">INFO</span>
-        
-    
-    <a href="/advisories/RUSTSEC-2026-0255.html">
-      RUSTSEC-2026-0255: Unsoundness in sized-chunks
-    </a>
-  </h3>
-  <span><p>Panic-safety unsoundness in <code>Chunk</code>, <code>RingBuffer</code>, and <code>InlineArray</code> (use-after-free / double-free)</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2026-08-10">
-    August 10, 2026
-  </time>
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2026-08-11">
+          August 11, 2026
+        </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2026-08-12">
+          August 12, 2026
+        </time>
         
-          <span class="tag info">INFO</span>
-        
-    
-    <a href="/advisories/RUSTSEC-2026-0251.html">
-      RUSTSEC-2026-0251: sized-chunks is unmaintained
-    </a>
-  </h3>
-  <span><p>sized-chunks is unmaintained</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2020-10-01">
-    October  1, 2020
-  </time>
+      </dd>
 
-  
-  <h3>
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        <a href="/packages/circular-buffer.html">circular-buffer</a>
+           
+          (<a href="https://crates.io/crates/circular-buffer">crates.io</a>)
+          
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        <span class="tag info">INFO</span>
+        Unsound
+        
+      </dd>
+
+      
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/memory-corruption.html">memory-corruption</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/panic-safety.html">#panic-safety</a>
+        
+          <a href="/keywords/memory-safety.html">#memory-safety</a>
+        
+          <a href="/keywords/use-after-free.html">#use-after-free</a>
+        
+          <a href="/keywords/double-free.html">#double-free</a>
+        
+      </dd>
+      
+
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/andreacorbellini/rust-circular-buffer/blob/master/CHANGELOG.md">
+              https://github.com/andreacorbellini/rust-circular-buffer/blob/master/CHANGELOG.md
+            </a>
+          </li>
+        
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&#62;=2.0.1</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+
+      
+      
+
+      
+      
+    </dl>
+
     
-      <span class="tag high">HIGH</span>
+    
+    <dl>
+      <dt>Affected Functions</dt>
+      <dd>Version</dd>
       
-    <a href="/advisories/RUSTSEC-2020-0041.html">
-      RUSTSEC-2020-0041: Vulnerability in sized-chunks
-    </a>
-  </h3>
-  <span><p>Multiple soundness issues in Chunk and InlineArray</p>
-</span>
-  
-</li>
+      <dt><code>circular_buffer::CircularBuffer::clear</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;2.0.1</code></li>
+          
+        </ul>
+      </dd>
       
-    </ul>
+      <dt><code>circular_buffer::CircularBuffer::extend_from_slice</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;2.0.1</code></li>
+          
+        </ul>
+      </dd>
+      
+      <dt><code>circular_buffer::CircularBuffer::truncate_back</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;2.0.1</code></li>
+          
+        </ul>
+      </dd>
+      
+      <dt><code>circular_buffer::CircularBuffer::truncate_front</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;2.0.1</code></li>
+          
+        </ul>
+      </dd>
+      
+    </dl>
+    
+
+    
+
+    <h3 id="description">Description</h3>
+    <p>Several methods in <code>circular-buffer</code> drop elements before updating the buffer's start/end metadata. If an element's <code>Drop</code> panics during the drop, the metadata update is skipped, so the buffer still treats the already-dropped elements as live. When the buffer is later dropped (or used after the panic is caught), those elements are visited again — a use-after-free / double-free reachable from safe Rust.</p>
+<h2>Impact</h2>
+<ul>
+<li><strong>CWE-415 (Double Free):</strong> the same allocation is freed twice.</li>
+<li><strong>CWE-416 (Use-After-Free):</strong> a freed allocation is accessed during a repeated <code>Drop</code>.</li>
+</ul>
+<p>Reachable entirely from safe Rust via <code>catch_unwind</code> with element types whose <code>Drop</code> can panic.</p>
+<h2>Fix</h2>
+<p>Fixed in <code>circular-buffer</code> 2.0.1 by adjusting the buffer's start/end metadata before the elements are dropped.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
