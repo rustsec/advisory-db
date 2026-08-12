@@ -170,6 +170,217 @@
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0257: Vulnerability in webbrowser</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0257.html</id><updated>2026-08-12T12:00:00+00:00</updated><category term="format-injection"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0257.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0257: Vulnerability in webbrowser"/><published>2026-08-12T12:00:00+00:00</published><summary xml:lang="en">Unix `BROWSER` handling allows browser argument injection</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/webbrowser/RUSTSEC-2026-0257.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/webbrowser/RUSTSEC-2026-0257.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0257&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0257
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Unix &lt;code&gt;BROWSER&lt;/code&gt; handling allows browser argument injection&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-07-29&quot;&gt;
+          July 29, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-08-12&quot;&gt;
+          August 12, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/webbrowser.html&quot;&gt;webbrowser&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/webbrowser&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/format-injection.html&quot;&gt;format-injection&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/argument-injection.html&quot;&gt;#argument-injection&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/browser.html&quot;&gt;#browser&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/unix.html&quot;&gt;#unix&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-2ph8-5cr8-hr33&quot;&gt;GHSA-2ph8-5cr8-hr33&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/amodm/webbrowser-rs/security/advisories/GHSA-2ph8-5cr8-hr33&quot;&gt;
+              https://github.com/amodm/webbrowser-rs/security/advisories/GHSA-2ph8-5cr8-hr33
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/amodm/webbrowser-rs/commit/31d1b924885551c0e553909d27c738ca6958a0f3&quot;&gt;
+              https://github.com/amodm/webbrowser-rs/commit/31d1b924885551c0e553909d27c738ca6958a0f3
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/amodm/webbrowser-rs/releases/tag/v1.2.2&quot;&gt;
+              https://github.com/amodm/webbrowser-rs/releases/tag/v1.2.2
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=1.2.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;webbrowser::open&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;=1.2.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;webbrowser::open_browser&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;=1.2.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;webbrowser::open_browser_with_options&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;=1.2.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;On Unix platforms handled by &lt;code&gt;src/unix.rs&lt;/code&gt;, affected versions substitute the
+caller-supplied URL into the &lt;code&gt;BROWSER&lt;/code&gt; environment-variable template before
+tokenizing the resulting string with &lt;code&gt;split_ascii_whitespace()&lt;/code&gt;. If an
+application passes an attacker-controlled non-HTTP(S) URL whose parsed form
+retains spaces and the effective &lt;code&gt;BROWSER&lt;/code&gt; template contains &lt;code&gt;%s&lt;/code&gt;, text that
+should remain within one URL argument becomes additional browser arguments.&lt;/p&gt;
+&lt;p&gt;The issue was reproduced with Chromium by injecting
+&lt;code&gt;--remote-debugging-port&lt;/code&gt;, which exposed a local DevTools endpoint, and
+&lt;code&gt;--proxy-server&lt;/code&gt;, which redirected browser traffic through an
+attacker-controlled proxy. The available arguments and resulting impact depend
+on the browser launched by the affected application.&lt;/p&gt;
+&lt;p&gt;Version 1.2.2 fixes the issue by tokenizing the &lt;code&gt;BROWSER&lt;/code&gt; template before
+substituting the URL, preserving the URL as part of a single argument. Users
+should upgrade to version 1.2.2 or later. Applications that only need HTTP(S)
+URLs can also enable the crate&apos;s &lt;code&gt;hardened&lt;/code&gt; feature as defense in depth.&lt;/p&gt;
+&lt;p&gt;This issue was reported by
+&lt;a href=&quot;https://github.com/dywzju09-blip&quot;&gt;@dywzju09-blip&lt;/a&gt;.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0255: Unsoundness in sized-chunks</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0255.html</id><updated>2026-08-12T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0255.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0255: Unsoundness in sized-chunks"/><published>2026-08-12T12:00:00+00:00</published><summary xml:lang="en">Panic-safety unsoundness in `Chunk`, `RingBuffer`, and `InlineArray` (use-after-free / double-free)</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
