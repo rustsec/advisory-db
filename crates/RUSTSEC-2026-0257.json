@@ -1,0 +1,79 @@
+{
+  "id": "RUSTSEC-2026-0257",
+  "modified": "2026-08-12T10:42:29Z",
+  "published": "2026-07-29T12:00:00Z",
+  "aliases": [
+    "GHSA-2ph8-5cr8-hr33"
+  ],
+  "related": [],
+  "summary": "Unix `BROWSER` handling allows browser argument injection",
+  "details": "On Unix platforms handled by `src/unix.rs`, affected versions substitute the\ncaller-supplied URL into the `BROWSER` environment-variable template before\ntokenizing the resulting string with `split_ascii_whitespace()`. If an\napplication passes an attacker-controlled non-HTTP(S) URL whose parsed form\nretains spaces and the effective `BROWSER` template contains `%s`, text that\nshould remain within one URL argument becomes additional browser arguments.\n\nThe issue was reproduced with Chromium by injecting\n`--remote-debugging-port`, which exposed a local DevTools endpoint, and\n`--proxy-server`, which redirected browser traffic through an\nattacker-controlled proxy. The available arguments and resulting impact depend\non the browser launched by the affected application.\n\nVersion 1.2.2 fixes the issue by tokenizing the `BROWSER` template before\nsubstituting the URL, preserving the URL as part of a single argument. Users\nshould upgrade to version 1.2.2 or later. Applications that only need HTTP(S)\nURLs can also enable the crate's `hardened` feature as defense in depth.\n\nThis issue was reported by\n[@dywzju09-blip](https://github.com/dywzju09-blip).",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "webbrowser",
+        "purl": "pkg:cargo/webbrowser"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": [
+            "webbrowser::open",
+            "webbrowser::open_browser",
+            "webbrowser::open_browser_with_options"
+          ]
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "format-injection"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "1.2.2"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/webbrowser"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0257.html"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://github.com/amodm/webbrowser-rs/security/advisories/GHSA-2ph8-5cr8-hr33"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/amodm/webbrowser-rs/commit/31d1b924885551c0e553909d27c738ca6958a0f3"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/amodm/webbrowser-rs/releases/tag/v1.2.2"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
