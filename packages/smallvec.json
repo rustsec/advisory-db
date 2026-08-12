@@ -81,95 +81,6 @@
     }
   },
   {
-    "id": "RUSTSEC-2018-0003",
-    "modified": "2026-07-17T15:52:38Z",
-    "published": "2018-07-19T12:00:00Z",
-    "aliases": [
-      "CVE-2018-20991",
-      "GHSA-rxr4-x558-x7hw"
-    ],
-    "related": [],
-    "summary": "Possible double free during unwinding in SmallVec::insert_many",
-    "details": "If an iterator passed to `SmallVec::insert_many` panicked in `Iterator::next`,\ndestructors were run during unwinding while the vector was in an inconsistent\nstate, possibly causing a double free (a destructor running on two copies of\nthe same value).\n\nThis is fixed in smallvec 0.6.3 by ensuring that the vector's length is not\nupdated to include moved items until they have been removed from their\noriginal positions.  Items may now be leaked if `Iterator::next` panics, but\nthey will not be dropped more than once.\n\nThank you to [@Vurich](https://github.com/Vurich) for reporting this bug.",
-    "severity": [
-      {
-        "type": "CVSS_V3",
-        "score": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
-      }
-    ],
-    "affected": [
-      {
-        "package": {
-          "ecosystem": "crates.io",
-          "name": "smallvec",
-          "purl": "pkg:cargo/smallvec"
-        },
-        "ecosystem_specific": {
-          "affects": {
-            "arch": [],
-            "os": [],
-            "functions": []
-          },
-          "affected_functions": null
-        },
-        "database_specific": {
-          "categories": [],
-          "cvss": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
-          "informational": null
-        },
-        "ranges": [
-          {
-            "type": "SEMVER",
-            "events": [
-              {
-                "introduced": "0.3.2"
-              },
-              {
-                "fixed": "0.3.4"
-              },
-              {
-                "introduced": "0.4.0-0"
-              },
-              {
-                "fixed": "0.4.5"
-              },
-              {
-                "introduced": "0.5.0-0"
-              },
-              {
-                "fixed": "0.5.1"
-              },
-              {
-                "introduced": "0.6.0-0"
-              },
-              {
-                "fixed": "0.6.3"
-              }
-            ]
-          }
-        ],
-        "versions": []
-      }
-    ],
-    "references": [
-      {
-        "type": "PACKAGE",
-        "url": "https://crates.io/crates/smallvec"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/RUSTSEC-2018-0003.html"
-      },
-      {
-        "type": "REPORT",
-        "url": "https://github.com/servo/rust-smallvec/issues/96"
-      }
-    ],
-    "database_specific": {
-      "license": "CC0-1.0"
-    }
-  },
-  {
     "id": "RUSTSEC-2018-0018",
     "modified": "2023-06-13T13:10:24Z",
     "published": "2018-09-25T12:00:00Z",
@@ -379,6 +290,95 @@
       {
         "type": "REPORT",
         "url": "https://github.com/servo/rust-smallvec/issues/149"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2018-0003",
+    "modified": "2026-07-17T15:52:38Z",
+    "published": "2018-07-19T12:00:00Z",
+    "aliases": [
+      "CVE-2018-20991",
+      "GHSA-rxr4-x558-x7hw"
+    ],
+    "related": [],
+    "summary": "Possible double free during unwinding in SmallVec::insert_many",
+    "details": "If an iterator passed to `SmallVec::insert_many` panicked in `Iterator::next`,\ndestructors were run during unwinding while the vector was in an inconsistent\nstate, possibly causing a double free (a destructor running on two copies of\nthe same value).\n\nThis is fixed in smallvec 0.6.3 by ensuring that the vector's length is not\nupdated to include moved items until they have been removed from their\noriginal positions.  Items may now be leaked if `Iterator::next` panics, but\nthey will not be dropped more than once.\n\nThank you to [@Vurich](https://github.com/Vurich) for reporting this bug.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "smallvec",
+          "purl": "pkg:cargo/smallvec"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.3.2"
+              },
+              {
+                "fixed": "0.3.4"
+              },
+              {
+                "introduced": "0.4.0-0"
+              },
+              {
+                "fixed": "0.4.5"
+              },
+              {
+                "introduced": "0.5.0-0"
+              },
+              {
+                "fixed": "0.5.1"
+              },
+              {
+                "introduced": "0.6.0-0"
+              },
+              {
+                "fixed": "0.6.3"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/smallvec"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2018-0003.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/servo/rust-smallvec/issues/96"
       }
     ],
     "database_specific": {

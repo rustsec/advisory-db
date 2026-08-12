@@ -1,16 +1,16 @@
 [
   {
-    "id": "RUSTSEC-2021-0108",
+    "id": "RUSTSEC-2021-0109",
     "modified": "2023-06-13T13:10:24Z",
     "published": "2021-07-25T12:00:00Z",
     "aliases": [
-      "CVE-2021-45699",
-      "GHSA-2969-8hh9-57jc",
-      "GHSA-48vq-8jqv-gm6f"
+      "CVE-2021-45700",
+      "GHSA-45p7-c959-rgcm",
+      "GHSA-cw98-cx2m-9qqg"
     ],
     "related": [],
-    "summary": "Remote memory exhaustion in ckb",
-    "details": "In the ckb sync protocol, SyncState maintains a HashMap called 'misbehavior' that keeps a score of a peer's violations of the protocol. This HashMap is keyed to PeerIndex (an alias for SessionId), and entries are never removed from it. SessionId is an integer that increases monotonically with every new connection.\n\nA remote attacker can manipulate this HashMap to grow forever, resulting in degraded performance and ultimately a panic on allocation failure or being killed by the OS, depending on the platform.\n\nThis is a critical severity security bug. It could be exploited to create a targeted or network-wide denial of service, to reduce the hash power of the network as part of a 51% attack, and perhaps in other creative ways.",
+    "summary": "Process crashes when the cell used as DepGroup is not alive",
+    "details": "It's easy to create a malign transaction which uses the dead cell as the DepGroup in the DepCells. The transaction can crash all the receiving nodes.",
     "severity": [],
     "affected": [
       {
@@ -55,11 +55,11 @@
       },
       {
         "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0108.html"
+        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0109.html"
       },
       {
         "type": "ADVISORY",
-        "url": "https://github.com/nervosnetwork/ckb/security/advisories/GHSA-48vq-8jqv-gm6f"
+        "url": "https://github.com/nervosnetwork/ckb/security/advisories/GHSA-45p7-c959-rgcm"
       }
     ],
     "database_specific": {
@@ -134,17 +134,17 @@
     }
   },
   {
-    "id": "RUSTSEC-2021-0109",
+    "id": "RUSTSEC-2021-0108",
     "modified": "2023-06-13T13:10:24Z",
     "published": "2021-07-25T12:00:00Z",
     "aliases": [
-      "CVE-2021-45700",
-      "GHSA-45p7-c959-rgcm",
-      "GHSA-cw98-cx2m-9qqg"
+      "CVE-2021-45699",
+      "GHSA-2969-8hh9-57jc",
+      "GHSA-48vq-8jqv-gm6f"
     ],
     "related": [],
-    "summary": "Process crashes when the cell used as DepGroup is not alive",
-    "details": "It's easy to create a malign transaction which uses the dead cell as the DepGroup in the DepCells. The transaction can crash all the receiving nodes.",
+    "summary": "Remote memory exhaustion in ckb",
+    "details": "In the ckb sync protocol, SyncState maintains a HashMap called 'misbehavior' that keeps a score of a peer's violations of the protocol. This HashMap is keyed to PeerIndex (an alias for SessionId), and entries are never removed from it. SessionId is an integer that increases monotonically with every new connection.\n\nA remote attacker can manipulate this HashMap to grow forever, resulting in degraded performance and ultimately a panic on allocation failure or being killed by the OS, depending on the platform.\n\nThis is a critical severity security bug. It could be exploited to create a targeted or network-wide denial of service, to reduce the hash power of the network as part of a 51% attack, and perhaps in other creative ways.",
     "severity": [],
     "affected": [
       {
@@ -189,11 +189,11 @@
       },
       {
         "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0109.html"
+        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0108.html"
       },
       {
         "type": "ADVISORY",
-        "url": "https://github.com/nervosnetwork/ckb/security/advisories/GHSA-45p7-c959-rgcm"
+        "url": "https://github.com/nervosnetwork/ckb/security/advisories/GHSA-48vq-8jqv-gm6f"
       }
     ],
     "database_specific": {
