@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2021-0156",
-  "modified": "2026-06-11T11:35:08Z",
+  "modified": "2026-08-24T08:08:07Z",
   "published": "2021-06-11T12:00:00Z",
-  "aliases": [],
+  "aliases": [
+    "GHSA-vjf8-9fx6-mv6x"
+  ],
   "related": [],
   "summary": "Triton VM Soundness Vulnerability due to Missing Constraint",
   "details": "The instruction `sponge_absorb_mem` Triton VM fails to verify that hashed values come from the claimed memory location. Malicious provers can substitute arbitrary data instead of actual memory contents.\n\nAny application using instruction `sponge_absorb_mem` to hash memory data can be given a proof for a forged hash that doesn't correspond to the actual memory. This breaks the security of memory-based commitments.\n\nThe flaw was corrected in commits `17c7ba0a` and `ef9d9e72` by including the appropriate constraints.",
