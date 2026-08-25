@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2026-0179",
-  "modified": "2026-06-12T17:27:58Z",
+  "modified": "2026-08-25T02:42:17Z",
   "published": "2026-06-12T12:00:00Z",
-  "aliases": [],
+  "aliases": [
+    "GHSA-5x78-73v4-xg6w"
+  ],
   "related": [],
   "summary": "Unbounded SCRAM iteration count allows a malicious server to cause CPU-exhaustion denial of service",
   "details": "A malicious, compromised, or man-in-the-middle server can supply an arbitrarily\nlarge SCRAM-SHA-256 PBKDF2 iteration count during authentication. The client\nruns it inline with no upper bound, pinning a `tokio` worker thread for minutes\nper connection, possibly stalling the whole async runtime.\n\nApplications that connect only to a trusted database are not exposed; the risk\napplies to clients that may connect to untrusted or user-supplied servers, or\nwhose connection can be intercepted by a man-in-the-middle.",

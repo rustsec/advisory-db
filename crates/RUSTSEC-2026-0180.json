@@ -1,8 +1,10 @@
 {
   "id": "RUSTSEC-2026-0180",
-  "modified": "2026-06-12T17:27:58Z",
+  "modified": "2026-08-25T02:42:17Z",
   "published": "2026-06-12T12:00:00Z",
-  "aliases": [],
+  "aliases": [
+    "GHSA-rgqc-3x5p-6gwg"
+  ],
   "related": [],
   "summary": "Panic decoding a malformed `hstore` value allows denial of service",
   "details": "A malicious or compromised server can return a binary `hstore` value with an\ninvalid internal length field, causing the client to panic while decoding it.\n\nApplications that connect only to a trusted database are not exposed; the risk\napplies to clients that may connect to untrusted or user-supplied servers, or\nwhose connection can be intercepted by a man-in-the-middle.",
