@@ -1,9 +1,11 @@
 [
   {
     "id": "RUSTSEC-2026-0178",
-    "modified": "2026-06-12T17:27:58Z",
+    "modified": "2026-08-25T02:42:17Z",
     "published": "2026-06-12T12:00:00Z",
-    "aliases": [],
+    "aliases": [
+      "GHSA-3gjw-f78c-vvpw"
+    ],
     "related": [],
     "summary": "Panic on a `DataRow` with fewer fields than columns allows denial of service",
     "details": "A malicious or compromised server can send a row containing fewer fields than\nits row description declares columns. Reading one of the missing columns then\npanics with an out-of-bounds index, aborting the calling task. This affects even\nthe otherwise non-panicking `try_get`, and both `Row` and `SimpleQueryRow`.\n\nApplications that connect only to a trusted database are not exposed; the risk\napplies to clients that may connect to untrusted or user-supplied servers, or\nwhose connection can be intercepted by a man-in-the-middle.",
