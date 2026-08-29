@@ -1,14 +1,15 @@
 {
   "id": "RUSTSEC-2021-0046",
-  "modified": "2023-06-13T13:10:24Z",
+  "modified": "2026-08-29T06:11:09Z",
   "published": "2021-02-17T12:00:00Z",
+  "withdrawn": "2026-08-29T12:00:00Z",
   "aliases": [
     "CVE-2021-29937",
     "GHSA-hpcx-3pw8-g3j2"
   ],
   "related": [],
   "summary": "misc::vec_with_size() can drop uninitialized memory if clone panics",
-  "details": "`misc::vec_with_size` creates a vector of the provided `size` and immediately\ncalls `vec.set_len(size)` on it, initially filling it with uninitialized memory.\nIt then inserts elements using `vec[i] = value.clone()`.\n\nIf the `value.clone()` call panics, uninitialized items in the vector will be\ndropped leading to undefined behavior.",
+  "details": "`misc::vec_with_size` creates a vector of the provided `size` and immediately\ncalls `vec.set_len(size)` on it, initially filling it with uninitialized memory.\nIt then inserts elements using `vec[i] = value.clone()`.\n\nIf the `value.clone()` call panics, uninitialized items in the vector will be\ndropped leading to undefined behavior.\n\n## Withdrawal\n\nThis advisory has been withdrawn because the above unsoundness cannot be triggered in safe code by dependents of the crate, as the `Clone` generic of private function `misc::vec_with_size` only instantiates to primitive types in public functions, which is impossible to panic.",
   "severity": [
     {
       "type": "CVSS_V3",
