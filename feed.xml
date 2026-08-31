@@ -374,6 +374,125 @@ For more information see the GitHub-hosted security advisory.&lt;/p&gt;
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2025-0172: zip-extract is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2025-0172.html</id><updated>2026-08-31T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2025-0172.html" rel="alternate" type="text/html" title="RUSTSEC-2025-0172: zip-extract is unmaintained"/><published>2026-08-31T12:00:00+00:00</published><summary xml:lang="en">`zip-extract` is unmaintained; use the `zip &amp;gt;= 2.4.0` crate instead</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/zip-extract/RUSTSEC-2025-0172.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/zip-extract/RUSTSEC-2025-0172.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2025-0172&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2025-0172
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;zip-extract&lt;/code&gt; is unmaintained; use the &lt;code&gt;zip &amp;gt;= 2.4.0&lt;/code&gt; crate instead&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2025-07-16&quot;&gt;
+          July 16, 2025
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-08-31&quot;&gt;
+          August 31, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/zip-extract.html&quot;&gt;zip-extract&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/zip-extract&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unmaintained
+        
+      &lt;/dd&gt;
+
+      
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/MCOfficer/zip-extract/commit/2950ec98d33b6e752b4f0976d67d89feb6f4acde&quot;&gt;
+              https://github.com/MCOfficer/zip-extract/commit/2950ec98d33b6e752b4f0976d67d89feb6f4acde
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;The &lt;a href=&quot;https://crates.io/crates/zip-extract&quot;&gt;&lt;code&gt;zip-extract&lt;/code&gt;&lt;/a&gt; crate has been
+explicitly deprecated by its author on &lt;a href=&quot;https://github.com/MCOfficer/zip-extract/commit/2950ec98d33b6e752b4f0976d67d89feb6f4acde&quot;&gt;Jul 16, 2025&lt;/a&gt;, and the repository
+was archived on &lt;a href=&quot;https://github.com/MCOfficer/zip-extract&quot;&gt;Sep 8, 2025&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The author added deprecation notices &lt;a href=&quot;https://github.com/MCOfficer/zip-extract/commit/2950ec98d33b6e752b4f0976d67d89feb6f4acde#diff-b335630551682c19a781afebcf4d07bf978fb1f8ac04c6bf87428ed5106870f5R1-R8&quot;&gt;README&lt;/a&gt;
+stating that the functionality is now available directly in the &lt;a href=&quot;https://crates.io/crates/zip&quot;&gt;&lt;code&gt;zip&lt;/code&gt;&lt;/a&gt; crate
+via &lt;a href=&quot;https://docs.rs/zip/8.6.0/zip/read/struct.ZipArchive.html#method.extract&quot;&gt;&lt;code&gt;ZipArchive::extract&lt;/code&gt;&lt;/a&gt;
+(available since zip 0.6.0) and
+&lt;a href=&quot;https://docs.rs/zip/8.6.0/zip/read/struct.ZipArchive.html#method.extract_unwrapped_root_dir&quot;&gt;&lt;code&gt;ZipArchive::extract_unwrapped_root_dir&lt;/code&gt;&lt;/a&gt;
+(available since zip 2.4.0).&lt;/p&gt;
+&lt;p&gt;If you are using &lt;a href=&quot;https://crates.io/crates/zip-extract&quot;&gt;&lt;code&gt;zip-extract&lt;/code&gt;&lt;/a&gt;, switch to the
+&lt;a href=&quot;https://crates.io/crates/zip&quot;&gt;&lt;code&gt;zip &amp;gt;= 2.4.0&lt;/code&gt;&lt;/a&gt; crate and use the methods above instead.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0270: sp-sized-chunks is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0270.html</id><updated>2026-08-31T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0270.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0270: sp-sized-chunks is unmaintained"/><published>2026-08-31T12:00:00+00:00</published><summary xml:lang="en">`sp-sized-chunks` is unmaintained</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -462,6 +581,438 @@ For more information see the GitHub-hosted security advisory.&lt;/p&gt;
 
     &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
     &lt;p&gt;The &lt;code&gt;sp-sized-chunks&lt;/code&gt; crate is a fork of &lt;code&gt;sized-chunks&lt;/code&gt;. Its repository is archived and the crate is no longer maintained. Users should migrate to &lt;a href=&quot;https://crates.io/crates/imbl-sized-chunks&quot;&gt;&lt;code&gt;imbl-sized-chunks&lt;/code&gt;&lt;/a&gt;, a maintained fork.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0271: Vulnerability in suppaftp</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0271.html</id><updated>2026-08-31T12:00:00+00:00</updated><category term="format-injection"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0271.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0271: Vulnerability in suppaftp"/><published>2026-08-31T12:00:00+00:00</published><summary xml:lang="en">FTP command injection via CRLF in control channel arguments</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/suppaftp/RUSTSEC-2026-0271.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/suppaftp/RUSTSEC-2026-0271.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0271&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0271
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;FTP command injection via CRLF in control channel arguments&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-08-18&quot;&gt;
+          August 18, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-08-31&quot;&gt;
+          August 31, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/suppaftp.html&quot;&gt;suppaftp&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/suppaftp&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/format-injection.html&quot;&gt;format-injection&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/ftp.html&quot;&gt;#ftp&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/ftps.html&quot;&gt;#ftps&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/crlf.html&quot;&gt;#crlf&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/command-injection.html&quot;&gt;#command-injection&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-8mhj-xm4h-m5m6&quot;&gt;GHSA-8mhj-xm4h-m5m6&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/veeso/suppaftp/pull/172&quot;&gt;
+              https://github.com/veeso/suppaftp/pull/172
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=10.0.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;suppaftp::ImplFtpStream::custom_command&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;10.0.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;suppaftp::ImplFtpStream::cwd&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;10.0.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;suppaftp::ImplFtpStream::login&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;10.0.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;suppaftp::ImplFtpStream::mkdir&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;10.0.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;suppaftp::ImplFtpStream::put_file&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;10.0.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;suppaftp::ImplFtpStream::rename&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;10.0.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;suppaftp::ImplFtpStream::retr&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;10.0.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;suppaftp::ImplFtpStream::rm&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;10.0.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;suppaftp::ImplFtpStream::rmdir&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;10.0.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;suppaftp::ImplFtpStream::site&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;10.0.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;suppaftp::smol::ImplAsyncFtpStream::custom_command&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;10.0.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;suppaftp::smol::ImplAsyncFtpStream::cwd&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;10.0.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;suppaftp::smol::ImplAsyncFtpStream::login&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;10.0.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;suppaftp::smol::ImplAsyncFtpStream::mkdir&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;10.0.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;suppaftp::smol::ImplAsyncFtpStream::put_file&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;10.0.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;suppaftp::smol::ImplAsyncFtpStream::rename&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;10.0.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;suppaftp::smol::ImplAsyncFtpStream::retr&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;10.0.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;suppaftp::smol::ImplAsyncFtpStream::rm&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;10.0.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;suppaftp::smol::ImplAsyncFtpStream::rmdir&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;10.0.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;suppaftp::smol::ImplAsyncFtpStream::site&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;10.0.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;suppaftp::tokio::ImplAsyncFtpStream::custom_command&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;10.0.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;suppaftp::tokio::ImplAsyncFtpStream::cwd&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;10.0.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;suppaftp::tokio::ImplAsyncFtpStream::login&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;10.0.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;suppaftp::tokio::ImplAsyncFtpStream::mkdir&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;10.0.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;suppaftp::tokio::ImplAsyncFtpStream::put_file&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;10.0.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;suppaftp::tokio::ImplAsyncFtpStream::rename&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;10.0.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;suppaftp::tokio::ImplAsyncFtpStream::retr&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;10.0.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;suppaftp::tokio::ImplAsyncFtpStream::rm&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;10.0.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;suppaftp::tokio::ImplAsyncFtpStream::rmdir&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;10.0.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;suppaftp::tokio::ImplAsyncFtpStream::site&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;10.0.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Affected versions of &lt;code&gt;suppaftp&lt;/code&gt; wrote command arguments (user name, password, paths, &lt;code&gt;SITE&lt;/code&gt; arguments and custom commands) to the FTP control channel without validation. An argument containing a carriage return (&lt;code&gt;\r&lt;/code&gt;) or a line feed (&lt;code&gt;\n&lt;/code&gt;) terminated the intended command line and let a second, attacker-chosen command be sent to the server within the same authenticated session.&lt;/p&gt;
+&lt;p&gt;An application that passes untrusted input as credentials, paths or command strings to methods such as &lt;code&gt;login&lt;/code&gt;, &lt;code&gt;cwd&lt;/code&gt;, &lt;code&gt;mkdir&lt;/code&gt;, &lt;code&gt;rmdir&lt;/code&gt;, &lt;code&gt;rm&lt;/code&gt;, &lt;code&gt;rename&lt;/code&gt;, &lt;code&gt;retr&lt;/code&gt;, &lt;code&gt;put_file&lt;/code&gt;, &lt;code&gt;site&lt;/code&gt; or &lt;code&gt;custom_command&lt;/code&gt; can therefore be made to execute arbitrary FTP commands with the application&apos;s privileges, for example deleting files or redirecting a data connection with an injected &lt;code&gt;PORT&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;All three clients are affected: sync, tokio and smol, with or without TLS.&lt;/p&gt;
+&lt;p&gt;The flaw was corrected in version 10.0.2 (commit &lt;a href=&quot;https://github.com/veeso/suppaftp/commit/194bdd1979b16c4848d1fad6897dfa524b688d88&quot;&gt;194bdd1&lt;/a&gt;): every command line is validated before it is written to the wire and rejected with &lt;code&gt;FtpError::ConnectionError&lt;/code&gt; (&lt;code&gt;std::io::ErrorKind::InvalidInput&lt;/code&gt;) if it contains CR or LF anywhere but in the trailing terminator. As a consequence, &lt;code&gt;custom_command&lt;/code&gt; no longer accepts several commands joined by CRLF in a single call.&lt;/p&gt;
+&lt;p&gt;Users who cannot upgrade should reject or strip &lt;code&gt;\r&lt;/code&gt; and &lt;code&gt;\n&lt;/code&gt; from any untrusted string before passing it to the client.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
@@ -1161,252 +1712,6 @@ locked.&lt;/p&gt;
 &lt;p&gt;This crate was used as part of a malware campaign targeted at users of
 &lt;code&gt;arrayref&lt;/code&gt;, which was downloaded 2,285 times before being removed; see
 &lt;a href=&quot;https://rustsec.org/advisories/RUSTSEC-2026-0260.html&quot;&gt;the &lt;code&gt;arrayref&lt;/code&gt; advisory&lt;/a&gt; for more detail.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0262: append-only-vec contained malicious code</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0262.html</id><updated>2026-08-21T12:00:00+00:00</updated><category term="malicious"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0262.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0262: append-only-vec contained malicious code"/><published>2026-08-20T12:00:00+00:00</published><summary xml:lang="en">`append-only-vec` 0.1.9 was removed from crates.io due to a malicious dependency</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/append-only-vec/RUSTSEC-2026-0262.md&quot;&gt;History&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/append-only-vec/RUSTSEC-2026-0262.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0262&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2026-0262
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;append-only-vec&lt;/code&gt; 0.1.9 was removed from crates.io due to a malicious dependency&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-08-20&quot;&gt;
-          August 20, 2026
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-08-20&quot;&gt;
-          August 20, 2026
-        &lt;/time&gt;
-        
-        &lt;time datetime=&quot;2026-08-21&quot;&gt;
-          (last modified: August 21, 2026)
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/append-only-vec.html&quot;&gt;append-only-vec&lt;/a&gt;
-           
-          (&lt;a href=&quot;https://crates.io/crates/append-only-vec&quot;&gt;crates.io&lt;/a&gt;)
-          
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/malicious.html&quot;&gt;malicious&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://blog.rust-lang.org/2026/08/20/supply-chain-attack-on-arrayref&quot;&gt;
-              https://blog.rust-lang.org/2026/08/20/supply-chain-attack-on-arrayref
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#60;=0.1.8&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;A new version of the &lt;code&gt;append-only-vec&lt;/code&gt; crate was published with a direct dependency
-on &lt;code&gt;proc-macro1&lt;/code&gt;, which would execute a malicious build script.&lt;/p&gt;
-&lt;p&gt;The compromised version of this crate was published on 2026-08-20, and was
-removed approximately 107 minutes later.&lt;/p&gt;
-&lt;p&gt;The compromised crate version was used as part of a malware campaign targeted
-at users of &lt;code&gt;arrayref&lt;/code&gt;, which was downloaded 2,285 times before being removed;
-see &lt;a href=&quot;https://rustsec.org/advisories/RUSTSEC-2026-0260.html&quot;&gt;the &lt;code&gt;arrayref&lt;/code&gt; advisory&lt;/a&gt; for more detail.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0263: Vulnerability in tinymember</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0263.html</id><updated>2026-08-20T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0263.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0263: Vulnerability in tinymember"/><published>2026-08-20T12:00:00+00:00</published><summary xml:lang="en">`tinymember` was removed from crates.io due to affiliation with malicious code</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/tinymember/RUSTSEC-2026-0263.md&quot;&gt;History&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/tinymember/RUSTSEC-2026-0263.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0263&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2026-0263
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;tinymember&lt;/code&gt; was removed from crates.io due to affiliation with malicious code&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-08-20&quot;&gt;
-          August 20, 2026
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-08-20&quot;&gt;
-          August 20, 2026
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/tinymember.html&quot;&gt;tinymember&lt;/a&gt;
-          
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://blog.rust-lang.org/2026/08/20/supply-chain-attack-on-arrayref&quot;&gt;
-              https://blog.rust-lang.org/2026/08/20/supply-chain-attack-on-arrayref
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;While &lt;code&gt;tinymember&lt;/code&gt; did not directly contain malicious code, it was owned by the
-same user as &lt;code&gt;arone&lt;/code&gt; and &lt;code&gt;aronenao&lt;/code&gt;, which contained suspicious build scripts.&lt;/p&gt;
-&lt;p&gt;This crate had 2 versions published on 2026-08-18 that had a total of 27 downloads.
-There were no crates depending on this crate on crates.io. The crate was removed
-from crates.io and the user account was locked.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;

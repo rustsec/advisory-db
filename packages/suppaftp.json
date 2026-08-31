@@ -1,0 +1,100 @@
+[
+  {
+    "id": "RUSTSEC-2026-0271",
+    "modified": "2026-08-31T09:17:28Z",
+    "published": "2026-08-18T12:00:00Z",
+    "aliases": [
+      "GHSA-8mhj-xm4h-m5m6"
+    ],
+    "related": [],
+    "summary": "FTP command injection via CRLF in control channel arguments",
+    "details": "Affected versions of `suppaftp` wrote command arguments (user name, password, paths, `SITE` arguments and custom commands) to the FTP control channel without validation. An argument containing a carriage return (`\\r`) or a line feed (`\\n`) terminated the intended command line and let a second, attacker-chosen command be sent to the server within the same authenticated session.\n\nAn application that passes untrusted input as credentials, paths or command strings to methods such as `login`, `cwd`, `mkdir`, `rmdir`, `rm`, `rename`, `retr`, `put_file`, `site` or `custom_command` can therefore be made to execute arbitrary FTP commands with the application's privileges, for example deleting files or redirecting a data connection with an injected `PORT`.\n\nAll three clients are affected: sync, tokio and smol, with or without TLS.\n\nThe flaw was corrected in version 10.0.2 (commit [194bdd1](https://github.com/veeso/suppaftp/commit/194bdd1979b16c4848d1fad6897dfa524b688d88)): every command line is validated before it is written to the wire and rejected with `FtpError::ConnectionError` (`std::io::ErrorKind::InvalidInput`) if it contains CR or LF anywhere but in the trailing terminator. As a consequence, `custom_command` no longer accepts several commands joined by CRLF in a single call.\n\nUsers who cannot upgrade should reject or strip `\\r` and `\\n` from any untrusted string before passing it to the client.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "suppaftp",
+          "purl": "pkg:cargo/suppaftp"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "suppaftp::ImplFtpStream::custom_command",
+              "suppaftp::ImplFtpStream::cwd",
+              "suppaftp::ImplFtpStream::login",
+              "suppaftp::ImplFtpStream::mkdir",
+              "suppaftp::ImplFtpStream::put_file",
+              "suppaftp::ImplFtpStream::rename",
+              "suppaftp::ImplFtpStream::retr",
+              "suppaftp::ImplFtpStream::rm",
+              "suppaftp::ImplFtpStream::rmdir",
+              "suppaftp::ImplFtpStream::site",
+              "suppaftp::smol::ImplAsyncFtpStream::custom_command",
+              "suppaftp::smol::ImplAsyncFtpStream::cwd",
+              "suppaftp::smol::ImplAsyncFtpStream::login",
+              "suppaftp::smol::ImplAsyncFtpStream::mkdir",
+              "suppaftp::smol::ImplAsyncFtpStream::put_file",
+              "suppaftp::smol::ImplAsyncFtpStream::rename",
+              "suppaftp::smol::ImplAsyncFtpStream::retr",
+              "suppaftp::smol::ImplAsyncFtpStream::rm",
+              "suppaftp::smol::ImplAsyncFtpStream::rmdir",
+              "suppaftp::smol::ImplAsyncFtpStream::site",
+              "suppaftp::tokio::ImplAsyncFtpStream::custom_command",
+              "suppaftp::tokio::ImplAsyncFtpStream::cwd",
+              "suppaftp::tokio::ImplAsyncFtpStream::login",
+              "suppaftp::tokio::ImplAsyncFtpStream::mkdir",
+              "suppaftp::tokio::ImplAsyncFtpStream::put_file",
+              "suppaftp::tokio::ImplAsyncFtpStream::rename",
+              "suppaftp::tokio::ImplAsyncFtpStream::retr",
+              "suppaftp::tokio::ImplAsyncFtpStream::rm",
+              "suppaftp::tokio::ImplAsyncFtpStream::rmdir",
+              "suppaftp::tokio::ImplAsyncFtpStream::site"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "format-injection"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "10.0.2"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/suppaftp"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0271.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/veeso/suppaftp/pull/172"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

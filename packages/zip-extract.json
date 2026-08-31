@@ -1,0 +1,62 @@
+[
+  {
+    "id": "RUSTSEC-2025-0172",
+    "modified": "2026-08-31T09:17:28Z",
+    "published": "2025-07-16T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "`zip-extract` is unmaintained; use the `zip >= 2.4.0` crate instead",
+    "details": "The [`zip-extract`](https://crates.io/crates/zip-extract) crate has been\nexplicitly deprecated by its author on [Jul 16, 2025](https://github.com/MCOfficer/zip-extract/commit/2950ec98d33b6e752b4f0976d67d89feb6f4acde), and the repository\nwas archived on [Sep 8, 2025](https://github.com/MCOfficer/zip-extract).\n\nThe author added deprecation notices [README](https://github.com/MCOfficer/zip-extract/commit/2950ec98d33b6e752b4f0976d67d89feb6f4acde#diff-b335630551682c19a781afebcf4d07bf978fb1f8ac04c6bf87428ed5106870f5R1-R8)\nstating that the functionality is now available directly in the [`zip`](https://crates.io/crates/zip) crate\nvia [`ZipArchive::extract`](https://docs.rs/zip/8.6.0/zip/read/struct.ZipArchive.html#method.extract)\n(available since zip 0.6.0) and\n[`ZipArchive::extract_unwrapped_root_dir`](https://docs.rs/zip/8.6.0/zip/read/struct.ZipArchive.html#method.extract_unwrapped_root_dir)\n(available since zip 2.4.0).\n\nIf you are using [`zip-extract`](https://crates.io/crates/zip-extract), switch to the\n[`zip >= 2.4.0`](https://crates.io/crates/zip) crate and use the methods above instead.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "zip-extract",
+          "purl": "pkg:cargo/zip-extract"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": "unmaintained"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/zip-extract"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2025-0172.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/MCOfficer/zip-extract/commit/2950ec98d33b6e752b4f0976d67d89feb6f4acde"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]
