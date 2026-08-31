@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package &#39;stack_dst&#39; › RustSec Advisory Database</title>
+<title>RUSTSEC-2026-0272: stack_dst: Panic-safety unsoundness in `Stack::pop`, `Fifo::pop_front` and `Value::replace_stable` (use-after-free / double-free) › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,60 +52,204 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/stack_dst/RUSTSEC-2026-0272.md">History</a> ⋅
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/stack_dst/RUSTSEC-2026-0272.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2026-0272">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2026-0272
+        
+      </h1>
+      <span class="subtitle"><p>Panic-safety unsoundness in <code>Stack::pop</code>, <code>Fifo::pop_front</code> and <code>Value::replace_stable</code> (use-after-free / double-free)</p>
 </span>
-      <h1>Advisories for package &#39;stack_dst&#39;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2026-08-31">
-    August 31, 2026
-  </time>
+    
 
-  
-  <h3>
-    
-        
-          <span class="tag info">INFO</span>
-        
-    
-    <a href="/advisories/RUSTSEC-2026-0272.html">
-      RUSTSEC-2026-0272: Unsoundness in stack_dst
-    </a>
-  </h3>
-  <span><p>Panic-safety unsoundness in <code>Stack::pop</code>, <code>Fifo::pop_front</code> and <code>Value::replace_stable</code> (use-after-free / double-free)</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2021-03-03">
-    March  3, 2021
-  </time>
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2026-08-27">
+          August 27, 2026
+        </time>
+      </dd>
 
-  
-  <h3>
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2026-08-31">
+          August 31, 2026
+        </time>
+        
+      </dd>
+
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        <a href="/packages/stack_dst.html">stack_dst</a>
+           
+          (<a href="https://crates.io/crates/stack_dst">crates.io</a>)
+          
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        <span class="tag info">INFO</span>
+        Unsound
+        
+      </dd>
+
+      
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/memory-corruption.html">memory-corruption</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/panic-safety.html">#panic-safety</a>
+        
+          <a href="/keywords/memory-safety.html">#memory-safety</a>
+        
+          <a href="/keywords/use-after-free.html">#use-after-free</a>
+        
+          <a href="/keywords/double-free.html">#double-free</a>
+        
+      </dd>
+      
+
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/thepowersgang/stack_dst-rs/issues/16">
+              https://github.com/thepowersgang/stack_dst-rs/issues/16
+            </a>
+          </li>
+        
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&#62;=0.8.2</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+
+      
+      
+
+      
+      
+    </dl>
+
     
-      <span class="tag critical">CRITICAL</span>
+    
+    <dl>
+      <dt>Affected Functions</dt>
+      <dd>Version</dd>
       
-    <a href="/advisories/RUSTSEC-2021-0033.html">
-      RUSTSEC-2021-0033: Vulnerability in stack_dst
-    </a>
-  </h3>
-  <span><p>push_cloned can drop uninitialized memory or double free on panic</p>
-</span>
-  
-</li>
+      <dt><code>stack_dst::Fifo::pop_front</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;0.8.2</code></li>
+          
+        </ul>
+      </dd>
       
-    </ul>
+      <dt><code>stack_dst::Stack::pop</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;0.8.2</code></li>
+          
+        </ul>
+      </dd>
+      
+      <dt><code>stack_dst::Value::replace_stable</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;0.8.2</code></li>
+          
+        </ul>
+      </dd>
+      
+    </dl>
+    
+
+    
+
+    <h3 id="description">Description</h3>
+    <p>Three removal and replacement paths destroy an initialized value before
+committing the metadata change that removes it. Destruction runs <code>T::drop()</code>,
+which is user code and may panic. If it does, the commit is skipped and the
+container still claims ownership of the already-destroyed value, so its own
+destructor drops that value a second time.</p>
+<p><code>Stack::pop</code> drops the top value before reducing <code>next_ofs</code>. <code>Stack</code>'s
+destructor pops in a loop, so an unchanged <code>next_ofs</code> re-drops the same value.</p>
+<p><code>Fifo::pop_front</code> (via <code>pop_front_inner</code>) drops the front value before advancing
+<code>read_pos</code>. An unchanged <code>read_pos</code> still points at the destroyed value.</p>
+<p><code>Value::replace_stable</code> drops the existing value before writing the replacement.
+If the destructor panics the replacement is never written, but the backing
+storage still holds the old value's metadata.</p>
+<p>This is separate from RUSTSEC-2021-0033, which covered a clone panic on
+insertion in <code>push_cloned</code> and was fixed in 0.6.1.</p>
+<h2>Impact</h2>
+<p>A heap-owning value is freed twice, corrupting the allocator. Reachable from
+safe Rust with any element type whose <code>Drop</code> can panic — no <code>unsafe</code> on the
+caller's side.</p>
+<ul>
+<li>CWE-415 (Double Free)</li>
+<li>CWE-416 (Use-After-Free)</li>
+</ul>
+<p>Confirmed under AddressSanitizer, which reports <code>attempting double-free</code> on all
+three paths.</p>
+<h2>Fix</h2>
+<p>Fixed in 0.8.2.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>

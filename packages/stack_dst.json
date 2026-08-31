@@ -1,5 +1,74 @@
 [
   {
+    "id": "RUSTSEC-2026-0272",
+    "modified": "2026-08-31T09:44:04Z",
+    "published": "2026-08-27T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Panic-safety unsoundness in `Stack::pop`, `Fifo::pop_front` and `Value::replace_stable` (use-after-free / double-free)",
+    "details": "Three removal and replacement paths destroy an initialized value before\ncommitting the metadata change that removes it. Destruction runs `T::drop()`,\nwhich is user code and may panic. If it does, the commit is skipped and the\ncontainer still claims ownership of the already-destroyed value, so its own\ndestructor drops that value a second time.\n\n`Stack::pop` drops the top value before reducing `next_ofs`. `Stack`'s\ndestructor pops in a loop, so an unchanged `next_ofs` re-drops the same value.\n\n`Fifo::pop_front` (via `pop_front_inner`) drops the front value before advancing\n`read_pos`. An unchanged `read_pos` still points at the destroyed value.\n\n`Value::replace_stable` drops the existing value before writing the replacement.\nIf the destructor panics the replacement is never written, but the backing\nstorage still holds the old value's metadata.\n\nThis is separate from RUSTSEC-2021-0033, which covered a clone panic on\ninsertion in `push_cloned` and was fixed in 0.6.1.\n\n## Impact\n\nA heap-owning value is freed twice, corrupting the allocator. Reachable from\nsafe Rust with any element type whose `Drop` can panic — no `unsafe` on the\ncaller's side.\n\n* CWE-415 (Double Free)\n* CWE-416 (Use-After-Free)\n\nConfirmed under AddressSanitizer, which reports `attempting double-free` on all\nthree paths.\n\n## Fix\n\nFixed in 0.8.2.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "stack_dst",
+          "purl": "pkg:cargo/stack_dst"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "stack_dst::Fifo::pop_front",
+              "stack_dst::Stack::pop",
+              "stack_dst::Value::replace_stable"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.8.2"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/stack_dst"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0272.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/thepowersgang/stack_dst-rs/issues/16"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
     "id": "RUSTSEC-2021-0033",
     "modified": "2023-06-13T13:10:24Z",
     "published": "2021-02-22T12:00:00Z",
