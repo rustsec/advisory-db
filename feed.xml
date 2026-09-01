@@ -398,6 +398,225 @@ change in &lt;code&gt;is_abandoned()&lt;/code&gt;, so users on 0.3.x should pref
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0275: Vulnerability in azure_core</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0275.html</id><updated>2026-09-01T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0275.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0275: Vulnerability in azure_core"/><published>2026-09-01T12:00:00+00:00</published><summary xml:lang="en">Legacy `azure_core` writes the `authorization` header value to logs</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/azure_core/RUSTSEC-2026-0275.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/azure_core/RUSTSEC-2026-0275.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0275&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0275
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Legacy &lt;code&gt;azure_core&lt;/code&gt; writes the &lt;code&gt;authorization&lt;/code&gt; header value to logs&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-08-15&quot;&gt;
+          August 15, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-09-01&quot;&gt;
+          September  1, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/azure_core.html&quot;&gt;azure_core&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/azure_core&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/information-leak.html&quot;&gt;#information-leak&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/logs.html&quot;&gt;#logs&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/credentials.html&quot;&gt;#credentials&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/authorization-header.html&quot;&gt;#authorization-header&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/azure.html&quot;&gt;#azure&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/Azure/azure-sdk-for-rust/issues/5074&quot;&gt;
+              https://github.com/Azure/azure-sdk-for-rust/issues/5074
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/Azure/azure-sdk-for-rust/pull/1699&quot;&gt;
+              https://github.com/Azure/azure-sdk-for-rust/pull/1699
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/Azure/azure-sdk-for-rust/commit/7a0e20c1e002ce06da0f3ec8795ef1529862ea97&quot;&gt;
+              https://github.com/Azure/azure-sdk-for-rust/commit/7a0e20c1e002ce06da0f3ec8795ef1529862ea97
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;6.5 &lt;span class=&quot;tag medium&quot;&gt;
+        MEDIUM
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Local&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Changed&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:C/C:H/I:N/A:N&quot;&gt;CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:C/C:H/I:N/A:N&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.22.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;=0.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Applications built on the legacy Azure SDK for Rust (&lt;code&gt;azure_core&lt;/code&gt; 0.21.0 and
+earlier) write the value of the outgoing &lt;code&gt;authorization&lt;/code&gt; header to their logs
+whenever debug-level logging is enabled, and in every affected version also at
+trace level. The leaked values are live credentials — Microsoft Entra
+ID bearer tokens, Azure Storage SharedKey signatures, and SAS tokens — and
+anyone with read access to the logs can replay them until they expire
+(CWE-532).&lt;/p&gt;
+&lt;p&gt;Versions 0.22.0 and later, which are the rewritten and currently supported
+SDK, do not contain the affected code.&lt;/p&gt;
+&lt;h2&gt;Affected versions&lt;/h2&gt;
+&lt;p&gt;Every published legacy version except 0.2.0 writes the &lt;code&gt;authorization&lt;/code&gt; header
+value to logs: 0.1.1 (2022-01-25), and 0.2.1 through 0.21.0 (2024-10-15).&lt;/p&gt;
+&lt;h2&gt;Mitigation&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Upgrade to &lt;code&gt;azure_core&lt;/code&gt; 1.0.0 or newer.&lt;/li&gt;
+&lt;li&gt;If you are unable to upgrade, raise the log level above debug for the
+impacted crates or submit a feature request for missing crates built on &lt;code&gt;azure_core&lt;/code&gt; 1.0.0 or newer.&lt;/li&gt;
+&lt;li&gt;Treat logs produced by an affected build as credential-bearing: rotate any
+long-lived secret that authenticated a request while debug logging was on.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Coordination&lt;/h2&gt;
+&lt;p&gt;The finding was reported to the Microsoft Security Response Center
+(VULN-211331), which determined that it does not meet the Microsoft Security
+Servicing Criteria definition of a security vulnerability.&lt;/p&gt;
+&lt;p&gt;It was then disclosed publicly as &lt;a href=&quot;https://github.com/Azure/azure-sdk-for-rust/issues/5074&quot;&gt;Azure/azure-sdk-for-rust#5074&lt;/a&gt; on
+2026-08-15, asking the maintainers to confirm the behavior so that an advisory
+could be filed for the legacy crates. A maintainer replied on 2026-08-26 and
+closed the issue as not planned: the &lt;code&gt;legacy&lt;/code&gt; branch is unsupported, there are
+no plans to update it, and users should move to crates built on &lt;code&gt;azure_core&lt;/code&gt;
+1.0.0 or newer.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0269: Vulnerability in wasmtime</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0269.html</id><updated>2026-08-31T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0269.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0269: Vulnerability in wasmtime"/><published>2026-08-31T12:00:00+00:00</published><summary xml:lang="en">Filesystem sandbox escape when paths or symlinks contain trailing slashes</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -1752,194 +1971,6 @@ via &lt;a href=&quot;https://docs.rs/zip/8.6.0/zip/read/struct.ZipArchive.html#m
 
     &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
     &lt;p&gt;&lt;code&gt;mod3d_base::BufferData::as_ptr&lt;/code&gt; lack of sufficient checks to its public self field &lt;code&gt;byte_offset&lt;/code&gt; and used unsafely to do the pointer calculation.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0267: Unsoundness in stable-vec</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0267.html</id><updated>2026-08-24T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0267.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0267: Unsoundness in stable-vec"/><published>2026-08-24T12:00:00+00:00</published><summary xml:lang="en">Panic-safety unsoundness in `BitVecCore::clear` (double-free / use-after-free)</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/stable-vec/RUSTSEC-2026-0267.md&quot;&gt;History&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/stable-vec/RUSTSEC-2026-0267.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0267&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2026-0267
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Panic-safety unsoundness in &lt;code&gt;BitVecCore::clear&lt;/code&gt; (double-free / use-after-free)&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-08-24&quot;&gt;
-          August 24, 2026
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-08-24&quot;&gt;
-          August 24, 2026
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/stable-vec.html&quot;&gt;stable-vec&lt;/a&gt;
-           
-          (&lt;a href=&quot;https://crates.io/crates/stable-vec&quot;&gt;crates.io&lt;/a&gt;)
-          
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
-        Unsound
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/panic-safety.html&quot;&gt;#panic-safety&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/memory-safety.html&quot;&gt;#memory-safety&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/use-after-free.html&quot;&gt;#use-after-free&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/double-free.html&quot;&gt;#double-free&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-mr2v-63pc-gmr4&quot;&gt;GHSA-mr2v-63pc-gmr4&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/LukasKalbertodt/stable-vec/pull/51&quot;&gt;
-              https://github.com/LukasKalbertodt/stable-vec/pull/51
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=0.4.3&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-    &lt;dl&gt;
-      &lt;dt&gt;Affected Functions&lt;/dt&gt;
-      &lt;dd&gt;Version&lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;stable_vec::BitVecCore::clear&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#60;0.4.3&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-    &lt;/dl&gt;
-    
-
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;&lt;code&gt;BitVecCore::clear&lt;/code&gt; drops every occupied element with &lt;code&gt;drop_in_place&lt;/code&gt; and only
-afterwards clears the occupancy bits and resets &lt;code&gt;len&lt;/code&gt;. If an element&apos;s &lt;code&gt;Drop&lt;/code&gt;
-panics, those metadata updates are skipped, so the slot of the already-dropped
-element stays marked as occupied. &lt;code&gt;BitVecCore::drop&lt;/code&gt; calls &lt;code&gt;clear()&lt;/code&gt; again,
-visits the same slot, and drops the element a second time — a double-free /
-use-after-free reachable from safe Rust.&lt;/p&gt;
-&lt;p&gt;Reachable via the public &lt;code&gt;StableVec::clear&lt;/code&gt; and &lt;code&gt;ExternStableVec::clear&lt;/code&gt;, which
-delegate to &lt;code&gt;BitVecCore::clear&lt;/code&gt;.&lt;/p&gt;
-&lt;h2&gt;Impact&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;CWE-415 (Double Free): the same allocation is freed twice.&lt;/li&gt;
-&lt;li&gt;CWE-416 (Use-After-Free): a freed allocation is accessed during a repeated &lt;code&gt;Drop&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Reachable entirely from safe Rust via &lt;code&gt;catch_unwind&lt;/code&gt; with element types whose
-&lt;code&gt;Drop&lt;/code&gt; can panic. Confirmed under AddressSanitizer on 0.4.2.&lt;/p&gt;
-&lt;h2&gt;Fix&lt;/h2&gt;
-&lt;p&gt;Fixed in &lt;code&gt;stable-vec&lt;/code&gt; 0.4.3 by removing each element via &lt;code&gt;remove_at&lt;/code&gt;, which
-clears the occupancy bit before taking the value out.&lt;/p&gt;
-&lt;p&gt;Release 0.4.3 also fixes several other panic-safety issues found by the
-maintainer; see &lt;a href=&quot;https://github.com/LukasKalbertodt/stable-vec/security/advisories/GHSA-mr2v-63pc-gmr4&quot;&gt;GHSA-mr2v-63pc-gmr4&lt;/a&gt;
-and the 0.4.3 changelog for the full list.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
