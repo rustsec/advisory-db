@@ -1,0 +1,84 @@
+{
+  "id": "RUSTSEC-2026-0273",
+  "modified": "2026-09-01T07:52:25Z",
+  "published": "2026-04-07T12:00:00Z",
+  "aliases": [],
+  "related": [],
+  "summary": "Stubbed cryptography without warnings",
+  "details": "The `manzana` crate appears to be a work-in-progress module for the Apple Silicon chips' features, including the Secure Enclave.\n\nThis crate's description and `README`s make no hint at the fact that the [`SecureEnclaveSigner`](https://docs.rs/manzana/0.2.0/manzana/secure_enclave/struct.SecureEnclaveSigner.html) type is a stubbed implementation that does not actually perform any cryptographic operations, and instead returns fixed values.\n\nUnsuspecting users of the crate, who may not check the source code, receive no warning about this and may believe they are using a secure implementation when they are not.\n\nThere are currently (as of `2026-04-07`) no versions of the crate that contain either a real implementation, or a warning about the stubbed cryptography.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "manzana",
+        "purl": "pkg:cargo/manzana"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [
+            "aarch64"
+          ],
+          "os": [
+            "macos"
+          ],
+          "functions": [
+            "manzana::secure_enclave::SecureEnclaveSigner::create",
+            "manzana::secure_enclave::SecureEnclaveSigner::delete",
+            "manzana::secure_enclave::SecureEnclaveSigner::load",
+            "manzana::secure_enclave::SecureEnclaveSigner::sign",
+            "manzana::secure_enclave::SecureEnclaveSigner::verify"
+          ]
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "crypto-failure"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/manzana"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0273.html"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/paiml/manzana/issues/3"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/paiml/manzana/blob/89e3183ac38088d418a2edeb9d3e0f35133b27a3/README.md"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/paiml/manzana/blob/89e3183ac38088d418a2edeb9d3e0f35133b27a3/src/secure_enclave.rs#L312"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/paiml/manzana/blob/89e3183ac38088d418a2edeb9d3e0f35133b27a3/src/secure_enclave.rs#L352"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
