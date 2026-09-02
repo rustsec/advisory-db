@@ -1,0 +1,72 @@
+{
+  "id": "RUSTSEC-2026-0277",
+  "modified": "2026-09-02T08:56:54Z",
+  "published": "2026-08-26T12:00:00Z",
+  "aliases": [
+    "GHSA-72g6-wgrg-vhm7"
+  ],
+  "related": [],
+  "summary": "Path traversal in apimock-server's file-serving fallback",
+  "details": "The file-serving fallback joined a request-derived path onto the\nconfigured response directory and checked only that the result existed,\nnever that it stayed inside that directory. A request containing a raw\n`..` segment could read any file readable by the process, returned with\nHTTP 200.\n\nRead-only: no write, no code execution.\n\nExposure depends on the bind address. The default is `127.0.0.1`;\ndeployments binding `0.0.0.0` or a LAN address are reachable from the\nnetwork. Most HTTP clients normalise `..` away before sending, so\nreaching it requires a client that does not.\n\nAll published versions before 5.19.1 are affected. Fixed in 5.19.1 by\ncanonicalising each resolved path and rejecting anything outside its\nbase directory.\n\n**This advisory also covers `apimock` 5.x**, which depends on\n`apimock-server`. `apimock` 4.x predates the crate split and carries its\nown advisory for the same issue, fixed in 4.8.1.",
+  "severity": [
+    {
+      "type": "CVSS_V4",
+      "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N"
+    }
+  ],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "apimock-server",
+        "purl": "pkg:cargo/apimock-server"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "file-disclosure"
+        ],
+        "cvss": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N",
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "5.19.1"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/apimock-server"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0277.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/apimokka/apimock-rs/commit/ff0dd152ecfccb3bf00e15cc92bd4d57e485c854"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
