@@ -1,0 +1,63 @@
+[
+  {
+    "id": "RUSTSEC-2026-0281",
+    "modified": "2026-09-07T18:19:30Z",
+    "published": "2026-09-07T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "`greentic-setup` 1.3.1-dev.34027618345 was removed from crates.io due to containing malicious code",
+    "details": "A new version of the `greentic-setup` crate was published with a variant\nof the PolinRider malware included that would fire when a project\ndepending on `greentic-setup` was opened in Visual Studio Code.\n\nOne malicious version was published on 2026-09-06, approximately 27 hours\nbefore removal. This crate is depended on by four other crates in the\nGreentic ecosystem, namely `greentic-start`, `greentic-start-dev`,\n`greentic-operator`, and `greentic-operator-dev`. We have no evidence that this\ncrate version was downloaded by any actual users, but Greentic users should\ncheck their systems nonetheless.\n\nThanks to the Research Team at Nextron Systems GmbH for the report.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "greentic-setup",
+          "purl": "pkg:cargo/greentic-setup"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "malicious"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "1.3.1-dev.34027618345"
+              },
+              {
+                "fixed": "1.3.1-dev.34027618345.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/greentic-setup"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0281.html"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]
