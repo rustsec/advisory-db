@@ -1,0 +1,69 @@
+[
+  {
+    "id": "RUSTSEC-2026-0282",
+    "modified": "2026-09-09T10:49:52Z",
+    "published": "2026-09-09T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Double free in `AlignedBox<[T]>::realloc_with_default` when an element's `Drop` panics",
+    "details": "Shrinking an `AlignedBox<[T]>` takes ownership of the buffer out of\n`self.container` with `ManuallyDrop::take`, destroys the elements past the new\nlength, and only then commits the new `Box` back into `self.container`.\n`ManuallyDrop::take` moves ownership but not the bits, so until that commit\n`self.container` still points at the original buffer.\n\n`T::drop` runs inside the destruction loop and is user code — `T` carries no\nbound that would exclude a panicking `Drop`. If it unwinds, the commit is\nskipped and `self.container` is left pointing at the buffer whose tail has\nalready been destroyed. `AlignedBox`'s own destructor then reconstructs a `Box`\nfrom that pointer, drops every element again and deallocates — a double free\n(CWE-415) / use-after-free (CWE-416) reachable from safe Rust.\n\nGrowing the slice destroys nothing and is unaffected, as is\n`realloc_with_value`, which requires `T: Copy` and therefore a `Drop` that\ncannot run.\n\n## Mitigation\n\nUpdate to 0.3.1.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "aligned_box",
+          "purl": "pkg:cargo/aligned_box"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "aligned_box::AlignedBox::realloc_with_default"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.3.1"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/aligned_box"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0282.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/michaellass/aligned_box/pull/6"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]
