@@ -1,7 +1,7 @@
 [
   {
     "id": "RUSTSEC-2023-0071",
-    "modified": "2026-04-25T06:40:09Z",
+    "modified": "2026-09-14T09:33:38Z",
     "published": "2023-11-22T12:00:00Z",
     "aliases": [
       "CVE-2023-49092",
@@ -10,7 +10,7 @@
     ],
     "related": [],
     "summary": "Marvin Attack: potential key recovery through timing sidechannels",
-    "details": "### Impact\nDue to a non-constant-time implementation, information about the private key is leaked through timing information which is observable over the network. An attacker may be able to use that information to recover the key.\n\n### Patches\nNo patch is yet available, however work is underway to migrate to a fully constant-time implementation.\n\n### Workarounds\nThe only currently available workaround is to avoid using the `rsa` crate in settings where attackers are able to observe timing information, e.g. local use on a non-compromised computer is fine.\n\n### References\nThis vulnerability was discovered as part of the \"[Marvin Attack]\", which revealed several implementations of RSA including OpenSSL had not properly mitigated timing sidechannel attacks.\n\n[Marvin Attack]: https://people.redhat.com/~hkario/marvin/",
+    "details": "### Impact\nDue to a non-constant-time implementation, information about the private key is leaked through timing information which is observable over the network. An attacker may be able to use that information to recover the key.\n\n### Patches\nNo patch is yet available. The crypto-bigint migration ([RustCrypto/RSA#394](https://github.com/RustCrypto/RSA/pull/394)) did not close this. Tracking is [RustCrypto/RSA#626](https://github.com/RustCrypto/RSA/issues/626) (padding still not constant-time). Implicit rejection work is in [RustCrypto/RSA#680](https://github.com/RustCrypto/RSA/pull/680); default-path blinding is in [RustCrypto/RSA#702](https://github.com/RustCrypto/RSA/pull/702).\n\nStill affected as of 2026-09-12: rsa 0.9.10 (latest stable) and rsa 0.10.0-rc.18 (latest). `patched = []` is intentional.\n\n### Workarounds\nAvoid using the `rsa` crate in settings where attackers can observe timing, for example over the network. Local use on a non-compromised computer is fine.\n\n### References\nThis vulnerability was discovered as part of the \"[Marvin Attack]\", which revealed several implementations of RSA including OpenSSL had not properly mitigated timing sidechannel attacks.\n\n[Marvin Attack]: https://people.redhat.com/~hkario/marvin/",
     "severity": [
       {
         "type": "CVSS_V3",
@@ -72,6 +72,18 @@
       {
         "type": "WEB",
         "url": "https://people.redhat.com/~hkario/marvin/"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/RustCrypto/RSA/pull/394"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/RustCrypto/RSA/pull/680"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/RustCrypto/RSA/pull/702"
       }
     ],
     "database_specific": {
