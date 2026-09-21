@@ -1,0 +1,79 @@
+[
+  {
+    "id": "RUSTSEC-2026-0294",
+    "modified": "2026-09-21T09:29:57Z",
+    "published": "2026-09-18T12:00:00Z",
+    "aliases": [
+      "GHSA-8mq4-3mwq-qvg6"
+    ],
+    "related": [],
+    "summary": "Unsoundness in UTF-8 'String' trait",
+    "details": "The String API in iceoryx2-bb-container exposes its contents as mutable bytes through safe APIs, while String::as_str() converts those bytes into a Rust string slice without validating UTF-8. \nAn application can therefore create an invalid &str and trigger undefined behavior using entirely safe Rust.\n\nThe API methods `as_mut_bytes` and `deref_mut` where removed from the String API and their implementations (PolymorphicString, RelocatableString, and StaticString ) without replacement.\nLink to Pull-Request: https://github.com/eclipse-iceoryx/iceoryx2/pull/1956",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "iceoryx2-bb-container",
+          "purl": "pkg:cargo/iceoryx2-bb-container"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "iceoryx2_bb_container::string::String::as_mut_bytes",
+              "iceoryx2_bb_container::string::String::deref_mut",
+              "iceoryx2_bb_container::string::polymorphic_string::PolymorphicString::as_mut_bytes",
+              "iceoryx2_bb_container::string::polymorphic_string::PolymorphicString::deref_mut",
+              "iceoryx2_bb_container::string::relocatable_string::RelocatableString::as_mut_bytes",
+              "iceoryx2_bb_container::string::relocatable_string::RelocatableString::deref_mut",
+              "iceoryx2_bb_container::string::static_string::StaticString::as_mut_bytes",
+              "iceoryx2_bb_container::string::static_string::StaticString::deref_mut"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.10.0"
+              },
+              {
+                "introduced": "0.11.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/iceoryx2-bb-container"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0294.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/eclipse-iceoryx/iceoryx2/pull/1956"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]
