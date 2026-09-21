@@ -1,5 +1,179 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2026-09-18T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2026-0288: Vulnerability in cosmian_kyber</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0288.html</id><updated>2026-09-18T12:00:00+00:00</updated><category term="crypto-failure"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0288.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0288: Vulnerability in cosmian_kyber"/><published>2026-09-18T12:00:00+00:00</published><summary xml:lang="en">cosmian_kyber: AVX2 backend skips Fujisaki-Okamoto implicit rejection, enabling chosen-ciphertext key recovery</summary><content xml:lang="en" type="html">  &lt;article&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2026-09-21T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2026-0291: Vulnerability in owned-alloc</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0291.html</id><updated>2026-09-21T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0291.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0291: Vulnerability in owned-alloc"/><published>2026-09-21T12:00:00+00:00</published><summary xml:lang="en">Double free in `OwnedAlloc::drop_in_place` when the contained value&amp;apos;s `Drop` panics</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/owned-alloc/RUSTSEC-2026-0291.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/owned-alloc/RUSTSEC-2026-0291.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0291&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0291
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Double free in &lt;code&gt;OwnedAlloc::drop_in_place&lt;/code&gt; when the contained value&apos;s &lt;code&gt;Drop&lt;/code&gt; panics&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-09-09&quot;&gt;
+          September  9, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-09-21&quot;&gt;
+          September 21, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/owned-alloc.html&quot;&gt;owned-alloc&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/owned-alloc&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/panic-safety.html&quot;&gt;#panic-safety&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/memory-safety.html&quot;&gt;#memory-safety&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/use-after-free.html&quot;&gt;#use-after-free&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/double-free.html&quot;&gt;#double-free&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://gitlab.com/bzim/owned-alloc/-/issues/1&quot;&gt;
+              https://gitlab.com/bzim/owned-alloc/-/issues/1
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;owned_alloc::MaybeUninitAlloc::drop_in_place&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;=0.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;owned_alloc::OwnedAlloc::drop_in_place&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;=0.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;&lt;code&gt;OwnedAlloc::drop_in_place&lt;/code&gt; destroys the contained value by hand, then commits
+the ownership transfer with &lt;code&gt;mem::forget(self)&lt;/code&gt; — which lives inside &lt;code&gt;into_raw&lt;/code&gt;
+and so runs only after the destruction. &lt;code&gt;T::drop&lt;/code&gt; is user code and may panic. If
+it does, the forget is skipped and the still-live &lt;code&gt;OwnedAlloc&lt;/code&gt; unwinds, whose
+destructor drops the same &lt;code&gt;T&lt;/code&gt; a second time and then deallocates. For a &lt;code&gt;T&lt;/code&gt; that
+owns an allocation, the same block is freed twice — a double free (CWE-415).
+That destructor also reads the already-destroyed value through
+&lt;code&gt;Layout::for_value&lt;/code&gt; before deallocating, a use-after-free (CWE-416).&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;MaybeUninitAlloc::drop_in_place&lt;/code&gt; delegates to the same function, so both public
+entry points are affected. Storing a value whose &lt;code&gt;Drop&lt;/code&gt; can panic and calling
+either is enough — no &lt;code&gt;unsafe&lt;/code&gt; on the caller&apos;s side.&lt;/p&gt;
+&lt;h2&gt;Fix&lt;/h2&gt;
+&lt;p&gt;No fixed release is available. The crate has had no release since 2018 and the
+maintainer has not responded to the report, nor to the one on &lt;code&gt;lockfree&lt;/code&gt;, which
+is published from the same account. &lt;code&gt;forget_inner&lt;/code&gt; leaks the value instead of
+destroying it, which is safe.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0288: Vulnerability in cosmian_kyber</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0288.html</id><updated>2026-09-18T12:00:00+00:00</updated><category term="crypto-failure"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0288.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0288: Vulnerability in cosmian_kyber"/><published>2026-09-18T12:00:00+00:00</published><summary xml:lang="en">cosmian_kyber: AVX2 backend skips Fujisaki-Okamoto implicit rejection, enabling chosen-ciphertext key recovery</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
           &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/cosmian_kyber/RUSTSEC-2026-0288.md&quot;&gt;History&lt;/a&gt; ⋅
@@ -1531,127 +1705,6 @@ from that pointer, drops every element again and deallocates — a double free
 cannot run.&lt;/p&gt;
 &lt;h2&gt;Mitigation&lt;/h2&gt;
 &lt;p&gt;Update to 0.3.1.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0280: greentic-setup-dev contained malicious code</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0280.html</id><updated>2026-09-07T12:00:00+00:00</updated><category term="malicious"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0280.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0280: greentic-setup-dev contained malicious code"/><published>2026-09-07T12:00:00+00:00</published><summary xml:lang="en">`greentic-setup-dev` 1.3.34027618345 was removed from crates.io due to containing malicious code</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/greentic-setup-dev/RUSTSEC-2026-0280.md&quot;&gt;History&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/greentic-setup-dev/RUSTSEC-2026-0280.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0280&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2026-0280
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;greentic-setup-dev&lt;/code&gt; 1.3.34027618345 was removed from crates.io due to containing malicious code&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-09-07&quot;&gt;
-          September  7, 2026
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-09-07&quot;&gt;
-          September  7, 2026
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/greentic-setup-dev.html&quot;&gt;greentic-setup-dev&lt;/a&gt;
-           
-          (&lt;a href=&quot;https://crates.io/crates/greentic-setup-dev&quot;&gt;crates.io&lt;/a&gt;)
-          
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/malicious.html&quot;&gt;malicious&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        no patched versions
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#60;1.3.34027618345&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;1.3.34027618345&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;A new version of the &lt;code&gt;greentic-setup-dev&lt;/code&gt; crate was published with a variant of
-the PolinRider malware included that would fire when a project depending on
-&lt;code&gt;greentic-setup-dev&lt;/code&gt; was opened in Visual Studio Code.&lt;/p&gt;
-&lt;p&gt;One malicious version was published on 2026-09-06, approximately 27 hours
-before removal. This crate has no dependencies on crates.io. We have no
-evidence that this crate version was downloaded by any actual users, but
-Greentic users should check their systems nonetheless.&lt;/p&gt;
-&lt;p&gt;Thanks to the Research Team at Nextron Systems GmbH for the report.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
