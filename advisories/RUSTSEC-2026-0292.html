@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories with keyword &#39;panic-safety&#39; › RustSec Advisory Database</title>
+<title>RUSTSEC-2026-0292: imbl-sized-chunks: Double free / use-after-free in `Chunk` and `InlineArray` removal methods when an element&#39;s `Drop` panics › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,304 +52,199 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/imbl-sized-chunks/RUSTSEC-2026-0292.md">History</a> ⋅
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/imbl-sized-chunks/RUSTSEC-2026-0292.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2026-0292">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2026-0292
+        
+      </h1>
+      <span class="subtitle"><p>Double free / use-after-free in <code>Chunk</code> and <code>InlineArray</code> removal methods when an element's <code>Drop</code> panics</p>
 </span>
-      <h1>Advisories with keyword &#39;panic-safety&#39;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2026-09-21">
-    September 21, 2026
-  </time>
+    
 
-  
-  <h3>
-    
-        
-    
-    <a href="/advisories/RUSTSEC-2026-0291.html">
-      RUSTSEC-2026-0291: Vulnerability in owned-alloc
-    </a>
-  </h3>
-  <span><p>Double free in <code>OwnedAlloc::drop_in_place</code> when the contained value's <code>Drop</code> panics</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2026-09-21">
-    September 21, 2026
-  </time>
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2026-09-04">
+          September  4, 2026
+        </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2026-09-21">
+          September 21, 2026
+        </time>
         
-    
-    <a href="/advisories/RUSTSEC-2026-0292.html">
-      RUSTSEC-2026-0292: Vulnerability in imbl-sized-chunks
-    </a>
-  </h3>
-  <span><p>Double free / use-after-free in <code>Chunk</code> and <code>InlineArray</code> removal methods when an element's <code>Drop</code> panics</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2026-09-14">
-    September 14, 2026
-  </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="package">Package</dt>
+      <dd>
         
-          <span class="tag info">INFO</span>
         
-    
-    <a href="/advisories/RUSTSEC-2026-0284.html">
-      RUSTSEC-2026-0284: Unsoundness in lockfree
-    </a>
-  </h3>
-  <span><p>Double free in <code>Map::into_iter</code> and an uninitialized <code>Arc</code> in <code>SharedIncin::clear</code></p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2026-09-09">
-    September  9, 2026
-  </time>
+        <a href="/packages/imbl-sized-chunks.html">imbl-sized-chunks</a>
+           
+          (<a href="https://crates.io/crates/imbl-sized-chunks">crates.io</a>)
+          
+        
+        
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="type">Type</dt>
+      <dd>
         
-    
-    <a href="/advisories/RUSTSEC-2026-0282.html">
-      RUSTSEC-2026-0282: Vulnerability in aligned_box
-    </a>
-  </h3>
-  <span><p>Double free in <code>AlignedBox&lt;[T]&gt;::realloc_with_default</code> when an element's <code>Drop</code> panics</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2026-09-01">
-    September  1, 2026
-  </time>
+        Vulnerability
+        
+      </dd>
 
-  
-  <h3>
-    
-        
-    
-    <a href="/advisories/RUSTSEC-2026-0274.html">
-      RUSTSEC-2026-0274: Vulnerability in rtrb
-    </a>
-  </h3>
-  <span><p>Double free / use-after-free in <code>ReadChunk::commit</code> when an element's <code>Drop</code> panics</p>
-</span>
-  
-</li>
       
-      <li>
-  <time datetime="2026-08-31">
-    August 31, 2026
-  </time>
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/memory-corruption.html">memory-corruption</a></li>
+          
+        </ul>
+      </dd>
+      
 
-  
-  <h3>
-    
-        
-          <span class="tag info">INFO</span>
-        
-    
-    <a href="/advisories/RUSTSEC-2026-0272.html">
-      RUSTSEC-2026-0272: Unsoundness in stack_dst
-    </a>
-  </h3>
-  <span><p>Panic-safety unsoundness in <code>Stack::pop</code>, <code>Fifo::pop_front</code> and <code>Value::replace_stable</code> (use-after-free / double-free)</p>
-</span>
-  
-</li>
       
-      <li>
-  <time datetime="2026-08-24">
-    August 24, 2026
-  </time>
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/memory-safety.html">#memory-safety</a>
+        
+          <a href="/keywords/double-free.html">#double-free</a>
+        
+          <a href="/keywords/use-after-free.html">#use-after-free</a>
+        
+          <a href="/keywords/panic-safety.html">#panic-safety</a>
+        
+      </dd>
+      
 
-  
-  <h3>
-    
-        
-          <span class="tag info">INFO</span>
-        
-    
-    <a href="/advisories/RUSTSEC-2026-0267.html">
-      RUSTSEC-2026-0267: Unsoundness in stable-vec
-    </a>
-  </h3>
-  <span><p>Panic-safety unsoundness in <code>BitVecCore::clear</code> (double-free / use-after-free)</p>
-</span>
-  
-</li>
       
-      <li>
-  <time datetime="2026-08-12">
-    August 12, 2026
-  </time>
 
-  
-  <h3>
-    
-        
-          <span class="tag info">INFO</span>
-        
-    
-    <a href="/advisories/RUSTSEC-2026-0255.html">
-      RUSTSEC-2026-0255: Unsoundness in sized-chunks
-    </a>
-  </h3>
-  <span><p>Panic-safety unsoundness in <code>Chunk</code>, <code>RingBuffer</code>, and <code>InlineArray</code> (use-after-free / double-free)</p>
-</span>
-  
-</li>
       
-      <li>
-  <time datetime="2026-08-12">
-    August 12, 2026
-  </time>
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/jneem/imbl-sized-chunks/pull/14">
+              https://github.com/jneem/imbl-sized-chunks/pull/14
+            </a>
+          </li>
+        
+        
+        </ul>
+      </dd>
+      
 
-  
-  <h3>
-    
-        
-          <span class="tag info">INFO</span>
-        
-    
-    <a href="/advisories/RUSTSEC-2026-0254.html">
-      RUSTSEC-2026-0254: Unsoundness in sp-sized-chunks
-    </a>
-  </h3>
-  <span><p>Panic-safety unsoundness in <code>Chunk</code> and <code>InlineArray</code> (use-after-free / double-free)</p>
-</span>
-  
-</li>
       
-      <li>
-  <time datetime="2026-08-12">
-    August 12, 2026
-  </time>
 
-  
-  <h3>
-    
-        
-          <span class="tag info">INFO</span>
-        
-    
-    <a href="/advisories/RUSTSEC-2026-0256.html">
-      RUSTSEC-2026-0256: Unsoundness in circular-buffer
-    </a>
-  </h3>
-  <span><p>Panic-safety unsoundness in <code>truncate_back</code>, <code>truncate_front</code>, <code>clear</code>, and <code>extend_from_slice</code> (use-after-free / double-free)</p>
-</span>
-  
-</li>
       
-      <li>
-  <time datetime="2026-08-11">
-    August 11, 2026
-  </time>
+      
 
-  
-  <h3>
-    
+      <dt id="patched">Patched</dt>
+      <dd>
         
-          <span class="tag info">INFO</span>
+        <ul>
+          
+          <li><code>&#62;=0.2.0</code></li>
+          
+        </ul>
         
-    
-    <a href="/advisories/RUSTSEC-2026-0253.html">
-      RUSTSEC-2026-0253: Unsoundness in lru
-    </a>
-  </h3>
-  <span><p>Potential use-after-free due to lack of panic safety in <code>LruCache::pop()</code></p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2026-08-11">
-    August 11, 2026
-  </time>
+      </dd>
 
-  
-  <h3>
-    
-        
-          <span class="tag info">INFO</span>
-        
-    
-    <a href="/advisories/RUSTSEC-2026-0252.html">
-      RUSTSEC-2026-0252: Unsoundness in orx-split-vec
-    </a>
-  </h3>
-  <span><p>Panic-safety unsoundness in <code>SplitVec::extend_from_slice</code> (uninitialized read)</p>
-</span>
-  
-</li>
       
-      <li>
-  <time datetime="2026-05-11">
-    May 11, 2026
-  </time>
 
-  
-  <h3>
-    
-        
-          <span class="tag info">INFO</span>
-        
-    
-    <a href="/advisories/RUSTSEC-2026-0122.html">
-      RUSTSEC-2026-0122: Unsoundness in rkyv
-    </a>
-  </h3>
-  <span><p>Potential use-after-free due to lack of panic safety in <code>InlineVec::clear</code> and <code>SerVec::clear</code></p>
-</span>
-  
-</li>
       
-      <li>
-  <time datetime="2025-09-01">
-    September  1, 2025
-  </time>
+      
 
-  
-  <h3>
-    
-        
-    
-    <a href="/advisories/RUSTSEC-2025-0054.html">
-      RUSTSEC-2025-0054: Vulnerability in array-queue
-    </a>
-  </h3>
-  <span><p>ArrayQueue::push_front is not panic-safe</p>
-</span>
-  
-</li>
       
-    </ul>
+      
+    </dl>
+
+    
+    
+    <dl>
+      <dt>Affected Functions</dt>
+      <dd>Version</dd>
+      
+      <dt><code>imbl_sized_chunks::inline_array::InlineArray::clear</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;0.2.0</code></li>
+          
+        </ul>
+      </dd>
+      
+      <dt><code>imbl_sized_chunks::inline_array::InlineArray::truncate</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;0.2.0</code></li>
+          
+        </ul>
+      </dd>
+      
+      <dt><code>imbl_sized_chunks::sized_chunk::Chunk::clear</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;0.2.0</code></li>
+          
+        </ul>
+      </dd>
+      
+      <dt><code>imbl_sized_chunks::sized_chunk::Chunk::drop_left</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;0.2.0</code></li>
+          
+        </ul>
+      </dd>
+      
+      <dt><code>imbl_sized_chunks::sized_chunk::Chunk::drop_right</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;0.2.0</code></li>
+          
+        </ul>
+      </dd>
+      
+    </dl>
+    
+
+    
+
+    <h3 id="description">Description</h3>
+    <p><code>Chunk::{clear, drop_left, drop_right}</code> and <code>InlineArray::{clear, truncate}</code> drop the removed elements before updating the metadata that records which slots hold live values — the <code>left</code>/<code>right</code> index pair for <code>Chunk</code>, the length field for <code>InlineArray</code>. If an element's <code>Drop</code> panics during the drop, that update is never reached, so the collection still treats the already-dropped elements as live. When the collection is later dropped (its destructor walks the range described by the stale metadata), or a subsequent operation touches the same slots, those elements are dropped a second time — a double free (CWE-415) / use-after-free (CWE-416) reachable from safe Rust.</p>
+<p>The stale field is <code>left</code> and <code>right</code> for <code>Chunk::clear</code>, <code>left</code> for <code>drop_left</code>, <code>right</code> for <code>drop_right</code>, and the length field for both <code>InlineArray</code> methods.</p>
+<h2>Mitigation</h2>
+<p>Upgrade to <code>imbl-sized-chunks</code> 0.2.0 or later, which commits the metadata before dropping any element (fixed in jneem/imbl-sized-chunks#14, released in 0.2.0).</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
