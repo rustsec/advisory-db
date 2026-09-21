@@ -1,0 +1,126 @@
+[
+  {
+    "id": "RUSTSEC-2026-0296",
+    "modified": "2026-09-21T15:17:02Z",
+    "published": "2026-09-21T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "`unzip` is unmaintained",
+    "details": "The [unzip](https://crates.io/crates/unzip) crate has only ever released a single\nversion, `0.1.0` (published 2017-12-23), and has seen no further activity. It\nappears to be unmaintained, and its known path-traversal (\"zip-slip\")\nvulnerability will not be fixed.\n\nConsider migrating to an actively maintained alternative such as\n[zip](https://crates.io/crates/zip).",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "unzip",
+          "purl": "pkg:cargo/unzip"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": "unmaintained"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/unzip"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0296.html"
+      },
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/unzip"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2026-0297",
+    "modified": "2026-09-21T15:17:02Z",
+    "published": "2026-09-09T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "`unzip`: archive extraction is vulnerable to path traversal (zip-slip)",
+    "details": "### Summary\n\n`Unzipper::unzip` extracts each archive entry to a path built from the entry's\n**raw, attacker-controlled name** without any traversal check. A ZIP archive whose\nentry names contain `../` components (or an absolute path) can therefore cause\nfiles to be written **outside** the destination directory chosen by the caller —\na \"zip-slip\" / directory-traversal arbitrary file write (CWE-22 / CWE-23 /\nCWE-36).\n\n### Affected versions\n\nAll published versions are affected. `unzip` has only ever released `0.1.0`\n(published 2017-12-23) and appears unmaintained, so **no fixed version is\navailable**.\n\n### Proof of concept\n\nA malicious archive with a single entry named `../ESCAPED.txt` extracted via\n`Unzipper::unzip` writes `ESCAPED.txt` one level above the destination directory.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "unzip",
+          "purl": "pkg:cargo/unzip"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "unzip::Unzipper::unzip"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "code-execution"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/unzip"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0297.html"
+      },
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/unzip"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]
