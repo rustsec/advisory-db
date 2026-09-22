@@ -1,0 +1,79 @@
+[
+  {
+    "id": "RUSTSEC-2026-0300",
+    "modified": "2026-09-22T07:35:37Z",
+    "published": "2026-09-02T12:00:00Z",
+    "aliases": [
+      "GHSA-x6j6-3ffp-qrfr"
+    ],
+    "related": [],
+    "summary": "Use-after-free in `clear` and `retain` when an element's `Drop` panics",
+    "details": "`SkipList::clear` drops the node chain and only then resets `tail` and `len`.\nThe drop runs each element's `Drop`, and `T` carries no bounds excluding a\npanicking one. If it unwinds, `tail` still points at the freed node while `len`\nstays non-zero.\n\n`back()`, `back_mut()`, `last_key_value()` and `last()` dereference `tail`\nthrough `unsafe`, so reading the container after the unwind is a use-after-free\n(CWE-416). `Drop for SkipList` calls `Box::from_raw` on `self.head`, which\n`clear` already destroyed, so dropping the container is a double free\n(CWE-415).\n\n`retain`, `retain_mut` and `dedup_by` reach the same state through\n`Node::filter_rebuild`, which frees nodes and runs a user predicate before the\ncaller commits `tail` and `len`. There the head links are left partially\nrewired, so traversal can also reach freed nodes.\n\n## Mitigation\n\nUpdate to 1.1.1.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "skiplist",
+          "purl": "pkg:cargo/skiplist"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "skiplist::ordered_skip_list::OrderedSkipList::clear",
+              "skiplist::ordered_skip_list::OrderedSkipList::dedup_by",
+              "skiplist::ordered_skip_list::OrderedSkipList::retain",
+              "skiplist::skip_list::SkipList::clear",
+              "skiplist::skip_list::SkipList::dedup_by",
+              "skiplist::skip_list::SkipList::retain",
+              "skiplist::skip_list::SkipList::retain_mut",
+              "skiplist::skip_map::SkipMap::clear",
+              "skiplist::skip_map::SkipMap::retain"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "1.1.1"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/skiplist"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0300.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/JP-Ellis/rust-skiplist/pull/334"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

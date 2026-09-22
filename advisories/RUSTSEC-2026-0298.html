@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories for package &#39;owned-alloc&#39; › RustSec Advisory Database</title>
+<title>RUSTSEC-2026-0298: unicycle: Use-after-free when a future&#39;s `Drop` panics while the container is dropped › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,60 +52,183 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/unicycle/RUSTSEC-2026-0298.md">History</a> ⋅
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/unicycle/RUSTSEC-2026-0298.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2026-0298">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2026-0298
+        
+      </h1>
+      <span class="subtitle"><p>Use-after-free when a future's <code>Drop</code> panics while the container is dropped</p>
 </span>
-      <h1>Advisories for package &#39;owned-alloc&#39;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2026-09-22">
-    September 22, 2026
-  </time>
+    
 
-  
-  <h3>
-    
-        
-          <span class="tag info">INFO</span>
-        
-    
-    <a href="/advisories/RUSTSEC-2026-0299.html">
-      RUSTSEC-2026-0299: owned-alloc is unmaintained
-    </a>
-  </h3>
-  <span><p><code>owned-alloc</code> is unmaintained</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2026-09-21">
-    September 21, 2026
-  </time>
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2026-09-12">
+          September 12, 2026
+        </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2026-09-22">
+          September 22, 2026
+        </time>
         
-    
-    <a href="/advisories/RUSTSEC-2026-0291.html">
-      RUSTSEC-2026-0291: Vulnerability in owned-alloc
-    </a>
-  </h3>
-  <span><p>Double free in <code>OwnedAlloc::drop_in_place</code> when the contained value's <code>Drop</code> panics</p>
-</span>
-  
-</li>
+      </dd>
+
+      <dt id="package">Package</dt>
+      <dd>
+        
+        
+        <a href="/packages/unicycle.html">unicycle</a>
+           
+          (<a href="https://crates.io/crates/unicycle">crates.io</a>)
+          
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        Vulnerability
+        
+      </dd>
+
       
-    </ul>
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/memory-corruption.html">memory-corruption</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/memory-safety.html">#memory-safety</a>
+        
+          <a href="/keywords/use-after-free.html">#use-after-free</a>
+        
+          <a href="/keywords/panic-safety.html">#panic-safety</a>
+        
+      </dd>
+      
+
+      
+      <dt id="aliases">Aliases</dt>
+      <dd>
+        <ul>
+          
+          <li>
+            
+            <a href="https://github.com/advisories/GHSA-8gw6-724c-9h38">GHSA-8gw6-724c-9h38</a>
+            
+          </li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/udoprog/unicycle/commit/4f1492a266824f8aa66fd6b27fa6188bf826bdfd">
+              https://github.com/udoprog/unicycle/commit/4f1492a266824f8aa66fd6b27fa6188bf826bdfd
+            </a>
+          </li>
+        
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&#62;=0.10.3</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+
+      
+      
+
+      
+      
+    </dl>
+
+    
+    
+    <dl>
+      <dt>Affected Functions</dt>
+      <dd>Version</dd>
+      
+      <dt><code>unicycle::Unordered::drop</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;0.10.3</code></li>
+          
+        </ul>
+      </dd>
+      
+    </dl>
+    
+
+    
+
+    <h3 id="description">Description</h3>
+    <p><code>Storage::clear</code> walks the slab, empties each entry and frees the <code>Task</code>
+allocation once its reference count reaches zero. <code>self.tasks.set_len(0)</code> only
+runs after the loop.</p>
+<p>Emptying an entry drops the user future it holds, and <code>T</code> carries no bounds
+excluding a panicking <code>Drop</code>. If one unwinds, the length is never committed and
+<code>self.tasks</code> still holds the pointers already processed. <code>Drop for Storage</code>
+calls <code>clear</code> again, and the second pass dereferences <code>(*task.as_ptr()).entry</code>
+on allocations the first pass already freed — a use-after-free (CWE-416)
+reachable from safe Rust.</p>
+<p><code>Storage</code> is reached only through <code>Unordered</code>, whose <code>Drop</code> calls <code>clear</code>. No
+particular method call is needed; dropping the container is enough.</p>
+<h2>Mitigation</h2>
+<p>Update to 0.10.3.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
