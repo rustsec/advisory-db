@@ -1,3 +1,4 @@
+```toml
 [advisory]
 id = "RUSTSEC-0000-0000"
 package = "owned-alloc"
@@ -6,6 +7,7 @@ informational = "unmaintained"
 
 [versions]
 patched = []
+```
 
 # `owned-alloc` is unmaintained
 
