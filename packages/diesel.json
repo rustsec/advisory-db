@@ -67,13 +67,15 @@
     }
   },
   {
-    "id": "RUSTSEC-2026-0134",
-    "modified": "2026-05-13T14:16:31Z",
+    "id": "RUSTSEC-2026-0136",
+    "modified": "2026-05-20T07:14:04Z",
     "published": "2026-04-24T12:00:00Z",
-    "aliases": [],
+    "aliases": [
+      "GHSA-m9p2-fxp5-v3fp"
+    ],
     "related": [],
-    "summary": "Unsound access to padding bytes while serializing date/time values using the Mysql backend",
-    "details": "Diesel relies on libmysqlclient for interacting with Mysql compatible databases. This library requires to provide date/time values according to the byte layout of their `MYSQL_TIME` type.\n\nDiesel replicated this type as `#[repr(C)]` struct, populated all the fields of this struct and then casted this value to an array of bytes. As this cast exposes padding bytes contained in this struct, this is undefined behaviour.\n\nThis vulnerability affects any user serializing date/time values using the Mysql backend.\n\n## Mitigation\n\nThe preferred mitigation to the outlined problem is to update to Diesel version 2.3.8 or newer, which includes fixes for the problem.\n\n## Resolution\n\nDiesel now manually serializes the relevant data without accessing the padding bytes.",
+    "summary": "Command injection in Diesel's implementation of `COPY FROM`/`COPY TO`",
+    "details": "Diesel allows users to configure various options for PostgreSQL's `COPY FROM` and `COPY TO` statements. These configurations are partially provided as strings or characters. \n\nDiesel did not check if any these user-provided options contain a quote character `'`, which can lead to the injection of additional options in the current `COPY FROM`/`COPY TO` statement. \n\nThis vulnerability affects any user of `COPY FROM`/`COPY TO` that passes user-provided input to any of the affected functions. It can result in modifications of options in the current statement, but it is not possible inject additional statements.\n\n## Mitigation\n\nThe preferred mitigation to the outlined problem is to update to Diesel version 2.3.8 or newer, which includes fixes for the problem.\n\n## Resolution\n\nDiesel now correctly escapes any quotes contained in the provided arguments.",
     "severity": [],
     "affected": [
       {
@@ -87,18 +89,25 @@
             "arch": [],
             "os": [],
             "functions": [
-              "diesel::serialize::ToSql<Date,Mysql>",
-              "diesel::serialize::ToSql<DateTime,Mysql>",
-              "diesel::serialize::ToSql<Time,Mysql>",
-              "diesel::serialize::ToSql<Timestamp,Mysql>"
+              "diesel::pg::CopyFromQuery::with_default",
+              "diesel::pg::CopyFromQuery::with_delimiter",
+              "diesel::pg::CopyFromQuery::with_escape",
+              "diesel::pg::CopyFromQuery::with_null",
+              "diesel::pg::CopyFromQuery::with_quote",
+              "diesel::pg::CopyToQuery::with_delimiter",
+              "diesel::pg::CopyToQuery::with_escape",
+              "diesel::pg::CopyToQuery::with_null",
+              "diesel::pg::CopyToQuery::with_quote"
             ]
           },
           "affected_functions": null
         },
         "database_specific": {
-          "categories": [],
+          "categories": [
+            "format-injection"
+          ],
           "cvss": null,
-          "informational": "unsound"
+          "informational": null
         },
         "ranges": [
           {
@@ -123,7 +132,7 @@
       },
       {
         "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0134.html"
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0136.html"
       },
       {
         "type": "WEB",
@@ -200,15 +209,13 @@
     }
   },
   {
-    "id": "RUSTSEC-2026-0136",
-    "modified": "2026-05-20T07:14:04Z",
+    "id": "RUSTSEC-2026-0134",
+    "modified": "2026-05-13T14:16:31Z",
     "published": "2026-04-24T12:00:00Z",
-    "aliases": [
-      "GHSA-m9p2-fxp5-v3fp"
-    ],
+    "aliases": [],
     "related": [],
-    "summary": "Command injection in Diesel's implementation of `COPY FROM`/`COPY TO`",
-    "details": "Diesel allows users to configure various options for PostgreSQL's `COPY FROM` and `COPY TO` statements. These configurations are partially provided as strings or characters. \n\nDiesel did not check if any these user-provided options contain a quote character `'`, which can lead to the injection of additional options in the current `COPY FROM`/`COPY TO` statement. \n\nThis vulnerability affects any user of `COPY FROM`/`COPY TO` that passes user-provided input to any of the affected functions. It can result in modifications of options in the current statement, but it is not possible inject additional statements.\n\n## Mitigation\n\nThe preferred mitigation to the outlined problem is to update to Diesel version 2.3.8 or newer, which includes fixes for the problem.\n\n## Resolution\n\nDiesel now correctly escapes any quotes contained in the provided arguments.",
+    "summary": "Unsound access to padding bytes while serializing date/time values using the Mysql backend",
+    "details": "Diesel relies on libmysqlclient for interacting with Mysql compatible databases. This library requires to provide date/time values according to the byte layout of their `MYSQL_TIME` type.\n\nDiesel replicated this type as `#[repr(C)]` struct, populated all the fields of this struct and then casted this value to an array of bytes. As this cast exposes padding bytes contained in this struct, this is undefined behaviour.\n\nThis vulnerability affects any user serializing date/time values using the Mysql backend.\n\n## Mitigation\n\nThe preferred mitigation to the outlined problem is to update to Diesel version 2.3.8 or newer, which includes fixes for the problem.\n\n## Resolution\n\nDiesel now manually serializes the relevant data without accessing the padding bytes.",
     "severity": [],
     "affected": [
       {
@@ -222,25 +229,18 @@
             "arch": [],
             "os": [],
             "functions": [
-              "diesel::pg::CopyFromQuery::with_default",
-              "diesel::pg::CopyFromQuery::with_delimiter",
-              "diesel::pg::CopyFromQuery::with_escape",
-              "diesel::pg::CopyFromQuery::with_null",
-              "diesel::pg::CopyFromQuery::with_quote",
-              "diesel::pg::CopyToQuery::with_delimiter",
-              "diesel::pg::CopyToQuery::with_escape",
-              "diesel::pg::CopyToQuery::with_null",
-              "diesel::pg::CopyToQuery::with_quote"
+              "diesel::serialize::ToSql<Date,Mysql>",
+              "diesel::serialize::ToSql<DateTime,Mysql>",
+              "diesel::serialize::ToSql<Time,Mysql>",
+              "diesel::serialize::ToSql<Timestamp,Mysql>"
             ]
           },
           "affected_functions": null
         },
         "database_specific": {
-          "categories": [
-            "format-injection"
-          ],
+          "categories": [],
           "cvss": null,
-          "informational": null
+          "informational": "unsound"
         },
         "ranges": [
           {
@@ -265,7 +265,7 @@
       },
       {
         "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0136.html"
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0134.html"
       },
       {
         "type": "WEB",
