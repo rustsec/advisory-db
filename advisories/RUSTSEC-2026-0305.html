@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories with keyword &#39;tss&#39; › RustSec Advisory Database</title>
+<title>RUSTSEC-2026-0305: librsvg: Use-after-free when XML includes have duplicated entities › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,115 +52,148 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/librsvg/RUSTSEC-2026-0305.md">History</a> ⋅
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/librsvg/RUSTSEC-2026-0305.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2026-0305">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2026-0305
+        
+      </h1>
+      <span class="subtitle"><p>Use-after-free when XML includes have duplicated entities</p>
 </span>
-      <h1>Advisories with keyword &#39;tss&#39;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2025-11-25">
-    November 25, 2025
-  </time>
+    
 
-  
-  <h3>
-    
-        
-    
-    <a href="/advisories/RUSTSEC-2025-0128.html">
-      RUSTSEC-2025-0128: Vulnerability in cggmp24
-    </a>
-  </h3>
-  <span><p>CGGMP21 presignatures can be used in the way that significantly reduces security</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2025-11-25">
-    November 25, 2025
-  </time>
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2026-09-23">
+          September 23, 2026
+        </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2026-09-23">
+          September 23, 2026
+        </time>
         
-    
-    <a href="/advisories/RUSTSEC-2025-0127.html">
-      RUSTSEC-2025-0127: Vulnerability in cggmp21
-    </a>
-  </h3>
-  <span><p>CGGMP21 presignatures can be used in the way that significantly reduces security</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2024-11-10">
-    November 10, 2024
-  </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="package">Package</dt>
+      <dd>
         
-    
-    <a href="/advisories/RUSTSEC-2024-0391.html">
-      RUSTSEC-2024-0391: Vulnerability in paillier-zk
-    </a>
-  </h3>
-  <span><p>Ambiguous challenge derivation</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2024-11-10">
-    November 10, 2024
-  </time>
+        
+        <a href="/packages/librsvg.html">librsvg</a>
+           
+          (<a href="https://crates.io/crates/librsvg">crates.io</a>)
+          
+        
+        
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="type">Type</dt>
+      <dd>
         
-    
-    <a href="/advisories/RUSTSEC-2024-0393.html">
-      RUSTSEC-2024-0393: Vulnerability in cggmp21
-    </a>
-  </h3>
-  <span><p>Ambiguous challenge derivation</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2024-11-10">
-    November 10, 2024
-  </time>
+        Vulnerability
+        
+      </dd>
 
-  
-  <h3>
-    
-        
-    
-    <a href="/advisories/RUSTSEC-2024-0392.html">
-      RUSTSEC-2024-0392: Vulnerability in cggmp21-keygen
-    </a>
-  </h3>
-  <span><p>Ambiguous challenge derivation</p>
-</span>
-  
-</li>
       
-    </ul>
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/memory-corruption.html">memory-corruption</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/uaf.html">#uaf</a>
+        
+      </dd>
+      
+
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://gitlab.gnome.org/GNOME/librsvg/-/work_items/1241">
+              https://gitlab.gnome.org/GNOME/librsvg/-/work_items/1241
+            </a>
+          </li>
+        
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&#62;=2.63.2</code></li>
+          
+          <li><code>&#62;=2.62.4, &#60;2.62.90</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+
+      
+      
+    </dl>
+
+    
+    
+
+    <h3 id="description">Description</h3>
+    <p>Librsvg uses libxml2, a C library, to parse XML.  When librsvg parses
+an SVG document which has a nested Xinclude, an XML entity declaration
+with a duplicate name as an existing one can cause a use-after-free error.</p>
+<p>While libxml2 is expanding an internal entity, a recursive XInclude
+can parse another document that declares an entity with the same
+name. Both parses use the same <code>XmlState</code> entity
+map on the librsvg side. <code>entity_insert()</code> replaces the first entry, whose <code>Drop</code>
+implementation calls <code>xmlFreeNode()</code>. The outer <code>xmlCtxtParseEntity()</code>
+then keeps using the freed 144-byte <code>xmlEntity</code>.</p>
+<p>The included parse should not free an entity that the outer parser is still using.</p>
+<p>The fix is in commit 8a1b0cd319e9af2d1e9cf878081dd77f227a0504, where
+librsvg will no longer free xmlEntity pointers that libxml2 is still
+using.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
