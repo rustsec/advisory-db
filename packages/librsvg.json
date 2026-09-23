@@ -1,9 +1,11 @@
 [
   {
     "id": "RUSTSEC-2026-0305",
-    "modified": "2026-09-23T07:46:24Z",
+    "modified": "2026-09-23T21:20:53Z",
     "published": "2026-09-23T12:00:00Z",
-    "aliases": [],
+    "aliases": [
+      "CVE-2026-96889"
+    ],
     "related": [],
     "summary": "Use-after-free when XML includes have duplicated entities",
     "details": "Librsvg uses libxml2, a C library, to parse XML.  When librsvg parses\nan SVG document which has a nested Xinclude, an XML entity declaration\nwith a duplicate name as an existing one can cause a use-after-free error.\n\nWhile libxml2 is expanding an internal entity, a recursive XInclude\ncan parse another document that declares an entity with the same\nname. Both parses use the same `XmlState` entity\nmap on the librsvg side. `entity_insert()` replaces the first entry, whose `Drop`\nimplementation calls `xmlFreeNode()`. The outer `xmlCtxtParseEntity()`\nthen keeps using the freed 144-byte `xmlEntity`.\n\nThe included parse should not free an entity that the outer parser is still using.\n\nThe fix is in commit 8a1b0cd319e9af2d1e9cf878081dd77f227a0504, where\nlibrsvg will no longer free xmlEntity pointers that libxml2 is still\nusing.",
