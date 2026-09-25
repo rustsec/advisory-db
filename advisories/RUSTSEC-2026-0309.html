@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories with keyword &#39;null-pointer&#39; › RustSec Advisory Database</title>
+<title>RUSTSEC-2026-0309: bun_collections: `SinglyLinkedList::remove` dereferences a null link › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,62 +52,156 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/bun_collections/RUSTSEC-2026-0309.md">History</a> ⋅
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/bun_collections/RUSTSEC-2026-0309.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2026-0309">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2026-0309
+        
+      </h1>
+      <span class="subtitle"><p><code>SinglyLinkedList::remove</code> dereferences a null link</p>
 </span>
-      <h1>Advisories with keyword &#39;null-pointer&#39;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2026-09-25">
-    September 25, 2026
-  </time>
+    
 
-  
-  <h3>
-    
-        
-          <span class="tag info">INFO</span>
-        
-    
-    <a href="/advisories/RUSTSEC-2026-0309.html">
-      RUSTSEC-2026-0309: Unsoundness in bun_collections
-    </a>
-  </h3>
-  <span><p><code>SinglyLinkedList::remove</code> dereferences a null link</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2026-05-13">
-    May 13, 2026
-  </time>
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2026-09-20">
+          September 20, 2026
+        </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2026-09-25">
+          September 25, 2026
+        </time>
         
-          <span class="tag info">INFO</span>
+      </dd>
+
+      <dt id="package">Package</dt>
+      <dd>
         
-    
-    <a href="/advisories/RUSTSEC-2026-0139.html">
-      RUSTSEC-2026-0139: Unsoundness in metacall
-    </a>
-  </h3>
-  <span><p>Null-pointer dereference and double-free via safe APIs</p>
-</span>
-  
-</li>
+        
+        <a href="/packages/bun_collections.html">bun_collections</a>
+           
+          (<a href="https://crates.io/crates/bun_collections">crates.io</a>)
+          
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        <span class="tag info">INFO</span>
+        Unsound
+        
+      </dd>
+
       
-    </ul>
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/memory-corruption.html">memory-corruption</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+      <dt id="keywords">Keywords</dt>
+      <dd>
+        
+          <a href="/keywords/null-pointer.html">#null-pointer</a>
+        
+      </dd>
+      
+
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/putao520/bao/issues/46">
+              https://github.com/putao520/bao/issues/46
+            </a>
+          </li>
+        
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&#62;=0.2.1</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+
+      
+      
+
+      
+      
+    </dl>
+
+    
+    
+    <dl>
+      <dt>Affected Functions</dt>
+      <dd>Version</dd>
+      
+      <dt><code>bun_collections::pool::SinglyLinkedList::remove</code></dt>
+      <dd>
+        <ul>
+          
+          <li><code>&#60;0.2.1</code></li>
+          
+        </ul>
+      </dd>
+      
+    </dl>
+    
+
+    
+
+    <h3 id="description">Description</h3>
+    <p>In versions before 0.2.1, <code>SinglyLinkedList::remove</code> is safe and walks the intrusive list with an unchecked dereference. On an empty list, or when <code>node</code> is not in the list, <code>(*current_elm).next</code> reads a null pointer. That is undefined behavior. The list head is a raw <code>*mut Node&lt;T&gt;</code>, and safe code can construct the empty list.</p>
+<p>The maintainer fixed this in 0.2.1 by rejecting those two cases with an unconditional <code>assert!</code> before the pointer is followed, matching the upstream Zig <code>unwrap</code> on the same paths. 0.2.0 was yanked. Versions 0.1.0 through 0.1.13 are still published and still contain the unchecked walk.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>

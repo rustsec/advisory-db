@@ -5,7 +5,7 @@
 
 <meta name="author" content="Rust Project Developers">
 <meta name="description" content="Security advisory database for Rust crates published through https://crates.io">
-<title>Advisories with keyword &#39;null-pointer&#39; › RustSec Advisory Database</title>
+<title>RUSTSEC-2026-0310: domain: Various panics, soundness and resource exhaustion issues › RustSec Advisory Database</title>
 
 <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic" rel="stylesheet">
 <link href="/css/basic.css" rel="stylesheet">
@@ -52,62 +52,167 @@
   </nav>
 </header>
 
-<main class="advisories">
+<main class="advisory">
   <article>
+    
+        <span class="floating-menu">
+          <a href="https://github.com/RustSec/advisory-db/commits/main/crates/domain/RUSTSEC-2026-0310.md">History</a> ⋅
+          <a href="https://github.com/RustSec/advisory-db/edit/main/crates/domain/RUSTSEC-2026-0310.md">Edit</a> ⋅
+          <a href="https://api.osv.dev/v1/vulns/RUSTSEC-2026-0310">JSON (OSV)</a>
+        </span>
+    
 
     <header>
-      <span class="floating-menu">
-  <a href="/categories/">Categories</a> ⋅
-  <a href="/keywords/">Keywords</a> ⋅
-  <a href="/packages/">Packages</a>
+      <h1>
+        
+        RUSTSEC-2026-0310
+        
+      </h1>
+      <span class="subtitle"><p>Various panics, soundness and resource exhaustion issues</p>
 </span>
-      <h1>Advisories with keyword &#39;null-pointer&#39;</h1>
     </header>
 
-    <ul>
-      
-      <li>
-  <time datetime="2026-09-25">
-    September 25, 2026
-  </time>
+    
 
-  
-  <h3>
-    
-        
-          <span class="tag info">INFO</span>
-        
-    
-    <a href="/advisories/RUSTSEC-2026-0309.html">
-      RUSTSEC-2026-0309: Unsoundness in bun_collections
-    </a>
-  </h3>
-  <span><p><code>SinglyLinkedList::remove</code> dereferences a null link</p>
-</span>
-  
-</li>
-      
-      <li>
-  <time datetime="2026-05-13">
-    May 13, 2026
-  </time>
+    <dl>
+      <dt id="reported">Reported</dt>
+      <dd>
+        <time datetime="2026-09-25">
+          September 25, 2026
+        </time>
+      </dd>
 
-  
-  <h3>
-    
+      <dt id="issued">Issued</dt>
+      <dd>
+        <time datetime="2026-09-25">
+          September 25, 2026
+        </time>
         
-          <span class="tag info">INFO</span>
+      </dd>
+
+      <dt id="package">Package</dt>
+      <dd>
         
-    
-    <a href="/advisories/RUSTSEC-2026-0139.html">
-      RUSTSEC-2026-0139: Unsoundness in metacall
-    </a>
-  </h3>
-  <span><p>Null-pointer dereference and double-free via safe APIs</p>
-</span>
-  
-</li>
+        
+        <a href="/packages/domain.html">domain</a>
+           
+          (<a href="https://crates.io/crates/domain">crates.io</a>)
+          
+        
+        
+      </dd>
+
+      <dt id="type">Type</dt>
+      <dd>
+        
+        Vulnerability
+        
+      </dd>
+
       
-    </ul>
+      <dt id="categories">Categories</dt>
+      <dd>
+        <ul>
+          
+          <li><a href="/categories/denial-of-service.html">denial-of-service</a></li>
+          
+        </ul>
+      </dd>
+      
+
+      
+
+      
+
+      
+      <dt id="details">References</dt>
+      <dd>
+        <ul>
+        
+          <li>
+            <a href="https://github.com/NLnetLabs/domain/releases/tag/v0.12.3">
+              https://github.com/NLnetLabs/domain/releases/tag/v0.12.3
+            </a>
+          </li>
+        
+        
+        </ul>
+      </dd>
+      
+
+      
+
+      
+      
+
+      <dt id="patched">Patched</dt>
+      <dd>
+        
+        <ul>
+          
+          <li><code>&#62;=0.12.3</code></li>
+          
+        </ul>
+        
+      </dd>
+
+      
+
+      
+      
+    </dl>
+
+    
+    
+
+    <h3 id="description">Description</h3>
+    <p>Version 0.12.3 fixes a large number of panics, soundness issues, and
+CPU and memory exhaustion issues in all parts of the crate.</p>
+<p>The following is a summary of the issues per affected components.
+For details, please see the <a href="https://github.com/NLnetLabs/domain/releases/tag/v0.12.3">release
+notes</a>.</p>
+<h2>Base</h2>
+<ul>
+<li>Limited the number of compression pointers that are followed when parsing
+a compressed name to 255 to avoid following really long chains.</li>
+<li>Limited the length of CNAME chains followed by <code>Message::canonical_name</code>
+to 20. This also fixed an integer overflow in this method when ANCOUNT
+was<code>u16::MAX</code>.</li>
+<li>Changed <code>QuestionSection::answer</code> to skip over all remaining questions
+without parsing the QNAMEs to avoid being slowed down by malicious
+names.</li>
+<li>Added length checks when scanning and parsing variable length record
+data types. This fixes issues with the message builder, which assumes that
+record data is never too large for placing in a message.</li>
+</ul>
+<h2>Stub Resolver</h2>
+<ul>
+<li>Fixed possible panics in the resolver’s <code>FoundHosts::qname</code> and
+<code>FoundHosts::canonical_name</code>.</li>
+<li>Fixed various issues in SRV processing.</li>
+</ul>
+<h2>Zonefile parsing</h2>
+<ul>
+<li>Fixed soundness issues when reading UTF-8 and an integer overflow when
+reading unsigned integers.</li>
+<li>Fixed a panic when reading empty TXT records.</li>
+</ul>
+<h2>Client and server transports, DNSSEC signer and validator</h2>
+<p>Fixed various panics that could be triggered by malicious incoming DNS
+messages.</p>
+<h2>Zonetree</h2>
+<p>Fixed various panics and a memory exhaustion issue when updating the zone.</p>
+<h2>Acknowledgements</h2>
+<p>We would like to thank Qifan Zhang, Palo Alto Networks,
+Antoni (Tony) Jagodka (<a href="https://github.com/DrVelvetFog">@DrVelvetFog</a>),
+and <a href="https://github.com/SebastiaanYN">@SebastiaanYN</a> for
+reporting issues fixed in this release.</p>
+
+
+    <p id="license" class="license">Advisory available under <a href="https://spdx.org/licenses/CC0-1.0.html">CC0-1.0</a>
+    license.
+
+    
+    </p>
   </article>
 </main>
