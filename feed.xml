@@ -221,6 +221,168 @@ writing. It is reachable from any crate that opens untrusted bytes with &lt;code
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0318: Vulnerability in matrix-sdk-crypto</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0318.html</id><updated>2026-10-01T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0318.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0318: Vulnerability in matrix-sdk-crypto"/><published>2026-10-01T12:00:00+00:00</published><summary xml:lang="en">Sending custom to-device messages may panics</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/matrix-sdk-crypto/RUSTSEC-2026-0318.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/matrix-sdk-crypto/RUSTSEC-2026-0318.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0318&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0318
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Sending custom to-device messages may panics&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-09-29&quot;&gt;
+          September 29, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-01&quot;&gt;
+          October  1, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/matrix-sdk-crypto.html&quot;&gt;matrix-sdk-crypto&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/matrix-sdk-crypto&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-45pr-7vv7-f64m&quot;&gt;GHSA-45pr-7vv7-f64m&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/matrix-org/matrix-rust-sdk/pull/6670&quot;&gt;
+              https://github.com/matrix-org/matrix-rust-sdk/pull/6670
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/matrix-org/matrix-rust-sdk/commit/01b45b51299821ab03fecf46741392780f118d49&quot;&gt;
+              https://github.com/matrix-org/matrix-rust-sdk/commit/01b45b51299821ab03fecf46741392780f118d49
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.19.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;matrix_sdk_crypto::Device::encrypt_event_raw&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.19.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;matrix_sdk_crypto::OlmMachine::encrypt_content_for_devices&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.19.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Using the &lt;code&gt;IdentityBasedStrategy&lt;/code&gt; setting when calling
+&lt;code&gt;Device::encrypt_event_raw&lt;/code&gt; or &lt;code&gt;OlmMachine::encrypt_content_for_devices&lt;/code&gt; may
+cause a panic if the recipient does not have cross-signing keys.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0313: Vulnerability in wasmtime-wasi-http</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0313.html</id><updated>2026-09-29T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0313.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0313: Vulnerability in wasmtime-wasi-http"/><published>2026-09-29T12:00:00+00:00</published><summary xml:lang="en">Outgoing HTTP body write allows guest-driven host memory exhaustion</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
