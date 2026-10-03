@@ -1,5 +1,215 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2026-10-02T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2026-0320: Vulnerability in wasmtime-wasi-http</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0320.html</id><updated>2026-10-02T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0320.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0320: Vulnerability in wasmtime-wasi-http"/><published>2026-10-02T12:00:00+00:00</published><summary xml:lang="en">Wasmtime wasi:http implementation panics with a zero timeout supplied</summary><content xml:lang="en" type="html">  &lt;article&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2026-10-03T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2026-0328: Vulnerability in decompress</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0328.html</id><updated>2026-10-03T12:00:00+00:00</updated><category term="code-execution"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0328.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0328: Vulnerability in decompress"/><published>2026-10-03T12:00:00+00:00</published><summary xml:lang="en">`decompress`: tar-family extractors write archive entries without a path-traversal check (tar-slip)</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/decompress/RUSTSEC-2026-0328.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/decompress/RUSTSEC-2026-0328.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0328&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0328
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;decompress&lt;/code&gt;: tar-family extractors write archive entries without a path-traversal check (tar-slip)&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-09-19&quot;&gt;
+          September 19, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-03&quot;&gt;
+          October  3, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/decompress.html&quot;&gt;decompress&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/decompress&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/code-execution.html&quot;&gt;code-execution&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/zip-slip.html&quot;&gt;#zip-slip&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/tar-slip.html&quot;&gt;#tar-slip&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/path-traversal.html&quot;&gt;#path-traversal&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/directory-traversal.html&quot;&gt;#directory-traversal&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/arbitrary-file-write.html&quot;&gt;#arbitrary-file-write&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/rusty-ferris-club/decompress/issues/21&quot;&gt;
+              https://github.com/rusty-ferris-club/decompress/issues/21
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;7.1 &lt;span class=&quot;tag high&quot;&gt;
+        HIGH
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Local&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;Required&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:H&quot;&gt;CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:H&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;decompress::decompress&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;=0.6.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;The tar-family extractors in &lt;code&gt;decompress&lt;/code&gt; (&lt;code&gt;.tar&lt;/code&gt;, &lt;code&gt;.tar.gz&lt;/code&gt;, &lt;code&gt;.tar.xz&lt;/code&gt;,
+&lt;code&gt;.tar.bz2&lt;/code&gt;, &lt;code&gt;.tar.zst&lt;/code&gt;) build each output path from the &lt;strong&gt;raw archive entry path&lt;/strong&gt;
+and write to it with no traversal check, so a malicious archive can write files
+&lt;strong&gt;outside&lt;/strong&gt; the destination directory, a &amp;quot;tar-slip&amp;quot; / zip-slip path traversal
+(CWE-22 / CWE-23).&lt;/p&gt;
+&lt;p&gt;In &lt;code&gt;src/decompressors/tar_common.rs&lt;/code&gt; (&lt;code&gt;tar_extract&lt;/code&gt;):&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-rust&quot;&gt;let filepath = entry.path()?;                                    // raw entry path
+let filepath = filepath.components().skip(opts.strip).collect::&amp;lt;PathBuf&amp;gt;();
+                                     // strips leading components only — keeps `..`
+let outpath = to.join(filepath);
+// ...
+let mut outfile = fs::File::create(&amp;amp;outpath)?;                   // writes anywhere
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;.components().skip(opts.strip)&lt;/code&gt; removes a fixed number of &lt;em&gt;leading&lt;/em&gt; path
+components but leaves interior &lt;code&gt;..&lt;/code&gt; components intact so an entry named
+e.g. &lt;code&gt;../../../../home/&amp;lt;user&amp;gt;/.bashrc&lt;/code&gt;, or an absolute path, resolves &lt;strong&gt;outside&lt;/strong&gt;
+&lt;code&gt;to&lt;/code&gt;. This affects all platforms.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0320: Vulnerability in wasmtime-wasi-http</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0320.html</id><updated>2026-10-02T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0320.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0320: Vulnerability in wasmtime-wasi-http"/><published>2026-10-02T12:00:00+00:00</published><summary xml:lang="en">Wasmtime wasi:http implementation panics with a zero timeout supplied</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
           &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/wasmtime-wasi-http/RUSTSEC-2026-0320.md&quot;&gt;History&lt;/a&gt; ⋅
