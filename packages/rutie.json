@@ -1,0 +1,91 @@
+[
+  {
+    "id": "RUSTSEC-2024-0448",
+    "modified": "2026-10-03T08:14:03Z",
+    "published": "2024-11-25T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "`parse_arguments` reads a caller-supplied pointer as a slice",
+    "details": "`parse_arguments` is safe. It takes `arguments: *const AnyObject` and `argc`, and calls `slice::from_raw_parts(arguments, argc as usize)`.\n\nIt does not check that `arguments` is non-null and aligned, or that `argc` elements are initialized. Safe Rust can pass a null pointer or a length past the allocation. The maintainer confirmed this on 2026-10-03, including a debug abort on Rust 1.78+ when Ruby calls an arity -1 method (`to_s` via `format`, `puts`, or `Array#join`) with a NULL `argv` and `argc` of 0.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "rutie",
+          "purl": "pkg:cargo/rutie"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.10.3"
+              },
+              {
+                "introduced": "0.11.0"
+              },
+              {
+                "fixed": "0.11.3"
+              },
+              {
+                "introduced": "0.12.0"
+              },
+              {
+                "fixed": "0.12.1"
+              },
+              {
+                "introduced": "0.13.0"
+              },
+              {
+                "fixed": "0.13.1"
+              },
+              {
+                "introduced": "0.14.0"
+              },
+              {
+                "fixed": "0.14.1"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/rutie"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2024-0448.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/danielpclark/rutie/issues/190"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]
