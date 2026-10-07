@@ -1,5 +1,211 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2026-10-07T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2026-0329: Vulnerability in libcrux-hmac-drbg</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0329.html</id><updated>2026-10-07T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0329.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0329: Vulnerability in libcrux-hmac-drbg"/><published>2026-10-07T12:00:00+00:00</published><summary xml:lang="en">Auto-Reseeding HMAC-DRBG could panic for some output lengths</summary><content xml:lang="en" type="html">  &lt;article&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2026-10-07T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2026-0332: Unsoundness in wasapi</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0332.html</id><updated>2026-10-07T12:00:00+00:00</updated><category term="memory-exposure"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0332.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0332: Unsoundness in wasapi"/><published>2026-10-07T12:00:00+00:00</published><summary xml:lang="en">`WaveFormat::parse` reads past the end of a `&amp;amp;WAVEFORMATEX`</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/wasapi/RUSTSEC-2026-0332.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/wasapi/RUSTSEC-2026-0332.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0332&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0332
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;WaveFormat::parse&lt;/code&gt; reads past the end of a &lt;code&gt;&amp;amp;WAVEFORMATEX&lt;/code&gt;&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-09-08&quot;&gt;
+          September  8, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-07&quot;&gt;
+          October  7, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/wasapi.html&quot;&gt;wasapi&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/wasapi&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-exposure.html&quot;&gt;memory-exposure&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/out-of-bounds-read.html&quot;&gt;#out-of-bounds-read&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/memory-safety.html&quot;&gt;#memory-safety&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/HEnquist/wasapi-rs/issues/65&quot;&gt;
+              https://github.com/HEnquist/wasapi-rs/issues/65
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/HEnquist/wasapi-rs/pull/64&quot;&gt;
+              https://github.com/HEnquist/wasapi-rs/pull/64
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.25.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.20.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      
+      &lt;dt&gt;Affected OSes&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;windows&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;wasapi::WaveFormat::parse&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.20.0, &amp;#60;0.25.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;&lt;code&gt;WaveFormat::parse&lt;/code&gt; is a safe function that takes a &lt;code&gt;&amp;amp;WAVEFORMATEX&lt;/code&gt;, which is
+only valid for reads of &lt;code&gt;size_of::&amp;lt;WAVEFORMATEX&amp;gt;()&lt;/code&gt; (18) bytes. When the header
+has &lt;code&gt;wFormatTag == WAVE_FORMAT_EXTENSIBLE&lt;/code&gt; and &lt;code&gt;cbSize &amp;gt;= 22&lt;/code&gt;, the function
+reinterprets the reference as a &lt;code&gt;WAVEFORMATEXTENSIBLE&lt;/code&gt; and reads 40 bytes.
+Nothing in the signature guarantees that the header sits at the start of a
+larger buffer, so safe code can trigger an out-of-bounds read:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-rust&quot;&gt;use wasapi::WaveFormat;
+use windows::Win32::Media::Audio::WAVEFORMATEX;
+use windows::Win32::Media::KernelStreaming::WAVE_FORMAT_EXTENSIBLE;
+
+let header = WAVEFORMATEX {
+    wFormatTag: WAVE_FORMAT_EXTENSIBLE as u16,
+    nChannels: 2,
+    nSamplesPerSec: 48000,
+    nAvgBytesPerSec: 384000,
+    nBlockAlign: 8,
+    wBitsPerSample: 32,
+    cbSize: 22,
+};
+// Reads 22 bytes past the end of `header`.
+let _ = WaveFormat::parse(&amp;amp;header);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;A more likely way to hit this is to copy the header out of a format pointer
+returned by WASAPI (&lt;code&gt;let fmt = unsafe { *ptr };&lt;/code&gt;) and pass &lt;code&gt;&amp;amp;fmt&lt;/code&gt;. The copy
+keeps &lt;code&gt;cbSize&lt;/code&gt;, but not the 22 bytes that follow it. The bytes read past the
+end are returned as the channel mask and subformat of the parsed format.&lt;/p&gt;
+&lt;p&gt;The flaw was corrected in commit &lt;code&gt;2562db7&lt;/code&gt;, released in 0.25.0. &lt;code&gt;parse&lt;/code&gt; is now
+an &lt;code&gt;unsafe fn&lt;/code&gt; that takes a &lt;code&gt;*const WAVEFORMATEX&lt;/code&gt;, and the caller must
+guarantee that the pointer is valid for reads of
+&lt;code&gt;size_of::&amp;lt;WAVEFORMATEX&amp;gt;() + cbSize&lt;/code&gt; bytes. &lt;code&gt;WaveFormat::parse_from_blob_bytes&lt;/code&gt;
+(available since 0.23.0) is the safe alternative and checks the slice length
+against &lt;code&gt;cbSize&lt;/code&gt;.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0329: Vulnerability in libcrux-hmac-drbg</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0329.html</id><updated>2026-10-07T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0329.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0329: Vulnerability in libcrux-hmac-drbg"/><published>2026-10-07T12:00:00+00:00</published><summary xml:lang="en">Auto-Reseeding HMAC-DRBG could panic for some output lengths</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
           &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/libcrux-hmac-drbg/RUSTSEC-2026-0329.md&quot;&gt;History&lt;/a&gt; ⋅
