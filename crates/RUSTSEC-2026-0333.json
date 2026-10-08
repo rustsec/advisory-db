@@ -1,0 +1,74 @@
+{
+  "id": "RUSTSEC-2026-0333",
+  "modified": "2026-10-08T14:47:14Z",
+  "published": "2026-10-06T12:00:00Z",
+  "aliases": [
+    "GHSA-4xcc-23fx-w2wj"
+  ],
+  "related": [],
+  "summary": "Resource budgets not enforced on the typed deserialization path",
+  "details": "`ParserConfig::max_events`, `max_nodes`, `max_total_scalar_bytes`,\n`max_merge_keys`, `alias_anchor_ratio` and the alias jump factor were\nenforced only by the two `Value` loaders. A typed target with a\ndefault-shaped configuration is served by the streaming deserializer,\nwhich never read those fields, so tightening any of them had no effect\non `from_str::<T>` for a struct target. The default document-length,\ndepth and alias-count caps were enforced on every path, so no input was\nunbounded; the gap affects callers who tightened the other budgets for\nhostile input.\n\nVersion 0.0.53 charges every budget on the streaming path as well and\nadds cross-path parity tests.\n\nUsers who cannot upgrade can deserialize into `noyalib::Value` first and\nconvert with `from_value`, or rely on `max_document_length` and\n`max_depth`, which were always applied on every path.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "noyalib",
+        "purl": "pkg:cargo/noyalib"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": [
+            "noyalib::from_reader",
+            "noyalib::from_reader_with_config",
+            "noyalib::from_slice",
+            "noyalib::from_slice_with_config",
+            "noyalib::from_str",
+            "noyalib::from_str_with_config"
+          ]
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "denial-of-service"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "0.0.53"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/noyalib"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0333.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/sebastienrousseau/noyalib/pull/470"
+    }
+  ],
+  "database_specific": {
+    "license": "CC-BY-4.0"
+  }
+}
