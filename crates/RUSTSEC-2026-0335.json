@@ -1,0 +1,72 @@
+{
+  "id": "RUSTSEC-2026-0335",
+  "modified": "2026-10-12T08:58:45Z",
+  "published": "2026-10-09T12:00:00Z",
+  "aliases": [
+    "GHSA-fwjg-cm92-j3hj"
+  ],
+  "related": [],
+  "summary": "Pre-shared key mode transmits the TGK in cleartext, exposing the SRTP master key",
+  "details": "`mykey` implements MIKEY (RFC 3830) for SRTP key exchange. Pre-shared key mode\ntransmitted the TEK Generation Key (TGK) in the clear.\n\n`MikeyMessage::new_psk_init` built its KEMAC payload with `EncAlg::Null` and\nplaced the TGK in `enc_data` verbatim. Anyone able to read a PSK-Init message\ntherefore recovers the TGK — and so the SRTP master key — **without knowing the\npre-shared key**.\n\nThe transmitted value was never even used by the receiver: `complete_psk`\nre-derived the TGK from the pre-shared key and ignored `enc_data` entirely. The\nfield was write-only; it provided nothing and disclosed everything.\n\nA second consequence: the message authentication key was derived from the TGK\nrather than from the pre-shared key, so an attacker who read the TGK off the wire\ncould also forge a valid message MAC. Integrity was lost along with\nconfidentiality. That aspect is tracked separately as GHSA-xq78-wvcv-hqvj.\n\n## Exploitability\n\nA MIKEY message is normally distributed as an SDP `a=key-mgmt:mikey` attribute,\nwhich in AES67 and SMPTE ST 2110 deployments is typically announced over SAP\nmulticast. A passive listener on the media network recovers the session key with\nno active attack and no credentials.\n\nRFC 3830 §4.2.3 permits NULL encryption only where \"the underlying protocols can\nguarantee security\", and warns to use it with caution. An SDP file or a SAP\nannouncement is not such a channel.\n\n## The fix\n\nPre-shared key mode now follows RFC 3830 §3.1 as key *transport*: the initiator\ngenerates a random TGK, frames it as a Key data sub-payload (§6.13), and encrypts\nit with AES-CM (§4.2.3) under an encryption key and 112-bit salt derived from the\npre-shared key (§4.1.4). The message MAC is keyed from the pre-shared key and\nverified before anything is decrypted.\n\nThis changes the wire format, so both ends of an exchange must be upgraded\ntogether. The incompatibility is silent: an old peer and a new peer complete the\nexchange without error and then derive different SRTP keys.\n\n## Workarounds\n\nUse ephemeral Diffie-Hellman mode instead of pre-shared key mode, or carry the\nPSK-Init only over a channel that is already confidential and authenticated end\nto end.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N"
+    }
+  ],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "mykey",
+        "purl": "pkg:cargo/mykey"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "crypto-failure"
+        ],
+        "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N",
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "2.0.0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/mykey"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0335.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/waxspin/mykey/pull/25"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
