@@ -1,0 +1,67 @@
+{
+  "id": "RUSTSEC-2026-0342",
+  "modified": "2026-10-12T18:05:20Z",
+  "published": "2026-08-17T12:00:00Z",
+  "aliases": [
+    "GHSA-2hv7-gw8g-gpq5"
+  ],
+  "related": [],
+  "summary": "Zero-length DATAGRAM frames bypass the receive buffer limit in quinn-proto",
+  "details": "quinn-proto bounds its queue of received datagrams by charging each queued frame's payload length\nagainst `TransportConfig::datagram_receive_buffer_size`, evicting the oldest datagrams when the\nlimit is exceeded. A DATAGRAM frame with an empty payload was charged zero bytes, so it never\ntriggered eviction and was appended to the queue, which has no other bound.\n\nDATAGRAM frames are not subject to flow control. A peer that has completed the handshake can\ntherefore send a stream of empty DATAGRAM frames and grow the receiver's heap without limit until\nthe process is killed. An application that reads incoming datagrams but does so more slowly than\nthe peer sends them is still affected. Receiving datagrams is enabled by default, so all endpoints\nthat do not explicitly set `datagram_receive_buffer_size(None)` are affected.\n\nThe send path had the same accounting flaw: an application could enqueue an unbounded number of\nempty outgoing datagrams without ever receiving `SendDatagramError::Blocked`.\n\nThe flaw was corrected in 0.11.17 by accounting for the fixed per-datagram overhead in both\ndirections, so that every queued datagram consumes buffer space.\n\nThanks to [@alexpyattaev](https://github.com/alexpyattaev) for reporting this issue.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "quinn-proto",
+        "purl": "pkg:cargo/quinn-proto"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "denial-of-service"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.5.0"
+            },
+            {
+              "fixed": "0.11.17"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/quinn-proto"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0342.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/quinn-rs/quinn/pull/2790"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}

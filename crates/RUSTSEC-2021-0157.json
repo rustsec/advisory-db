@@ -1,0 +1,73 @@
+{
+  "id": "RUSTSEC-2021-0157",
+  "modified": "2026-10-12T18:05:20Z",
+  "published": "2021-10-10T12:00:00Z",
+  "aliases": [
+    "GHSA-69v2-w9vg-4g83"
+  ],
+  "related": [],
+  "summary": "Incorrect escaping for `url(\"\")` functions in CSS style attributes",
+  "details": "In some cases, quotation marks in CSS url() functions are not escaped. This allows CSS injection. This feature is not enabled by default, so an application is vulnerable if, and only if, the style attribute is allowed and filter_style_properties is used.\n\nAs an example, this snippet:\n\n```html\n<div style='background:url(\"cid:\\\");EVIL_CSS_HERE;background:url(\\\"cid:\")'>\n```\n\nWould erroneously \"sanitize\" to:\n\n```html\n<div style='background:url(\"cid:\");EVIL_CSS_HERE;background:url(\"cid:\")'>\n```\n\n---\n\nThis vulnerability was reported by Uttej Badwane",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "ammonia",
+        "purl": "pkg:cargo/ammonia"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "format-injection"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "4.1.7"
+            },
+            {
+              "introduced": "4.2.0"
+            },
+            {
+              "fixed": "4.2.3"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/ammonia"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2021-0157.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/rust-ammonia/ammonia/pull/259"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}

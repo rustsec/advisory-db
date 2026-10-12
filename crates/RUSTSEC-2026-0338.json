@@ -1,0 +1,67 @@
+{
+  "id": "RUSTSEC-2026-0338",
+  "modified": "2026-10-12T18:05:20Z",
+  "published": "2026-09-14T12:00:00Z",
+  "aliases": [
+    "GHSA-465w-v9q3-7j98"
+  ],
+  "related": [],
+  "summary": "Remote peer can panic quinn-proto with zero-length STREAM frames during unordered reads",
+  "details": "When a stream is read in unordered mode (for example through `RecvStream::read(false)` in\nquinn-proto or `read_unordered` in `quinn`), quinn-proto proactively deduplicates received data\nby recording received ranges in a `RangeSet` through its `replace` method. When an incoming\nSTREAM frame carried an empty payload, the `Drop` implementation of the iterator returned by\n`replace` inserted an empty range into the set, violating the invariant that stored ranges are\nnon-empty. Subsequent frames overlapping that region then caused a panic while processing the\nstream.\n\nA remote peer can trigger this with five small STREAM frames (two of them zero-length) once the\napplication has put the stream in unordered-read mode. The default ordered read path is not\naffected.\n\nThe flaw was corrected in 0.11.18 by ignoring empty ranges in `RangeSet::replace`.\n\nThanks to Otto Hermann ([@ojhermann](https://github.com/ojhermann)) for reporting this issue.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "quinn-proto",
+        "purl": "pkg:cargo/quinn-proto"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "denial-of-service"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.7.0"
+            },
+            {
+              "fixed": "0.11.18"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/quinn-proto"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0338.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/quinn-rs/quinn/pull/2868"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
