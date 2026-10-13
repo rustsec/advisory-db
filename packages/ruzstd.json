@@ -1,5 +1,75 @@
 [
   {
+    "id": "RUSTSEC-2026-0344",
+    "modified": "2026-10-13T10:39:39Z",
+    "published": "2026-10-11T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Decompression bomb in `ruzstd`: a tiny input can exhaust memory (OOM)",
+    "details": "A crafted `.zst` input under 128 KB can force `ruzstd` to allocate several gigabytes at once, crashing the process with an out-of-memory condition. Since `ruzstd` is a decoder for untrusted input, a single small file is enough to take down anything decoding it.\n\nThe compressed size of a block was capped at 128 KB, but a compressed block's **decompressed** size was never checked against `Block_Maximum_Size = min(Window_Size, 128 KiB)` (RFC 8878). In `execute_sequences` the output was built with no running bound and no flush between blocks, so one block could expand to gigabytes — bypassing both the configured window-size limit and the block-by-block streaming that would otherwise release memory. (A related `u32` counter overflow on such a block caused an additional panic.)\n\nThis is a denial of service only; memory access stays in bounds (no corruption, no RCE).\n\n`ruzstd` is also built as a dependency of the Rust standard library via `rustc-dep-of-std`; in the toolchain it is used only to load zstd-compressed debug symbols, so the toolchain-side impact is limited.\n\n**Fixed in 0.9.1** (commit `d3907c9`), which enforces the per-block output bound. Upgrade to `ruzstd >= 0.9.1`.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "ruzstd",
+          "purl": "pkg:cargo/ruzstd"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.9.1"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/ruzstd"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0344.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/KillingSpark/zstd-rs/commit/d3907c960ca4a1aa44cc38340137c5679dd98f5a"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
     "id": "RUSTSEC-2024-0400",
     "modified": "2025-10-28T06:02:18Z",
     "published": "2024-11-28T12:00:00Z",

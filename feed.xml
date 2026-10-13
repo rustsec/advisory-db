@@ -159,6 +159,184 @@ since none are allowed by default.&lt;/p&gt;
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0344: Vulnerability in ruzstd</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0344.html</id><updated>2026-10-13T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0344.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0344: Vulnerability in ruzstd"/><published>2026-10-13T12:00:00+00:00</published><summary xml:lang="en">Decompression bomb in `ruzstd`: a tiny input can exhaust memory (OOM)</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/ruzstd/RUSTSEC-2026-0344.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/ruzstd/RUSTSEC-2026-0344.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0344&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0344
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Decompression bomb in &lt;code&gt;ruzstd&lt;/code&gt;: a tiny input can exhaust memory (OOM)&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-11&quot;&gt;
+          October 11, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-13&quot;&gt;
+          October 13, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/ruzstd.html&quot;&gt;ruzstd&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/ruzstd&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/zstd.html&quot;&gt;#zstd&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/decompression-bomb.html&quot;&gt;#decompression-bomb&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/oom.html&quot;&gt;#oom&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/KillingSpark/zstd-rs/commit/d3907c960ca4a1aa44cc38340137c5679dd98f5a&quot;&gt;
+              https://github.com/KillingSpark/zstd-rs/commit/d3907c960ca4a1aa44cc38340137c5679dd98f5a
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;7.5 &lt;span class=&quot;tag high&quot;&gt;
+        HIGH
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Network&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.9.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;A crafted &lt;code&gt;.zst&lt;/code&gt; input under 128 KB can force &lt;code&gt;ruzstd&lt;/code&gt; to allocate several gigabytes at once, crashing the process with an out-of-memory condition. Since &lt;code&gt;ruzstd&lt;/code&gt; is a decoder for untrusted input, a single small file is enough to take down anything decoding it.&lt;/p&gt;
+&lt;p&gt;The compressed size of a block was capped at 128 KB, but a compressed block&apos;s &lt;strong&gt;decompressed&lt;/strong&gt; size was never checked against &lt;code&gt;Block_Maximum_Size = min(Window_Size, 128 KiB)&lt;/code&gt; (RFC 8878). In &lt;code&gt;execute_sequences&lt;/code&gt; the output was built with no running bound and no flush between blocks, so one block could expand to gigabytes — bypassing both the configured window-size limit and the block-by-block streaming that would otherwise release memory. (A related &lt;code&gt;u32&lt;/code&gt; counter overflow on such a block caused an additional panic.)&lt;/p&gt;
+&lt;p&gt;This is a denial of service only; memory access stays in bounds (no corruption, no RCE).&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;ruzstd&lt;/code&gt; is also built as a dependency of the Rust standard library via &lt;code&gt;rustc-dep-of-std&lt;/code&gt;; in the toolchain it is used only to load zstd-compressed debug symbols, so the toolchain-side impact is limited.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Fixed in 0.9.1&lt;/strong&gt; (commit &lt;code&gt;d3907c9&lt;/code&gt;), which enforces the per-block output bound. Upgrade to &lt;code&gt;ruzstd &amp;gt;= 0.9.1&lt;/code&gt;.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2021-0157: Vulnerability in ammonia</title><id>https://rustsec.org/advisories/RUSTSEC-2021-0157.html</id><updated>2026-10-12T12:00:00+00:00</updated><category term="format-injection"/><link href="https://rustsec.org/advisories/RUSTSEC-2021-0157.html" rel="alternate" type="text/html" title="RUSTSEC-2021-0157: Vulnerability in ammonia"/><published>2026-10-12T12:00:00+00:00</published><summary xml:lang="en">Incorrect escaping for `url(&amp;quot;&amp;quot;)` functions in CSS style attributes</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
