@@ -1,5 +1,78 @@
 [
   {
+    "id": "RUSTSEC-2021-0158",
+    "modified": "2026-10-13T07:17:04Z",
+    "published": "2021-10-10T12:00:00Z",
+    "aliases": [
+      "GHSA-f2pc-rwv3-69mv"
+    ],
+    "related": [],
+    "summary": "XSS in ammonia via SVG `animateMotion`, `animateTransform`, and/or `animateColor` tags",
+    "details": "The neutralization that ammonia applied to `animate` and `set` was not applied to other forms of SVG animation, which can be used for XSS.\n\nThe following SVG will produce a link with a javascript scheme.\nIf the user clicks this link, they will run it.\n\n```xml\n<svg xmlns=\"http://www.w3.org/2000/svg\">\n  <a>\n    <animateMotion attributeName=\"href\" to=\"javascript:alert('SET_XSS')\"></animateMotion>\n    <text y=\"30\">Click set</text>\n  </a>\n</svg>\n```\n\nAmmonia did not apply attribute filters based on `attributeName`,\nso the contents of the `to`, `from`, and `values` tags were not sanitized as URLs.\n\nApplications that do not explicitly allow any of these tags should not be affected,\nsince none are allowed by default.\n\n---\n\nThis vulnerability was reported by [ucsurf](https://uc.surf).",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "ammonia",
+          "purl": "pkg:cargo/ammonia"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "format-injection"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "4.1.7"
+              },
+              {
+                "introduced": "4.2.0"
+              },
+              {
+                "fixed": "4.2.3"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/ammonia"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2021-0158.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/rust-ammonia/ammonia/pull/261"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
     "id": "RUSTSEC-2021-0157",
     "modified": "2026-10-12T18:05:20Z",
     "published": "2021-10-10T12:00:00Z",
