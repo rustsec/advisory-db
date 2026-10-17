@@ -1,0 +1,73 @@
+{
+  "id": "RUSTSEC-2026-0373",
+  "modified": "2026-10-17T15:23:59Z",
+  "published": "2026-10-16T12:00:00Z",
+  "aliases": [
+    "GHSA-x43w-36pp-96g3"
+  ],
+  "related": [],
+  "summary": "Missing case-insensitive matching for CSS url function",
+  "details": "URL filtering, such as relative URLs and URL scheme limits,\nis not always applied when CSS sanitization is used.\n\nWhen the inner URL is quoted, CSS `url(\"\")` is matched case-sensitively,\nwhen it should be matched case-insensitively.\nAs a result, while `url(\"\")` gets the intended domain name filtering,\n`URL(\"\")` does not.\n\nThe following example shows how an application needs to be configured\nto trigger this bug.\n\n```rust\nlet mut builder = Builder::new();\n// allow inline styles\nbuilder.filter_style_properties(hashset![\"background-image\"]);\nbuilder.add_generic_attributes(&[\"style\"]);\n// notice that \"http\" URLs aren't allowed\nbuilder.url_schemes([\"cid\"].into());\n\n// attacker-controlled, presumably\nlet cleaned = builder.clean(r#\"<div style='background:URL(\"https://evil.com/ping\");'>\"#);\n\n// this is the expected result\nassert_eq!(String::from(&cleaned), r#\"<div style=\"\">ok</p>\"#);\n\n// this is the result that the vulnerable version actually gets\nassert_eq!(String::from(&cleaned), r#\"<div style=\"background-image:URL(&quot;https://evil.com/ping&quot;);\">ok</p>\"#);\n```\n\nThis can be used to inject tracking pixels where the application intended to prevent them.\nIt does not allow XSS, and its usefulness for data exfiltration is limited.\n\n---\n\nThis vulnerability was reported by [Louis Li](https://github.com/zhixuli0406).",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "ammonia",
+        "purl": "pkg:cargo/ammonia"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "format-injection"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "4.1.8"
+            },
+            {
+              "introduced": "4.2.0"
+            },
+            {
+              "fixed": "4.2.4"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/ammonia"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0373.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/rust-ammonia/ammonia/pull/267"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
