@@ -1,0 +1,77 @@
+[
+  {
+    "id": "RUSTSEC-2026-0381",
+    "modified": "2026-10-20T19:24:19Z",
+    "published": "2026-10-19T12:00:00Z",
+    "aliases": [
+      "CVE-2026-111943"
+    ],
+    "related": [],
+    "summary": "Bundled root certificates allow trust in distrusted emSign intermediates",
+    "details": "Affected versions include `emSign ECC Root CA - G3`, which can allow certificate\npaths through distrusted emSign intermediates.\n\nAffected versions may accept certificate paths containing distrusted emSign\nintermediate public keys. The private keys corresponding to these intermediates\nare now well known.\n\nVersion 1.0.10+ removes this root.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "webpki-roots",
+          "purl": "pkg:cargo/webpki-roots"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "crypto-failure"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "1.0.10"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/webpki-roots"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0381.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/rustls/webpki-roots/pull/133"
+      },
+      {
+        "type": "WEB",
+        "url": "https://emudhra.we-have-a-problem.com/"
+      },
+      {
+        "type": "WEB",
+        "url": "https://bugzilla.mozilla.org/show_bug.cgi?id=2083449"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]
