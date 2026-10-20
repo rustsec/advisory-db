@@ -1,77 +1,5 @@
 [
   {
-    "id": "RUSTSEC-2026-0336",
-    "modified": "2026-10-12T08:58:45Z",
-    "published": "2026-10-09T12:00:00Z",
-    "aliases": [
-      "GHSA-xq78-wvcv-hqvj"
-    ],
-    "related": [],
-    "summary": "MIKEY message MAC is never verified on receive, so forged messages are accepted",
-    "details": "`mykey` implements MIKEY (RFC 3830) for SRTP key exchange. No receive path\nverified the MIKEY message authentication code.\n\n`crypto::verify_mac` existed and was correct, but it was called only from unit\ntests — neither `MikeyMessage::from_bytes` nor `MikeyMessage::complete_psk`\ninvoked it.\n\n`new_psk_init` computed an HMAC-SHA-1-160 over the serialized message and\nappended it, so the tag was present on the wire and looked like integrity\nprotection. It was decorative: a receiver accepted any message regardless of\nwhether the MAC was correct, wrong, or absent.\n\n## Consequences\n\n- An attacker able to inject or modify MIKEY messages in transit faced no\n  integrity check. Modified RAND, SSRC or security-policy payloads were accepted\n  silently. Note that this does not require a man-in-the-middle position: since\n  nothing was checked, a wholly forged PSK-Init was accepted.\n- Pre-shared key mode therefore provided no mutual authentication, despite the\n  documentation claiming that it did. Possession of the pre-shared key was never\n  actually proven by either party.\n- Replayed init messages were not rejected.\n\nThe practical severity was bounded by GHSA-fwjg-cm92-j3hj (cleartext TGK), which\nalready let a passive observer recover the key material outright without needing\nto forge anything.\n\n## The fix\n\n`complete_psk` now verifies the message MAC **before** any decryption, so a\nmessage that fails authentication yields no key material at all. A `MacAlg::Null`\npayload, an absent MAC and a truncated MAC are each refused rather than treated\nas \"no check required\".\n\nThe authentication key is now derived from the pre-shared key per RFC 3830 §4.1.4\nrather than from the TGK — a prerequisite, since verifying against a TGK-derived\nkey would have been circular while the TGK travelled in the message itself.\nOptional §6.9 verification messages were also added, giving the exchange genuine\nmutual authentication.\n\nReplay protection is still absent: a captured PSK-Init can be replayed and will\nbe accepted, because the optional COUNTER timestamp is emitted rather than a\nmandatory NTP type and no record of seen timestamps or RAND values is kept. That\ngap is tracked at <https://github.com/waxspin/mykey/issues/24> and is not covered\nby this advisory.\n\n## Workarounds\n\nTreat parsed MIKEY messages as unauthenticated input: do not rely on pre-shared\nkey mode for peer authentication or message integrity, and carry it over a\ntransport that provides both.",
-    "severity": [
-      {
-        "type": "CVSS_V3",
-        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N"
-      }
-    ],
-    "affected": [
-      {
-        "package": {
-          "ecosystem": "crates.io",
-          "name": "mykey",
-          "purl": "pkg:cargo/mykey"
-        },
-        "ecosystem_specific": {
-          "affects": {
-            "arch": [],
-            "os": [],
-            "functions": []
-          },
-          "affected_functions": null
-        },
-        "database_specific": {
-          "categories": [
-            "crypto-failure"
-          ],
-          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
-          "informational": null
-        },
-        "ranges": [
-          {
-            "type": "SEMVER",
-            "events": [
-              {
-                "introduced": "0.0.0-0"
-              },
-              {
-                "fixed": "2.0.0"
-              }
-            ]
-          }
-        ],
-        "versions": []
-      }
-    ],
-    "references": [
-      {
-        "type": "PACKAGE",
-        "url": "https://crates.io/crates/mykey"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0336.html"
-      },
-      {
-        "type": "WEB",
-        "url": "https://github.com/waxspin/mykey/pull/25"
-      }
-    ],
-    "database_specific": {
-      "license": "CC0-1.0"
-    }
-  },
-  {
     "id": "RUSTSEC-2026-0335",
     "modified": "2026-10-12T08:58:45Z",
     "published": "2026-10-09T12:00:00Z",
@@ -133,6 +61,78 @@
       {
         "type": "ADVISORY",
         "url": "https://rustsec.org/advisories/RUSTSEC-2026-0335.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/waxspin/mykey/pull/25"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2026-0336",
+    "modified": "2026-10-12T08:58:45Z",
+    "published": "2026-10-09T12:00:00Z",
+    "aliases": [
+      "GHSA-xq78-wvcv-hqvj"
+    ],
+    "related": [],
+    "summary": "MIKEY message MAC is never verified on receive, so forged messages are accepted",
+    "details": "`mykey` implements MIKEY (RFC 3830) for SRTP key exchange. No receive path\nverified the MIKEY message authentication code.\n\n`crypto::verify_mac` existed and was correct, but it was called only from unit\ntests — neither `MikeyMessage::from_bytes` nor `MikeyMessage::complete_psk`\ninvoked it.\n\n`new_psk_init` computed an HMAC-SHA-1-160 over the serialized message and\nappended it, so the tag was present on the wire and looked like integrity\nprotection. It was decorative: a receiver accepted any message regardless of\nwhether the MAC was correct, wrong, or absent.\n\n## Consequences\n\n- An attacker able to inject or modify MIKEY messages in transit faced no\n  integrity check. Modified RAND, SSRC or security-policy payloads were accepted\n  silently. Note that this does not require a man-in-the-middle position: since\n  nothing was checked, a wholly forged PSK-Init was accepted.\n- Pre-shared key mode therefore provided no mutual authentication, despite the\n  documentation claiming that it did. Possession of the pre-shared key was never\n  actually proven by either party.\n- Replayed init messages were not rejected.\n\nThe practical severity was bounded by GHSA-fwjg-cm92-j3hj (cleartext TGK), which\nalready let a passive observer recover the key material outright without needing\nto forge anything.\n\n## The fix\n\n`complete_psk` now verifies the message MAC **before** any decryption, so a\nmessage that fails authentication yields no key material at all. A `MacAlg::Null`\npayload, an absent MAC and a truncated MAC are each refused rather than treated\nas \"no check required\".\n\nThe authentication key is now derived from the pre-shared key per RFC 3830 §4.1.4\nrather than from the TGK — a prerequisite, since verifying against a TGK-derived\nkey would have been circular while the TGK travelled in the message itself.\nOptional §6.9 verification messages were also added, giving the exchange genuine\nmutual authentication.\n\nReplay protection is still absent: a captured PSK-Init can be replayed and will\nbe accepted, because the optional COUNTER timestamp is emitted rather than a\nmandatory NTP type and no record of seen timestamps or RAND values is kept. That\ngap is tracked at <https://github.com/waxspin/mykey/issues/24> and is not covered\nby this advisory.\n\n## Workarounds\n\nTreat parsed MIKEY messages as unauthenticated input: do not rely on pre-shared\nkey mode for peer authentication or message integrity, and carry it over a\ntransport that provides both.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "mykey",
+          "purl": "pkg:cargo/mykey"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "crypto-failure"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "2.0.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/mykey"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0336.html"
       },
       {
         "type": "WEB",
