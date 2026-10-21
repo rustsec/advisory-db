@@ -1,14 +1,14 @@
 [
   {
     "id": "RUSTSEC-2026-0381",
-    "modified": "2026-10-20T19:24:19Z",
+    "modified": "2026-10-21T06:20:38Z",
     "published": "2026-10-19T12:00:00Z",
     "aliases": [
       "CVE-2026-111943"
     ],
     "related": [],
     "summary": "Bundled root certificates allow trust in distrusted emSign intermediates",
-    "details": "Affected versions include `emSign ECC Root CA - G3`, which can allow certificate\npaths through distrusted emSign intermediates.\n\nAffected versions may accept certificate paths containing distrusted emSign\nintermediate public keys. The private keys corresponding to these intermediates\nare now well known.\n\nVersion 1.0.10+ removes this root.",
+    "details": "Affected versions include `emSign ECC Root CA - G3`, which can allow certificate\npaths through distrusted emSign intermediates.\n\nAffected versions may accept certificate paths containing distrusted emSign\nintermediate public keys. The private keys corresponding to these intermediates\nare now well known.\n\nVersion 1.0.10+ removes this root.\n\nThe `webpki-roots` 0.26.11 compatibility package contains no independent trust\nstore and re-exports the roots from its separately resolved 1.x dependency.\nThat parent dependency must resolve to 1.0.10 or newer; an older parent remains\naffected by this advisory.",
     "severity": [],
     "affected": [
       {
@@ -38,6 +38,12 @@
             "events": [
               {
                 "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.26.11"
+              },
+              {
+                "introduced": "0.26.12-0"
               },
               {
                 "fixed": "1.0.10"
