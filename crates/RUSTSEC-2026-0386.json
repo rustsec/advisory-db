@@ -1,0 +1,84 @@
+{
+  "id": "RUSTSEC-2026-0386",
+  "modified": "2026-10-23T14:42:16Z",
+  "published": "2026-10-13T12:00:00Z",
+  "aliases": [],
+  "related": [],
+  "summary": "`AsyncFd::new` and related constructors violate I/O safety",
+  "details": "`tokio::io::unix::AsyncFd` provides safe constructors (`new`, `with_interest`, `try_new`, and `try_with_interest`) that accept any `T: AsRawFd` rather than requiring proof of ownership or validity of the file descriptor. Because `RawFd` implements `AsRawFd`, safe code can construct an `AsyncFd` from an arbitrary or closed file descriptor, or close/replace the underlying file descriptor while the `AsyncFd` is still alive.\n\nThis violates I/O safety in two ways:\n\n1. `AsyncFd<T>` implements `AsFd` for all `T: AsRawFd` by calling `BorrowedFd::borrow_raw(self.as_raw_fd())`, allowing safe code to obtain an arbitrary `BorrowedFd<'_>` without owning the file descriptor.\n2. Tokio's I/O driver stores a pointer to an internal allocation in the `epoll`/`kqueue` user data for registered file descriptors. If the underlying file descriptor is duplicated and then closed while an `AsyncFd` is alive, and the OS reuses that file descriptor number for a another IO resource on the same runtime, dropping the first `AsyncFd` deregisters the reused file descriptor number and frees the first while the original file description remains registered in `epoll`, leading to a use-after-free when a readiness event fires.\n\nStarting in Tokio 1.51.6, 1.53.3, and 1.54.0, `AsyncFd::new`, `AsyncFd::with_interest`, `AsyncFd::try_new`, and `AsyncFd::try_with_interest` are deprecated in favor of the `unsafe` constructors `AsyncFd::register` and `AsyncFd::register_with_interest`. Callers must ensure that the file descriptor remains valid, open, and unchanged for the lifetime of the `AsyncFd`.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "tokio",
+        "purl": "pkg:cargo/tokio"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": [
+            "tokio::io::unix::AsyncFd::new",
+            "tokio::io::unix::AsyncFd::try_new",
+            "tokio::io::unix::AsyncFd::try_with_interest",
+            "tokio::io::unix::AsyncFd::with_interest"
+          ]
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "memory-corruption"
+        ],
+        "cvss": null,
+        "informational": "unsound"
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.3.2"
+            },
+            {
+              "fixed": "1.51.6"
+            },
+            {
+              "introduced": "1.52.0"
+            },
+            {
+              "fixed": "1.53.3"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/tokio"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0386.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/tokio-rs/tokio/pull/8587"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/tokio-rs/tokio/issues/8538"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/tokio-rs/tokio/issues/8539"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
