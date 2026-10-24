@@ -1,0 +1,67 @@
+[
+  {
+    "id": "RUSTSEC-2026-0387",
+    "modified": "2026-10-24T03:33:55Z",
+    "published": "2026-10-23T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Multiple timing variability issues in operations intended to be constant-time",
+    "details": "## Summary\n\nSeveral operations intended to be constant-time could execute secret-dependent\nbranches, depending on the compiler and target CPU. These include subtraction,\nzero counting, division, and Montgomery multiplication.\n\nAdditionally, `UintRef` equality could terminate at the first unequal limb,\nand `BoxedMontyForm::invert` branched on whether an inverse exists.\n\n## Impact\n\nApplications using affected operations on secret integers may leak information\nthrough timing or microarchitectural side channels. This includes information\nabout intermediate arithmetic values, matching limbs, and invertibility.\n\nSuch leakage could potentially enable recovery of cryptographic secrets.\nPractical exploitability depends on the downstream algorithm, compiler, target\nCPU, and an attacker's ability to observe the side channel.\n\n## Resolution\n\nUpgrade to v0.7.6, which removes the identified branches, updates `ctutils` to\ninclude its constant-time fixes, and adds BINSEC-based regression checks using\n`cargo checkct` for arithmetic on multiple targets.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "crypto-bigint",
+          "purl": "pkg:cargo/crypto-bigint"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "crypto-failure"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.7.6"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/crypto-bigint"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0387.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/RustCrypto/crypto-bigint/pull/1365"
+      }
+    ],
+    "database_specific": {
+      "license": "CC-BY-4.0"
+    }
+  }
+]
