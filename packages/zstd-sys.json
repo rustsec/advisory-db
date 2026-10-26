@@ -1,0 +1,73 @@
+[
+  {
+    "id": "RUSTSEC-2026-0410",
+    "modified": "2026-10-26T13:45:01Z",
+    "published": "2026-10-16T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "WebAssembly allocator shim corrupts memory on allocation failure",
+    "details": "On wasm32, zstd-sys provides `malloc` and `free` to the C library through a\nshim over Rust's allocator. The shim did not check for allocation failure:\nit wrote its size header to address 0 and returned address 4, which the C\nlibrary used as a valid buffer. `free(NULL)` also read below address 0.\n\nWhenever the instance cannot grow its memory by what a frame asks for, a\nsmall crafted frame (a 9-byte header declaring a 128 MiB window is enough)\nmade decompression write decoded data over the bottom of the module's\nlinear memory, instead of failing. The corruption stays within the wasm\nsandbox.\n\nThe flaw was corrected by returning NULL on allocation failure or size\noverflow, and by making `free(NULL)` a no-op.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "zstd-sys",
+          "purl": "pkg:cargo/zstd-sys"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [
+              "wasm32"
+            ],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "2.0.9"
+              },
+              {
+                "fixed": "2.1.2"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/zstd-sys"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0410.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/gyscos/zstd-rs/commit/165d1625553c236b9700ca794b8a7c51f5d98314"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/gyscos/zstd-rs/pull/384"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

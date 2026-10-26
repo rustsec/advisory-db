@@ -1,5 +1,505 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2026-10-26T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2026-0389: Vulnerability in pingora-core</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0389.html</id><updated>2026-10-26T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0389.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0389: Vulnerability in pingora-core"/><published>2026-10-26T12:00:00+00:00</published><summary xml:lang="en">Pingora HTTP/2 server memory exhaustion through unbounded default header-list and concurrent-stream limits</summary><content xml:lang="en" type="html">  &lt;article&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2026-10-26T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2026-0393: Unsoundness in zstd</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0393.html</id><updated>2026-10-26T12:00:00+00:00</updated><category term="memory-exposure"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0393.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0393: Unsoundness in zstd"/><published>2026-10-26T12:00:00+00:00</published><summary xml:lang="en">Out-of-bounds read when training a dictionary from inconsistent sample sizes</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/zstd/RUSTSEC-2026-0393.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/zstd/RUSTSEC-2026-0393.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0393&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0393
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Out-of-bounds read when training a dictionary from inconsistent sample sizes&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-16&quot;&gt;
+          October 16, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-26&quot;&gt;
+          October 26, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/zstd.html&quot;&gt;zstd&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/zstd&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-exposure.html&quot;&gt;memory-exposure&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/integer-overflow.html&quot;&gt;#integer-overflow&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/out-of-bounds.html&quot;&gt;#out-of-bounds&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/dictionary.html&quot;&gt;#dictionary&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/gyscos/zstd-rs/commit/781ea454191dbf178d09c1daf6fc896d15fbaa2f&quot;&gt;
+              https://github.com/gyscos/zstd-rs/commit/781ea454191dbf178d09c1daf6fc896d15fbaa2f
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/gyscos/zstd-rs/pull/384&quot;&gt;
+              https://github.com/gyscos/zstd-rs/pull/384
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.4.10&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.1.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;&lt;code&gt;ZDICT_trainFromBuffer&lt;/code&gt; is never told the length of the samples buffer.
+Before 0.4.10, &lt;code&gt;zstd::dict::from_continuous&lt;/code&gt; (initially &lt;code&gt;train_dict&lt;/code&gt;) called
+it directly: up to 0.2.1 without checking the sample sizes against the
+buffer at all, and from 0.3.0 with a sum that wraps around when overflow
+checks are off, as in release builds. Sizes that do not describe the buffer
+made the trainer read past its end.&lt;/p&gt;
+&lt;p&gt;This requires the sample sizes to come from an untrusted source. From
+0.4.10, training goes through zstd-safe, where the same flaw is covered by
+the zstd-safe advisory for it, fixed in zstd-safe 8.2.0.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0392: Vulnerability in zstd</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0392.html</id><updated>2026-10-26T12:00:00+00:00</updated><category term="memory-exposure"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0392.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0392: Vulnerability in zstd"/><published>2026-10-26T12:00:00+00:00</published><summary xml:lang="en">Uninitialized memory exposed by `write::Decoder` on a corrupt legacy frame</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/zstd/RUSTSEC-2026-0392.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/zstd/RUSTSEC-2026-0392.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0392&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0392
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Uninitialized memory exposed by &lt;code&gt;write::Decoder&lt;/code&gt; on a corrupt legacy frame&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-16&quot;&gt;
+          October 16, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-26&quot;&gt;
+          October 26, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/zstd.html&quot;&gt;zstd&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/zstd&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-exposure.html&quot;&gt;memory-exposure&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/uninitialized-memory.html&quot;&gt;#uninitialized-memory&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/decompression.html&quot;&gt;#decompression&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/legacy.html&quot;&gt;#legacy&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/gyscos/zstd-rs/commit/006e1d1ad1eeaf6b5d4c28329e70217adabcec43&quot;&gt;
+              https://github.com/gyscos/zstd-rs/commit/006e1d1ad1eeaf6b5d4c28329e70217adabcec43
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/gyscos/zstd-rs/pull/384&quot;&gt;
+              https://github.com/gyscos/zstd-rs/pull/384
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.8.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.4.22&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;From 0.4.22 to 0.7.x, the writer behind &lt;code&gt;zstd::stream::write::Decoder&lt;/code&gt; set
+its output buffer&apos;s length to its full capacity before each decompression
+call, then to the position the call reported, and only checked for an error
+afterwards. When decompression fails inside a legacy (zstd v0.4 to v0.7)
+frame, the bundled zstd library reports the output as fully written although
+nothing was written, so stale heap memory, up to the buffer size (32 KiB by
+default), was passed to the wrapped writer.&lt;/p&gt;
+&lt;p&gt;Legacy support is enabled by default, and a few bytes of corrupt legacy
+frame are enough. Whether this reaches an attacker depends on where the
+application sends the decompressed output.&lt;/p&gt;
+&lt;p&gt;From 0.8.0, the writer uses zstd-safe&apos;s buffers, and the same flaw there is
+covered by the zstd-safe advisory for it, fixed in zstd-safe 8.2.0.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0391: Vulnerability in zstd</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0391.html</id><updated>2026-10-26T12:00:00+00:00</updated><category term="memory-exposure"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0391.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0391: Vulnerability in zstd"/><published>2026-10-26T12:00:00+00:00</published><summary xml:lang="en">Data from an abandoned stream leaks into the next stream on a reused context</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/zstd/RUSTSEC-2026-0391.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/zstd/RUSTSEC-2026-0391.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0391&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0391
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Data from an abandoned stream leaks into the next stream on a reused context&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-16&quot;&gt;
+          October 16, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-26&quot;&gt;
+          October 26, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/zstd.html&quot;&gt;zstd&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/zstd&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-exposure.html&quot;&gt;memory-exposure&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/information-leak.html&quot;&gt;#information-leak&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/context-reuse.html&quot;&gt;#context-reuse&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/gyscos/zstd-rs/commit/74ace2dcdca62a2ce0f034895d6079458311e003&quot;&gt;
+              https://github.com/gyscos/zstd-rs/commit/74ace2dcdca62a2ce0f034895d6079458311e003
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/gyscos/zstd-rs/pull/384&quot;&gt;
+              https://github.com/gyscos/zstd-rs/pull/384
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.14.3&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.13.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;zstd::stream::raw::Decoder::with_context&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.13.2, &amp;#60;0.14.3&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;zstd::stream::raw::Encoder::with_context&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.13.2, &amp;#60;0.14.3&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;The &lt;code&gt;with_context&lt;/code&gt; constructors of the stream encoders and decoders used the
+borrowed context as it was. When a stream was abandoned on a context, for
+example an encoder dropped before &lt;code&gt;finish()&lt;/code&gt; after an error, whatever it
+left there was carried into the next stream: the input buffered by the
+previous encoder (up to 128 KiB, or all of it with &lt;code&gt;zstdmt&lt;/code&gt;) became the
+start of the next frame, and a decoder returned undelivered output of the
+previous stream.&lt;/p&gt;
+&lt;p&gt;An application reusing one context for data that must stay separate, such
+as different users&apos; requests, could disclose one user&apos;s plaintext to
+another. Whoever supplies the data can cause the abandonment with invalid
+input.&lt;/p&gt;
+&lt;p&gt;The flaw was corrected by resetting the context&apos;s session in
+&lt;code&gt;with_context&lt;/code&gt;.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0389: Vulnerability in pingora-core</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0389.html</id><updated>2026-10-26T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0389.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0389: Vulnerability in pingora-core"/><published>2026-10-26T12:00:00+00:00</published><summary xml:lang="en">Pingora HTTP/2 server memory exhaustion through unbounded default header-list and concurrent-stream limits</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
           &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/pingora-core/RUSTSEC-2026-0389.md&quot;&gt;History&lt;/a&gt; ⋅
@@ -410,6 +910,3385 @@
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0394: Vulnerability in rustpython-vm</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0394.html</id><updated>2026-10-26T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0394.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0394: Vulnerability in rustpython-vm"/><published>2026-10-26T12:00:00+00:00</published><summary xml:lang="en">Build environment compiled into the library and readable at runtime</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/rustpython-vm/RUSTSEC-2026-0394.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/rustpython-vm/RUSTSEC-2026-0394.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0394&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0394
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Build environment compiled into the library and readable at runtime&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-09-23&quot;&gt;
+          September 23, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-26&quot;&gt;
+          October 26, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/rustpython-vm.html&quot;&gt;rustpython-vm&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/rustpython-vm&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/information-disclosure.html&quot;&gt;#information-disclosure&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/build-script.html&quot;&gt;#build-script&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/credentials.html&quot;&gt;#credentials&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/RustPython/RustPython/pull/8813&quot;&gt;
+              https://github.com/RustPython/RustPython/pull/8813
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/RustPython/RustPython/issues/8802&quot;&gt;
+              https://github.com/RustPython/RustPython/issues/8802
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/RustPython/RustPython/issues/9236&quot;&gt;
+              https://github.com/RustPython/RustPython/issues/9236
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://crates.io/crates/rustpython-vm/0.6.0&quot;&gt;
+              https://crates.io/crates/rustpython-vm/0.6.0
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://registry.bitbison.io/cargo/rustpython-vm&quot;&gt;
+              https://registry.bitbison.io/cargo/rustpython-vm
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.6.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.3.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;The build script of &lt;code&gt;rustpython-vm&lt;/code&gt; 0.3.0 through 0.5.0 writes every
+environment variable of the build into &lt;code&gt;$OUT_DIR/env_vars.rs&lt;/code&gt;. The crate
+compiles that file into &lt;code&gt;_sysconfigdata&lt;/code&gt;&apos;s &lt;code&gt;build_time_vars&lt;/code&gt;. That module is
+always compiled.&lt;/p&gt;
+&lt;p&gt;A binary built in CI with secrets in the environment carries those secrets
+in clear text. Registry tokens, cloud credentials and API keys are the usual
+ones. Anyone with the binary can read them with &lt;code&gt;strings&lt;/code&gt; or from Python.&lt;/p&gt;
+&lt;p&gt;Version 0.6.0 removes the dump and the include. Users of earlier versions
+should upgrade, rebuild, and ship new binaries. Every secret that was in the
+environment of a past build whose output left the build machine should be
+treated as exposed.&lt;/p&gt;
+&lt;p&gt;Jacob Finkelman first reported the issue in
+&lt;a href=&quot;https://github.com/RustPython/RustPython/issues/8802&quot;&gt;#8802&lt;/a&gt;.
+&lt;a href=&quot;https://registry.bitbison.io/cargo/rustpython-vm&quot;&gt;Bitbison&lt;/a&gt;&apos;s automated
+supply chain scanning then detected credential data from the build
+environment flowing into artifacts that third-party software ships in the
+wild. The leak was confirmed in the published release binaries of at least four
+dependants but others have been impacted.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0395: Unsoundness in zstd-safe</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0395.html</id><updated>2026-10-26T12:00:00+00:00</updated><category term="memory-exposure"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0395.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0395: Unsoundness in zstd-safe"/><published>2026-10-26T12:00:00+00:00</published><summary xml:lang="en">Use-after-free with `CParameter::StableInBuffer`</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/zstd-safe/RUSTSEC-2026-0395.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/zstd-safe/RUSTSEC-2026-0395.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0395&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0395
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Use-after-free with &lt;code&gt;CParameter::StableInBuffer&lt;/code&gt;&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-16&quot;&gt;
+          October 16, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-26&quot;&gt;
+          October 26, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/zstd-safe.html&quot;&gt;zstd-safe&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/zstd-safe&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-exposure.html&quot;&gt;memory-exposure&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/use-after-free.html&quot;&gt;#use-after-free&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/experimental.html&quot;&gt;#experimental&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/gyscos/zstd-rs/commit/53a8a290d8cfb52ff5b29fb6e04a40b5a174cc65&quot;&gt;
+              https://github.com/gyscos/zstd-rs/commit/53a8a290d8cfb52ff5b29fb6e04a40b5a174cc65
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/gyscos/zstd-rs/pull/384&quot;&gt;
+              https://github.com/gyscos/zstd-rs/pull/384
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=8.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;4.1.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;zstd_safe::CCtx::set_parameter&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=4.1.0, &amp;#60;8.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;With &lt;code&gt;CParameter::StableInBuffer(true)&lt;/code&gt; (&lt;code&gt;experimental&lt;/code&gt; feature), the C
+library keeps a pointer to the input of one streaming call and reads from it
+in later calls, including &lt;code&gt;flush_stream&lt;/code&gt; and &lt;code&gt;end_stream&lt;/code&gt;, which take no
+input. An &lt;code&gt;InBuffer&lt;/code&gt; only borrows its slice for one call, so safe code could
+free it in between, and freed memory was compressed into the frame. The C
+library behaves this way since zstd 1.5.4, whether bundled or linked from the
+system.&lt;/p&gt;
+&lt;p&gt;The flaw was corrected by refusing to enable the parameter.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0397: Unsoundness in zstd-safe</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0397.html</id><updated>2026-10-26T12:00:00+00:00</updated><category term="memory-exposure"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0397.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0397: Unsoundness in zstd-safe"/><published>2026-10-26T12:00:00+00:00</published><summary xml:lang="en">`OutBuffer::around_pos` exposes uninitialized memory</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/zstd-safe/RUSTSEC-2026-0397.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/zstd-safe/RUSTSEC-2026-0397.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0397&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0397
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;OutBuffer::around_pos&lt;/code&gt; exposes uninitialized memory&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-16&quot;&gt;
+          October 16, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-26&quot;&gt;
+          October 26, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/zstd-safe.html&quot;&gt;zstd-safe&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/zstd-safe&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-exposure.html&quot;&gt;memory-exposure&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/uninitialized-memory.html&quot;&gt;#uninitialized-memory&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/gyscos/zstd-rs/commit/5827de2459b8ac430e87e860f00c7f3c13023833&quot;&gt;
+              https://github.com/gyscos/zstd-rs/commit/5827de2459b8ac430e87e860f00c7f3c13023833
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/gyscos/zstd-rs/pull/384&quot;&gt;
+              https://github.com/gyscos/zstd-rs/pull/384
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=8.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;4.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;zstd_safe::OutBuffer::around_pos&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=4.0.0, &amp;#60;8.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;&lt;code&gt;OutBuffer::around_pos&lt;/code&gt; accepted a position past the initialized length of a
+&lt;code&gt;Vec&amp;lt;u8&amp;gt;&lt;/code&gt;. The next streaming call then marked everything before the
+position as initialized, so safe code could read stale heap memory between
+the vector&apos;s previous length and that position.&lt;/p&gt;
+&lt;p&gt;The flaw was corrected by zero-filling that gap.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0405: Unsoundness in zstd-safe</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0405.html</id><updated>2026-10-26T12:00:00+00:00</updated><category term="memory-exposure"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0405.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0405: Unsoundness in zstd-safe"/><published>2026-10-26T12:00:00+00:00</published><summary xml:lang="en">Out-of-bounds read with an out-of-range `InBuffer::pos`</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/zstd-safe/RUSTSEC-2026-0405.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/zstd-safe/RUSTSEC-2026-0405.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0405&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0405
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Out-of-bounds read with an out-of-range &lt;code&gt;InBuffer::pos&lt;/code&gt;&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-16&quot;&gt;
+          October 16, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-26&quot;&gt;
+          October 26, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/zstd-safe.html&quot;&gt;zstd-safe&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/zstd-safe&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-exposure.html&quot;&gt;memory-exposure&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/seekable.html&quot;&gt;#seekable&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/out-of-bounds.html&quot;&gt;#out-of-bounds&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/gyscos/zstd-rs/commit/20d397c0d68d8b4300c5493875ebfa10e355fcdd&quot;&gt;
+              https://github.com/gyscos/zstd-rs/commit/20d397c0d68d8b4300c5493875ebfa10e355fcdd
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/gyscos/zstd-rs/pull/384&quot;&gt;
+              https://github.com/gyscos/zstd-rs/pull/384
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=8.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;7.2.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;zstd_safe::seekable::SeekableCStream::compress_stream&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=7.2.2, &amp;#60;8.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;&lt;code&gt;InBuffer&lt;/code&gt;&apos;s fields are public, so safe code can set &lt;code&gt;pos&lt;/code&gt; past the end of
+&lt;code&gt;src&lt;/code&gt;. The position was passed to the C library unchecked, and
+&lt;code&gt;ZSTD_seekable_compressStream&lt;/code&gt;, unlike the other streaming functions, does
+not validate it: it read past the end of the input slice, by up to the
+frame size, and compressed that memory into the output.&lt;/p&gt;
+&lt;p&gt;The flaw was corrected by checking the position before every call into the
+C library.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0404: Unsoundness in zstd-safe</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0404.html</id><updated>2026-10-26T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0404.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0404: Unsoundness in zstd-safe"/><published>2026-10-26T12:00:00+00:00</published><summary xml:lang="en">Double free in `DCtx::try_clone`</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/zstd-safe/RUSTSEC-2026-0404.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/zstd-safe/RUSTSEC-2026-0404.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0404&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0404
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Double free in &lt;code&gt;DCtx::try_clone&lt;/code&gt;&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-16&quot;&gt;
+          October 16, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-26&quot;&gt;
+          October 26, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/zstd-safe.html&quot;&gt;zstd-safe&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/zstd-safe&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/double-free.html&quot;&gt;#double-free&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/experimental.html&quot;&gt;#experimental&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/gyscos/zstd-rs/commit/cee6529b553ec600a8e152aaca15a91598820ecf&quot;&gt;
+              https://github.com/gyscos/zstd-rs/commit/cee6529b553ec600a8e152aaca15a91598820ecf
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/gyscos/zstd-rs/pull/384&quot;&gt;
+              https://github.com/gyscos/zstd-rs/pull/384
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=8.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;4.1.4&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;zstd_safe::DCtx::try_clone&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=4.1.4, &amp;#60;8.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;&lt;code&gt;DCtx::try_clone&lt;/code&gt; (&lt;code&gt;experimental&lt;/code&gt; feature, deprecated) is a plain copy of the
+C context. A context owning a dictionary (from &lt;code&gt;load_dictionary&lt;/code&gt;,
+&lt;code&gt;ref_prefix&lt;/code&gt; or &lt;code&gt;init_using_dict&lt;/code&gt;) or a dictionary table (&lt;code&gt;ref_ddict&lt;/code&gt; with
+&lt;code&gt;RefMultipleDDicts&lt;/code&gt;) ended up with both copies freeing it. A context cloned
+mid-frame resumed on uninitialized stream state. The clone also silently lost
+the &lt;code&gt;WindowLogMax&lt;/code&gt; limit.&lt;/p&gt;
+&lt;p&gt;The flaw was corrected by refusing to clone such contexts, and by carrying
+over the parameters the copy leaves out.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0398: Vulnerability in zstd-safe</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0398.html</id><updated>2026-10-26T12:00:00+00:00</updated><category term="memory-exposure"/><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0398.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0398: Vulnerability in zstd-safe"/><published>2026-10-26T12:00:00+00:00</published><summary xml:lang="en">`Seekable::decompress` sets a `Vec` length beyond its capacity for offsets past the end</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/zstd-safe/RUSTSEC-2026-0398.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/zstd-safe/RUSTSEC-2026-0398.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0398&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0398
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;Seekable::decompress&lt;/code&gt; sets a &lt;code&gt;Vec&lt;/code&gt; length beyond its capacity for offsets past the end&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-16&quot;&gt;
+          October 16, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-26&quot;&gt;
+          October 26, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/zstd-safe.html&quot;&gt;zstd-safe&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/zstd-safe&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-exposure.html&quot;&gt;memory-exposure&lt;/a&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/seekable.html&quot;&gt;#seekable&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/out-of-bounds.html&quot;&gt;#out-of-bounds&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/gyscos/zstd-rs/commit/80506be743fae2ed0c2fe8b21c374c6a2eab0be7&quot;&gt;
+              https://github.com/gyscos/zstd-rs/commit/80506be743fae2ed0c2fe8b21c374c6a2eab0be7
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/gyscos/zstd-rs/pull/384&quot;&gt;
+              https://github.com/gyscos/zstd-rs/pull/384
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=8.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;7.2.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;zstd_safe::seekable::AdvancedSeekable::decompress&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=7.2.2, &amp;#60;8.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;zstd_safe::seekable::Seekable::decompress&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=7.2.2, &amp;#60;8.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;&lt;code&gt;ZSTD_seekable_decompress&lt;/code&gt; shortens the requested length to the end of the
+data without checking that the offset is before it. For an offset past the
+end, it returns a wrapped-around length without writing anything, and
+&lt;code&gt;Seekable::decompress&lt;/code&gt; passed that length to &lt;code&gt;Vec::set_len&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;With the &lt;code&gt;seekable&lt;/code&gt; feature, whoever supplies the archive, or chooses the
+offset, can leave the caller&apos;s &lt;code&gt;Vec&amp;lt;u8&amp;gt;&lt;/code&gt; with a length far beyond its
+capacity. Reading it then discloses neighbouring heap memory, and appending
+to it corrupts memory. Offsets near &lt;code&gt;u64::MAX&lt;/code&gt; can also hang the call.&lt;/p&gt;
+&lt;p&gt;The flaw was corrected by clamping requests to the end of the data, and by
+checking every count reported by the C library against the buffer capacity.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0406: Unsoundness in zstd-safe</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0406.html</id><updated>2026-10-26T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0406.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0406: Unsoundness in zstd-safe"/><published>2026-10-26T12:00:00+00:00</published><summary xml:lang="en">Use-after-free when changing a multithreaded context with an unfinished frame</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/zstd-safe/RUSTSEC-2026-0406.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/zstd-safe/RUSTSEC-2026-0406.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0406&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0406
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Use-after-free when changing a multithreaded context with an unfinished frame&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-16&quot;&gt;
+          October 16, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-26&quot;&gt;
+          October 26, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/zstd-safe.html&quot;&gt;zstd-safe&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/zstd-safe&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/use-after-free.html&quot;&gt;#use-after-free&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/zstdmt.html&quot;&gt;#zstdmt&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/dictionary.html&quot;&gt;#dictionary&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/gyscos/zstd-rs/commit/e224018a2389915d68ed17f30109bebad36e9734&quot;&gt;
+              https://github.com/gyscos/zstd-rs/commit/e224018a2389915d68ed17f30109bebad36e9734
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/gyscos/zstd-rs/pull/384&quot;&gt;
+              https://github.com/gyscos/zstd-rs/pull/384
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=8.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;zstd_safe::CCtx::disable_dictionary&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;8.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;zstd_safe::CCtx::init&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;8.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;zstd_safe::CCtx::load_dictionary&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;8.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;zstd_safe::CCtx::ref_cdict&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;8.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;zstd_safe::CCtx::ref_prefix&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;8.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;zstd_safe::CCtx::reset&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;8.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;zstd_safe::CCtx::set_parameter&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;8.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;When a multithreaded frame (&lt;code&gt;zstdmt&lt;/code&gt; feature, &lt;code&gt;CParameter::NbWorkers&lt;/code&gt;) is
+left unfinished, its jobs may still be running on the worker threads: the C
+library only waits for them when the next frame starts, or when the context
+is freed. A session reset makes the context accept changes again in the
+meantime, so:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;unloading the dictionary (&lt;code&gt;load_dictionary&lt;/code&gt;, &lt;code&gt;ref_cdict&lt;/code&gt;, &lt;code&gt;ref_prefix&lt;/code&gt;,
+&lt;code&gt;disable_dictionary&lt;/code&gt;, &lt;code&gt;init*&lt;/code&gt;, or &lt;code&gt;reset&lt;/code&gt; with parameters) freed the
+dictionary a worker was still compressing against;&lt;/li&gt;
+&lt;li&gt;changing &lt;code&gt;NbWorkers&lt;/code&gt; made the next frame resize the job table before
+waiting for the old jobs.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The flaw was corrected by refusing these calls while a multithreaded frame
+is unfinished. The new &lt;code&gt;CCtx::wait_for_workers()&lt;/code&gt; waits for the workers
+first.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0402: Unsoundness in zstd-safe</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0402.html</id><updated>2026-10-26T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0402.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0402: Unsoundness in zstd-safe"/><published>2026-10-26T12:00:00+00:00</published><summary xml:lang="en">Heap buffer overflow in `CCtx::try_clone` on a multithreaded context</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/zstd-safe/RUSTSEC-2026-0402.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/zstd-safe/RUSTSEC-2026-0402.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0402&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0402
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Heap buffer overflow in &lt;code&gt;CCtx::try_clone&lt;/code&gt; on a multithreaded context&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-16&quot;&gt;
+          October 16, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-26&quot;&gt;
+          October 26, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/zstd-safe.html&quot;&gt;zstd-safe&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/zstd-safe&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/buffer-overflow.html&quot;&gt;#buffer-overflow&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/experimental.html&quot;&gt;#experimental&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/zstdmt.html&quot;&gt;#zstdmt&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/gyscos/zstd-rs/commit/682b8b2967cf4aba5cfe2d940d1e381a3e23211a&quot;&gt;
+              https://github.com/gyscos/zstd-rs/commit/682b8b2967cf4aba5cfe2d940d1e381a3e23211a
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/gyscos/zstd-rs/pull/384&quot;&gt;
+              https://github.com/gyscos/zstd-rs/pull/384
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=8.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;4.1.4&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;zstd_safe::CCtx::try_clone&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=4.1.4, &amp;#60;8.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;&lt;code&gt;CCtx::try_clone&lt;/code&gt; (&lt;code&gt;experimental&lt;/code&gt; feature, deprecated) copies tables sized
+from the context&apos;s applied parameters. Starting a multithreaded frame
+(&lt;code&gt;zstdmt&lt;/code&gt; feature) replaces those parameters with the workers&apos; without
+resizing the context&apos;s own tables, so after an abandoned single-threaded
+frame, the copy wrote up to 512 KiB past a heap allocation, or read past
+one. This became reachable with the bundled zstd 1.5.6.&lt;/p&gt;
+&lt;p&gt;The flaw was corrected by refusing &lt;code&gt;try_clone&lt;/code&gt; (and the unsafe
+&lt;code&gt;compress_block&lt;/code&gt;) once &lt;code&gt;NbWorkers&lt;/code&gt; was set on the context.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0401: Unsoundness in zstd-safe</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0401.html</id><updated>2026-10-26T12:00:00+00:00</updated><category term="memory-exposure"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0401.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0401: Unsoundness in zstd-safe"/><published>2026-10-26T12:00:00+00:00</published><summary xml:lang="en">Out-of-bounds read in `train_from_buffer` when sample sizes overflow</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/zstd-safe/RUSTSEC-2026-0401.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/zstd-safe/RUSTSEC-2026-0401.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0401&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0401
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Out-of-bounds read in &lt;code&gt;train_from_buffer&lt;/code&gt; when sample sizes overflow&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-16&quot;&gt;
+          October 16, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-26&quot;&gt;
+          October 26, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/zstd-safe.html&quot;&gt;zstd-safe&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/zstd-safe&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-exposure.html&quot;&gt;memory-exposure&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/integer-overflow.html&quot;&gt;#integer-overflow&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/out-of-bounds.html&quot;&gt;#out-of-bounds&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/dictionary.html&quot;&gt;#dictionary&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/gyscos/zstd-rs/commit/781ea454191dbf178d09c1daf6fc896d15fbaa2f&quot;&gt;
+              https://github.com/gyscos/zstd-rs/commit/781ea454191dbf178d09c1daf6fc896d15fbaa2f
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/gyscos/zstd-rs/pull/384&quot;&gt;
+              https://github.com/gyscos/zstd-rs/pull/384
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=8.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;zstd_safe::train_from_buffer&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;8.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;&lt;code&gt;ZDICT_trainFromBuffer&lt;/code&gt; is never told the length of the samples buffer, so
+&lt;code&gt;train_from_buffer&lt;/code&gt; checked that the sample sizes add up to it. With
+overflow checks off, as in release builds, that sum wrapped around: sizes
+totalling 2^64 plus the buffer length passed the check, and the trainer read
+past the end of the buffer. &lt;code&gt;zstd::dict::from_continuous&lt;/code&gt; relies on this
+check from zstd 0.4.10; older versions of zstd had their own, covered by a
+separate advisory.&lt;/p&gt;
+&lt;p&gt;This requires the sample sizes to come from an untrusted source. The flaw
+was corrected by summing the sizes with overflow checks.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0396: Unsoundness in zstd-safe</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0396.html</id><updated>2026-10-26T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0396.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0396: Unsoundness in zstd-safe"/><published>2026-10-26T12:00:00+00:00</published><summary xml:lang="en">`Seekable` reads a NULL or out-of-bounds seek table</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/zstd-safe/RUSTSEC-2026-0396.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/zstd-safe/RUSTSEC-2026-0396.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0396&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0396
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;Seekable&lt;/code&gt; reads a NULL or out-of-bounds seek table&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-16&quot;&gt;
+          October 16, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-26&quot;&gt;
+          October 26, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/zstd-safe.html&quot;&gt;zstd-safe&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/zstd-safe&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/seekable.html&quot;&gt;#seekable&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/null-pointer.html&quot;&gt;#null-pointer&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/gyscos/zstd-rs/commit/a9626069d6f2e90b782b8f627f57a361cfe8ef85&quot;&gt;
+              https://github.com/gyscos/zstd-rs/commit/a9626069d6f2e90b782b8f627f57a361cfe8ef85
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/gyscos/zstd-rs/pull/384&quot;&gt;
+              https://github.com/gyscos/zstd-rs/pull/384
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=8.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;7.2.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;zstd_safe::seekable::SeekTable::frame_decompressed_size&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=7.2.2, &amp;#60;8.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;zstd_safe::seekable::Seekable::decompress&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=7.2.2, &amp;#60;8.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;zstd_safe::seekable::Seekable::decompress_frame&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=7.2.2, &amp;#60;8.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;zstd_safe::seekable::Seekable::frame_decompressed_size&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=7.2.2, &amp;#60;8.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;zstd_safe::seekable::Seekable::offset_to_frame_index&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=7.2.2, &amp;#60;8.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;&lt;code&gt;Seekable&lt;/code&gt; did not record whether it was initialized. On a fresh &lt;code&gt;Seekable&lt;/code&gt;,
+or one whose &lt;code&gt;init_buff()&lt;/code&gt; failed, &lt;code&gt;decompress&lt;/code&gt;, &lt;code&gt;offset_to_frame_index&lt;/code&gt; and
+&lt;code&gt;frame_decompressed_size&lt;/code&gt; made the C library read a NULL seek table. After a
+failed re-initialization, &lt;code&gt;decompress&lt;/code&gt; returned data from the refused buffer
+using the previous seek table.&lt;/p&gt;
+&lt;p&gt;Separately, &lt;code&gt;frame_decompressed_size(num_frames())&lt;/code&gt;, on &lt;code&gt;Seekable&lt;/code&gt; and
+&lt;code&gt;SeekTable&lt;/code&gt;, read one entry past the end of the seek table.&lt;/p&gt;
+&lt;p&gt;The flaw was corrected by refusing to use a &lt;code&gt;Seekable&lt;/code&gt; until an
+initialization succeeded, and by checking the frame index.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0403: Vulnerability in zstd-safe</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0403.html</id><updated>2026-10-26T12:00:00+00:00</updated><category term="memory-exposure"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0403.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0403: Vulnerability in zstd-safe"/><published>2026-10-26T12:00:00+00:00</published><summary xml:lang="en">Uninitialized memory exposed when streaming decompression of a legacy frame fails</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/zstd-safe/RUSTSEC-2026-0403.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/zstd-safe/RUSTSEC-2026-0403.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0403&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0403
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Uninitialized memory exposed when streaming decompression of a legacy frame fails&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-16&quot;&gt;
+          October 16, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-26&quot;&gt;
+          October 26, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/zstd-safe.html&quot;&gt;zstd-safe&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/zstd-safe&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-exposure.html&quot;&gt;memory-exposure&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/uninitialized-memory.html&quot;&gt;#uninitialized-memory&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/decompression.html&quot;&gt;#decompression&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/legacy.html&quot;&gt;#legacy&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/gyscos/zstd-rs/commit/006e1d1ad1eeaf6b5d4c28329e70217adabcec43&quot;&gt;
+              https://github.com/gyscos/zstd-rs/commit/006e1d1ad1eeaf6b5d4c28329e70217adabcec43
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/gyscos/zstd-rs/pull/384&quot;&gt;
+              https://github.com/gyscos/zstd-rs/pull/384
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=8.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;4.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;zstd_safe::DCtx::decompress_stream&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=4.0.0, &amp;#60;8.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;When decompression fails inside a legacy (zstd v0.4 to v0.7) frame, the
+bundled zstd library reports the output buffer as fully written although
+nothing was written. &lt;code&gt;DCtx::decompress_stream&lt;/code&gt; committed that position even
+on error, and for a &lt;code&gt;Vec&amp;lt;u8&amp;gt;&lt;/code&gt; destination this extended the vector&apos;s length
+over uninitialized memory.&lt;/p&gt;
+&lt;p&gt;Legacy support is enabled by default. A 5- or 6-byte corrupt legacy frame is
+enough: through &lt;code&gt;zstd::stream::write::Decoder&lt;/code&gt;, up to 32 KiB of stale heap
+memory is then passed to the wrapped writer on the next &lt;code&gt;write()&lt;/code&gt; or
+&lt;code&gt;flush()&lt;/code&gt;, or when an &lt;code&gt;auto_flush()&lt;/code&gt;/&lt;code&gt;on_flush()&lt;/code&gt; decoder is dropped. Whether
+this reaches an attacker depends on where the application sends the
+decompressed output. &lt;code&gt;zstd::stream::read::Decoder&lt;/code&gt;, &lt;code&gt;zstd::decode_all&lt;/code&gt; and
+the bulk API are not affected.&lt;/p&gt;
+&lt;p&gt;Before zstd-safe 4.0.0, output buffers could only be initialized slices.
+The zstd crate&apos;s own writer had the same flaw from 0.4.22 to 0.7.x, which is
+covered by a separate advisory.&lt;/p&gt;
+&lt;p&gt;The flaw was corrected by only committing the buffer positions of a
+successful call.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0399: Unsoundness in zstd-safe</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0399.html</id><updated>2026-10-26T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0399.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0399: Unsoundness in zstd-safe"/><published>2026-10-26T12:00:00+00:00</published><summary xml:lang="en">Use-after-free through `init_using_cdict` and `init_using_ddict`</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/zstd-safe/RUSTSEC-2026-0399.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/zstd-safe/RUSTSEC-2026-0399.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0399&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0399
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Use-after-free through &lt;code&gt;init_using_cdict&lt;/code&gt; and &lt;code&gt;init_using_ddict&lt;/code&gt;&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-16&quot;&gt;
+          October 16, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-26&quot;&gt;
+          October 26, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/zstd-safe.html&quot;&gt;zstd-safe&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/zstd-safe&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/use-after-free.html&quot;&gt;#use-after-free&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/lifetime.html&quot;&gt;#lifetime&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/dictionary.html&quot;&gt;#dictionary&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/gyscos/zstd-rs/commit/e00e7928e3e98953fc43418af6d73f6aae2378fb&quot;&gt;
+              https://github.com/gyscos/zstd-rs/commit/e00e7928e3e98953fc43418af6d73f6aae2378fb
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/gyscos/zstd-rs/pull/384&quot;&gt;
+              https://github.com/gyscos/zstd-rs/pull/384
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=8.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;3.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;zstd_safe::CCtx::init_using_cdict&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=3.0.0, &amp;#60;8.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;zstd_safe::DCtx::init_using_ddict&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=3.0.0, &amp;#60;8.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;&lt;code&gt;CCtx::init_using_cdict&lt;/code&gt; and &lt;code&gt;DCtx::init_using_ddict&lt;/code&gt; (&lt;code&gt;experimental&lt;/code&gt;
+feature, deprecated) took the dictionary as &lt;code&gt;&amp;amp;CDict&amp;lt;&apos;b&amp;gt;&lt;/code&gt; and &lt;code&gt;&amp;amp;DDict&amp;lt;&apos;b&amp;gt;&lt;/code&gt;
+with only &lt;code&gt;&apos;b: &apos;a&lt;/code&gt;, so the dictionary itself could be dropped while the
+context still pointed at it. The same mistake in other constructors was
+fixed earlier (&lt;a href=&quot;https://github.com/gyscos/zstd-rs/issues/365&quot;&gt;https://github.com/gyscos/zstd-rs/issues/365&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;The flaw was corrected by taking &lt;code&gt;&amp;amp;&apos;a CDict&amp;lt;&apos;b&amp;gt;&lt;/code&gt; and &lt;code&gt;&amp;amp;&apos;a DDict&amp;lt;&apos;b&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0400: Unsoundness in zstd-safe</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0400.html</id><updated>2026-10-26T12:00:00+00:00</updated><category term="memory-exposure"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0400.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0400: Unsoundness in zstd-safe"/><published>2026-10-26T12:00:00+00:00</published><summary xml:lang="en">Use-after-free of a dictionary after a one-shot call on a context with an open stream</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/zstd-safe/RUSTSEC-2026-0400.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/zstd-safe/RUSTSEC-2026-0400.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0400&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0400
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Use-after-free of a dictionary after a one-shot call on a context with an open stream&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-16&quot;&gt;
+          October 16, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-26&quot;&gt;
+          October 26, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/zstd-safe.html&quot;&gt;zstd-safe&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/zstd-safe&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-exposure.html&quot;&gt;memory-exposure&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/use-after-free.html&quot;&gt;#use-after-free&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/dictionary.html&quot;&gt;#dictionary&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/gyscos/zstd-rs/commit/d34502a0ed07f80ab2aa4c65059578e0466f2467&quot;&gt;
+              https://github.com/gyscos/zstd-rs/commit/d34502a0ed07f80ab2aa4c65059578e0466f2467
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/gyscos/zstd-rs/pull/384&quot;&gt;
+              https://github.com/gyscos/zstd-rs/pull/384
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=8.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;3.0.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;zstd_safe::DCtx::decompress&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=3.0.1, &amp;#60;8.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;zstd_safe::DCtx::decompress_using_ddict&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=3.0.1, &amp;#60;8.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;zstd_safe::DCtx::decompress_using_dict&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=3.0.1, &amp;#60;8.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;The one-shot &lt;code&gt;DCtx&lt;/code&gt; and &lt;code&gt;CCtx&lt;/code&gt; methods assumed the C library resets the
+context, but it leaves an open stream as it is. When a stream was left
+unfinished on a context, a one-shot call such as &lt;code&gt;decompress_using_dict&lt;/code&gt;
+could leave the context pointing at the dictionary borrowed for that call,
+and the next streaming call resumed the stream against it after it was
+freed: decompressed output then contained freed heap memory. On the
+compression side, the stream resumed against the one-shot call&apos;s buffers.&lt;/p&gt;
+&lt;p&gt;This requires an application to use one context for both streaming and
+one-shot calls without a reset in between. The flaw was corrected by
+resetting the session after one-shot calls whenever a stream may be open.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2025-0173: Vulnerability in pam-bindings</title><id>https://rustsec.org/advisories/RUSTSEC-2025-0173.html</id><updated>2026-10-26T12:00:00+00:00</updated><category term="privilege-escalation"/><link href="https://rustsec.org/advisories/RUSTSEC-2025-0173.html" rel="alternate" type="text/html" title="RUSTSEC-2025-0173: Vulnerability in pam-bindings"/><published>2026-10-26T12:00:00+00:00</published><summary xml:lang="en">`PamHandle::get_user` can cause an authentication bypass</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/pam-bindings/RUSTSEC-2025-0173.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/pam-bindings/RUSTSEC-2025-0173.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2025-0173&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2025-0173
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;PamHandle::get_user&lt;/code&gt; can cause an authentication bypass&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2025-06-02&quot;&gt;
+          June  2, 2025
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-26&quot;&gt;
+          October 26, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/pam-bindings.html&quot;&gt;pam-bindings&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/pam-bindings&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/privilege-escalation.html&quot;&gt;privilege-escalation&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/pam.html&quot;&gt;#pam&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/authentication.html&quot;&gt;#authentication&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/ffi.html&quot;&gt;#ffi&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/undefined-behavior.html&quot;&gt;#undefined-behavior&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/lvkv/pam-rs/issues/16&quot;&gt;
+              https://github.com/lvkv/pam-rs/issues/16
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.1.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;In affected versions, &lt;code&gt;PamHandle::get_user&lt;/code&gt; can return &lt;code&gt;Err(PAM_SUCCESS)&lt;/code&gt; after it gets the username successfully.
+PAM modules that return this &amp;quot;error&amp;quot; code from &lt;code&gt;sm_authenticate&lt;/code&gt; or &lt;code&gt;sm_acct_mgmt&lt;/code&gt; early-return a success code to PAM without doing any further verification.
+This means a user could log in when they shouldn&apos;t be able to (e.g., if the module is &lt;code&gt;sufficient&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;pam_try!&lt;/code&gt; macro of this crate early-returns the code in this exact way:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-rust&quot;&gt;fn sm_authenticate(pamh: &amp;amp;mut PamHandle, args: Vec&amp;lt;&amp;amp;CStr&amp;gt;, flags: PamFlag) -&amp;gt; PamResultCode {
+    let user = pam_try!(pamh.get_user(None)); // Can return PAM_SUCCESS here.
+    // If it does, the module does not get to this line.
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The root cause is an &lt;a href=&quot;https://github.com/lvkv/pam-rs/blob/3d9318b5b812d9142595928deec23e5843a60995/pam/src/module.rs#L49-L53&quot;&gt;incorrect FFI declaration&lt;/a&gt; for &lt;a href=&quot;https://github.com/linux-pam/linux-pam/blob/28fce1fd55b003fec90f34e5bc785e9439b216f2/libpam/include/security/pam_modules.h#L30-L31&quot;&gt;&lt;code&gt;pam_get_user(3)&lt;/code&gt;&lt;/a&gt;.
+This C function writes a pointer to the username through its &lt;code&gt;user&lt;/code&gt; argument (of type &lt;code&gt;const char **user&lt;/code&gt;).
+This crate&apos;s binding declared this argument as a shared reference (&lt;code&gt;&amp;amp;*mut c_char&lt;/code&gt;).
+Writing through a shared reference is &lt;a href=&quot;https://doc.rust-lang.org/reference/behavior-considered-undefined.html#r-undefined.immutable&quot;&gt;undefined behavior&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Thus, the compiler can assume that the local pointer, whose address is passed as &lt;code&gt;user&lt;/code&gt;, is still null after the call.
+After the call, the affected code &lt;a href=&quot;https://github.com/lvkv/pam-rs/blob/3d9318b5b812d9142595928deec23e5843a60995/pam/src/module.rs#L196-L202&quot;&gt;returns &lt;code&gt;Ok&lt;/code&gt;&lt;/a&gt; only if the return code is &lt;code&gt;PAM_SUCCESS&lt;/code&gt; &lt;em&gt;and&lt;/em&gt; this pointer is not null.
+Otherwise, it returns the return code as an error.
+If the compiler assumes that the pointer is null, &lt;code&gt;get_user&lt;/code&gt; returns an error even when the return code is &lt;code&gt;PAM_SUCCESS&lt;/code&gt;.
+Release builds have been &lt;a href=&quot;https://github.com/lvkv/pam-rs/issues/16#issuecomment-3693665220&quot;&gt;observed to do this&lt;/a&gt;.
+Debug builds usually work correctly, so tests in debug mode can miss the problem.&lt;/p&gt;
+&lt;p&gt;Version 0.1.2 changes the declaration to &lt;code&gt;&amp;amp;mut *const c_char&lt;/code&gt;.
+The fix is in commit &lt;a href=&quot;https://github.com/lvkv/pam-rs/commit/401c961800c4dde356464b6a7d455af844a3954a&quot;&gt;401c961&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If a module cannot upgrade, do not return the error code from &lt;code&gt;get_user&lt;/code&gt;.
+Return a failure code instead, for example &lt;code&gt;pam_try!(pamh.get_user(None), PamResultCode::PAM_AUTH_ERR)&lt;/code&gt;.
+This makes the module deny access instead of allowing it, but the undefined behavior remains.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0407: Vulnerability in webpage</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0407.html</id><updated>2026-10-26T12:00:00+00:00</updated><category term="file-disclosure"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0407.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0407: Vulnerability in webpage"/><published>2026-10-26T12:00:00+00:00</published><summary xml:lang="en">SSRF and local file disclosure via unvalidated URLs</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/webpage/RUSTSEC-2026-0407.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/webpage/RUSTSEC-2026-0407.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0407&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0407
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;SSRF and local file disclosure via unvalidated URLs&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-22&quot;&gt;
+          October 22, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-26&quot;&gt;
+          October 26, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/webpage.html&quot;&gt;webpage&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/webpage&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/file-disclosure.html&quot;&gt;file-disclosure&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/ssrf.html&quot;&gt;#ssrf&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/file-disclosure.html&quot;&gt;#file-disclosure&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/url-validation.html&quot;&gt;#url-validation&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-23hp-j76v-pcwj&quot;&gt;GHSA-23hp-j76v-pcwj&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/orottier/webpage-rs/commit/5742fbee437c04170d101e10df3534e87730f36d&quot;&gt;
+              https://github.com/orottier/webpage-rs/commit/5742fbee437c04170d101e10df3534e87730f36d
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;7.5 &lt;span class=&quot;tag high&quot;&gt;
+        HIGH
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Network&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=2.1.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Applications that pass attacker-controlled URLs to &lt;code&gt;webpage&lt;/code&gt; versions before
+2.1.0 may be vulnerable to server-side request forgery (SSRF) or local file
+disclosure.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;HTTP::fetch&lt;/code&gt; and &lt;code&gt;Webpage::from_url&lt;/code&gt; passed URLs to libcurl without
+restricting the URL scheme or validating the resolved destination IP address.
+Redirects were followed without checking whether the new destination was
+internal. Depending on how the application uses the response, an attacker
+could:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Read local files accessible to the application process using &lt;code&gt;file://&lt;/code&gt; URLs.&lt;/li&gt;
+&lt;li&gt;Cause requests to internal or link-local services (e.g. cloud metadata
+endpoints at &lt;code&gt;http://169.254.169.254&lt;/code&gt;) via direct private-IP URLs or by
+chaining HTTP redirects through an attacker-controlled server.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Starting in 2.1.0, &lt;code&gt;HTTP::fetch&lt;/code&gt; and &lt;code&gt;Webpage::from_url&lt;/code&gt; reject non-HTTP(S)
+URL schemes and destinations that resolve to non-public IP addresses, including
+after redirects. Applications that intentionally fetch trusted internal
+resources can opt in to the previous behavior with &lt;code&gt;HTTP::fetch_unrestricted&lt;/code&gt;
+or &lt;code&gt;Webpage::from_url_unrestricted&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Reported by &lt;a href=&quot;https://github.com/AidenMohan&quot;&gt;Aiden Mohan&lt;/a&gt;.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0408: Unsoundness in skiplist</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0408.html</id><updated>2026-10-26T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0408.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0408: Unsoundness in skiplist"/><published>2026-10-26T12:00:00+00:00</published><summary xml:lang="en">Aliasing violations in splice, mutable iteration and cursors</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/skiplist/RUSTSEC-2026-0408.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/skiplist/RUSTSEC-2026-0408.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0408&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0408
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Aliasing violations in splice, mutable iteration and cursors&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-24&quot;&gt;
+          October 24, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-26&quot;&gt;
+          October 26, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/skiplist.html&quot;&gt;skiplist&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/skiplist&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/aliasing.html&quot;&gt;#aliasing&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/stacked-borrows.html&quot;&gt;#stacked-borrows&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/tree-borrows.html&quot;&gt;#tree-borrows&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/miri.html&quot;&gt;#miri&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-924w-mwc9-86m8&quot;&gt;GHSA-924w-mwc9-86m8&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/JP-Ellis/rust-skiplist/pull/407&quot;&gt;
+              https://github.com/JP-Ellis/rust-skiplist/pull/407
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;2.1 &lt;span class=&quot;tag low&quot;&gt;
+        LOW
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Requirements&lt;/dt&gt;
+            &lt;dd&gt;Present&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Local&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact to the Subsequent System&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact to the Subsequent System&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact to the Subsequent System&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact to the Vulnerable System&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact to the Vulnerable System&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact to the Vulnerable System&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:4.0/AV:L/AC:L/AT:P/PR:N/UI:N/VC:L/VI:L/VA:L/SC:N/SI:N/SA:N&quot;&gt;CVSS:4.0/AV:L/AC:L/AT:P/PR:N/UI:N/VC:L/VI:L/VA:L/SC:N/SI:N/SA:N&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=1.3.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;skiplist::ordered_skip_list::OrderedSkipList::append&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.3.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;skiplist::ordered_skip_list::OrderedSkipList::lower_bound_mut&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=1.2.0, &amp;#60;1.3.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;skiplist::ordered_skip_list::OrderedSkipList::split_off&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.3.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;skiplist::ordered_skip_list::OrderedSkipList::split_off_index&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.3.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;skiplist::ordered_skip_list::OrderedSkipList::upper_bound_mut&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=1.2.0, &amp;#60;1.3.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;skiplist::skip_list::SkipList::append&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.3.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;skiplist::skip_list::SkipList::iter_mut&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.3.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;skiplist::skip_list::SkipList::range_mut&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.3.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;skiplist::skip_list::SkipList::split_off&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.3.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;skiplist::skip_map::SkipMap::append&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.3.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;skiplist::skip_map::SkipMap::iter_mut&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.3.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;skiplist::skip_map::SkipMap::range_mut&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.3.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;skiplist::skip_map::SkipMap::split_off&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.3.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;skiplist::skip_map::SkipMap::values_mut&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.3.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;skiplist::skip_set::SkipSet::append&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.3.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;skiplist::skip_set::SkipSet::lower_bound_mut&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=1.2.0, &amp;#60;1.3.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;skiplist::skip_set::SkipSet::split_off&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.3.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;skiplist::skip_set::SkipSet::split_off_index&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.3.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;skiplist::skip_set::SkipSet::upper_bound_mut&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=1.2.0, &amp;#60;1.3.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Four code paths create a pointer whose permission is later revoked, then
+write through it. Miri reports each as undefined behaviour under both the
+Tree Borrows and Stacked Borrows aliasing models (CWE-758). All four are
+reachable from safe code with standard &lt;code&gt;Ord&lt;/code&gt; types.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Splice back-pointer.&lt;/strong&gt; &lt;code&gt;split_off&lt;/code&gt;, &lt;code&gt;split_off_index&lt;/code&gt; and &lt;code&gt;append&lt;/code&gt; stored
+the first spliced node&apos;s &lt;code&gt;prev&lt;/code&gt; pointer from a reference to the head, then
+wrote through that same reference, invalidating the stored pointer. A later
+&lt;code&gt;pop_first&lt;/code&gt; or &lt;code&gt;pop_front&lt;/code&gt; writes through it. This affects all four
+collections.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;SkipMap::range_mut&lt;/code&gt; back pointer.&lt;/strong&gt; With an &lt;code&gt;Included&lt;/code&gt; or &lt;code&gt;Excluded&lt;/code&gt;
+upper bound, the back pointer came from a shared reference. &lt;code&gt;next_back&lt;/code&gt;
+hands out &lt;code&gt;&amp;amp;mut V&lt;/code&gt; through it, and writing to that value is undefined
+behaviour.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;IterMut::next_back&lt;/code&gt; reads a yielded node.&lt;/strong&gt; In &lt;code&gt;SkipList&lt;/code&gt; and &lt;code&gt;SkipMap&lt;/code&gt;,
+&lt;code&gt;next_back&lt;/code&gt; read the predecessor node even after the front end had yielded
+it as &lt;code&gt;&amp;amp;mut&lt;/code&gt;. The read freezes the caller&apos;s reference, and the caller&apos;s
+next write through it is undefined behaviour. This affects &lt;code&gt;iter_mut&lt;/code&gt;,
+&lt;code&gt;values_mut&lt;/code&gt; and &lt;code&gt;range_mut&lt;/code&gt; used from both ends.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cursor list pointer.&lt;/strong&gt; &lt;code&gt;lower_bound_mut&lt;/code&gt; and &lt;code&gt;upper_bound_mut&lt;/code&gt; on
+&lt;code&gt;OrderedSkipList&lt;/code&gt; and &lt;code&gt;SkipSet&lt;/code&gt; (&lt;code&gt;cursor&lt;/code&gt; feature) took the cursor&apos;s list
+pointer, then searched through &lt;code&gt;&amp;amp;self&lt;/code&gt;. A comparator with interior-mutable
+state, such as a &lt;code&gt;Cell&lt;/code&gt; call counter, wrote to the list&apos;s memory through
+that shared borrow and invalidated the cursor&apos;s pointer. The comparator can
+be a fully consistent order. &lt;code&gt;SkipMap&lt;/code&gt; cursors are not affected.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;No miscompilation has been observed in an optimised build. A future compiler
+may still optimise on the violated aliasing assumptions.&lt;/p&gt;
+&lt;p&gt;The flaws were corrected in 1.3.0. Each fix derives the pointer used for
+mutation from the collection&apos;s long-lived allocation pointers, and each has a
+Miri regression test.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0409: Vulnerability in skiplist</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0409.html</id><updated>2026-10-26T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0409.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0409: Vulnerability in skiplist"/><published>2026-10-26T12:00:00+00:00</published><summary xml:lang="en">Use-after-free from a comparator that answers inconsistently</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/skiplist/RUSTSEC-2026-0409.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/skiplist/RUSTSEC-2026-0409.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0409&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0409
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Use-after-free from a comparator that answers inconsistently&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-24&quot;&gt;
+          October 24, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-26&quot;&gt;
+          October 26, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/skiplist.html&quot;&gt;skiplist&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/skiplist&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/use-after-free.html&quot;&gt;#use-after-free&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/comparator.html&quot;&gt;#comparator&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/ord.html&quot;&gt;#ord&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-cc53-p78w-23w9&quot;&gt;GHSA-cc53-p78w-23w9&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/JP-Ellis/rust-skiplist/issues/401&quot;&gt;
+              https://github.com/JP-Ellis/rust-skiplist/issues/401
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/JP-Ellis/rust-skiplist/pull/407&quot;&gt;
+              https://github.com/JP-Ellis/rust-skiplist/pull/407
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;6.3 &lt;span class=&quot;tag medium&quot;&gt;
+        MEDIUM
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Requirements&lt;/dt&gt;
+            &lt;dd&gt;Present&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Network&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact to the Subsequent System&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact to the Subsequent System&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact to the Subsequent System&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact to the Vulnerable System&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact to the Vulnerable System&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact to the Vulnerable System&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:L/VA:L/SC:N/SI:N/SA:N&quot;&gt;CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:L/VA:L/SC:N/SI:N/SA:N&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=1.3.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;&lt;code&gt;OrderedSkipList&lt;/code&gt;, &lt;code&gt;SkipSet&lt;/code&gt; and &lt;code&gt;SkipMap&lt;/code&gt; can free a node that is still
+linked when a &lt;code&gt;Comparator&lt;/code&gt; or &lt;code&gt;Ord&lt;/code&gt; implementation gives different answers for
+the same pair of values during one mutating call. A later call reads the freed
+memory (CWE-416). A safe &lt;code&gt;impl Ord&lt;/code&gt; with the default comparator is enough to
+reach it.&lt;/p&gt;
+&lt;p&gt;The mutating traversals record a precursor at each level: the last node whose
+link points at a node comparing not-&lt;code&gt;Less&lt;/code&gt; than the target. The splice code
+assumes every recorded precursor&apos;s link points at or past the final position.
+If a later comparison reports one of those nodes as &lt;code&gt;Less&lt;/code&gt;, the walk steps
+past it and the assumption breaks. Removals such as &lt;code&gt;take_first&lt;/code&gt;, &lt;code&gt;take&lt;/code&gt; and
+&lt;code&gt;remove&lt;/code&gt; then rewire the wrong link and free the target while its real
+predecessor still points at it. &lt;code&gt;insert&lt;/code&gt; builds crossed links and wrong skip
+distances from the same precursors.&lt;/p&gt;
+&lt;p&gt;A comparator that is a pure function of its two arguments cannot trigger
+this, even if it is not transitive. The trigger is a stateful or
+non-deterministic implementation, for example one that reads a counter, a
+cache, a clock or a random source.&lt;/p&gt;
+&lt;p&gt;The flaw was corrected in 1.3.0. The mutating traversals track the link target
+of the lowest recorded precursor and panic with &amp;quot;comparator does not implement
+a total order&amp;quot; when a &lt;code&gt;Less&lt;/code&gt; answer contradicts an earlier one. Every splice
+site also checks its precursors before the first write. Each detected
+contradiction panics before any link, value or length changes, so the
+collection stays valid and safe to drop.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0390: Vulnerability in pingora-proxy</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0390.html</id><updated>2026-10-26T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0390.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0390: Vulnerability in pingora-proxy"/><published>2026-10-26T12:00:00+00:00</published><summary xml:lang="en">Pingora forwards client-nominated Connection headers to HTTP/1 upstreams, allowing ACL bypass in specific chained deployments</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -605,6 +4484,437 @@
 &lt;p&gt;This specifically affects chained deployments where an HTTP/1 intermediary between Pingora and the origin processes Connection nominations (for example, Go&apos;s &lt;code&gt;net/http/httputil.ReverseProxy&lt;/code&gt;) and the origin trusts headers added by that intermediary (for example, X-Forwarded-For for IP-based authorization). A remote, unauthenticated attacker can have those headers removed, potentially bypassing authorization. This is the same class of issue as CVE-2022-31813 in Apache HTTP Server.&lt;/p&gt;
 &lt;p&gt;This flaw was corrected in commits 28c18e6b6b04dd0bd937234e5950049e6d74cded and ca23f1668eca8e78be7ba62ef0edbd458b40eeee. By default, Pingora now removes hop-by-hop and Connection-nominated headers from upstream requests, and rejects requests whose Connection header nominates Host, X-Forwarded-For, X-Forwarded-Host, X-Forwarded-Proto, or a pseudo-header. This is controlled by &lt;code&gt;PeerOptions::http_upstream_request_policy&lt;/code&gt;; &lt;code&gt;HttpUpstreamRequestPolicy::preserve()&lt;/code&gt; restores the old passthrough behavior and should not be used if the origin relies on headers added by Pingora. Users should upgrade to Pingora &amp;gt;= 0.9.0.&lt;/p&gt;
 &lt;p&gt;Note: Cloudflare CDN customers were unaffected, as no such chained deployment as described above exists with internal Pingora services, and Connection headers are sanitized before arriving at Pingora gateways.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0410: Vulnerability in zstd-sys</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0410.html</id><updated>2026-10-26T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0410.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0410: Vulnerability in zstd-sys"/><published>2026-10-26T12:00:00+00:00</published><summary xml:lang="en">WebAssembly allocator shim corrupts memory on allocation failure</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/zstd-sys/RUSTSEC-2026-0410.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/zstd-sys/RUSTSEC-2026-0410.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0410&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0410
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;WebAssembly allocator shim corrupts memory on allocation failure&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-16&quot;&gt;
+          October 16, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-26&quot;&gt;
+          October 26, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/zstd-sys.html&quot;&gt;zstd-sys&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/zstd-sys&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/wasm.html&quot;&gt;#wasm&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/allocation.html&quot;&gt;#allocation&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/gyscos/zstd-rs/commit/165d1625553c236b9700ca794b8a7c51f5d98314&quot;&gt;
+              https://github.com/gyscos/zstd-rs/commit/165d1625553c236b9700ca794b8a7c51f5d98314
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/gyscos/zstd-rs/pull/384&quot;&gt;
+              https://github.com/gyscos/zstd-rs/pull/384
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=2.1.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;2.0.9&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+      &lt;dt&gt;Affected Architectures&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;wasm32&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;On wasm32, zstd-sys provides &lt;code&gt;malloc&lt;/code&gt; and &lt;code&gt;free&lt;/code&gt; to the C library through a
+shim over Rust&apos;s allocator. The shim did not check for allocation failure:
+it wrote its size header to address 0 and returned address 4, which the C
+library used as a valid buffer. &lt;code&gt;free(NULL)&lt;/code&gt; also read below address 0.&lt;/p&gt;
+&lt;p&gt;Whenever the instance cannot grow its memory by what a frame asks for, a
+small crafted frame (a 9-byte header declaring a 128 MiB window is enough)
+made decompression write decoded data over the bottom of the module&apos;s
+linear memory, instead of failing. The corruption stays within the wasm
+sandbox.&lt;/p&gt;
+&lt;p&gt;The flaw was corrected by returning NULL on allocation failure or size
+overflow, and by making &lt;code&gt;free(NULL)&lt;/code&gt; a no-op.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2016-0007: jwt is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2016-0007.html</id><updated>2026-10-26T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2016-0007.html" rel="alternate" type="text/html" title="RUSTSEC-2016-0007: jwt is unmaintained"/><published>2026-10-26T12:00:00+00:00</published><summary xml:lang="en">jwt appears to be unmaintained</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/jwt/RUSTSEC-2016-0007.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/jwt/RUSTSEC-2016-0007.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2016-0007&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2016-0007
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;jwt appears to be unmaintained&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2016-10-09&quot;&gt;
+          October  9, 2016
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-26&quot;&gt;
+          October 26, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/jwt.html&quot;&gt;jwt&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/jwt&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unmaintained
+        
+      &lt;/dd&gt;
+
+      
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/mikkyang/rust-jwt/issues/106&quot;&gt;
+              https://github.com/mikkyang/rust-jwt/issues/106
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;The &lt;code&gt;jwt&lt;/code&gt; crate appears to be unmaintained.&lt;/p&gt;
+&lt;p&gt;Alternatives:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://crates.io/crates/jsonwebtoken/&quot;&gt;jsonwebtoken&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://crates.io/crates/jwt-simple&quot;&gt;jwt-simple&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0411: Unsoundness in dahl-salso</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0411.html</id><updated>2026-10-26T12:00:00+00:00</updated><category term="memory-corruption"/><category term="memory-exposure"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0411.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0411: Unsoundness in dahl-salso"/><published>2026-10-26T12:00:00+00:00</published><summary xml:lang="en">Out-of-bounds read in `Log2Cache::nlog2n()`, `nlog2n_difference()` and `plog2p()`</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/dahl-salso/RUSTSEC-2026-0411.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/dahl-salso/RUSTSEC-2026-0411.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0411&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0411
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Out-of-bounds read in &lt;code&gt;Log2Cache::nlog2n()&lt;/code&gt;, &lt;code&gt;nlog2n_difference()&lt;/code&gt; and &lt;code&gt;plog2p()&lt;/code&gt;&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-22&quot;&gt;
+          October 22, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-26&quot;&gt;
+          October 26, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/dahl-salso.html&quot;&gt;dahl-salso&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/dahl-salso&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-exposure.html&quot;&gt;memory-exposure&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/out-of-bounds.html&quot;&gt;#out-of-bounds&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/unsound.html&quot;&gt;#unsound&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/dbdahl/rust-dahl-salso/issues/2&quot;&gt;
+              https://github.com/dbdahl/rust-dahl-salso/issues/2
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.7.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;&lt;code&gt;Log2Cache::new(n)&lt;/code&gt; fills its three tables with entries for &lt;code&gt;0..=n&lt;/code&gt;, but the
+three accessor methods index those tables with &lt;code&gt;get_unchecked&lt;/code&gt; on a value the
+caller supplies. Nothing bounds the argument and nothing documents a bound, so
+any value above the &lt;code&gt;n&lt;/code&gt; the cache was built with reads past the end of the
+vector. &lt;code&gt;CountType&lt;/code&gt; is &lt;code&gt;u32&lt;/code&gt;, so the read can land up to &lt;code&gt;u32::MAX&lt;/code&gt; elements
+away, and &lt;code&gt;plog2p()&lt;/code&gt; returns the value it read, disclosing whatever lies there.&lt;/p&gt;
+&lt;p&gt;For example, &lt;code&gt;Log2Cache::new(4)&lt;/code&gt; builds tables holding 5 entries (indices
+0,1,2,3,4). Then &lt;code&gt;cache.nlog2n(60000)&lt;/code&gt; reads index 60000, far outside the
+allocation. Under AddressSanitizer this faults with &lt;code&gt;SEGV&lt;/code&gt;; Miri reports it as
+undefined behavior at &lt;code&gt;src/log2cache.rs:42&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;nlog2n_difference()&lt;/code&gt; is off by one further: in the affected versions &lt;code&gt;new(n)&lt;/code&gt;
+pushes &lt;code&gt;n&lt;/code&gt; entries into that table rather than &lt;code&gt;n + 1&lt;/code&gt;, so even
+&lt;code&gt;nlog2n_difference(n)&lt;/code&gt; is out of bounds.&lt;/p&gt;
+&lt;p&gt;This can be triggered through safe public APIs — &lt;code&gt;Log2Cache::new()&lt;/code&gt; and any of
+&lt;code&gt;nlog2n()&lt;/code&gt;, &lt;code&gt;nlog2n_difference()&lt;/code&gt; and &lt;code&gt;plog2p()&lt;/code&gt; — with no &lt;code&gt;unsafe&lt;/code&gt; required
+from the caller.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
