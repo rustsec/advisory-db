@@ -1,0 +1,73 @@
+{
+  "id": "RUSTSEC-2026-0400",
+  "modified": "2026-10-26T13:45:01Z",
+  "published": "2026-10-16T12:00:00Z",
+  "aliases": [],
+  "related": [],
+  "summary": "Use-after-free of a dictionary after a one-shot call on a context with an open stream",
+  "details": "The one-shot `DCtx` and `CCtx` methods assumed the C library resets the\ncontext, but it leaves an open stream as it is. When a stream was left\nunfinished on a context, a one-shot call such as `decompress_using_dict`\ncould leave the context pointing at the dictionary borrowed for that call,\nand the next streaming call resumed the stream against it after it was\nfreed: decompressed output then contained freed heap memory. On the\ncompression side, the stream resumed against the one-shot call's buffers.\n\nThis requires an application to use one context for both streaming and\none-shot calls without a reset in between. The flaw was corrected by\nresetting the session after one-shot calls whenever a stream may be open.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "zstd-safe",
+        "purl": "pkg:cargo/zstd-safe"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": [
+            "zstd_safe::DCtx::decompress",
+            "zstd_safe::DCtx::decompress_using_ddict",
+            "zstd_safe::DCtx::decompress_using_dict"
+          ]
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "memory-exposure"
+        ],
+        "cvss": null,
+        "informational": "unsound"
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "3.0.1"
+            },
+            {
+              "fixed": "8.2.0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/zstd-safe"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0400.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/gyscos/zstd-rs/commit/d34502a0ed07f80ab2aa4c65059578e0466f2467"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/gyscos/zstd-rs/pull/384"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}

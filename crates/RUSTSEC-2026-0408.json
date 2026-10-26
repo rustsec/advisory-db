@@ -1,0 +1,92 @@
+{
+  "id": "RUSTSEC-2026-0408",
+  "modified": "2026-10-26T13:45:01Z",
+  "published": "2026-10-24T12:00:00Z",
+  "aliases": [
+    "GHSA-924w-mwc9-86m8"
+  ],
+  "related": [],
+  "summary": "Aliasing violations in splice, mutable iteration and cursors",
+  "details": "Four code paths create a pointer whose permission is later revoked, then\nwrite through it. Miri reports each as undefined behaviour under both the\nTree Borrows and Stacked Borrows aliasing models (CWE-758). All four are\nreachable from safe code with standard `Ord` types.\n\n1. **Splice back-pointer.** `split_off`, `split_off_index` and `append` stored\n   the first spliced node's `prev` pointer from a reference to the head, then\n   wrote through that same reference, invalidating the stored pointer. A later\n   `pop_first` or `pop_front` writes through it. This affects all four\n   collections.\n2. **`SkipMap::range_mut` back pointer.** With an `Included` or `Excluded`\n   upper bound, the back pointer came from a shared reference. `next_back`\n   hands out `&mut V` through it, and writing to that value is undefined\n   behaviour.\n3. **`IterMut::next_back` reads a yielded node.** In `SkipList` and `SkipMap`,\n   `next_back` read the predecessor node even after the front end had yielded\n   it as `&mut`. The read freezes the caller's reference, and the caller's\n   next write through it is undefined behaviour. This affects `iter_mut`,\n   `values_mut` and `range_mut` used from both ends.\n4. **Cursor list pointer.** `lower_bound_mut` and `upper_bound_mut` on\n   `OrderedSkipList` and `SkipSet` (`cursor` feature) took the cursor's list\n   pointer, then searched through `&self`. A comparator with interior-mutable\n   state, such as a `Cell` call counter, wrote to the list's memory through\n   that shared borrow and invalidated the cursor's pointer. The comparator can\n   be a fully consistent order. `SkipMap` cursors are not affected.\n\nNo miscompilation has been observed in an optimised build. A future compiler\nmay still optimise on the violated aliasing assumptions.\n\nThe flaws were corrected in 1.3.0. Each fix derives the pointer used for\nmutation from the collection's long-lived allocation pointers, and each has a\nMiri regression test.",
+  "severity": [
+    {
+      "type": "CVSS_V4",
+      "score": "CVSS:4.0/AV:L/AC:L/AT:P/PR:N/UI:N/VC:L/VI:L/VA:L/SC:N/SI:N/SA:N"
+    }
+  ],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "skiplist",
+        "purl": "pkg:cargo/skiplist"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": [
+            "skiplist::ordered_skip_list::OrderedSkipList::append",
+            "skiplist::ordered_skip_list::OrderedSkipList::lower_bound_mut",
+            "skiplist::ordered_skip_list::OrderedSkipList::split_off",
+            "skiplist::ordered_skip_list::OrderedSkipList::split_off_index",
+            "skiplist::ordered_skip_list::OrderedSkipList::upper_bound_mut",
+            "skiplist::skip_list::SkipList::append",
+            "skiplist::skip_list::SkipList::iter_mut",
+            "skiplist::skip_list::SkipList::range_mut",
+            "skiplist::skip_list::SkipList::split_off",
+            "skiplist::skip_map::SkipMap::append",
+            "skiplist::skip_map::SkipMap::iter_mut",
+            "skiplist::skip_map::SkipMap::range_mut",
+            "skiplist::skip_map::SkipMap::split_off",
+            "skiplist::skip_map::SkipMap::values_mut",
+            "skiplist::skip_set::SkipSet::append",
+            "skiplist::skip_set::SkipSet::lower_bound_mut",
+            "skiplist::skip_set::SkipSet::split_off",
+            "skiplist::skip_set::SkipSet::split_off_index",
+            "skiplist::skip_set::SkipSet::upper_bound_mut"
+          ]
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "memory-corruption"
+        ],
+        "cvss": "CVSS:4.0/AV:L/AC:L/AT:P/PR:N/UI:N/VC:L/VI:L/VA:L/SC:N/SI:N/SA:N",
+        "informational": "unsound"
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "1.3.0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/skiplist"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0408.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/JP-Ellis/rust-skiplist/pull/407"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}

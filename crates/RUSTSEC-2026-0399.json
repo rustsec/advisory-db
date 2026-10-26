@@ -1,0 +1,72 @@
+{
+  "id": "RUSTSEC-2026-0399",
+  "modified": "2026-10-26T13:45:01Z",
+  "published": "2026-10-16T12:00:00Z",
+  "aliases": [],
+  "related": [],
+  "summary": "Use-after-free through `init_using_cdict` and `init_using_ddict`",
+  "details": "`CCtx::init_using_cdict` and `DCtx::init_using_ddict` (`experimental`\nfeature, deprecated) took the dictionary as `&CDict<'b>` and `&DDict<'b>`\nwith only `'b: 'a`, so the dictionary itself could be dropped while the\ncontext still pointed at it. The same mistake in other constructors was\nfixed earlier (<https://github.com/gyscos/zstd-rs/issues/365>).\n\nThe flaw was corrected by taking `&'a CDict<'b>` and `&'a DDict<'b>`.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "zstd-safe",
+        "purl": "pkg:cargo/zstd-safe"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": [
+            "zstd_safe::CCtx::init_using_cdict",
+            "zstd_safe::DCtx::init_using_ddict"
+          ]
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "memory-corruption"
+        ],
+        "cvss": null,
+        "informational": "unsound"
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "3.0.0"
+            },
+            {
+              "fixed": "8.2.0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/zstd-safe"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0399.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/gyscos/zstd-rs/commit/e00e7928e3e98953fc43418af6d73f6aae2378fb"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/gyscos/zstd-rs/pull/384"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}

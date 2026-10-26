@@ -1,0 +1,71 @@
+{
+  "id": "RUSTSEC-2026-0397",
+  "modified": "2026-10-26T13:45:01Z",
+  "published": "2026-10-16T12:00:00Z",
+  "aliases": [],
+  "related": [],
+  "summary": "`OutBuffer::around_pos` exposes uninitialized memory",
+  "details": "`OutBuffer::around_pos` accepted a position past the initialized length of a\n`Vec<u8>`. The next streaming call then marked everything before the\nposition as initialized, so safe code could read stale heap memory between\nthe vector's previous length and that position.\n\nThe flaw was corrected by zero-filling that gap.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "zstd-safe",
+        "purl": "pkg:cargo/zstd-safe"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": [
+            "zstd_safe::OutBuffer::around_pos"
+          ]
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "memory-exposure"
+        ],
+        "cvss": null,
+        "informational": "unsound"
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "4.0.0"
+            },
+            {
+              "fixed": "8.2.0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/zstd-safe"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0397.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/gyscos/zstd-rs/commit/5827de2459b8ac430e87e860f00c7f3c13023833"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/gyscos/zstd-rs/pull/384"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}

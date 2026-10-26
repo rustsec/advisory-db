@@ -1,0 +1,77 @@
+{
+  "id": "RUSTSEC-2026-0406",
+  "modified": "2026-10-26T13:45:01Z",
+  "published": "2026-10-16T12:00:00Z",
+  "aliases": [],
+  "related": [],
+  "summary": "Use-after-free when changing a multithreaded context with an unfinished frame",
+  "details": "When a multithreaded frame (`zstdmt` feature, `CParameter::NbWorkers`) is\nleft unfinished, its jobs may still be running on the worker threads: the C\nlibrary only waits for them when the next frame starts, or when the context\nis freed. A session reset makes the context accept changes again in the\nmeantime, so:\n\n- unloading the dictionary (`load_dictionary`, `ref_cdict`, `ref_prefix`,\n  `disable_dictionary`, `init*`, or `reset` with parameters) freed the\n  dictionary a worker was still compressing against;\n- changing `NbWorkers` made the next frame resize the job table before\n  waiting for the old jobs.\n\nThe flaw was corrected by refusing these calls while a multithreaded frame\nis unfinished. The new `CCtx::wait_for_workers()` waits for the workers\nfirst.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "zstd-safe",
+        "purl": "pkg:cargo/zstd-safe"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": [
+            "zstd_safe::CCtx::disable_dictionary",
+            "zstd_safe::CCtx::init",
+            "zstd_safe::CCtx::load_dictionary",
+            "zstd_safe::CCtx::ref_cdict",
+            "zstd_safe::CCtx::ref_prefix",
+            "zstd_safe::CCtx::reset",
+            "zstd_safe::CCtx::set_parameter"
+          ]
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "memory-corruption"
+        ],
+        "cvss": null,
+        "informational": "unsound"
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "8.2.0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/zstd-safe"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0406.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/gyscos/zstd-rs/commit/e224018a2389915d68ed17f30109bebad36e9734"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/gyscos/zstd-rs/pull/384"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "id": "RUSTSEC-2026-0396",
+  "modified": "2026-10-26T13:45:01Z",
+  "published": "2026-10-16T12:00:00Z",
+  "aliases": [],
+  "related": [],
+  "summary": "`Seekable` reads a NULL or out-of-bounds seek table",
+  "details": "`Seekable` did not record whether it was initialized. On a fresh `Seekable`,\nor one whose `init_buff()` failed, `decompress`, `offset_to_frame_index` and\n`frame_decompressed_size` made the C library read a NULL seek table. After a\nfailed re-initialization, `decompress` returned data from the refused buffer\nusing the previous seek table.\n\nSeparately, `frame_decompressed_size(num_frames())`, on `Seekable` and\n`SeekTable`, read one entry past the end of the seek table.\n\nThe flaw was corrected by refusing to use a `Seekable` until an\ninitialization succeeded, and by checking the frame index.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "zstd-safe",
+        "purl": "pkg:cargo/zstd-safe"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": [
+            "zstd_safe::seekable::SeekTable::frame_decompressed_size",
+            "zstd_safe::seekable::Seekable::decompress",
+            "zstd_safe::seekable::Seekable::decompress_frame",
+            "zstd_safe::seekable::Seekable::frame_decompressed_size",
+            "zstd_safe::seekable::Seekable::offset_to_frame_index"
+          ]
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "memory-corruption"
+        ],
+        "cvss": null,
+        "informational": "unsound"
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "7.2.2"
+            },
+            {
+              "fixed": "8.2.0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/zstd-safe"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0396.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/gyscos/zstd-rs/commit/a9626069d6f2e90b782b8f627f57a361cfe8ef85"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/gyscos/zstd-rs/pull/384"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
