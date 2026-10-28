@@ -67,73 +67,6 @@
     }
   },
   {
-    "id": "RUSTSEC-2026-0113",
-    "modified": "2026-10-12T17:47:59Z",
-    "published": "2026-04-27T12:00:00Z",
-    "aliases": [
-      "GHSA-xx64-wwv2-hcqq"
-    ],
-    "related": [],
-    "summary": "`unpack_in` can chmod arbitrary directories by following symlinks",
-    "details": "In versions 0.6.0 and earlier of astral-tokio-tar, the unpack_in API could\ninadvertently modify the permissions of external (i.e. non-archive) directories\noutside of the archive. An attacker could use this to contrite a tar archive\nthat maliciously changes directory permissions outside of its intended\nhierarchy. This flaw only affects directories; individual file permissions\ncannot be modified via it.\n\nSee GHSA-j4xf-2g29-59ph for the equivalent flaw in the tar crate.",
-    "severity": [],
-    "affected": [
-      {
-        "package": {
-          "ecosystem": "crates.io",
-          "name": "astral-tokio-tar",
-          "purl": "pkg:cargo/astral-tokio-tar"
-        },
-        "ecosystem_specific": {
-          "affects": {
-            "arch": [],
-            "os": [],
-            "functions": []
-          },
-          "affected_functions": null
-        },
-        "database_specific": {
-          "categories": [
-            "file-disclosure"
-          ],
-          "cvss": null,
-          "informational": null
-        },
-        "ranges": [
-          {
-            "type": "SEMVER",
-            "events": [
-              {
-                "introduced": "0.0.0-0"
-              },
-              {
-                "fixed": "0.6.1"
-              }
-            ]
-          }
-        ],
-        "versions": []
-      }
-    ],
-    "references": [
-      {
-        "type": "PACKAGE",
-        "url": "https://crates.io/crates/astral-tokio-tar"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0113.html"
-      },
-      {
-        "type": "WEB",
-        "url": "https://github.com/astral-sh/tokio-tar/commit/f1fa37043a6fe798dcd1fd4b3000d889ac35b183"
-      }
-    ],
-    "database_specific": {
-      "license": "CC0-1.0"
-    }
-  },
-  {
     "id": "RUSTSEC-2026-0112",
     "modified": "2026-10-12T17:47:59Z",
     "published": "2026-04-27T12:00:00Z",
@@ -194,6 +127,73 @@
       {
         "type": "WEB",
         "url": "https://github.com/astral-sh/tokio-tar/commit/6f4f9ebc180f4d39d66d9c584a3796c0b9ae34c1"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2026-0113",
+    "modified": "2026-10-12T17:47:59Z",
+    "published": "2026-04-27T12:00:00Z",
+    "aliases": [
+      "GHSA-xx64-wwv2-hcqq"
+    ],
+    "related": [],
+    "summary": "`unpack_in` can chmod arbitrary directories by following symlinks",
+    "details": "In versions 0.6.0 and earlier of astral-tokio-tar, the unpack_in API could\ninadvertently modify the permissions of external (i.e. non-archive) directories\noutside of the archive. An attacker could use this to contrite a tar archive\nthat maliciously changes directory permissions outside of its intended\nhierarchy. This flaw only affects directories; individual file permissions\ncannot be modified via it.\n\nSee GHSA-j4xf-2g29-59ph for the equivalent flaw in the tar crate.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "astral-tokio-tar",
+          "purl": "pkg:cargo/astral-tokio-tar"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "file-disclosure"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.6.1"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/astral-tokio-tar"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0113.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/astral-sh/tokio-tar/commit/f1fa37043a6fe798dcd1fd4b3000d889ac35b183"
       }
     ],
     "database_specific": {
