@@ -1,5 +1,948 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2026-10-28T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2026-0414: Vulnerability in pulldown-cmark</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0414.html</id><updated>2026-10-28T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0414.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0414: Vulnerability in pulldown-cmark"/><published>2026-10-28T12:00:00+00:00</published><summary xml:lang="en">Exponential event growth with `ENABLE_WIKILINKS`</summary><content xml:lang="en" type="html">  &lt;article&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2026-10-29T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2026-0415: Vulnerability in juniper_hyper</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0415.html</id><updated>2026-10-29T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0415.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0415: Vulnerability in juniper_hyper"/><published>2026-10-29T12:00:00+00:00</published><summary xml:lang="en">Unbounded memory use on large request bodies</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/juniper_hyper/RUSTSEC-2026-0415.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/juniper_hyper/RUSTSEC-2026-0415.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0415&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0415
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Unbounded memory use on large request bodies&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-28&quot;&gt;
+          October 28, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-29&quot;&gt;
+          October 29, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/juniper_hyper.html&quot;&gt;juniper_hyper&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/juniper_hyper&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/graphql.html&quot;&gt;#graphql&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/http.html&quot;&gt;#http&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/memory.html&quot;&gt;#memory&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-pfrg-qg4f-grmv&quot;&gt;GHSA-pfrg-qg4f-grmv&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/graphql-rust/juniper/pull/1405&quot;&gt;
+              https://github.com/graphql-rust/juniper/pull/1405
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;7.5 &lt;span class=&quot;tag high&quot;&gt;
+        HIGH
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Network&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.10.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;The &lt;code&gt;graphql()&lt;/code&gt; and &lt;code&gt;graphql_sync()&lt;/code&gt; functions of &lt;code&gt;juniper_hyper&lt;/code&gt; read the whole body of a POST request into memory before they parsed the body. The functions had no limit on the size of the body. A client could thus send a large body and exhaust the memory of the server. The request needs no authentication.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;juniper_hyper&lt;/code&gt; 0.10.1 reads at most 2 MiB of a request body by default. The functions respond with &lt;code&gt;413 Payload Too Large&lt;/code&gt; to larger bodies. A &lt;code&gt;juniper_hyper::BodyLimit&lt;/code&gt; in the extensions of a request changes the limit for the request.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0417: Vulnerability in juniper</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0417.html</id><updated>2026-10-29T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0417.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0417: Vulnerability in juniper"/><published>2026-10-29T12:00:00+00:00</published><summary xml:lang="en">Excessive CPU and memory use on crafted GraphQL documents</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/juniper/RUSTSEC-2026-0417.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/juniper/RUSTSEC-2026-0417.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0417&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0417
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Excessive CPU and memory use on crafted GraphQL documents&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-28&quot;&gt;
+          October 28, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-29&quot;&gt;
+          October 29, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/juniper.html&quot;&gt;juniper&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/juniper&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/graphql.html&quot;&gt;#graphql&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/validation.html&quot;&gt;#validation&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/fragments.html&quot;&gt;#fragments&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/complexity.html&quot;&gt;#complexity&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-36rq-8957-mjrx&quot;&gt;GHSA-36rq-8957-mjrx&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/graphql-rust/juniper/pull/1405&quot;&gt;
+              https://github.com/graphql-rust/juniper/pull/1405
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;7.5 &lt;span class=&quot;tag high&quot;&gt;
+        HIGH
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Network&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.17.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Several parts of &lt;code&gt;juniper&lt;/code&gt; did work that grew faster than the size of the GraphQL document. A small document could thus use seconds of CPU time or gigabytes of memory. The requests need no authentication.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;OverlappingFieldsCanBeMerged&lt;/code&gt; compared all pairs of fields with the same response name. The rule also reported one error for each pair of conflicting fields.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;NoFragmentCycles&lt;/code&gt; and &lt;code&gt;OverlappingFieldsCanBeMerged&lt;/code&gt; visited a fragment again for each path that spread the fragment. Validation time thus doubled with each fragment that spread the next fragment twice.&lt;/li&gt;
+&lt;li&gt;Execution resolved the fields of a fragment once for each spread of the fragment. A document of 1.2 KB could expand into a billion fields.&lt;/li&gt;
+&lt;li&gt;The parser removed each token from the front of a vector. Parsing time thus grew with the square of the number of tokens.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;juniper&lt;/code&gt; 0.17.2 fixes the issues. The parser rejects documents with more than 15,000 tokens and operations with more than 15,000 fields after the expansion of fragments. The validation rules visit each fragment once. &lt;code&gt;OverlappingFieldsCanBeMerged&lt;/code&gt; stops after 100,000 field comparisons and reports at most 100 conflicts. &lt;code&gt;RootNode::limit_tokens()&lt;/code&gt; and &lt;code&gt;RootNode::limit_fields()&lt;/code&gt; change the limits.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0416: Vulnerability in juniper</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0416.html</id><updated>2026-10-29T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0416.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0416: Vulnerability in juniper"/><published>2026-10-29T12:00:00+00:00</published><summary xml:lang="en">Stack overflow on deeply nested GraphQL documents</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/juniper/RUSTSEC-2026-0416.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/juniper/RUSTSEC-2026-0416.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0416&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0416
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Stack overflow on deeply nested GraphQL documents&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-28&quot;&gt;
+          October 28, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-29&quot;&gt;
+          October 29, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/juniper.html&quot;&gt;juniper&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/juniper&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/graphql.html&quot;&gt;#graphql&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/stack-overflow.html&quot;&gt;#stack-overflow&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/recursion.html&quot;&gt;#recursion&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-34cw-x8g7-rcv5&quot;&gt;GHSA-34cw-x8g7-rcv5&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/graphql-rust/juniper/pull/1405&quot;&gt;
+              https://github.com/graphql-rust/juniper/pull/1405
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;7.5 &lt;span class=&quot;tag high&quot;&gt;
+        HIGH
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Network&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.17.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;The parser of &lt;code&gt;juniper&lt;/code&gt; called itself once for each level of nesting in a GraphQL document. The parser had no limit on the nesting depth. Deeply nested selection sets, input values, and list types thus overflowed the stack of the thread that parsed the document. Validation and execution followed fragment spreads in the same recursive way. Long chains of fragment spreads thus overflowed the stack in validation and execution.&lt;/p&gt;
+&lt;p&gt;A stack overflow aborts the whole process. One request can thus stop a server and drop all other requests in progress. The request needs no authentication.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;juniper&lt;/code&gt; 0.17.2 rejects documents that nest deeper than 64 levels or contain more than 15,000 tokens. &lt;code&gt;RootNode::limit_depth()&lt;/code&gt; and &lt;code&gt;RootNode::limit_tokens()&lt;/code&gt; change the limits.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0418: Vulnerability in libz-sys</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0418.html</id><updated>2026-10-29T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0418.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0418: Vulnerability in libz-sys"/><published>2026-10-29T12:00:00+00:00</published><summary xml:lang="en">libz-sys build script leaks environment variables in the build directory</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/libz-sys/RUSTSEC-2026-0418.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/libz-sys/RUSTSEC-2026-0418.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0418&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0418
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;libz-sys build script leaks environment variables in the build directory&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-28&quot;&gt;
+          October 28, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-29&quot;&gt;
+          October 29, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/libz-sys.html&quot;&gt;libz-sys&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/libz-sys&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/build-script.html&quot;&gt;#build-script&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/environment.html&quot;&gt;#environment&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/secrets.html&quot;&gt;#secrets&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-8p3x-q3q3-q3v5&quot;&gt;GHSA-8p3x-q3q3-q3v5&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/rust-lang/libz-sys/pull/280&quot;&gt;
+              https://github.com/rust-lang/libz-sys/pull/280
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=1.1.31&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.0.21&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;The build script of &lt;code&gt;libz-sys&lt;/code&gt; version &amp;lt;= 1.1.30 prints the full environment
+of the build, including any secrets it contains, to its stdout when compiled
+with &lt;code&gt;cc@1.6.0&lt;/code&gt; or later on a Unix host. This affects any build that depends on
+&lt;code&gt;libz-sys&lt;/code&gt;. Cargo saves build script stdout under &lt;code&gt;target/&lt;/code&gt;, so the values end
+up in anything that stores or shares the &lt;code&gt;target/&lt;/code&gt; directory, such as CI caches.&lt;/p&gt;
+&lt;p&gt;This is similar to the &lt;a href=&quot;https://blog.rust-lang.org/2026/09/21/github-actions-leaking-secrets-when-miri-output-is-cached/&quot;&gt;Miri issue&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Details&lt;/h2&gt;
+&lt;p&gt;To decide whether to link against a system zlib, the &lt;code&gt;libz-sys&lt;/code&gt; build script
+compiles a small test program with a compiler command from &lt;code&gt;cc&lt;/code&gt; and logs it
+with:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-rust&quot;&gt;println!(&amp;quot;running {:?}&amp;quot;, cmd);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;On Unix, &lt;code&gt;Debug&lt;/code&gt; impl for &lt;code&gt;std::process::Command&lt;/code&gt; prints every environment
+variable explicitly set on the command. Before &lt;code&gt;cc@1.6.0&lt;/code&gt;, its
+&lt;code&gt;Tool::to_command()&lt;/code&gt; set only a few compiler-specific variables. Starting with
+&lt;code&gt;cc@1.6.0&lt;/code&gt; (released 2026-10-03), &lt;code&gt;Tool::to_command()&lt;/code&gt; clears the environment
+and sets every variable explicitly.&lt;/p&gt;
+&lt;p&gt;Cargo parses build script stdout for &lt;code&gt;cargo:&lt;/code&gt; directives, and stores the full
+output in the build directory. It also prints it with &lt;code&gt;-vv&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The probe runs for a default &lt;code&gt;libz-sys&lt;/code&gt; build, including when pkg-config finds
+zlib, unless one of these applies:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;the target is Windows, Android, Haiku or OpenHarmony&lt;/li&gt;
+&lt;li&gt;static linking is requested via the &lt;code&gt;static&lt;/code&gt; feature or &lt;code&gt;LIBZ_SYS_STATIC=1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;the &lt;code&gt;zlib-ng&lt;/code&gt; features are enabled without &lt;code&gt;stock-zlib&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Mitigations&lt;/h2&gt;
+&lt;p&gt;Fixed in &lt;code&gt;libz-sys@1.1.31&lt;/code&gt;, which no longer logs the probe command.&lt;/p&gt;
+&lt;p&gt;If you cannot upgrade, here are some workarounds:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Build with &lt;code&gt;LIBZ_SYS_STATIC=1&lt;/code&gt; or the &lt;code&gt;static&lt;/code&gt; feature, which skips the probe.&lt;/li&gt;
+&lt;li&gt;Pin &lt;code&gt;cc&lt;/code&gt; to a release before 1.6.0 (&lt;code&gt;cargo update cc --precise &amp;lt;version&amp;gt;&lt;/code&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Note that upgrading &lt;code&gt;libz-sys&lt;/code&gt; does not remove values already written. If an
+affected build already ran with secrets in its environment, clear CI caches and
+stored artifacts containing its
+&lt;a href=&quot;https://doc.rust-lang.org/nightly/cargo/reference/build-cache.html#build-cache&quot;&gt;target/build directory&lt;/a&gt;,
+and consider rotating those secrets.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0419: Vulnerability in juniper_warp</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0419.html</id><updated>2026-10-29T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0419.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0419: Vulnerability in juniper_warp"/><published>2026-10-29T12:00:00+00:00</published><summary xml:lang="en">Unbounded memory use on large request bodies</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/juniper_warp/RUSTSEC-2026-0419.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/juniper_warp/RUSTSEC-2026-0419.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0419&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0419
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Unbounded memory use on large request bodies&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-29&quot;&gt;
+          October 29, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-29&quot;&gt;
+          October 29, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/juniper_warp.html&quot;&gt;juniper_warp&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/juniper_warp&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/graphql.html&quot;&gt;#graphql&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/http.html&quot;&gt;#http&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/memory.html&quot;&gt;#memory&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-fj3h-2jc3-973v&quot;&gt;GHSA-fj3h-2jc3-973v&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/graphql-rust/juniper/pull/1406&quot;&gt;
+              https://github.com/graphql-rust/juniper/pull/1406
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;7.5 &lt;span class=&quot;tag high&quot;&gt;
+        HIGH
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Network&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.9.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;The &lt;code&gt;make_graphql_filter()&lt;/code&gt; and &lt;code&gt;make_graphql_filter_sync()&lt;/code&gt; filters of &lt;code&gt;juniper_warp&lt;/code&gt; read the whole body of a POST request into memory before they parsed the body. The filters had no limit on the size of the body. A client could thus send a large body and exhaust the memory of the server. The request needs no authentication.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;juniper_warp&lt;/code&gt; 0.9.1 reads at most 2 MiB of a request body by default. The filters respond with &lt;code&gt;413 Payload Too Large&lt;/code&gt; to larger bodies. &lt;code&gt;make_graphql_filter_with_body_limit()&lt;/code&gt; and &lt;code&gt;make_graphql_filter_sync_with_body_limit()&lt;/code&gt; set another limit.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0414: Vulnerability in pulldown-cmark</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0414.html</id><updated>2026-10-28T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0414.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0414: Vulnerability in pulldown-cmark"/><published>2026-10-28T12:00:00+00:00</published><summary xml:lang="en">Exponential event growth with `ENABLE_WIKILINKS`</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
           &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/pulldown-cmark/RUSTSEC-2026-0414.md&quot;&gt;History&lt;/a&gt; ⋅
