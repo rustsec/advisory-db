@@ -1,0 +1,69 @@
+{
+  "id": "RUSTSEC-2026-0429",
+  "modified": "2026-11-02T09:50:37Z",
+  "published": "2026-10-22T12:00:00Z",
+  "aliases": [
+    "CVE-2026-115909",
+    "GHSA-q7v9-x93c-xqv3"
+  ],
+  "related": [],
+  "summary": "zip: `ZipArchive::extract` aborts the process on a symlink entry with a large declared size",
+  "details": "`ZipArchive::extract()` sizes the symlink-target buffer from the uncompressed\nsize declared in the central directory record, before reading a single byte of\nentry data:\n\n```rust\nlet mut target = Vec::with_capacity(file.size() as usize);\n```\n\nBoth inputs are attacker-controlled. `ZipFile::size()` returns\n`uncompressed_size` verbatim from the central directory, widened to a full `u64`\nby a ZIP64 extended-information extra field, and is never cross-checked against\nthe compressed size, the remaining archive length, or any platform-appropriate\nbound for a symlink target. `ZipFile::is_symlink()` is decided entirely by the\n`S_IFLNK` bit of the external-attributes field.\n\n`Vec::with_capacity()` is infallible: when the reservation is refused it calls\n`handle_alloc_error()` and aborts the process. This is not a Rust panic. It is\nnot caught by `catch_unwind()`, is unaffected by `panic = \"unwind\"`, and is not\ncontained by running the call on a worker thread.\n\nA 112-byte archive is sufficient. One `Stored` entry flagged `S_IFLNK` with a\nZIP64 field declaring `uncompressed_size = 2^62` and a zero-byte payload makes\n`extract()` fail with:\n\n```\nmemory allocation of 4611686018427387904 bytes failed\nAborted (core dumped)          # exit 134\n```\n\nThe declared value only needs to exceed the host's address space, not its RAM:\n`Vec::with_capacity()` maps address space without touching pages, so resident\nmemory stays flat and the abort happens on the refused reservation itself. Under\na `ulimit -v` cap or a memory-constrained container the threshold drops far\nenough that a plain 32-bit `uncompressed_size` with no ZIP64 field suffices.\n\nApplications that extract archives from untrusted input are affected on Unix and\nWindows targets with default features and no special configuration: upload\nhandling, mail-attachment processing, package and artefact ingestion, backup\nrestore and container-image layer extraction. No confidentiality or integrity\nproperty is affected: there is no memory unsafety, no out-of-bounds access, no\ndisclosure and no data corruption.\n\nThe fix landed in [zip-rs/zip2#984](https://github.com/zip-rs/zip2/pull/984) and\nshipped in 9.0.0.\n\nFor further details see: https://github.com/zip-rs/zip2/security/advisories/GHSA-q7v9-x93c-xqv3",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+    }
+  ],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "zip",
+        "purl": "pkg:cargo/zip"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "denial-of-service"
+        ],
+        "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "9.0.0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/zip"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0429.html"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
