@@ -1,5 +1,397 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2026-11-02T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2026-0429: Vulnerability in zip</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0429.html</id><updated>2026-11-02T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0429.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0429: Vulnerability in zip"/><published>2026-11-02T12:00:00+00:00</published><summary xml:lang="en">zip: `ZipArchive::extract` aborts the process on a symlink entry with a large declared size</summary><content xml:lang="en" type="html">  &lt;article&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2026-11-02T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2026-0432: Vulnerability in codeq</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0432.html</id><updated>2026-11-02T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0432.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0432: Vulnerability in codeq"/><published>2026-11-02T12:00:00+00:00</published><summary xml:lang="en">`codeq`: decoding untrusted input can allocate memory from an unchecked length prefix (denial of service)</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/codeq/RUSTSEC-2026-0432.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/codeq/RUSTSEC-2026-0432.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0432&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0432
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;codeq&lt;/code&gt;: decoding untrusted input can allocate memory from an unchecked length prefix (denial of service)&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-31&quot;&gt;
+          October 31, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-02&quot;&gt;
+          November  2, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/codeq.html&quot;&gt;codeq&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/codeq&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/denial-of-service.html&quot;&gt;#denial-of-service&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/allocation.html&quot;&gt;#allocation&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/untrusted-input.html&quot;&gt;#untrusted-input&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/oom.html&quot;&gt;#oom&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/drmingdrmer/codeq/issues/4&quot;&gt;
+              https://github.com/drmingdrmer/codeq/issues/4
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;5.3 &lt;span class=&quot;tag medium&quot;&gt;
+        MEDIUM
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Network&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.6.3&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;&lt;code&gt;codeq&lt;/code&gt; is a serialization library whose &lt;code&gt;Decode&lt;/code&gt; trait reads length-prefixed values. For &lt;code&gt;String&lt;/code&gt; and &lt;code&gt;Vec&amp;lt;u8&amp;gt;&lt;/code&gt;, the length-prefixed &lt;code&gt;Decode&lt;/code&gt; implementations read a 4-byte big-endian length and allocate a buffer of that size &lt;strong&gt;before&lt;/strong&gt; reading the payload. Because the declared length is taken straight from the input with no upper bound and no cross-check against the bytes actually available, a tiny input can force an allocation of up to ~4 GiB. Code that decodes untrusted data through &lt;code&gt;codeq&lt;/code&gt; can therefore be made to spike memory use and be OOM-killed (CWE-400, uncontrolled resource consumption).&lt;/p&gt;
+&lt;p&gt;The affected path, in &lt;code&gt;src/codec/impls/string_impl.rs&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-rust&quot;&gt;impl Decode for String {
+    fn decode&amp;lt;R: io::Read&amp;gt;(mut r: R) -&amp;gt; Result&amp;lt;Self, io::Error&amp;gt; {
+        let len = r.read_u32::&amp;lt;BigEndian&amp;gt;()? as usize;
+        let mut buf = vec![0; len];   // allocates `len` bytes up front
+        r.read_exact(&amp;amp;mut buf)?; 
+        String::from_utf8(buf).map_err(|e| io::Error::new(io::ErrorKind::InvalidData, e))
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Any code that decodes attacker-controlled bytes through &lt;code&gt;codeq&lt;/code&gt; can be forcedcto allocate up to ~4 GiB per &lt;code&gt;decode&lt;/code&gt; call from a 4-byte length prefix. On a service decoding untrusted input this is a cheap denial of service (crash / OOM-kill). The practical severity depends on how the embedding wires &lt;code&gt;codeq&lt;/code&gt; to untrusted bytes.&lt;/p&gt;
+&lt;h2&gt;Remediation&lt;/h2&gt;
+&lt;p&gt;Fixed in &lt;code&gt;0.6.3&lt;/code&gt;, which grows the decode buffers as payload bytes actually arrive instead of pre-allocating the full declared length (commit &lt;code&gt;9f15313&lt;/code&gt;, &amp;quot;fix: codec: grow decode buffers as payload bytes arrive&amp;quot;). Upgrade to &lt;code&gt;codeq &amp;gt;= 0.6.3&lt;/code&gt;.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0433: Vulnerability in pulldown-cmark</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0433.html</id><updated>2026-11-02T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0433.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0433: Vulnerability in pulldown-cmark"/><published>2026-11-02T12:00:00+00:00</published><summary xml:lang="en">Quadratic parsing of nested image wikilinks with `ENABLE_WIKILINKS`</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/pulldown-cmark/RUSTSEC-2026-0433.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/pulldown-cmark/RUSTSEC-2026-0433.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0433&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0433
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Quadratic parsing of nested image wikilinks with &lt;code&gt;ENABLE_WIKILINKS&lt;/code&gt;&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-28&quot;&gt;
+          October 28, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-02&quot;&gt;
+          November  2, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/pulldown-cmark.html&quot;&gt;pulldown-cmark&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/pulldown-cmark&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/markdown.html&quot;&gt;#markdown&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/wikilinks.html&quot;&gt;#wikilinks&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/memory-exhaustion.html&quot;&gt;#memory-exhaustion&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/pulldown-cmark/pulldown-cmark/pull/1186&quot;&gt;
+              https://github.com/pulldown-cmark/pulldown-cmark/pull/1186
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/pulldown-cmark/pulldown-cmark/pull/1186&quot;&gt;
+              https://github.com/pulldown-cmark/pulldown-cmark/pull/1186
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;7.5 &lt;span class=&quot;tag high&quot;&gt;
+        HIGH
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Network&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.13.6&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.13.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;With &lt;code&gt;Options::ENABLE_WIKILINKS&lt;/code&gt;, handle_wikilink builds a wikilink&apos;s target
+from the raw text of its body: scan_wikilink_pipe walks it looking for |, then
+contains(&apos;\0&apos;) and from_replace_nuls walk it again.
+Once a wikilink is created, disable_all_links only disables Link entries, so
+every enclosing &lt;code&gt;![[&lt;/code&gt; stays live on the wikilink stack.
+On &lt;code&gt;![[![[![[…]]]]]]&lt;/code&gt; each of those openers then resolves in turn and rescans
+everything inside it, which is quadratic in the nesting depth.
+The event count stays tiny, because in the unpiped case each enclosing image
+replaces its body with a fresh text node, so all of that work is thrown away.&lt;/p&gt;
+&lt;p&gt;Applications that parse untrusted Markdown with &lt;code&gt;ENABLE_WIKILINKS&lt;/code&gt; set,
+including through &lt;code&gt;Options::all()&lt;/code&gt;, are affected. The option is off by default.
+Parsing without it is not affected.&lt;/p&gt;
+&lt;p&gt;The flaw was fixed in
+&lt;a href=&quot;https://github.com/pulldown-cmark/pulldown-cmark/pull/1186&quot;&gt;#1186&lt;/a&gt; and
+released in 0.13.6.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0429: Vulnerability in zip</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0429.html</id><updated>2026-11-02T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0429.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0429: Vulnerability in zip"/><published>2026-11-02T12:00:00+00:00</published><summary xml:lang="en">zip: `ZipArchive::extract` aborts the process on a symlink entry with a large declared size</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
           &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/zip/RUSTSEC-2026-0429.md&quot;&gt;History&lt;/a&gt; ⋅
@@ -207,6 +599,211 @@ disclosure and no data corruption.&lt;/p&gt;
 &lt;p&gt;The fix landed in &lt;a href=&quot;https://github.com/zip-rs/zip2/pull/984&quot;&gt;zip-rs/zip2#984&lt;/a&gt; and
 shipped in 9.0.0.&lt;/p&gt;
 &lt;p&gt;For further details see: https://github.com/zip-rs/zip2/security/advisories/GHSA-q7v9-x93c-xqv3&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0434: Vulnerability in ant-releases</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0434.html</id><updated>2026-11-02T12:00:00+00:00</updated><category term="code-execution"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0434.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0434: Vulnerability in ant-releases"/><published>2026-11-02T12:00:00+00:00</published><summary xml:lang="en">`ant-releases`: extracting a release archive can write files outside the destination directory (path traversal / zip-slip)</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/ant-releases/RUSTSEC-2026-0434.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/ant-releases/RUSTSEC-2026-0434.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0434&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0434
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;ant-releases&lt;/code&gt;: extracting a release archive can write files outside the destination directory (path traversal / zip-slip)&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-31&quot;&gt;
+          October 31, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-02&quot;&gt;
+          November  2, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/ant-releases.html&quot;&gt;ant-releases&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/ant-releases&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/code-execution.html&quot;&gt;code-execution&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/path-traversal.html&quot;&gt;#path-traversal&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/directory-traversal.html&quot;&gt;#directory-traversal&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/zip-slip.html&quot;&gt;#zip-slip&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/arbitrary-file-write.html&quot;&gt;#arbitrary-file-write&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/maidsafe/ant-releases&quot;&gt;
+              https://github.com/maidsafe/ant-releases
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;8.2 &lt;span class=&quot;tag high&quot;&gt;
+        HIGH
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Network&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;Required&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Changed&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:H/A:N&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:H/A:N&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;ant_releases::AntReleaseRepoActions::extract_release_archive&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;=0.4.3&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;&lt;code&gt;ant-releases&lt;/code&gt; downloads and unpacks release archives from the &lt;code&gt;safe_network&lt;/code&gt; / &lt;code&gt;autonomi&lt;/code&gt; repositories. When it extracts an archive, it builds each output path by joining the archive entry&apos;s &lt;strong&gt;own name&lt;/strong&gt; onto the destination directory, with no check
+for &lt;code&gt;..&lt;/code&gt; or absolute components — a classic &amp;quot;zip-slip&amp;quot; path traversal (CWE-22 / CWE-23). A crafted archive can therefore create or overwrite files outside the intended extraction directory.&lt;/p&gt;
+&lt;p&gt;In &lt;code&gt;extract_release_archive&lt;/code&gt; (&lt;code&gt;src/lib.rs&lt;/code&gt;), the ZIP branch does:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-rust&quot;&gt;let out_path = dest_dir_path.join(file.name());   // raw zip entry name, no containment check
+if file.name().ends_with(&apos;/&apos;) {
+    std::fs::create_dir_all(&amp;amp;out_path)?;          // dir created outside dest_dir
+} else {
+    let mut outfile = std::fs::File::create(&amp;amp;out_path)?;   // file written outside dest_dir
+    std::io::copy(&amp;amp;mut file, &amp;amp;mut outfile)?;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Proof of concept&lt;/h2&gt;
+&lt;p&gt;A one-entry ZIP whose entry name is &lt;code&gt;../foo_pwned.txt&lt;/code&gt;, passed to &lt;code&gt;AntReleaseRepoActions::extract_release_archive&lt;/code&gt; (obtained via the crate&apos;s public &lt;code&gt;&amp;lt;dyn AntReleaseRepoActions&amp;gt;::default_config()&lt;/code&gt;), writes &lt;code&gt;foo_pwned.txt&lt;/code&gt; as a sibling of
+the destination directory, outside it. Confirmed against the published &lt;code&gt;0.4.3&lt;/code&gt; crate.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
