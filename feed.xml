@@ -214,6 +214,457 @@ shipped in 9.0.0.&lt;/p&gt;
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0430: Vulnerability in rio-vt</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0430.html</id><updated>2026-11-02T12:00:00+00:00</updated><category term="file-disclosure"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0430.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0430: Vulnerability in rio-vt"/><published>2026-11-02T12:00:00+00:00</published><summary xml:lang="en">Path traversal in `rio-vt` Kitty graphics protocol handler allows out-of-bounds file delete (and read)</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/rio-vt/RUSTSEC-2026-0430.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/rio-vt/RUSTSEC-2026-0430.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0430&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0430
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Path traversal in &lt;code&gt;rio-vt&lt;/code&gt; Kitty graphics protocol handler allows out-of-bounds file delete (and read)&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-01&quot;&gt;
+          November  1, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-02&quot;&gt;
+          November  2, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/rio-vt.html&quot;&gt;rio-vt&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/rio-vt&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/file-disclosure.html&quot;&gt;file-disclosure&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/path-traversal.html&quot;&gt;#path-traversal&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/kitty-graphics-protocol.html&quot;&gt;#kitty-graphics-protocol&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/file-disclosure.html&quot;&gt;#file-disclosure&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/terminal.html&quot;&gt;#terminal&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/raphamorim/rio/security/advisories/GHSA-m926-9wrf-jr8w&quot;&gt;
+              https://github.com/raphamorim/rio/security/advisories/GHSA-m926-9wrf-jr8w
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/raphamorim/rio/pull/1998&quot;&gt;
+              https://github.com/raphamorim/rio/pull/1998
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;4.7 &lt;span class=&quot;tag medium&quot;&gt;
+        MEDIUM
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Local&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;Required&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:L/AC:H/PR:N/UI:R/S:U/C:N/I:H/A:N&quot;&gt;CVSS:3.1/AV:L/AC:H/PR:N/UI:R/S:U/C:N/I:H/A:N&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.5.29&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;rio_vt::ansi::kitty_graphics_protocol::parse&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;=0.5.28&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;The Kitty graphics protocol handler in &lt;code&gt;rio-vt&lt;/code&gt; builds a filesystem path from an attacker-controlled APC escape sequence and, for the temp-file medium, only checks that the path &lt;em&gt;contains the substring&lt;/em&gt; &lt;code&gt;&amp;quot;tty-graphics-protocol&amp;quot;&lt;/code&gt; before it opens, reads, and &lt;code&gt;remove_file&lt;/code&gt;s it. There is no &lt;code&gt;..&lt;/code&gt; rejection and no canonicalization, so a path containing the marker substring plus &lt;code&gt;..&lt;/code&gt; escapes the terminal&apos;s temp directory (path traversal, CWE-22/CWE-23).&lt;/p&gt;
+&lt;p&gt;Because a terminal renders whatever arrives on the PTY (ssh output, a &lt;code&gt;cat&lt;/code&gt;&apos;d file, CI logs), untrusted output can delete a file outside the temp area and cause its bytes to be read back in.&lt;/p&gt;
+&lt;h2&gt;Details&lt;/h2&gt;
+&lt;p&gt;The sink is &lt;code&gt;create_graphic_data()&lt;/code&gt; in &lt;code&gt;src/ansi/kitty_graphics_protocol.rs&lt;/code&gt;, in the &lt;code&gt;TransmissionMedium::TempFile&lt;/code&gt; branch, reachable through the public API &lt;code&gt;rio_vt::ansi::kitty_graphics_protocol::parse&lt;/code&gt;. The path is the base64 APC payload of an &lt;code&gt;a=t,t=t&lt;/code&gt; command, and the guard is:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-rust&quot;&gt;let path = Path::new(path_str);
+if !path.is_file() { return Err(GraphicError::FileNotFound); }       // literal path, resolves `..`
+// reject /proc/ /sys/ /dev/ (lowercased substring)
+if cmd.medium == TransmissionMedium::TempFile
+    &amp;amp;&amp;amp; !path_str.contains(&amp;quot;tty-graphics-protocol&amp;quot;) {                 // SUBSTRING, not a component
+    return Err(GraphicError::InvalidData);
+}
+// ...
+let mut file = File::open(path)...;          // reads file bytes
+if cmd.medium == TransmissionMedium::TempFile {
+    let _ = std::fs::remove_file(path);      // deletes the file
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This affects any terminal emulator or application built on &lt;code&gt;rio-vt&lt;/code&gt; (e.g. the Rio terminal) that renders attacker-influenced output: an out-of-bounds file is deleted, and its contents are read into the process.&lt;/p&gt;
+&lt;h2&gt;The fix&lt;/h2&gt;
+&lt;p&gt;Fixed in &lt;code&gt;rio-vt&lt;/code&gt; 0.5.29 (Rio 0.5.29) by &lt;a href=&quot;https://github.com/raphamorim/rio/pull/1998&quot;&gt;PR #1998&lt;/a&gt;. For the temp-file medium the parent directory is resolved with &lt;code&gt;canonicalize&lt;/code&gt; before any check, the resolved entry must lie inside a temp directory (&lt;code&gt;temp_dir()&lt;/code&gt;, &lt;code&gt;/tmp&lt;/code&gt; or &lt;code&gt;/dev/shm&lt;/code&gt;) and contain the marker, and the delete goes through &lt;code&gt;unlinkat&lt;/code&gt; on a handle to the validated directory, so neither &lt;code&gt;..&lt;/code&gt; nor a swapped symlink can redirect it. Path checks for the file medium also run on the file actually opened.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0431: Vulnerability in evtx</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0431.html</id><updated>2026-11-02T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0431.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0431: Vulnerability in evtx"/><published>2026-11-02T12:00:00+00:00</published><summary xml:lang="en">Unbounded memory allocation in `evtx` parsing a `.wevtcache` file</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/evtx/RUSTSEC-2026-0431.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/evtx/RUSTSEC-2026-0431.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0431&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0431
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Unbounded memory allocation in &lt;code&gt;evtx&lt;/code&gt; parsing a &lt;code&gt;.wevtcache&lt;/code&gt; file&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-01&quot;&gt;
+          November  1, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-02&quot;&gt;
+          November  2, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/evtx.html&quot;&gt;evtx&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/evtx&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/parsing.html&quot;&gt;#parsing&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/denial-of-service.html&quot;&gt;#denial-of-service&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/allocation.html&quot;&gt;#allocation&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/wevtcache.html&quot;&gt;#wevtcache&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/omerbenamram/evtx/issues/334&quot;&gt;
+              https://github.com/omerbenamram/evtx/issues/334
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/omerbenamram/evtx/pull/335&quot;&gt;
+              https://github.com/omerbenamram/evtx/pull/335
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;5.5 &lt;span class=&quot;tag medium&quot;&gt;
+        MEDIUM
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Local&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;Required&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H&quot;&gt;CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.15.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.11.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;evtx::wevt_templates::wevtcache::WevtCacheReader::next_entry&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.11.0, &amp;#60;0.15.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;evtx::wevt_templates::wevtcache::for_each_crim_blob&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.11.0, &amp;#60;0.15.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Affected versions of &lt;code&gt;evtx&lt;/code&gt; did not bound a per-entry payload length read from a &lt;code&gt;.wevtcache&lt;/code&gt; file before allocating a buffer sized from it, allowing a tiny crafted file to force a multi-gigabyte allocation and abort the process (out-of-memory denial of service, CWE-400).&lt;/p&gt;
+&lt;h2&gt;Details&lt;/h2&gt;
+&lt;p&gt;In &lt;code&gt;WevtCacheReader::next_entry&lt;/code&gt; (&lt;code&gt;src/wevt_templates/wevtcache.rs&lt;/code&gt;), the per-entry payload length is read as a &lt;code&gt;u64&lt;/code&gt; straight from the file and used to size a zeroing buffer &lt;strong&gt;before&lt;/strong&gt; any data is read:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-rust&quot;&gt;let len = usize::try_from(len_u64)?;   // u64 taken directly from the entry header
+let mut buf = vec![0u8; len];          // unbounded allocation, sized from the file
+reader.read_exact(&amp;amp;mut buf)?;          // only fails AFTER the allocation
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The only check on &lt;code&gt;len&lt;/code&gt; is that it fits in &lt;code&gt;usize&lt;/code&gt;; there is no check that it fits within the bytes remaining in the file. An entry header declaring a ~4 GiB length therefore makes the crate request a ~4 GiB allocation from a file of only ~25 bytes.&lt;/p&gt;
+&lt;p&gt;The sink is reachable through the public API &lt;code&gt;evtx::wevt_templates::wevtcache::for_each_crim_blob(path, f)&lt;/code&gt; (and the &lt;code&gt;WevtCacheReader::next_entry&lt;/code&gt; it drives). The &lt;code&gt;.wevtcache&lt;/code&gt; reader first shipped in &lt;code&gt;0.11.0&lt;/code&gt;, and every published version from &lt;code&gt;0.11.0&lt;/code&gt; through &lt;code&gt;0.14.0&lt;/code&gt; is affected. The code lives in the &lt;code&gt;wevt_templates&lt;/code&gt; feature, which is enabled by default through the &lt;code&gt;evtx_dump&lt;/code&gt; feature. The fix landed in &lt;code&gt;0.15.1&lt;/code&gt;: &lt;code&gt;0.15.0&lt;/code&gt; was tagged but never published to crates.io (its Windows build failed), so &lt;code&gt;0.15.1&lt;/code&gt; is the first patched release available. The Python bindings (&lt;code&gt;evtx&lt;/code&gt; on PyPI) carry the fix as of &lt;code&gt;0.15.0&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;Reproduction&lt;/h2&gt;
+&lt;p&gt;A ~25-byte file is sufficient: the &lt;code&gt;.wevtcache&lt;/code&gt; magic (&lt;code&gt;WEVTCACH&lt;/code&gt;), a &lt;code&gt;version&lt;/code&gt; (u32 LE) of &lt;code&gt;1&lt;/code&gt;, an &lt;code&gt;entry_count&lt;/code&gt; (u32 LE) of &lt;code&gt;1&lt;/code&gt;, then one entry consisting of a &lt;code&gt;kind&lt;/code&gt; byte and a &lt;code&gt;len&lt;/code&gt; (u64 LE) set to a large value (e.g. &lt;code&gt;0xFFFFFFF0&lt;/code&gt;), with no payload bytes following. Passing that file to &lt;code&gt;for_each_crim_blob&lt;/code&gt; triggers the oversized allocation before the short read fails.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0420: Vulnerability in wasmtime-wasi</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0420.html</id><updated>2026-10-30T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0420.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0420: Vulnerability in wasmtime-wasi"/><published>2026-10-30T12:00:00+00:00</published><summary xml:lang="en">wasip3 UDP `send` can deliver a datagram to an address only allowed for receiving</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;

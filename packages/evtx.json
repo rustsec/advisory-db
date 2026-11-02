@@ -1,0 +1,79 @@
+[
+  {
+    "id": "RUSTSEC-2026-0431",
+    "modified": "2026-11-02T10:46:59Z",
+    "published": "2026-11-01T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Unbounded memory allocation in `evtx` parsing a `.wevtcache` file",
+    "details": "Affected versions of `evtx` did not bound a per-entry payload length read from a `.wevtcache` file before allocating a buffer sized from it, allowing a tiny crafted file to force a multi-gigabyte allocation and abort the process (out-of-memory denial of service, CWE-400).\n\n## Details\n\nIn `WevtCacheReader::next_entry` (`src/wevt_templates/wevtcache.rs`), the per-entry payload length is read as a `u64` straight from the file and used to size a zeroing buffer **before** any data is read:\n\n```rust\nlet len = usize::try_from(len_u64)?;   // u64 taken directly from the entry header\nlet mut buf = vec![0u8; len];          // unbounded allocation, sized from the file\nreader.read_exact(&mut buf)?;          // only fails AFTER the allocation\n```\n\nThe only check on `len` is that it fits in `usize`; there is no check that it fits within the bytes remaining in the file. An entry header declaring a ~4 GiB length therefore makes the crate request a ~4 GiB allocation from a file of only ~25 bytes.\n\nThe sink is reachable through the public API `evtx::wevt_templates::wevtcache::for_each_crim_blob(path, f)` (and the `WevtCacheReader::next_entry` it drives). The `.wevtcache` reader first shipped in `0.11.0`, and every published version from `0.11.0` through `0.14.0` is affected. The code lives in the `wevt_templates` feature, which is enabled by default through the `evtx_dump` feature. The fix landed in `0.15.1`: `0.15.0` was tagged but never published to crates.io (its Windows build failed), so `0.15.1` is the first patched release available. The Python bindings (`evtx` on PyPI) carry the fix as of `0.15.0`.\n\n## Reproduction\n\nA ~25-byte file is sufficient: the `.wevtcache` magic (`WEVTCACH`), a `version` (u32 LE) of `1`, an `entry_count` (u32 LE) of `1`, then one entry consisting of a `kind` byte and a `len` (u64 LE) set to a large value (e.g. `0xFFFFFFF0`), with no payload bytes following. Passing that file to `for_each_crim_blob` triggers the oversized allocation before the short read fails.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "evtx",
+          "purl": "pkg:cargo/evtx"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "evtx::wevt_templates::wevtcache::WevtCacheReader::next_entry",
+              "evtx::wevt_templates::wevtcache::for_each_crim_blob"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.11.0"
+              },
+              {
+                "fixed": "0.15.1"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/evtx"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0431.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/omerbenamram/evtx/issues/334"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/omerbenamram/evtx/pull/335"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]
