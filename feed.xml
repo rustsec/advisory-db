@@ -1262,6 +1262,241 @@ reader.read_exact(&amp;amp;mut buf)?;          // only fails AFTER the allocatio
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0435: Vulnerability in thrift</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0435.html</id><updated>2026-11-02T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0435.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0435: Vulnerability in thrift"/><published>2026-11-02T12:00:00+00:00</published><summary xml:lang="en">Unbounded memory allocation in `thrift` binary protocol `read_bytes`</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/thrift/RUSTSEC-2026-0435.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/thrift/RUSTSEC-2026-0435.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0435&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0435
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Unbounded memory allocation in &lt;code&gt;thrift&lt;/code&gt; binary protocol &lt;code&gt;read_bytes&lt;/code&gt;&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-02&quot;&gt;
+          November  2, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-02&quot;&gt;
+          November  2, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/thrift.html&quot;&gt;thrift&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/thrift&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/parsing.html&quot;&gt;#parsing&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/denial-of-service.html&quot;&gt;#denial-of-service&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/allocation.html&quot;&gt;#allocation&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/thrift.html&quot;&gt;#thrift&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://www.cve.org/CVERecord?id=CVE-2026-43868&quot;&gt;CVE-2026-43868&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://lists.apache.org/thread/zj76dtwnbbs1m7z3focf4wd51pqpsmn9&quot;&gt;
+              https://lists.apache.org/thread/zj76dtwnbbs1m7z3focf4wd51pqpsmn9
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;7.5 &lt;span class=&quot;tag high&quot;&gt;
+        HIGH
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Network&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.23.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;thrift::protocol::binary::TBinaryInputProtocol::read_bytes&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.23.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;thrift::protocol::binary::TBinaryInputProtocol::read_string&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.23.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Affected versions of the &lt;code&gt;thrift&lt;/code&gt; crate size a buffer directly from an attacker-controlled 4-byte length read off the wire, before reading any payload and with no upper bound, allowing a hostile peer to force a large eager allocation or an immediate abort (denial of service, CWE-400 / CWE-789). This is the Rust implementation&apos;s instance of the CVE-2020-13949 pattern, published by the Apache Thrift PMC as CVE-2026-43868.&lt;/p&gt;
+&lt;h2&gt;Details&lt;/h2&gt;
+&lt;p&gt;In &lt;code&gt;TBinaryInputProtocol::read_bytes&lt;/code&gt; (&lt;code&gt;src/protocol/binary.rs&lt;/code&gt;), the length is read as a &lt;code&gt;i32&lt;/code&gt; from the transport and cast straight to &lt;code&gt;usize&lt;/code&gt; to size a zeroing buffer &lt;strong&gt;before&lt;/strong&gt; any payload is read:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-rust&quot;&gt;fn read_bytes(&amp;amp;mut self) -&amp;gt; crate::Result&amp;lt;Vec&amp;lt;u8&amp;gt;&amp;gt; {
+    let num_bytes = self.transport.read_i32::&amp;lt;BigEndian&amp;gt;()? as usize; // length from the wire
+    let mut buf = vec![0u8; num_bytes];                               // unbounded eager allocation
+    self.transport.read_exact(&amp;amp;mut buf).map(|_| buf).map_err(From::from)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;There is no check that &lt;code&gt;num_bytes&lt;/code&gt; is non-negative or that it fits within the data actually available:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A length of &lt;code&gt;0x7FFFFFFF&lt;/code&gt; forces a ~2 GiB allocation; &lt;code&gt;0x20000000&lt;/code&gt; forces 512 MiB; and so on, from only a 4-byte input.&lt;/li&gt;
+&lt;li&gt;A negative length casts to a huge &lt;code&gt;usize&lt;/code&gt; (up to &lt;code&gt;usize::MAX&lt;/code&gt;), causing an immediate allocation failure / abort.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;read_string&lt;/code&gt; routes through &lt;code&gt;read_bytes&lt;/code&gt;, so string fields are affected the same way. The sink is reachable from any peer sending binary-protocol data, so this is an unauthenticated, network-reachable denial of service.&lt;/p&gt;
+&lt;h2&gt;The fix&lt;/h2&gt;
+&lt;p&gt;From &lt;code&gt;thrift&lt;/code&gt; 0.23.0 onward, &lt;code&gt;read_bytes&lt;/code&gt; goes through &lt;code&gt;read_binary_len&lt;/code&gt;, which rejects negative sizes and enforces &lt;code&gt;TConfiguration::max_string_size&lt;/code&gt; (default 100 MiB), alongside default message, frame, and recursion limits.&lt;/p&gt;
+&lt;p&gt;A separate, related gap on the non-strict message-name path was published as CVE-2026-58389 and fixed in 0.24.0; this advisory covers the &lt;code&gt;read_bytes&lt;/code&gt; unbounded allocation (CVE-2026-43868), fixed in 0.23.0.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0420: Vulnerability in wasmtime-wasi</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0420.html</id><updated>2026-10-30T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0420.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0420: Vulnerability in wasmtime-wasi"/><published>2026-10-30T12:00:00+00:00</published><summary xml:lang="en">wasip3 UDP `send` can deliver a datagram to an address only allowed for receiving</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
