@@ -203,613 +203,6 @@ or process abort under &lt;code&gt;panic=abort&lt;/code&gt;) or driven out of me
 
     
     &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0432: Vulnerability in codeq</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0432.html</id><updated>2026-11-02T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0432.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0432: Vulnerability in codeq"/><published>2026-11-02T12:00:00+00:00</published><summary xml:lang="en">`codeq`: decoding untrusted input can allocate memory from an unchecked length prefix (denial of service)</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/codeq/RUSTSEC-2026-0432.md&quot;&gt;History&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/codeq/RUSTSEC-2026-0432.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0432&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2026-0432
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;codeq&lt;/code&gt;: decoding untrusted input can allocate memory from an unchecked length prefix (denial of service)&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-10-31&quot;&gt;
-          October 31, 2026
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-11-02&quot;&gt;
-          November  2, 2026
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/codeq.html&quot;&gt;codeq&lt;/a&gt;
-           
-          (&lt;a href=&quot;https://crates.io/crates/codeq&quot;&gt;crates.io&lt;/a&gt;)
-          
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/denial-of-service.html&quot;&gt;#denial-of-service&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/allocation.html&quot;&gt;#allocation&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/untrusted-input.html&quot;&gt;#untrusted-input&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/oom.html&quot;&gt;#oom&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/drmingdrmer/codeq/issues/4&quot;&gt;
-              https://github.com/drmingdrmer/codeq/issues/4
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
-      &lt;dd&gt;5.3 &lt;span class=&quot;tag medium&quot;&gt;
-        MEDIUM
-      &lt;/span&gt;&lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;dl&gt;
-          
-            &lt;dt&gt;Attack Vector&lt;/dt&gt;
-            &lt;dd&gt;Network&lt;/dd&gt;
-          
-            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
-            &lt;dd&gt;Low&lt;/dd&gt;
-          
-            &lt;dt&gt;Privileges Required&lt;/dt&gt;
-            &lt;dd&gt;None&lt;/dd&gt;
-          
-            &lt;dt&gt;User Interaction&lt;/dt&gt;
-            &lt;dd&gt;None&lt;/dd&gt;
-          
-            &lt;dt&gt;Scope&lt;/dt&gt;
-            &lt;dd&gt;Unchanged&lt;/dd&gt;
-          
-            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
-            &lt;dd&gt;None&lt;/dd&gt;
-          
-            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
-            &lt;dd&gt;None&lt;/dd&gt;
-          
-            &lt;dt&gt;Availability Impact&lt;/dt&gt;
-            &lt;dd&gt;Low&lt;/dd&gt;
-          
-        &lt;/dl&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
-
-      
-          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L&lt;/a&gt;&lt;/dd&gt;
-        
-
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=0.6.3&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;&lt;code&gt;codeq&lt;/code&gt; is a serialization library whose &lt;code&gt;Decode&lt;/code&gt; trait reads length-prefixed values. For &lt;code&gt;String&lt;/code&gt; and &lt;code&gt;Vec&amp;lt;u8&amp;gt;&lt;/code&gt;, the length-prefixed &lt;code&gt;Decode&lt;/code&gt; implementations read a 4-byte big-endian length and allocate a buffer of that size &lt;strong&gt;before&lt;/strong&gt; reading the payload. Because the declared length is taken straight from the input with no upper bound and no cross-check against the bytes actually available, a tiny input can force an allocation of up to ~4 GiB. Code that decodes untrusted data through &lt;code&gt;codeq&lt;/code&gt; can therefore be made to spike memory use and be OOM-killed (CWE-400, uncontrolled resource consumption).&lt;/p&gt;
-&lt;p&gt;The affected path, in &lt;code&gt;src/codec/impls/string_impl.rs&lt;/code&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-rust&quot;&gt;impl Decode for String {
-    fn decode&amp;lt;R: io::Read&amp;gt;(mut r: R) -&amp;gt; Result&amp;lt;Self, io::Error&amp;gt; {
-        let len = r.read_u32::&amp;lt;BigEndian&amp;gt;()? as usize;
-        let mut buf = vec![0; len];   // allocates `len` bytes up front
-        r.read_exact(&amp;amp;mut buf)?; 
-        String::from_utf8(buf).map_err(|e| io::Error::new(io::ErrorKind::InvalidData, e))
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Any code that decodes attacker-controlled bytes through &lt;code&gt;codeq&lt;/code&gt; can be forcedcto allocate up to ~4 GiB per &lt;code&gt;decode&lt;/code&gt; call from a 4-byte length prefix. On a service decoding untrusted input this is a cheap denial of service (crash / OOM-kill). The practical severity depends on how the embedding wires &lt;code&gt;codeq&lt;/code&gt; to untrusted bytes.&lt;/p&gt;
-&lt;h2&gt;Remediation&lt;/h2&gt;
-&lt;p&gt;Fixed in &lt;code&gt;0.6.3&lt;/code&gt;, which grows the decode buffers as payload bytes actually arrive instead of pre-allocating the full declared length (commit &lt;code&gt;9f15313&lt;/code&gt;, &amp;quot;fix: codec: grow decode buffers as payload bytes arrive&amp;quot;). Upgrade to &lt;code&gt;codeq &amp;gt;= 0.6.3&lt;/code&gt;.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0433: Vulnerability in pulldown-cmark</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0433.html</id><updated>2026-11-02T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0433.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0433: Vulnerability in pulldown-cmark"/><published>2026-11-02T12:00:00+00:00</published><summary xml:lang="en">Quadratic parsing of nested image wikilinks with `ENABLE_WIKILINKS`</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/pulldown-cmark/RUSTSEC-2026-0433.md&quot;&gt;History&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/pulldown-cmark/RUSTSEC-2026-0433.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0433&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2026-0433
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Quadratic parsing of nested image wikilinks with &lt;code&gt;ENABLE_WIKILINKS&lt;/code&gt;&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-10-28&quot;&gt;
-          October 28, 2026
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-11-02&quot;&gt;
-          November  2, 2026
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/pulldown-cmark.html&quot;&gt;pulldown-cmark&lt;/a&gt;
-           
-          (&lt;a href=&quot;https://crates.io/crates/pulldown-cmark&quot;&gt;crates.io&lt;/a&gt;)
-          
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/markdown.html&quot;&gt;#markdown&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/wikilinks.html&quot;&gt;#wikilinks&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/memory-exhaustion.html&quot;&gt;#memory-exhaustion&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/pulldown-cmark/pulldown-cmark/pull/1186&quot;&gt;
-              https://github.com/pulldown-cmark/pulldown-cmark/pull/1186
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/pulldown-cmark/pulldown-cmark/pull/1186&quot;&gt;
-              https://github.com/pulldown-cmark/pulldown-cmark/pull/1186
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
-      &lt;dd&gt;7.5 &lt;span class=&quot;tag high&quot;&gt;
-        HIGH
-      &lt;/span&gt;&lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;dl&gt;
-          
-            &lt;dt&gt;Attack Vector&lt;/dt&gt;
-            &lt;dd&gt;Network&lt;/dd&gt;
-          
-            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
-            &lt;dd&gt;Low&lt;/dd&gt;
-          
-            &lt;dt&gt;Privileges Required&lt;/dt&gt;
-            &lt;dd&gt;None&lt;/dd&gt;
-          
-            &lt;dt&gt;User Interaction&lt;/dt&gt;
-            &lt;dd&gt;None&lt;/dd&gt;
-          
-            &lt;dt&gt;Scope&lt;/dt&gt;
-            &lt;dd&gt;Unchanged&lt;/dd&gt;
-          
-            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
-            &lt;dd&gt;None&lt;/dd&gt;
-          
-            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
-            &lt;dd&gt;None&lt;/dd&gt;
-          
-            &lt;dt&gt;Availability Impact&lt;/dt&gt;
-            &lt;dd&gt;High&lt;/dd&gt;
-          
-        &lt;/dl&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
-
-      
-          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&lt;/a&gt;&lt;/dd&gt;
-        
-
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=0.13.6&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#60;0.13.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;With &lt;code&gt;Options::ENABLE_WIKILINKS&lt;/code&gt;, handle_wikilink builds a wikilink&apos;s target
-from the raw text of its body: scan_wikilink_pipe walks it looking for |, then
-contains(&apos;\0&apos;) and from_replace_nuls walk it again.
-Once a wikilink is created, disable_all_links only disables Link entries, so
-every enclosing &lt;code&gt;![[&lt;/code&gt; stays live on the wikilink stack.
-On &lt;code&gt;![[![[![[…]]]]]]&lt;/code&gt; each of those openers then resolves in turn and rescans
-everything inside it, which is quadratic in the nesting depth.
-The event count stays tiny, because in the unpiped case each enclosing image
-replaces its body with a fresh text node, so all of that work is thrown away.&lt;/p&gt;
-&lt;p&gt;Applications that parse untrusted Markdown with &lt;code&gt;ENABLE_WIKILINKS&lt;/code&gt; set,
-including through &lt;code&gt;Options::all()&lt;/code&gt;, are affected. The option is off by default.
-Parsing without it is not affected.&lt;/p&gt;
-&lt;p&gt;The flaw was fixed in
-&lt;a href=&quot;https://github.com/pulldown-cmark/pulldown-cmark/pull/1186&quot;&gt;#1186&lt;/a&gt; and
-released in 0.13.6.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0429: Vulnerability in zip</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0429.html</id><updated>2026-11-02T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0429.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0429: Vulnerability in zip"/><published>2026-11-02T12:00:00+00:00</published><summary xml:lang="en">zip: `ZipArchive::extract` aborts the process on a symlink entry with a large declared size</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/zip/RUSTSEC-2026-0429.md&quot;&gt;History&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/zip/RUSTSEC-2026-0429.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0429&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2026-0429
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;zip: &lt;code&gt;ZipArchive::extract&lt;/code&gt; aborts the process on a symlink entry with a large declared size&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-10-22&quot;&gt;
-          October 22, 2026
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-11-02&quot;&gt;
-          November  2, 2026
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/zip.html&quot;&gt;zip&lt;/a&gt;
-           
-          (&lt;a href=&quot;https://crates.io/crates/zip&quot;&gt;crates.io&lt;/a&gt;)
-          
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/dos.html&quot;&gt;#dos&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/symlink.html&quot;&gt;#symlink&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/unbounded-allocation.html&quot;&gt;#unbounded-allocation&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/extract.html&quot;&gt;#extract&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://www.cve.org/CVERecord?id=CVE-2026-115909&quot;&gt;CVE-2026-115909&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-q7v9-x93c-xqv3&quot;&gt;GHSA-q7v9-x93c-xqv3&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
-      &lt;dd&gt;7.5 &lt;span class=&quot;tag high&quot;&gt;
-        HIGH
-      &lt;/span&gt;&lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;dl&gt;
-          
-            &lt;dt&gt;Attack Vector&lt;/dt&gt;
-            &lt;dd&gt;Network&lt;/dd&gt;
-          
-            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
-            &lt;dd&gt;Low&lt;/dd&gt;
-          
-            &lt;dt&gt;Privileges Required&lt;/dt&gt;
-            &lt;dd&gt;None&lt;/dd&gt;
-          
-            &lt;dt&gt;User Interaction&lt;/dt&gt;
-            &lt;dd&gt;None&lt;/dd&gt;
-          
-            &lt;dt&gt;Scope&lt;/dt&gt;
-            &lt;dd&gt;Unchanged&lt;/dd&gt;
-          
-            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
-            &lt;dd&gt;None&lt;/dd&gt;
-          
-            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
-            &lt;dd&gt;None&lt;/dd&gt;
-          
-            &lt;dt&gt;Availability Impact&lt;/dt&gt;
-            &lt;dd&gt;High&lt;/dd&gt;
-          
-        &lt;/dl&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
-
-      
-          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&lt;/a&gt;&lt;/dd&gt;
-        
-
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=9.0.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;&lt;code&gt;ZipArchive::extract()&lt;/code&gt; sizes the symlink-target buffer from the uncompressed
-size declared in the central directory record, before reading a single byte of
-entry data:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-rust&quot;&gt;let mut target = Vec::with_capacity(file.size() as usize);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Both inputs are attacker-controlled. &lt;code&gt;ZipFile::size()&lt;/code&gt; returns
-&lt;code&gt;uncompressed_size&lt;/code&gt; verbatim from the central directory, widened to a full &lt;code&gt;u64&lt;/code&gt;
-by a ZIP64 extended-information extra field, and is never cross-checked against
-the compressed size, the remaining archive length, or any platform-appropriate
-bound for a symlink target. &lt;code&gt;ZipFile::is_symlink()&lt;/code&gt; is decided entirely by the
-&lt;code&gt;S_IFLNK&lt;/code&gt; bit of the external-attributes field.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Vec::with_capacity()&lt;/code&gt; is infallible: when the reservation is refused it calls
-&lt;code&gt;handle_alloc_error()&lt;/code&gt; and aborts the process. This is not a Rust panic. It is
-not caught by &lt;code&gt;catch_unwind()&lt;/code&gt;, is unaffected by &lt;code&gt;panic = &amp;quot;unwind&amp;quot;&lt;/code&gt;, and is not
-contained by running the call on a worker thread.&lt;/p&gt;
-&lt;p&gt;A 112-byte archive is sufficient. One &lt;code&gt;Stored&lt;/code&gt; entry flagged &lt;code&gt;S_IFLNK&lt;/code&gt; with a
-ZIP64 field declaring &lt;code&gt;uncompressed_size = 2^62&lt;/code&gt; and a zero-byte payload makes
-&lt;code&gt;extract()&lt;/code&gt; fail with:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;memory allocation of 4611686018427387904 bytes failed
-Aborted (core dumped)          # exit 134
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The declared value only needs to exceed the host&apos;s address space, not its RAM:
-&lt;code&gt;Vec::with_capacity()&lt;/code&gt; maps address space without touching pages, so resident
-memory stays flat and the abort happens on the refused reservation itself. Under
-a &lt;code&gt;ulimit -v&lt;/code&gt; cap or a memory-constrained container the threshold drops far
-enough that a plain 32-bit &lt;code&gt;uncompressed_size&lt;/code&gt; with no ZIP64 field suffices.&lt;/p&gt;
-&lt;p&gt;Applications that extract archives from untrusted input are affected on Unix and
-Windows targets with default features and no special configuration: upload
-handling, mail-attachment processing, package and artefact ingestion, backup
-restore and container-image layer extraction. No confidentiality or integrity
-property is affected: there is no memory unsafety, no out-of-bounds access, no
-disclosure and no data corruption.&lt;/p&gt;
-&lt;p&gt;The fix landed in &lt;a href=&quot;https://github.com/zip-rs/zip2/pull/984&quot;&gt;zip-rs/zip2#984&lt;/a&gt; and
-shipped in 9.0.0.&lt;/p&gt;
-&lt;p&gt;For further details see: https://github.com/zip-rs/zip2/security/advisories/GHSA-q7v9-x93c-xqv3&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0434: Vulnerability in ant-releases</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0434.html</id><updated>2026-11-02T12:00:00+00:00</updated><category term="code-execution"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0434.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0434: Vulnerability in ant-releases"/><published>2026-11-02T12:00:00+00:00</published><summary xml:lang="en">`ant-releases`: extracting a release archive can write files outside the destination directory (path traversal / zip-slip)</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -1236,236 +629,6 @@ if cmd.medium == TransmissionMedium::TempFile {
 
     
     &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0431: Vulnerability in evtx</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0431.html</id><updated>2026-11-02T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0431.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0431: Vulnerability in evtx"/><published>2026-11-02T12:00:00+00:00</published><summary xml:lang="en">Unbounded memory allocation in `evtx` parsing a `.wevtcache` file</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/evtx/RUSTSEC-2026-0431.md&quot;&gt;History&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/evtx/RUSTSEC-2026-0431.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0431&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2026-0431
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Unbounded memory allocation in &lt;code&gt;evtx&lt;/code&gt; parsing a &lt;code&gt;.wevtcache&lt;/code&gt; file&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-11-01&quot;&gt;
-          November  1, 2026
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-11-02&quot;&gt;
-          November  2, 2026
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/evtx.html&quot;&gt;evtx&lt;/a&gt;
-           
-          (&lt;a href=&quot;https://crates.io/crates/evtx&quot;&gt;crates.io&lt;/a&gt;)
-          
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
-      &lt;dd&gt;
-        
-          &lt;a href=&quot;/keywords/parsing.html&quot;&gt;#parsing&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/denial-of-service.html&quot;&gt;#denial-of-service&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/allocation.html&quot;&gt;#allocation&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/wevtcache.html&quot;&gt;#wevtcache&lt;/a&gt;
-        
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/omerbenamram/evtx/issues/334&quot;&gt;
-              https://github.com/omerbenamram/evtx/issues/334
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/omerbenamram/evtx/pull/335&quot;&gt;
-              https://github.com/omerbenamram/evtx/pull/335
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
-      &lt;dd&gt;5.5 &lt;span class=&quot;tag medium&quot;&gt;
-        MEDIUM
-      &lt;/span&gt;&lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;dl&gt;
-          
-            &lt;dt&gt;Attack Vector&lt;/dt&gt;
-            &lt;dd&gt;Local&lt;/dd&gt;
-          
-            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
-            &lt;dd&gt;Low&lt;/dd&gt;
-          
-            &lt;dt&gt;Privileges Required&lt;/dt&gt;
-            &lt;dd&gt;None&lt;/dd&gt;
-          
-            &lt;dt&gt;User Interaction&lt;/dt&gt;
-            &lt;dd&gt;Required&lt;/dd&gt;
-          
-            &lt;dt&gt;Scope&lt;/dt&gt;
-            &lt;dd&gt;Unchanged&lt;/dd&gt;
-          
-            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
-            &lt;dd&gt;None&lt;/dd&gt;
-          
-            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
-            &lt;dd&gt;None&lt;/dd&gt;
-          
-            &lt;dt&gt;Availability Impact&lt;/dt&gt;
-            &lt;dd&gt;High&lt;/dd&gt;
-          
-        &lt;/dl&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
-
-      
-          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H&quot;&gt;CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H&lt;/a&gt;&lt;/dd&gt;
-        
-
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=0.15.1&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#60;0.11.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-    &lt;dl&gt;
-      &lt;dt&gt;Affected Functions&lt;/dt&gt;
-      &lt;dd&gt;Version&lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;evtx::wevt_templates::wevtcache::WevtCacheReader::next_entry&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=0.11.0, &amp;#60;0.15.1&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;evtx::wevt_templates::wevtcache::for_each_crim_blob&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=0.11.0, &amp;#60;0.15.1&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-    &lt;/dl&gt;
-    
-
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;Affected versions of &lt;code&gt;evtx&lt;/code&gt; did not bound a per-entry payload length read from a &lt;code&gt;.wevtcache&lt;/code&gt; file before allocating a buffer sized from it, allowing a tiny crafted file to force a multi-gigabyte allocation and abort the process (out-of-memory denial of service, CWE-400).&lt;/p&gt;
-&lt;h2&gt;Details&lt;/h2&gt;
-&lt;p&gt;In &lt;code&gt;WevtCacheReader::next_entry&lt;/code&gt; (&lt;code&gt;src/wevt_templates/wevtcache.rs&lt;/code&gt;), the per-entry payload length is read as a &lt;code&gt;u64&lt;/code&gt; straight from the file and used to size a zeroing buffer &lt;strong&gt;before&lt;/strong&gt; any data is read:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-rust&quot;&gt;let len = usize::try_from(len_u64)?;   // u64 taken directly from the entry header
-let mut buf = vec![0u8; len];          // unbounded allocation, sized from the file
-reader.read_exact(&amp;amp;mut buf)?;          // only fails AFTER the allocation
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The only check on &lt;code&gt;len&lt;/code&gt; is that it fits in &lt;code&gt;usize&lt;/code&gt;; there is no check that it fits within the bytes remaining in the file. An entry header declaring a ~4 GiB length therefore makes the crate request a ~4 GiB allocation from a file of only ~25 bytes.&lt;/p&gt;
-&lt;p&gt;The sink is reachable through the public API &lt;code&gt;evtx::wevt_templates::wevtcache::for_each_crim_blob(path, f)&lt;/code&gt; (and the &lt;code&gt;WevtCacheReader::next_entry&lt;/code&gt; it drives). The &lt;code&gt;.wevtcache&lt;/code&gt; reader first shipped in &lt;code&gt;0.11.0&lt;/code&gt;, and every published version from &lt;code&gt;0.11.0&lt;/code&gt; through &lt;code&gt;0.14.0&lt;/code&gt; is affected. The code lives in the &lt;code&gt;wevt_templates&lt;/code&gt; feature, which is enabled by default through the &lt;code&gt;evtx_dump&lt;/code&gt; feature. The fix landed in &lt;code&gt;0.15.1&lt;/code&gt;: &lt;code&gt;0.15.0&lt;/code&gt; was tagged but never published to crates.io (its Windows build failed), so &lt;code&gt;0.15.1&lt;/code&gt; is the first patched release available. The Python bindings (&lt;code&gt;evtx&lt;/code&gt; on PyPI) carry the fix as of &lt;code&gt;0.15.0&lt;/code&gt;.&lt;/p&gt;
-&lt;h2&gt;Reproduction&lt;/h2&gt;
-&lt;p&gt;A ~25-byte file is sufficient: the &lt;code&gt;.wevtcache&lt;/code&gt; magic (&lt;code&gt;WEVTCACH&lt;/code&gt;), a &lt;code&gt;version&lt;/code&gt; (u32 LE) of &lt;code&gt;1&lt;/code&gt;, an &lt;code&gt;entry_count&lt;/code&gt; (u32 LE) of &lt;code&gt;1&lt;/code&gt;, then one entry consisting of a &lt;code&gt;kind&lt;/code&gt; byte and a &lt;code&gt;len&lt;/code&gt; (u64 LE) set to a large value (e.g. &lt;code&gt;0xFFFFFFF0&lt;/code&gt;), with no payload bytes following. Passing that file to &lt;code&gt;for_each_crim_blob&lt;/code&gt; triggers the oversized allocation before the short read fails.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0435: Vulnerability in thrift</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0435.html</id><updated>2026-11-02T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0435.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0435: Vulnerability in thrift"/><published>2026-11-02T12:00:00+00:00</published><summary xml:lang="en">Unbounded memory allocation in `thrift` binary protocol `read_bytes`</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -1701,22 +864,22 @@ reader.read_exact(&amp;amp;mut buf)?;          // only fails AFTER the allocatio
 
     
     &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0420: Vulnerability in wasmtime-wasi</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0420.html</id><updated>2026-10-30T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0420.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0420: Vulnerability in wasmtime-wasi"/><published>2026-10-30T12:00:00+00:00</published><summary xml:lang="en">wasip3 UDP `send` can deliver a datagram to an address only allowed for receiving</summary><content xml:lang="en" type="html">  &lt;article&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0433: Vulnerability in pulldown-cmark</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0433.html</id><updated>2026-11-02T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0433.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0433: Vulnerability in pulldown-cmark"/><published>2026-11-02T12:00:00+00:00</published><summary xml:lang="en">Quadratic parsing of nested image wikilinks with `ENABLE_WIKILINKS`</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/wasmtime-wasi/RUSTSEC-2026-0420.md&quot;&gt;History&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/wasmtime-wasi/RUSTSEC-2026-0420.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0420&quot;&gt;JSON (OSV)&lt;/a&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/pulldown-cmark/RUSTSEC-2026-0433.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/pulldown-cmark/RUSTSEC-2026-0433.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0433&quot;&gt;JSON (OSV)&lt;/a&gt;
         &lt;/span&gt;
     
 
     &lt;header&gt;
       &lt;h1&gt;
         
-        RUSTSEC-2026-0420
+        RUSTSEC-2026-0433
         
       &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;wasip3 UDP &lt;code&gt;send&lt;/code&gt; can deliver a datagram to an address only allowed for receiving&lt;/p&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Quadratic parsing of nested image wikilinks with &lt;code&gt;ENABLE_WIKILINKS&lt;/code&gt;&lt;/p&gt;
 &lt;/span&gt;
     &lt;/header&gt;
 
@@ -1725,15 +888,15 @@ reader.read_exact(&amp;amp;mut buf)?;          // only fails AFTER the allocatio
     &lt;dl&gt;
       &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
       &lt;dd&gt;
-        &lt;time datetime=&quot;2026-10-29&quot;&gt;
-          October 29, 2026
+        &lt;time datetime=&quot;2026-10-28&quot;&gt;
+          October 28, 2026
         &lt;/time&gt;
       &lt;/dd&gt;
 
       &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
       &lt;dd&gt;
-        &lt;time datetime=&quot;2026-10-30&quot;&gt;
-          October 30, 2026
+        &lt;time datetime=&quot;2026-11-02&quot;&gt;
+          November  2, 2026
         &lt;/time&gt;
         
       &lt;/dd&gt;
@@ -1742,826 +905,9 @@ reader.read_exact(&amp;amp;mut buf)?;          // only fails AFTER the allocatio
       &lt;dd&gt;
         
         
-        &lt;a href=&quot;/packages/wasmtime-wasi.html&quot;&gt;wasmtime-wasi&lt;/a&gt;
+        &lt;a href=&quot;/packages/pulldown-cmark.html&quot;&gt;pulldown-cmark&lt;/a&gt;
            
-          (&lt;a href=&quot;https://crates.io/crates/wasmtime-wasi&quot;&gt;crates.io&lt;/a&gt;)
-          
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-hmmr-87qq-258j&quot;&gt;GHSA-hmmr-87qq-258j&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/bytecodealliance/wasmtime/pull/15077&quot;&gt;
-              https://github.com/bytecodealliance/wasmtime/pull/15077
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
-      &lt;dd&gt;6.4 &lt;span class=&quot;tag medium&quot;&gt;
-        MEDIUM
-      &lt;/span&gt;&lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;dl&gt;
-          
-            &lt;dt&gt;Attack Vector&lt;/dt&gt;
-            &lt;dd&gt;Network&lt;/dd&gt;
-          
-            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
-            &lt;dd&gt;Low&lt;/dd&gt;
-          
-            &lt;dt&gt;Privileges Required&lt;/dt&gt;
-            &lt;dd&gt;Low&lt;/dd&gt;
-          
-            &lt;dt&gt;User Interaction&lt;/dt&gt;
-            &lt;dd&gt;None&lt;/dd&gt;
-          
-            &lt;dt&gt;Scope&lt;/dt&gt;
-            &lt;dd&gt;Changed&lt;/dd&gt;
-          
-            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
-            &lt;dd&gt;Low&lt;/dd&gt;
-          
-            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
-            &lt;dd&gt;Low&lt;/dd&gt;
-          
-            &lt;dt&gt;Availability Impact&lt;/dt&gt;
-            &lt;dd&gt;None&lt;/dd&gt;
-          
-        &lt;/dl&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
-
-      
-          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:N&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:N&lt;/a&gt;&lt;/dd&gt;
-        
-
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=48.0.8, &amp;#60;49.0.0&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=49.0.5, &amp;#60;50.0.0&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=50.0.1&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#60;48.0.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;This is an entry in the RustSec database for the Wasmtime security advisory
-located at
-https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-hmmr-87qq-258j
-For more information see the GitHub-hosted security advisory.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0421: Vulnerability in wasmtime-wasi-http</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0421.html</id><updated>2026-10-30T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0421.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0421: Vulnerability in wasmtime-wasi-http"/><published>2026-10-30T12:00:00+00:00</published><summary xml:lang="en">wasi-http p2: outgoing content-length can be invalid or not match body</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/wasmtime-wasi-http/RUSTSEC-2026-0421.md&quot;&gt;History&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/wasmtime-wasi-http/RUSTSEC-2026-0421.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0421&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2026-0421
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;wasi-http p2: outgoing content-length can be invalid or not match body&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-10-29&quot;&gt;
-          October 29, 2026
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-10-30&quot;&gt;
-          October 30, 2026
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/wasmtime-wasi-http.html&quot;&gt;wasmtime-wasi-http&lt;/a&gt;
-           
-          (&lt;a href=&quot;https://crates.io/crates/wasmtime-wasi-http&quot;&gt;crates.io&lt;/a&gt;)
-          
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-h4wp-g4x3-7398&quot;&gt;GHSA-h4wp-g4x3-7398&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/bytecodealliance/wasmtime/pull/15070&quot;&gt;
-              https://github.com/bytecodealliance/wasmtime/pull/15070
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
-      &lt;dd&gt;3.7 &lt;span class=&quot;tag low&quot;&gt;
-        LOW
-      &lt;/span&gt;&lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;dl&gt;
-          
-            &lt;dt&gt;Attack Vector&lt;/dt&gt;
-            &lt;dd&gt;Network&lt;/dd&gt;
-          
-            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
-            &lt;dd&gt;High&lt;/dd&gt;
-          
-            &lt;dt&gt;Privileges Required&lt;/dt&gt;
-            &lt;dd&gt;None&lt;/dd&gt;
-          
-            &lt;dt&gt;User Interaction&lt;/dt&gt;
-            &lt;dd&gt;None&lt;/dd&gt;
-          
-            &lt;dt&gt;Scope&lt;/dt&gt;
-            &lt;dd&gt;Unchanged&lt;/dd&gt;
-          
-            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
-            &lt;dd&gt;None&lt;/dd&gt;
-          
-            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
-            &lt;dd&gt;Low&lt;/dd&gt;
-          
-            &lt;dt&gt;Availability Impact&lt;/dt&gt;
-            &lt;dd&gt;None&lt;/dd&gt;
-          
-        &lt;/dl&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
-
-      
-          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N&quot;&gt;CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N&lt;/a&gt;&lt;/dd&gt;
-        
-
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=36.0.20, &amp;#60;37.0.0&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=48.0.8, &amp;#60;49.0.0&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=49.0.5, &amp;#60;50.0.0&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=50.0.1&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;This is an entry in the RustSec database for the Wasmtime security advisory
-located at
-https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-h4wp-g4x3-7398
-For more information see the GitHub-hosted security advisory.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0424: Vulnerability in wasmtime</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0424.html</id><updated>2026-10-30T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0424.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0424: Vulnerability in wasmtime"/><published>2026-10-30T12:00:00+00:00</published><summary xml:lang="en">Unchecked memory usage in transferring borrowed resources between components</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/wasmtime/RUSTSEC-2026-0424.md&quot;&gt;History&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/wasmtime/RUSTSEC-2026-0424.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0424&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2026-0424
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Unchecked memory usage in transferring borrowed resources between components&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-10-29&quot;&gt;
-          October 29, 2026
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-10-30&quot;&gt;
-          October 30, 2026
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/wasmtime.html&quot;&gt;wasmtime&lt;/a&gt;
-           
-          (&lt;a href=&quot;https://crates.io/crates/wasmtime&quot;&gt;crates.io&lt;/a&gt;)
-          
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-6fr9-xmw9-5352&quot;&gt;GHSA-6fr9-xmw9-5352&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/bytecodealliance/wasmtime/pull/15075&quot;&gt;
-              https://github.com/bytecodealliance/wasmtime/pull/15075
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=36.0.20, &amp;#60;37.0.0&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=48.0.8, &amp;#60;49.0.0&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=49.0.5, &amp;#60;50.0.0&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=50.0.1&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;This is an entry in the RustSec database for the Wasmtime security advisory
-located at
-https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-6fr9-xmw9-5352
-For more information see the GitHub-hosted security advisory.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0423: Vulnerability in wasmtime</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0423.html</id><updated>2026-10-30T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0423.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0423: Vulnerability in wasmtime"/><published>2026-10-30T12:00:00+00:00</published><summary xml:lang="en">Cross-engine type confusion with host-created struct-types-with-supertypes</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/wasmtime/RUSTSEC-2026-0423.md&quot;&gt;History&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/wasmtime/RUSTSEC-2026-0423.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0423&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2026-0423
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Cross-engine type confusion with host-created struct-types-with-supertypes&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-10-29&quot;&gt;
-          October 29, 2026
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-10-30&quot;&gt;
-          October 30, 2026
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/wasmtime.html&quot;&gt;wasmtime&lt;/a&gt;
-           
-          (&lt;a href=&quot;https://crates.io/crates/wasmtime&quot;&gt;crates.io&lt;/a&gt;)
-          
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-qw58-7h65-crq2&quot;&gt;GHSA-qw58-7h65-crq2&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/bytecodealliance/wasmtime/pull/15078&quot;&gt;
-              https://github.com/bytecodealliance/wasmtime/pull/15078
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=48.0.8, &amp;#60;49.0.0&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=49.0.5, &amp;#60;50.0.0&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=50.0.1&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#60;47.0.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;This is an entry in the RustSec database for the Wasmtime security advisory
-located at
-https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-qw58-7h65-crq2
-For more information see the GitHub-hosted security advisory.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0422: Vulnerability in wasmtime</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0422.html</id><updated>2026-10-30T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0422.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0422: Vulnerability in wasmtime"/><published>2026-10-30T12:00:00+00:00</published><summary xml:lang="en">Typed functions with `i31` or `nullref` arguments may panic due to insufficient type-check</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/wasmtime/RUSTSEC-2026-0422.md&quot;&gt;History&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/wasmtime/RUSTSEC-2026-0422.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0422&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2026-0422
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Typed functions with &lt;code&gt;i31&lt;/code&gt; or &lt;code&gt;nullref&lt;/code&gt; arguments may panic due to insufficient type-check&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-10-29&quot;&gt;
-          October 29, 2026
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-10-30&quot;&gt;
-          October 30, 2026
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/wasmtime.html&quot;&gt;wasmtime&lt;/a&gt;
-           
-          (&lt;a href=&quot;https://crates.io/crates/wasmtime&quot;&gt;crates.io&lt;/a&gt;)
-          
-        
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        Vulnerability
-        
-      &lt;/dd&gt;
-
-      
-
-      
-
-      
-      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;
-            
-            &lt;a href=&quot;https://github.com/advisories/GHSA-3982-jqvv-277m&quot;&gt;GHSA-3982-jqvv-277m&lt;/a&gt;
-            
-          &lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-        
-          &lt;li&gt;
-            &lt;a href=&quot;https://github.com/bytecodealliance/wasmtime/pull/15076&quot;&gt;
-              https://github.com/bytecodealliance/wasmtime/pull/15076
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-        
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-
-      
-      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
-      &lt;dd&gt;1.8 &lt;span class=&quot;tag low&quot;&gt;
-        LOW
-      &lt;/span&gt;&lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;dl&gt;
-          
-            &lt;dt&gt;Attack Vector&lt;/dt&gt;
-            &lt;dd&gt;Adjacent&lt;/dd&gt;
-          
-            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
-            &lt;dd&gt;High&lt;/dd&gt;
-          
-            &lt;dt&gt;Privileges Required&lt;/dt&gt;
-            &lt;dd&gt;High&lt;/dd&gt;
-          
-            &lt;dt&gt;User Interaction&lt;/dt&gt;
-            &lt;dd&gt;Required&lt;/dd&gt;
-          
-            &lt;dt&gt;Scope&lt;/dt&gt;
-            &lt;dd&gt;Unchanged&lt;/dd&gt;
-          
-            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
-            &lt;dd&gt;None&lt;/dd&gt;
-          
-            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
-            &lt;dd&gt;None&lt;/dd&gt;
-          
-            &lt;dt&gt;Availability Impact&lt;/dt&gt;
-            &lt;dd&gt;Low&lt;/dd&gt;
-          
-        &lt;/dl&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
-
-      
-          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:A/AC:H/PR:H/UI:R/S:U/C:N/I:N/A:L&quot;&gt;CVSS:3.1/AV:A/AC:H/PR:H/UI:R/S:U/C:N/I:N/A:L&lt;/a&gt;&lt;/dd&gt;
-        
-
-      
-
-      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=48.0.8, &amp;#60;49.0.0&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=49.0.5, &amp;#60;50.0.0&lt;/code&gt;&lt;/li&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#62;=50.0.1&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-        
-      &lt;/dd&gt;
-
-      
-      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#60;47.0.0&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-
-    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;This is an entry in the RustSec database for the Wasmtime security advisory
-located at
-https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-3982-jqvv-277m
-For more information see the GitHub-hosted security advisory.&lt;/p&gt;
-
-
-    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
-    license.
-
-    
-    &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0425: Vulnerability in nix-nar</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0425.html</id><updated>2026-10-30T12:00:00+00:00</updated><category term="code-execution"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0425.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0425: Vulnerability in nix-nar"/><published>2026-10-30T12:00:00+00:00</published><summary xml:lang="en">`nix-nar`: `Decoder::unpack` writes archive entries outside the destination directory (path traversal)</summary><content xml:lang="en" type="html">  &lt;article&gt;
-    
-        &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/nix-nar/RUSTSEC-2026-0425.md&quot;&gt;History&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/nix-nar/RUSTSEC-2026-0425.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0425&quot;&gt;JSON (OSV)&lt;/a&gt;
-        &lt;/span&gt;
-    
-
-    &lt;header&gt;
-      &lt;h1&gt;
-        
-        RUSTSEC-2026-0425
-        
-      &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;nix-nar&lt;/code&gt;: &lt;code&gt;Decoder::unpack&lt;/code&gt; writes archive entries outside the destination directory (path traversal)&lt;/p&gt;
-&lt;/span&gt;
-    &lt;/header&gt;
-
-    
-
-    &lt;dl&gt;
-      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-10-30&quot;&gt;
-          October 30, 2026
-        &lt;/time&gt;
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;time datetime=&quot;2026-10-30&quot;&gt;
-          October 30, 2026
-        &lt;/time&gt;
-        
-      &lt;/dd&gt;
-
-      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
-      &lt;dd&gt;
-        
-        
-        &lt;a href=&quot;/packages/nix-nar.html&quot;&gt;nix-nar&lt;/a&gt;
-           
-          (&lt;a href=&quot;https://crates.io/crates/nix-nar&quot;&gt;crates.io&lt;/a&gt;)
+          (&lt;a href=&quot;https://crates.io/crates/pulldown-cmark&quot;&gt;crates.io&lt;/a&gt;)
           
         
         
@@ -2579,7 +925,7 @@ For more information see the GitHub-hosted security advisory.&lt;/p&gt;
       &lt;dd&gt;
         &lt;ul&gt;
           
-          &lt;li&gt;&lt;a href=&quot;/categories/code-execution.html&quot;&gt;code-execution&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
           
         &lt;/ul&gt;
       &lt;/dd&gt;
@@ -2589,15 +935,11 @@ For more information see the GitHub-hosted security advisory.&lt;/p&gt;
       &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
       &lt;dd&gt;
         
-          &lt;a href=&quot;/keywords/path-traversal.html&quot;&gt;#path-traversal&lt;/a&gt;
+          &lt;a href=&quot;/keywords/markdown.html&quot;&gt;#markdown&lt;/a&gt;
         
-          &lt;a href=&quot;/keywords/directory-traversal.html&quot;&gt;#directory-traversal&lt;/a&gt;
+          &lt;a href=&quot;/keywords/wikilinks.html&quot;&gt;#wikilinks&lt;/a&gt;
         
-          &lt;a href=&quot;/keywords/symlink.html&quot;&gt;#symlink&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/arbitrary-file-write.html&quot;&gt;#arbitrary-file-write&lt;/a&gt;
-        
-          &lt;a href=&quot;/keywords/nar.html&quot;&gt;#nar&lt;/a&gt;
+          &lt;a href=&quot;/keywords/memory-exhaustion.html&quot;&gt;#memory-exhaustion&lt;/a&gt;
         
       &lt;/dd&gt;
       
@@ -2610,11 +952,17 @@ For more information see the GitHub-hosted security advisory.&lt;/p&gt;
         &lt;ul&gt;
         
           &lt;li&gt;
-            &lt;a href=&quot;https://codeberg.org/scvalex/nix-nar-rs/issues/3&quot;&gt;
-              https://codeberg.org/scvalex/nix-nar-rs/issues/3
+            &lt;a href=&quot;https://github.com/pulldown-cmark/pulldown-cmark/pull/1186&quot;&gt;
+              https://github.com/pulldown-cmark/pulldown-cmark/pull/1186
             &lt;/a&gt;
           &lt;/li&gt;
         
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/pulldown-cmark/pulldown-cmark/pull/1186&quot;&gt;
+              https://github.com/pulldown-cmark/pulldown-cmark/pull/1186
+            &lt;/a&gt;
+          &lt;/li&gt;
         
         &lt;/ul&gt;
       &lt;/dd&gt;
@@ -2651,10 +999,10 @@ For more information see the GitHub-hosted security advisory.&lt;/p&gt;
             &lt;dd&gt;None&lt;/dd&gt;
           
             &lt;dt&gt;Integrity Impact&lt;/dt&gt;
-            &lt;dd&gt;High&lt;/dd&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
           
             &lt;dt&gt;Availability Impact&lt;/dt&gt;
-            &lt;dd&gt;None&lt;/dd&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
           
         &lt;/dl&gt;
       &lt;/dd&gt;
@@ -2662,7 +1010,7 @@ For more information see the GitHub-hosted security advisory.&lt;/p&gt;
       &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
 
       
-          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N&lt;/a&gt;&lt;/dd&gt;
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&lt;/a&gt;&lt;/dd&gt;
         
 
       
@@ -2672,62 +1020,46 @@ For more information see the GitHub-hosted security advisory.&lt;/p&gt;
         
         &lt;ul&gt;
           
-          &lt;li&gt;&lt;code&gt;&amp;#62;=0.6.0&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.13.6&lt;/code&gt;&lt;/li&gt;
           
         &lt;/ul&gt;
         
       &lt;/dd&gt;
 
       
-
-      
-      
-
-      
-      
-    &lt;/dl&gt;
-
-    
-    
-    &lt;dl&gt;
-      &lt;dt&gt;Affected Functions&lt;/dt&gt;
-      &lt;dd&gt;Version&lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;nix_nar::Decoder::unpack&lt;/code&gt;&lt;/dt&gt;
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
       &lt;dd&gt;
         &lt;ul&gt;
           
-          &lt;li&gt;&lt;code&gt;&amp;#60;0.6.0&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.13.0&lt;/code&gt;&lt;/li&gt;
           
         &lt;/ul&gt;
       &lt;/dd&gt;
       
-    &lt;/dl&gt;
-    
 
+      
+      
+    &lt;/dl&gt;
+
+    
     
 
     &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;&lt;code&gt;Decoder::unpack&lt;/code&gt; does not safely contain the paths it extracts, so a malicious NAR
-archive can create files &lt;strong&gt;outside&lt;/strong&gt; the destination directory — a path traversal
-(CWE-22).&lt;/p&gt;
-&lt;p&gt;In &lt;code&gt;src/dec.rs&lt;/code&gt; (&lt;code&gt;Decoder::unpack&lt;/code&gt;):&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;A symlink entry&apos;s target is written without checking where it points
-(&lt;code&gt;src/dec.rs:153&lt;/code&gt;), so the archive can create a symlink that escapes the
-destination directory.&lt;/li&gt;
-&lt;li&gt;The out-of-destination containment check compares path &lt;strong&gt;strings&lt;/strong&gt; only and does
-not account for symlinks created earlier in the same unpack
-(&lt;code&gt;src/dec.rs:176-181&lt;/code&gt;), before reaching the write sinks
-(&lt;code&gt;std::fs::create_dir&lt;/code&gt; at &lt;code&gt;src/dec.rs:201&lt;/code&gt; and &lt;code&gt;OpenOptions::open&lt;/code&gt; at
-&lt;code&gt;src/dec.rs:218&lt;/code&gt;).&lt;/li&gt;
-&lt;li&gt;The parser also accepts entry names containing &lt;code&gt;/&lt;/code&gt; (&lt;code&gt;src/parser.rs:138-147&lt;/code&gt;).&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Combined, a malicious archive can include a symlink &lt;code&gt;a&lt;/code&gt; pointing at an external
-directory and then an entry named &lt;code&gt;a/b&lt;/code&gt;, causing &lt;code&gt;b&lt;/code&gt; to be written to
-&lt;code&gt;&amp;lt;external&amp;gt;/b&lt;/code&gt;, outside the destination. This can create new files anywhere the
-process can write (it cannot overwrite existing files), which is escalatable to code
-execution by planting files in attacker-chosen locations.&lt;/p&gt;
+    &lt;p&gt;With &lt;code&gt;Options::ENABLE_WIKILINKS&lt;/code&gt;, handle_wikilink builds a wikilink&apos;s target
+from the raw text of its body: scan_wikilink_pipe walks it looking for |, then
+contains(&apos;\0&apos;) and from_replace_nuls walk it again.
+Once a wikilink is created, disable_all_links only disables Link entries, so
+every enclosing &lt;code&gt;![[&lt;/code&gt; stays live on the wikilink stack.
+On &lt;code&gt;![[![[![[…]]]]]]&lt;/code&gt; each of those openers then resolves in turn and rescans
+everything inside it, which is quadratic in the nesting depth.
+The event count stays tiny, because in the unpiped case each enclosing image
+replaces its body with a fresh text node, so all of that work is thrown away.&lt;/p&gt;
+&lt;p&gt;Applications that parse untrusted Markdown with &lt;code&gt;ENABLE_WIKILINKS&lt;/code&gt; set,
+including through &lt;code&gt;Options::all()&lt;/code&gt;, are affected. The option is off by default.
+Parsing without it is not affected.&lt;/p&gt;
+&lt;p&gt;The flaw was fixed in
+&lt;a href=&quot;https://github.com/pulldown-cmark/pulldown-cmark/pull/1186&quot;&gt;#1186&lt;/a&gt; and
+released in 0.13.6.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
@@ -2735,22 +1067,22 @@ execution by planting files in attacker-chosen locations.&lt;/p&gt;
 
     
     &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0427: Vulnerability in sn-releases</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0427.html</id><updated>2026-10-30T12:00:00+00:00</updated><category term="code-execution"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0427.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0427: Vulnerability in sn-releases"/><published>2026-10-30T12:00:00+00:00</published><summary xml:lang="en">`sn-releases`: `extract_release_archive` writes archive entries without a path-traversal check (zip-slip)</summary><content xml:lang="en" type="html">  &lt;article&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0431: Vulnerability in evtx</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0431.html</id><updated>2026-11-02T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0431.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0431: Vulnerability in evtx"/><published>2026-11-02T12:00:00+00:00</published><summary xml:lang="en">Unbounded memory allocation in `evtx` parsing a `.wevtcache` file</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/sn-releases/RUSTSEC-2026-0427.md&quot;&gt;History&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/sn-releases/RUSTSEC-2026-0427.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0427&quot;&gt;JSON (OSV)&lt;/a&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/evtx/RUSTSEC-2026-0431.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/evtx/RUSTSEC-2026-0431.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0431&quot;&gt;JSON (OSV)&lt;/a&gt;
         &lt;/span&gt;
     
 
     &lt;header&gt;
       &lt;h1&gt;
         
-        RUSTSEC-2026-0427
+        RUSTSEC-2026-0431
         
       &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;sn-releases&lt;/code&gt;: &lt;code&gt;extract_release_archive&lt;/code&gt; writes archive entries without a path-traversal check (zip-slip)&lt;/p&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Unbounded memory allocation in &lt;code&gt;evtx&lt;/code&gt; parsing a &lt;code&gt;.wevtcache&lt;/code&gt; file&lt;/p&gt;
 &lt;/span&gt;
     &lt;/header&gt;
 
@@ -2759,15 +1091,15 @@ execution by planting files in attacker-chosen locations.&lt;/p&gt;
     &lt;dl&gt;
       &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
       &lt;dd&gt;
-        &lt;time datetime=&quot;2026-10-29&quot;&gt;
-          October 29, 2026
+        &lt;time datetime=&quot;2026-11-01&quot;&gt;
+          November  1, 2026
         &lt;/time&gt;
       &lt;/dd&gt;
 
       &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
       &lt;dd&gt;
-        &lt;time datetime=&quot;2026-10-30&quot;&gt;
-          October 30, 2026
+        &lt;time datetime=&quot;2026-11-02&quot;&gt;
+          November  2, 2026
         &lt;/time&gt;
         
       &lt;/dd&gt;
@@ -2776,9 +1108,9 @@ execution by planting files in attacker-chosen locations.&lt;/p&gt;
       &lt;dd&gt;
         
         
-        &lt;a href=&quot;/packages/sn-releases.html&quot;&gt;sn-releases&lt;/a&gt;
+        &lt;a href=&quot;/packages/evtx.html&quot;&gt;evtx&lt;/a&gt;
            
-          (&lt;a href=&quot;https://crates.io/crates/sn-releases&quot;&gt;crates.io&lt;/a&gt;)
+          (&lt;a href=&quot;https://crates.io/crates/evtx&quot;&gt;crates.io&lt;/a&gt;)
           
         
         
@@ -2796,7 +1128,7 @@ execution by planting files in attacker-chosen locations.&lt;/p&gt;
       &lt;dd&gt;
         &lt;ul&gt;
           
-          &lt;li&gt;&lt;a href=&quot;/categories/code-execution.html&quot;&gt;code-execution&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
           
         &lt;/ul&gt;
       &lt;/dd&gt;
@@ -2806,13 +1138,13 @@ execution by planting files in attacker-chosen locations.&lt;/p&gt;
       &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
       &lt;dd&gt;
         
-          &lt;a href=&quot;/keywords/zip-slip.html&quot;&gt;#zip-slip&lt;/a&gt;
+          &lt;a href=&quot;/keywords/parsing.html&quot;&gt;#parsing&lt;/a&gt;
         
-          &lt;a href=&quot;/keywords/path-traversal.html&quot;&gt;#path-traversal&lt;/a&gt;
+          &lt;a href=&quot;/keywords/denial-of-service.html&quot;&gt;#denial-of-service&lt;/a&gt;
         
-          &lt;a href=&quot;/keywords/directory-traversal.html&quot;&gt;#directory-traversal&lt;/a&gt;
+          &lt;a href=&quot;/keywords/allocation.html&quot;&gt;#allocation&lt;/a&gt;
         
-          &lt;a href=&quot;/keywords/arbitrary-file-write.html&quot;&gt;#arbitrary-file-write&lt;/a&gt;
+          &lt;a href=&quot;/keywords/wevtcache.html&quot;&gt;#wevtcache&lt;/a&gt;
         
       &lt;/dd&gt;
       
@@ -2825,8 +1157,238 @@ execution by planting files in attacker-chosen locations.&lt;/p&gt;
         &lt;ul&gt;
         
           &lt;li&gt;
-            &lt;a href=&quot;https://github.com/maidsafe/sn-releases&quot;&gt;
-              https://github.com/maidsafe/sn-releases
+            &lt;a href=&quot;https://github.com/omerbenamram/evtx/issues/334&quot;&gt;
+              https://github.com/omerbenamram/evtx/issues/334
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/omerbenamram/evtx/pull/335&quot;&gt;
+              https://github.com/omerbenamram/evtx/pull/335
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;5.5 &lt;span class=&quot;tag medium&quot;&gt;
+        MEDIUM
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Local&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;Required&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H&quot;&gt;CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.15.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.11.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;evtx::wevt_templates::wevtcache::WevtCacheReader::next_entry&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.11.0, &amp;#60;0.15.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;evtx::wevt_templates::wevtcache::for_each_crim_blob&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.11.0, &amp;#60;0.15.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Affected versions of &lt;code&gt;evtx&lt;/code&gt; did not bound a per-entry payload length read from a &lt;code&gt;.wevtcache&lt;/code&gt; file before allocating a buffer sized from it, allowing a tiny crafted file to force a multi-gigabyte allocation and abort the process (out-of-memory denial of service, CWE-400).&lt;/p&gt;
+&lt;h2&gt;Details&lt;/h2&gt;
+&lt;p&gt;In &lt;code&gt;WevtCacheReader::next_entry&lt;/code&gt; (&lt;code&gt;src/wevt_templates/wevtcache.rs&lt;/code&gt;), the per-entry payload length is read as a &lt;code&gt;u64&lt;/code&gt; straight from the file and used to size a zeroing buffer &lt;strong&gt;before&lt;/strong&gt; any data is read:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-rust&quot;&gt;let len = usize::try_from(len_u64)?;   // u64 taken directly from the entry header
+let mut buf = vec![0u8; len];          // unbounded allocation, sized from the file
+reader.read_exact(&amp;amp;mut buf)?;          // only fails AFTER the allocation
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The only check on &lt;code&gt;len&lt;/code&gt; is that it fits in &lt;code&gt;usize&lt;/code&gt;; there is no check that it fits within the bytes remaining in the file. An entry header declaring a ~4 GiB length therefore makes the crate request a ~4 GiB allocation from a file of only ~25 bytes.&lt;/p&gt;
+&lt;p&gt;The sink is reachable through the public API &lt;code&gt;evtx::wevt_templates::wevtcache::for_each_crim_blob(path, f)&lt;/code&gt; (and the &lt;code&gt;WevtCacheReader::next_entry&lt;/code&gt; it drives). The &lt;code&gt;.wevtcache&lt;/code&gt; reader first shipped in &lt;code&gt;0.11.0&lt;/code&gt;, and every published version from &lt;code&gt;0.11.0&lt;/code&gt; through &lt;code&gt;0.14.0&lt;/code&gt; is affected. The code lives in the &lt;code&gt;wevt_templates&lt;/code&gt; feature, which is enabled by default through the &lt;code&gt;evtx_dump&lt;/code&gt; feature. The fix landed in &lt;code&gt;0.15.1&lt;/code&gt;: &lt;code&gt;0.15.0&lt;/code&gt; was tagged but never published to crates.io (its Windows build failed), so &lt;code&gt;0.15.1&lt;/code&gt; is the first patched release available. The Python bindings (&lt;code&gt;evtx&lt;/code&gt; on PyPI) carry the fix as of &lt;code&gt;0.15.0&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;Reproduction&lt;/h2&gt;
+&lt;p&gt;A ~25-byte file is sufficient: the &lt;code&gt;.wevtcache&lt;/code&gt; magic (&lt;code&gt;WEVTCACH&lt;/code&gt;), a &lt;code&gt;version&lt;/code&gt; (u32 LE) of &lt;code&gt;1&lt;/code&gt;, an &lt;code&gt;entry_count&lt;/code&gt; (u32 LE) of &lt;code&gt;1&lt;/code&gt;, then one entry consisting of a &lt;code&gt;kind&lt;/code&gt; byte and a &lt;code&gt;len&lt;/code&gt; (u64 LE) set to a large value (e.g. &lt;code&gt;0xFFFFFFF0&lt;/code&gt;), with no payload bytes following. Passing that file to &lt;code&gt;for_each_crim_blob&lt;/code&gt; triggers the oversized allocation before the short read fails.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0432: Vulnerability in codeq</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0432.html</id><updated>2026-11-02T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0432.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0432: Vulnerability in codeq"/><published>2026-11-02T12:00:00+00:00</published><summary xml:lang="en">`codeq`: decoding untrusted input can allocate memory from an unchecked length prefix (denial of service)</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/codeq/RUSTSEC-2026-0432.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/codeq/RUSTSEC-2026-0432.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0432&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0432
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;codeq&lt;/code&gt;: decoding untrusted input can allocate memory from an unchecked length prefix (denial of service)&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-31&quot;&gt;
+          October 31, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-02&quot;&gt;
+          November  2, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/codeq.html&quot;&gt;codeq&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/codeq&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/denial-of-service.html&quot;&gt;#denial-of-service&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/allocation.html&quot;&gt;#allocation&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/untrusted-input.html&quot;&gt;#untrusted-input&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/oom.html&quot;&gt;#oom&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/drmingdrmer/codeq/issues/4&quot;&gt;
+              https://github.com/drmingdrmer/codeq/issues/4
             &lt;/a&gt;
           &lt;/li&gt;
         
@@ -2839,7 +1401,201 @@ execution by planting files in attacker-chosen locations.&lt;/p&gt;
 
       
       &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
-      &lt;dd&gt;8.8 &lt;span class=&quot;tag high&quot;&gt;
+      &lt;dd&gt;5.3 &lt;span class=&quot;tag medium&quot;&gt;
+        MEDIUM
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Network&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.6.3&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;&lt;code&gt;codeq&lt;/code&gt; is a serialization library whose &lt;code&gt;Decode&lt;/code&gt; trait reads length-prefixed values. For &lt;code&gt;String&lt;/code&gt; and &lt;code&gt;Vec&amp;lt;u8&amp;gt;&lt;/code&gt;, the length-prefixed &lt;code&gt;Decode&lt;/code&gt; implementations read a 4-byte big-endian length and allocate a buffer of that size &lt;strong&gt;before&lt;/strong&gt; reading the payload. Because the declared length is taken straight from the input with no upper bound and no cross-check against the bytes actually available, a tiny input can force an allocation of up to ~4 GiB. Code that decodes untrusted data through &lt;code&gt;codeq&lt;/code&gt; can therefore be made to spike memory use and be OOM-killed (CWE-400, uncontrolled resource consumption).&lt;/p&gt;
+&lt;p&gt;The affected path, in &lt;code&gt;src/codec/impls/string_impl.rs&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-rust&quot;&gt;impl Decode for String {
+    fn decode&amp;lt;R: io::Read&amp;gt;(mut r: R) -&amp;gt; Result&amp;lt;Self, io::Error&amp;gt; {
+        let len = r.read_u32::&amp;lt;BigEndian&amp;gt;()? as usize;
+        let mut buf = vec![0; len];   // allocates `len` bytes up front
+        r.read_exact(&amp;amp;mut buf)?; 
+        String::from_utf8(buf).map_err(|e| io::Error::new(io::ErrorKind::InvalidData, e))
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Any code that decodes attacker-controlled bytes through &lt;code&gt;codeq&lt;/code&gt; can be forcedcto allocate up to ~4 GiB per &lt;code&gt;decode&lt;/code&gt; call from a 4-byte length prefix. On a service decoding untrusted input this is a cheap denial of service (crash / OOM-kill). The practical severity depends on how the embedding wires &lt;code&gt;codeq&lt;/code&gt; to untrusted bytes.&lt;/p&gt;
+&lt;h2&gt;Remediation&lt;/h2&gt;
+&lt;p&gt;Fixed in &lt;code&gt;0.6.3&lt;/code&gt;, which grows the decode buffers as payload bytes actually arrive instead of pre-allocating the full declared length (commit &lt;code&gt;9f15313&lt;/code&gt;, &amp;quot;fix: codec: grow decode buffers as payload bytes arrive&amp;quot;). Upgrade to &lt;code&gt;codeq &amp;gt;= 0.6.3&lt;/code&gt;.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0429: Vulnerability in zip</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0429.html</id><updated>2026-11-02T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0429.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0429: Vulnerability in zip"/><published>2026-11-02T12:00:00+00:00</published><summary xml:lang="en">zip: `ZipArchive::extract` aborts the process on a symlink entry with a large declared size</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/zip/RUSTSEC-2026-0429.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/zip/RUSTSEC-2026-0429.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0429&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0429
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;zip: &lt;code&gt;ZipArchive::extract&lt;/code&gt; aborts the process on a symlink entry with a large declared size&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-22&quot;&gt;
+          October 22, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-02&quot;&gt;
+          November  2, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/zip.html&quot;&gt;zip&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/zip&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/dos.html&quot;&gt;#dos&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/symlink.html&quot;&gt;#symlink&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/unbounded-allocation.html&quot;&gt;#unbounded-allocation&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/extract.html&quot;&gt;#extract&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://www.cve.org/CVERecord?id=CVE-2026-115909&quot;&gt;CVE-2026-115909&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-q7v9-x93c-xqv3&quot;&gt;GHSA-q7v9-x93c-xqv3&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;7.5 &lt;span class=&quot;tag high&quot;&gt;
         HIGH
       &lt;/span&gt;&lt;/dd&gt;
 
@@ -2857,16 +1613,16 @@ execution by planting files in attacker-chosen locations.&lt;/p&gt;
             &lt;dd&gt;None&lt;/dd&gt;
           
             &lt;dt&gt;User Interaction&lt;/dt&gt;
-            &lt;dd&gt;Required&lt;/dd&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
           
             &lt;dt&gt;Scope&lt;/dt&gt;
             &lt;dd&gt;Unchanged&lt;/dd&gt;
           
             &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
-            &lt;dd&gt;High&lt;/dd&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
           
             &lt;dt&gt;Integrity Impact&lt;/dt&gt;
-            &lt;dd&gt;High&lt;/dd&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
           
             &lt;dt&gt;Availability Impact&lt;/dt&gt;
             &lt;dd&gt;High&lt;/dd&gt;
@@ -2877,7 +1633,7 @@ execution by planting files in attacker-chosen locations.&lt;/p&gt;
       &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
 
       
-          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H&lt;/a&gt;&lt;/dd&gt;
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&lt;/a&gt;&lt;/dd&gt;
         
 
       
@@ -2885,7 +1641,11 @@ execution by planting files in attacker-chosen locations.&lt;/p&gt;
       &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
       &lt;dd&gt;
         
-        no patched versions
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=9.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
         
       &lt;/dd&gt;
 
@@ -2893,44 +1653,47 @@ execution by planting files in attacker-chosen locations.&lt;/p&gt;
 
       
       
-
-      
-      
     &lt;/dl&gt;
 
     
-    
-    &lt;dl&gt;
-      &lt;dt&gt;Affected Functions&lt;/dt&gt;
-      &lt;dd&gt;Version&lt;/dd&gt;
-      
-      &lt;dt&gt;&lt;code&gt;sn_releases::SafeReleaseRepoActions::extract_release_archive&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;
-        &lt;ul&gt;
-          
-          &lt;li&gt;&lt;code&gt;&amp;#60;=0.3.1&lt;/code&gt;&lt;/li&gt;
-          
-        &lt;/ul&gt;
-      &lt;/dd&gt;
-      
-    &lt;/dl&gt;
-    
-
     
 
     &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;&lt;code&gt;SafeReleaseRepoActions::extract_release_archive&lt;/code&gt; builds each output path from the &lt;strong&gt;raw archive entry name&lt;/strong&gt; and writes to it with no traversal check, so a malicious release archive can create directories and write files &lt;strong&gt;outside&lt;/strong&gt; the destination directory, a &amp;quot;zip-slip&amp;quot; / path traversal (CWE-22 / CWE-23).&lt;/p&gt;
-&lt;p&gt;In &lt;code&gt;src/lib.rs&lt;/code&gt; (&lt;code&gt;extract_release_archive&lt;/code&gt;, zip branch):&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-rust&quot;&gt;let mut file = archive.by_index(i)?;
-let out_path = dest_dir_path.join(file.name());   // file.name() is the raw entry name
-if file.name().ends_with(&apos;/&apos;) {
-    std::fs::create_dir_all(&amp;amp;out_path)?;          // no `..` check
-} else {
-    let mut outfile = std::fs::File::create(&amp;amp;out_path)?;   // writes outside dest
-    std::io::copy(&amp;amp;mut file, &amp;amp;mut outfile)?;
-}
+    &lt;p&gt;&lt;code&gt;ZipArchive::extract()&lt;/code&gt; sizes the symlink-target buffer from the uncompressed
+size declared in the central directory record, before reading a single byte of
+entry data:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-rust&quot;&gt;let mut target = Vec::with_capacity(file.size() as usize);
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The crate is unmaintained (latest release 0.3.1, 2024-10-22) and no fixed version is available.&lt;/p&gt;
+&lt;p&gt;Both inputs are attacker-controlled. &lt;code&gt;ZipFile::size()&lt;/code&gt; returns
+&lt;code&gt;uncompressed_size&lt;/code&gt; verbatim from the central directory, widened to a full &lt;code&gt;u64&lt;/code&gt;
+by a ZIP64 extended-information extra field, and is never cross-checked against
+the compressed size, the remaining archive length, or any platform-appropriate
+bound for a symlink target. &lt;code&gt;ZipFile::is_symlink()&lt;/code&gt; is decided entirely by the
+&lt;code&gt;S_IFLNK&lt;/code&gt; bit of the external-attributes field.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Vec::with_capacity()&lt;/code&gt; is infallible: when the reservation is refused it calls
+&lt;code&gt;handle_alloc_error()&lt;/code&gt; and aborts the process. This is not a Rust panic. It is
+not caught by &lt;code&gt;catch_unwind()&lt;/code&gt;, is unaffected by &lt;code&gt;panic = &amp;quot;unwind&amp;quot;&lt;/code&gt;, and is not
+contained by running the call on a worker thread.&lt;/p&gt;
+&lt;p&gt;A 112-byte archive is sufficient. One &lt;code&gt;Stored&lt;/code&gt; entry flagged &lt;code&gt;S_IFLNK&lt;/code&gt; with a
+ZIP64 field declaring &lt;code&gt;uncompressed_size = 2^62&lt;/code&gt; and a zero-byte payload makes
+&lt;code&gt;extract()&lt;/code&gt; fail with:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;memory allocation of 4611686018427387904 bytes failed
+Aborted (core dumped)          # exit 134
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The declared value only needs to exceed the host&apos;s address space, not its RAM:
+&lt;code&gt;Vec::with_capacity()&lt;/code&gt; maps address space without touching pages, so resident
+memory stays flat and the abort happens on the refused reservation itself. Under
+a &lt;code&gt;ulimit -v&lt;/code&gt; cap or a memory-constrained container the threshold drops far
+enough that a plain 32-bit &lt;code&gt;uncompressed_size&lt;/code&gt; with no ZIP64 field suffices.&lt;/p&gt;
+&lt;p&gt;Applications that extract archives from untrusted input are affected on Unix and
+Windows targets with default features and no special configuration: upload
+handling, mail-attachment processing, package and artefact ingestion, backup
+restore and container-image layer extraction. No confidentiality or integrity
+property is affected: there is no memory unsafety, no out-of-bounds access, no
+disclosure and no data corruption.&lt;/p&gt;
+&lt;p&gt;The fix landed in &lt;a href=&quot;https://github.com/zip-rs/zip2/pull/984&quot;&gt;zip-rs/zip2#984&lt;/a&gt; and
+shipped in 9.0.0.&lt;/p&gt;
+&lt;p&gt;For further details see: https://github.com/zip-rs/zip2/security/advisories/GHSA-q7v9-x93c-xqv3&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
@@ -3269,22 +2032,1259 @@ if file.name().ends_with(&apos;/&apos;) {
 
     
     &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0415: Vulnerability in juniper_hyper</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0415.html</id><updated>2026-10-29T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0415.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0415: Vulnerability in juniper_hyper"/><published>2026-10-29T12:00:00+00:00</published><summary xml:lang="en">Unbounded memory use on large request bodies</summary><content xml:lang="en" type="html">  &lt;article&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0425: Vulnerability in nix-nar</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0425.html</id><updated>2026-10-30T12:00:00+00:00</updated><category term="code-execution"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0425.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0425: Vulnerability in nix-nar"/><published>2026-10-30T12:00:00+00:00</published><summary xml:lang="en">`nix-nar`: `Decoder::unpack` writes archive entries outside the destination directory (path traversal)</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/juniper_hyper/RUSTSEC-2026-0415.md&quot;&gt;History&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/juniper_hyper/RUSTSEC-2026-0415.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0415&quot;&gt;JSON (OSV)&lt;/a&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/nix-nar/RUSTSEC-2026-0425.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/nix-nar/RUSTSEC-2026-0425.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0425&quot;&gt;JSON (OSV)&lt;/a&gt;
         &lt;/span&gt;
     
 
     &lt;header&gt;
       &lt;h1&gt;
         
-        RUSTSEC-2026-0415
+        RUSTSEC-2026-0425
         
       &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Unbounded memory use on large request bodies&lt;/p&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;nix-nar&lt;/code&gt;: &lt;code&gt;Decoder::unpack&lt;/code&gt; writes archive entries outside the destination directory (path traversal)&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-30&quot;&gt;
+          October 30, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-30&quot;&gt;
+          October 30, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/nix-nar.html&quot;&gt;nix-nar&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/nix-nar&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/code-execution.html&quot;&gt;code-execution&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/path-traversal.html&quot;&gt;#path-traversal&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/directory-traversal.html&quot;&gt;#directory-traversal&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/symlink.html&quot;&gt;#symlink&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/arbitrary-file-write.html&quot;&gt;#arbitrary-file-write&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/nar.html&quot;&gt;#nar&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://codeberg.org/scvalex/nix-nar-rs/issues/3&quot;&gt;
+              https://codeberg.org/scvalex/nix-nar-rs/issues/3
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;7.5 &lt;span class=&quot;tag high&quot;&gt;
+        HIGH
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Network&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.6.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;nix_nar::Decoder::unpack&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.6.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;&lt;code&gt;Decoder::unpack&lt;/code&gt; does not safely contain the paths it extracts, so a malicious NAR
+archive can create files &lt;strong&gt;outside&lt;/strong&gt; the destination directory — a path traversal
+(CWE-22).&lt;/p&gt;
+&lt;p&gt;In &lt;code&gt;src/dec.rs&lt;/code&gt; (&lt;code&gt;Decoder::unpack&lt;/code&gt;):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A symlink entry&apos;s target is written without checking where it points
+(&lt;code&gt;src/dec.rs:153&lt;/code&gt;), so the archive can create a symlink that escapes the
+destination directory.&lt;/li&gt;
+&lt;li&gt;The out-of-destination containment check compares path &lt;strong&gt;strings&lt;/strong&gt; only and does
+not account for symlinks created earlier in the same unpack
+(&lt;code&gt;src/dec.rs:176-181&lt;/code&gt;), before reaching the write sinks
+(&lt;code&gt;std::fs::create_dir&lt;/code&gt; at &lt;code&gt;src/dec.rs:201&lt;/code&gt; and &lt;code&gt;OpenOptions::open&lt;/code&gt; at
+&lt;code&gt;src/dec.rs:218&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;The parser also accepts entry names containing &lt;code&gt;/&lt;/code&gt; (&lt;code&gt;src/parser.rs:138-147&lt;/code&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Combined, a malicious archive can include a symlink &lt;code&gt;a&lt;/code&gt; pointing at an external
+directory and then an entry named &lt;code&gt;a/b&lt;/code&gt;, causing &lt;code&gt;b&lt;/code&gt; to be written to
+&lt;code&gt;&amp;lt;external&amp;gt;/b&lt;/code&gt;, outside the destination. This can create new files anywhere the
+process can write (it cannot overwrite existing files), which is escalatable to code
+execution by planting files in attacker-chosen locations.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0421: Vulnerability in wasmtime-wasi-http</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0421.html</id><updated>2026-10-30T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0421.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0421: Vulnerability in wasmtime-wasi-http"/><published>2026-10-30T12:00:00+00:00</published><summary xml:lang="en">wasi-http p2: outgoing content-length can be invalid or not match body</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/wasmtime-wasi-http/RUSTSEC-2026-0421.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/wasmtime-wasi-http/RUSTSEC-2026-0421.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0421&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0421
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;wasi-http p2: outgoing content-length can be invalid or not match body&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-29&quot;&gt;
+          October 29, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-30&quot;&gt;
+          October 30, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/wasmtime-wasi-http.html&quot;&gt;wasmtime-wasi-http&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/wasmtime-wasi-http&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-h4wp-g4x3-7398&quot;&gt;GHSA-h4wp-g4x3-7398&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/bytecodealliance/wasmtime/pull/15070&quot;&gt;
+              https://github.com/bytecodealliance/wasmtime/pull/15070
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;3.7 &lt;span class=&quot;tag low&quot;&gt;
+        LOW
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Network&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N&quot;&gt;CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=36.0.20, &amp;#60;37.0.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=48.0.8, &amp;#60;49.0.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=49.0.5, &amp;#60;50.0.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=50.0.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;This is an entry in the RustSec database for the Wasmtime security advisory
+located at
+https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-h4wp-g4x3-7398
+For more information see the GitHub-hosted security advisory.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0420: Vulnerability in wasmtime-wasi</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0420.html</id><updated>2026-10-30T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0420.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0420: Vulnerability in wasmtime-wasi"/><published>2026-10-30T12:00:00+00:00</published><summary xml:lang="en">wasip3 UDP `send` can deliver a datagram to an address only allowed for receiving</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/wasmtime-wasi/RUSTSEC-2026-0420.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/wasmtime-wasi/RUSTSEC-2026-0420.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0420&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0420
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;wasip3 UDP &lt;code&gt;send&lt;/code&gt; can deliver a datagram to an address only allowed for receiving&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-29&quot;&gt;
+          October 29, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-30&quot;&gt;
+          October 30, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/wasmtime-wasi.html&quot;&gt;wasmtime-wasi&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/wasmtime-wasi&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-hmmr-87qq-258j&quot;&gt;GHSA-hmmr-87qq-258j&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/bytecodealliance/wasmtime/pull/15077&quot;&gt;
+              https://github.com/bytecodealliance/wasmtime/pull/15077
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;6.4 &lt;span class=&quot;tag medium&quot;&gt;
+        MEDIUM
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Network&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Changed&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:N&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:N&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=48.0.8, &amp;#60;49.0.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=49.0.5, &amp;#60;50.0.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=50.0.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;48.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;This is an entry in the RustSec database for the Wasmtime security advisory
+located at
+https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-hmmr-87qq-258j
+For more information see the GitHub-hosted security advisory.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0422: Vulnerability in wasmtime</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0422.html</id><updated>2026-10-30T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0422.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0422: Vulnerability in wasmtime"/><published>2026-10-30T12:00:00+00:00</published><summary xml:lang="en">Typed functions with `i31` or `nullref` arguments may panic due to insufficient type-check</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/wasmtime/RUSTSEC-2026-0422.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/wasmtime/RUSTSEC-2026-0422.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0422&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0422
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Typed functions with &lt;code&gt;i31&lt;/code&gt; or &lt;code&gt;nullref&lt;/code&gt; arguments may panic due to insufficient type-check&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-29&quot;&gt;
+          October 29, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-30&quot;&gt;
+          October 30, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/wasmtime.html&quot;&gt;wasmtime&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/wasmtime&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-3982-jqvv-277m&quot;&gt;GHSA-3982-jqvv-277m&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/bytecodealliance/wasmtime/pull/15076&quot;&gt;
+              https://github.com/bytecodealliance/wasmtime/pull/15076
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;1.8 &lt;span class=&quot;tag low&quot;&gt;
+        LOW
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Adjacent&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;Required&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:A/AC:H/PR:H/UI:R/S:U/C:N/I:N/A:L&quot;&gt;CVSS:3.1/AV:A/AC:H/PR:H/UI:R/S:U/C:N/I:N/A:L&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=48.0.8, &amp;#60;49.0.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=49.0.5, &amp;#60;50.0.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=50.0.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;47.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;This is an entry in the RustSec database for the Wasmtime security advisory
+located at
+https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-3982-jqvv-277m
+For more information see the GitHub-hosted security advisory.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0424: Vulnerability in wasmtime</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0424.html</id><updated>2026-10-30T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0424.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0424: Vulnerability in wasmtime"/><published>2026-10-30T12:00:00+00:00</published><summary xml:lang="en">Unchecked memory usage in transferring borrowed resources between components</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/wasmtime/RUSTSEC-2026-0424.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/wasmtime/RUSTSEC-2026-0424.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0424&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0424
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Unchecked memory usage in transferring borrowed resources between components&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-29&quot;&gt;
+          October 29, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-30&quot;&gt;
+          October 30, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/wasmtime.html&quot;&gt;wasmtime&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/wasmtime&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-6fr9-xmw9-5352&quot;&gt;GHSA-6fr9-xmw9-5352&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/bytecodealliance/wasmtime/pull/15075&quot;&gt;
+              https://github.com/bytecodealliance/wasmtime/pull/15075
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=36.0.20, &amp;#60;37.0.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=48.0.8, &amp;#60;49.0.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=49.0.5, &amp;#60;50.0.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=50.0.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;This is an entry in the RustSec database for the Wasmtime security advisory
+located at
+https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-6fr9-xmw9-5352
+For more information see the GitHub-hosted security advisory.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0423: Vulnerability in wasmtime</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0423.html</id><updated>2026-10-30T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0423.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0423: Vulnerability in wasmtime"/><published>2026-10-30T12:00:00+00:00</published><summary xml:lang="en">Cross-engine type confusion with host-created struct-types-with-supertypes</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/wasmtime/RUSTSEC-2026-0423.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/wasmtime/RUSTSEC-2026-0423.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0423&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0423
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Cross-engine type confusion with host-created struct-types-with-supertypes&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-29&quot;&gt;
+          October 29, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-30&quot;&gt;
+          October 30, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/wasmtime.html&quot;&gt;wasmtime&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/wasmtime&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-qw58-7h65-crq2&quot;&gt;GHSA-qw58-7h65-crq2&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/bytecodealliance/wasmtime/pull/15078&quot;&gt;
+              https://github.com/bytecodealliance/wasmtime/pull/15078
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=48.0.8, &amp;#60;49.0.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=49.0.5, &amp;#60;50.0.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=50.0.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;47.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;This is an entry in the RustSec database for the Wasmtime security advisory
+located at
+https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-qw58-7h65-crq2
+For more information see the GitHub-hosted security advisory.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0427: Vulnerability in sn-releases</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0427.html</id><updated>2026-10-30T12:00:00+00:00</updated><category term="code-execution"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0427.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0427: Vulnerability in sn-releases"/><published>2026-10-30T12:00:00+00:00</published><summary xml:lang="en">`sn-releases`: `extract_release_archive` writes archive entries without a path-traversal check (zip-slip)</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/sn-releases/RUSTSEC-2026-0427.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/sn-releases/RUSTSEC-2026-0427.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0427&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0427
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;sn-releases&lt;/code&gt;: &lt;code&gt;extract_release_archive&lt;/code&gt; writes archive entries without a path-traversal check (zip-slip)&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-29&quot;&gt;
+          October 29, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-30&quot;&gt;
+          October 30, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/sn-releases.html&quot;&gt;sn-releases&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/sn-releases&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/code-execution.html&quot;&gt;code-execution&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/zip-slip.html&quot;&gt;#zip-slip&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/path-traversal.html&quot;&gt;#path-traversal&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/directory-traversal.html&quot;&gt;#directory-traversal&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/arbitrary-file-write.html&quot;&gt;#arbitrary-file-write&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/maidsafe/sn-releases&quot;&gt;
+              https://github.com/maidsafe/sn-releases
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;8.8 &lt;span class=&quot;tag high&quot;&gt;
+        HIGH
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Network&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;Required&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;sn_releases::SafeReleaseRepoActions::extract_release_archive&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;=0.3.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;&lt;code&gt;SafeReleaseRepoActions::extract_release_archive&lt;/code&gt; builds each output path from the &lt;strong&gt;raw archive entry name&lt;/strong&gt; and writes to it with no traversal check, so a malicious release archive can create directories and write files &lt;strong&gt;outside&lt;/strong&gt; the destination directory, a &amp;quot;zip-slip&amp;quot; / path traversal (CWE-22 / CWE-23).&lt;/p&gt;
+&lt;p&gt;In &lt;code&gt;src/lib.rs&lt;/code&gt; (&lt;code&gt;extract_release_archive&lt;/code&gt;, zip branch):&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-rust&quot;&gt;let mut file = archive.by_index(i)?;
+let out_path = dest_dir_path.join(file.name());   // file.name() is the raw entry name
+if file.name().ends_with(&apos;/&apos;) {
+    std::fs::create_dir_all(&amp;amp;out_path)?;          // no `..` check
+} else {
+    let mut outfile = std::fs::File::create(&amp;amp;out_path)?;   // writes outside dest
+    std::io::copy(&amp;amp;mut file, &amp;amp;mut outfile)?;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The crate is unmaintained (latest release 0.3.1, 2024-10-22) and no fixed version is available.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0416: Vulnerability in juniper</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0416.html</id><updated>2026-10-29T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0416.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0416: Vulnerability in juniper"/><published>2026-10-29T12:00:00+00:00</published><summary xml:lang="en">Stack overflow on deeply nested GraphQL documents</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/juniper/RUSTSEC-2026-0416.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/juniper/RUSTSEC-2026-0416.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0416&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0416
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Stack overflow on deeply nested GraphQL documents&lt;/p&gt;
 &lt;/span&gt;
     &lt;/header&gt;
 
@@ -3310,9 +3310,9 @@ if file.name().ends_with(&apos;/&apos;) {
       &lt;dd&gt;
         
         
-        &lt;a href=&quot;/packages/juniper_hyper.html&quot;&gt;juniper_hyper&lt;/a&gt;
+        &lt;a href=&quot;/packages/juniper.html&quot;&gt;juniper&lt;/a&gt;
            
-          (&lt;a href=&quot;https://crates.io/crates/juniper_hyper&quot;&gt;crates.io&lt;/a&gt;)
+          (&lt;a href=&quot;https://crates.io/crates/juniper&quot;&gt;crates.io&lt;/a&gt;)
           
         
         
@@ -3342,9 +3342,9 @@ if file.name().ends_with(&apos;/&apos;) {
         
           &lt;a href=&quot;/keywords/graphql.html&quot;&gt;#graphql&lt;/a&gt;
         
-          &lt;a href=&quot;/keywords/http.html&quot;&gt;#http&lt;/a&gt;
+          &lt;a href=&quot;/keywords/stack-overflow.html&quot;&gt;#stack-overflow&lt;/a&gt;
         
-          &lt;a href=&quot;/keywords/memory.html&quot;&gt;#memory&lt;/a&gt;
+          &lt;a href=&quot;/keywords/recursion.html&quot;&gt;#recursion&lt;/a&gt;
         
       &lt;/dd&gt;
       
@@ -3356,7 +3356,7 @@ if file.name().ends_with(&apos;/&apos;) {
           
           &lt;li&gt;
             
-            &lt;a href=&quot;https://github.com/advisories/GHSA-pfrg-qg4f-grmv&quot;&gt;GHSA-pfrg-qg4f-grmv&lt;/a&gt;
+            &lt;a href=&quot;https://github.com/advisories/GHSA-34cw-x8g7-rcv5&quot;&gt;GHSA-34cw-x8g7-rcv5&lt;/a&gt;
             
           &lt;/li&gt;
           
@@ -3432,7 +3432,7 @@ if file.name().ends_with(&apos;/&apos;) {
         
         &lt;ul&gt;
           
-          &lt;li&gt;&lt;code&gt;&amp;#62;=0.10.1&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.17.2&lt;/code&gt;&lt;/li&gt;
           
         &lt;/ul&gt;
         
@@ -3448,8 +3448,9 @@ if file.name().ends_with(&apos;/&apos;) {
     
 
     &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;The &lt;code&gt;graphql()&lt;/code&gt; and &lt;code&gt;graphql_sync()&lt;/code&gt; functions of &lt;code&gt;juniper_hyper&lt;/code&gt; read the whole body of a POST request into memory before they parsed the body. The functions had no limit on the size of the body. A client could thus send a large body and exhaust the memory of the server. The request needs no authentication.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;juniper_hyper&lt;/code&gt; 0.10.1 reads at most 2 MiB of a request body by default. The functions respond with &lt;code&gt;413 Payload Too Large&lt;/code&gt; to larger bodies. A &lt;code&gt;juniper_hyper::BodyLimit&lt;/code&gt; in the extensions of a request changes the limit for the request.&lt;/p&gt;
+    &lt;p&gt;The parser of &lt;code&gt;juniper&lt;/code&gt; called itself once for each level of nesting in a GraphQL document. The parser had no limit on the nesting depth. Deeply nested selection sets, input values, and list types thus overflowed the stack of the thread that parsed the document. Validation and execution followed fragment spreads in the same recursive way. Long chains of fragment spreads thus overflowed the stack in validation and execution.&lt;/p&gt;
+&lt;p&gt;A stack overflow aborts the whole process. One request can thus stop a server and drop all other requests in progress. The request needs no authentication.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;juniper&lt;/code&gt; 0.17.2 rejects documents that nest deeper than 64 levels or contain more than 15,000 tokens. &lt;code&gt;RootNode::limit_depth()&lt;/code&gt; and &lt;code&gt;RootNode::limit_tokens()&lt;/code&gt; change the limits.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
@@ -3653,22 +3654,22 @@ if file.name().ends_with(&apos;/&apos;) {
 
     
     &lt;/p&gt;
-  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0416: Vulnerability in juniper</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0416.html</id><updated>2026-10-29T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0416.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0416: Vulnerability in juniper"/><published>2026-10-29T12:00:00+00:00</published><summary xml:lang="en">Stack overflow on deeply nested GraphQL documents</summary><content xml:lang="en" type="html">  &lt;article&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0415: Vulnerability in juniper_hyper</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0415.html</id><updated>2026-10-29T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0415.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0415: Vulnerability in juniper_hyper"/><published>2026-10-29T12:00:00+00:00</published><summary xml:lang="en">Unbounded memory use on large request bodies</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/juniper/RUSTSEC-2026-0416.md&quot;&gt;History&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/juniper/RUSTSEC-2026-0416.md&quot;&gt;Edit&lt;/a&gt; ⋅
-          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0416&quot;&gt;JSON (OSV)&lt;/a&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/juniper_hyper/RUSTSEC-2026-0415.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/juniper_hyper/RUSTSEC-2026-0415.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0415&quot;&gt;JSON (OSV)&lt;/a&gt;
         &lt;/span&gt;
     
 
     &lt;header&gt;
       &lt;h1&gt;
         
-        RUSTSEC-2026-0416
+        RUSTSEC-2026-0415
         
       &lt;/h1&gt;
-      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Stack overflow on deeply nested GraphQL documents&lt;/p&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Unbounded memory use on large request bodies&lt;/p&gt;
 &lt;/span&gt;
     &lt;/header&gt;
 
@@ -3694,9 +3695,9 @@ if file.name().ends_with(&apos;/&apos;) {
       &lt;dd&gt;
         
         
-        &lt;a href=&quot;/packages/juniper.html&quot;&gt;juniper&lt;/a&gt;
+        &lt;a href=&quot;/packages/juniper_hyper.html&quot;&gt;juniper_hyper&lt;/a&gt;
            
-          (&lt;a href=&quot;https://crates.io/crates/juniper&quot;&gt;crates.io&lt;/a&gt;)
+          (&lt;a href=&quot;https://crates.io/crates/juniper_hyper&quot;&gt;crates.io&lt;/a&gt;)
           
         
         
@@ -3726,9 +3727,9 @@ if file.name().ends_with(&apos;/&apos;) {
         
           &lt;a href=&quot;/keywords/graphql.html&quot;&gt;#graphql&lt;/a&gt;
         
-          &lt;a href=&quot;/keywords/stack-overflow.html&quot;&gt;#stack-overflow&lt;/a&gt;
+          &lt;a href=&quot;/keywords/http.html&quot;&gt;#http&lt;/a&gt;
         
-          &lt;a href=&quot;/keywords/recursion.html&quot;&gt;#recursion&lt;/a&gt;
+          &lt;a href=&quot;/keywords/memory.html&quot;&gt;#memory&lt;/a&gt;
         
       &lt;/dd&gt;
       
@@ -3740,7 +3741,7 @@ if file.name().ends_with(&apos;/&apos;) {
           
           &lt;li&gt;
             
-            &lt;a href=&quot;https://github.com/advisories/GHSA-34cw-x8g7-rcv5&quot;&gt;GHSA-34cw-x8g7-rcv5&lt;/a&gt;
+            &lt;a href=&quot;https://github.com/advisories/GHSA-pfrg-qg4f-grmv&quot;&gt;GHSA-pfrg-qg4f-grmv&lt;/a&gt;
             
           &lt;/li&gt;
           
@@ -3816,7 +3817,7 @@ if file.name().ends_with(&apos;/&apos;) {
         
         &lt;ul&gt;
           
-          &lt;li&gt;&lt;code&gt;&amp;#62;=0.17.2&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.10.1&lt;/code&gt;&lt;/li&gt;
           
         &lt;/ul&gt;
         
@@ -3832,9 +3833,8 @@ if file.name().ends_with(&apos;/&apos;) {
     
 
     &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
-    &lt;p&gt;The parser of &lt;code&gt;juniper&lt;/code&gt; called itself once for each level of nesting in a GraphQL document. The parser had no limit on the nesting depth. Deeply nested selection sets, input values, and list types thus overflowed the stack of the thread that parsed the document. Validation and execution followed fragment spreads in the same recursive way. Long chains of fragment spreads thus overflowed the stack in validation and execution.&lt;/p&gt;
-&lt;p&gt;A stack overflow aborts the whole process. One request can thus stop a server and drop all other requests in progress. The request needs no authentication.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;juniper&lt;/code&gt; 0.17.2 rejects documents that nest deeper than 64 levels or contain more than 15,000 tokens. &lt;code&gt;RootNode::limit_depth()&lt;/code&gt; and &lt;code&gt;RootNode::limit_tokens()&lt;/code&gt; change the limits.&lt;/p&gt;
+    &lt;p&gt;The &lt;code&gt;graphql()&lt;/code&gt; and &lt;code&gt;graphql_sync()&lt;/code&gt; functions of &lt;code&gt;juniper_hyper&lt;/code&gt; read the whole body of a POST request into memory before they parsed the body. The functions had no limit on the size of the body. A client could thus send a large body and exhaust the memory of the server. The request needs no authentication.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;juniper_hyper&lt;/code&gt; 0.10.1 reads at most 2 MiB of a request body by default. The functions respond with &lt;code&gt;413 Payload Too Large&lt;/code&gt; to larger bodies. A &lt;code&gt;juniper_hyper::BodyLimit&lt;/code&gt; in the extensions of a request changes the limit for the request.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
