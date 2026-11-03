@@ -1,5 +1,75 @@
 [
   {
+    "id": "RUSTSEC-2026-0436",
+    "modified": "2026-11-03T09:44:19Z",
+    "published": "2026-10-28T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Panic and unbounded allocation (OOM) in the CFB/OLE2 parser on malformed input",
+    "details": "The Compound File Binary (OLE2) parser (`src/cfb.rs`), used when reading `.xls` and `.xlsb`\nworkbooks and when extracting VBA projects from `.xlsx`, can panic or allocate without bound\non crafted input. Both are reachable through the public reader API (`open_workbook`,\n`Xls::new`, `Xlsb::new`) on an attacker-supplied file. Impact is denial of service only — no\nmemory unsafety (safe Rust turns the out-of-bounds read into a bounds-checked panic).\n\n1. **Reachable panic (out-of-bounds slice index).** The directory stream is iterated with\n   `.chunks(128)`, but `Directory::from_slice` reads fixed offsets (`buf[..64]`,\n   `buf[116..120]`, `buf[120..128]`) without checking the chunk length. A directory stream\n   whose length is not a multiple of 128 yields a short final chunk, causing a panic\n   (`range end index 64 out of range for slice of length N`). `SectorSize::Small` 64-byte\n   mini sectors are a second trigger.\n\n2. **Unbounded allocation / OOM.** The DIFAT loader grows the `difat` vector without bounding\n   the number of iterations; a crafted self-referential DIFAT chain drives a multi-gigabyte\n   allocation from a tiny file (a 512-byte file attempts an allocation of several gigabytes).\n\nA consumer that parses untrusted or user-supplied spreadsheets can be crashed (thread panic,\nor process abort under `panic=abort`) or driven out of memory by a small crafted file.\n\nFixed in calamine 0.38.0 (commit [b8ec4f0](https://github.com/tafia/calamine/commit/b8ec4f0)); the maintainer confirmed the fix in https://github.com/tafia/calamine/pull/762.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "calamine",
+          "purl": "pkg:cargo/calamine"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.38.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/calamine"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0436.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/tafia/calamine/pull/762"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
     "id": "RUSTSEC-2021-0015",
     "modified": "2023-06-13T13:10:24Z",
     "published": "2021-01-06T12:00:00Z",
