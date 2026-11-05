@@ -1,5 +1,915 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2026-11-03T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2026-0436: Vulnerability in calamine</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0436.html</id><updated>2026-11-03T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0436.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0436: Vulnerability in calamine"/><published>2026-11-03T12:00:00+00:00</published><summary xml:lang="en">Panic and unbounded allocation (OOM) in the CFB/OLE2 parser on malformed input</summary><content xml:lang="en" type="html">  &lt;article&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2026-11-05T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2026-0437: Vulnerability in azure_security_keyvault_certificates</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0437.html</id><updated>2026-11-05T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0437.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0437: Vulnerability in azure_security_keyvault_certificates"/><published>2026-11-05T12:00:00+00:00</published><summary xml:lang="en">Rejected authentication challenges can poison the Key Vault scope cache</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/azure_security_keyvault_certificates/RUSTSEC-2026-0437.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/azure_security_keyvault_certificates/RUSTSEC-2026-0437.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0437&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0437
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Rejected authentication challenges can poison the Key Vault scope cache&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-08-24&quot;&gt;
+          August 24, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-05&quot;&gt;
+          November  5, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/azure_security_keyvault_certificates.html&quot;&gt;azure_security_keyvault_certificates&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/azure_security_keyvault_certificates&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/keyvault.html&quot;&gt;#keyvault&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/authentication.html&quot;&gt;#authentication&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/challenge.html&quot;&gt;#challenge&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/cache.html&quot;&gt;#cache&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/Azure/azure-sdk-for-rust/pull/5121&quot;&gt;
+              https://github.com/Azure/azure-sdk-for-rust/pull/5121
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/Azure/azure-sdk-for-rust/pull/5125&quot;&gt;
+              https://github.com/Azure/azure-sdk-for-rust/pull/5125
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/Azure/azure-sdk-for-rust/pull/5410&quot;&gt;
+              https://github.com/Azure/azure-sdk-for-rust/pull/5410
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=1.0.1, &amp;#60;1.1.0-beta.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=1.1.0-beta.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.9.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Affected versions of &lt;code&gt;KeyVaultAuthorizer::on_challenge&lt;/code&gt; cache the authentication
+scope from a &lt;code&gt;WWW-Authenticate&lt;/code&gt; response before verifying that the challenge
+resource matches the requested endpoint. When verification rejects the challenge,
+the scope remains cached. A subsequent request through the same client uses that
+scope to authorize the request without repeating challenge resource verification.&lt;/p&gt;
+&lt;p&gt;For &lt;code&gt;azure_security_keyvault_certificates&lt;/code&gt;, the affected versions are &lt;code&gt;0.9.0&lt;/code&gt;
+through &lt;code&gt;1.0.0&lt;/code&gt;, inclusive, and &lt;code&gt;1.1.0-beta.1&lt;/code&gt;. Versions before &lt;code&gt;0.9.0&lt;/code&gt; do not
+use this challenge-scope cache and are unaffected by this issue.&lt;/p&gt;
+&lt;h2&gt;Impact&lt;/h2&gt;
+&lt;p&gt;An application that sends requests to an attacker-controlled endpoint and reuses
+the same client after a rejected challenge can disclose a bearer token and request
+body to that endpoint, if its credential can obtain a token for the supplied scope.
+The first request&apos;s validation error therefore does not prevent disclosure on a
+later request. Changing the request origin between requests is not required.&lt;/p&gt;
+&lt;h2&gt;Fix&lt;/h2&gt;
+&lt;p&gt;Update to &lt;code&gt;1.0.1&lt;/code&gt; on the stable release line or &lt;code&gt;1.1.0-beta.2&lt;/code&gt; on the preview
+release line.&lt;/p&gt;
+&lt;p&gt;The fix caches the scope only after challenge resource verification succeeds
+when verification is enabled. Rejected challenges no longer populate the cache.
+The existing option to disable challenge resource verification is unchanged;
+this fix does not add exact-origin binding.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0438: Vulnerability in azure_security_keyvault_secrets</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0438.html</id><updated>2026-11-05T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0438.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0438: Vulnerability in azure_security_keyvault_secrets"/><published>2026-11-05T12:00:00+00:00</published><summary xml:lang="en">Rejected authentication challenges can poison the Key Vault scope cache</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/azure_security_keyvault_secrets/RUSTSEC-2026-0438.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/azure_security_keyvault_secrets/RUSTSEC-2026-0438.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0438&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0438
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Rejected authentication challenges can poison the Key Vault scope cache&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-08-24&quot;&gt;
+          August 24, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-05&quot;&gt;
+          November  5, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/azure_security_keyvault_secrets.html&quot;&gt;azure_security_keyvault_secrets&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/azure_security_keyvault_secrets&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/keyvault.html&quot;&gt;#keyvault&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/authentication.html&quot;&gt;#authentication&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/challenge.html&quot;&gt;#challenge&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/cache.html&quot;&gt;#cache&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/Azure/azure-sdk-for-rust/pull/5121&quot;&gt;
+              https://github.com/Azure/azure-sdk-for-rust/pull/5121
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/Azure/azure-sdk-for-rust/pull/5125&quot;&gt;
+              https://github.com/Azure/azure-sdk-for-rust/pull/5125
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/Azure/azure-sdk-for-rust/pull/5410&quot;&gt;
+              https://github.com/Azure/azure-sdk-for-rust/pull/5410
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=1.0.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.10.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Affected versions of &lt;code&gt;KeyVaultAuthorizer::on_challenge&lt;/code&gt; cache the authentication
+scope from a &lt;code&gt;WWW-Authenticate&lt;/code&gt; response before verifying that the challenge
+resource matches the requested endpoint. When verification rejects the challenge,
+the scope remains cached. A subsequent request through the same client uses that
+scope to authorize the request without repeating challenge resource verification.&lt;/p&gt;
+&lt;p&gt;For &lt;code&gt;azure_security_keyvault_secrets&lt;/code&gt;, the affected versions are &lt;code&gt;0.10.0&lt;/code&gt; through
+&lt;code&gt;1.0.0&lt;/code&gt;, inclusive. Versions before &lt;code&gt;0.10.0&lt;/code&gt; do not use this challenge-scope cache
+and are unaffected by this issue. The published &lt;code&gt;1.1.0-beta.1&lt;/code&gt; already includes
+the fix.&lt;/p&gt;
+&lt;h2&gt;Impact&lt;/h2&gt;
+&lt;p&gt;An application that sends requests to an attacker-controlled endpoint and reuses
+the same client after a rejected challenge can disclose a bearer token and request
+body to that endpoint, if its credential can obtain a token for the supplied scope.
+The first request&apos;s validation error therefore does not prevent disclosure on a
+later request. Changing the request origin between requests is not required.&lt;/p&gt;
+&lt;h2&gt;Fix&lt;/h2&gt;
+&lt;p&gt;Update to &lt;code&gt;1.0.1&lt;/code&gt; on the stable release line or &lt;code&gt;1.1.0-beta.1&lt;/code&gt; on the preview
+release line.&lt;/p&gt;
+&lt;p&gt;The fix caches the scope only after challenge resource verification succeeds
+when verification is enabled. Rejected challenges no longer populate the cache.
+The existing option to disable challenge resource verification is unchanged;
+this fix does not add exact-origin binding.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0439: Vulnerability in azure_security_keyvault_keys</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0439.html</id><updated>2026-11-05T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0439.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0439: Vulnerability in azure_security_keyvault_keys"/><published>2026-11-05T12:00:00+00:00</published><summary xml:lang="en">Rejected authentication challenges can poison the Key Vault scope cache</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/azure_security_keyvault_keys/RUSTSEC-2026-0439.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/azure_security_keyvault_keys/RUSTSEC-2026-0439.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0439&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0439
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Rejected authentication challenges can poison the Key Vault scope cache&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-08-24&quot;&gt;
+          August 24, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-05&quot;&gt;
+          November  5, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/azure_security_keyvault_keys.html&quot;&gt;azure_security_keyvault_keys&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/azure_security_keyvault_keys&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/keyvault.html&quot;&gt;#keyvault&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/authentication.html&quot;&gt;#authentication&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/challenge.html&quot;&gt;#challenge&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/cache.html&quot;&gt;#cache&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/Azure/azure-sdk-for-rust/pull/5121&quot;&gt;
+              https://github.com/Azure/azure-sdk-for-rust/pull/5121
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/Azure/azure-sdk-for-rust/pull/5125&quot;&gt;
+              https://github.com/Azure/azure-sdk-for-rust/pull/5125
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/Azure/azure-sdk-for-rust/pull/5410&quot;&gt;
+              https://github.com/Azure/azure-sdk-for-rust/pull/5410
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=1.0.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.10.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Affected versions of &lt;code&gt;KeyVaultAuthorizer::on_challenge&lt;/code&gt; cache the authentication
+scope from a &lt;code&gt;WWW-Authenticate&lt;/code&gt; response before verifying that the challenge
+resource matches the requested endpoint. When verification rejects the challenge,
+the scope remains cached. A subsequent request through the same client uses that
+scope to authorize the request without repeating challenge resource verification.&lt;/p&gt;
+&lt;p&gt;For &lt;code&gt;azure_security_keyvault_keys&lt;/code&gt;, the affected versions are &lt;code&gt;0.10.0&lt;/code&gt; through
+&lt;code&gt;1.0.0&lt;/code&gt;, inclusive. Versions before &lt;code&gt;0.10.0&lt;/code&gt; do not use this challenge-scope cache
+and are unaffected by this issue. The published &lt;code&gt;1.1.0-beta.1&lt;/code&gt; already includes
+the fix.&lt;/p&gt;
+&lt;h2&gt;Impact&lt;/h2&gt;
+&lt;p&gt;An application that sends requests to an attacker-controlled endpoint and reuses
+the same client after a rejected challenge can disclose a bearer token and request
+body to that endpoint, if its credential can obtain a token for the supplied scope.
+The first request&apos;s validation error therefore does not prevent disclosure on a
+later request. Changing the request origin between requests is not required.&lt;/p&gt;
+&lt;h2&gt;Fix&lt;/h2&gt;
+&lt;p&gt;Update to &lt;code&gt;1.0.1&lt;/code&gt; on the stable release line or &lt;code&gt;1.1.0-beta.1&lt;/code&gt; on the preview
+release line.&lt;/p&gt;
+&lt;p&gt;The fix caches the scope only after challenge resource verification succeeds
+when verification is enabled. Rejected challenges no longer populate the cache.
+The existing option to disable challenge resource verification is unchanged;
+this fix does not add exact-origin binding.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0440: astral-tokio-tar is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0440.html</id><updated>2026-11-05T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0440.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0440: astral-tokio-tar is unmaintained"/><published>2026-11-05T12:00:00+00:00</published><summary xml:lang="en">`astral-tokio-tar` is unmaintained</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/astral-tokio-tar/RUSTSEC-2026-0440.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/astral-tokio-tar/RUSTSEC-2026-0440.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0440&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0440
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;astral-tokio-tar&lt;/code&gt; is unmaintained&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-03&quot;&gt;
+          November  3, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-05&quot;&gt;
+          November  5, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/astral-tokio-tar.html&quot;&gt;astral-tokio-tar&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/astral-tokio-tar&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unmaintained
+        
+      &lt;/dd&gt;
+
+      
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/astral-sh/tokio-tar/pull/130&quot;&gt;
+              https://github.com/astral-sh/tokio-tar/pull/130
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Astral ended maintenance of &lt;code&gt;astral-tokio-tar&lt;/code&gt; on November 3, 2026.
+All versions of the crate are deprecated and unmaintained.&lt;/p&gt;
+&lt;p&gt;For strict tar encoding and decoding, Astral recommends &lt;a href=&quot;https://crates.io/crates/tar-codec&quot;&gt;&lt;code&gt;tar-codec&lt;/code&gt;&lt;/a&gt;
+as a possible replacement.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0441: pin-utils is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0441.html</id><updated>2026-11-05T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0441.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0441: pin-utils is unmaintained"/><published>2026-11-05T12:00:00+00:00</published><summary xml:lang="en">`pin-utils` is unmaintained</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/pin-utils/RUSTSEC-2026-0441.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/pin-utils/RUSTSEC-2026-0441.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0441&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0441
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;pin-utils&lt;/code&gt; is unmaintained&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-01&quot;&gt;
+          October  1, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-05&quot;&gt;
+          November  5, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/pin-utils.html&quot;&gt;pin-utils&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/pin-utils&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unmaintained
+        
+      &lt;/dd&gt;
+
+      
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/rust-lang/team/pull/2787&quot;&gt;
+              https://github.com/rust-lang/team/pull/2787
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/rustsec/advisory-db/issues/3314&quot;&gt;
+              https://github.com/rustsec/advisory-db/issues/3314
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;The &lt;a href=&quot;https://github.com/rust-lang/pin-utils&quot;&gt;upstream repository&lt;/a&gt; was archived on October 1, 2026, after the
+release of version 0.1.1.&lt;/p&gt;
+&lt;p&gt;For local pinning, replace &lt;code&gt;pin_mut!&lt;/code&gt; with &lt;a href=&quot;https://doc.rust-lang.org/core/pin/macro.pin.html&quot;&gt;&lt;code&gt;core::pin::pin!&lt;/code&gt;&lt;/a&gt;, available
+since Rust 1.68. For pin projection, replace &lt;code&gt;unsafe_pinned!&lt;/code&gt; and
+&lt;code&gt;unsafe_unpinned!&lt;/code&gt; with &lt;a href=&quot;https://crates.io/crates/pin-project&quot;&gt;&lt;code&gt;pin-project&lt;/code&gt;&lt;/a&gt; or &lt;a href=&quot;https://crates.io/crates/pin-project-lite&quot;&gt;&lt;code&gt;pin-project-lite&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0442: Unsoundness in arrow-data</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0442.html</id><updated>2026-11-05T12:00:00+00:00</updated><category term="memory-exposure"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0442.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0442: Unsoundness in arrow-data"/><published>2026-11-05T12:00:00+00:00</published><summary xml:lang="en">Apache Arrow Rust: Improper validation of RunEndEncoded arrays allows out of bounds reads</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/arrow-data/RUSTSEC-2026-0442.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/arrow-data/RUSTSEC-2026-0442.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0442&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0442
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Apache Arrow Rust: Improper validation of RunEndEncoded arrays allows out of bounds reads&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-02&quot;&gt;
+          November  2, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-05&quot;&gt;
+          November  5, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/arrow-data.html&quot;&gt;arrow-data&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/arrow-data&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unsound
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-exposure.html&quot;&gt;memory-exposure&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/out-of-bounds-read.html&quot;&gt;#out-of-bounds-read&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/validation.html&quot;&gt;#validation&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://www.cve.org/CVERecord?id=CVE-2026-111959&quot;&gt;CVE-2026-111959&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-gqmm-qrjq-4c7h&quot;&gt;GHSA-gqmm-qrjq-4c7h&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/apache/arrow-rs/issues/11587&quot;&gt;
+              https://github.com/apache/arrow-rs/issues/11587
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://www.openwall.com/lists/oss-security/2026/11/02/2&quot;&gt;
+              https://www.openwall.com/lists/oss-security/2026/11/02/2
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=60.1.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=59.3.2, &amp;#60;60.0.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=58.4.1, &amp;#60;59.0.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=57.3.2, &amp;#60;58.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;33.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Improper validation of RunEndEncoded arrays via &lt;code&gt;ArrayData::validate_values&lt;/code&gt; can
+allow reading data beyond the bounds of the child values array when reading the
+last value via APIs such as &lt;code&gt;TypedRunArray::value&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Patched versions now properly validate the contents of RunEndEncoded arrays to prevent
+allowing reading out of bounds of the specified array data.&lt;/p&gt;
+&lt;p&gt;Credit to Adam Korczynski of Ada Logics for reporting this and Anthropic for finding
+this.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0436: Vulnerability in calamine</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0436.html</id><updated>2026-11-03T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0436.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0436: Vulnerability in calamine"/><published>2026-11-03T12:00:00+00:00</published><summary xml:lang="en">Panic and unbounded allocation (OOM) in the CFB/OLE2 parser on malformed input</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
           &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/calamine/RUSTSEC-2026-0436.md&quot;&gt;History&lt;/a&gt; ⋅

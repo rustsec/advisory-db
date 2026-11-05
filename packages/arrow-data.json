@@ -1,0 +1,92 @@
+[
+  {
+    "id": "RUSTSEC-2026-0442",
+    "modified": "2026-11-05T08:50:49Z",
+    "published": "2026-11-02T12:00:00Z",
+    "aliases": [
+      "CVE-2026-111959",
+      "GHSA-gqmm-qrjq-4c7h"
+    ],
+    "related": [],
+    "summary": "Apache Arrow Rust: Improper validation of RunEndEncoded arrays allows out of bounds reads",
+    "details": "Improper validation of RunEndEncoded arrays via `ArrayData::validate_values` can\nallow reading data beyond the bounds of the child values array when reading the\nlast value via APIs such as `TypedRunArray::value`.\n\nPatched versions now properly validate the contents of RunEndEncoded arrays to prevent\nallowing reading out of bounds of the specified array data.\n\nCredit to Adam Korczynski of Ada Logics for reporting this and Anthropic for finding\nthis.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "arrow-data",
+          "purl": "pkg:cargo/arrow-data"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-exposure"
+          ],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "33.0.0"
+              },
+              {
+                "fixed": "57.3.2"
+              },
+              {
+                "introduced": "58.0.0"
+              },
+              {
+                "fixed": "58.4.1"
+              },
+              {
+                "introduced": "59.0.0"
+              },
+              {
+                "fixed": "59.3.2"
+              },
+              {
+                "introduced": "60.0.0"
+              },
+              {
+                "fixed": "60.1.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/arrow-data"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0442.html"
+      },
+      {
+        "type": "REPORT",
+        "url": "https://github.com/apache/arrow-rs/issues/11587"
+      },
+      {
+        "type": "WEB",
+        "url": "https://www.openwall.com/lists/oss-security/2026/11/02/2"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]
