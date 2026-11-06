@@ -1,0 +1,67 @@
+{
+  "id": "RUSTSEC-2026-0447",
+  "modified": "2026-11-06T14:42:53Z",
+  "published": "2026-11-06T12:00:00Z",
+  "aliases": [
+    "GHSA-qph8-7859-gq2f"
+  ],
+  "related": [],
+  "summary": "Compressed request bodies can exhaust memory before extractor limits apply",
+  "details": "Body extractors do not pass their size limits to the decompression layer.\nA small compressed request can therefore cause a large allocation before the\nextractor rejects the decoded body. A remote attacker can use this to exhaust\nmemory or CPU resources and cause denial of service.\n\nThis affects applications that read compressed request bodies with the\ncorresponding compression feature enabled.\n\nUpgrade to actix-web 4.18.2 or later with actix-http 3.20.1 or later.\nAs a workaround, reject compressed request bodies at a reverse proxy or in\nmiddleware before body extraction.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "actix-web",
+        "purl": "pkg:cargo/actix-web"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "denial-of-service"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "4.18.2"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/actix-web"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0447.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/actix/actix-web/commit/0d0be61bd757027bfcecbc53df1b7a600f21ecd0"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
