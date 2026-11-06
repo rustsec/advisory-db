@@ -1,0 +1,65 @@
+{
+  "id": "RUSTSEC-2026-0446",
+  "modified": "2026-11-06T14:33:54Z",
+  "published": "2026-11-06T12:00:00Z",
+  "aliases": [
+    "GHSA-2q7f-mf9f-5qhr"
+  ],
+  "related": [],
+  "summary": "Request smuggling through malformed chunked request trailers",
+  "details": "The HTTP/1 chunked decoder accepts a bare line feed after the final chunk as\nthe start of a trailer instead of rejecting the malformed request.\n\nWhen an upstream proxy reuses a connection and either pipelines the requests or\ndoes not take steps to validate the chunked stream, the decoder can consume the\nnext request's headers as trailer data. It can then parse that request's body as\na new request. An attacker can use this difference in request parsing to bypass\naccess controls enforced by a proxy or web application firewall.\n\nUpgrade to actix-http 3.20.2 or later.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "actix-http",
+        "purl": "pkg:cargo/actix-http"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "3.20.2"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/actix-http"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0446.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/actix/actix-web/commit/feed12e9ec59b39abe90590bf48ae6399ed45b56"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
