@@ -256,6 +256,148 @@ All versions of the crate are unmaintained.&lt;/p&gt;
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0447: Vulnerability in actix-web</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0447.html</id><updated>2026-11-06T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0447.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0447: Vulnerability in actix-web"/><published>2026-11-06T12:00:00+00:00</published><summary xml:lang="en">Compressed request bodies can exhaust memory before extractor limits apply</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/actix-web/RUSTSEC-2026-0447.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/actix-web/RUSTSEC-2026-0447.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0447&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0447
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Compressed request bodies can exhaust memory before extractor limits apply&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-06&quot;&gt;
+          November  6, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-06&quot;&gt;
+          November  6, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/actix-web.html&quot;&gt;actix-web&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/actix-web&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-qph8-7859-gq2f&quot;&gt;GHSA-qph8-7859-gq2f&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/actix/actix-web/commit/0d0be61bd757027bfcecbc53df1b7a600f21ecd0&quot;&gt;
+              https://github.com/actix/actix-web/commit/0d0be61bd757027bfcecbc53df1b7a600f21ecd0
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=4.18.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Body extractors do not pass their size limits to the decompression layer.
+A small compressed request can therefore cause a large allocation before the
+extractor rejects the decoded body. A remote attacker can use this to exhaust
+memory or CPU resources and cause denial of service.&lt;/p&gt;
+&lt;p&gt;This affects applications that read compressed request bodies with the
+corresponding compression feature enabled.&lt;/p&gt;
+&lt;p&gt;Upgrade to actix-web 4.18.2 or later with actix-http 3.20.1 or later.
+As a workaround, reject compressed request bodies at a reverse proxy or in
+middleware before body extraction.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0445: Vulnerability in vodozemac</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0445.html</id><updated>2026-11-06T12:00:00+00:00</updated><category term="memory-exposure"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0445.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0445: Vulnerability in vodozemac"/><published>2026-11-06T12:00:00+00:00</published><summary xml:lang="en">Degraded secret zeroization capabilities</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -531,6 +673,495 @@ next request&apos;s headers as trailer data. It can then parse that request&apos
 a new request. An attacker can use this difference in request parsing to bypass
 access controls enforced by a proxy or web application firewall.&lt;/p&gt;
 &lt;p&gt;Upgrade to actix-http 3.20.2 or later.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0448: Vulnerability in actix-http</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0448.html</id><updated>2026-11-06T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0448.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0448: Vulnerability in actix-http"/><published>2026-11-06T12:00:00+00:00</published><summary xml:lang="en">Unbounded decompression can exhaust memory and CPU resources</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/actix-http/RUSTSEC-2026-0448.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/actix-http/RUSTSEC-2026-0448.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0448&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0448
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Unbounded decompression can exhaust memory and CPU resources&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-06&quot;&gt;
+          November  6, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-06&quot;&gt;
+          November  6, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/actix-http.html&quot;&gt;actix-http&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/actix-http&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-qph8-7859-gq2f&quot;&gt;GHSA-qph8-7859-gq2f&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/actix/actix-web/commit/41b54d23ea04f66758c15de7e4ab18325cd25280&quot;&gt;
+              https://github.com/actix/actix-web/commit/41b54d23ea04f66758c15de7e4ab18325cd25280
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=3.20.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;The &lt;code&gt;encoding::Decoder&lt;/code&gt; stream can expand compressed input into a large output
+buffer before a caller can enforce its body size limit. An attacker who controls
+a compressed request or response can cause excessive memory allocation and CPU
+use, resulting in denial of service.&lt;/p&gt;
+&lt;p&gt;This affects applications that decode untrusted gzip, deflate, Brotli, or Zstandard
+bodies with the corresponding compression feature enabled.&lt;/p&gt;
+&lt;p&gt;Upgrade to actix-http 3.20.1 or later and configure &lt;code&gt;Decoder::limit()&lt;/code&gt; when using
+the decoder directly. Actix Web users must also upgrade to actix-web 4.18.2 or
+later so that extractors pass their limits to the decoder.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0449: ocipkg is unmaintained</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0449.html</id><updated>2026-11-06T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0449.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0449: ocipkg is unmaintained"/><published>2026-11-06T12:00:00+00:00</published><summary xml:lang="en">`ocipkg` is unmaintained</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/ocipkg/RUSTSEC-2026-0449.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/ocipkg/RUSTSEC-2026-0449.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0449&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0449
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;ocipkg&lt;/code&gt; is unmaintained&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-05&quot;&gt;
+          November  5, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-06&quot;&gt;
+          November  6, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/ocipkg.html&quot;&gt;ocipkg&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/ocipkg&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;span class=&quot;tag info&quot;&gt;INFO&lt;/span&gt;
+        Unmaintained
+        
+      &lt;/dd&gt;
+
+      
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/termoshtt/ocipkg#maintenance-status&quot;&gt;
+              https://github.com/termoshtt/ocipkg#maintenance-status
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;The author of &lt;code&gt;ocipkg&lt;/code&gt; has archived the repository and declared the crate no longer maintained.
+&lt;a href=&quot;https://crates.io/crates/ocipkg/0.4.1&quot;&gt;Version 0.4.1&lt;/a&gt; is stated to be the final release.
+&amp;quot;No further updates, including security fixes, are planned.&amp;quot;&lt;/p&gt;
+&lt;h2&gt;Alternatives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;For interacting with OCI registries, the maintainer suggests the ORAS project&apos;s
+&lt;a href=&quot;https://github.com/oras-project/rust-oci-client&quot;&gt;&lt;code&gt;oci-client&lt;/code&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;For ocipkg-specific functionality (local package management, or build-time library fetching and
+linking), the maintainer suggests forking the repository from
+&lt;a href=&quot;https://github.com/termoshtt/ocipkg/tree/0.4.1&quot;&gt;0.4.1&lt;/a&gt; and maintaining it for your use case, as
+&lt;code&gt;oci-client&lt;/code&gt; is not a drop-in replacement for those features.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0450: Vulnerability in ocipkg</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0450.html</id><updated>2026-11-06T12:00:00+00:00</updated><category term="code-execution"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0450.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0450: Vulnerability in ocipkg"/><published>2026-11-06T12:00:00+00:00</published><summary xml:lang="en">`ocipkg`: unpacking an OCI archive can write and delete files outside the local image store (path traversal)</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/ocipkg/RUSTSEC-2026-0450.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/ocipkg/RUSTSEC-2026-0450.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0450&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0450
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;ocipkg&lt;/code&gt;: unpacking an OCI archive can write and delete files outside the local image store (path traversal)&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-30&quot;&gt;
+          October 30, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-06&quot;&gt;
+          November  6, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/ocipkg.html&quot;&gt;ocipkg&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/ocipkg&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/code-execution.html&quot;&gt;code-execution&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/path-traversal.html&quot;&gt;#path-traversal&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/directory-traversal.html&quot;&gt;#directory-traversal&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/oci.html&quot;&gt;#oci&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/arbitrary-file-write.html&quot;&gt;#arbitrary-file-write&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/arbitrary-delete.html&quot;&gt;#arbitrary-delete&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/termoshtt/ocipkg/issues/222&quot;&gt;
+              https://github.com/termoshtt/ocipkg/issues/222
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/termoshtt/ocipkg/pull/223&quot;&gt;
+              https://github.com/termoshtt/ocipkg/pull/223
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;7.1 &lt;span class=&quot;tag high&quot;&gt;
+        HIGH
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Local&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;Required&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:H&quot;&gt;CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:H&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.4.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;ocipkg::image::load&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;=0.4.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;When &lt;code&gt;ocipkg&lt;/code&gt; unpacks an OCI archive, the destination directory is derived from the
+image name, which &lt;code&gt;ocipkg&lt;/code&gt; reads from the archive&apos;s &lt;strong&gt;own&lt;/strong&gt; &lt;code&gt;index.json&lt;/code&gt;
+(&lt;code&gt;org.opencontainers.image.ref.name&lt;/code&gt;). That name is attacker-controlled, and
+&lt;code&gt;ImageName::parse&lt;/code&gt; accepts a hostname of &lt;code&gt;..&lt;/code&gt;, so the computed destination escapes the
+local image store. A &amp;quot;zip-slip&amp;quot;-style path traversal (CWE-22 / CWE-23). This is esclatable to code execution.&lt;/p&gt;
+&lt;p&gt;In &lt;code&gt;Artifact::unpack&lt;/code&gt; (&lt;code&gt;src/image/artifact.rs&lt;/code&gt;), the destination is
+&lt;code&gt;image_dir(name) = data_dir().join(name.as_path())&lt;/code&gt; (&lt;code&gt;src/local/mod.rs:31&lt;/code&gt;), where the
+name comes from &lt;code&gt;get_name_from_index&lt;/code&gt; (&lt;code&gt;src/image/layout.rs:114-124&lt;/code&gt;):&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-rust&quot;&gt;let image_name = self.base.get_name()?;   // from the archive&apos;s index.json ref.name
+let dest = image_dir(&amp;amp;image_name)?;        // data_dir().join(name.as_path()); hostname &amp;quot;..&amp;quot; escapes
+if dest.exists() {
+    if overwrite {
+        fs::remove_dir_all(&amp;amp;dest)?;        // deletes a directory OUTSIDE the store
+    }
+}
+fs::create_dir_all(&amp;amp;dest)?;
+// ... each tar layer is then unpacked under `dest` (also outside the store)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;The fix&lt;/h2&gt;
+&lt;p&gt;Fixed in &lt;code&gt;ocipkg&lt;/code&gt; 0.4.1 by &lt;a href=&quot;https://github.com/termoshtt/ocipkg/pull/223&quot;&gt;PR #223&lt;/a&gt;. The leading
+reference component is validated against the &lt;code&gt;org.opencontainers.image.ref.name&lt;/code&gt; grammar from OCI
+Image Specification 1.1.1 on parse and deserialization, and &lt;code&gt;local::image_dir&lt;/code&gt; revalidates the name
+and rejects any non-normal path component (e.g. &lt;code&gt;..&lt;/code&gt;) before any filesystem mutation, so a crafted
+archive can no longer escape the local image store.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
