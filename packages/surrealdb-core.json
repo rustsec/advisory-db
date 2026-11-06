@@ -1,0 +1,75 @@
+[
+  {
+    "id": "RUSTSEC-2026-0454",
+    "modified": "2026-11-06T15:34:32Z",
+    "published": "2026-11-03T12:00:00Z",
+    "aliases": [
+      "GHSA-m9qr-4rcq-3jhc"
+    ],
+    "related": [],
+    "summary": "Data race and double free via unsound `Send`/`Sync` in `reblessive`",
+    "details": "`dbs::Executor` drives every SurrealQL statement through `reblessive::tree::TreeStack`. In `reblessive 0.4.3` the runtime types unconditionally assert `Send`/`Sync` (`unsafe impl Send/Sync for Stack`, `TreeStack` and `Runner`), while the public entry points accept any future without a `Send` bound and store it type-erased in a bump allocator.\n\nTwo safe-code consequences follow. First, `Runner::step_async`/`finish_async` return driver futures tied to the stack borrow rather than to `&mut self`, so a driver future can be duplicated; because `Stack` is `Sync` those futures are `Send`, and polling two copies on different threads runs `drive_top_task` concurrently — racy `Cell`/`UnsafeCell` access, double `pop_task()`/`pop_dealloc()` (double drop / double free) and a non-atomic `Option::take`. Second, `TreeStack: Send` lets safe code move a driver whose type-erased future captures `!Send` state (`Rc`, `RefCell`) to another thread while the creating thread keeps an alias of that state.\n\nNo `unsafe` is needed at the call site. `surrealdb-core`'s own query futures are `Send` only because of the unsound `unsafe impl Send for TreeStack`, while the captured `&mut tree::Stk` is deliberately `!Send`.\n\nThe unsound dependency was removed in 4.0.0 and the parser now uses plain recursion (commit `75407c4bcc`).",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:C/C:H/I:H/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "surrealdb-core",
+          "purl": "pkg:cargo/surrealdb-core"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "thread-safety",
+            "memory-corruption"
+          ],
+          "cvss": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:C/C:H/I:H/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "4.0.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/surrealdb-core"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0454.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/surrealdb/surrealdb/commit/75407c4bccc6d6679d7d6e7a18af0065afdded7d"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]

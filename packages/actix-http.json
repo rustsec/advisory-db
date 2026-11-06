@@ -132,6 +132,73 @@
     }
   },
   {
+    "id": "RUSTSEC-2026-0455",
+    "modified": "2026-11-06T15:34:32Z",
+    "published": "2026-11-06T12:00:00Z",
+    "aliases": [
+      "GHSA-7p9w-p5qm-5gc5"
+    ],
+    "related": [],
+    "summary": "Large-window Brotli bodies bypass decompression memory limits",
+    "details": "With the `compress-brotli` feature enabled, the decoder accepts the non-standard\nlarge-window Brotli format. A crafted stream can cause its internal buffer to\ngrow to about 1 GiB before the decoded output reaches the configured size limit.\nAn 850-byte request can cause this allocation, and concurrent requests can\nexhaust process or host memory.\n\nActix Web enables Brotli support by default. Applications that read request\nbodies through `Bytes`, `String`, `Json`, or `Form` can be affected even when\nextractor size limits are configured. The allocation occurs before the handler\nruns, so authentication performed in the handler does not prevent it.\n\nUpgrade to actix-http 3.20.3 or later. As a workaround, reject requests with\n`Content-Encoding: br` at a reverse proxy or in middleware before body\nextraction, or disable the `compress-brotli` feature throughout the dependency\ngraph.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "actix-http",
+          "purl": "pkg:cargo/actix-http"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "3.20.3"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/actix-http"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0455.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/actix/actix-web/commit/61c6a15c1c0e505a5cd6842610a5f1faea432a83"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
     "id": "RUSTSEC-2021-0081",
     "modified": "2023-06-13T13:10:24Z",
     "published": "2021-06-16T12:00:00Z",

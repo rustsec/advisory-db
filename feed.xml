@@ -548,6 +548,724 @@ than necessary. This marginally increases the risk of sensitive data exposure.&l
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0451: Vulnerability in vodozemac</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0451.html</id><updated>2026-11-06T12:00:00+00:00</updated><category term="memory-exposure"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0451.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0451: Vulnerability in vodozemac"/><published>2026-11-06T12:00:00+00:00</published><summary xml:lang="en">Degraded secret zeroization capabilities</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/vodozemac/RUSTSEC-2026-0451.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/vodozemac/RUSTSEC-2026-0451.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0451&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0451
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Degraded secret zeroization capabilities&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-06&quot;&gt;
+          November  6, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-06&quot;&gt;
+          November  6, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/vodozemac.html&quot;&gt;vodozemac&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/vodozemac&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-exposure.html&quot;&gt;memory-exposure&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-v27v-f96q-qhjq&quot;&gt;GHSA-v27v-f96q-qhjq&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/matrix-org/vodozemac/pull/446&quot;&gt;
+              https://github.com/matrix-org/vodozemac/pull/446
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.11.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;In version 0.11.1 and earlier of vodozemac, the Olm root key ratchet did not
+zeroize its HKDF output after use. Each ratchet step left a copy of the new root
+key and chain key in freed heap memory.&lt;/p&gt;
+&lt;h2&gt;Impact&lt;/h2&gt;
+&lt;p&gt;An attacker who can read the process&apos;s memory, for example through a separate
+memory-disclosure bug, a core dump, or swapped-out pages, may recover root keys
+and chain keys from earlier ratchet steps. A leaked chain key allows decrypting
+the messages in that chain, weakening Olm&apos;s forward secrecy for affected
+sessions.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0452: Vulnerability in surrealkv</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0452.html</id><updated>2026-11-06T12:00:00+00:00</updated><category term="memory-exposure"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0452.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0452: Vulnerability in surrealkv"/><published>2026-11-06T12:00:00+00:00</published><summary xml:lang="en">Out-of-bounds read when decoding internal keys shorter than 16 bytes</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/surrealkv/RUSTSEC-2026-0452.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/surrealkv/RUSTSEC-2026-0452.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0452&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0452
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Out-of-bounds read when decoding internal keys shorter than 16 bytes&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-03&quot;&gt;
+          November  3, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-06&quot;&gt;
+          November  6, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/surrealkv.html&quot;&gt;surrealkv&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/surrealkv&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-exposure.html&quot;&gt;memory-exposure&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/out-of-bounds-read.html&quot;&gt;#out-of-bounds-read&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/sstable.html&quot;&gt;#sstable&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/undefined-behavior.html&quot;&gt;#undefined-behavior&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-9fm9-c4h4-8g93&quot;&gt;GHSA-9fm9-c4h4-8g93&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/surrealdb/surrealkv/commit/ac642f945d63c9c9f7ad35f480995fd516f83fb6&quot;&gt;
+              https://github.com/surrealdb/surrealkv/commit/ac642f945d63c9c9f7ad35f480995fd516f83fb6
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/surrealdb/surrealkv/pull/497&quot;&gt;
+              https://github.com/surrealdb/surrealkv/pull/497
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;7.9 &lt;span class=&quot;tag high&quot;&gt;
+        HIGH
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Local&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Changed&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:C/C:H/I:N/A:L&quot;&gt;CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:C/C:H/I:N/A:L&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=1.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;&lt;code&gt;InternalKeyRef::from_encoded&lt;/code&gt; is a safe constructor whose only length check is &lt;code&gt;debug_assert!(encoded.len() &amp;gt;= 16)&lt;/code&gt;, which is compiled out in release builds. Its accessors perform unchecked length arithmetic on the slice: &lt;code&gt;user_key()&lt;/code&gt; slices &lt;code&gt;&amp;amp;encoded[..len - 16]&lt;/code&gt;, &lt;code&gt;trailer()&lt;/code&gt;/&lt;code&gt;seq_num()&lt;/code&gt; pass &lt;code&gt;len - 16&lt;/code&gt; and &lt;code&gt;timestamp()&lt;/code&gt; passes &lt;code&gt;len - 8&lt;/code&gt; to &lt;code&gt;read_u64_be&lt;/code&gt;, which computes &lt;code&gt;buffer.as_ptr().add(offset)&lt;/code&gt; and performs an 8-byte load. For a short slice the subtraction underflows &lt;code&gt;usize&lt;/code&gt;, the pointer wraps below the allocation and eight bytes before the buffer are read (undefined behavior; confirmed with AddressSanitizer as a &lt;code&gt;heap-buffer-overflow&lt;/code&gt;). In debug builds the same call panics instead.&lt;/p&gt;
+&lt;p&gt;The same invariant is missing at the on-disk decode boundary: &lt;code&gt;BlockIterator::seek_next_entry&lt;/code&gt; rebuilds the current key from block bytes with upper-bound checks only, and &lt;code&gt;BlockIterator::key()&lt;/code&gt; wraps it in &lt;code&gt;InternalKeyRef&lt;/code&gt;, which &lt;code&gt;surrealdb&lt;/code&gt;&apos;s &lt;code&gt;kv-surrealkv&lt;/code&gt; backend then reads through &lt;code&gt;key_ref.timestamp()&lt;/code&gt;. A crafted or corrupted SSTable therefore reaches the same unchecked subtraction without any &lt;code&gt;unsafe&lt;/code&gt; at the call site.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;1.2.0&lt;/code&gt; rejects internal keys shorter than their 8-byte trailer before any accessor computes an offset and makes the accessors bounds-checked (fix in commit &lt;code&gt;ac642f9&lt;/code&gt;, &lt;code&gt;surrealdb&lt;/code&gt; 4.0.0 ships &lt;code&gt;surrealkv&lt;/code&gt; 1.2.0).&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0453: Vulnerability in surrealdb</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0453.html</id><updated>2026-11-06T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0453.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0453: Vulnerability in surrealdb"/><published>2026-11-06T12:00:00+00:00</published><summary xml:lang="en">Use-after-free in KV backends via leaked `affinitypool::spawn_local` future</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/surrealdb/RUSTSEC-2026-0453.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/surrealdb/RUSTSEC-2026-0453.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0453&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0453
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Use-after-free in KV backends via leaked &lt;code&gt;affinitypool::spawn_local&lt;/code&gt; future&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-19&quot;&gt;
+          October 19, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-06&quot;&gt;
+          November  6, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/surrealdb.html&quot;&gt;surrealdb&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/surrealdb&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/use-after-free.html&quot;&gt;#use-after-free&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/lifetime-erasure.html&quot;&gt;#lifetime-erasure&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/leak.html&quot;&gt;#leak&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-pm86-cc75-q463&quot;&gt;GHSA-pm86-cc75-q463&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/surrealdb/surrealdb/commit/8156ff691b1861814199e5e3372c81609b68db7f&quot;&gt;
+              https://github.com/surrealdb/surrealdb/commit/8156ff691b1861814199e5e3372c81609b68db7f
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;7.8 &lt;span class=&quot;tag high&quot;&gt;
+        HIGH
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Local&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Changed&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:C/C:H/I:H/A:H&quot;&gt;CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:C/C:H/I:H/A:H&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=3.3.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;The &lt;code&gt;kv-mem&lt;/code&gt;, &lt;code&gt;kv-surrealkv&lt;/code&gt; and &lt;code&gt;kv-rocksdb&lt;/code&gt; backends move non-&lt;code&gt;&apos;static&lt;/code&gt; borrowed state into affinity-pool closures through &lt;code&gt;affinitypool::spawn_local&lt;/code&gt;: a &lt;code&gt;tokio::sync::MutexGuard&amp;lt;Option&amp;lt;TransactionInner&amp;gt;&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;amp;Transaction&lt;/code&gt;, &lt;code&gt;&amp;amp;mut ScanStateKeys/Vals&lt;/code&gt;, &lt;code&gt;&amp;amp;mut dyn KeyVisitor/ValVisitor&lt;/code&gt;, &lt;code&gt;RwLockReadGuard&lt;/code&gt;, and a &lt;code&gt;ReadOptions&lt;/code&gt; holding a raw &lt;code&gt;rocksdb_snapshot_t*&lt;/code&gt;. In &lt;code&gt;affinitypool 0.7.0&lt;/code&gt; &lt;code&gt;spawn_local&lt;/code&gt; is safe and erases the &lt;code&gt;&apos;pool&lt;/code&gt; lifetime via &lt;code&gt;async_task::Builder::spawn_unchecked&lt;/code&gt;; the only thing keeping it sound is the &lt;code&gt;Drop&lt;/code&gt; implementation of the returned future, which blocks until the worker stops using the borrows.&lt;/p&gt;
+&lt;p&gt;Safe code can leak that future (&lt;code&gt;mem::forget&lt;/code&gt;, &lt;code&gt;Box::leak&lt;/code&gt;, &lt;code&gt;ManuallyDrop&lt;/code&gt;, a reference cycle, or a leaked enclosing future). The borrows then end while the pool worker still uses them, producing a use-after-free on the transaction allocation; AddressSanitizer reports a read of freed mutex data and a write when the worker unlocks the freed &lt;code&gt;tokio::sync::Mutex&lt;/code&gt; on the pool thread. No &lt;code&gt;unsafe&lt;/code&gt; is required at the call site, and the affected methods include &lt;code&gt;count&lt;/code&gt;, &lt;code&gt;keys&lt;/code&gt;/&lt;code&gt;keysr&lt;/code&gt;, &lt;code&gt;scan&lt;/code&gt;/&lt;code&gt;scanr&lt;/code&gt;, &lt;code&gt;compact&lt;/code&gt;, shutdown, point reads and writes, and cursor iteration.&lt;/p&gt;
+&lt;p&gt;3.3.0 upgrades to &lt;code&gt;affinitypool 0.8.0&lt;/code&gt;, where &lt;code&gt;spawn_local&lt;/code&gt; is an &lt;code&gt;unsafe&lt;/code&gt; function and the caller must uphold the leak-freedom invariant (commit &lt;code&gt;8156ff69&lt;/code&gt;).&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0454: Vulnerability in surrealdb-core</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0454.html</id><updated>2026-11-06T12:00:00+00:00</updated><category term="thread-safety"/><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0454.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0454: Vulnerability in surrealdb-core"/><published>2026-11-06T12:00:00+00:00</published><summary xml:lang="en">Data race and double free via unsound `Send`/`Sync` in `reblessive`</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/surrealdb-core/RUSTSEC-2026-0454.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/surrealdb-core/RUSTSEC-2026-0454.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0454&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0454
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Data race and double free via unsound &lt;code&gt;Send&lt;/code&gt;/&lt;code&gt;Sync&lt;/code&gt; in &lt;code&gt;reblessive&lt;/code&gt;&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-03&quot;&gt;
+          November  3, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-06&quot;&gt;
+          November  6, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/surrealdb-core.html&quot;&gt;surrealdb-core&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/surrealdb-core&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/thread-safety.html&quot;&gt;thread-safety&lt;/a&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-corruption.html&quot;&gt;memory-corruption&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/data-race.html&quot;&gt;#data-race&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/double-free.html&quot;&gt;#double-free&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/send-sync.html&quot;&gt;#send-sync&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-m9qr-4rcq-3jhc&quot;&gt;GHSA-m9qr-4rcq-3jhc&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/surrealdb/surrealdb/commit/75407c4bccc6d6679d7d6e7a18af0065afdded7d&quot;&gt;
+              https://github.com/surrealdb/surrealdb/commit/75407c4bccc6d6679d7d6e7a18af0065afdded7d
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;7.8 &lt;span class=&quot;tag high&quot;&gt;
+        HIGH
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Local&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Changed&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:C/C:H/I:H/A:H&quot;&gt;CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:C/C:H/I:H/A:H&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=4.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;&lt;code&gt;dbs::Executor&lt;/code&gt; drives every SurrealQL statement through &lt;code&gt;reblessive::tree::TreeStack&lt;/code&gt;. In &lt;code&gt;reblessive 0.4.3&lt;/code&gt; the runtime types unconditionally assert &lt;code&gt;Send&lt;/code&gt;/&lt;code&gt;Sync&lt;/code&gt; (&lt;code&gt;unsafe impl Send/Sync for Stack&lt;/code&gt;, &lt;code&gt;TreeStack&lt;/code&gt; and &lt;code&gt;Runner&lt;/code&gt;), while the public entry points accept any future without a &lt;code&gt;Send&lt;/code&gt; bound and store it type-erased in a bump allocator.&lt;/p&gt;
+&lt;p&gt;Two safe-code consequences follow. First, &lt;code&gt;Runner::step_async&lt;/code&gt;/&lt;code&gt;finish_async&lt;/code&gt; return driver futures tied to the stack borrow rather than to &lt;code&gt;&amp;amp;mut self&lt;/code&gt;, so a driver future can be duplicated; because &lt;code&gt;Stack&lt;/code&gt; is &lt;code&gt;Sync&lt;/code&gt; those futures are &lt;code&gt;Send&lt;/code&gt;, and polling two copies on different threads runs &lt;code&gt;drive_top_task&lt;/code&gt; concurrently — racy &lt;code&gt;Cell&lt;/code&gt;/&lt;code&gt;UnsafeCell&lt;/code&gt; access, double &lt;code&gt;pop_task()&lt;/code&gt;/&lt;code&gt;pop_dealloc()&lt;/code&gt; (double drop / double free) and a non-atomic &lt;code&gt;Option::take&lt;/code&gt;. Second, &lt;code&gt;TreeStack: Send&lt;/code&gt; lets safe code move a driver whose type-erased future captures &lt;code&gt;!Send&lt;/code&gt; state (&lt;code&gt;Rc&lt;/code&gt;, &lt;code&gt;RefCell&lt;/code&gt;) to another thread while the creating thread keeps an alias of that state.&lt;/p&gt;
+&lt;p&gt;No &lt;code&gt;unsafe&lt;/code&gt; is needed at the call site. &lt;code&gt;surrealdb-core&lt;/code&gt;&apos;s own query futures are &lt;code&gt;Send&lt;/code&gt; only because of the unsound &lt;code&gt;unsafe impl Send for TreeStack&lt;/code&gt;, while the captured &lt;code&gt;&amp;amp;mut tree::Stk&lt;/code&gt; is deliberately &lt;code&gt;!Send&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The unsound dependency was removed in 4.0.0 and the parser now uses plain recursion (commit &lt;code&gt;75407c4bcc&lt;/code&gt;).&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0446: Vulnerability in actix-http</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0446.html</id><updated>2026-11-06T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0446.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0446: Vulnerability in actix-http"/><published>2026-11-06T12:00:00+00:00</published><summary xml:lang="en">Request smuggling through malformed chunked request trailers</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
@@ -815,6 +1533,152 @@ bodies with the corresponding compression feature enabled.&lt;/p&gt;
 &lt;p&gt;Upgrade to actix-http 3.20.1 or later and configure &lt;code&gt;Decoder::limit()&lt;/code&gt; when using
 the decoder directly. Actix Web users must also upgrade to actix-web 4.18.2 or
 later so that extractors pass their limits to the decoder.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0455: Vulnerability in actix-http</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0455.html</id><updated>2026-11-06T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0455.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0455: Vulnerability in actix-http"/><published>2026-11-06T12:00:00+00:00</published><summary xml:lang="en">Large-window Brotli bodies bypass decompression memory limits</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/actix-http/RUSTSEC-2026-0455.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/actix-http/RUSTSEC-2026-0455.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0455&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0455
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Large-window Brotli bodies bypass decompression memory limits&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-06&quot;&gt;
+          November  6, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-06&quot;&gt;
+          November  6, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/actix-http.html&quot;&gt;actix-http&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/actix-http&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-7p9w-p5qm-5gc5&quot;&gt;GHSA-7p9w-p5qm-5gc5&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/actix/actix-web/commit/61c6a15c1c0e505a5cd6842610a5f1faea432a83&quot;&gt;
+              https://github.com/actix/actix-web/commit/61c6a15c1c0e505a5cd6842610a5f1faea432a83
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=3.20.3&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;With the &lt;code&gt;compress-brotli&lt;/code&gt; feature enabled, the decoder accepts the non-standard
+large-window Brotli format. A crafted stream can cause its internal buffer to
+grow to about 1 GiB before the decoded output reaches the configured size limit.
+An 850-byte request can cause this allocation, and concurrent requests can
+exhaust process or host memory.&lt;/p&gt;
+&lt;p&gt;Actix Web enables Brotli support by default. Applications that read request
+bodies through &lt;code&gt;Bytes&lt;/code&gt;, &lt;code&gt;String&lt;/code&gt;, &lt;code&gt;Json&lt;/code&gt;, or &lt;code&gt;Form&lt;/code&gt; can be affected even when
+extractor size limits are configured. The allocation occurs before the handler
+runs, so authentication performed in the handler does not prevent it.&lt;/p&gt;
+&lt;p&gt;Upgrade to actix-http 3.20.3 or later. As a workaround, reject requests with
+&lt;code&gt;Content-Encoding: br&lt;/code&gt; at a reverse proxy or in middleware before body
+extraction, or disable the &lt;code&gt;compress-brotli&lt;/code&gt; feature throughout the dependency
+graph.&lt;/p&gt;
 
 
     &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
