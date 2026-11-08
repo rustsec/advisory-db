@@ -88,8 +88,8 @@
           November 28, 2023
         </time>
         
-        <time datetime="2026-09-14">
-          (last modified: September 14, 2026)
+        <time datetime="2026-11-08">
+          (last modified: November  8, 2026)
         </time>
         
       </dd>
@@ -256,7 +256,11 @@
       <dt id="patched">Patched</dt>
       <dd>
         
-        no patched versions
+        <ul>
+          
+          <li><code>&#62;=0.10.0</code></li>
+          
+        </ul>
         
       </dd>
 
@@ -273,10 +277,7 @@
     <h3>Impact</h3>
 <p>Due to a non-constant-time implementation, information about the private key is leaked through timing information which is observable over the network. An attacker may be able to use that information to recover the key.</p>
 <h3>Patches</h3>
-<p>No patch is yet available. The crypto-bigint migration (<a href="https://github.com/RustCrypto/RSA/pull/394">RustCrypto/RSA#394</a>) did not close this. Tracking is <a href="https://github.com/RustCrypto/RSA/issues/626">RustCrypto/RSA#626</a> (padding still not constant-time). Implicit rejection work is in <a href="https://github.com/RustCrypto/RSA/pull/680">RustCrypto/RSA#680</a>; default-path blinding is in <a href="https://github.com/RustCrypto/RSA/pull/702">RustCrypto/RSA#702</a>.</p>
-<p>Still affected as of 2026-09-12: rsa 0.9.10 (latest stable) and rsa 0.10.0-rc.18 (latest). <code>patched = []</code> is intentional.</p>
-<h3>Workarounds</h3>
-<p>Avoid using the <code>rsa</code> crate in settings where attackers can observe timing, for example over the network. Local use on a non-compromised computer is fine.</p>
+<p>The <code>rsa</code> v0.10 series includes a migration to <code>crypto-bigint</code> and constant-time mitigations recommended in <code>draft-irtf-cfrg-rsa-guidance</code>. Upgrading to this release should resolve all known constant-time issues.</p>
 <h3>References</h3>
 <p>This vulnerability was discovered as part of the &quot;<a href="https://people.redhat.com/~hkario/marvin/">Marvin Attack</a>&quot;, which revealed several implementations of RSA including OpenSSL had not properly mitigated timing sidechannel attacks.</p>
 
