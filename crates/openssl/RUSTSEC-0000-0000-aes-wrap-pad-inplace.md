@@ -1,0 +1,23 @@
+```toml
+[advisory]
+id = "RUSTSEC-0000-0000"
+package = "openssl"
+date = "2026-05-16"
+url = "https://github.com/rust-openssl/rust-openssl/pull/2638"
+categories = ["memory-corruption"]
+keywords = ["aes", "key-wrap", "cipher", "buffer-overflow"]
+aliases = ["CVE-2026-45784", "GHSA-phqj-4mhp-q6mq"]
+
+[affected.functions]
+"openssl::cipher_ctx::CipherCtxRef::cipher_update_inplace" = [">= 0.10.50, < 0.10.80"]
+
+[versions]
+patched = [">= 0.10.80"]
+unaffected = ["< 0.10.50"]
+```
+
+# Buffer overflow with AES key wrap with padding in `cipher_update_inplace`
+
+`CipherCtxRef::cipher_update_inplace` had the same sizing error that 0.10.79 fixed in `cipher_update` (GHSA-xv59-967r-8726); that fix missed this method. It required room for `inlen + block_size` bytes, but with the AES key-wrap-with-padding ciphers OpenSSL writes up to 7 more bytes when `inlen` is not a multiple of 8, past the end of `data`.
+
+Only users of the AES key-wrap-with-padding ciphers are affected. `cipher_update_inplace` was added in 0.10.50, and 0.10.80 applies the corrected size check to it.
