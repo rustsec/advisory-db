@@ -1,0 +1,67 @@
+{
+  "id": "RUSTSEC-2026-0457",
+  "modified": "2026-11-09T09:58:48Z",
+  "published": "2026-10-22T12:00:00Z",
+  "aliases": [
+    "GHSA-5p52-q7pq-9fq2"
+  ],
+  "related": [
+    "GHSA-c9xm-49cp-xcr9"
+  ],
+  "summary": "OAuth client SSRF filter checks host strings, not resolved addresses",
+  "details": "From 2.0.0 until 3.7.0, the rmcp OAuth client decided whether it may fetch an\nauthorization server's metadata URL by inspecting only the host string. It\nrejected literal loopback, private and link-local IP addresses and known cloud\nmetadata hostnames, but it did not resolve other hostnames. A hostname that\nresolves to an internal address passed the check.\n\nA malicious MCP server can return protected-resource metadata that names an\nauthorization server whose hostname resolves to an internal address. The client\nthen sends GET requests to that address during discovery.\n\nThe same release fixes two related bypasses:\n\n- Bracketed IPv6 literals such as `http://[::1]:6379/` were not recognized as\n  internal, because the check kept the brackets from the URL host.\n- `token_endpoint` and `registration_endpoint` from authorization server\n  metadata were not checked at all, and token requests follow redirects. A\n  malicious authorization server could make the client send POST requests to\n  an internal address.\n\nThe impact is client-side SSRF. Responses are not returned to the attacker\ndirectly. Unauthenticated internal HTTP services are reachable. Cloud metadata\nendpoints that require headers or IMDSv2 are largely unaffected.\n\nThe flaw was corrected in 3.7.0. `AuthorizationManager::new` now builds its HTTP\nclient with a DNS resolver that applies the address policy to every resolved\naddress, and checks every IP-literal URL and followed redirect against the same\npolicy. Loopback and private addresses are allowed only when the MCP server's\nown URL names one of that class. Deployments that reach their authorization\nserver through a hostname that resolves to a private address should use\n`AuthorizationManager::new_allowing_private_addresses`.\n\nClients supplied through `new_with_oauth_http_client` are not covered by the\nresolved-address checks. Such clients must enforce their own outbound address\npolicy.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "rmcp",
+        "purl": "pkg:cargo/rmcp"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "2.0.0"
+            },
+            {
+              "fixed": "3.7.0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/rmcp"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0457.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/modelcontextprotocol/rust-sdk/commit/ac808abcb40d3c90c743a097cd97c7dfc8f71b5d"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}

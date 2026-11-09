@@ -1,0 +1,72 @@
+{
+  "id": "RUSTSEC-2026-0456",
+  "modified": "2026-11-09T09:58:48Z",
+  "published": "2026-11-04T12:00:00Z",
+  "aliases": [
+    "GHSA-rcff-5x58-7w2p"
+  ],
+  "related": [],
+  "summary": "Panic on an HEVC tile layout that does not match the active SPS",
+  "details": "An HEVC picture parameter set (PPS) stores explicit tile column widths and row\nheights computed against the sequence parameter set (SPS) active when it was\nparsed. A crafted stream can redefine that SPS afterwards, so that the tile sizes\nadd up to more than the picture. The decoder then indexed past its coding tree\nblock tables: Rust's bounds checks turned this into a panic, or the picture was\ndecoded wrongly. A panic aborts the decoding thread, or the whole process when\nbuilt with `panic = \"abort\"`. The crate forbids `unsafe` code, so there is no\nmemory corruption.\n\nAny application that decodes untrusted HEIC files or HEVC streams with\n`heifer-hevc-dec`, directly or through the `heifer` crate, is affected.\n\nThe flaw was corrected in 0.3.27 (commit\n[`71dfc67`](https://github.com/HarpeLm/Heifer/commit/71dfc67f1e3ae3c4b7e4cf633e83a26c94b06a92)):\na tile layout that does not match the picture size is rejected with\n`Error::Invalid` at decode time.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H"
+    }
+  ],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "heifer-hevc-dec",
+        "purl": "pkg:cargo/heifer-hevc-dec"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "denial-of-service"
+        ],
+        "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "0.3.27"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/heifer-hevc-dec"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0456.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/HarpeLm/Heifer/commit/71dfc67f1e3ae3c4b7e4cf633e83a26c94b06a92"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
