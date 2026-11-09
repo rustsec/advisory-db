@@ -1,0 +1,29 @@
+```toml
+[advisory]
+id = "RUSTSEC-0000-0000"
+package = "openssl"
+date = "2026-04-19"
+url = "https://github.com/rust-openssl/rust-openssl/pull/2607"
+categories = ["memory-exposure"]
+keywords = ["ssl", "psk", "dtls", "cookie", "out-of-bounds-read"]
+aliases = ["CVE-2026-41898", "GHSA-hppc-g8h3-xhp3"]
+
+[affected.functions]
+"openssl::ssl::SslContextBuilder::set_psk_callback" = [">= 0.9.24, < 0.10.78"]
+"openssl::ssl::SslContextBuilder::set_psk_client_callback" = [">= 0.9.24, < 0.10.78"]
+"openssl::ssl::SslContextBuilder::set_psk_server_callback" = [">= 0.9.24, < 0.10.78"]
+"openssl::ssl::SslContextBuilder::set_cookie_generate_cb" = [">= 0.9.24, < 0.10.78"]
+"openssl::ssl::SslContextBuilder::set_stateless_cookie_generate_cb" = [">= 0.9.24, < 0.10.78"]
+
+[versions]
+patched = [">= 0.10.78"]
+unaffected = ["< 0.9.24"]
+```
+
+# Unchecked callback lengths in PSK and cookie callbacks
+
+The callbacks installed with `SslContextBuilder::set_psk_client_callback` (and its deprecated alias `set_psk_callback`), `set_psk_server_callback`, `set_cookie_generate_cb` and `set_stateless_cookie_generate_cb` each fill a `&mut [u8]` buffer and return how many bytes they wrote. The FFI trampolines handed that returned length straight to OpenSSL without checking it against the size of the buffer.
+
+A callback that returns a length larger than its buffer makes OpenSSL read past the end of the buffer. For the cookie callbacks the cookie is sent to the peer, so adjacent memory can be disclosed over the network.
+
+0.10.78 compares the returned length with the buffer size and treats a larger value as a callback failure.
