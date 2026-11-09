@@ -800,6 +800,224 @@ policy.&lt;/p&gt;
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0462: Vulnerability in rmcp</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0462.html</id><updated>2026-11-09T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0462.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0462: Vulnerability in rmcp"/><published>2026-11-09T12:00:00+00:00</published><summary xml:lang="en">Unbounded response body buffering in Streamable HTTP clients</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/rmcp/RUSTSEC-2026-0462.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/rmcp/RUSTSEC-2026-0462.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0462&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0462
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Unbounded response body buffering in Streamable HTTP clients&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-05&quot;&gt;
+          November  5, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-09&quot;&gt;
+          November  9, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/rmcp.html&quot;&gt;rmcp&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/rmcp&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/mcp.html&quot;&gt;#mcp&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/http.html&quot;&gt;#http&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/memory-exhaustion.html&quot;&gt;#memory-exhaustion&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-c9f9-cp8h-jcj5&quot;&gt;GHSA-c9f9-cp8h-jcj5&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/modelcontextprotocol/rust-sdk/commit/3e0156c1eaf1573a1b878e2a8998d2fa2d0b1439&quot;&gt;
+              https://github.com/modelcontextprotocol/rust-sdk/commit/3e0156c1eaf1573a1b878e2a8998d2fa2d0b1439
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;6.5 &lt;span class=&quot;tag medium&quot;&gt;
+        MEDIUM
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Network&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;Required&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=3.9.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.2.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Before 3.9.0, the built-in Streamable HTTP clients in rmcp read non-streaming
+HTTP response bodies into memory with no size limit. Both the reqwest client
+(&lt;code&gt;transport-streamable-http-client-reqwest&lt;/code&gt;) and the Unix socket client
+(&lt;code&gt;transport-streamable-http-client-unix-socket&lt;/code&gt;) were affected:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;application/json&lt;/code&gt; responses to POST requests were read in full before
+parsing.&lt;/li&gt;
+&lt;li&gt;Non-2xx responses were read in full for error reporting.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;A malicious or compromised MCP server can answer with a body that never ends,
+for example a chunked &lt;code&gt;application/json&lt;/code&gt; response that streams whitespace. The
+client buffers it until the process runs out of memory. This works during
+&lt;code&gt;initialize&lt;/code&gt;, before any authentication. On desktop or agent hosts, this
+terminates the whole host application.&lt;/p&gt;
+&lt;p&gt;Server-sent event streams are not affected. Each event is already capped by
+&lt;code&gt;max_sse_event_size&lt;/code&gt;, and events are not accumulated.&lt;/p&gt;
+&lt;p&gt;The flaw was corrected in 3.9.0. Successful JSON bodies are limited to 16 MiB
+and non-success bodies to 64 KiB. Bytes are counted while streaming, after
+decompression. An oversized &lt;code&gt;Content-Length&lt;/code&gt; is rejected before the body is
+read, and an oversized body is rejected with
+&lt;code&gt;StreamableHttpError::ResponseBodyTooLarge&lt;/code&gt; instead of being truncated.&lt;/p&gt;
+&lt;p&gt;If you cannot upgrade, use a custom &lt;code&gt;StreamableHttpClient&lt;/code&gt; that enforces a
+response body limit, or connect only to trusted MCP servers.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0458: Vulnerability in heifer-isobmff</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0458.html</id><updated>2026-11-09T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0458.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0458: Vulnerability in heifer-isobmff"/><published>2026-11-09T12:00:00+00:00</published><summary xml:lang="en">Memory exhaustion when parsing a crafted `iloc` box</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
