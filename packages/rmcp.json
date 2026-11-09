@@ -1,5 +1,77 @@
 [
   {
+    "id": "RUSTSEC-2026-0461",
+    "modified": "2026-11-09T10:10:55Z",
+    "published": "2026-10-20T12:00:00Z",
+    "aliases": [
+      "GHSA-4432-vg92-fqh6"
+    ],
+    "related": [],
+    "summary": "Unbounded tool schema cache in Streamable HTTP server transport",
+    "details": "From 3.0.0 until 3.6.0, `StreamableHttpService` cached the result of\n`ServerHandler::get_tool` in a process-wide map keyed by the tool name of\nincoming `tools/call` requests. The map had no size limit and no eviction, and\nit also cached unknown tool names.\n\nAn entry was added while the request headers were validated, before the request\ncould be rejected, so requests answered with HTTP 400 still grew the map. A\nclient that can reach the endpoint can send `tools/call` requests with distinct\ntool names, each up to the default 4 MiB body limit, until the server runs out\nof memory. rmcp does not authenticate requests itself, so servers without an\nauthentication layer in front of the endpoint are exposed to unauthenticated\nclients.\n\nOnly servers that use the Streamable HTTP server transport and receive requests\nat protocol version `2026-07-28` or later are affected.\n\nThe flaw was corrected in 3.6.0 by removing the cache. The transport now calls\n`ServerHandler::get_tool` on each request.\n\nIf you cannot upgrade, put authentication in front of the endpoint, or reject\n`tools/call` requests for unknown tool names before they reach\n`StreamableHttpService`.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "rmcp",
+          "purl": "pkg:cargo/rmcp"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "3.0.0"
+              },
+              {
+                "fixed": "3.6.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/rmcp"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0461.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/modelcontextprotocol/rust-sdk/pull/1349"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
     "id": "RUSTSEC-2026-0457",
     "modified": "2026-11-09T09:58:48Z",
     "published": "2026-10-22T12:00:00Z",
