@@ -1,0 +1,20 @@
+```toml
+[advisory]
+id = "RUSTSEC-0000-0000"
+package = "openssl"
+date = "2026-04-19"
+url = "https://github.com/rust-openssl/rust-openssl/pull/2605"
+categories = ["memory-exposure"]
+keywords = ["pem", "password", "callback", "out-of-bounds-read"]
+aliases = ["CVE-2026-41677", "GHSA-xmgf-hq76-4vx2"]
+
+[versions]
+patched = [">= 0.10.78"]
+unaffected = ["< 0.9.0"]
+```
+
+# Out-of-bounds read when a PEM password callback returns an oversized length
+
+The `*_from_pem_callback` functions, such as `EcKey::private_key_from_pem_callback`, pass the length returned by the user's password callback to OpenSSL without checking it against the size of the buffer the callback was given. If the callback reports more bytes than the buffer holds, some OpenSSL versions read past the end of the buffer while deriving the decryption key. OpenSSL 3.x is not affected.
+
+0.10.78 treats a returned length larger than the buffer as a failed callback.
