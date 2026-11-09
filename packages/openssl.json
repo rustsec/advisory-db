@@ -1,5 +1,75 @@
 [
   {
+    "id": "RUSTSEC-2026-0463",
+    "modified": "2026-11-09T16:13:08Z",
+    "published": "2026-04-19T12:00:00Z",
+    "aliases": [
+      "CVE-2026-41678",
+      "GHSA-8c75-8mhr-p7r9"
+    ],
+    "related": [],
+    "summary": "Out-of-bounds write in `aes::unwrap_key`",
+    "details": "`openssl::aes::unwrap_key` guarded the size of its output buffer with an inverted assertion, `out.len() + 8 <= in_.len()`. Instead of rejecting an `out` buffer too small for the unwrapped key, it rejected buffers larger than needed and accepted buffers that were too small.\n\nWhen `out` is shorter than `in_.len() - 8` bytes, the underlying `AES_unwrap_key` call writes past the end of `out`. This out-of-bounds write is reachable from a safe function; applications that let untrusted input influence the input or output buffer sizes are exposed.\n\nThe function was added in 0.10.24. 0.10.78 corrects the assertion, so an output buffer that is too small now causes a panic before anything is written.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "openssl",
+          "purl": "pkg:cargo/openssl"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "openssl::aes::unwrap_key"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-corruption"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.10.24"
+              },
+              {
+                "fixed": "0.10.78"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/openssl"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0463.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/rust-openssl/rust-openssl/pull/2604"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
     "id": "RUSTSEC-2025-0022",
     "modified": "2025-10-28T06:02:18Z",
     "published": "2025-04-04T12:00:00Z",
