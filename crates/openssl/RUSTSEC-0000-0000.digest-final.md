@@ -1,0 +1,23 @@
+```toml
+[advisory]
+id = "RUSTSEC-0000-0000"
+package = "openssl"
+date = "2026-04-19"
+url = "https://github.com/rust-openssl/rust-openssl/pull/2608"
+categories = ["memory-corruption"]
+keywords = ["digest", "buffer-overflow"]
+aliases = ["CVE-2026-41681", "GHSA-ghm9-cr32-g9qj"]
+
+[affected.functions]
+"openssl::md_ctx::MdCtxRef::digest_final" = [">= 0.10.39, < 0.10.78"]
+
+[versions]
+patched = [">= 0.10.78"]
+unaffected = ["< 0.10.39"]
+```
+
+# Buffer overflow in `MdCtxRef::digest_final`
+
+`MdCtxRef::digest_final` passed the caller's output slice to OpenSSL's `EVP_DigestFinal` without checking its length. `EVP_DigestFinal` always writes the full digest (`EVP_MD_CTX_size` bytes), so an output slice shorter than the digest is overrun. With a stack buffer this usually corrupts the stack. The overflow is reachable from safe code.
+
+`MdCtxRef` was added in 0.10.39. 0.10.78 checks the slice length first and returns an error when the slice is too short for the digest.

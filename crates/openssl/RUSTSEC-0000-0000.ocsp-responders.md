@@ -1,0 +1,22 @@
+```toml
+[advisory]
+id = "RUSTSEC-0000-0000"
+package = "openssl"
+date = "2026-05-04"
+url = "https://github.com/rust-openssl/rust-openssl/pull/2631"
+keywords = ["x509", "ocsp", "utf-8", "undefined-behavior"]
+aliases = ["CVE-2026-42327", "GHSA-xp3w-r5p5-63rr"]
+
+[affected.functions]
+"openssl::x509::X509Ref::ocsp_responders" = [">= 0.9.7, < 0.10.79"]
+
+[versions]
+patched = [">= 0.10.79"]
+unaffected = ["< 0.9.7"]
+```
+
+# `X509Ref::ocsp_responders` can produce a `&str` that is not valid UTF-8
+
+`X509Ref::ocsp_responders` returns the OCSP responder URLs from a certificate's Authority Information Access extension as `OpensslString` values, which dereference to `str` without validating the bytes. OpenSSL does not require these IA5String values to be ASCII, so for a certificate with non-UTF-8 bytes in an OCSP access location, safe code ends up holding a `&str` that is not valid UTF-8, which is undefined behavior. Certificates often come from untrusted peers.
+
+`ocsp_responders` was added in 0.9.7. 0.10.79 checks each URL and returns an error if it is not valid UTF-8.

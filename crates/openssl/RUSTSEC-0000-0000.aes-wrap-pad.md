@@ -1,0 +1,25 @@
+```toml
+[advisory]
+id = "RUSTSEC-0000-0000"
+package = "openssl"
+date = "2026-05-04"
+url = "https://github.com/rust-openssl/rust-openssl/pull/2630"
+categories = ["memory-corruption"]
+keywords = ["aes", "key-wrap", "cipher", "buffer-overflow"]
+aliases = ["CVE-2026-44662", "GHSA-xv59-967r-8726"]
+
+[affected.functions]
+"openssl::cipher_ctx::CipherCtxRef::cipher_update" = [">= 0.10.0, < 0.10.79"]
+"openssl::cipher_ctx::CipherCtxRef::cipher_update_vec" = [">= 0.10.0, < 0.10.79"]
+"openssl::symm::Crypter::update" = [">= 0.10.0, < 0.10.79"]
+
+[versions]
+patched = [">= 0.10.79"]
+unaffected = ["< 0.10.0"]
+```
+
+# Buffer overflow with AES key wrap with padding in `cipher_update`
+
+`CipherCtxRef::cipher_update`, `CipherCtxRef::cipher_update_vec` and `symm::Crypter::update` require (or allocate) `input.len() + block_size` bytes of output. With the AES key-wrap-with-padding ciphers (`EVP_aes_128_wrap_pad`, `EVP_aes_192_wrap_pad`, `EVP_aes_256_wrap_pad`), OpenSSL pads the input to a multiple of 8 bytes and adds an 8-byte block, so when the input length is not a multiple of 8 it writes up to 7 bytes past the end of the caller's buffer or `Vec`. If an attacker can influence the plaintext length, this is heap corruption they can partly control.
+
+Only users of the AES key-wrap-with-padding ciphers are affected. 0.10.79 sizes the output for these ciphers as the input length rounded up to a multiple of 8, plus 8.

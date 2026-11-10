@@ -1,0 +1,24 @@
+```toml
+[advisory]
+id = "RUSTSEC-0000-0000"
+package = "openssl"
+date = "2026-04-19"
+url = "https://github.com/rust-openssl/rust-openssl/pull/2606"
+categories = ["memory-corruption"]
+keywords = ["derive", "x25519", "x448", "hkdf", "buffer-overflow"]
+aliases = ["CVE-2026-41676", "GHSA-pqf5-4pqq-29f5"]
+
+[affected.functions]
+"openssl::derive::Deriver::derive" = [">= 0.9.27, < 0.10.78"]
+"openssl::pkey_ctx::PkeyCtxRef::derive" = [">= 0.9.27, < 0.10.78"]
+
+[versions]
+patched = [">= 0.10.78"]
+unaffected = ["< 0.9.27"]
+```
+
+# Buffer overflow in `Deriver::derive` and `PkeyCtxRef::derive` with OpenSSL 1.1.x
+
+`Deriver::derive` and `PkeyCtxRef::derive` pass the length of the caller's buffer to `EVP_PKEY_derive` and rely on OpenSSL to write no more than that. With OpenSSL 1.1.x, the X25519, X448 and HKDF-extract implementations ignore the length they are given and always write the whole result, so a buffer shorter than the shared secret or derived key is overrun. The overflow is reachable from safe code.
+
+OpenSSL 3.x checks the length itself and is not affected. From 0.10.78, when built against OpenSSL 1.1.x or LibreSSL, both functions derive into a temporary buffer of the required size whenever the caller's buffer is too short, and copy only what fits.
