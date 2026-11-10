@@ -1,0 +1,58 @@
+{
+  "id": "RUSTSEC-2026-0466",
+  "modified": "2026-11-10T12:49:43Z",
+  "published": "2026-11-06T12:00:00Z",
+  "aliases": [],
+  "related": [],
+  "summary": "`build_dep` was removed from crates.io for malicious code",
+  "details": "`build_dep` attempted to send telemetry from the build environment to an\narbitrary URL.\n\nThe malicious crate had 1 version published on 2025-03-03, approximately 20\nmonths before removal, and had no evidence of actual usage. This crate had no\ndependencies on crates.io.\n\nThanks to [Bitbison](https://bitbison.io/) for the report.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "build_dep",
+        "purl": "pkg:cargo/build_dep"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "malicious"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/build_dep"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0466.html"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
