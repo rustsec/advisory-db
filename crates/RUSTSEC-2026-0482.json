@@ -1,0 +1,80 @@
+{
+  "id": "RUSTSEC-2026-0482",
+  "modified": "2026-11-11T08:37:09Z",
+  "published": "2026-08-20T12:00:00Z",
+  "aliases": [
+    "GHSA-hp8f-xmx4-4qrg"
+  ],
+  "related": [
+    "RUSTSEC-2026-0269"
+  ],
+  "summary": "Paths or symlinks ending in a slash escape the sandbox",
+  "details": "cap-primitives resolves a path inside a sandboxed directory one component at a time and opens the last component with `O_NOFOLLOW`, so that a symlink there cannot lead out of the directory. When the path ended in `/`, the resolver added the slash back to the last component before opening it. With a trailing slash the operating system no longer treats that component as the last one, so `O_NOFOLLOW` does not apply, the symlink is followed, and the resulting file descriptor was returned without further checks.\n\nA symlink inside the sandbox that points outside it, such as `escape -> ../outside` or a link to `/`, can therefore be opened as `escape/`. If the symlink's own target ends in `/`, the caller's path does not need a trailing slash at all, so removing trailing slashes from untrusted input is not a workaround. The maintainers' advisory reports reads and writes outside the sandbox through `open`, `open_dir`, `read_dir` and `canonicalize`, and directory creation, removal and renames outside it through `create_dir`, `remove_dir` and `rename`.\n\nThis resolver is used on Windows and macOS, on FreeBSD when `O_RESOLVE_BENEATH` is not available, and on Linux when `openat2` is not available (kernels before 5.6, or a seccomp policy that rejects it). cap-std and other crates built on cap-primitives are affected through it. Wasmtime's WASI filesystem support was affected as well; that is covered by RUSTSEC-2026-0269.\n\nThe fix stops re-adding the trailing slash and is in 3.4.6 and 4.0.3.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:N"
+    }
+  ],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "cap-primitives",
+        "purl": "pkg:cargo/cap-primitives"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "file-disclosure"
+        ],
+        "cvss": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:N",
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "3.4.6"
+            },
+            {
+              "introduced": "4.0.0"
+            },
+            {
+              "fixed": "4.0.3"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/cap-primitives"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0482.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/bytecodealliance/cap-std/pull/419"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
