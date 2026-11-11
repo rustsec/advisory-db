@@ -811,6 +811,794 @@ dependencies on crates.io.&lt;/p&gt;
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0490: Vulnerability in hickory-proto</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0490.html</id><updated>2026-11-11T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0490.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0490: Vulnerability in hickory-proto"/><published>2026-11-11T12:00:00+00:00</published><summary xml:lang="en">Zone file lexer panics on a token of 4096 or more characters</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/hickory-proto/RUSTSEC-2026-0490.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/hickory-proto/RUSTSEC-2026-0490.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0490&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0490
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Zone file lexer panics on a token of 4096 or more characters&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-09-03&quot;&gt;
+          September  3, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-11&quot;&gt;
+          November 11, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/hickory-proto.html&quot;&gt;hickory-proto&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/hickory-proto&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/dns.html&quot;&gt;#dns&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/zone-file.html&quot;&gt;#zone-file&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/lexer.html&quot;&gt;#lexer&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/panic.html&quot;&gt;#panic&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-4rph-pmrw-mwpw&quot;&gt;GHSA-4rph-pmrw-mwpw&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/hickory-dns/hickory-dns/commit/0494e15c88fba612f9ecb4f013eb3b221822c867&quot;&gt;
+              https://github.com/hickory-dns/hickory-dns/commit/0494e15c88fba612f9ecb4f013eb3b221822c867
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.26.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.24.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;The zone file lexer read each token in a loop capped at 4,096 iterations, with an &lt;code&gt;assert!&lt;/code&gt; on the loop counter as a safety bound. A single token long enough to reach that bound, for example a very long name or character string in a zone file, triggered the assertion and the parser panicked instead of returning the token or an error.&lt;/p&gt;
+&lt;p&gt;Code that parses zone files from an untrusted source can be made to panic, which is a denial of service.&lt;/p&gt;
+&lt;p&gt;The fix removes the iteration bound, so the lexer ends only when it reaches the end of a token or an error. It is in 0.26.2.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0491: Vulnerability in hickory-proto</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0491.html</id><updated>2026-11-11T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0491.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0491: Vulnerability in hickory-proto"/><published>2026-11-11T12:00:00+00:00</published><summary xml:lang="en">Memory amplification from record counts in the DNS message header</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/hickory-proto/RUSTSEC-2026-0491.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/hickory-proto/RUSTSEC-2026-0491.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0491&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0491
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Memory amplification from record counts in the DNS message header&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-09-03&quot;&gt;
+          September  3, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-11&quot;&gt;
+          November 11, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/hickory-proto.html&quot;&gt;hickory-proto&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/hickory-proto&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/dns.html&quot;&gt;#dns&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/memory.html&quot;&gt;#memory&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/allocation.html&quot;&gt;#allocation&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-67wc-6jq8-ghrc&quot;&gt;GHSA-67wc-6jq8-ghrc&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/hickory-dns/hickory-dns/commit/280c0e5c4e3002d73ba0762835ef82272d1d33a6&quot;&gt;
+              https://github.com/hickory-dns/hickory-dns/commit/280c0e5c4e3002d73ba0762835ef82272d1d33a6
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.26.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.18.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;When a DNS message is decoded, the vectors for the question, answer, authority and additional sections were created with &lt;code&gt;Vec::with_capacity&lt;/code&gt; set to the counts in the message header. Those counts come from the sender and are not checked against the size of the message, so a single small packet that claims 65,535 records makes the decoder reserve memory for that many records (about 18 MB, according to the upstream advisory) before it reads any record and fails.&lt;/p&gt;
+&lt;p&gt;Any code that decodes untrusted DNS messages is exposed. That includes servers, and clients and resolvers that receive spoofed responses. Repeated packets can drive memory use up and cause a denial of service.&lt;/p&gt;
+&lt;p&gt;The fix caps the initial capacity at 8 entries and lets the vectors grow as records are actually decoded. It is in 0.26.2.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0489: Vulnerability in hickory-proto</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0489.html</id><updated>2026-11-11T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0489.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0489: Vulnerability in hickory-proto"/><published>2026-11-11T12:00:00+00:00</published><summary xml:lang="en">Panic when an SVCB or HTTPS parameter value is a single quote character</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/hickory-proto/RUSTSEC-2026-0489.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/hickory-proto/RUSTSEC-2026-0489.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0489&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0489
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Panic when an SVCB or HTTPS parameter value is a single quote character&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-09-03&quot;&gt;
+          September  3, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-11&quot;&gt;
+          November 11, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/hickory-proto.html&quot;&gt;hickory-proto&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/hickory-proto&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/dns.html&quot;&gt;#dns&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/zone-file.html&quot;&gt;#zone-file&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/svcb.html&quot;&gt;#svcb&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/panic.html&quot;&gt;#panic&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-wgfr-mphw-j5g4&quot;&gt;GHSA-wgfr-mphw-j5g4&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/hickory-dns/hickory-dns/commit/c663b60a4b4b98deb45d16ccbf10ce2f76cd88a9&quot;&gt;
+              https://github.com/hickory-dns/hickory-dns/commit/c663b60a4b4b98deb45d16ccbf10ce2f76cd88a9
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.26.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.20.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;When an SVCB or HTTPS record is parsed from its text (zone file) form, surrounding double quotes are removed from each service parameter value by checking that the value starts and ends with &lt;code&gt;&amp;quot;&lt;/code&gt; and slicing off the first and last character. A value that is a single &lt;code&gt;&amp;quot;&lt;/code&gt; (for example &lt;code&gt;alpn=&amp;quot;&lt;/code&gt;) passes that check, and the slice &lt;code&gt;[1..0]&lt;/code&gt; panics.&lt;/p&gt;
+&lt;p&gt;Code that parses zone files or record text from an untrusted source can be made to panic, which is a denial of service. Records decoded from the DNS wire format are not parsed this way.&lt;/p&gt;
+&lt;p&gt;The fix rejects a lone quote character with a parse error before the slice. It is in 0.26.2.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0487: Vulnerability in hickory-proto</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0487.html</id><updated>2026-11-11T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0487.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0487: Vulnerability in hickory-proto"/><published>2026-11-11T12:00:00+00:00</published><summary xml:lang="en">Panic on a malformed `alpn` value when parsing SVCB or HTTPS records from text</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/hickory-proto/RUSTSEC-2026-0487.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/hickory-proto/RUSTSEC-2026-0487.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0487&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0487
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Panic on a malformed &lt;code&gt;alpn&lt;/code&gt; value when parsing SVCB or HTTPS records from text&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-09-03&quot;&gt;
+          September  3, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-11&quot;&gt;
+          November 11, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/hickory-proto.html&quot;&gt;hickory-proto&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/hickory-proto&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/dns.html&quot;&gt;#dns&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/zone-file.html&quot;&gt;#zone-file&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/svcb.html&quot;&gt;#svcb&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/panic.html&quot;&gt;#panic&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-hx8c-fjhc-hmf5&quot;&gt;GHSA-hx8c-fjhc-hmf5&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/hickory-dns/hickory-dns/commit/80eaf9e79f7561e2bc1cf5b89eaba7fd25de3284&quot;&gt;
+              https://github.com/hickory-dns/hickory-dns/commit/80eaf9e79f7561e2bc1cf5b89eaba7fd25de3284
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.26.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.20.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;When an SVCB or HTTPS record is parsed from its text (zone file) form, the &lt;code&gt;alpn&lt;/code&gt; service parameter value is split into a list of protocol names. That step called &lt;code&gt;expect&lt;/code&gt; on the result, on the assumption that it could not fail. A malformed value, such as one with an unbalanced quote (&lt;code&gt;alpn=&amp;quot;h&lt;/code&gt;), two commas in a row or an invalid escape, makes it fail, so the parser panicked instead of returning an error.&lt;/p&gt;
+&lt;p&gt;Code that parses zone files or record text from an untrusted source can be made to panic, which is a denial of service. Records decoded from the DNS wire format are not parsed this way.&lt;/p&gt;
+&lt;p&gt;The fix returns a parse error instead. It is in 0.26.2.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0488: Vulnerability in hickory-proto</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0488.html</id><updated>2026-11-11T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0488.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0488: Vulnerability in hickory-proto"/><published>2026-11-11T12:00:00+00:00</published><summary xml:lang="en">Integer underflow when reporting a malformed TSIG record</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/hickory-proto/RUSTSEC-2026-0488.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/hickory-proto/RUSTSEC-2026-0488.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0488&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0488
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Integer underflow when reporting a malformed TSIG record&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-09-03&quot;&gt;
+          September  3, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-11&quot;&gt;
+          November 11, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/hickory-proto.html&quot;&gt;hickory-proto&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/hickory-proto&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/dns.html&quot;&gt;#dns&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/tsig.html&quot;&gt;#tsig&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/integer-underflow.html&quot;&gt;#integer-underflow&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/panic.html&quot;&gt;#panic&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-x962-5xwx-fr8x&quot;&gt;GHSA-x962-5xwx-fr8x&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/hickory-dns/hickory-dns/commit/b1246a8a21b6dcc34d427a7d39dd96e10825c384&quot;&gt;
+              https://github.com/hickory-dns/hickory-dns/commit/b1246a8a21b6dcc34d427a7d39dd96e10825c384
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.26.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.26.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;When a TSIG record is decoded from the DNS wire format, its MAC length and &amp;quot;other data&amp;quot; length are checked against the end of the record data. If a check failed, the error value was built from &lt;code&gt;end_idx - decoder.index()&lt;/code&gt;. For a malformed record the decoder can already be past &lt;code&gt;end_idx&lt;/code&gt;, so this unsigned subtraction underflows.&lt;/p&gt;
+&lt;p&gt;In builds with overflow checks enabled (the &lt;code&gt;dev&lt;/code&gt; profile by default) the underflow panics, so a peer that sends a crafted TSIG record can crash the process. In builds without overflow checks the result wraps and is only used in the returned error.&lt;/p&gt;
+&lt;p&gt;The fix returns a plain &amp;quot;insufficient bytes&amp;quot; error without the subtraction. It is in 0.26.2.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0485: Vulnerability in tdx-guest</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0485.html</id><updated>2026-11-11T12:00:00+00:00</updated><category term="privilege-escalation"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0485.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0485: Vulnerability in tdx-guest"/><published>2026-11-11T12:00:00+00:00</published><summary xml:lang="en">`enter_l2_vcpu` passes the wrong RCX operand to `TDG.VP.ENTER`</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
