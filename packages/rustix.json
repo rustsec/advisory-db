@@ -1,0 +1,74 @@
+[
+  {
+    "id": "RUSTSEC-2026-0486",
+    "modified": "2026-11-11T08:37:09Z",
+    "published": "2026-10-27T12:00:00Z",
+    "aliases": [
+      "GHSA-jh2m-fhpj-3vr7"
+    ],
+    "related": [],
+    "summary": "xattr functions mark unwritten bytes as initialized when given a zero-length buffer",
+    "details": "The extended-attribute functions in `rustix::fs` (`getxattr`, `lgetxattr`, `fgetxattr`, `listxattr`, `llistxattr` and `flistxattr`) write into a `Buffer` and then mark as many bytes initialized as the system call reported. When the buffer has zero length, the operating system treats the call as a size query: it writes nothing and returns the size of the attribute value or of the name list. rustix still marked that many bytes as initialized.\n\nPassing a `Vec` whose length equals its capacity through `spare_capacity` gives such a zero-length buffer, and rustix then set the vector's length past its capacity over memory that was never written. This is undefined behavior reachable from safe code. With an empty `&mut [MaybeUninit<u8>]` the call panics instead.\n\nFrom 1.1.6 these functions return an empty result for a zero-length buffer, and new `getxattr_query`, `lgetxattr_query`, `fgetxattr_query`, `listxattr_query`, `llistxattr_query` and `flistxattr_query` functions return the size. The 0.38 series did not have the `Buffer` API and is not affected.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "rustix",
+          "purl": "pkg:cargo/rustix"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "rustix::fs::fgetxattr",
+              "rustix::fs::flistxattr",
+              "rustix::fs::getxattr",
+              "rustix::fs::lgetxattr",
+              "rustix::fs::listxattr",
+              "rustix::fs::llistxattr"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": "unsound"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "1.0.0"
+              },
+              {
+                "fixed": "1.1.6"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/rustix"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0486.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/bytecodealliance/rustix/commit/8e6aaa6713d2bb64b1fdd8c472e3a32a10a76d70"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]
