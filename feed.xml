@@ -2794,6 +2794,1037 @@ at or above the field prime) or if two shares carry the same x.&lt;/p&gt;
 
     
     &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0504: Vulnerability in hickory-proto</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0504.html</id><updated>2026-11-12T12:00:00+00:00</updated><category term="privilege-escalation"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0504.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0504: Vulnerability in hickory-proto"/><published>2026-11-12T12:00:00+00:00</published><summary xml:lang="en">Inverted NSEC3 comparison in DNSSEC validation (hickory-proto 0.25)</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/hickory-proto/RUSTSEC-2026-0504.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/hickory-proto/RUSTSEC-2026-0504.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0504&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0504
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Inverted NSEC3 comparison in DNSSEC validation (hickory-proto 0.25)&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-09-03&quot;&gt;
+          September  3, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-12&quot;&gt;
+          November 12, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/hickory-proto.html&quot;&gt;hickory-proto&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/hickory-proto&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/privilege-escalation.html&quot;&gt;privilege-escalation&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/dns.html&quot;&gt;#dns&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/dnssec.html&quot;&gt;#dnssec&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/nsec3.html&quot;&gt;#nsec3&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://www.cve.org/CVERecord?id=CVE-2026-123601&quot;&gt;CVE-2026-123601&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-588m-chg6-8jqj&quot;&gt;GHSA-588m-chg6-8jqj&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/hickory-dns/hickory-dns/commit/87ee4f81aa9689d81847770d3a74e13982c9bcdc&quot;&gt;
+              https://github.com/hickory-dns/hickory-dns/commit/87ee4f81aa9689d81847770d3a74e13982c9bcdc
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.25.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.26.0-beta.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;In hickory-proto 0.25.0 through 0.26.0-alpha.1, DNSSEC validation handled the last NSEC3 record of a zone&apos;s hash chain with its two comparisons reversed. That record was treated as covering almost every hash it does not cover, so an attacker who can answer or modify DNS responses could replay it, with its RRSIG, to forge proofs that existing names have no records.&lt;/p&gt;
+&lt;p&gt;From 0.26.0-beta.1 the DNSSEC validation code lives in the hickory-net crate, where this was fixed in hickory-net 0.26.2. No hickory-proto release contains a fix. Users of DNSSEC validation in hickory-proto 0.25 (directly or through hickory-resolver or hickory-recursor 0.25) should move to the 0.26.2 or later releases, which validate through hickory-net.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0505: Vulnerability in hickory-proto</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0505.html</id><updated>2026-11-12T12:00:00+00:00</updated><category term="privilege-escalation"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0505.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0505: Vulnerability in hickory-proto"/><published>2026-11-12T12:00:00+00:00</published><summary xml:lang="en">NSEC3 owner names not checked against the zone in DNSSEC validation (hickory-proto)</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/hickory-proto/RUSTSEC-2026-0505.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/hickory-proto/RUSTSEC-2026-0505.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0505&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0505
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;NSEC3 owner names not checked against the zone in DNSSEC validation (hickory-proto)&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-09-03&quot;&gt;
+          September  3, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-12&quot;&gt;
+          November 12, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/hickory-proto.html&quot;&gt;hickory-proto&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/hickory-proto&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/privilege-escalation.html&quot;&gt;privilege-escalation&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/dns.html&quot;&gt;#dns&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/dnssec.html&quot;&gt;#dnssec&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/nsec3.html&quot;&gt;#nsec3&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://www.cve.org/CVERecord?id=CVE-2026-123580&quot;&gt;CVE-2026-123580&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-p2jv-r3m3-7wf4&quot;&gt;GHSA-p2jv-r3m3-7wf4&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/hickory-dns/hickory-dns/commit/10840b8432feb08d369f82e2bb6ce99ae23d7afa&quot;&gt;
+              https://github.com/hickory-dns/hickory-dns/commit/10840b8432feb08d369f82e2bb6ce99ae23d7afa
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;7.5 &lt;span class=&quot;tag high&quot;&gt;
+        HIGH
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Network&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.26.0-beta.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Up to 0.26.0-alpha.1, hickory-proto&apos;s DNSSEC validation matched NSEC3 records to a name only by the hashed first label of the NSEC3 owner name, without checking that the rest of the owner name was the zone in question. A signed NSEC3 record from any zone the attacker controls could therefore be used, by someone who can answer or modify DNS responses, to prove that a name in another zone does not exist.&lt;/p&gt;
+&lt;p&gt;From 0.26.0-beta.1 the DNSSEC validation code lives in the hickory-net crate, where this was fixed in hickory-net 0.26.2. No hickory-proto release contains a fix. Users of DNSSEC validation in older hickory-proto releases (directly or through hickory-resolver or hickory-recursor) should move to the 0.26.2 or later releases, which validate through hickory-net.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0508: Vulnerability in hickory-net</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0508.html</id><updated>2026-11-12T12:00:00+00:00</updated><category term="privilege-escalation"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0508.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0508: Vulnerability in hickory-net"/><published>2026-11-12T12:00:00+00:00</published><summary xml:lang="en">NSEC wraparound detection trusted an unvalidated SOA record</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/hickory-net/RUSTSEC-2026-0508.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/hickory-net/RUSTSEC-2026-0508.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0508&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0508
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;NSEC wraparound detection trusted an unvalidated SOA record&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-09-03&quot;&gt;
+          September  3, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-12&quot;&gt;
+          November 12, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/hickory-net.html&quot;&gt;hickory-net&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/hickory-net&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/privilege-escalation.html&quot;&gt;privilege-escalation&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/dns.html&quot;&gt;#dns&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/dnssec.html&quot;&gt;#dnssec&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/nsec.html&quot;&gt;#nsec&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://www.cve.org/CVERecord?id=CVE-2026-123587&quot;&gt;CVE-2026-123587&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-qw83-5pm2-ggp5&quot;&gt;GHSA-qw83-5pm2-ggp5&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/hickory-dns/hickory-dns/commit/e5ca40a7ef149ba5a79bc6f4916f114d153ce9ab&quot;&gt;
+              https://github.com/hickory-dns/hickory-dns/commit/e5ca40a7ef149ba5a79bc6f4916f114d153ce9ab
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.26.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.26.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;The last NSEC record in a zone points back to the zone apex. To recognise it, DNSSEC validation treated an NSEC record as covering every name after its owner when its next domain name equalled the owner name of an SOA record in the response. That SOA record did not have to pass validation.&lt;/p&gt;
+&lt;p&gt;An attacker who can answer or modify DNS responses can replay a genuine NSEC record and its RRSIG, add a forged SOA record whose name equals that NSEC record&apos;s next domain name, and so make the validator accept that any name sorting after the NSEC owner does not exist.&lt;/p&gt;
+&lt;p&gt;This affects DNSSEC validation through &lt;code&gt;DnssecDnsHandle&lt;/code&gt; when built with &lt;code&gt;dnssec-ring&lt;/code&gt; or &lt;code&gt;dnssec-aws-lc-rs&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The fix recognises a wraparound NSEC record from the chain itself (its next domain name sorts at or before its owner and is the zone of the queried name) and only uses validated SOA records. It is in 0.26.2.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0509: Vulnerability in hickory-net</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0509.html</id><updated>2026-11-12T12:00:00+00:00</updated><category term="privilege-escalation"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0509.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0509: Vulnerability in hickory-net"/><published>2026-11-12T12:00:00+00:00</published><summary xml:lang="en">NSEC3 records from another zone were accepted in proofs of nonexistence</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/hickory-net/RUSTSEC-2026-0509.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/hickory-net/RUSTSEC-2026-0509.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0509&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0509
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;NSEC3 records from another zone were accepted in proofs of nonexistence&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-09-03&quot;&gt;
+          September  3, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-12&quot;&gt;
+          November 12, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/hickory-net.html&quot;&gt;hickory-net&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/hickory-net&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/privilege-escalation.html&quot;&gt;privilege-escalation&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/dns.html&quot;&gt;#dns&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/dnssec.html&quot;&gt;#dnssec&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/nsec3.html&quot;&gt;#nsec3&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://www.cve.org/CVERecord?id=CVE-2026-123580&quot;&gt;CVE-2026-123580&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-p2jv-r3m3-7wf4&quot;&gt;GHSA-p2jv-r3m3-7wf4&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/hickory-dns/hickory-dns/commit/10840b8432feb08d369f82e2bb6ce99ae23d7afa&quot;&gt;
+              https://github.com/hickory-dns/hickory-dns/commit/10840b8432feb08d369f82e2bb6ce99ae23d7afa
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/hickory-dns/hickory-dns/commit/d2ee774a789193010f109d3d463adf72c4c261ab&quot;&gt;
+              https://github.com/hickory-dns/hickory-dns/commit/d2ee774a789193010f109d3d463adf72c4c261ab
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;7.5 &lt;span class=&quot;tag high&quot;&gt;
+        HIGH
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Network&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.26.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;When DNSSEC validation used NSEC3 records to prove that a name or record type does not exist, it compared only the hashed first label of each NSEC3 owner name with the hash of the name being checked. The rest of the owner name, which says which zone the record belongs to, was not checked.&lt;/p&gt;
+&lt;p&gt;Someone who controls any DNSSEC-signed zone can publish a signed NSEC3 record whose first label is the hash of a name in another zone. An attacker who can answer or modify DNS responses can then use it to make the validator accept that the name in the other zone does not exist.&lt;/p&gt;
+&lt;p&gt;This affects DNSSEC validation through &lt;code&gt;DnssecDnsHandle&lt;/code&gt; when built with &lt;code&gt;dnssec-ring&lt;/code&gt; or &lt;code&gt;dnssec-aws-lc-rs&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The fix requires a matching NSEC3 record to belong to a zone that contains the checked name, and ignores NSEC3 records whose owner is not directly below the RRSIG signer name. It is in 0.26.2.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0506: Vulnerability in hickory-net</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0506.html</id><updated>2026-11-12T12:00:00+00:00</updated><category term="privilege-escalation"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0506.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0506: Vulnerability in hickory-net"/><published>2026-11-12T12:00:00+00:00</published><summary xml:lang="en">Inverted NSEC3 comparison lets one record &amp;quot;prove&amp;quot; that almost any name does not exist</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/hickory-net/RUSTSEC-2026-0506.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/hickory-net/RUSTSEC-2026-0506.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0506&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0506
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Inverted NSEC3 comparison lets one record &amp;quot;prove&amp;quot; that almost any name does not exist&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-09-03&quot;&gt;
+          September  3, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-12&quot;&gt;
+          November 12, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/hickory-net.html&quot;&gt;hickory-net&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/hickory-net&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/privilege-escalation.html&quot;&gt;privilege-escalation&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/dns.html&quot;&gt;#dns&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/dnssec.html&quot;&gt;#dnssec&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/nsec3.html&quot;&gt;#nsec3&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://www.cve.org/CVERecord?id=CVE-2026-123601&quot;&gt;CVE-2026-123601&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-588m-chg6-8jqj&quot;&gt;GHSA-588m-chg6-8jqj&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/hickory-dns/hickory-dns/commit/87ee4f81aa9689d81847770d3a74e13982c9bcdc&quot;&gt;
+              https://github.com/hickory-dns/hickory-dns/commit/87ee4f81aa9689d81847770d3a74e13982c9bcdc
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.26.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;When DNSSEC validation looks for the NSEC3 record that covers a hashed name, the last record in the zone&apos;s hash chain needs special handling, because its next hashed owner name sorts before its own hash. For that record the two comparisons were reversed: it was treated as covering every hash below its owner hash or above its next hash, which is mostly the part of the chain it does not cover.&lt;/p&gt;
+&lt;p&gt;An attacker who can answer or modify DNS responses can replay that one signed NSEC3 record, with its RRSIG, from the target zone and use it in forged negative answers. The validator then accepts proof that names which do exist have no records.&lt;/p&gt;
+&lt;p&gt;This affects DNSSEC validation through &lt;code&gt;DnssecDnsHandle&lt;/code&gt; (resolver, recursor and client) when built with &lt;code&gt;dnssec-ring&lt;/code&gt; or &lt;code&gt;dnssec-aws-lc-rs&lt;/code&gt;. The same code was in hickory-proto before it moved to hickory-net.&lt;/p&gt;
+&lt;p&gt;The fix corrects the comparison in &lt;code&gt;find_covering_record&lt;/code&gt;. It is in 0.26.2.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0507: Vulnerability in hickory-net</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0507.html</id><updated>2026-11-12T12:00:00+00:00</updated><category term="privilege-escalation"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0507.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0507: Vulnerability in hickory-net"/><published>2026-11-12T12:00:00+00:00</published><summary xml:lang="en">RRSIG signer name was not checked against the zone of the signed records</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/hickory-net/RUSTSEC-2026-0507.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/hickory-net/RUSTSEC-2026-0507.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0507&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0507
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;RRSIG signer name was not checked against the zone of the signed records&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-09-03&quot;&gt;
+          September  3, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-12&quot;&gt;
+          November 12, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/hickory-net.html&quot;&gt;hickory-net&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/hickory-net&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/privilege-escalation.html&quot;&gt;privilege-escalation&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/dns.html&quot;&gt;#dns&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/dnssec.html&quot;&gt;#dnssec&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/rrsig.html&quot;&gt;#rrsig&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://www.cve.org/CVERecord?id=CVE-2026-123605&quot;&gt;CVE-2026-123605&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-2vgh-3wfw-qj7c&quot;&gt;GHSA-2vgh-3wfw-qj7c&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/hickory-dns/hickory-dns/commit/019535e011131c52d19cb6a2c7a2d31270271135&quot;&gt;
+              https://github.com/hickory-dns/hickory-dns/commit/019535e011131c52d19cb6a2c7a2d31270271135
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.26.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;DNSSEC validation checked an RRset against the DNSKEYs of whatever zone was named in the RRSIG&apos;s Signer&apos;s Name field. RFC 4035 section 5.3.1 requires that name to be the zone that contains the RRset, but this was not checked.&lt;/p&gt;
+&lt;p&gt;Anyone who controls a DNSSEC-signed zone, and can answer or modify DNS responses, can therefore sign records for names in an unrelated zone with their own keys and have the validator accept them as secure.&lt;/p&gt;
+&lt;p&gt;This affects DNSSEC validation through &lt;code&gt;DnssecDnsHandle&lt;/code&gt; (resolver, recursor and client) when built with &lt;code&gt;dnssec-ring&lt;/code&gt; or &lt;code&gt;dnssec-aws-lc-rs&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The fix ignores an RRSIG whose signer name is not the RRset&apos;s owner name or one of its ancestors. It is in 0.26.2.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
   &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0503: Vulnerability in eazip</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0503.html</id><updated>2026-11-12T12:00:00+00:00</updated><category term="privilege-escalation"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0503.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0503: Vulnerability in eazip"/><published>2026-11-12T12:00:00+00:00</published><summary xml:lang="en">eazip: symlink-target validation checks the wrong argument, allowing extraction path escapes on Windows</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
