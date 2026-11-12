@@ -1,0 +1,68 @@
+{
+  "id": "RUSTSEC-2026-0519",
+  "modified": "2026-11-12T14:21:59Z",
+  "published": "2026-09-03T12:00:00Z",
+  "aliases": [
+    "CVE-2026-123594",
+    "GHSA-86vr-jm6c-7cpg"
+  ],
+  "related": [],
+  "summary": "NXDOMAIN accepted for an empty non-terminal that the NSEC record proves exists",
+  "details": "When an NSEC record's next domain name is below the queried name, the queried name exists as an empty non-terminal (RFC 8020 section 3.1). The NSEC validator did not check for this case and accepted an NXDOMAIN response backed by such a record as secure.\n\nThe response code is not covered by any signature. An attacker who can modify DNS responses can take a genuine signed NODATA response for an empty non-terminal, change its response code to NXDOMAIN, and have the validator accept that an existing name does not exist.\n\nThis affects DNSSEC validation through `DnssecDnsHandle` when built with `dnssec-ring` or `dnssec-aws-lc-rs`.\n\nThe fix rejects NXDOMAIN as bogus, and validates NODATA as secure, when the covering NSEC record's next domain name is below the queried name and is not the zone apex. It is in 0.26.2.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "hickory-net",
+        "purl": "pkg:cargo/hickory-net"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "privilege-escalation"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "0.26.2"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/hickory-net"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0519.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/hickory-dns/hickory-dns/commit/bfbe7ede4021965526f065be9b415945ce575e29"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}

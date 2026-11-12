@@ -1,0 +1,65 @@
+{
+  "id": "RUSTSEC-2026-0522",
+  "modified": "2026-11-12T14:21:59Z",
+  "published": "2026-09-03T12:00:00Z",
+  "aliases": [
+    "CVE-2026-123586",
+    "GHSA-cx5j-p54p-q756"
+  ],
+  "related": [],
+  "summary": "Recursor kept querying cyclic glueless sibling delegations (no fixed hickory-recursor release)",
+  "details": "Two zones can each delegate to name servers named only inside the other zone, with no glue records (RFC 9471 section 2.3). The recursor did not stop when it came back to a zone it was already resolving, so someone who controls two such zones can make it send many upstream queries for each client query.\n\nThe recursor code moved into hickory-resolver (opt-in `recursor` feature) in 0.26.0-beta.1, and the fix is in hickory-resolver 0.26.2. No hickory-recursor release contains a fix, so users should move to hickory-resolver 0.26.2 or later with the `recursor` feature.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "hickory-recursor",
+        "purl": "pkg:cargo/hickory-recursor"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "denial-of-service"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.25.0-alpha.3"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/hickory-recursor"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0522.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/hickory-dns/hickory-dns/commit/308dcfd5cd9bfaa50c956427380160505e5de532"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}

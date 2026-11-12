@@ -1,0 +1,69 @@
+{
+  "id": "RUSTSEC-2026-0521",
+  "modified": "2026-11-12T14:21:59Z",
+  "published": "2026-09-03T12:00:00Z",
+  "aliases": [
+    "CVE-2026-123606",
+    "GHSA-6h5c-jjg5-wj59"
+  ],
+  "related": [],
+  "summary": "Recursor followed every glueless name server in a referral (no fixed hickory-recursor release)",
+  "details": "For referrals whose name servers are outside the delegated zone and come without glue, the recursor resolved every listed name server, with no cap on referral width and no per-query work budget. Someone who controls a zone can use this to make each client query send a large number of queries to a victim's servers (the NXNSAttack pattern), or to exhaust the recursor.\n\nThe recursor code moved into hickory-resolver (opt-in `recursor` feature) in 0.26.0-beta.1, and the fix is in hickory-resolver 0.26.2. No hickory-recursor release contains a fix, so users should move to hickory-resolver 0.26.2 or later with the `recursor` feature.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "hickory-recursor",
+        "purl": "pkg:cargo/hickory-recursor"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "denial-of-service"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.25.0-alpha.3"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/hickory-recursor"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0521.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/hickory-dns/hickory-dns/commit/74062f3a3ef6904b64717dd025945702b2cf4133"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/hickory-dns/hickory-dns/commit/47cd005b8f3d190134bbb943d2328ef8a83ade8c"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
