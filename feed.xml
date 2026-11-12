@@ -1,5 +1,3007 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2026-11-11T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2026-0480: Vulnerability in tdx_workload_attestation</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0480.html</id><updated>2026-11-11T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0480.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0480: Vulnerability in tdx_workload_attestation"/><published>2026-11-11T12:00:00+00:00</published><summary xml:lang="en">Panic on a GCP launch endorsement without TDX measurements</summary><content xml:lang="en" type="html">  &lt;article&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2026-11-12T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2024-0450: Vulnerability in russh</title><id>https://rustsec.org/advisories/RUSTSEC-2024-0450.html</id><updated>2026-11-12T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2024-0450.html" rel="alternate" type="text/html" title="RUSTSEC-2024-0450: Vulnerability in russh"/><published>2026-11-12T12:00:00+00:00</published><summary xml:lang="en">Memory exhaustion from an unchecked SSH packet length</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/russh/RUSTSEC-2024-0450.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/russh/RUSTSEC-2024-0450.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2024-0450&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2024-0450
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Memory exhaustion from an unchecked SSH packet length&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2024-08-14&quot;&gt;
+          August 14, 2024
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-12&quot;&gt;
+          November 12, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/russh.html&quot;&gt;russh&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/russh&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/ssh.html&quot;&gt;#ssh&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/packet-length.html&quot;&gt;#packet-length&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/allocation.html&quot;&gt;#allocation&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/oom.html&quot;&gt;#oom&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://www.cve.org/CVERecord?id=CVE-2024-43410&quot;&gt;CVE-2024-43410&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-vgvv-x7xg-6cqg&quot;&gt;GHSA-vgvv-x7xg-6cqg&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/Eugeny/russh/commit/f660ea3f64b86d11d19e33076012069f02431e55&quot;&gt;
+              https://github.com/Eugeny/russh/commit/f660ea3f64b86d11d19e33076012069f02431e55
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;7.5 &lt;span class=&quot;tag high&quot;&gt;
+        HIGH
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Network&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.44.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;When reading a packet, russh took the 4-byte packet length sent by the peer and sized its receive buffer from it without any upper bound. The length is fully controlled by the other side of the connection and is read before authentication, so an unauthenticated client can claim packets of up to about 4 GiB and make a server allocate that much memory per connection. A few such connections are enough to run the process out of memory.&lt;/p&gt;
+&lt;p&gt;From 0.44.1, lengths above 256 KiB are rejected with &lt;code&gt;Error::PacketSize&lt;/code&gt; before the buffer is sized.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0494: Vulnerability in russh</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0494.html</id><updated>2026-11-12T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0494.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0494: Vulnerability in russh"/><published>2026-11-12T12:00:00+00:00</published><summary xml:lang="en">SSH message fields allocated before their size is checked</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/russh/RUSTSEC-2026-0494.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/russh/RUSTSEC-2026-0494.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0494&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0494
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;SSH message fields allocated before their size is checked&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-06-11&quot;&gt;
+          June 11, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-12&quot;&gt;
+          November 12, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/russh.html&quot;&gt;russh&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/russh&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/ssh.html&quot;&gt;#ssh&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/kexinit.html&quot;&gt;#kexinit&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/name-list.html&quot;&gt;#name-list&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/allocation.html&quot;&gt;#allocation&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/pre-auth.html&quot;&gt;#pre-auth&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://www.cve.org/CVERecord?id=CVE-2026-48110&quot;&gt;CVE-2026-48110&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-4r3c-5hpg-58qr&quot;&gt;GHSA-4r3c-5hpg-58qr&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/Eugeny/russh/commit/72b250aa2dacb3bb1b13a84499c09bd9fc836158&quot;&gt;
+              https://github.com/Eugeny/russh/commit/72b250aa2dacb3bb1b13a84499c09bd9fc836158
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;7.5 &lt;span class=&quot;tag high&quot;&gt;
+        HIGH
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Network&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.61.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.34.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Many of russh&apos;s client and server message handlers decoded length-prefixed strings, byte fields and name-lists from the peer into owned &lt;code&gt;String&lt;/code&gt;, &lt;code&gt;Vec&lt;/code&gt; or name-list values first and only checked their size and meaning afterwards. This includes the algorithm name-lists in &lt;code&gt;SSH_MSG_KEXINIT&lt;/code&gt;, which a server parses during the initial key exchange, before any authentication.&lt;/p&gt;
+&lt;p&gt;A peer can fill these fields with oversized or highly fragmented values, for example a name-list of hundreds of thousands of one-letter algorithm names, and make russh allocate far more memory than the packet itself takes. With many concurrent connections this can exhaust the memory of a server process.&lt;/p&gt;
+&lt;p&gt;From 0.61.0, name-lists are rejected before they are split into separate strings when they are longer than 16 KiB or hold more than 1,024 entries, and the key exchange decodes its algorithm lists through this bounded decoder.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0493: Vulnerability in russh</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0493.html</id><updated>2026-11-12T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0493.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0493: Vulnerability in russh"/><published>2026-11-12T12:00:00+00:00</published><summary xml:lang="en">No limit on the size of a decompressed SSH packet</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/russh/RUSTSEC-2026-0493.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/russh/RUSTSEC-2026-0493.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0493&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0493
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;No limit on the size of a decompressed SSH packet&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-05-29&quot;&gt;
+          May 29, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-12&quot;&gt;
+          November 12, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/russh.html&quot;&gt;russh&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/russh&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/ssh.html&quot;&gt;#ssh&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/zlib.html&quot;&gt;#zlib&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/compression.html&quot;&gt;#compression&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/decompression-bomb.html&quot;&gt;#decompression-bomb&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://www.cve.org/CVERecord?id=CVE-2026-46702&quot;&gt;CVE-2026-46702&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-wwx6-x28x-8259&quot;&gt;GHSA-wwx6-x28x-8259&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/Eugeny/russh/commit/2692a6f66edafaf63f463c412b45d8490f7ad06e&quot;&gt;
+              https://github.com/Eugeny/russh/commit/2692a6f66edafaf63f463c412b45d8490f7ad06e
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;7.5 &lt;span class=&quot;tag high&quot;&gt;
+        HIGH
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Network&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.61.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.34.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;With &lt;code&gt;zlib&lt;/code&gt; or &lt;code&gt;zlib@openssh.com&lt;/code&gt; compression negotiated, the packet length that russh checks applies to the compressed payload only. The decompressor kept growing its output buffer until the whole payload was inflated, with no limit of its own, so a packet that is small on the wire could expand to hundreds of megabytes before it was parsed.&lt;/p&gt;
+&lt;p&gt;The default server configuration offers both zlib methods, and a client that lists compression first can select it during the initial key exchange. That client can then send such a packet after &lt;code&gt;NEWKEYS&lt;/code&gt; but before authenticating, so a russh server with default settings can be made to use large amounts of memory by an unauthenticated peer. A malicious server can do the same to a client that negotiated compression.&lt;/p&gt;
+&lt;p&gt;From 0.61.1, decompressed output is capped at the same maximum as an uncompressed packet (256 KiB plus a few bytes of header room), and larger packets are rejected with &lt;code&gt;Error::PacketSize&lt;/code&gt;.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0496: Vulnerability in russh</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0496.html</id><updated>2026-11-12T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0496.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0496: Vulnerability in russh"/><published>2026-11-12T12:00:00+00:00</published><summary xml:lang="en">Pre-authentication allocation from the keyboard-interactive response count</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/russh/RUSTSEC-2026-0496.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/russh/RUSTSEC-2026-0496.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0496&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0496
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Pre-authentication allocation from the keyboard-interactive response count&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-04-24&quot;&gt;
+          April 24, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-12&quot;&gt;
+          November 12, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/russh.html&quot;&gt;russh&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/russh&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/ssh.html&quot;&gt;#ssh&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/keyboard-interactive.html&quot;&gt;#keyboard-interactive&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/allocation.html&quot;&gt;#allocation&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/pre-auth.html&quot;&gt;#pre-auth&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://www.cve.org/CVERecord?id=CVE-2026-42189&quot;&gt;CVE-2026-42189&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-f5v4-2wr6-hqmg&quot;&gt;GHSA-f5v4-2wr6-hqmg&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/Eugeny/russh/commit/6c3c80a9b6d60763d6227d60fa8310e57172a4d1&quot;&gt;
+              https://github.com/Eugeny/russh/commit/6c3c80a9b6d60763d6227d60fa8310e57172a4d1
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;7.5 &lt;span class=&quot;tag high&quot;&gt;
+        HIGH
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Network&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.60.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;A server that answers a keyboard-interactive authentication request with prompts (&lt;code&gt;Auth::Partial&lt;/code&gt;, as a TOTP or other second-factor login does) then parses the client&apos;s &lt;code&gt;SSH_MSG_USERAUTH_INFO_RESPONSE&lt;/code&gt;. russh read the number of responses from that message and reserved a vector of that many entries before reading any of them. A client that has not authenticated can send a very large count in a packet that carries no responses at all, and the server tries to allocate several gigabytes and may be killed for running out of memory.&lt;/p&gt;
+&lt;p&gt;Servers whose handler keeps the default behaviour, which rejects keyboard-interactive authentication, are not affected. From 0.60.1 the count is limited by how many responses the remaining packet data could actually hold.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0495: Vulnerability in russh</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0495.html</id><updated>2026-11-12T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0495.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0495: Vulnerability in russh"/><published>2026-11-12T12:00:00+00:00</published><summary xml:lang="en">Agent server signs with confirm-constrained keys without calling `Agent::confirm`</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/russh/RUSTSEC-2026-0495.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/russh/RUSTSEC-2026-0495.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0495&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0495
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Agent server signs with confirm-constrained keys without calling &lt;code&gt;Agent::confirm&lt;/code&gt;&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-30&quot;&gt;
+          October 30, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-12&quot;&gt;
+          November 12, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/russh.html&quot;&gt;russh&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/russh&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/ssh-agent.html&quot;&gt;#ssh-agent&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/confirm.html&quot;&gt;#confirm&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/constraint.html&quot;&gt;#constraint&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/authorization.html&quot;&gt;#authorization&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://www.cve.org/CVERecord?id=CVE-2026-116794&quot;&gt;CVE-2026-116794&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-vp5q-ff62-jwqv&quot;&gt;GHSA-vp5q-ff62-jwqv&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/Eugeny/russh/commit/62db6e7defd6d244159da962ccccb029e785ce0f&quot;&gt;
+              https://github.com/Eugeny/russh/commit/62db6e7defd6d244159da962ccccb029e785ce0f
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.65.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.50.0-beta.12&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;A key added to an SSH agent with the confirm constraint (what &lt;code&gt;ssh-add -c&lt;/code&gt; sends) must not be used to sign until the user approves each use. russh&apos;s agent server (&lt;code&gt;russh::keys::agent::server&lt;/code&gt;) accepted the constraint, but when a sign request arrived for such a key it used a fixed &lt;code&gt;true&lt;/code&gt; in place of the result of &lt;code&gt;Agent::confirm&lt;/code&gt;, so the application&apos;s confirmation step never ran. This started in 0.50.0-beta.12; 0.50.0-beta.8 to beta.11 still called &lt;code&gt;confirm&lt;/code&gt;, and earlier russh releases have no agent server.&lt;/p&gt;
+&lt;p&gt;Any process that can reach the agent, including a remote host when the agent is forwarded, can then sign with the protected key without the user&apos;s approval, for example to log in elsewhere as the user. The private key itself is not disclosed. Agents whose &lt;code&gt;Agent::confirm&lt;/code&gt; keeps the default, which always returns &lt;code&gt;true&lt;/code&gt;, behave the same before and after the fix.&lt;/p&gt;
+&lt;p&gt;From 0.65.0 the agent server calls &lt;code&gt;Agent::confirm&lt;/code&gt; for confirm-constrained keys and refuses to sign when it returns &lt;code&gt;false&lt;/code&gt;. Implementations that left &lt;code&gt;confirm&lt;/code&gt; unimplemented (for example as &lt;code&gt;todo!()&lt;/code&gt;) will now reach that code.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0492: Vulnerability in russh</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0492.html</id><updated>2026-11-12T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0492.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0492: Vulnerability in russh"/><published>2026-11-12T12:00:00+00:00</published><summary xml:lang="en">Client `Handler` callbacks run for channels the client never opened</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/russh/RUSTSEC-2026-0492.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/russh/RUSTSEC-2026-0492.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0492&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0492
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Client &lt;code&gt;Handler&lt;/code&gt; callbacks run for channels the client never opened&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-09-30&quot;&gt;
+          September 30, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-12&quot;&gt;
+          November 12, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/russh.html&quot;&gt;russh&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/russh&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/ssh.html&quot;&gt;#ssh&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/client.html&quot;&gt;#client&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/channel.html&quot;&gt;#channel&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/handler.html&quot;&gt;#handler&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://www.cve.org/CVERecord?id=CVE-2026-102823&quot;&gt;CVE-2026-102823&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-47hw-gvq5-r2gm&quot;&gt;GHSA-47hw-gvq5-r2gm&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/Eugeny/russh/commit/3430fd26ecafc0dc3705210f5f39a9119fa22774&quot;&gt;
+              https://github.com/Eugeny/russh/commit/3430fd26ecafc0dc3705210f5f39a9119fa22774
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;7.5 &lt;span class=&quot;tag high&quot;&gt;
+        HIGH
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Network&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.63.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;On the client side, russh passed channel messages from the server (data, extended data, EOF, close, success, failure, open failure and the exit-status, exit-signal and xon-xoff requests) to the application&apos;s &lt;code&gt;client::Handler&lt;/code&gt; callbacks without checking that the channel number belonged to a channel the client had opened and the server had confirmed. The server side already performed this check.&lt;/p&gt;
+&lt;p&gt;A malicious or compromised SSH server can therefore send these messages for any channel number, including the next number the client will allocate (they are assigned in order) or one it has already closed. An application that tracks per-channel state can be made to record a false exit status, see a channel close before its real output arrives, or panic when it looks up a channel it does not know.&lt;/p&gt;
+&lt;p&gt;From 0.63.1 the client ignores channel messages for channels that are not established and confirmed, and handles an open failure only for a channel it is actually opening.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0500: Vulnerability in bsv-rs</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0500.html</id><updated>2026-11-12T12:00:00+00:00</updated><category term="crypto-failure"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0500.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0500: Vulnerability in bsv-rs"/><published>2026-11-12T12:00:00+00:00</published><summary xml:lang="en">BEEF validation answers valid for a raw entry that is not a transaction</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/bsv-rs/RUSTSEC-2026-0500.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/bsv-rs/RUSTSEC-2026-0500.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0500&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0500
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;BEEF validation answers valid for a raw entry that is not a transaction&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-10&quot;&gt;
+          November 10, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-12&quot;&gt;
+          November 12, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/bsv-rs.html&quot;&gt;bsv-rs&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/bsv-rs&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/crypto-failure.html&quot;&gt;crypto-failure&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/bitcoin.html&quot;&gt;#bitcoin&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/beef.html&quot;&gt;#beef&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/spv.html&quot;&gt;#spv&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/verification.html&quot;&gt;#verification&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-j8hr-pjhm-6h27&quot;&gt;GHSA-j8hr-pjhm-6h27&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/Calhooon/bsv-rs/blob/v0.8.5/CHANGELOG.md&quot;&gt;
+              https://github.com/Calhooon/bsv-rs/blob/v0.8.5/CHANGELOG.md
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/Calhooon/bsv-rs/pull/852&quot;&gt;
+              https://github.com/Calhooon/bsv-rs/pull/852
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;7.5 &lt;span class=&quot;tag high&quot;&gt;
+        HIGH
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Network&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.8.5, &amp;#60;0.9.0-beta.1&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;0.9.0-beta.7&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;bsv_rs::transaction::Beef::find_atomic_transaction&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.8.5&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.9.0-beta.1, &amp;#60;=0.9.0-beta.7&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;bsv_rs::transaction::Beef::find_transaction_for_signing&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.8.5&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.9.0-beta.1, &amp;#60;=0.9.0-beta.7&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;bsv_rs::transaction::Beef::is_valid&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.8.5&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.9.0-beta.1, &amp;#60;=0.9.0-beta.7&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;bsv_rs::transaction::Beef::merge_raw_tx&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.8.5&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.9.0-beta.1, &amp;#60;=0.9.0-beta.7&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;bsv_rs::transaction::Beef::sort_txs&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.8.5&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.9.0-beta.1, &amp;#60;=0.9.0-beta.7&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;bsv_rs::transaction::Beef::verify_structure&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.4.2, &amp;#60;0.8.5&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.9.0-beta.1, &amp;#60;=0.9.0-beta.7&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;bsv_rs::transaction::Beef::verify_valid&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.8.5&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.9.0-beta.1, &amp;#60;=0.9.0-beta.7&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;bsv_rs::transaction::BeefTx::from_raw_tx&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.8.5&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.9.0-beta.1, &amp;#60;=0.9.0-beta.7&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;&lt;code&gt;Beef::merge_raw_tx&lt;/code&gt; and &lt;code&gt;BeefTx::from_raw_tx&lt;/code&gt; accept raw bytes without a
+&lt;code&gt;Result&lt;/code&gt;. For bytes that are not exactly one transaction (a transaction
+followed by bytes, a cut transaction, bytes that are no transaction at all),
+&lt;code&gt;Beef::sort_txs&lt;/code&gt;, &lt;code&gt;verify_structure&lt;/code&gt;, &lt;code&gt;verify_valid&lt;/code&gt; and &lt;code&gt;is_valid&lt;/code&gt; could
+answer valid, even with no BUMP and no parent in the BEEF, and, where the entry
+carried a BUMP index, treat the hash of those bytes as a proven transaction id;
+an entry that names it as a parent was answered valid too.&lt;/p&gt;
+&lt;p&gt;The wire readers (&lt;code&gt;Beef::from_binary&lt;/code&gt;, &lt;code&gt;verify_stream&lt;/code&gt;,
+&lt;code&gt;Transaction::from_beef&lt;/code&gt;, &lt;code&gt;from_atomic_beef&lt;/code&gt;) parse every entry and are not
+affected. Reaching this needs an application that passes bytes it did not
+parse to &lt;code&gt;merge_raw_tx&lt;/code&gt; or &lt;code&gt;BeefTx::from_raw_tx&lt;/code&gt; and then relies on the verdict
+or on the transaction the BEEF hands back.&lt;/p&gt;
+&lt;p&gt;0.8.5 refuses such an entry at all four verdict doors, with or without a BUMP
+index, and every entry that names it as a parent. Where upgrading is not
+possible, do not rely on &lt;code&gt;is_valid&lt;/code&gt; or &lt;code&gt;verify_valid&lt;/code&gt; alone for such an entry:
+check that the bytes are exactly one transaction before merging them.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0497: Vulnerability in bsv-rs</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0497.html</id><updated>2026-11-12T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0497.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0497: Vulnerability in bsv-rs"/><published>2026-11-12T12:00:00+00:00</published><summary xml:lang="en">Transaction::from_json holds an input txid that is not 64 hex digits and writes the input as spending the zero txid</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/bsv-rs/RUSTSEC-2026-0497.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/bsv-rs/RUSTSEC-2026-0497.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0497&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0497
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Transaction::from_json holds an input txid that is not 64 hex digits and writes the input as spending the zero txid&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-11&quot;&gt;
+          November 11, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-12&quot;&gt;
+          November 12, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/bsv-rs.html&quot;&gt;bsv-rs&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/bsv-rs&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/bitcoin.html&quot;&gt;#bitcoin&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/transaction.html&quot;&gt;#transaction&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/txid.html&quot;&gt;#txid&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/json.html&quot;&gt;#json&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/parsing.html&quot;&gt;#parsing&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/input-validation.html&quot;&gt;#input-validation&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-84xq-3662-pvx5&quot;&gt;GHSA-84xq-3662-pvx5&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/Calhooon/bsv-rs/blob/v0.8.6/CHANGELOG.md&quot;&gt;
+              https://github.com/Calhooon/bsv-rs/blob/v0.8.6/CHANGELOG.md
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/Calhooon/bsv-rs/issues/845&quot;&gt;
+              https://github.com/Calhooon/bsv-rs/issues/845
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/Calhooon/bsv-rs/pull/856&quot;&gt;
+              https://github.com/Calhooon/bsv-rs/pull/856
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;5.3 &lt;span class=&quot;tag medium&quot;&gt;
+        MEDIUM
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Network&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.8.6, &amp;#60;0.9.0-beta.1&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;0.9.0-beta.7&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;bsv_rs::transaction::Transaction::from_json&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.8.6&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.9.0-beta.1, &amp;#60;=0.9.0-beta.7&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;&lt;code&gt;Transaction::from_json&lt;/code&gt;, for a document with no &lt;code&gt;hex&lt;/code&gt; member, held each
+input&apos;s &lt;code&gt;txid&lt;/code&gt; member as given. An input &lt;code&gt;txid&lt;/code&gt; that is not 64 hex digits
+(&lt;code&gt;&amp;quot;zz&amp;quot;&lt;/code&gt;, &lt;code&gt;&amp;quot;&amp;quot;&lt;/code&gt;, 63 or 65 digits, characters that are not hex digits) answered
+&lt;code&gt;Ok&lt;/code&gt;: &lt;code&gt;source_txid&lt;/code&gt; and &lt;code&gt;to_json&lt;/code&gt; gave the text back, while &lt;code&gt;to_binary&lt;/code&gt; wrote
+the input as spending the txid of 32 zero bytes and &lt;code&gt;id()&lt;/code&gt; hashed those bytes.
+Documents naming different texts were one transaction, spending an outpoint
+none of them named.&lt;/p&gt;
+&lt;p&gt;An application that reads a peer&apos;s transaction document with &lt;code&gt;from_json&lt;/code&gt; and
+relies both on the text of its inputs and on its bytes or &lt;code&gt;id()&lt;/code&gt; is affected;
+one that reads only documents it produced is not.&lt;/p&gt;
+&lt;p&gt;0.8.6 refuses such a txid (&lt;code&gt;Invalid txid of input N: expected 64 hex digits&lt;/code&gt;).
+Where upgrading is not possible, require each input&apos;s &lt;code&gt;txid&lt;/code&gt; to be 64 ASCII hex
+digits before calling &lt;code&gt;from_json&lt;/code&gt;.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0498: Vulnerability in bsv-rs</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0498.html</id><updated>2026-11-12T12:00:00+00:00</updated><category term="crypto-failure"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0498.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0498: Vulnerability in bsv-rs"/><published>2026-11-12T12:00:00+00:00</published><summary xml:lang="en">Transaction readers accept trailing bytes, so a parsed transaction can carry another transaction id</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/bsv-rs/RUSTSEC-2026-0498.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/bsv-rs/RUSTSEC-2026-0498.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0498&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0498
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Transaction readers accept trailing bytes, so a parsed transaction can carry another transaction id&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-10&quot;&gt;
+          November 10, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-12&quot;&gt;
+          November 12, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/bsv-rs.html&quot;&gt;bsv-rs&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/bsv-rs&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/crypto-failure.html&quot;&gt;crypto-failure&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/bitcoin.html&quot;&gt;#bitcoin&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/transaction.html&quot;&gt;#transaction&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/txid.html&quot;&gt;#txid&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/parsing.html&quot;&gt;#parsing&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/trailing-data.html&quot;&gt;#trailing-data&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-j8hr-pjhm-6h27&quot;&gt;GHSA-j8hr-pjhm-6h27&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/Calhooon/bsv-rs/blob/v0.8.5/CHANGELOG.md&quot;&gt;
+              https://github.com/Calhooon/bsv-rs/blob/v0.8.5/CHANGELOG.md
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/Calhooon/bsv-rs/issues/840&quot;&gt;
+              https://github.com/Calhooon/bsv-rs/issues/840
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;5.3 &lt;span class=&quot;tag medium&quot;&gt;
+        MEDIUM
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Network&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.8.5, &amp;#60;0.9.0-beta.1&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;0.9.0-beta.7&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;bsv_rs::transaction::Transaction::from_binary&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.8.5&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.9.0-beta.1, &amp;#60;=0.9.0-beta.7&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;bsv_rs::transaction::Transaction::from_ef&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.8.5&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.9.0-beta.1, &amp;#60;=0.9.0-beta.7&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;bsv_rs::transaction::Transaction::from_hex&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.8.5&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.9.0-beta.1, &amp;#60;=0.9.0-beta.7&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;bsv_rs::transaction::Transaction::from_hex_ef&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.8.5&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.9.0-beta.1, &amp;#60;=0.9.0-beta.7&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;bsv_rs::transaction::Transaction::from_json&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.8.5&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.9.0-beta.1, &amp;#60;=0.9.0-beta.7&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;bsv_rs::transaction::Transaction::parse_script_offsets&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.8.5&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.9.0-beta.1, &amp;#60;=0.9.0-beta.7&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;&lt;code&gt;Transaction::from_binary&lt;/code&gt; and &lt;code&gt;Transaction::from_hex&lt;/code&gt; read one transaction
+from the front of their input, did not check that the input ended there, and
+kept the whole input as the transaction&apos;s cached serialization: &lt;code&gt;to_binary&lt;/code&gt;,
+&lt;code&gt;to_hex&lt;/code&gt; and &lt;code&gt;id()&lt;/code&gt; then answered for bytes that are not the transaction&apos;s.
+&lt;code&gt;Transaction::from_json&lt;/code&gt;, given a &lt;code&gt;hex&lt;/code&gt; field, reads it through &lt;code&gt;from_hex&lt;/code&gt; and
+answers the same. &lt;code&gt;from_ef&lt;/code&gt;, &lt;code&gt;from_hex_ef&lt;/code&gt; and &lt;code&gt;parse_script_offsets&lt;/code&gt; also
+read a prefix.&lt;/p&gt;
+&lt;p&gt;An application that takes bytes or hex from outside, parses them with these
+readers and then uses &lt;code&gt;id()&lt;/code&gt; or the serialization could be given one
+transaction under another identity: the same parsed fields, a different id.
+An application that passes them only bytes it produced or has already checked
+is not affected.&lt;/p&gt;
+&lt;p&gt;0.8.5 refuses a byte after the transaction; &lt;code&gt;Transaction::from_reader&lt;/code&gt; reads
+from the front of a longer buffer. Where upgrading is not possible, parse with
+&lt;code&gt;Transaction::from_binary&lt;/code&gt;, call &lt;code&gt;tx.invalidate_caches()&lt;/code&gt; (public from 0.3.16)
+and require &lt;code&gt;tx.to_binary() == bytes&lt;/code&gt;.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0499: Vulnerability in bsv-rs</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0499.html</id><updated>2026-11-12T12:00:00+00:00</updated><category term="crypto-failure"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0499.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0499: Vulnerability in bsv-rs"/><published>2026-11-12T12:00:00+00:00</published><summary xml:lang="en">Signature::from_der reads a signature with bytes after it, a wrong sequence length or an unneeded zero as the signature</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/bsv-rs/RUSTSEC-2026-0499.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/bsv-rs/RUSTSEC-2026-0499.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0499&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0499
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Signature::from_der reads a signature with bytes after it, a wrong sequence length or an unneeded zero as the signature&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-11&quot;&gt;
+          November 11, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-12&quot;&gt;
+          November 12, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/bsv-rs.html&quot;&gt;bsv-rs&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/bsv-rs&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/crypto-failure.html&quot;&gt;crypto-failure&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/bitcoin.html&quot;&gt;#bitcoin&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/ecdsa.html&quot;&gt;#ecdsa&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/der.html&quot;&gt;#der&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/signature.html&quot;&gt;#signature&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/malleability.html&quot;&gt;#malleability&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/parsing.html&quot;&gt;#parsing&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-9c8r-76f3-m426&quot;&gt;GHSA-9c8r-76f3-m426&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/Calhooon/bsv-rs/blob/v0.8.6/CHANGELOG.md&quot;&gt;
+              https://github.com/Calhooon/bsv-rs/blob/v0.8.6/CHANGELOG.md
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/Calhooon/bsv-rs/issues/842&quot;&gt;
+              https://github.com/Calhooon/bsv-rs/issues/842
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/Calhooon/bsv-rs/pull/846&quot;&gt;
+              https://github.com/Calhooon/bsv-rs/pull/846
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;5.3 &lt;span class=&quot;tag medium&quot;&gt;
+        MEDIUM
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Network&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.8.6, &amp;#60;0.9.0-beta.1&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;0.9.0-beta.7&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;bsv_rs::auth::Certificate::verify&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.8.6&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;=0.9.0-beta.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;bsv_rs::auth::VerifiableCertificate::verify&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.8.6&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;=0.9.0-beta.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;bsv_rs::auth::utils::validate_certificate_encoding&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.8.6&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.9.0-beta.1, &amp;#60;=0.9.0-beta.7&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;bsv_rs::compat::bsm::verify_message_der&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.8.6&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.9.0-beta.1, &amp;#60;=0.9.0-beta.7&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;bsv_rs::kvstore::KVStoreInterpreter::verify_signature&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.8.6&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.9.0-beta.1, &amp;#60;=0.9.0-beta.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;bsv_rs::messages::verify&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.8.6&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.9.0-beta.1, &amp;#60;=0.9.0-beta.7&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;bsv_rs::primitives::bsv::TransactionSignature::from_checksig_format&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.8.6&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.9.0-beta.1, &amp;#60;=0.9.0-beta.7&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;bsv_rs::primitives::ec::Signature::from_der&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.8.6&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.9.0-beta.1, &amp;#60;=0.9.0-beta.7&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;bsv_rs::wallet::ProtoWallet::verify_signature&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.8.6&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.9.0-beta.1, &amp;#60;=0.9.0-beta.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;&lt;code&gt;Signature::from_der&lt;/code&gt; read a DER-encoded ECDSA signature leniently. It read as
+the signature: the signature followed by other bytes; a sequence length
+shorter than its contents, or longer with bytes after them (a length byte with
+its high bit set among them); and an R or S preceded by a zero byte it did not
+need. It read a lone-zero R or S as zero.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;messages::verify&lt;/code&gt;, &lt;code&gt;compat::bsm::verify_message_der&lt;/code&gt;,
+&lt;code&gt;auth::Certificate::verify&lt;/code&gt;, &lt;code&gt;auth::VerifiableCertificate::verify&lt;/code&gt;,
+&lt;code&gt;wallet::ProtoWallet::verify_signature&lt;/code&gt; and
+&lt;code&gt;kvstore::KVStoreInterpreter::verify_signature&lt;/code&gt; read through it, and each
+verified such a form of a valid signature. Given one signature a key holder
+made, anyone could produce other byte strings that verify as that signature
+over the same data. No form verifies over other data: an application that acts
+on the verdict alone is not affected; one that compares, hashes or stores a
+signature&apos;s bytes is.&lt;/p&gt;
+&lt;p&gt;0.8.6 refuses each form as &lt;code&gt;Error::InvalidSignature&lt;/code&gt;. A signature&apos;s bytes are
+still not unique after the patch: the same signature with S replaced by n - S
+verifies, so an application that keys on the bytes also requires
+&lt;code&gt;Signature::is_low_s()&lt;/code&gt;.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0501: Vulnerability in bsv-rs</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0501.html</id><updated>2026-11-12T12:00:00+00:00</updated><category term="crypto-failure"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0501.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0501: Vulnerability in bsv-rs"/><published>2026-11-12T12:00:00+00:00</published><summary xml:lang="en">Shamir backup recovery accepts a share at x = 0, so a supplied share can substitute the recovered private key</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/bsv-rs/RUSTSEC-2026-0501.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/bsv-rs/RUSTSEC-2026-0501.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0501&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0501
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Shamir backup recovery accepts a share at x = 0, so a supplied share can substitute the recovered private key&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-12&quot;&gt;
+          November 12, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-12&quot;&gt;
+          November 12, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/bsv-rs.html&quot;&gt;bsv-rs&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/bsv-rs&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/crypto-failure.html&quot;&gt;crypto-failure&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/bitcoin.html&quot;&gt;#bitcoin&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/shamir.html&quot;&gt;#shamir&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/backup.html&quot;&gt;#backup&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/secret-sharing.html&quot;&gt;#secret-sharing&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/key-recovery.html&quot;&gt;#key-recovery&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-cwxv-4866-5gq2&quot;&gt;GHSA-cwxv-4866-5gq2&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/Calhooon/bsv-rs/blob/v0.8.7/CHANGELOG.md&quot;&gt;
+              https://github.com/Calhooon/bsv-rs/blob/v0.8.7/CHANGELOG.md
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/Calhooon/bsv-rs/issues/854&quot;&gt;
+              https://github.com/Calhooon/bsv-rs/issues/854
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;9.1 &lt;span class=&quot;tag critical&quot;&gt;
+        CRITICAL
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Network&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.8.7, &amp;#60;0.9.0-beta.1&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;0.9.0-beta.7&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;bsv_rs::primitives::bsv::shamir::KeyShares::from_backup_format&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.2.0, &amp;#60;0.8.7&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.9.0-beta.1, &amp;#60;=0.9.0-beta.7&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;bsv_rs::primitives::bsv::shamir::KeyShares::recover_private_key&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.2.0, &amp;#60;0.8.7&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.9.0-beta.1, &amp;#60;=0.9.0-beta.7&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;&lt;code&gt;KeyShares::from_backup_format&lt;/code&gt; (the Shamir backup share reader, public since
+0.2.0, the crate&apos;s first release) accepted a share whose x coordinate is 0,
+and &lt;code&gt;KeyShares::recover_private_key&lt;/code&gt; interpolates the shares at x = 0 to
+recover the key. At an x of 0 the interpolation answers that share&apos;s y value
+alone, so an attacker who supplies one share in that form — with the share&apos;s
+integrity tag ground to match the honest set&apos;s — chooses the recovered key
+outright. The non-canonical zero x = p works the same way, and a repeated x
+past the threshold window also passed.&lt;/p&gt;
+&lt;p&gt;An application that recovers a Shamir backup from shares it did not produce —
+a custodian&apos;s medium, a share pasted by hand, a set restored from another
+writer — could be handed the attacker&apos;s key as the recovered one. A set the
+crate&apos;s own writer produces never carries such a share; the door is the
+reader.&lt;/p&gt;
+&lt;p&gt;0.8.7 refuses such a set before interpolating (the 0.9 line&apos;s next prerelease
+carries the same refusal). Where upgrading is not possible, before recovering
+split each share on &lt;code&gt;.&lt;/code&gt; into four fields, base58-decode the x field, and
+refuse the set if it decodes to zero (the one-character field &lt;code&gt;1&lt;/code&gt;, or a value
+at or above the field prime) or if two shares carry the same x.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0502: Vulnerability in sqlcipher-src</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0502.html</id><updated>2026-11-12T12:00:00+00:00</updated><category term="memory-exposure"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0502.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0502: Vulnerability in sqlcipher-src"/><published>2026-11-12T12:00:00+00:00</published><summary xml:lang="en">`sqlcipher-src` via C SQLite CVE-2026-119375</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/sqlcipher-src/RUSTSEC-2026-0502.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/sqlcipher-src/RUSTSEC-2026-0502.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0502&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0502
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;&lt;code&gt;sqlcipher-src&lt;/code&gt; via C SQLite CVE-2026-119375&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-10-30&quot;&gt;
+          October 30, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-12&quot;&gt;
+          November 12, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/sqlcipher-src.html&quot;&gt;sqlcipher-src&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/sqlcipher-src&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/memory-exposure.html&quot;&gt;memory-exposure&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/sqlite.html&quot;&gt;#sqlite&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/sqlcipher.html&quot;&gt;#sqlcipher&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/wal.html&quot;&gt;#wal&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/uninitialized-memory.html&quot;&gt;#uninitialized-memory&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/information-disclosure.html&quot;&gt;#information-disclosure&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://www.cve.org/CVERecord?id=CVE-2026-119375&quot;&gt;CVE-2026-119375&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-72w2-rjgg-q729&quot;&gt;GHSA-72w2-rjgg-q729&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://sqlite.org/bugs/info/2026-08-17T15:54:41Z&quot;&gt;
+              https://sqlite.org/bugs/info/2026-08-17T15:54:41Z
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/sqlite/sqlite/commit/e5bf119821f25be1d7f10ef0a2edbe175289166e&quot;&gt;
+              https://github.com/sqlite/sqlite/commit/e5bf119821f25be1d7f10ef0a2edbe175289166e
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://sqlite.org/releaselog/3_54_0.html&quot;&gt;
+              https://sqlite.org/releaselog/3_54_0.html
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;6.8 &lt;span class=&quot;tag medium&quot;&gt;
+        MEDIUM
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Requirements&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Local&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact to the Subsequent System&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact to the Subsequent System&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact to the Subsequent System&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;Passive&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact to the Vulnerable System&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact to the Vulnerable System&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact to the Vulnerable System&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:4.0/AV:L/AC:L/AT:N/PR:N/UI:P/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N&quot;&gt;CVSS:4.0/AV:L/AC:L/AT:N/PR:N/UI:P/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=420.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;419.0.3&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;SQLite versions before 3.54.0 can return uninitialized page-cache memory when a process opens a database file together with a sibling write-ahead-log (&lt;code&gt;-wal&lt;/code&gt;) file whose page size differs from the database&apos;s. A crafted pair of files can make ordinary queries return stale bytes from the process&apos;s memory. The attack vector is local and needs the victim to open the files.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;sqlcipher-src&lt;/code&gt; ships the SQLCipher amalgamation (SQLCipher is built on SQLite and contains the same &lt;code&gt;sqlite3WalReadFrame&lt;/code&gt; code) for &lt;code&gt;-sys&lt;/code&gt; crates to compile, so a build that uses it is susceptible to the vulnerability. The releases &lt;code&gt;419.0.3&lt;/code&gt; to &lt;code&gt;419.0.6&lt;/code&gt; bundle SQLCipher &lt;code&gt;4.19.0&lt;/code&gt; on SQLite &lt;code&gt;3.53.4&lt;/code&gt; and are affected. &lt;code&gt;sqlcipher-src&lt;/code&gt; was updated in &lt;code&gt;420.0.0&lt;/code&gt; (SQLCipher &lt;code&gt;4.20.0&lt;/code&gt; on SQLite &lt;code&gt;3.54.1&lt;/code&gt;), which contains the fix. The releases &lt;code&gt;0.1.0&lt;/code&gt; and &lt;code&gt;0.1.1&lt;/code&gt; contain no SQLCipher source. &lt;code&gt;libsqlite3-sys&lt;/code&gt; &lt;code&gt;0.39.0&lt;/code&gt; and &lt;code&gt;0.39.1&lt;/code&gt; depend on &lt;code&gt;sqlcipher-src =419.0.6&lt;/code&gt; for their &lt;code&gt;bundled-sqlcipher&lt;/code&gt; feature.&lt;/p&gt;
+&lt;p&gt;Only a process that opens a database file, with its &lt;code&gt;-wal&lt;/code&gt;, that a less trusted party could have written is exposed.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0503: Vulnerability in eazip</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0503.html</id><updated>2026-11-12T12:00:00+00:00</updated><category term="privilege-escalation"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0503.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0503: Vulnerability in eazip"/><published>2026-11-12T12:00:00+00:00</published><summary xml:lang="en">eazip: symlink-target validation checks the wrong argument, allowing extraction path escapes on Windows</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/eazip/RUSTSEC-2026-0503.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/eazip/RUSTSEC-2026-0503.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0503&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0503
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;eazip: symlink-target validation checks the wrong argument, allowing extraction path escapes on Windows&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-07&quot;&gt;
+          November  7, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-12&quot;&gt;
+          November 12, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/eazip.html&quot;&gt;eazip&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/eazip&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/privilege-escalation.html&quot;&gt;privilege-escalation&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/symlink.html&quot;&gt;#symlink&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/zip-slip.html&quot;&gt;#zip-slip&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/windows.html&quot;&gt;#windows&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/path-escape.html&quot;&gt;#path-escape&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/extraction.html&quot;&gt;#extraction&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/a1phyr/eazip/releases/tag/v0.2.7&quot;&gt;
+              https://github.com/a1phyr/eazip/releases/tag/v0.2.7
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;8.6 &lt;span class=&quot;tag high&quot;&gt;
+        HIGH
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Network&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Changed&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:H/A:N&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:H/A:N&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.2.7&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.2.5&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;When extracting archives, &lt;code&gt;eazip&lt;/code&gt; validates symlink entries before writing
+them. The validation function &lt;code&gt;validate_symlink()&lt;/code&gt; (&lt;code&gt;src/utils/mod.rs&lt;/code&gt;) scans
+for backslash and NUL bytes, but passes the symlink&apos;s &lt;em&gt;name&lt;/em&gt; where the
+symlink&apos;s &lt;em&gt;target&lt;/em&gt; was intended:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-rust&quot;&gt;memchr2(b&apos;\\&apos;, b&apos;\0&apos;, name.as_bytes()) // should be target.as_bytes()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;As a result, symlink &lt;em&gt;targets&lt;/em&gt; containing backslash or NUL bytes pass
+validation. On Windows, backslash is a path separator, so targets such as
+&lt;code&gt;..\..\..\Windows\system32\evil.exe&lt;/code&gt; also defeat the remaining depth check,
+which splits on &lt;code&gt;/&lt;/code&gt; only. A crafted archive can therefore create symlinks
+that resolve outside the extraction directory — including UNC targets such as
+&lt;code&gt;\\host\share\...&lt;/code&gt; — redirecting writes to arbitrary filesystem locations
+chosen by the attacker.&lt;/p&gt;
+&lt;p&gt;Applications that extract untrusted archives with &lt;code&gt;eazip&lt;/code&gt; on Windows targets
+are affected; on Unix targets backslash is not a separator, which limits
+exposure there.&lt;/p&gt;
+&lt;p&gt;The vulnerability was introduced in version 0.2.5 and fixed in 0.2.7
+(&lt;a href=&quot;https://github.com/a1phyr/eazip/commit/0e4caa13d59f5ba15aaac332f5534260c3b8fc43&quot;&gt;a1phyr/eazip@0e4caa13&lt;/a&gt;),
+which rejects backslash and NUL bytes in the symlink target. It was
+privately reported to the maintainer on 2026-11-06 and credited in the
+0.2.7 release notes.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0480: Vulnerability in tdx_workload_attestation</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0480.html</id><updated>2026-11-11T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0480.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0480: Vulnerability in tdx_workload_attestation"/><published>2026-11-11T12:00:00+00:00</published><summary xml:lang="en">Panic on a GCP launch endorsement without TDX measurements</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
           &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/tdx_workload_attestation/RUSTSEC-2026-0480.md&quot;&gt;History&lt;/a&gt; ⋅

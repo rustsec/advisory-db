@@ -1,5 +1,434 @@
 [
   {
+    "id": "RUSTSEC-2024-0450",
+    "modified": "2026-11-12T07:53:20Z",
+    "published": "2024-08-14T12:00:00Z",
+    "aliases": [
+      "CVE-2024-43410",
+      "GHSA-vgvv-x7xg-6cqg"
+    ],
+    "related": [],
+    "summary": "Memory exhaustion from an unchecked SSH packet length",
+    "details": "When reading a packet, russh took the 4-byte packet length sent by the peer and sized its receive buffer from it without any upper bound. The length is fully controlled by the other side of the connection and is read before authentication, so an unauthenticated client can claim packets of up to about 4 GiB and make a server allocate that much memory per connection. A few such connections are enough to run the process out of memory.\n\nFrom 0.44.1, lengths above 256 KiB are rejected with `Error::PacketSize` before the buffer is sized.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "russh",
+          "purl": "pkg:cargo/russh"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.44.1"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/russh"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2024-0450.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/Eugeny/russh/commit/f660ea3f64b86d11d19e33076012069f02431e55"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2026-0494",
+    "modified": "2026-11-12T07:53:20Z",
+    "published": "2026-06-11T12:00:00Z",
+    "aliases": [
+      "CVE-2026-48110",
+      "GHSA-4r3c-5hpg-58qr"
+    ],
+    "related": [],
+    "summary": "SSH message fields allocated before their size is checked",
+    "details": "Many of russh's client and server message handlers decoded length-prefixed strings, byte fields and name-lists from the peer into owned `String`, `Vec` or name-list values first and only checked their size and meaning afterwards. This includes the algorithm name-lists in `SSH_MSG_KEXINIT`, which a server parses during the initial key exchange, before any authentication.\n\nA peer can fill these fields with oversized or highly fragmented values, for example a name-list of hundreds of thousands of one-letter algorithm names, and make russh allocate far more memory than the packet itself takes. With many concurrent connections this can exhaust the memory of a server process.\n\nFrom 0.61.0, name-lists are rejected before they are split into separate strings when they are longer than 16 KiB or hold more than 1,024 entries, and the key exchange decodes its algorithm lists through this bounded decoder.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "russh",
+          "purl": "pkg:cargo/russh"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.34.0"
+              },
+              {
+                "fixed": "0.61.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/russh"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0494.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/Eugeny/russh/commit/72b250aa2dacb3bb1b13a84499c09bd9fc836158"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2026-0493",
+    "modified": "2026-11-12T07:53:20Z",
+    "published": "2026-05-29T12:00:00Z",
+    "aliases": [
+      "CVE-2026-46702",
+      "GHSA-wwx6-x28x-8259"
+    ],
+    "related": [],
+    "summary": "No limit on the size of a decompressed SSH packet",
+    "details": "With `zlib` or `zlib@openssh.com` compression negotiated, the packet length that russh checks applies to the compressed payload only. The decompressor kept growing its output buffer until the whole payload was inflated, with no limit of its own, so a packet that is small on the wire could expand to hundreds of megabytes before it was parsed.\n\nThe default server configuration offers both zlib methods, and a client that lists compression first can select it during the initial key exchange. That client can then send such a packet after `NEWKEYS` but before authenticating, so a russh server with default settings can be made to use large amounts of memory by an unauthenticated peer. A malicious server can do the same to a client that negotiated compression.\n\nFrom 0.61.1, decompressed output is capped at the same maximum as an uncompressed packet (256 KiB plus a few bytes of header room), and larger packets are rejected with `Error::PacketSize`.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "russh",
+          "purl": "pkg:cargo/russh"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.34.0"
+              },
+              {
+                "fixed": "0.61.1"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/russh"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0493.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/Eugeny/russh/commit/2692a6f66edafaf63f463c412b45d8490f7ad06e"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2026-0496",
+    "modified": "2026-11-12T07:53:20Z",
+    "published": "2026-04-24T12:00:00Z",
+    "aliases": [
+      "CVE-2026-42189",
+      "GHSA-f5v4-2wr6-hqmg"
+    ],
+    "related": [],
+    "summary": "Pre-authentication allocation from the keyboard-interactive response count",
+    "details": "A server that answers a keyboard-interactive authentication request with prompts (`Auth::Partial`, as a TOTP or other second-factor login does) then parses the client's `SSH_MSG_USERAUTH_INFO_RESPONSE`. russh read the number of responses from that message and reserved a vector of that many entries before reading any of them. A client that has not authenticated can send a very large count in a packet that carries no responses at all, and the server tries to allocate several gigabytes and may be killed for running out of memory.\n\nServers whose handler keeps the default behaviour, which rejects keyboard-interactive authentication, are not affected. From 0.60.1 the count is limited by how many responses the remaining packet data could actually hold.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "russh",
+          "purl": "pkg:cargo/russh"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.60.1"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/russh"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0496.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/Eugeny/russh/commit/6c3c80a9b6d60763d6227d60fa8310e57172a4d1"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2026-0495",
+    "modified": "2026-11-12T07:53:20Z",
+    "published": "2026-10-30T12:00:00Z",
+    "aliases": [
+      "CVE-2026-116794",
+      "GHSA-vp5q-ff62-jwqv"
+    ],
+    "related": [],
+    "summary": "Agent server signs with confirm-constrained keys without calling `Agent::confirm`",
+    "details": "A key added to an SSH agent with the confirm constraint (what `ssh-add -c` sends) must not be used to sign until the user approves each use. russh's agent server (`russh::keys::agent::server`) accepted the constraint, but when a sign request arrived for such a key it used a fixed `true` in place of the result of `Agent::confirm`, so the application's confirmation step never ran. This started in 0.50.0-beta.12; 0.50.0-beta.8 to beta.11 still called `confirm`, and earlier russh releases have no agent server.\n\nAny process that can reach the agent, including a remote host when the agent is forwarded, can then sign with the protected key without the user's approval, for example to log in elsewhere as the user. The private key itself is not disclosed. Agents whose `Agent::confirm` keeps the default, which always returns `true`, behave the same before and after the fix.\n\nFrom 0.65.0 the agent server calls `Agent::confirm` for confirm-constrained keys and refuses to sign when it returns `false`. Implementations that left `confirm` unimplemented (for example as `todo!()`) will now reach that code.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "russh",
+          "purl": "pkg:cargo/russh"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.50.0-beta.12"
+              },
+              {
+                "fixed": "0.65.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/russh"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0495.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/Eugeny/russh/commit/62db6e7defd6d244159da962ccccb029e785ce0f"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2026-0492",
+    "modified": "2026-11-12T07:53:20Z",
+    "published": "2026-09-30T12:00:00Z",
+    "aliases": [
+      "CVE-2026-102823",
+      "GHSA-47hw-gvq5-r2gm"
+    ],
+    "related": [],
+    "summary": "Client `Handler` callbacks run for channels the client never opened",
+    "details": "On the client side, russh passed channel messages from the server (data, extended data, EOF, close, success, failure, open failure and the exit-status, exit-signal and xon-xoff requests) to the application's `client::Handler` callbacks without checking that the channel number belonged to a channel the client had opened and the server had confirmed. The server side already performed this check.\n\nA malicious or compromised SSH server can therefore send these messages for any channel number, including the next number the client will allocate (they are assigned in order) or one it has already closed. An application that tracks per-channel state can be made to record a false exit status, see a channel close before its real output arrives, or panic when it looks up a channel it does not know.\n\nFrom 0.63.1 the client ignores channel messages for channels that are not established and confirmed, and handles an open failure only for a channel it is actually opening.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "russh",
+          "purl": "pkg:cargo/russh"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.63.1"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/russh"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0492.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/Eugeny/russh/commit/3430fd26ecafc0dc3705210f5f39a9119fa22774"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
     "id": "RUSTSEC-2026-0154",
     "modified": "2026-10-12T17:47:59Z",
     "published": "2026-05-15T12:00:00Z",
