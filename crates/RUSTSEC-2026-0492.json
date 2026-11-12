@@ -1,0 +1,71 @@
+{
+  "id": "RUSTSEC-2026-0492",
+  "modified": "2026-11-12T07:53:20Z",
+  "published": "2026-09-30T12:00:00Z",
+  "aliases": [
+    "CVE-2026-102823",
+    "GHSA-47hw-gvq5-r2gm"
+  ],
+  "related": [],
+  "summary": "Client `Handler` callbacks run for channels the client never opened",
+  "details": "On the client side, russh passed channel messages from the server (data, extended data, EOF, close, success, failure, open failure and the exit-status, exit-signal and xon-xoff requests) to the application's `client::Handler` callbacks without checking that the channel number belonged to a channel the client had opened and the server had confirmed. The server side already performed this check.\n\nA malicious or compromised SSH server can therefore send these messages for any channel number, including the next number the client will allocate (they are assigned in order) or one it has already closed. An application that tracks per-channel state can be made to record a false exit status, see a channel close before its real output arrives, or panic when it looks up a channel it does not know.\n\nFrom 0.63.1 the client ignores channel messages for channels that are not established and confirmed, and handles an open failure only for a channel it is actually opening.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N"
+    }
+  ],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "russh",
+        "purl": "pkg:cargo/russh"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [],
+        "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "0.63.1"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/russh"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0492.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/Eugeny/russh/commit/3430fd26ecafc0dc3705210f5f39a9119fa22774"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}

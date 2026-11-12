@@ -1,0 +1,73 @@
+{
+  "id": "RUSTSEC-2026-0494",
+  "modified": "2026-11-12T07:53:20Z",
+  "published": "2026-06-11T12:00:00Z",
+  "aliases": [
+    "CVE-2026-48110",
+    "GHSA-4r3c-5hpg-58qr"
+  ],
+  "related": [],
+  "summary": "SSH message fields allocated before their size is checked",
+  "details": "Many of russh's client and server message handlers decoded length-prefixed strings, byte fields and name-lists from the peer into owned `String`, `Vec` or name-list values first and only checked their size and meaning afterwards. This includes the algorithm name-lists in `SSH_MSG_KEXINIT`, which a server parses during the initial key exchange, before any authentication.\n\nA peer can fill these fields with oversized or highly fragmented values, for example a name-list of hundreds of thousands of one-letter algorithm names, and make russh allocate far more memory than the packet itself takes. With many concurrent connections this can exhaust the memory of a server process.\n\nFrom 0.61.0, name-lists are rejected before they are split into separate strings when they are longer than 16 KiB or hold more than 1,024 entries, and the key exchange decodes its algorithm lists through this bounded decoder.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+    }
+  ],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "russh",
+        "purl": "pkg:cargo/russh"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "denial-of-service"
+        ],
+        "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.34.0"
+            },
+            {
+              "fixed": "0.61.0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/russh"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0494.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/Eugeny/russh/commit/72b250aa2dacb3bb1b13a84499c09bd9fc836158"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}

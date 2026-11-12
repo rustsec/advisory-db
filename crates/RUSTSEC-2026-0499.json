@@ -1,0 +1,96 @@
+{
+  "id": "RUSTSEC-2026-0499",
+  "modified": "2026-11-12T07:53:20Z",
+  "published": "2026-11-11T12:00:00Z",
+  "aliases": [
+    "GHSA-9c8r-76f3-m426"
+  ],
+  "related": [],
+  "summary": "Signature::from_der reads a signature with bytes after it, a wrong sequence length or an unneeded zero as the signature",
+  "details": "`Signature::from_der` read a DER-encoded ECDSA signature leniently. It read as\nthe signature: the signature followed by other bytes; a sequence length\nshorter than its contents, or longer with bytes after them (a length byte with\nits high bit set among them); and an R or S preceded by a zero byte it did not\nneed. It read a lone-zero R or S as zero.\n\n`messages::verify`, `compat::bsm::verify_message_der`,\n`auth::Certificate::verify`, `auth::VerifiableCertificate::verify`,\n`wallet::ProtoWallet::verify_signature` and\n`kvstore::KVStoreInterpreter::verify_signature` read through it, and each\nverified such a form of a valid signature. Given one signature a key holder\nmade, anyone could produce other byte strings that verify as that signature\nover the same data. No form verifies over other data: an application that acts\non the verdict alone is not affected; one that compares, hashes or stores a\nsignature's bytes is.\n\n0.8.6 refuses each form as `Error::InvalidSignature`. A signature's bytes are\nstill not unique after the patch: the same signature with S replaced by n - S\nverifies, so an application that keys on the bytes also requires\n`Signature::is_low_s()`.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N"
+    }
+  ],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "bsv-rs",
+        "purl": "pkg:cargo/bsv-rs"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": [
+            "bsv_rs::auth::Certificate::verify",
+            "bsv_rs::auth::VerifiableCertificate::verify",
+            "bsv_rs::auth::utils::validate_certificate_encoding",
+            "bsv_rs::compat::bsm::verify_message_der",
+            "bsv_rs::kvstore::KVStoreInterpreter::verify_signature",
+            "bsv_rs::messages::verify",
+            "bsv_rs::primitives::bsv::TransactionSignature::from_checksig_format",
+            "bsv_rs::primitives::ec::Signature::from_der",
+            "bsv_rs::wallet::ProtoWallet::verify_signature"
+          ]
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "crypto-failure"
+        ],
+        "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "0.8.6"
+            },
+            {
+              "introduced": "0.9.0-beta.1"
+            },
+            {
+              "fixed": "0.9.0-beta.7.0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/bsv-rs"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0499.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/Calhooon/bsv-rs/blob/v0.8.6/CHANGELOG.md"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/Calhooon/bsv-rs/issues/842"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/Calhooon/bsv-rs/pull/846"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}

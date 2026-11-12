@@ -1,0 +1,73 @@
+{
+  "id": "RUSTSEC-2026-0493",
+  "modified": "2026-11-12T07:53:20Z",
+  "published": "2026-05-29T12:00:00Z",
+  "aliases": [
+    "CVE-2026-46702",
+    "GHSA-wwx6-x28x-8259"
+  ],
+  "related": [],
+  "summary": "No limit on the size of a decompressed SSH packet",
+  "details": "With `zlib` or `zlib@openssh.com` compression negotiated, the packet length that russh checks applies to the compressed payload only. The decompressor kept growing its output buffer until the whole payload was inflated, with no limit of its own, so a packet that is small on the wire could expand to hundreds of megabytes before it was parsed.\n\nThe default server configuration offers both zlib methods, and a client that lists compression first can select it during the initial key exchange. That client can then send such a packet after `NEWKEYS` but before authenticating, so a russh server with default settings can be made to use large amounts of memory by an unauthenticated peer. A malicious server can do the same to a client that negotiated compression.\n\nFrom 0.61.1, decompressed output is capped at the same maximum as an uncompressed packet (256 KiB plus a few bytes of header room), and larger packets are rejected with `Error::PacketSize`.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+    }
+  ],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "russh",
+        "purl": "pkg:cargo/russh"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "denial-of-service"
+        ],
+        "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.34.0"
+            },
+            {
+              "fixed": "0.61.1"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/russh"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0493.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/Eugeny/russh/commit/2692a6f66edafaf63f463c412b45d8490f7ad06e"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}

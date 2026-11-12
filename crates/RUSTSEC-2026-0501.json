@@ -1,0 +1,85 @@
+{
+  "id": "RUSTSEC-2026-0501",
+  "modified": "2026-11-12T07:53:20Z",
+  "published": "2026-11-12T12:00:00Z",
+  "aliases": [
+    "GHSA-cwxv-4866-5gq2"
+  ],
+  "related": [],
+  "summary": "Shamir backup recovery accepts a share at x = 0, so a supplied share can substitute the recovered private key",
+  "details": "`KeyShares::from_backup_format` (the Shamir backup share reader, public since\n0.2.0, the crate's first release) accepted a share whose x coordinate is 0,\nand `KeyShares::recover_private_key` interpolates the shares at x = 0 to\nrecover the key. At an x of 0 the interpolation answers that share's y value\nalone, so an attacker who supplies one share in that form — with the share's\nintegrity tag ground to match the honest set's — chooses the recovered key\noutright. The non-canonical zero x = p works the same way, and a repeated x\npast the threshold window also passed.\n\nAn application that recovers a Shamir backup from shares it did not produce —\na custodian's medium, a share pasted by hand, a set restored from another\nwriter — could be handed the attacker's key as the recovered one. A set the\ncrate's own writer produces never carries such a share; the door is the\nreader.\n\n0.8.7 refuses such a set before interpolating (the 0.9 line's next prerelease\ncarries the same refusal). Where upgrading is not possible, before recovering\nsplit each share on `.` into four fields, base58-decode the x field, and\nrefuse the set if it decodes to zero (the one-character field `1`, or a value\nat or above the field prime) or if two shares carry the same x.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N"
+    }
+  ],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "bsv-rs",
+        "purl": "pkg:cargo/bsv-rs"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": [
+            "bsv_rs::primitives::bsv::shamir::KeyShares::from_backup_format",
+            "bsv_rs::primitives::bsv::shamir::KeyShares::recover_private_key"
+          ]
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "crypto-failure"
+        ],
+        "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N",
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "0.8.7"
+            },
+            {
+              "introduced": "0.9.0-beta.1"
+            },
+            {
+              "fixed": "0.9.0-beta.7.0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/bsv-rs"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0501.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/Calhooon/bsv-rs/blob/v0.8.7/CHANGELOG.md"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/Calhooon/bsv-rs/issues/854"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "id": "RUSTSEC-2026-0495",
+  "modified": "2026-11-12T07:53:20Z",
+  "published": "2026-10-30T12:00:00Z",
+  "aliases": [
+    "CVE-2026-116794",
+    "GHSA-vp5q-ff62-jwqv"
+  ],
+  "related": [],
+  "summary": "Agent server signs with confirm-constrained keys without calling `Agent::confirm`",
+  "details": "A key added to an SSH agent with the confirm constraint (what `ssh-add -c` sends) must not be used to sign until the user approves each use. russh's agent server (`russh::keys::agent::server`) accepted the constraint, but when a sign request arrived for such a key it used a fixed `true` in place of the result of `Agent::confirm`, so the application's confirmation step never ran. This started in 0.50.0-beta.12; 0.50.0-beta.8 to beta.11 still called `confirm`, and earlier russh releases have no agent server.\n\nAny process that can reach the agent, including a remote host when the agent is forwarded, can then sign with the protected key without the user's approval, for example to log in elsewhere as the user. The private key itself is not disclosed. Agents whose `Agent::confirm` keeps the default, which always returns `true`, behave the same before and after the fix.\n\nFrom 0.65.0 the agent server calls `Agent::confirm` for confirm-constrained keys and refuses to sign when it returns `false`. Implementations that left `confirm` unimplemented (for example as `todo!()`) will now reach that code.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "russh",
+        "purl": "pkg:cargo/russh"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.50.0-beta.12"
+            },
+            {
+              "fixed": "0.65.0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/russh"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0495.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/Eugeny/russh/commit/62db6e7defd6d244159da962ccccb029e785ce0f"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}

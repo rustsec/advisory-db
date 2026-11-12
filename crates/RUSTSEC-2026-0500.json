@@ -1,0 +1,91 @@
+{
+  "id": "RUSTSEC-2026-0500",
+  "modified": "2026-11-12T07:53:20Z",
+  "published": "2026-11-10T12:00:00Z",
+  "aliases": [
+    "GHSA-j8hr-pjhm-6h27"
+  ],
+  "related": [],
+  "summary": "BEEF validation answers valid for a raw entry that is not a transaction",
+  "details": "`Beef::merge_raw_tx` and `BeefTx::from_raw_tx` accept raw bytes without a\n`Result`. For bytes that are not exactly one transaction (a transaction\nfollowed by bytes, a cut transaction, bytes that are no transaction at all),\n`Beef::sort_txs`, `verify_structure`, `verify_valid` and `is_valid` could\nanswer valid, even with no BUMP and no parent in the BEEF, and, where the entry\ncarried a BUMP index, treat the hash of those bytes as a proven transaction id;\nan entry that names it as a parent was answered valid too.\n\nThe wire readers (`Beef::from_binary`, `verify_stream`,\n`Transaction::from_beef`, `from_atomic_beef`) parse every entry and are not\naffected. Reaching this needs an application that passes bytes it did not\nparse to `merge_raw_tx` or `BeefTx::from_raw_tx` and then relies on the verdict\nor on the transaction the BEEF hands back.\n\n0.8.5 refuses such an entry at all four verdict doors, with or without a BUMP\nindex, and every entry that names it as a parent. Where upgrading is not\npossible, do not rely on `is_valid` or `verify_valid` alone for such an entry:\ncheck that the bytes are exactly one transaction before merging them.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N"
+    }
+  ],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "bsv-rs",
+        "purl": "pkg:cargo/bsv-rs"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": [
+            "bsv_rs::transaction::Beef::find_atomic_transaction",
+            "bsv_rs::transaction::Beef::find_transaction_for_signing",
+            "bsv_rs::transaction::Beef::is_valid",
+            "bsv_rs::transaction::Beef::merge_raw_tx",
+            "bsv_rs::transaction::Beef::sort_txs",
+            "bsv_rs::transaction::Beef::verify_structure",
+            "bsv_rs::transaction::Beef::verify_valid",
+            "bsv_rs::transaction::BeefTx::from_raw_tx"
+          ]
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "crypto-failure"
+        ],
+        "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "0.8.5"
+            },
+            {
+              "introduced": "0.9.0-beta.1"
+            },
+            {
+              "fixed": "0.9.0-beta.7.0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/bsv-rs"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0500.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/Calhooon/bsv-rs/blob/v0.8.5/CHANGELOG.md"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/Calhooon/bsv-rs/pull/852"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
