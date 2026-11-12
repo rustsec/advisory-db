@@ -1,5 +1,73 @@
 [
   {
+    "id": "RUSTSEC-2026-0519",
+    "modified": "2026-11-12T14:21:59Z",
+    "published": "2026-09-03T12:00:00Z",
+    "aliases": [
+      "CVE-2026-123594",
+      "GHSA-86vr-jm6c-7cpg"
+    ],
+    "related": [],
+    "summary": "NXDOMAIN accepted for an empty non-terminal that the NSEC record proves exists",
+    "details": "When an NSEC record's next domain name is below the queried name, the queried name exists as an empty non-terminal (RFC 8020 section 3.1). The NSEC validator did not check for this case and accepted an NXDOMAIN response backed by such a record as secure.\n\nThe response code is not covered by any signature. An attacker who can modify DNS responses can take a genuine signed NODATA response for an empty non-terminal, change its response code to NXDOMAIN, and have the validator accept that an existing name does not exist.\n\nThis affects DNSSEC validation through `DnssecDnsHandle` when built with `dnssec-ring` or `dnssec-aws-lc-rs`.\n\nThe fix rejects NXDOMAIN as bogus, and validates NODATA as secure, when the covering NSEC record's next domain name is below the queried name and is not the zone apex. It is in 0.26.2.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "hickory-net",
+          "purl": "pkg:cargo/hickory-net"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "privilege-escalation"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.26.2"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/hickory-net"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0519.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/hickory-dns/hickory-dns/commit/bfbe7ede4021965526f065be9b415945ce575e29"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
     "id": "RUSTSEC-2026-0508",
     "modified": "2026-11-12T13:59:45Z",
     "published": "2026-09-03T12:00:00Z",
@@ -61,6 +129,78 @@
       {
         "type": "WEB",
         "url": "https://github.com/hickory-dns/hickory-dns/commit/e5ca40a7ef149ba5a79bc6f4916f114d153ce9ab"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2026-0518",
+    "modified": "2026-11-12T14:21:59Z",
+    "published": "2026-09-03T12:00:00Z",
+    "aliases": [
+      "CVE-2026-123592",
+      "GHSA-rx82-4p2j-j5cv"
+    ],
+    "related": [],
+    "summary": "DNSSEC validation cache could reuse an Insecure result for a different name",
+    "details": "The DNSSEC validation cache used a 64-bit hash of the query as its key, and two keys with the same hash counted as equal. The `Hash` implementation of `Name` hashed the bytes of the labels but not where one label ends and the next begins, so names that differ only in the placement of dots (such as `ab.c.` and `a.bc.`) hashed to the same value.\n\nAn attacker who controls an unsigned delegation whose name collides in this way with a name in a signed zone can first get an Insecure result cached for their own name. A forged response for the signed name is then served from that cache entry without signature checks and returned with the AD bit clear, where validation should have failed.\n\nThis affects DNSSEC validation through `DnssecDnsHandle` when built with `dnssec-ring` or `dnssec-aws-lc-rs`.\n\nThe fix stores the query in the cache key and compares it on lookup. The `Hash` implementations of `Label`, `Name` and `LowerName` in hickory-proto were also changed to include label boundaries. Both are in 0.26.2.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "hickory-net",
+          "purl": "pkg:cargo/hickory-net"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "privilege-escalation"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.26.2"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/hickory-net"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0518.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/hickory-dns/hickory-dns/commit/96b87c9ab0f10c1331cef56f88742eb00bce71e1"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/hickory-dns/hickory-dns/commit/9c82ce0c529d33ef4b3d6507e3b8dbbb5cd0dd48"
       }
     ],
     "database_specific": {
@@ -274,6 +414,152 @@
       {
         "type": "WEB",
         "url": "https://github.com/hickory-dns/hickory-dns/commit/019535e011131c52d19cb6a2c7a2d31270271135"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2026-0520",
+    "modified": "2026-11-12T14:21:59Z",
+    "published": "2026-09-03T12:00:00Z",
+    "aliases": [
+      "CVE-2026-123581",
+      "GHSA-929p-gjf6-5hqj"
+    ],
+    "related": [],
+    "summary": "DNSSEC validation accepted a validly signed but unrelated RRset as the answer",
+    "details": "When a response had a non-empty answer section, DNSSEC validation treated it as a positive answer as long as the records in it validated. It did not check that any of those records had the queried name and either the queried type or type CNAME.\n\nAn attacker who can answer or modify DNS responses can therefore return a genuine, signed RRset for some other name or type, and have it accepted as a validated answer to the query instead of being handled as a response with no matching data.\n\nThis affects DNSSEC validation through `DnssecDnsHandle` when built with `dnssec-ring` or `dnssec-aws-lc-rs`.\n\nThe fix requires at least one answer record that matches the query name and is either of the queried type or a CNAME, both for positive responses and when NSEC records are checked. It is in 0.26.2.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "hickory-net",
+          "purl": "pkg:cargo/hickory-net"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "privilege-escalation"
+          ],
+          "cvss": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.26.2"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/hickory-net"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0520.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/hickory-dns/hickory-dns/commit/77ec9c5d2e9481a0753bbaf1be3cd5175d300cff"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2026-0517",
+    "modified": "2026-11-12T14:21:59Z",
+    "published": "2026-09-03T12:00:00Z",
+    "aliases": [
+      "CVE-2026-123584",
+      "GHSA-v44v-c8m4-gc43"
+    ],
+    "related": [],
+    "summary": "Spoofed malformed UDP datagrams abort DNS lookups",
+    "details": "While waiting for a reply on a UDP connection, the client parsed every datagram that arrived from the name server's address and port before checking its message ID. If parsing failed, the attempt ended with an error instead of dropping the datagram and waiting for the real reply. The receive loop also gave up after three datagrams.\n\nAn off-path attacker who can guess the client's source port, but not the transaction ID, can send one malformed datagram with a spoofed source address and make the pending lookup fail.\n\nThe fix reads the message ID from the first two bytes before parsing, ignores short datagrams and datagrams with the wrong ID, keeps listening until the outer timeout, and only then parses the response. It is in 0.26.2.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "hickory-net",
+          "purl": "pkg:cargo/hickory-net"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.26.0"
+              },
+              {
+                "fixed": "0.26.2"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/hickory-net"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0517.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/hickory-dns/hickory-dns/commit/07ff35c1b33c1df27e398cee463e424cef951a82"
       }
     ],
     "database_specific": {
