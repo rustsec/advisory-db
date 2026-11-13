@@ -1,0 +1,68 @@
+{
+  "id": "RUSTSEC-2026-0532",
+  "modified": "2026-11-13T12:33:03Z",
+  "published": "2026-09-03T12:00:00Z",
+  "aliases": [
+    "CVE-2026-123595",
+    "GHSA-624w-vvww-xvpw"
+  ],
+  "related": [],
+  "summary": "Parent-side NSEC3 at a zone cut accepted as proof of nonexistence (hickory-proto 0.25)",
+  "details": "In hickory-proto 0.25.0 through 0.26.0-alpha.1, NSEC3 validation picked the closest encloser by hashed owner name alone and accepted the NSEC3 record that a parent zone signs at a delegation as proof that names at or below the zone cut do not exist. Such a record only proves that no DS record exists there (RFC 6840 section 4.1, RFC 5155 section 8.3). Someone who can answer or modify DNS responses could replay the parent's genuine signed records to get a denial for an existing name in the child zone accepted as secure.\n\nFrom 0.26.0-beta.1 the DNSSEC validation code lives in the hickory-net crate, where this was fixed in hickory-net 0.26.2. No hickory-proto release contains a fix. Users of DNSSEC validation in hickory-proto 0.25 (directly or through hickory-resolver or hickory-recursor 0.25) should move to the 0.26.2 or later releases, which validate through hickory-net.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "hickory-proto",
+        "purl": "pkg:cargo/hickory-proto"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "privilege-escalation"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.25.0"
+            },
+            {
+              "fixed": "0.26.0-beta.1"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/hickory-proto"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0532.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/hickory-dns/hickory-dns/commit/889801333d7f18d59a4468100e8cd1859e083d43"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
