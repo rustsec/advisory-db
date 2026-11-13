@@ -1,0 +1,74 @@
+[
+  {
+    "id": "RUSTSEC-2026-0525",
+    "modified": "2026-11-13T12:33:03Z",
+    "published": "2026-07-10T12:00:00Z",
+    "aliases": [
+      "CVE-2026-61544",
+      "GHSA-5hq8-qhww-jm7q"
+    ],
+    "related": [],
+    "summary": "Remote panic when a peer certificate expires during the QUIC handshake",
+    "details": "After the QUIC handshake finished, the peer's libp2p TLS certificate was parsed a second time to get its peer ID, and the result was unwrapped with `expect`, on the assumption that it could not fail because the certificate had already been validated. Parsing checks the certificate's validity period again against the current time. A remote peer can present a certificate that is about to expire and delay the end of the handshake until it has expired, so the second parse fails and the process panics. No authentication is needed; any application with a reachable QUIC listener is affected.\n\nThe fix returns a connection error instead of panicking when the peer identity or certificate cannot be read after the handshake. It is in 0.13.1, and was backported to the main branch in libp2p/rust-libp2p#6525 for 0.14.0.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "libp2p-quic",
+          "purl": "pkg:cargo/libp2p-quic"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.13.1"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/libp2p-quic"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0525.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/libp2p/rust-libp2p/commit/212f3774af048e2cecfb2e6b1e08477685e52b22"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/libp2p/rust-libp2p/pull/6525"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]
