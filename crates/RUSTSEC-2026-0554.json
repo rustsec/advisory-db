@@ -1,0 +1,76 @@
+{
+  "id": "RUSTSEC-2026-0554",
+  "modified": "2026-11-17T10:14:35Z",
+  "published": "2026-11-16T12:00:00Z",
+  "aliases": [
+    "GHSA-54pm-2wm5-hpmg"
+  ],
+  "related": [],
+  "summary": "Partial requests on keep-alive connections can bypass the request header timeout",
+  "details": "Affected versions of `actix-http` apply the request header timeout only to the\nfirst request on an HTTP/1 connection. When data arrives for a later request,\nthe dispatcher clears the idle keep-alive timer without starting a request\nheader timer.\n\nA remote client without authentication can complete one request, send one byte\nof a second request, and leave the connection open indefinitely without sending\nmore data. The same problem occurs when a complete pipelined request is followed\nby a partial request in the same read. Repeating this can exhaust connection or\nfile-descriptor limits and prevent new connections from being accepted. The\neffect depends on the server's resource limits and upstream connection controls.\n\nUpgrade to `actix-http` 3.21.2 or later. The fix applies the configured request\nheader timeout to later partial requests, including those left in the buffer\nafter a complete pipelined request. Additional bytes do not renew the deadline.\nThe timeout covers request headers, not upload bodies.\n\nIf an upgrade is not possible, disable HTTP keep-alive, for example with\n`HttpServer::keep_alive(KeepAlive::Disabled)` in `actix-web`. Connection limits\ncan reduce resource use but do not make stalled connections expire.",
+  "severity": [
+    {
+      "type": "CVSS_V4",
+      "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N"
+    }
+  ],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "actix-http",
+        "purl": "pkg:cargo/actix-http"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "denial-of-service"
+        ],
+        "cvss": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N",
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "3.21.2"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/actix-http"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0554.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/actix/actix-web/releases/tag/actix-http-v3.21.2"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://github.com/actix/actix-web/security/advisories/GHSA-54pm-2wm5-hpmg"
+    }
+  ],
+  "database_specific": {
+    "license": "CC-BY-4.0"
+  }
+}

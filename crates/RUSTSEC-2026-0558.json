@@ -1,0 +1,68 @@
+{
+  "id": "RUSTSEC-2026-0558",
+  "modified": "2026-11-17T10:14:35Z",
+  "published": "2026-09-03T12:00:00Z",
+  "aliases": [
+    "CVE-2026-123599",
+    "GHSA-wjgj-fvg9-65w9"
+  ],
+  "related": [],
+  "summary": "Records with a DNS class other than the query's marked secure without being validated",
+  "details": "When DNSSEC validation grouped a response's records into RRsets, it did not take the DNS class into account, and records of a class other than IN were left out before signatures were checked. If the IN records validated, the records of other classes (such as CH or HS) were marked secure too.\n\nAn attacker who can answer or modify DNS responses can add forged records of another class to a response and have them returned as validated. A forged DS record of another class can also get past validation, which lets any DNSKEY for the child zone be accepted and any answer from that zone be forged. How much this matters depends on how the application treats records of an unexpected class.\n\nThis affects DNSSEC validation through `DnssecDnsHandle` when built with `dnssec-ring` or `dnssec-aws-lc-rs`.\n\nThe fix rejects a whole response if any record in its answer, authority or additional section has a class different from the query's.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "hickory-net",
+        "purl": "pkg:cargo/hickory-net"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "privilege-escalation"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "0.26.2"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/hickory-net"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0558.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/hickory-dns/hickory-dns/commit/d5349ba13a2bd356239c39a6cc9caa10abe06c55"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
