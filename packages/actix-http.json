@@ -1,5 +1,231 @@
 [
   {
+    "id": "RUSTSEC-2026-0552",
+    "modified": "2026-11-17T10:14:35Z",
+    "published": "2026-11-16T12:00:00Z",
+    "aliases": [
+      "GHSA-9w4r-xc43-v236"
+    ],
+    "related": [
+      "GHSA-2q7f-mf9f-5qhr"
+    ],
+    "summary": "Bare LF in chunked trailers can consume pipelined requests or stall body decoding",
+    "details": "Affected versions of `actix-http` skip a bare line feed (LF) inside an HTTP/1.1\nchunked trailer instead of rejecting the invalid line ending. Trailer lines\nmust end with a carriage return and line feed (CRLF).\n\nFor example, after `0\\r\\nX\\n`, the parser continues reading trailer data. If a\nrequest follows on the same connection, its head can be consumed as part of the\ntrailer, so that request is never dispatched. If no more bytes arrive, body\ndecoding waits for more input instead of reporting an error. A remote client\ncan trigger these effects without authentication.\n\nRequest smuggling additionally requires an HTTP intermediary that forwards the\nmalformed body but uses a different request boundary. The tested HTTP\nintermediaries either rejected the input or consumed and normalized it before\nforwarding. Proxy access-control bypass, cache poisoning, and effects on other\nusers were not demonstrated.\n\nUpgrade to `actix-http` 3.21.1 or later. The fix rejects bare LF and invalid\ncontrol bytes in trailers before consuming the following request, while\npreserving partial reads and valid CRLF-terminated trailers.",
+    "severity": [
+      {
+        "type": "CVSS_V4",
+        "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:L/VA:L/SC:N/SI:N/SA:N"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "actix-http",
+          "purl": "pkg:cargo/actix-http"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:L/VA:L/SC:N/SI:N/SA:N",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "3.21.1"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/actix-http"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0552.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/actix/actix-web/releases/tag/actix-http-v3.21.1"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://github.com/actix/actix-web/security/advisories/GHSA-9w4r-xc43-v236"
+      }
+    ],
+    "database_specific": {
+      "license": "CC-BY-4.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2026-0553",
+    "modified": "2026-11-17T10:14:35Z",
+    "published": "2026-11-16T12:00:00Z",
+    "aliases": [
+      "GHSA-9543-cj4x-h76q"
+    ],
+    "related": [],
+    "summary": "Malformed quoted chunk extensions can end HTTP/1.1 request bodies early",
+    "details": "Affected versions of `actix-http` do not track quoted strings when parsing\nHTTP/1.1 chunk extensions. A carriage return inside a quoted extension value\nis treated as the end of the chunk-size line, even if the closing quote is\nmissing. For example, `0;x=\"\\r\\n\\r\\n` is accepted as the end of a chunked body,\nand a following pipelined request is dispatched on the same connection.\n\nA remote client can trigger this without authentication. CR and LF are invalid\ninside HTTP quoted strings, including after a backslash; they must be rejected\nrather than interpreted as framing or accepted as quoted data.\n\nRequest smuggling requires an upstream intermediary that forwards the malformed\ninput while using a different request boundary. Dispatching two requests on the\nsender's own connection does not by itself demonstrate an authorization bypass\nor an effect on another user. Proxy bypass, cache poisoning, and cross-user\nresponse mixing were not demonstrated by the reproduction.\n\nUpgrade to `actix-http` 3.21.3 or later. The fix preserves quote and escape state\nacross reads and rejects invalid control bytes inside quoted strings and quoted\npairs before consuming the following body or request bytes.",
+    "severity": [
+      {
+        "type": "CVSS_V4",
+        "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "actix-http",
+          "purl": "pkg:cargo/actix-http"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "3.21.3"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/actix-http"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0553.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/actix/actix-web/releases/tag/actix-http-v3.21.3"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://github.com/actix/actix-web/security/advisories/GHSA-9543-cj4x-h76q"
+      }
+    ],
+    "database_specific": {
+      "license": "CC-BY-4.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2026-0554",
+    "modified": "2026-11-17T10:14:35Z",
+    "published": "2026-11-16T12:00:00Z",
+    "aliases": [
+      "GHSA-54pm-2wm5-hpmg"
+    ],
+    "related": [],
+    "summary": "Partial requests on keep-alive connections can bypass the request header timeout",
+    "details": "Affected versions of `actix-http` apply the request header timeout only to the\nfirst request on an HTTP/1 connection. When data arrives for a later request,\nthe dispatcher clears the idle keep-alive timer without starting a request\nheader timer.\n\nA remote client without authentication can complete one request, send one byte\nof a second request, and leave the connection open indefinitely without sending\nmore data. The same problem occurs when a complete pipelined request is followed\nby a partial request in the same read. Repeating this can exhaust connection or\nfile-descriptor limits and prevent new connections from being accepted. The\neffect depends on the server's resource limits and upstream connection controls.\n\nUpgrade to `actix-http` 3.21.2 or later. The fix applies the configured request\nheader timeout to later partial requests, including those left in the buffer\nafter a complete pipelined request. Additional bytes do not renew the deadline.\nThe timeout covers request headers, not upload bodies.\n\nIf an upgrade is not possible, disable HTTP keep-alive, for example with\n`HttpServer::keep_alive(KeepAlive::Disabled)` in `actix-web`. Connection limits\ncan reduce resource use but do not make stalled connections expire.",
+    "severity": [
+      {
+        "type": "CVSS_V4",
+        "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "actix-http",
+          "purl": "pkg:cargo/actix-http"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "3.21.2"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/actix-http"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0554.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/actix/actix-web/releases/tag/actix-http-v3.21.2"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://github.com/actix/actix-web/security/advisories/GHSA-54pm-2wm5-hpmg"
+      }
+    ],
+    "database_specific": {
+      "license": "CC-BY-4.0"
+    }
+  },
+  {
     "id": "RUSTSEC-2026-0446",
     "modified": "2026-11-06T14:33:54Z",
     "published": "2026-11-06T12:00:00Z",

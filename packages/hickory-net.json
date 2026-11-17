@@ -1,5 +1,209 @@
 [
   {
+    "id": "RUSTSEC-2026-0557",
+    "modified": "2026-11-17T10:14:35Z",
+    "published": "2026-09-03T12:00:00Z",
+    "aliases": [
+      "CVE-2026-123590",
+      "GHSA-57pw-897j-v4j6"
+    ],
+    "related": [],
+    "summary": "Unsigned NSEC or NSEC3 record used in a nonexistence proof when another record at the same name is signed",
+    "details": "When DNSSEC validation collected the NSEC and NSEC3 records from a response's authority section to check a denial of existence, it kept a record if any authority record with the same owner name had validated, not only if that record itself had. A response could therefore pair a correctly signed record with a forged NSEC or NSEC3 record of the same owner name, and the forged record was used in the nonexistence proof.\n\nAn attacker who can answer or modify DNS responses can use this to get a forged NXDOMAIN or NODATA answer accepted as secure.\n\nThis affects DNSSEC validation through `DnssecDnsHandle` when built with `dnssec-ring` or `dnssec-aws-lc-rs`.\n\nThe fix keeps an NSEC or NSEC3 record only when its own signature validated.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "hickory-net",
+          "purl": "pkg:cargo/hickory-net"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "privilege-escalation"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.26.2"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/hickory-net"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0557.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/hickory-dns/hickory-dns/commit/68cb330eb7e73a7db0cec9a25888db9f4bcf2086"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2026-0556",
+    "modified": "2026-11-17T10:14:35Z",
+    "published": "2026-09-03T12:00:00Z",
+    "aliases": [
+      "CVE-2026-123600",
+      "GHSA-3jvh-8vj5-65rq"
+    ],
+    "related": [],
+    "summary": "NSEC3 NODATA at a zone apex accepted without an NSEC3 record matching the query name",
+    "details": "RFC 5155 section 8.5 says a NODATA response proven with NSEC3 needs an NSEC3 record whose hashed owner name equals the hash of the query name, and whose type bitmap has neither the query type nor CNAME.\n\nNSEC3 NODATA validation skipped this when the query name was the zone apex (the SOA owner). If no NSEC3 record matched the query name, no closest encloser was found and no wildcard applied, it still returned a secure result.\n\nAn attacker who can answer or modify DNS responses can replay any genuine signed NSEC3 record from the zone together with the zone's signed SOA record, and get a NODATA answer for any record type at the apex accepted as secure. A recursor caches that denial for the negative TTL.\n\nThis affects DNSSEC validation through `DnssecDnsHandle` when built with `dnssec-ring` or `dnssec-aws-lc-rs`.\n\nThe fix treats such a response as bogus.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "hickory-net",
+          "purl": "pkg:cargo/hickory-net"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "privilege-escalation"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.26.2"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/hickory-net"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0556.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/hickory-dns/hickory-dns/commit/ffdfb295d1abaad42df126c8cdd924cac74b81c0"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2026-0558",
+    "modified": "2026-11-17T10:14:35Z",
+    "published": "2026-09-03T12:00:00Z",
+    "aliases": [
+      "CVE-2026-123599",
+      "GHSA-wjgj-fvg9-65w9"
+    ],
+    "related": [],
+    "summary": "Records with a DNS class other than the query's marked secure without being validated",
+    "details": "When DNSSEC validation grouped a response's records into RRsets, it did not take the DNS class into account, and records of a class other than IN were left out before signatures were checked. If the IN records validated, the records of other classes (such as CH or HS) were marked secure too.\n\nAn attacker who can answer or modify DNS responses can add forged records of another class to a response and have them returned as validated. A forged DS record of another class can also get past validation, which lets any DNSKEY for the child zone be accepted and any answer from that zone be forged. How much this matters depends on how the application treats records of an unexpected class.\n\nThis affects DNSSEC validation through `DnssecDnsHandle` when built with `dnssec-ring` or `dnssec-aws-lc-rs`.\n\nThe fix rejects a whole response if any record in its answer, authority or additional section has a class different from the query's.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "hickory-net",
+          "purl": "pkg:cargo/hickory-net"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "privilege-escalation"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.26.2"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/hickory-net"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0558.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/hickory-dns/hickory-dns/commit/d5349ba13a2bd356239c39a6cc9caa10abe06c55"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
     "id": "RUSTSEC-2026-0540",
     "modified": "2026-11-13T12:33:03Z",
     "published": "2026-09-03T12:00:00Z",
