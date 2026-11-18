@@ -1,5 +1,413 @@
 [
   {
+    "id": "RUSTSEC-2026-0564",
+    "modified": "2026-11-18T09:14:42Z",
+    "published": "2026-11-17T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Panic on a mailbox display name containing CR or LF allows denial of service",
+    "details": "A `Mailbox` whose display name contains a CR or LF panics when it is formatted\nor put in a header such as `From` or `To`. Someone who can choose a display\nname, for example the name of a user a message is sent to, can crash the\nthread or task building the message.\n\nApplications that take display names only from trusted input are not exposed.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "lettre",
+          "purl": "pkg:cargo/lettre"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.10.0-rc.5"
+              },
+              {
+                "fixed": "0.11.24"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/lettre"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0564.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/lettre/lettre/commit/0ad883cdb20c256ab29c9d002fd4cc55c5d8abfe"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2026-0562",
+    "modified": "2026-11-18T09:14:42Z",
+    "published": "2026-11-17T12:00:00Z",
+    "aliases": [
+      "GHSA-23wm-4vvw-r7p2"
+    ],
+    "related": [],
+    "summary": "Panic on an `EHLO` reply line of only white space allows denial of service",
+    "details": "A malicious or compromised server can reply to `EHLO` with a line holding\nnothing but white space, causing the client to panic.\n\nApplications that connect only to a trusted server over implicit TLS are not\nexposed; the risk applies to clients that may connect to untrusted servers, or\nthat use `STARTTLS` or no TLS, where a man-in-the-middle can forge the reply.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "lettre",
+          "purl": "pkg:cargo/lettre"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "lettre::smtp::extension::ServerInfo::from_response",
+              "lettre::transport::smtp::extension::ServerInfo::from_response"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.11.24"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/lettre"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0562.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/lettre/lettre/commit/4a58794b672542d5bfea5a40505bb20627122086"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2026-0561",
+    "modified": "2026-11-18T09:14:42Z",
+    "published": "2026-11-17T12:00:00Z",
+    "aliases": [],
+    "related": [
+      "RUSTSEC-2021-0069"
+    ],
+    "summary": "Missing dot-stuffing after a bare LF or CR allows SMTP command injection",
+    "details": "Someone who controls the content of a message with bare LF or CR line endings\ncan end it early with `\\n.\\n` on a server that takes a bare LF for a line\nending. What follows is read by the server as SMTP commands, which can be used\nto send other messages over the same authenticated connection.\n\nThis affects messages passed to `send_raw`, and message bodies that are sent\nwithout being encoded. The LF line endings of a `String` body are converted to\nCRLF before it is sent.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "lettre",
+          "purl": "pkg:cargo/lettre"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "format-injection"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.11.24"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/lettre"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0561.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/lettre/lettre/commit/3d9a6e6a467c6ce00bd39ada6aa1a00e57540a1d"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2026-0563",
+    "modified": "2026-11-18T09:14:42Z",
+    "published": "2026-11-17T12:00:00Z",
+    "aliases": [
+      "GHSA-62w5-58xq-p27j"
+    ],
+    "related": [],
+    "summary": "Messages for an address with a quoted local part are sent to a different address",
+    "details": "A message whose sender or recipient has a quoted local part is sent with a\ndifferent address in its envelope than the one the application was given:\n`\"d \"@example.com` becomes `d@example.com`. Someone who can choose such an\naddress can have a message delivered to another mailbox than the one the\napplication validated.\n\nAddresses without a quoted local part are not affected.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "lettre",
+          "purl": "pkg:cargo/lettre"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "privilege-escalation"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.11.0"
+              },
+              {
+                "fixed": "0.11.24"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/lettre"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0563.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/lettre/lettre/commit/f4d5abc67072c5f35c5cccac6370e94a842cb26c"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2026-0565",
+    "modified": "2026-11-18T09:14:42Z",
+    "published": "2026-11-17T12:00:00Z",
+    "aliases": [
+      "GHSA-pmvc-x69f-5p9f"
+    ],
+    "related": [],
+    "summary": "Unbounded buffering of an SMTP reply allows a malicious server to exhaust memory",
+    "details": "A malicious or compromised server can send a reply line that never ends, which\nthe client buffers until memory runs out. A reply made of many short lines also\nkeeps a CPU core busy: for a few seconds per reply since 0.11.22, for as long\nas the server wants before it.\n\nApplications that connect only to a trusted server over implicit TLS are not\nexposed; the risk applies to clients that may connect to untrusted servers, or\nthat use `STARTTLS` or no TLS, where a man-in-the-middle can forge the reply.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "lettre",
+          "purl": "pkg:cargo/lettre"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.11.24"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/lettre"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0565.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/lettre/lettre/commit/075849fb9f2c956202aaaf2ff73e41f995d02f35"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2026-0560",
+    "modified": "2026-11-18T09:14:42Z",
+    "published": "2026-11-17T12:00:00Z",
+    "aliases": [
+      "GHSA-q3jf-wmp2-47pg"
+    ],
+    "related": [],
+    "summary": "STARTTLS response injection allows a man-in-the-middle to forge SMTP replies",
+    "details": "A man-in-the-middle can append replies of their own to the cleartext reply to\n`STARTTLS`. The client takes them for the server's replies to the commands it\nthen sends over TLS, so the attacker can, for example, make a message that the\nserver rejected look accepted.\n\nOnly connections upgraded with `STARTTLS` are affected (`Tls::Required` and\n`Tls::Opportunistic`, as set up by `starttls_relay`). Implicit TLS\n(`Tls::Wrapper`, as set up by `relay`) is not.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:L"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "lettre",
+          "purl": "pkg:cargo/lettre"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "crypto-failure"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:L",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.11.24"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/lettre"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0560.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/lettre/lettre/commit/b404122f1b51cdfa32662661849aa3a22e02af38"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
     "id": "RUSTSEC-2026-0141",
     "modified": "2026-10-12T17:47:59Z",
     "published": "2026-05-14T12:00:00Z",
