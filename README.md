@@ -112,7 +112,7 @@ keywords = ["ssl", "mitm"]
 #arch = ["x86", "x86_64"]
 
 # Operating systems impacted by this vulnerability (optional)
-# Only use this if the vulnerable is specific to a particular OS, e.g. it was
+# Only use this if the vulnerability is specific to a particular OS, e.g. it was
 # located in a binding to a Windows-specific API.
 # For a list of OS strings, see the "platforms" crate:
 # <https://docs.rs/platforms/latest/platforms/target/enum.OS.html>
