@@ -1,5 +1,1124 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2026-11-19T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2026-0581: Unsoundness in heapless</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0581.html</id><updated>2026-11-19T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0581.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0581: Unsoundness in heapless"/><published>2026-11-19T12:00:00+00:00</published><summary xml:lang="en">`Deque::make_contiguous` could lead to broken invariants</summary><content xml:lang="en" type="html">  &lt;article&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2026-11-20T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2026-0583: Vulnerability in sad-rsa</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0583.html</id><updated>2026-11-20T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0583.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0583: Vulnerability in sad-rsa"/><published>2026-11-20T12:00:00+00:00</published><summary xml:lang="en">Panics during RSA private-key construction, validation, or re-encoding</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/sad-rsa/RUSTSEC-2026-0583.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/sad-rsa/RUSTSEC-2026-0583.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0583&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0583
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Panics during RSA private-key construction, validation, or re-encoding&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-19&quot;&gt;
+          November 19, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-20&quot;&gt;
+          November 20, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/sad-rsa.html&quot;&gt;sad-rsa&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/sad-rsa&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/rsa.html&quot;&gt;#rsa&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/panic.html&quot;&gt;#panic&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/private-key.html&quot;&gt;#private-key&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/pkcs1.html&quot;&gt;#pkcs1&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/pkcs8.html&quot;&gt;#pkcs8&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-3hj7-mch7-c7cc&quot;&gt;GHSA-3hj7-mch7-c7cc&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/sadco-io/sad-rsa/releases/tag/v0.10.4&quot;&gt;
+              https://github.com/sadco-io/sad-rsa/releases/tag/v0.10.4
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;5.3 &lt;span class=&quot;tag medium&quot;&gt;
+        MEDIUM
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Network&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.10.4&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;sad_rsa::RsaPrivateKey::crt_coefficient&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.10.4&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;sad_rsa::RsaPrivateKey::from_components&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.10.4&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;sad_rsa::RsaPrivateKey::from_p_q&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.10.4&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;sad_rsa::RsaPrivateKey::from_primes&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.10.4&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;sad_rsa::RsaPrivateKey::validate&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.10.4&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;&lt;code&gt;RsaPrivateKey&lt;/code&gt; private-key construction, validation, and serialization can panic across three
+classes of inputs, as well as when re-encoding certain valid keys:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;RsaPrivateKey::from_components&lt;/code&gt; and PKCS#1 or PKCS#8 private-key decoding (DER or PEM) can panic
+during validation when a supplied factor equals 1, because &lt;code&gt;RsaPrivateKey::validate()&lt;/code&gt; let a
+factor of 1 reach a later check that panicked.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;RsaPrivateKey::from_primes&lt;/code&gt; and &lt;code&gt;RsaPrivateKey::from_p_q&lt;/code&gt; can panic during construction when a
+supplied factor is 0, 1, or even.&lt;/li&gt;
+&lt;li&gt;Prime recovery in &lt;code&gt;RsaPrivateKey::from_components&lt;/code&gt; can panic when the private exponent is 0.&lt;/li&gt;
+&lt;li&gt;For a key, including a valid one, whose first prime occupies more limbs than the second,
+&lt;code&gt;crt_coefficient&lt;/code&gt;, &lt;code&gt;to_pkcs1_der&lt;/code&gt;, &lt;code&gt;to_pkcs8_der&lt;/code&gt;, and &lt;code&gt;serde&lt;/code&gt; serialization can panic.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;An application that imports untrusted private keys or factors, or re-encodes such keys, can lose a
+worker, or the whole process when built with &lt;code&gt;panic = &amp;quot;abort&amp;quot;&lt;/code&gt;. Public-key parsing is not affected.&lt;/p&gt;
+&lt;p&gt;Fixed in 0.10.4, which rejects factors below 2, even factors, repeated factors, and a zero private
+exponent during prime recovery, and computes the CRT coefficient and re-encodes valid two-prime
+keys when the first prime occupies more limbs than the second.&lt;/p&gt;
+&lt;p&gt;If you cannot upgrade to 0.10.4, isolate the entire import, construction, CRT calculation, or
+serialization in a separate process and treat an abnormal exit as an operation failure, or use
+&lt;code&gt;catch_unwind&lt;/code&gt; around the entire operation when panics unwind.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0584: Vulnerability in tokio-rate-limit</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0584.html</id><updated>2026-11-20T12:00:00+00:00</updated><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0584.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0584: Vulnerability in tokio-rate-limit"/><published>2026-11-20T12:00:00+00:00</published><summary xml:lang="en">gRPC `IpKeyExtractor` keys on client-supplied forwarding headers</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/tokio-rate-limit/RUSTSEC-2026-0584.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/tokio-rate-limit/RUSTSEC-2026-0584.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0584&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0584
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;gRPC &lt;code&gt;IpKeyExtractor&lt;/code&gt; keys on client-supplied forwarding headers&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-19&quot;&gt;
+          November 19, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-20&quot;&gt;
+          November 20, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/tokio-rate-limit.html&quot;&gt;tokio-rate-limit&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/tokio-rate-limit&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/rate-limit.html&quot;&gt;#rate-limit&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/grpc.html&quot;&gt;#grpc&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/tonic.html&quot;&gt;#tonic&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/x-forwarded-for.html&quot;&gt;#x-forwarded-for&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-r5c9-r265-ccg3&quot;&gt;GHSA-r5c9-r265-ccg3&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/sadco-io/tokio-rate-limit/releases/tag/v0.11.1&quot;&gt;
+              https://github.com/sadco-io/tokio-rate-limit/releases/tag/v0.11.1
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;5.3 &lt;span class=&quot;tag medium&quot;&gt;
+        MEDIUM
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Network&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L&quot;&gt;CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.11.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;unaffected&quot;&gt;Unaffected&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;0.5.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;tokio_rate_limit::tonic_middleware::IpKeyExtractor::extract&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=0.5.0, &amp;#60;0.11.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;&lt;code&gt;tonic_middleware::IpKeyExtractor&lt;/code&gt; is documented as rate limiting gRPC requests by client IP address,
+but on a standard tonic server it keys on client-supplied &lt;code&gt;x-forwarded-for&lt;/code&gt; and &lt;code&gt;x-real-ip&lt;/code&gt;
+headers. In 0.5.0–0.9.1, the extractor reads those headers directly; in 0.10.0–0.11.0, it first
+checks for a bare &lt;code&gt;std::net::SocketAddr&lt;/code&gt; request extension—which &lt;code&gt;tonic::transport::Server&lt;/code&gt; never
+supplies, as it provides &lt;code&gt;TcpConnectInfo&lt;/code&gt; instead—and falls back to the same headers. Direct
+clients can therefore choose their rate-limit key to bypass per-IP rate limits and increase the
+number of tracked keys; without forwarding headers, 0.5.0–0.9.1 allow requests without limiting
+them and 0.10.0–0.11.0 reject them by default unless &lt;code&gt;.fail_open()&lt;/code&gt; is enabled.&lt;/p&gt;
+&lt;p&gt;Applications are affected if they use &lt;code&gt;GrpcRateLimitLayer&lt;/code&gt; with &lt;code&gt;IpKeyExtractor&lt;/code&gt; (the
+&lt;code&gt;tonic-support&lt;/code&gt; feature). The HTTP middleware&apos;s &lt;code&gt;IpKeyExtractor&lt;/code&gt; reads &lt;code&gt;ConnectInfo&amp;lt;SocketAddr&amp;gt;&lt;/code&gt; and
+is not affected.&lt;/p&gt;
+&lt;p&gt;Version 0.11.1 fixes &lt;code&gt;IpKeyExtractor&lt;/code&gt; to honor a server-supplied &lt;code&gt;SocketAddr&lt;/code&gt; override first and then
+read the TCP peer address from tonic&apos;s &lt;code&gt;TcpConnectInfo&lt;/code&gt; (which &lt;code&gt;tonic::transport::Server&lt;/code&gt; attaches
+to plaintext connections and connections using its built-in TLS), without ever reading forwarding
+headers. Deployments behind a trusted proxy can use the new opt-in &lt;code&gt;ForwardedIpKeyExtractor&lt;/code&gt;, which
+reads a single configured header (&lt;code&gt;x-forwarded-for&lt;/code&gt; or &lt;code&gt;x-real-ip&lt;/code&gt;) and is only correct when that
+proxy sets the header as documented.&lt;/p&gt;
+&lt;p&gt;If you cannot upgrade to 0.11.1, use a custom key extractor that reads the peer IP from tonic&apos;s
+connection information for the transport in use (including TLS) and rejects requests without a
+verified peer address before invoking the limiter, or restrict backend access to a trusted proxy
+that strips all incoming &lt;code&gt;x-forwarded-for&lt;/code&gt; and &lt;code&gt;x-real-ip&lt;/code&gt; fields and sets one &lt;code&gt;x-forwarded-for&lt;/code&gt;
+value to the verified client IP on every request.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0585: Vulnerability in pqcrypto-mlkem</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0585.html</id><updated>2026-11-20T12:00:00+00:00</updated><category term="crypto-failure"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0585.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0585: Vulnerability in pqcrypto-mlkem"/><published>2026-11-20T12:00:00+00:00</published><summary xml:lang="en">ML-KEM does not perform the FIPS 203 input checks</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/pqcrypto-mlkem/RUSTSEC-2026-0585.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/pqcrypto-mlkem/RUSTSEC-2026-0585.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0585&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0585
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;ML-KEM does not perform the FIPS 203 input checks&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-20&quot;&gt;
+          November 20, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-20&quot;&gt;
+          November 20, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/pqcrypto-mlkem.html&quot;&gt;pqcrypto-mlkem&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/pqcrypto-mlkem&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/crypto-failure.html&quot;&gt;crypto-failure&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/ml-kem.html&quot;&gt;#ml-kem&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/fips203.html&quot;&gt;#fips203&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/input-validation.html&quot;&gt;#input-validation&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/RatioLabsEU/pqc-field-notes/tree/main/advisories/2026-mlkem-input-validation&quot;&gt;
+              https://github.com/RatioLabsEU/pqc-field-notes/tree/main/advisories/2026-mlkem-input-validation
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;pqcrypto_mlkem::mlkem1024::decapsulate&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;=0.1.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;pqcrypto_mlkem::mlkem1024::encapsulate&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;=0.1.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;pqcrypto_mlkem::mlkem512::decapsulate&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;=0.1.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;pqcrypto_mlkem::mlkem512::encapsulate&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;=0.1.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;pqcrypto_mlkem::mlkem768::decapsulate&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;=0.1.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;pqcrypto_mlkem::mlkem768::encapsulate&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;=0.1.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;&lt;code&gt;pqcrypto-mlkem&lt;/code&gt; wraps PQClean&apos;s ML-KEM implementation, which does not perform
+the input checks required by FIPS 203:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;encapsulation does not perform the encapsulation key modulus check
+(section 7.2), so encapsulation keys with coefficients that are not reduced
+modulo q are accepted;&lt;/li&gt;
+&lt;li&gt;decapsulation does not perform the decapsulation key hash check
+(section 7.3), so a decapsulation key whose stored hash or embedded
+encapsulation key has been altered is accepted.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;With the Wycheproof ML-KEM vectors, 108 / 112 / 116 invalid encapsulation keys
+(ML-KEM-512 / -768 / -1024) and 2 invalid decapsulation keys per parameter set
+are accepted.&lt;/p&gt;
+&lt;p&gt;This does not disclose key material. It is a FIPS 203 non-conformance, and an
+affected implementation can disagree with a conforming one about which keys
+are valid.&lt;/p&gt;
+&lt;p&gt;The crate is unmaintained (see RUSTSEC-2026-0161) and no patched version is
+expected. Migrating to a maintained implementation, such as the
+&lt;a href=&quot;https://crates.io/crates/ml-kem&quot;&gt;&lt;code&gt;ml-kem&lt;/code&gt;&lt;/a&gt; crate, is recommended.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0586: Vulnerability in pqcrypto-mldsa</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0586.html</id><updated>2026-11-20T12:00:00+00:00</updated><category term="crypto-failure"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0586.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0586: Vulnerability in pqcrypto-mldsa"/><published>2026-11-20T12:00:00+00:00</published><summary xml:lang="en">ML-DSA verification accepts non-conforming signatures with the `avx2` feature</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/pqcrypto-mldsa/RUSTSEC-2026-0586.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/pqcrypto-mldsa/RUSTSEC-2026-0586.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0586&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0586
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;ML-DSA verification accepts non-conforming signatures with the &lt;code&gt;avx2&lt;/code&gt; feature&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-20&quot;&gt;
+          November 20, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-20&quot;&gt;
+          November 20, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/pqcrypto-mldsa.html&quot;&gt;pqcrypto-mldsa&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/pqcrypto-mldsa&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/crypto-failure.html&quot;&gt;crypto-failure&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/ml-dsa.html&quot;&gt;#ml-dsa&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/signature.html&quot;&gt;#signature&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/verification.html&quot;&gt;#verification&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/avx2.html&quot;&gt;#avx2&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/RatioLabsEU/pqc-field-notes/tree/main/advisories/2026-mldsa-avx2-verifier&quot;&gt;
+              https://github.com/RatioLabsEU/pqc-field-notes/tree/main/advisories/2026-mldsa-avx2-verifier
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/pq-crystals/dilithium/issues/113&quot;&gt;
+              https://github.com/pq-crystals/dilithium/issues/113
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        no patched versions
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+      &lt;dt&gt;Affected Architectures&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;x86_64&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;pqcrypto_mldsa::mldsa44::verify_detached_signature&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;=0.1.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;pqcrypto_mldsa::mldsa65::verify_detached_signature&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;=0.1.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;pqcrypto_mldsa::mldsa87::verify_detached_signature&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;=0.1.2&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;With the default &lt;code&gt;avx2&lt;/code&gt; feature on x86_64 (non-Windows) and a CPU that supports
+AVX2, &lt;code&gt;pqcrypto-mldsa&lt;/code&gt; verifies signatures with PQClean&apos;s AVX2 implementation of
+ML-DSA. That implementation predates two upstream fixes
+(&lt;a href=&quot;https://github.com/pq-crystals/dilithium/issues/113&quot;&gt;pq-crystals/dilithium#113&lt;/a&gt;,
+3 June 2026):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;the verifier does not check that the infinity norm of &lt;code&gt;z&lt;/code&gt; is below
+&lt;code&gt;γ1 − β&lt;/code&gt; (FIPS 204, Algorithm 8, line 13), so it accepts signatures that
+conforming verifiers reject;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;use_hint_avx()&lt;/code&gt; mishandles a boundary case, so one class of valid
+signatures is rejected.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Creating an accepted out-of-bound signature requires the private key. The
+practical effect is that verification results differ between this crate with
+AVX2 and conforming implementations, including this crate without AVX2.&lt;/p&gt;
+&lt;p&gt;The Wycheproof ML-DSA verification vectors reproduce both defects: with AVX2,
+37 / 41 / 49 invalid vectors (ML-DSA-44 / -65 / -87) are accepted and one valid
+vector per parameter set is rejected.&lt;/p&gt;
+&lt;p&gt;The crate is unmaintained (see RUSTSEC-2026-0166) and no patched version is
+expected. Disabling the &lt;code&gt;avx2&lt;/code&gt; feature avoids the affected code. Migrating to a
+maintained implementation, such as the &lt;a href=&quot;https://crates.io/crates/ml-dsa&quot;&gt;&lt;code&gt;ml-dsa&lt;/code&gt;&lt;/a&gt;
+crate, is recommended.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0587: Vulnerability in wasmtime-wasi</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0587.html</id><updated>2026-11-20T12:00:00+00:00</updated><link href="https://rustsec.org/advisories/RUSTSEC-2026-0587.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0587: Vulnerability in wasmtime-wasi"/><published>2026-11-20T12:00:00+00:00</published><summary xml:lang="en">WASI filesystem sandbox escape on Windows through a drive-prefixed path component</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/wasmtime-wasi/RUSTSEC-2026-0587.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/wasmtime-wasi/RUSTSEC-2026-0587.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0587&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0587
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;WASI filesystem sandbox escape on Windows through a drive-prefixed path component&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-19&quot;&gt;
+          November 19, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-20&quot;&gt;
+          November 20, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/wasmtime-wasi.html&quot;&gt;wasmtime-wasi&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/wasmtime-wasi&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-f2pq-268w-886c&quot;&gt;GHSA-f2pq-268w-886c&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/bytecodealliance/wasmtime/pull/15371&quot;&gt;
+              https://github.com/bytecodealliance/wasmtime/pull/15371
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;7.5 &lt;span class=&quot;tag high&quot;&gt;
+        HIGH
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Requirements&lt;/dt&gt;
+            &lt;dd&gt;Present&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Network&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact to the Subsequent System&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact to the Subsequent System&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact to the Subsequent System&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;Passive&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact to the Vulnerable System&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact to the Vulnerable System&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact to the Vulnerable System&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:4.0/AV:N/AC:L/AT:P/PR:L/UI:P/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N&quot;&gt;CVSS:4.0/AV:N/AC:L/AT:P/PR:L/UI:P/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=36.0.22, &amp;#60;37.0.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=48.0.10, &amp;#60;49.0.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=49.0.7, &amp;#60;50.0.0&lt;/code&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=50.0.3&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      &lt;dt&gt;Affected OSes&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;windows&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;This is an entry in the RustSec database for the Wasmtime security advisory
+located at
+https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-f2pq-268w-886c
+For more information see the GitHub-hosted security advisory.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0581: Unsoundness in heapless</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0581.html</id><updated>2026-11-19T12:00:00+00:00</updated><category term="memory-corruption"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0581.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0581: Unsoundness in heapless"/><published>2026-11-19T12:00:00+00:00</published><summary xml:lang="en">`Deque::make_contiguous` could lead to broken invariants</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
           &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/heapless/RUSTSEC-2026-0581.md&quot;&gt;History&lt;/a&gt; ⋅

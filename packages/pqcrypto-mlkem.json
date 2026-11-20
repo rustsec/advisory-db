@@ -1,5 +1,74 @@
 [
   {
+    "id": "RUSTSEC-2026-0585",
+    "modified": "2026-11-20T12:47:55Z",
+    "published": "2026-11-20T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "ML-KEM does not perform the FIPS 203 input checks",
+    "details": "`pqcrypto-mlkem` wraps PQClean's ML-KEM implementation, which does not perform\nthe input checks required by FIPS 203:\n\n- encapsulation does not perform the encapsulation key modulus check\n  (section 7.2), so encapsulation keys with coefficients that are not reduced\n  modulo q are accepted;\n- decapsulation does not perform the decapsulation key hash check\n  (section 7.3), so a decapsulation key whose stored hash or embedded\n  encapsulation key has been altered is accepted.\n\nWith the Wycheproof ML-KEM vectors, 108 / 112 / 116 invalid encapsulation keys\n(ML-KEM-512 / -768 / -1024) and 2 invalid decapsulation keys per parameter set\nare accepted.\n\nThis does not disclose key material. It is a FIPS 203 non-conformance, and an\naffected implementation can disagree with a conforming one about which keys\nare valid.\n\nThe crate is unmaintained (see RUSTSEC-2026-0161) and no patched version is\nexpected. Migrating to a maintained implementation, such as the\n[`ml-kem`](https://crates.io/crates/ml-kem) crate, is recommended.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "pqcrypto-mlkem",
+          "purl": "pkg:cargo/pqcrypto-mlkem"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "pqcrypto_mlkem::mlkem1024::decapsulate",
+              "pqcrypto_mlkem::mlkem1024::encapsulate",
+              "pqcrypto_mlkem::mlkem512::decapsulate",
+              "pqcrypto_mlkem::mlkem512::encapsulate",
+              "pqcrypto_mlkem::mlkem768::decapsulate",
+              "pqcrypto_mlkem::mlkem768::encapsulate"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "crypto-failure"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/pqcrypto-mlkem"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0585.html"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://github.com/RatioLabsEU/pqc-field-notes/tree/main/advisories/2026-mlkem-input-validation"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
     "id": "RUSTSEC-2026-0161",
     "modified": "2026-06-04T14:53:59Z",
     "published": "2026-06-04T12:00:00Z",
