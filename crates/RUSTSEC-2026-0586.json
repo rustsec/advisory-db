@@ -1,0 +1,72 @@
+{
+  "id": "RUSTSEC-2026-0586",
+  "modified": "2026-11-20T12:47:55Z",
+  "published": "2026-11-20T12:00:00Z",
+  "aliases": [],
+  "related": [],
+  "summary": "ML-DSA verification accepts non-conforming signatures with the `avx2` feature",
+  "details": "With the default `avx2` feature on x86_64 (non-Windows) and a CPU that supports\nAVX2, `pqcrypto-mldsa` verifies signatures with PQClean's AVX2 implementation of\nML-DSA. That implementation predates two upstream fixes\n([pq-crystals/dilithium#113](https://github.com/pq-crystals/dilithium/issues/113),\n3 June 2026):\n\n- the verifier does not check that the infinity norm of `z` is below\n  `γ1 − β` (FIPS 204, Algorithm 8, line 13), so it accepts signatures that\n  conforming verifiers reject;\n- `use_hint_avx()` mishandles a boundary case, so one class of valid\n  signatures is rejected.\n\nCreating an accepted out-of-bound signature requires the private key. The\npractical effect is that verification results differ between this crate with\nAVX2 and conforming implementations, including this crate without AVX2.\n\nThe Wycheproof ML-DSA verification vectors reproduce both defects: with AVX2,\n37 / 41 / 49 invalid vectors (ML-DSA-44 / -65 / -87) are accepted and one valid\nvector per parameter set is rejected.\n\nThe crate is unmaintained (see RUSTSEC-2026-0166) and no patched version is\nexpected. Disabling the `avx2` feature avoids the affected code. Migrating to a\nmaintained implementation, such as the [`ml-dsa`](https://crates.io/crates/ml-dsa)\ncrate, is recommended.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "pqcrypto-mldsa",
+        "purl": "pkg:cargo/pqcrypto-mldsa"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [
+            "x86_64"
+          ],
+          "os": [],
+          "functions": [
+            "pqcrypto_mldsa::mldsa44::verify_detached_signature",
+            "pqcrypto_mldsa::mldsa65::verify_detached_signature",
+            "pqcrypto_mldsa::mldsa87::verify_detached_signature"
+          ]
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "crypto-failure"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/pqcrypto-mldsa"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0586.html"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://github.com/RatioLabsEU/pqc-field-notes/tree/main/advisories/2026-mldsa-avx2-verifier"
+    },
+    {
+      "type": "REPORT",
+      "url": "https://github.com/pq-crystals/dilithium/issues/113"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
