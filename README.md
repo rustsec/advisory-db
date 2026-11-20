@@ -27,7 +27,7 @@ and reporting (send PRs to add yours):
 ## Create an Advisory
 
 If you discover a vulnerability, report it upstream according to their security policy.
-Afterwards, you can create and advisory by opening a pull request using the template below.
+Afterwards, you can create an advisory by opening a pull request using the template below.
 See [CONTRIBUTING.md] for more information.
 
 See [HOWTO_UNMAINTAINED.md] before filing an advisory for an unmaintained crate.
