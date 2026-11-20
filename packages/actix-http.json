@@ -76,6 +76,80 @@
     }
   },
   {
+    "id": "RUSTSEC-2026-0553",
+    "modified": "2026-11-17T10:14:35Z",
+    "published": "2026-11-16T12:00:00Z",
+    "aliases": [
+      "GHSA-9543-cj4x-h76q"
+    ],
+    "related": [],
+    "summary": "Malformed quoted chunk extensions can end HTTP/1.1 request bodies early",
+    "details": "Affected versions of `actix-http` do not track quoted strings when parsing\nHTTP/1.1 chunk extensions. A carriage return inside a quoted extension value\nis treated as the end of the chunk-size line, even if the closing quote is\nmissing. For example, `0;x=\"\\r\\n\\r\\n` is accepted as the end of a chunked body,\nand a following pipelined request is dispatched on the same connection.\n\nA remote client can trigger this without authentication. CR and LF are invalid\ninside HTTP quoted strings, including after a backslash; they must be rejected\nrather than interpreted as framing or accepted as quoted data.\n\nRequest smuggling requires an upstream intermediary that forwards the malformed\ninput while using a different request boundary. Dispatching two requests on the\nsender's own connection does not by itself demonstrate an authorization bypass\nor an effect on another user. Proxy bypass, cache poisoning, and cross-user\nresponse mixing were not demonstrated by the reproduction.\n\nUpgrade to `actix-http` 3.21.3 or later. The fix preserves quote and escape state\nacross reads and rejects invalid control bytes inside quoted strings and quoted\npairs before consuming the following body or request bytes.",
+    "severity": [
+      {
+        "type": "CVSS_V4",
+        "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "actix-http",
+          "purl": "pkg:cargo/actix-http"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [],
+          "cvss": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "3.21.3"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/actix-http"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0553.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/actix/actix-web/releases/tag/actix-http-v3.21.3"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://github.com/actix/actix-web/security/advisories/GHSA-9543-cj4x-h76q"
+      }
+    ],
+    "database_specific": {
+      "license": "CC-BY-4.0"
+    }
+  },
+  {
     "id": "RUSTSEC-2026-0554",
     "modified": "2026-11-17T10:14:35Z",
     "published": "2026-11-16T12:00:00Z",
@@ -152,21 +226,16 @@
     }
   },
   {
-    "id": "RUSTSEC-2026-0553",
-    "modified": "2026-11-17T10:14:35Z",
-    "published": "2026-11-16T12:00:00Z",
+    "id": "RUSTSEC-2026-0446",
+    "modified": "2026-11-06T14:33:54Z",
+    "published": "2026-11-06T12:00:00Z",
     "aliases": [
-      "GHSA-9543-cj4x-h76q"
+      "GHSA-2q7f-mf9f-5qhr"
     ],
     "related": [],
-    "summary": "Malformed quoted chunk extensions can end HTTP/1.1 request bodies early",
-    "details": "Affected versions of `actix-http` do not track quoted strings when parsing\nHTTP/1.1 chunk extensions. A carriage return inside a quoted extension value\nis treated as the end of the chunk-size line, even if the closing quote is\nmissing. For example, `0;x=\"\\r\\n\\r\\n` is accepted as the end of a chunked body,\nand a following pipelined request is dispatched on the same connection.\n\nA remote client can trigger this without authentication. CR and LF are invalid\ninside HTTP quoted strings, including after a backslash; they must be rejected\nrather than interpreted as framing or accepted as quoted data.\n\nRequest smuggling requires an upstream intermediary that forwards the malformed\ninput while using a different request boundary. Dispatching two requests on the\nsender's own connection does not by itself demonstrate an authorization bypass\nor an effect on another user. Proxy bypass, cache poisoning, and cross-user\nresponse mixing were not demonstrated by the reproduction.\n\nUpgrade to `actix-http` 3.21.3 or later. The fix preserves quote and escape state\nacross reads and rejects invalid control bytes inside quoted strings and quoted\npairs before consuming the following body or request bytes.",
-    "severity": [
-      {
-        "type": "CVSS_V4",
-        "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N"
-      }
-    ],
+    "summary": "Request smuggling through malformed chunked request trailers",
+    "details": "The HTTP/1 chunked decoder accepts a bare line feed after the final chunk as\nthe start of a trailer instead of rejecting the malformed request.\n\nWhen an upstream proxy reuses a connection and either pipelines the requests or\ndoes not take steps to validate the chunked stream, the decoder can consume the\nnext request's headers as trailer data. It can then parse that request's body as\na new request. An attacker can use this difference in request parsing to bypass\naccess controls enforced by a proxy or web application firewall.\n\nUpgrade to actix-http 3.20.2 or later.",
+    "severity": [],
     "affected": [
       {
         "package": {
@@ -184,7 +253,7 @@
         },
         "database_specific": {
           "categories": [],
-          "cvss": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N",
+          "cvss": null,
           "informational": null
         },
         "ranges": [
@@ -195,7 +264,7 @@
                 "introduced": "0.0.0-0"
               },
               {
-                "fixed": "3.21.3"
+                "fixed": "3.20.2"
               }
             ]
           }
@@ -210,19 +279,15 @@
       },
       {
         "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0553.html"
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0446.html"
       },
       {
         "type": "WEB",
-        "url": "https://github.com/actix/actix-web/releases/tag/actix-http-v3.21.3"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://github.com/actix/actix-web/security/advisories/GHSA-9543-cj4x-h76q"
+        "url": "https://github.com/actix/actix-web/commit/feed12e9ec59b39abe90590bf48ae6399ed45b56"
       }
     ],
     "database_specific": {
-      "license": "CC-BY-4.0"
+      "license": "CC0-1.0"
     }
   },
   {
@@ -287,71 +352,6 @@
       {
         "type": "WEB",
         "url": "https://github.com/actix/actix-web/commit/41b54d23ea04f66758c15de7e4ab18325cd25280"
-      }
-    ],
-    "database_specific": {
-      "license": "CC0-1.0"
-    }
-  },
-  {
-    "id": "RUSTSEC-2026-0446",
-    "modified": "2026-11-06T14:33:54Z",
-    "published": "2026-11-06T12:00:00Z",
-    "aliases": [
-      "GHSA-2q7f-mf9f-5qhr"
-    ],
-    "related": [],
-    "summary": "Request smuggling through malformed chunked request trailers",
-    "details": "The HTTP/1 chunked decoder accepts a bare line feed after the final chunk as\nthe start of a trailer instead of rejecting the malformed request.\n\nWhen an upstream proxy reuses a connection and either pipelines the requests or\ndoes not take steps to validate the chunked stream, the decoder can consume the\nnext request's headers as trailer data. It can then parse that request's body as\na new request. An attacker can use this difference in request parsing to bypass\naccess controls enforced by a proxy or web application firewall.\n\nUpgrade to actix-http 3.20.2 or later.",
-    "severity": [],
-    "affected": [
-      {
-        "package": {
-          "ecosystem": "crates.io",
-          "name": "actix-http",
-          "purl": "pkg:cargo/actix-http"
-        },
-        "ecosystem_specific": {
-          "affects": {
-            "arch": [],
-            "os": [],
-            "functions": []
-          },
-          "affected_functions": null
-        },
-        "database_specific": {
-          "categories": [],
-          "cvss": null,
-          "informational": null
-        },
-        "ranges": [
-          {
-            "type": "SEMVER",
-            "events": [
-              {
-                "introduced": "0.0.0-0"
-              },
-              {
-                "fixed": "3.20.2"
-              }
-            ]
-          }
-        ],
-        "versions": []
-      }
-    ],
-    "references": [
-      {
-        "type": "PACKAGE",
-        "url": "https://crates.io/crates/actix-http"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0446.html"
-      },
-      {
-        "type": "WEB",
-        "url": "https://github.com/actix/actix-web/commit/feed12e9ec59b39abe90590bf48ae6399ed45b56"
       }
     ],
     "database_specific": {
