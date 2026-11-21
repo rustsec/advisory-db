@@ -70,7 +70,7 @@ When in doubt, please open a PR.
 **Q: Do I need to be owner of a crate to file an advisory?**
 
 A: No, anyone can file an advisory against any crate. However, this should only be
-   done after the mainainters have confirmed the legitimacy of the vulnerability.
+   done after the maintainers have confirmed the legitimacy of the vulnerability.
    If a vulnerability later turns out to be fake, it can be removed from the database.
 
 **Q: Can I file an advisory without creating a pull request?**
