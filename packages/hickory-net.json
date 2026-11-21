@@ -1,73 +1,5 @@
 [
   {
-    "id": "RUSTSEC-2026-0557",
-    "modified": "2026-11-17T10:14:35Z",
-    "published": "2026-09-03T12:00:00Z",
-    "aliases": [
-      "CVE-2026-123590",
-      "GHSA-57pw-897j-v4j6"
-    ],
-    "related": [],
-    "summary": "Unsigned NSEC or NSEC3 record used in a nonexistence proof when another record at the same name is signed",
-    "details": "When DNSSEC validation collected the NSEC and NSEC3 records from a response's authority section to check a denial of existence, it kept a record if any authority record with the same owner name had validated, not only if that record itself had. A response could therefore pair a correctly signed record with a forged NSEC or NSEC3 record of the same owner name, and the forged record was used in the nonexistence proof.\n\nAn attacker who can answer or modify DNS responses can use this to get a forged NXDOMAIN or NODATA answer accepted as secure.\n\nThis affects DNSSEC validation through `DnssecDnsHandle` when built with `dnssec-ring` or `dnssec-aws-lc-rs`.\n\nThe fix keeps an NSEC or NSEC3 record only when its own signature validated.",
-    "severity": [],
-    "affected": [
-      {
-        "package": {
-          "ecosystem": "crates.io",
-          "name": "hickory-net",
-          "purl": "pkg:cargo/hickory-net"
-        },
-        "ecosystem_specific": {
-          "affects": {
-            "arch": [],
-            "os": [],
-            "functions": []
-          },
-          "affected_functions": null
-        },
-        "database_specific": {
-          "categories": [
-            "privilege-escalation"
-          ],
-          "cvss": null,
-          "informational": null
-        },
-        "ranges": [
-          {
-            "type": "SEMVER",
-            "events": [
-              {
-                "introduced": "0.0.0-0"
-              },
-              {
-                "fixed": "0.26.2"
-              }
-            ]
-          }
-        ],
-        "versions": []
-      }
-    ],
-    "references": [
-      {
-        "type": "PACKAGE",
-        "url": "https://crates.io/crates/hickory-net"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0557.html"
-      },
-      {
-        "type": "WEB",
-        "url": "https://github.com/hickory-dns/hickory-dns/commit/68cb330eb7e73a7db0cec9a25888db9f4bcf2086"
-      }
-    ],
-    "database_specific": {
-      "license": "CC0-1.0"
-    }
-  },
-  {
     "id": "RUSTSEC-2026-0556",
     "modified": "2026-11-17T10:14:35Z",
     "published": "2026-09-03T12:00:00Z",
@@ -204,89 +136,16 @@
     }
   },
   {
-    "id": "RUSTSEC-2026-0540",
-    "modified": "2026-11-13T12:33:03Z",
+    "id": "RUSTSEC-2026-0557",
+    "modified": "2026-11-17T10:14:35Z",
     "published": "2026-09-03T12:00:00Z",
     "aliases": [
-      "CVE-2026-123591",
-      "GHSA-7php-9j59-g3ch"
+      "CVE-2026-123590",
+      "GHSA-57pw-897j-v4j6"
     ],
     "related": [],
-    "summary": "Child-side NSEC or NSEC3 record accepted as proof that a delegation has no DS record",
-    "details": "To show that a delegation is insecure, a validator needs proof that the parent zone has no DS record for it. That proof must come from the parent side of the zone cut: RFC 4035 section 5.2, RFC 5155 section 8.9 and RFC 6840 section 4.4 require the matching NSEC or NSEC3 record not to have the SOA bit set, since a record with SOA comes from the child zone's apex.\n\nDNSSEC validation did not check this. An attacker who can answer or modify DNS responses can answer a DS query with the child zone's own signed NSEC or NSEC3 record for its apex, which does not list DS, and have the validator accept that the delegation is insecure. Records in the child zone can then be forged without any signature.\n\nThis affects DNSSEC validation through `DnssecDnsHandle` when built with `dnssec-ring` or `dnssec-aws-lc-rs`.\n\nThe fix treats a NODATA proof for a DS query as bogus when the directly matching NSEC or NSEC3 record has SOA in its type bitmap. It is in 0.26.2.",
-    "severity": [
-      {
-        "type": "CVSS_V3",
-        "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N"
-      }
-    ],
-    "affected": [
-      {
-        "package": {
-          "ecosystem": "crates.io",
-          "name": "hickory-net",
-          "purl": "pkg:cargo/hickory-net"
-        },
-        "ecosystem_specific": {
-          "affects": {
-            "arch": [],
-            "os": [],
-            "functions": []
-          },
-          "affected_functions": null
-        },
-        "database_specific": {
-          "categories": [
-            "privilege-escalation"
-          ],
-          "cvss": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N",
-          "informational": null
-        },
-        "ranges": [
-          {
-            "type": "SEMVER",
-            "events": [
-              {
-                "introduced": "0.0.0-0"
-              },
-              {
-                "fixed": "0.26.2"
-              }
-            ]
-          }
-        ],
-        "versions": []
-      }
-    ],
-    "references": [
-      {
-        "type": "PACKAGE",
-        "url": "https://crates.io/crates/hickory-net"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0540.html"
-      },
-      {
-        "type": "WEB",
-        "url": "https://github.com/hickory-dns/hickory-dns/commit/ec98851f4d175d97b61701bc539523ff63ddbb00"
-      }
-    ],
-    "database_specific": {
-      "license": "CC0-1.0"
-    }
-  },
-  {
-    "id": "RUSTSEC-2026-0541",
-    "modified": "2026-11-13T12:33:03Z",
-    "published": "2026-09-03T12:00:00Z",
-    "aliases": [
-      "CVE-2026-123595",
-      "GHSA-624w-vvww-xvpw"
-    ],
-    "related": [],
-    "summary": "Parent-side NSEC3 at a zone cut accepted as proof of nonexistence at and below the cut",
-    "details": "At a delegation, the parent zone signs an NSEC3 record for the child's name whose type bitmap has NS but not SOA (or has DNAME). RFC 6840 section 4.1 and RFC 5155 section 8.3 say such a record only proves that no DS record exists at that name.\n\nNSEC3 validation picked the closest encloser by matching the hashed owner name alone, without looking at the type bitmap, so it accepted such a record as the closest encloser for names below the cut. For NODATA responses, it accepted a direct match on such a record as proof that any type other than the queried one and CNAME was absent, not only DS. An attacker who can answer or modify DNS responses can replay the parent's genuine signed records to get an NXDOMAIN for a name below the cut, or a NODATA for a non-DS type at the cut, accepted as secure. A recursor caches that denial for the negative TTL.\n\nThis affects DNSSEC validation through `DnssecDnsHandle` when built with `dnssec-ring` or `dnssec-aws-lc-rs`.\n\nThe fix adds `NSEC3::is_ancestor_delegation()` in hickory-proto. Validation no longer accepts such a record as a closest encloser, and treats a direct match on it as bogus unless the query is for DS. It is in 0.26.2.",
+    "summary": "Unsigned NSEC or NSEC3 record used in a nonexistence proof when another record at the same name is signed",
+    "details": "When DNSSEC validation collected the NSEC and NSEC3 records from a response's authority section to check a denial of existence, it kept a record if any authority record with the same owner name had validated, not only if that record itself had. A response could therefore pair a correctly signed record with a forged NSEC or NSEC3 record of the same owner name, and the forged record was used in the nonexistence proof.\n\nAn attacker who can answer or modify DNS responses can use this to get a forged NXDOMAIN or NODATA answer accepted as secure.\n\nThis affects DNSSEC validation through `DnssecDnsHandle` when built with `dnssec-ring` or `dnssec-aws-lc-rs`.\n\nThe fix keeps an NSEC or NSEC3 record only when its own signature validated.",
     "severity": [],
     "affected": [
       {
@@ -333,11 +192,11 @@
       },
       {
         "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0541.html"
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0557.html"
       },
       {
         "type": "WEB",
-        "url": "https://github.com/hickory-dns/hickory-dns/commit/889801333d7f18d59a4468100e8cd1859e083d43"
+        "url": "https://github.com/hickory-dns/hickory-dns/commit/68cb330eb7e73a7db0cec9a25888db9f4bcf2086"
       }
     ],
     "database_specific": {
@@ -413,6 +272,297 @@
     }
   },
   {
+    "id": "RUSTSEC-2026-0541",
+    "modified": "2026-11-13T12:33:03Z",
+    "published": "2026-09-03T12:00:00Z",
+    "aliases": [
+      "CVE-2026-123595",
+      "GHSA-624w-vvww-xvpw"
+    ],
+    "related": [],
+    "summary": "Parent-side NSEC3 at a zone cut accepted as proof of nonexistence at and below the cut",
+    "details": "At a delegation, the parent zone signs an NSEC3 record for the child's name whose type bitmap has NS but not SOA (or has DNAME). RFC 6840 section 4.1 and RFC 5155 section 8.3 say such a record only proves that no DS record exists at that name.\n\nNSEC3 validation picked the closest encloser by matching the hashed owner name alone, without looking at the type bitmap, so it accepted such a record as the closest encloser for names below the cut. For NODATA responses, it accepted a direct match on such a record as proof that any type other than the queried one and CNAME was absent, not only DS. An attacker who can answer or modify DNS responses can replay the parent's genuine signed records to get an NXDOMAIN for a name below the cut, or a NODATA for a non-DS type at the cut, accepted as secure. A recursor caches that denial for the negative TTL.\n\nThis affects DNSSEC validation through `DnssecDnsHandle` when built with `dnssec-ring` or `dnssec-aws-lc-rs`.\n\nThe fix adds `NSEC3::is_ancestor_delegation()` in hickory-proto. Validation no longer accepts such a record as a closest encloser, and treats a direct match on it as bogus unless the query is for DS. It is in 0.26.2.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "hickory-net",
+          "purl": "pkg:cargo/hickory-net"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "privilege-escalation"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.26.2"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/hickory-net"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0541.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/hickory-dns/hickory-dns/commit/889801333d7f18d59a4468100e8cd1859e083d43"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2026-0540",
+    "modified": "2026-11-13T12:33:03Z",
+    "published": "2026-09-03T12:00:00Z",
+    "aliases": [
+      "CVE-2026-123591",
+      "GHSA-7php-9j59-g3ch"
+    ],
+    "related": [],
+    "summary": "Child-side NSEC or NSEC3 record accepted as proof that a delegation has no DS record",
+    "details": "To show that a delegation is insecure, a validator needs proof that the parent zone has no DS record for it. That proof must come from the parent side of the zone cut: RFC 4035 section 5.2, RFC 5155 section 8.9 and RFC 6840 section 4.4 require the matching NSEC or NSEC3 record not to have the SOA bit set, since a record with SOA comes from the child zone's apex.\n\nDNSSEC validation did not check this. An attacker who can answer or modify DNS responses can answer a DS query with the child zone's own signed NSEC or NSEC3 record for its apex, which does not list DS, and have the validator accept that the delegation is insecure. Records in the child zone can then be forged without any signature.\n\nThis affects DNSSEC validation through `DnssecDnsHandle` when built with `dnssec-ring` or `dnssec-aws-lc-rs`.\n\nThe fix treats a NODATA proof for a DS query as bogus when the directly matching NSEC or NSEC3 record has SOA in its type bitmap. It is in 0.26.2.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "hickory-net",
+          "purl": "pkg:cargo/hickory-net"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "privilege-escalation"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.26.2"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/hickory-net"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0540.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/hickory-dns/hickory-dns/commit/ec98851f4d175d97b61701bc539523ff63ddbb00"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2026-0517",
+    "modified": "2026-11-12T14:21:59Z",
+    "published": "2026-09-03T12:00:00Z",
+    "aliases": [
+      "CVE-2026-123584",
+      "GHSA-v44v-c8m4-gc43"
+    ],
+    "related": [],
+    "summary": "Spoofed malformed UDP datagrams abort DNS lookups",
+    "details": "While waiting for a reply on a UDP connection, the client parsed every datagram that arrived from the name server's address and port before checking its message ID. If parsing failed, the attempt ended with an error instead of dropping the datagram and waiting for the real reply. The receive loop also gave up after three datagrams.\n\nAn off-path attacker who can guess the client's source port, but not the transaction ID, can send one malformed datagram with a spoofed source address and make the pending lookup fail.\n\nThe fix reads the message ID from the first two bytes before parsing, ignores short datagrams and datagrams with the wrong ID, keeps listening until the outer timeout, and only then parses the response. It is in 0.26.2.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "hickory-net",
+          "purl": "pkg:cargo/hickory-net"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.26.0"
+              },
+              {
+                "fixed": "0.26.2"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/hickory-net"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0517.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/hickory-dns/hickory-dns/commit/07ff35c1b33c1df27e398cee463e424cef951a82"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2026-0509",
+    "modified": "2026-11-12T13:59:45Z",
+    "published": "2026-09-03T12:00:00Z",
+    "aliases": [
+      "CVE-2026-123580",
+      "GHSA-p2jv-r3m3-7wf4"
+    ],
+    "related": [],
+    "summary": "NSEC3 records from another zone were accepted in proofs of nonexistence",
+    "details": "When DNSSEC validation used NSEC3 records to prove that a name or record type does not exist, it compared only the hashed first label of each NSEC3 owner name with the hash of the name being checked. The rest of the owner name, which says which zone the record belongs to, was not checked.\n\nSomeone who controls any DNSSEC-signed zone can publish a signed NSEC3 record whose first label is the hash of a name in another zone. An attacker who can answer or modify DNS responses can then use it to make the validator accept that the name in the other zone does not exist.\n\nThis affects DNSSEC validation through `DnssecDnsHandle` when built with `dnssec-ring` or `dnssec-aws-lc-rs`.\n\nThe fix requires a matching NSEC3 record to belong to a zone that contains the checked name, and ignores NSEC3 records whose owner is not directly below the RRSIG signer name. It is in 0.26.2.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "hickory-net",
+          "purl": "pkg:cargo/hickory-net"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "privilege-escalation"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "0.26.2"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/hickory-net"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0509.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/hickory-dns/hickory-dns/commit/10840b8432feb08d369f82e2bb6ce99ae23d7afa"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/hickory-dns/hickory-dns/commit/d2ee774a789193010f109d3d463adf72c4c261ab"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
     "id": "RUSTSEC-2026-0519",
     "modified": "2026-11-12T14:21:59Z",
     "published": "2026-09-03T12:00:00Z",
@@ -474,74 +624,6 @@
       {
         "type": "WEB",
         "url": "https://github.com/hickory-dns/hickory-dns/commit/bfbe7ede4021965526f065be9b415945ce575e29"
-      }
-    ],
-    "database_specific": {
-      "license": "CC0-1.0"
-    }
-  },
-  {
-    "id": "RUSTSEC-2026-0508",
-    "modified": "2026-11-12T13:59:45Z",
-    "published": "2026-09-03T12:00:00Z",
-    "aliases": [
-      "CVE-2026-123587",
-      "GHSA-qw83-5pm2-ggp5"
-    ],
-    "related": [],
-    "summary": "NSEC wraparound detection trusted an unvalidated SOA record",
-    "details": "The last NSEC record in a zone points back to the zone apex. To recognise it, DNSSEC validation treated an NSEC record as covering every name after its owner when its next domain name equalled the owner name of an SOA record in the response. That SOA record did not have to pass validation.\n\nAn attacker who can answer or modify DNS responses can replay a genuine NSEC record and its RRSIG, add a forged SOA record whose name equals that NSEC record's next domain name, and so make the validator accept that any name sorting after the NSEC owner does not exist.\n\nThis affects DNSSEC validation through `DnssecDnsHandle` when built with `dnssec-ring` or `dnssec-aws-lc-rs`.\n\nThe fix recognises a wraparound NSEC record from the chain itself (its next domain name sorts at or before its owner and is the zone of the queried name) and only uses validated SOA records. It is in 0.26.2.",
-    "severity": [],
-    "affected": [
-      {
-        "package": {
-          "ecosystem": "crates.io",
-          "name": "hickory-net",
-          "purl": "pkg:cargo/hickory-net"
-        },
-        "ecosystem_specific": {
-          "affects": {
-            "arch": [],
-            "os": [],
-            "functions": []
-          },
-          "affected_functions": null
-        },
-        "database_specific": {
-          "categories": [
-            "privilege-escalation"
-          ],
-          "cvss": null,
-          "informational": null
-        },
-        "ranges": [
-          {
-            "type": "SEMVER",
-            "events": [
-              {
-                "introduced": "0.26.0"
-              },
-              {
-                "fixed": "0.26.2"
-              }
-            ]
-          }
-        ],
-        "versions": []
-      }
-    ],
-    "references": [
-      {
-        "type": "PACKAGE",
-        "url": "https://crates.io/crates/hickory-net"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0508.html"
-      },
-      {
-        "type": "WEB",
-        "url": "https://github.com/hickory-dns/hickory-dns/commit/e5ca40a7ef149ba5a79bc6f4916f114d153ce9ab"
       }
     ],
     "database_specific": {
@@ -621,22 +703,17 @@
     }
   },
   {
-    "id": "RUSTSEC-2026-0509",
+    "id": "RUSTSEC-2026-0508",
     "modified": "2026-11-12T13:59:45Z",
     "published": "2026-09-03T12:00:00Z",
     "aliases": [
-      "CVE-2026-123580",
-      "GHSA-p2jv-r3m3-7wf4"
+      "CVE-2026-123587",
+      "GHSA-qw83-5pm2-ggp5"
     ],
     "related": [],
-    "summary": "NSEC3 records from another zone were accepted in proofs of nonexistence",
-    "details": "When DNSSEC validation used NSEC3 records to prove that a name or record type does not exist, it compared only the hashed first label of each NSEC3 owner name with the hash of the name being checked. The rest of the owner name, which says which zone the record belongs to, was not checked.\n\nSomeone who controls any DNSSEC-signed zone can publish a signed NSEC3 record whose first label is the hash of a name in another zone. An attacker who can answer or modify DNS responses can then use it to make the validator accept that the name in the other zone does not exist.\n\nThis affects DNSSEC validation through `DnssecDnsHandle` when built with `dnssec-ring` or `dnssec-aws-lc-rs`.\n\nThe fix requires a matching NSEC3 record to belong to a zone that contains the checked name, and ignores NSEC3 records whose owner is not directly below the RRSIG signer name. It is in 0.26.2.",
-    "severity": [
-      {
-        "type": "CVSS_V3",
-        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N"
-      }
-    ],
+    "summary": "NSEC wraparound detection trusted an unvalidated SOA record",
+    "details": "The last NSEC record in a zone points back to the zone apex. To recognise it, DNSSEC validation treated an NSEC record as covering every name after its owner when its next domain name equalled the owner name of an SOA record in the response. That SOA record did not have to pass validation.\n\nAn attacker who can answer or modify DNS responses can replay a genuine NSEC record and its RRSIG, add a forged SOA record whose name equals that NSEC record's next domain name, and so make the validator accept that any name sorting after the NSEC owner does not exist.\n\nThis affects DNSSEC validation through `DnssecDnsHandle` when built with `dnssec-ring` or `dnssec-aws-lc-rs`.\n\nThe fix recognises a wraparound NSEC record from the chain itself (its next domain name sorts at or before its owner and is the zone of the queried name) and only uses validated SOA records. It is in 0.26.2.",
+    "severity": [],
     "affected": [
       {
         "package": {
@@ -656,7 +733,7 @@
           "categories": [
             "privilege-escalation"
           ],
-          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
+          "cvss": null,
           "informational": null
         },
         "ranges": [
@@ -664,7 +741,7 @@
             "type": "SEMVER",
             "events": [
               {
-                "introduced": "0.0.0-0"
+                "introduced": "0.26.0"
               },
               {
                 "fixed": "0.26.2"
@@ -682,15 +759,11 @@
       },
       {
         "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0509.html"
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0508.html"
       },
       {
         "type": "WEB",
-        "url": "https://github.com/hickory-dns/hickory-dns/commit/10840b8432feb08d369f82e2bb6ce99ae23d7afa"
-      },
-      {
-        "type": "WEB",
-        "url": "https://github.com/hickory-dns/hickory-dns/commit/d2ee774a789193010f109d3d463adf72c4c261ab"
+        "url": "https://github.com/hickory-dns/hickory-dns/commit/e5ca40a7ef149ba5a79bc6f4916f114d153ce9ab"
       }
     ],
     "database_specific": {
@@ -900,79 +973,6 @@
       {
         "type": "WEB",
         "url": "https://github.com/hickory-dns/hickory-dns/commit/77ec9c5d2e9481a0753bbaf1be3cd5175d300cff"
-      }
-    ],
-    "database_specific": {
-      "license": "CC0-1.0"
-    }
-  },
-  {
-    "id": "RUSTSEC-2026-0517",
-    "modified": "2026-11-12T14:21:59Z",
-    "published": "2026-09-03T12:00:00Z",
-    "aliases": [
-      "CVE-2026-123584",
-      "GHSA-v44v-c8m4-gc43"
-    ],
-    "related": [],
-    "summary": "Spoofed malformed UDP datagrams abort DNS lookups",
-    "details": "While waiting for a reply on a UDP connection, the client parsed every datagram that arrived from the name server's address and port before checking its message ID. If parsing failed, the attempt ended with an error instead of dropping the datagram and waiting for the real reply. The receive loop also gave up after three datagrams.\n\nAn off-path attacker who can guess the client's source port, but not the transaction ID, can send one malformed datagram with a spoofed source address and make the pending lookup fail.\n\nThe fix reads the message ID from the first two bytes before parsing, ignores short datagrams and datagrams with the wrong ID, keeps listening until the outer timeout, and only then parses the response. It is in 0.26.2.",
-    "severity": [
-      {
-        "type": "CVSS_V3",
-        "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
-      }
-    ],
-    "affected": [
-      {
-        "package": {
-          "ecosystem": "crates.io",
-          "name": "hickory-net",
-          "purl": "pkg:cargo/hickory-net"
-        },
-        "ecosystem_specific": {
-          "affects": {
-            "arch": [],
-            "os": [],
-            "functions": []
-          },
-          "affected_functions": null
-        },
-        "database_specific": {
-          "categories": [
-            "denial-of-service"
-          ],
-          "cvss": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
-          "informational": null
-        },
-        "ranges": [
-          {
-            "type": "SEMVER",
-            "events": [
-              {
-                "introduced": "0.26.0"
-              },
-              {
-                "fixed": "0.26.2"
-              }
-            ]
-          }
-        ],
-        "versions": []
-      }
-    ],
-    "references": [
-      {
-        "type": "PACKAGE",
-        "url": "https://crates.io/crates/hickory-net"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0517.html"
-      },
-      {
-        "type": "WEB",
-        "url": "https://github.com/hickory-dns/hickory-dns/commit/07ff35c1b33c1df27e398cee463e424cef951a82"
       }
     ],
     "database_specific": {

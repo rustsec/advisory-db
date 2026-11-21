@@ -1,78 +1,5 @@
 [
   {
-    "id": "RUSTSEC-2026-0546",
-    "modified": "2026-11-17T10:14:35Z",
-    "published": "2026-10-22T12:00:00Z",
-    "aliases": [
-      "CVE-2026-115908",
-      "GHSA-hjqx-j4rw-g7xv"
-    ],
-    "related": [],
-    "summary": "`ZipArchive::extract` can write outside the destination through absolute or chained symlink targets",
-    "details": "Before writing an entry whose path goes through a symlink, `ZipArchive::extract` checks the symlink's target against the destination directory. That check compares the paths as text and does not follow symlinks, and from 7.2.0 it drops the root and prefix of an absolute target before comparing. Symlinks taken from the archive were created without any check of their targets.\n\nA crafted archive can first create a symlink that points outside the destination, then a second symlink whose target looks like a path inside the destination but goes through the first one, and then a file entry under the second symlink. The file is written outside the destination directory, for example over an existing file in the user's home directory, and `extract` still returns `Ok(())`. On Windows, a target on another drive or share whose path otherwise matches the destination passes the check directly (creating symlinks there needs Developer Mode or administrator rights). The attacker has to know or guess the absolute path of the destination directory.\n\nThis affects `ZipArchive::extract` and `ZipArchive::extract_unwrapped_root_dir`.\n\nThe fix resolves symlink targets one component at a time from the canonicalized destination, following symlinks on the way, and refuses to create a symlink, or write through one, that leads outside the destination.",
-    "severity": [
-      {
-        "type": "CVSS_V3",
-        "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:H"
-      }
-    ],
-    "affected": [
-      {
-        "package": {
-          "ecosystem": "crates.io",
-          "name": "zip",
-          "purl": "pkg:cargo/zip"
-        },
-        "ecosystem_specific": {
-          "affects": {
-            "arch": [],
-            "os": [],
-            "functions": []
-          },
-          "affected_functions": null
-        },
-        "database_specific": {
-          "categories": [
-            "privilege-escalation"
-          ],
-          "cvss": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:H",
-          "informational": null
-        },
-        "ranges": [
-          {
-            "type": "SEMVER",
-            "events": [
-              {
-                "introduced": "7.2.0"
-              },
-              {
-                "fixed": "9.0.0"
-              }
-            ]
-          }
-        ],
-        "versions": []
-      }
-    ],
-    "references": [
-      {
-        "type": "PACKAGE",
-        "url": "https://crates.io/crates/zip"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0546.html"
-      },
-      {
-        "type": "WEB",
-        "url": "https://github.com/zip-rs/zip2/commit/09c030eab56e8db8fb3c1c33f554407b30bad8fa"
-      }
-    ],
-    "database_specific": {
-      "license": "CC0-1.0"
-    }
-  },
-  {
     "id": "RUSTSEC-2026-0548",
     "modified": "2026-11-17T10:14:35Z",
     "published": "2026-10-17T12:00:00Z",
@@ -134,79 +61,6 @@
       {
         "type": "WEB",
         "url": "https://github.com/zip-rs/zip2/commit/8068ab480ccf8daa7411424e365fcdbe6d09443e"
-      }
-    ],
-    "database_specific": {
-      "license": "CC0-1.0"
-    }
-  },
-  {
-    "id": "RUSTSEC-2026-0545",
-    "modified": "2026-11-17T10:14:35Z",
-    "published": "2026-10-22T12:00:00Z",
-    "aliases": [
-      "CVE-2026-115906",
-      "GHSA-8hxf-qr8p-62x4"
-    ],
-    "related": [],
-    "summary": "AES entries returned without checking their authentication code when the data ends early or is empty",
-    "details": "For WinZip AES (AE-1 and AE-2) entries, the 10-byte HMAC authentication code was read and checked only after the reader had consumed exactly the entry's declared compressed size. If the archive ended before that size was reached, the read returned end-of-stream and the truncated plaintext was accepted without the check. The authentication code of an entry with no encrypted data was never checked.\n\nAES-CTR ciphertext can be changed bit by bit without the password, and AE-2 entries carry no CRC-32, so an attacker who can modify an archive can alter the decrypted contents of such an entry without any error being reported.\n\nThis affects reading AES-encrypted entries with a password (for example `ZipArchive::by_name_decrypt`) with the `aes-crypto` feature.\n\nThe fix returns an error when the data ends before the declared size, and checks the authentication code of empty entries.",
-    "severity": [
-      {
-        "type": "CVSS_V3",
-        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:N"
-      }
-    ],
-    "affected": [
-      {
-        "package": {
-          "ecosystem": "crates.io",
-          "name": "zip",
-          "purl": "pkg:cargo/zip"
-        },
-        "ecosystem_specific": {
-          "affects": {
-            "arch": [],
-            "os": [],
-            "functions": []
-          },
-          "affected_functions": null
-        },
-        "database_specific": {
-          "categories": [
-            "crypto-failure"
-          ],
-          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:N",
-          "informational": null
-        },
-        "ranges": [
-          {
-            "type": "SEMVER",
-            "events": [
-              {
-                "introduced": "0.6.0"
-              },
-              {
-                "fixed": "9.0.0"
-              }
-            ]
-          }
-        ],
-        "versions": []
-      }
-    ],
-    "references": [
-      {
-        "type": "PACKAGE",
-        "url": "https://crates.io/crates/zip"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0545.html"
-      },
-      {
-        "type": "WEB",
-        "url": "https://github.com/zip-rs/zip2/commit/ec265db0b0602f8ffb9479327397bddefb7e2216"
       }
     ],
     "database_specific": {
@@ -287,6 +141,152 @@
     }
   },
   {
+    "id": "RUSTSEC-2026-0545",
+    "modified": "2026-11-17T10:14:35Z",
+    "published": "2026-10-22T12:00:00Z",
+    "aliases": [
+      "CVE-2026-115906",
+      "GHSA-8hxf-qr8p-62x4"
+    ],
+    "related": [],
+    "summary": "AES entries returned without checking their authentication code when the data ends early or is empty",
+    "details": "For WinZip AES (AE-1 and AE-2) entries, the 10-byte HMAC authentication code was read and checked only after the reader had consumed exactly the entry's declared compressed size. If the archive ended before that size was reached, the read returned end-of-stream and the truncated plaintext was accepted without the check. The authentication code of an entry with no encrypted data was never checked.\n\nAES-CTR ciphertext can be changed bit by bit without the password, and AE-2 entries carry no CRC-32, so an attacker who can modify an archive can alter the decrypted contents of such an entry without any error being reported.\n\nThis affects reading AES-encrypted entries with a password (for example `ZipArchive::by_name_decrypt`) with the `aes-crypto` feature.\n\nThe fix returns an error when the data ends before the declared size, and checks the authentication code of empty entries.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:N"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "zip",
+          "purl": "pkg:cargo/zip"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "crypto-failure"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:N",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.6.0"
+              },
+              {
+                "fixed": "9.0.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/zip"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0545.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/zip-rs/zip2/commit/ec265db0b0602f8ffb9479327397bddefb7e2216"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2026-0546",
+    "modified": "2026-11-17T10:14:35Z",
+    "published": "2026-10-22T12:00:00Z",
+    "aliases": [
+      "CVE-2026-115908",
+      "GHSA-hjqx-j4rw-g7xv"
+    ],
+    "related": [],
+    "summary": "`ZipArchive::extract` can write outside the destination through absolute or chained symlink targets",
+    "details": "Before writing an entry whose path goes through a symlink, `ZipArchive::extract` checks the symlink's target against the destination directory. That check compares the paths as text and does not follow symlinks, and from 7.2.0 it drops the root and prefix of an absolute target before comparing. Symlinks taken from the archive were created without any check of their targets.\n\nA crafted archive can first create a symlink that points outside the destination, then a second symlink whose target looks like a path inside the destination but goes through the first one, and then a file entry under the second symlink. The file is written outside the destination directory, for example over an existing file in the user's home directory, and `extract` still returns `Ok(())`. On Windows, a target on another drive or share whose path otherwise matches the destination passes the check directly (creating symlinks there needs Developer Mode or administrator rights). The attacker has to know or guess the absolute path of the destination directory.\n\nThis affects `ZipArchive::extract` and `ZipArchive::extract_unwrapped_root_dir`.\n\nThe fix resolves symlink targets one component at a time from the canonicalized destination, following symlinks on the way, and refuses to create a symlink, or write through one, that leads outside the destination.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "zip",
+          "purl": "pkg:cargo/zip"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "privilege-escalation"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "7.2.0"
+              },
+              {
+                "fixed": "9.0.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/zip"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0546.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/zip-rs/zip2/commit/09c030eab56e8db8fb3c1c33f554407b30bad8fa"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
     "id": "RUSTSEC-2026-0429",
     "modified": "2026-11-02T09:50:37Z",
     "published": "2026-10-22T12:00:00Z",
@@ -349,6 +349,74 @@
       {
         "type": "ADVISORY",
         "url": "https://rustsec.org/advisories/RUSTSEC-2026-0429.html"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  },
+  {
+    "id": "RUSTSEC-2026-0367",
+    "modified": "2026-10-16T23:27:42Z",
+    "published": "2026-10-09T12:00:00Z",
+    "aliases": [
+      "GHSA-vv5m-jxxh-4627"
+    ],
+    "related": [],
+    "summary": " Insecure Preservation of SUID/SGID Bits during ZIP Extraction Leading to Potential Privilege Escalation",
+    "details": "The `zip` crate preserves privileged Unix permission bits (SUID, SGID, and sticky bits) from ZIP `external_attributes` during extraction, instead of masking them to safe permission bits. If a privileged process (for example, `root` in an installer, CI/CD pipeline, or container build) extracts an attacker-controlled ZIP archive using `ZipArchive::extract()` or the stream extraction API, files can be created as setuid-root or setgid. This behavior allows the creation of SUID/SGID files during extraction, which can lead to local privilege escalation depending on the execution environment.\n\nFor further details see: https://github.com/zip-rs/zip2/security/advisories/GHSA-vv5m-jxxh-4627",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:U/C:H/I:H/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "zip",
+          "purl": "pkg:cargo/zip"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "privilege-escalation"
+          ],
+          "cvss": "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:U/C:H/I:H/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "9.0.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/zip"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0367.html"
       }
     ],
     "database_specific": {
@@ -480,74 +548,6 @@
       {
         "type": "ADVISORY",
         "url": "https://rustsec.org/advisories/RUSTSEC-2026-0368.html"
-      }
-    ],
-    "database_specific": {
-      "license": "CC0-1.0"
-    }
-  },
-  {
-    "id": "RUSTSEC-2026-0367",
-    "modified": "2026-10-16T23:27:42Z",
-    "published": "2026-10-09T12:00:00Z",
-    "aliases": [
-      "GHSA-vv5m-jxxh-4627"
-    ],
-    "related": [],
-    "summary": " Insecure Preservation of SUID/SGID Bits during ZIP Extraction Leading to Potential Privilege Escalation",
-    "details": "The `zip` crate preserves privileged Unix permission bits (SUID, SGID, and sticky bits) from ZIP `external_attributes` during extraction, instead of masking them to safe permission bits. If a privileged process (for example, `root` in an installer, CI/CD pipeline, or container build) extracts an attacker-controlled ZIP archive using `ZipArchive::extract()` or the stream extraction API, files can be created as setuid-root or setgid. This behavior allows the creation of SUID/SGID files during extraction, which can lead to local privilege escalation depending on the execution environment.\n\nFor further details see: https://github.com/zip-rs/zip2/security/advisories/GHSA-vv5m-jxxh-4627",
-    "severity": [
-      {
-        "type": "CVSS_V3",
-        "score": "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:U/C:H/I:H/A:H"
-      }
-    ],
-    "affected": [
-      {
-        "package": {
-          "ecosystem": "crates.io",
-          "name": "zip",
-          "purl": "pkg:cargo/zip"
-        },
-        "ecosystem_specific": {
-          "affects": {
-            "arch": [],
-            "os": [],
-            "functions": []
-          },
-          "affected_functions": null
-        },
-        "database_specific": {
-          "categories": [
-            "privilege-escalation"
-          ],
-          "cvss": "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:U/C:H/I:H/A:H",
-          "informational": null
-        },
-        "ranges": [
-          {
-            "type": "SEMVER",
-            "events": [
-              {
-                "introduced": "0.0.0-0"
-              },
-              {
-                "fixed": "9.0.0"
-              }
-            ]
-          }
-        ],
-        "versions": []
-      }
-    ],
-    "references": [
-      {
-        "type": "PACKAGE",
-        "url": "https://crates.io/crates/zip"
-      },
-      {
-        "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0367.html"
       }
     ],
     "database_specific": {
