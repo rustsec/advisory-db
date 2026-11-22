@@ -1,0 +1,72 @@
+[
+  {
+    "id": "RUSTSEC-2026-0592",
+    "modified": "2026-11-22T09:50:21Z",
+    "published": "2026-11-20T12:00:00Z",
+    "aliases": [
+      "GHSA-hrj5-67jp-wqp9"
+    ],
+    "related": [],
+    "summary": "Stack overflow in `Url::origin()` on nested `blob:` URLs",
+    "details": "In `url` 2.5.8 and earlier, `Url::origin()` handled a `blob:` URL by parsing its path as another URL and calling itself on the result. It did so regardless of the inner URL's scheme, `blob` included. Each `blob:` prefix cost one stack frame, with no limit on nesting depth. `Url::parse()` accepts a URL with 10,000 `blob:` prefixes followed by `https://example.com/` (50,020 bytes in total); calling `Url::origin()` on it overflowed the default 2 MiB stack of a spawned thread.\n\nA stack overflow aborts the whole process, and `catch_unwind()` does not catch it. One such URL crashes any program that calls `Url::origin()` on untrusted input. `url::quirks::origin()` also calls `Url::origin()`. For example, Servo's `URL.origin` DOM getter calls `url::quirks::origin()`, so a script on a page can trigger the overflow.\n\n`url` 2.5.9 follows the URL Standard: `Url::origin()` takes the origin of the inner URL only when its scheme is `http`, `https`, or `file`, returns an opaque origin otherwise, and never calls itself. A `blob:` URL with another inner scheme that previously produced a tuple origin, such as `blob:ws://...` or `blob:blob:https://...`, now returns an opaque origin.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "url",
+          "purl": "pkg:cargo/url"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "url::Url::origin",
+              "url::quirks::origin"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.0.0-0"
+              },
+              {
+                "fixed": "2.5.9"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/url"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0592.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/servo/rust-url/pull/1186"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]
