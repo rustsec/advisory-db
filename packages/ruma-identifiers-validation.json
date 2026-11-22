@@ -1,0 +1,69 @@
+[
+  {
+    "id": "RUSTSEC-2026-0588",
+    "modified": "2026-11-22T09:29:23Z",
+    "published": "2026-11-19T12:00:00Z",
+    "aliases": [],
+    "related": [],
+    "summary": "Validating Matrix Content URIs may panic",
+    "details": "Using `mxc_uri::validate` may panic if the server name part of the URI is larger\nthan 249 bytes. The affected versions assumed that the length of the first part\nof the URI (`mxc://{server_name}`) would fit into a `NonZeroU8`, but the length\nof the server name wasn't validated and the Matrix specification actually allows\nthe server name to have a maximum length of 261 bytes.",
+    "severity": [],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "ruma-identifiers-validation",
+          "purl": "pkg:cargo/ruma-identifiers-validation"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": [
+              "ruma_identifiers_validation::mxc_uri::validate"
+            ]
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "denial-of-service"
+          ],
+          "cvss": null,
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.2.3"
+              },
+              {
+                "fixed": "0.13.0"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/ruma-identifiers-validation"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0588.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/ruma/ruma/commit/caf1ac05a9fd347158b60505ef8546a2ff18ae7c"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]
