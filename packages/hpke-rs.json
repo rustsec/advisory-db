@@ -1,18 +1,18 @@
 [
   {
-    "id": "RUSTSEC-2026-0070",
+    "id": "RUSTSEC-2026-0071",
     "modified": "2026-03-24T08:16:07Z",
-    "published": "2026-02-11T12:00:00Z",
+    "published": "2026-02-05T12:00:00Z",
     "aliases": [
       "GHSA-g433-pq76-6cmf"
     ],
     "related": [],
-    "summary": "Panic When Opening or Sealing on Export-Only Context",
-    "details": "Constructing an HPKE Context with the AEAD algorithm set to\n`HpkeExport` resulted in a panic when calling `Context::seal`, or\n`Context::open`. This was due to an underflowing integer subtraction\nwhen calculating the length of a vector allocation for the AEAD nonce,\nwhich would panic on its own in debug mode and cause out-of-memory\nabort on the allocation in release mode.\n\n## Impact\nApplications that could be made to use an HPKE context configured with\n`HpkeExport` as AEAD algorithm to open or seal a ciphertext would\ncrash. Other applications are unaffected.\n\n## Mitigation\nStarting with version `0.6.0`, an error will be returned when\nattempting to call `Context::seal` or `Context::open` on an HPKE\ncontext with `HpkeExport` as AEADAlgorithm.",
+    "summary": "Nonce Reuse in HPKE Context",
+    "details": "The sequence number that is used to compute the AEAD nonce when using\na re-usable HPKE context is incremented after each seal or open\noperation. This sequence number was stored as a `u32` and used regular\naddition on `u32` for the increment, meaning in release mode it would\nsilently wrap around to 0 after 2^32 seal or open operations.\n\n## Impact\nNonce reuse causes catastrophic breakage of AEAD ciphers, enabling\nplaintext recovery attacks and authentication tag forgeries, depending\non the concrete AEAD.\n\nThis bug impacts applications that use hpke-rs to encrypt a large\nnumber of messages using the same context. Applications using the\none-shot APIs are unaffected.\n\n## Mitigation\nStarting with version `0.6.0`, `checked_add` is used to increment the\nsequence number, which avoids a silent wraparound in release\nmode. Additionally, the sequence number is now stored as a `u64`,\nincreasing the maximally allowed number of seal and open operations on\na given HPKE context.",
     "severity": [
       {
         "type": "CVSS_V4",
-        "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N"
+        "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:N/SC:N/SI:N/SA:N"
       }
     ],
     "affected": [
@@ -35,7 +35,7 @@
         },
         "database_specific": {
           "categories": [],
-          "cvss": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N",
+          "cvss": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:N/SC:N/SI:N/SA:N",
           "informational": null
         },
         "ranges": [
@@ -61,11 +61,11 @@
       },
       {
         "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0070.html"
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0071.html"
       },
       {
         "type": "WEB",
-        "url": "https://github.com/cryspen/hpke-rs/pull/128"
+        "url": "https://github.com/cryspen/hpke-rs/pull/123"
       }
     ],
     "database_specific": {
@@ -140,19 +140,19 @@
     }
   },
   {
-    "id": "RUSTSEC-2026-0071",
+    "id": "RUSTSEC-2026-0070",
     "modified": "2026-03-24T08:16:07Z",
-    "published": "2026-02-05T12:00:00Z",
+    "published": "2026-02-11T12:00:00Z",
     "aliases": [
       "GHSA-g433-pq76-6cmf"
     ],
     "related": [],
-    "summary": "Nonce Reuse in HPKE Context",
-    "details": "The sequence number that is used to compute the AEAD nonce when using\na re-usable HPKE context is incremented after each seal or open\noperation. This sequence number was stored as a `u32` and used regular\naddition on `u32` for the increment, meaning in release mode it would\nsilently wrap around to 0 after 2^32 seal or open operations.\n\n## Impact\nNonce reuse causes catastrophic breakage of AEAD ciphers, enabling\nplaintext recovery attacks and authentication tag forgeries, depending\non the concrete AEAD.\n\nThis bug impacts applications that use hpke-rs to encrypt a large\nnumber of messages using the same context. Applications using the\none-shot APIs are unaffected.\n\n## Mitigation\nStarting with version `0.6.0`, `checked_add` is used to increment the\nsequence number, which avoids a silent wraparound in release\nmode. Additionally, the sequence number is now stored as a `u64`,\nincreasing the maximally allowed number of seal and open operations on\na given HPKE context.",
+    "summary": "Panic When Opening or Sealing on Export-Only Context",
+    "details": "Constructing an HPKE Context with the AEAD algorithm set to\n`HpkeExport` resulted in a panic when calling `Context::seal`, or\n`Context::open`. This was due to an underflowing integer subtraction\nwhen calculating the length of a vector allocation for the AEAD nonce,\nwhich would panic on its own in debug mode and cause out-of-memory\nabort on the allocation in release mode.\n\n## Impact\nApplications that could be made to use an HPKE context configured with\n`HpkeExport` as AEAD algorithm to open or seal a ciphertext would\ncrash. Other applications are unaffected.\n\n## Mitigation\nStarting with version `0.6.0`, an error will be returned when\nattempting to call `Context::seal` or `Context::open` on an HPKE\ncontext with `HpkeExport` as AEADAlgorithm.",
     "severity": [
       {
         "type": "CVSS_V4",
-        "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:N/SC:N/SI:N/SA:N"
+        "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N"
       }
     ],
     "affected": [
@@ -175,7 +175,7 @@
         },
         "database_specific": {
           "categories": [],
-          "cvss": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:N/SC:N/SI:N/SA:N",
+          "cvss": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N",
           "informational": null
         },
         "ranges": [
@@ -201,11 +201,11 @@
       },
       {
         "type": "ADVISORY",
-        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0071.html"
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0070.html"
       },
       {
         "type": "WEB",
-        "url": "https://github.com/cryspen/hpke-rs/pull/123"
+        "url": "https://github.com/cryspen/hpke-rs/pull/128"
       }
     ],
     "database_specific": {
