@@ -1,0 +1,90 @@
+{
+  "id": "RUSTSEC-2026-0595",
+  "modified": "2026-11-23T16:01:22Z",
+  "published": "2026-11-23T12:00:00Z",
+  "aliases": [
+    "CVE-2026-125651",
+    "GHSA-8m2j-rv5j-c94f"
+  ],
+  "related": [],
+  "summary": "Apache Arrow Rust: Bloom filters written as plaintext when writing encrypted Parquet",
+  "details": "When writing an encrypted parquet file with a column with bloom filters, the header\nand bitsets of the bloom filter are written in plaintext in the final parquet.\n\nPatched versions now reject writing bloom filters when encryption is enabled, raising\nan error at runtime.\n\nExisting encrypted parquet files written with bloom filters are still vulnerable,\nand it is recommended to rewrite those files with bloom filters disabled if possible.\n\nCredit to Yanzhi Xin (autoCAT6) for finding this.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "parquet",
+        "purl": "pkg:cargo/parquet"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "crypto-failure"
+        ],
+        "cvss": null,
+        "informational": "unsound"
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "55.0.0"
+            },
+            {
+              "fixed": "57.3.3"
+            },
+            {
+              "introduced": "58.0.0"
+            },
+            {
+              "fixed": "58.4.2"
+            },
+            {
+              "introduced": "59.0.0"
+            },
+            {
+              "fixed": "59.3.3"
+            },
+            {
+              "introduced": "60.0.0"
+            },
+            {
+              "fixed": "60.2.0"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/parquet"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0595.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/apache/arrow-rs/pull/12165"
+    },
+    {
+      "type": "WEB",
+      "url": "https://www.openwall.com/lists/oss-security/2026/11/22/5"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
