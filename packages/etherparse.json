@@ -1,0 +1,117 @@
+[
+  {
+    "id": "RUSTSEC-2026-0596",
+    "modified": "2026-11-24T08:42:44Z",
+    "published": "2026-11-23T12:00:00Z",
+    "aliases": [
+      "GHSA-mmwx-cp2j-wjh2"
+    ],
+    "related": [],
+    "summary": "Out-of-bounds read when iterating over IPv6 extension headers of laxly parsed packets",
+    "details": "Iterating over malformed or truncated IPv6 extension headers can cause\nout-of-bounds reads when the packet was parsed using one of the lax parsing\nfunctions (e.g. via `Ipv6ExtensionsSlice::from_slice_lax` or `LaxSlicedPacket`).\n\nLax parsing stops at the first invalid or truncated extension header and returns\nthe headers parsed up to that point. The \"next header\" field of the last returned\nheader can then refer to a header that is not part of the slice.\n`Ipv6ExtensionSliceIter` followed it without checking the remaining length.\n\nA crafted or truncated IPv6 packet can cause a crash or expose memory located\nbehind the packet to the application. Users who do not iterate over the IPv6\nextension headers of laxly parsed packets are not affected.\n\nAs a workaround, do not iterate over the IPv6 extension headers if lax parsing\nreported an error.",
+    "severity": [
+      {
+        "type": "CVSS_V3",
+        "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:H"
+      }
+    ],
+    "affected": [
+      {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "etherparse",
+          "purl": "pkg:cargo/etherparse"
+        },
+        "ecosystem_specific": {
+          "affects": {
+            "arch": [],
+            "os": [],
+            "functions": []
+          },
+          "affected_functions": null
+        },
+        "database_specific": {
+          "categories": [
+            "memory-exposure",
+            "denial-of-service"
+          ],
+          "cvss": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:H",
+          "informational": null
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0.14.0"
+              },
+              {
+                "fixed": "0.14.4"
+              },
+              {
+                "introduced": "0.15.0-0"
+              },
+              {
+                "fixed": "0.15.1"
+              },
+              {
+                "introduced": "0.16.0-0"
+              },
+              {
+                "fixed": "0.16.1"
+              },
+              {
+                "introduced": "0.17.0-0"
+              },
+              {
+                "fixed": "0.17.1"
+              },
+              {
+                "introduced": "0.18.0-0"
+              },
+              {
+                "fixed": "0.18.3"
+              },
+              {
+                "introduced": "0.19.0-0"
+              },
+              {
+                "fixed": "0.19.1"
+              },
+              {
+                "introduced": "0.20.0-0"
+              },
+              {
+                "fixed": "0.20.4"
+              },
+              {
+                "introduced": "0.21.0-0"
+              },
+              {
+                "fixed": "0.21.1"
+              }
+            ]
+          }
+        ],
+        "versions": []
+      }
+    ],
+    "references": [
+      {
+        "type": "PACKAGE",
+        "url": "https://crates.io/crates/etherparse"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://rustsec.org/advisories/RUSTSEC-2026-0596.html"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/JulianSchmid/etherparse/pull/169"
+      }
+    ],
+    "database_specific": {
+      "license": "CC0-1.0"
+    }
+  }
+]
