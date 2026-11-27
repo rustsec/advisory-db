@@ -1,5 +1,917 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2026-11-25T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2026-0600: Vulnerability in kube-client</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0600.html</id><updated>2026-11-25T12:00:00+00:00</updated><category term="crypto-failure"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0600.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0600: Vulnerability in kube-client"/><published>2026-11-25T12:00:00+00:00</published><summary xml:lang="en">`openssl-tls` trusts OpenSSL&amp;apos;s default CA store in addition to the configured cluster CA</summary><content xml:lang="en" type="html">  &lt;article&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>RustSec Advisories</title><id>https://rustsec.org/feed.xml</id><updated>2026-11-27T12:00:00+00:00</updated><author><name>RustSec</name></author><icon>https://rustsec.org/favicon.ico</icon><link href="https://rustsec.org/feed.xml" rel="self" type="application/atom+xml"/><link href="https://rustsec.org/" rel="alternate" type="text/html"/><subtitle xml:lang="en">Security advisories filed against Rust crates</subtitle><entry><title>RUSTSEC-2026-0602: Vulnerability in dryoc</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0602.html</id><updated>2026-11-27T12:00:00+00:00</updated><category term="crypto-failure"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0602.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0602: Vulnerability in dryoc"/><published>2026-11-27T12:00:00+00:00</published><summary xml:lang="en">Ed25519 signing key pairs with an inconsistent embedded public key are accepted</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/dryoc/RUSTSEC-2026-0602.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/dryoc/RUSTSEC-2026-0602.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0602&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0602
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;Ed25519 signing key pairs with an inconsistent embedded public key are accepted&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-16&quot;&gt;
+          November 16, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-27&quot;&gt;
+          November 27, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/dryoc.html&quot;&gt;dryoc&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/dryoc&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/crypto-failure.html&quot;&gt;crypto-failure&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/ed25519.html&quot;&gt;#ed25519&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/signature.html&quot;&gt;#signature&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/key-recovery.html&quot;&gt;#key-recovery&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/keypair-validation.html&quot;&gt;#keypair-validation&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/serde.html&quot;&gt;#serde&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-vc3q-r4qh-vp64&quot;&gt;GHSA-vc3q-r4qh-vp64&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/brndnmtthws/dryoc/pull/230&quot;&gt;
+              https://github.com/brndnmtthws/dryoc/pull/230
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/brndnmtthws/dryoc/releases/tag/v2.0.1&quot;&gt;
+              https://github.com/brndnmtthws/dryoc/releases/tag/v2.0.1
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=2.0.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;An Ed25519 secret key in &lt;code&gt;dryoc&lt;/code&gt; is 64 bytes: the 32-byte seed followed by
+the 32-byte public key. When signing, the public key used in the challenge
+hash &lt;code&gt;k = H(R || A || M)&lt;/code&gt; is read from bytes 32..64 of the secret key, while
+the nonce &lt;code&gt;r&lt;/code&gt;, and therefore &lt;code&gt;R&lt;/code&gt;, is derived only from the seed and the
+message.&lt;/p&gt;
+&lt;p&gt;In affected versions, &lt;code&gt;SigningKeyPair::from_slices&lt;/code&gt; and, when the &lt;code&gt;serde&lt;/code&gt;
+feature is enabled, the derived &lt;code&gt;Deserialize&lt;/code&gt; implementation of
+&lt;code&gt;SigningKeyPair&lt;/code&gt; store the 64 secret-key bytes as given, without checking
+that the embedded public key matches the one derived from the seed. The
+separate &lt;code&gt;public_key&lt;/code&gt; field of the struct is not used for signing, so only
+the embedded half is relevant. &lt;code&gt;SigningKeyPair::from_secret_key&lt;/code&gt; re-derives
+the key pair from the seed and is not affected.&lt;/p&gt;
+&lt;p&gt;If an attacker can replace bytes 32..64 of a stored secret key without being
+able to read the seed, and can obtain signatures over the same message from
+both the original and the modified key, the two signatures share the same &lt;code&gt;R&lt;/code&gt;
+and differ in &lt;code&gt;S&lt;/code&gt;. The private scalar can then be computed as
+&lt;code&gt;a = (S1 - S2) / (k1 - k2)&lt;/code&gt;, which allows signatures to be forged for
+arbitrary messages under the original public key. Examples of such conditions
+are key storage without integrity protection, or an application that
+assembles the 64 secret-key bytes from two separate sources. The upstream
+advisory rates the issue as low severity.&lt;/p&gt;
+&lt;p&gt;This behavior matches libsodium, which also trusts the embedded public key,
+so it is not a compatibility defect; the concern is that the higher-level
+constructors in &lt;code&gt;dryoc&lt;/code&gt; did not enforce the consistency that
+&lt;code&gt;from_secret_key&lt;/code&gt; already provides.&lt;/p&gt;
+&lt;h2&gt;Fix&lt;/h2&gt;
+&lt;p&gt;Version 2.0.1 validates imported Ed25519 key pairs in
+&lt;code&gt;SigningKeyPair::from_slices&lt;/code&gt; and during serde deserialization, rejecting key
+material whose embedded or separate public key does not match the seed. In
+addition, &lt;code&gt;SigningKeyPair&lt;/code&gt; signing and &lt;code&gt;Ed25519phSigner&lt;/code&gt; finalization
+re-derive the embedded public key from the seed, since the key pair&apos;s fields
+remain publicly mutable.&lt;/p&gt;
+&lt;p&gt;The Classic API (&lt;code&gt;dryoc::classic::crypto_sign&lt;/code&gt;) keeps libsodium-compatible
+semantics: callers of functions such as &lt;code&gt;crypto_sign_detached&lt;/code&gt; must supply
+consistent signing key material.&lt;/p&gt;
+&lt;p&gt;Users should upgrade to &lt;code&gt;dryoc&lt;/code&gt; 2.0.1 or later.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0603: Vulnerability in dryoc</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0603.html</id><updated>2026-11-27T12:00:00+00:00</updated><category term="crypto-failure"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0603.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0603: Vulnerability in dryoc"/><published>2026-11-27T12:00:00+00:00</published><summary xml:lang="en">X25519 accepts low-order public keys, yielding session keys computable without a private key</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/dryoc/RUSTSEC-2026-0603.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/dryoc/RUSTSEC-2026-0603.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0603&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0603
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;X25519 accepts low-order public keys, yielding session keys computable without a private key&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-16&quot;&gt;
+          November 16, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-27&quot;&gt;
+          November 27, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/dryoc.html&quot;&gt;dryoc&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/dryoc&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/crypto-failure.html&quot;&gt;crypto-failure&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/x25519.html&quot;&gt;#x25519&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/curve25519.html&quot;&gt;#curve25519&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/low-order.html&quot;&gt;#low-order&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/key-exchange.html&quot;&gt;#key-exchange&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/diffie-hellman.html&quot;&gt;#diffie-hellman&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-6xqm-2982-gvrm&quot;&gt;GHSA-6xqm-2982-gvrm&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/brndnmtthws/dryoc/pull/139&quot;&gt;
+              https://github.com/brndnmtthws/dryoc/pull/139
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/brndnmtthws/dryoc/releases/tag/v1.0.0&quot;&gt;
+              https://github.com/brndnmtthws/dryoc/releases/tag/v1.0.0
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;4.8 &lt;span class=&quot;tag medium&quot;&gt;
+        MEDIUM
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Network&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;Low&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N&quot;&gt;CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=1.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+    &lt;dl&gt;
+      &lt;dt&gt;Affected Functions&lt;/dt&gt;
+      &lt;dd&gt;Version&lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;dryoc::classic::crypto_box::crypto_box_beforenm&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;dryoc::classic::crypto_box::crypto_box_detached&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;dryoc::classic::crypto_box::crypto_box_detached_inplace&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;dryoc::classic::crypto_box::crypto_box_easy&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;dryoc::classic::crypto_box::crypto_box_easy_inplace&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;dryoc::classic::crypto_box::crypto_box_open_detached&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;dryoc::classic::crypto_box::crypto_box_open_detached_inplace&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;dryoc::classic::crypto_box::crypto_box_open_easy&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;dryoc::classic::crypto_box::crypto_box_open_easy_inplace&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;dryoc::classic::crypto_box::crypto_box_seal&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;dryoc::classic::crypto_box::crypto_box_seal_open&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;dryoc::classic::crypto_core::crypto_scalarmult&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;dryoc::classic::crypto_kx::crypto_kx_client_session_keys&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;dryoc::classic::crypto_kx::crypto_kx_server_session_keys&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;dryoc::dryocbox::DryocBox::decrypt&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;dryoc::dryocbox::DryocBox::decrypt_to_vec&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;dryoc::dryocbox::DryocBox::encrypt&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;dryoc::dryocbox::DryocBox::encrypt_to_vecbox&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;dryoc::dryocbox::DryocBox::seal&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;dryoc::dryocbox::DryocBox::seal_to_vecbox&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;dryoc::dryocbox::DryocBox::unseal&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;dryoc::dryocbox::DryocBox::unseal_to_vec&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;dryoc::keypair::KeyPair::precalculate&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;dryoc::kx::Session::new_client&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;dryoc::kx::Session::new_client_with_defaults&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;dryoc::kx::Session::new_server&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;dryoc::kx::Session::new_server_with_defaults&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+      &lt;dt&gt;&lt;code&gt;dryoc::precalc::PrecalcSecretKey::precalculate&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#60;1.0.0&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+    &lt;/dl&gt;
+    
+
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;Versions of dryoc before 1.0.0 never reject low-order peer public keys or an
+all-zero shared secret. In addition, versions 0.5.1 through 0.9.x compute
+X25519 with the clamped scalar reduced modulo the prime subgroup order ℓ
+(&lt;code&gt;Scalar::from_bytes_mod_order(clamp(n))&lt;/code&gt;) instead of the clamped integer
+specified by RFC 7748; earlier versions use the unreduced clamped scalar.
+libsodium, with which these functions are documented as compatible, returns an
+error for all of these inputs.&lt;/p&gt;
+&lt;p&gt;This affects &lt;code&gt;crypto_scalarmult&lt;/code&gt;, &lt;code&gt;crypto_kx_client_session_keys&lt;/code&gt; /
+&lt;code&gt;crypto_kx_server_session_keys&lt;/code&gt;, &lt;code&gt;kx::Session::new_*&lt;/code&gt;, and
+&lt;code&gt;crypto_box_beforenm&lt;/code&gt; together with the box and precalculation APIs built on
+it, whenever the peer public key is not authenticated or can be chosen by a
+malicious party.&lt;/p&gt;
+&lt;h2&gt;Impact&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Predictable session keys.&lt;/strong&gt; For the 14 encodings of low-order Curve25519
+points, the X25519 output is always the all-zero value in versions up to
+0.5.0, and one of 5 fixed public values in 0.5.1 through 0.9.x. The
+key-exchange functions return &lt;code&gt;Ok&lt;/code&gt;, and anyone who knows the two public keys
+can recompute the resulting session keys (or &lt;code&gt;crypto_box_beforenm&lt;/code&gt; key) by
+trying at most 4 candidates. The confidentiality and integrity of that
+session are lost, including against passive observers.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Small private-key leak (0.5.1 through 0.9.x).&lt;/strong&gt; With a peer key that has an
+order-8 torsion component, the output reveals 2 bits of the victim&apos;s static
+X25519 scalar to the peer (and, when the peer key is an order-8 low-order
+point, to any observer who can test the candidate session keys). This does
+not meaningfully reduce the hardness of recovering the key.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Non-standard output (0.5.1 through 0.9.x).&lt;/strong&gt; Peer keys with a torsion
+component, and points on the quadratic twist, produce outputs that differ
+from RFC 7748 and libsodium, which breaks interoperability for such keys.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;KeyPair::is_valid_public_key&lt;/code&gt; accepts 6 of the 14 low-order encodings, so it
+cannot be relied on as a guard.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Applications that only use authenticated peer keys generated by dryoc or
+libsodium are not affected in practice: honest keys lie in the prime-order
+subgroup, where the reduced and unreduced scalars give the same result.&lt;/p&gt;
+&lt;h2&gt;Resolution&lt;/h2&gt;
+&lt;p&gt;Upgrade to dryoc 1.0.0 or later. In 1.0.0, X25519 is computed with
+&lt;code&gt;MontgomeryPoint::mul_clamped&lt;/code&gt; (the unreduced clamped scalar, as in RFC 7748),
+and an all-zero shared secret is rejected, so low-order public keys now return
+an error from the scalarmult, box, key-exchange and precalculation APIs. Note
+that 1.0.0 is a backward-incompatible release; several of these functions now
+return &lt;code&gt;Result&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;If upgrading is not yet possible, validate every untrusted peer X25519 public
+key before passing it to dryoc 0.9.x, for example by rejecting keys that do not
+map to a torsion-free Edwards point (&lt;code&gt;MontgomeryPoint::to_edwards(0)&lt;/code&gt; followed
+by &lt;code&gt;is_torsion_free()&lt;/code&gt; in &lt;code&gt;curve25519-dalek&lt;/code&gt;; this requires &lt;code&gt;curve25519-dalek&lt;/code&gt;
+4.x as a direct dependency). A check based only on &lt;code&gt;is_small_order()&lt;/code&gt; prevents
+the predictable session keys but not the 2-bit leak or the non-standard output.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0601: Vulnerability in wsts</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0601.html</id><updated>2026-11-27T12:00:00+00:00</updated><category term="crypto-failure"/><category term="denial-of-service"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0601.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0601: Vulnerability in wsts"/><published>2026-11-27T12:00:00+00:00</published><summary xml:lang="en">FROST coordinator accepts unvalidated DKG polynomial commitments</summary><content xml:lang="en" type="html">  &lt;article&gt;
+    
+        &lt;span class=&quot;floating-menu&quot;&gt;
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/wsts/RUSTSEC-2026-0601.md&quot;&gt;History&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://github.com/RustSec/advisory-db/edit/main/crates/wsts/RUSTSEC-2026-0601.md&quot;&gt;Edit&lt;/a&gt; ⋅
+          &lt;a href=&quot;https://api.osv.dev/v1/vulns/RUSTSEC-2026-0601&quot;&gt;JSON (OSV)&lt;/a&gt;
+        &lt;/span&gt;
+    
+
+    &lt;header&gt;
+      &lt;h1&gt;
+        
+        RUSTSEC-2026-0601
+        
+      &lt;/h1&gt;
+      &lt;span class=&quot;subtitle&quot;&gt;&lt;p&gt;FROST coordinator accepts unvalidated DKG polynomial commitments&lt;/p&gt;
+&lt;/span&gt;
+    &lt;/header&gt;
+
+    
+
+    &lt;dl&gt;
+      &lt;dt id=&quot;reported&quot;&gt;Reported&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-26&quot;&gt;
+          November 26, 2026
+        &lt;/time&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;issued&quot;&gt;Issued&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;time datetime=&quot;2026-11-27&quot;&gt;
+          November 27, 2026
+        &lt;/time&gt;
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;package&quot;&gt;Package&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        
+        &lt;a href=&quot;/packages/wsts.html&quot;&gt;wsts&lt;/a&gt;
+           
+          (&lt;a href=&quot;https://crates.io/crates/wsts&quot;&gt;crates.io&lt;/a&gt;)
+          
+        
+        
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;type&quot;&gt;Type&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        Vulnerability
+        
+      &lt;/dd&gt;
+
+      
+      &lt;dt id=&quot;categories&quot;&gt;Categories&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/crypto-failure.html&quot;&gt;crypto-failure&lt;/a&gt;&lt;/li&gt;
+          
+          &lt;li&gt;&lt;a href=&quot;/categories/denial-of-service.html&quot;&gt;denial-of-service&lt;/a&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;keywords&quot;&gt;Keywords&lt;/dt&gt;
+      &lt;dd&gt;
+        
+          &lt;a href=&quot;/keywords/frost.html&quot;&gt;#frost&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/threshold-signature.html&quot;&gt;#threshold-signature&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/dkg.html&quot;&gt;#dkg&lt;/a&gt;
+        
+          &lt;a href=&quot;/keywords/schnorr.html&quot;&gt;#schnorr&lt;/a&gt;
+        
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;aliases&quot;&gt;Aliases&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+          
+          &lt;li&gt;
+            
+            &lt;a href=&quot;https://github.com/advisories/GHSA-whwx-jj37-4gg5&quot;&gt;GHSA-whwx-jj37-4gg5&lt;/a&gt;
+            
+          &lt;/li&gt;
+          
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+      &lt;dt id=&quot;details&quot;&gt;References&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;ul&gt;
+        
+          &lt;li&gt;
+            &lt;a href=&quot;https://github.com/xoloki/wsts/commit/1aa6902f4e8d98460d5a6760a657125670938a48&quot;&gt;
+              https://github.com/xoloki/wsts/commit/1aa6902f4e8d98460d5a6760a657125670938a48
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+        
+        &lt;/ul&gt;
+      &lt;/dd&gt;
+      
+
+      
+
+      
+      &lt;dt id=&quot;cvss_score&quot;&gt;CVSS Score&lt;/dt&gt;
+      &lt;dd&gt;5.9 &lt;span class=&quot;tag medium&quot;&gt;
+        MEDIUM
+      &lt;/span&gt;&lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss_details&quot;&gt;CVSS Details&lt;/dt&gt;
+      &lt;dd&gt;
+        &lt;dl&gt;
+          
+            &lt;dt&gt;Attack Vector&lt;/dt&gt;
+            &lt;dd&gt;Network&lt;/dd&gt;
+          
+            &lt;dt&gt;Attack Complexity&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+            &lt;dt&gt;Privileges Required&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+            &lt;dt&gt;User Interaction&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Scope&lt;/dt&gt;
+            &lt;dd&gt;Unchanged&lt;/dd&gt;
+          
+            &lt;dt&gt;Confidentiality Impact&lt;/dt&gt;
+            &lt;dd&gt;None&lt;/dd&gt;
+          
+            &lt;dt&gt;Integrity Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+            &lt;dt&gt;Availability Impact&lt;/dt&gt;
+            &lt;dd&gt;High&lt;/dd&gt;
+          
+        &lt;/dl&gt;
+      &lt;/dd&gt;
+
+      &lt;dt id=&quot;cvss&quot;&gt;CVSS Vector&lt;/dt&gt;
+
+      
+          &lt;dd&gt;&lt;a href=&quot;https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:N/I:H/A:H&quot;&gt;CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:N/I:H/A:H&lt;/a&gt;&lt;/dd&gt;
+        
+
+      
+
+      &lt;dt id=&quot;patched&quot;&gt;Patched&lt;/dt&gt;
+      &lt;dd&gt;
+        
+        &lt;ul&gt;
+          
+          &lt;li&gt;&lt;code&gt;&amp;#62;=15.0.1&lt;/code&gt;&lt;/li&gt;
+          
+        &lt;/ul&gt;
+        
+      &lt;/dd&gt;
+
+      
+
+      
+      
+    &lt;/dl&gt;
+
+    
+    
+
+    &lt;h3 id=&quot;description&quot;&gt;Description&lt;/h3&gt;
+    &lt;p&gt;The FROST coordinator (&lt;code&gt;state_machine::coordinator::frost::Coordinator&lt;/code&gt;) did not
+validate the DKG public shares it received. It stored each polynomial commitment
+at receipt without checking it, and computed the aggregate public key from its
+own copy without checking it either. A signer that is a member of the signing
+set could therefore make the coordinator hold a commitment with no valid proof
+of knowledge of its constant term, or with the wrong number of coefficients,
+including none.&lt;/p&gt;
+&lt;p&gt;Two consequences, both requiring control of a signer in the set. A malformed
+commitment broadcast to every participant is correctly rejected by honest
+signers, but the coordinator has already stored it; if the coordinator was
+restored from saved state with an existing group key and signing continues under
+that key after the failed re-keying, the next signing round indexes the
+malformed commitment and the coordinator process panics. A commitment delivered
+only to the coordinator, on a transport that does not enforce broadcast, lets the
+signer make the coordinator compute an aggregate public key that no honest
+signer holds and that the signer controls. No key material is disclosed and no
+signature is forged.&lt;/p&gt;
+&lt;p&gt;The FIRE coordinator (&lt;code&gt;state_machine::coordinator::fire::Coordinator&lt;/code&gt;) validates
+commitments and is not affected.&lt;/p&gt;
+&lt;p&gt;Version 15.0.1 validates every commitment at receipt and again before the
+aggregate key is computed, matching the FIRE coordinator. Users of the FROST
+coordinator should upgrade. If that is not possible, use the FIRE coordinator,
+take the group key from the signers&apos; DKG results rather than from the
+coordinator, and run DKG again before signing after any failed round.&lt;/p&gt;
+&lt;p&gt;Reported by hokvo (Gleb) through GitHub private vulnerability reporting.&lt;/p&gt;
+
+
+    &lt;p id=&quot;license&quot; class=&quot;license&quot;&gt;Advisory available under &lt;a href=&quot;https://spdx.org/licenses/CC0-1.0.html&quot;&gt;CC0-1.0&lt;/a&gt;
+    license.
+
+    
+    &lt;/p&gt;
+  &lt;/article&gt;</content></entry><entry><title>RUSTSEC-2026-0600: Vulnerability in kube-client</title><id>https://rustsec.org/advisories/RUSTSEC-2026-0600.html</id><updated>2026-11-25T12:00:00+00:00</updated><category term="crypto-failure"/><link href="https://rustsec.org/advisories/RUSTSEC-2026-0600.html" rel="alternate" type="text/html" title="RUSTSEC-2026-0600: Vulnerability in kube-client"/><published>2026-11-25T12:00:00+00:00</published><summary xml:lang="en">`openssl-tls` trusts OpenSSL&amp;apos;s default CA store in addition to the configured cluster CA</summary><content xml:lang="en" type="html">  &lt;article&gt;
     
         &lt;span class=&quot;floating-menu&quot;&gt;
           &lt;a href=&quot;https://github.com/RustSec/advisory-db/commits/main/crates/kube-client/RUSTSEC-2026-0600.md&quot;&gt;History&lt;/a&gt; ⋅
