@@ -1,0 +1,71 @@
+{
+  "id": "RUSTSEC-2026-0602",
+  "modified": "2026-11-27T10:35:42Z",
+  "published": "2026-11-16T12:00:00Z",
+  "aliases": [
+    "GHSA-vc3q-r4qh-vp64"
+  ],
+  "related": [],
+  "summary": "Ed25519 signing key pairs with an inconsistent embedded public key are accepted",
+  "details": "An Ed25519 secret key in `dryoc` is 64 bytes: the 32-byte seed followed by\nthe 32-byte public key. When signing, the public key used in the challenge\nhash `k = H(R || A || M)` is read from bytes 32..64 of the secret key, while\nthe nonce `r`, and therefore `R`, is derived only from the seed and the\nmessage.\n\nIn affected versions, `SigningKeyPair::from_slices` and, when the `serde`\nfeature is enabled, the derived `Deserialize` implementation of\n`SigningKeyPair` store the 64 secret-key bytes as given, without checking\nthat the embedded public key matches the one derived from the seed. The\nseparate `public_key` field of the struct is not used for signing, so only\nthe embedded half is relevant. `SigningKeyPair::from_secret_key` re-derives\nthe key pair from the seed and is not affected.\n\nIf an attacker can replace bytes 32..64 of a stored secret key without being\nable to read the seed, and can obtain signatures over the same message from\nboth the original and the modified key, the two signatures share the same `R`\nand differ in `S`. The private scalar can then be computed as\n`a = (S1 - S2) / (k1 - k2)`, which allows signatures to be forged for\narbitrary messages under the original public key. Examples of such conditions\nare key storage without integrity protection, or an application that\nassembles the 64 secret-key bytes from two separate sources. The upstream\nadvisory rates the issue as low severity.\n\nThis behavior matches libsodium, which also trusts the embedded public key,\nso it is not a compatibility defect; the concern is that the higher-level\nconstructors in `dryoc` did not enforce the consistency that\n`from_secret_key` already provides.\n\n## Fix\n\nVersion 2.0.1 validates imported Ed25519 key pairs in\n`SigningKeyPair::from_slices` and during serde deserialization, rejecting key\nmaterial whose embedded or separate public key does not match the seed. In\naddition, `SigningKeyPair` signing and `Ed25519phSigner` finalization\nre-derive the embedded public key from the seed, since the key pair's fields\nremain publicly mutable.\n\nThe Classic API (`dryoc::classic::crypto_sign`) keeps libsodium-compatible\nsemantics: callers of functions such as `crypto_sign_detached` must supply\nconsistent signing key material.\n\nUsers should upgrade to `dryoc` 2.0.1 or later.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "dryoc",
+        "purl": "pkg:cargo/dryoc"
+      },
+      "ecosystem_specific": {
+        "affects": {
+          "arch": [],
+          "os": [],
+          "functions": []
+        },
+        "affected_functions": null
+      },
+      "database_specific": {
+        "categories": [
+          "crypto-failure"
+        ],
+        "cvss": null,
+        "informational": null
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.0.0-0"
+            },
+            {
+              "fixed": "2.0.1"
+            }
+          ]
+        }
+      ],
+      "versions": []
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/dryoc"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://rustsec.org/advisories/RUSTSEC-2026-0602.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/brndnmtthws/dryoc/pull/230"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/brndnmtthws/dryoc/releases/tag/v2.0.1"
+    }
+  ],
+  "database_specific": {
+    "license": "CC0-1.0"
+  }
+}
